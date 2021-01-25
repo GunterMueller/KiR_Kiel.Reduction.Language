@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Preface and Introduction}{1}
+\contentsline {section}{\numberline {2}A Kernel of {\psc KiR }}{3}
+\contentsline {section}{\numberline {3}Editing and Executing Simple Programs on $\pi $--{\psc red }}{7}
+\contentsline {section}{\numberline {4}More about the Editor and the $\pi $--{\psc red }System}{21}
+\contentsline {subsection}{\numberline {4.1}The Layout of {\psc KiR }Programs on your Display}{21}
+\contentsline {subsection}{\numberline {4.2}Deleting Terms from a {\psc KiR }Program}{24}
+\contentsline {subsection}{\numberline {4.3}Some Other Useful Editor Commands}{25}
+\contentsline {subsection}{\numberline {4.4}The Filing System}{27}
+\contentsline {subsection}{\numberline {4.5}Setting the System Parameters}{29}
+\contentsline {subsection}{\numberline {4.6}Defining the Function Keys on your Keyboard}{31}
+\contentsline {section}{\numberline {5}Full $\beta $-Reductions and Higher-Order Functions}{33}
+\contentsline {section}{\numberline {6}Structured Objects and Pattern Matching}{44}
+\contentsline {subsection}{\numberline {6.1}Primitive Operations on Lists}{44}
+\contentsline {subsection}{\numberline {6.2}Strict Pattern Matching}{45}
+\contentsline {subsection}{\numberline {6.3}An Example : Quicksorting}{51}
+\contentsline {subsection}{\numberline {6.4}Pattern Matching with Wild Cards}{55}
+\contentsline {subsection}{\numberline {6.5}Pattern Matching with User-Defined Constructors}{59}
+\contentsline {subsection}{\numberline {6.6}A Case Study : the SECD Machine}{60}
+\contentsline {section}{\numberline {7}Vectors and Matrices as System-Supported Data Types}{66}
+\contentsline {subsection}{\numberline {7.1}Problem Identification}{66}
+\contentsline {subsection}{\numberline {7.2}Re-Structuring Vectors and Matrices}{69}
+\contentsline {subsection}{\numberline {7.3}Value-Transforming Operations}{78}
+\contentsline {subsection}{\numberline {7.4}Query Functions and Class Conversion}{86}
+\contentsline {section}{Appendix 1: The Syntax of {\psc KiR }}{89}
+\contentsline {section}{Appendix 2: Summary of the $\pi $--{\psc red }Controls}{94}
+\contentsline {section}{Appendix 3: The X-Window Frontend for the Editor}{101}
+\contentsline {section}{Appendix 4: Installing $\pi $--{\psc red }on your System}{106}
+\contentsline {section}{References}{109}

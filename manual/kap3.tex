@@ -1,0 +1,745 @@
+\section{Editing and Executing Simple Programs on  \pired}
+
+In this section you will learn the first steps necessary to edit and execute
+a simple functional program on \pired. A good example to start with is the
+program given in the preceding section which computes the
+{\mys greatest common divisor}\index{greatest common divisor program} of two integer numbers. 
+
+If properly installed on your UNIX system\footnote{See also appendix 3.}, \pired may be {\mys called}\index{calling \pired} under
+the appropriate directory by typing the command
+$$
+{\tt <unix\_prompter>: reduma}.
+$$
+The system will respond by producing on your screen (or window) the {\mys user
+interface}\index{user interface} of \pired which has the basic format shown in fig.~\ref{f3.1}. It
+%--------------------------------------------------------------
+\begin{figure}[htb]
+\begin{center}
+\begin{minipage}{150\unitlength}
+\begin{picture}(300,190)(50,0)
+%------------------------------------------------------------
+\thicklines
+%-----------------------------------------------------------
+\multiput(0,0)(0,180){2}{\line(1,0){240}}
+\multiput(0,0)(240,0){2}{\line(0,1){180}}
+\put(0,160){\line(1,0){240}}
+\put(10,162){\makebox(30,6)[l]{\tt input :}}
+\put(10,172){\makebox(30,6)[l]{\tt message :}}
+\put(10,142){\makebox(6,6)[l]{\tt \# }}
+\put(90,80){\makebox(40,10){\sc focus\_of\_attention field}}
+%------------------------------------------------------------
+\end{picture}
+\end{minipage}
+\end{center}
+\caption{Layout of the \pired User Interface}
+\label{f3.1}
+\end{figure}
+%-------------------------------------------------------------
+consists of a small field at the top, separated by a horizontal line
+from a large field which stretches over
+the remainder of the screen at the bottom. The field at the top is divided 
+into a line each for {\mys messages}\index{message line}, in which you will initially see
+$$
+{\tt RED\; 2.3\; Function-Version}\;\;\;\;      ,
+$$
+ and for {\mys input}\index{input line}. The bottom field will be
+initialized with the symbol {\tt \#}, and you will also find the cursor in
+the position of the {\tt \#}. Roughly speaking, the contents of this field represent the
+\kir expression that is to be actually processed  by \pired.
+It is therefore
+referred to as the {\mys focus\_of\_attention field} (or {\mys
+{\sc fa} field} for short)\index{focus\_of\_attention field}\index{{\sc fa} field}. The {\tt \#}
+symbol generally stands for an {\mys empty expression}\index{empty expression} (or an empty {\mys syntactical
+position}\index{syntactical position}), and {\tt \#} as
+the only item in this field simply indicates that no expression is
+as yet loaded.
+
+\pired is now set up and ready for editing, which is a strictly {\mys syntax-directed
+process}\index{syntax-directed editing}. This is to say that you always work with complete {\mys syntactical
+constructs}\index{syntactical construct}\index{construct} of \kir in which either empty
+{\mys syntactical positions} need to be replaced 
+with other constructs, or the constructs must themselves be placed into
+specific syntactical positions of enclosing constructs. The former corresponds
+ to designing programs {\mys top-down}\index{top-down programming}, and the latter corresponds to designing them
+{\mys bottom-up}\index{bottom-up programming}. Both directions may be used in any order of convenience. In 
+supporting this programming style, the editor makes use of the fact that 
+specific {\mys keywords}\index{keyword} of \kir, so-called {\mys constructors}\index{constructor}, form the root nodes
+of certain {\mys syntactical constructs}\index{syntactical construct}, and that some of these constructs may
+ even require expressions
+of a particular type (e.g., variables, patterns etc.)
+in some of their components.
+
+To see how this works, you may start typing
+on your {\mys keyboard}\index{keyboard} the fragment of a simple \kir expression, say, just the
+keyword {\tt if}. The {\tt if} is immediately echoed in the input line, and
+the message line fills with {\tt <expr|def>}, indicating that the input
+line may legally contain a \kir expression or a (function) definition.
+If you now hit the return (or enter) key on your keyboard, both the message and the input
+line will be cleared, and in the {\sc fa} field appears a syntactically complete
+{\tt if\_then\_else} construct with as yet uninstantiated (or empty)
+component expressions,
+i.e., with {\tt \#} symbols in the respective syntactical positions. The cursor
+has now been moved to the topmost {\tt \#} position, expecting it to be
+replaced next by a legal \kir expression, which in this particular case should
+be a predicate expression that evaluates to a Boolean constant.
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+if #
+then #
+else #
+
+\end{verbatim}
+%-----------------------------------------------------------------
+You can now use this structure to construct the function body of either of
+the two recursive functions that make up the greatest common divisor
+program; so let's do the function {\tt Modulo} first. Under the current cursor
+position you may therefore type
+$$
+{\tt ( x \; le \; y }
+$$
+which again echoes
+on the input line, with just {\tt <expr>} on the message line. Note that the
+input has an opening but no closing parenthesis, and that both
+variables are printed as lower case letters. Upon hitting the return key,
+you get inserted into the cursor position a fully parenthesized expression
+with the variables now printed as upper case letters.
+In doing this, the editor takes the opening parenthesis
+as the constructor of an expression which, by convention, has three
+components and thus inserts the closing parenthesis immediately following
+the third component. Furthermore, since it has neither {\tt x} nor {\tt y}
+on the list of keywords of \kir, it takes them as variables and turns them
+into upper case letters. The string {\tt le}, however, represents 
+a primitive function symbol, i.e., it is a keyword, and therefore left as it is. 
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+if ( X le Y )
+then #
+else #
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+The cursor has now moved to the next empty position, and you may simply
+input {\tt x} to get 
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+if ( X le Y )
+then X
+else #
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+Finally, you may fill out the {\tt else} part of the clause,  which can be done
+in one step by typing
+$$
+ {\tt modulo[(x \; - \; y, y}.
+$$
+ Note that you may forget 
+about both the closing parenthesis following the arithmetic expression in the first
+argument position of {\tt modulo} and also the closing
+{\tt ]} following the second (and last) argument position. Upon hitting the 
+return key you will see that both are inserted into the correct positions
+by the editor. Again, all character strings that cannot be identified
+as keywords of \kir are turned into variables, i.e., their leading letters are
+converted to upper case.
+%----------------------------------------------------------------------
+\begin{verbatim}
+
+if ( X le Y )
+then X
+else Modulo [ ( X - Y ), Y ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+Looking at this expression,
+you should realize that something strange has happened. At this point in
+the program 
+design, {\tt modulo} is just a name for a function that is not yet defined, so
+its arity is not yet known. Also, a function in \kir  may be
+applied to any number of arguments irrespective of its own arity. Thus
+there is no
+way for the editor to figure out how many arguments need actually be supplied.
+The closing parenthesis {\tt ]} is therefore inserted on a purely speculative
+basis, assuming that the current input line contains a complete argument
+list. However, as you will see in just a moment, there are means to add
+further arguments to this list or to delete some of them, if so desired.
+
+So far, you have just followed a top-down design path by filling
+with concrete expressions  empty
+positions of a syntactical construct. Since no
+further {\tt \#} symbols are left in the {\sc fa} field expression, you
+will have to go a step bottom-up from here to complete the program.
+
+Before doing this, you need to know something about the significance
+of the {\mys cursor position}\index{cursor position} and the way the cursor may be {\mys moved}\index{cursor movement} around.
+The cursor is always positioned either on a \kir constructor, e.g., a
+keyword or a parenthesis {\tt "("} which opens an application in infix notation,
+ or on an {\mys atom}\index{atom}, i.e., a {\mys variable}\index{variable}, a {\mys constant}\index{constant}, a {\mys primitive function}\index{primitive function} symbol,
+or an empty expression {\tt \#}.
+Whatever expression (or fragment thereof) you type on the keyboard first 
+shows up in the input line and, upon pressing the return key,
+ ends up in the cursor position, i.e.,
+it overwrites there either an atom or an entire subexpression held together
+by a constructor symbol. So, what really matters in the editing process
+is not necessarily the full expression that you see in the 
+{\sc fa} field but it is always what we will from now on refer to as the
+{\mys cursor expression}\index{cursor expression}. You may check this out at the risk of destroying
+your current cursor expression (unless you have already done so by accident)
+or, for the moment, just believe it.
+
+In the {\tt if\_then\_else} clause you have developed so far, the cursor
+happens to be positioned on the variable {\tt Modulo} for it is the
+ leading symbol
+of the expression you have inserted last. In order to make the entire clause the subject of further editing operations, the cursor needs to be moved up
+to the {\tt if}.
+
+Since the \pired user interface emulates an alphanumerical terminal, the
+{\mys cursor movement}\index{cursor movement} may only be controlled by the respective keys on your 
+keyboard, of which you usually have available one each pointing {\mys up}, {\mys down},
+{\mys left} and {\mys right}\footnote{A mouse, if available, doesn't do anything for you other than selecting
+the window you want to work with on a workstation.}\index{up key}\index{down key}\index{left key}\index{right key}.
+
+ As a default option you have at hand an expression-oriented cursor movement.
+ With each of the cursor keys you may traverse in  a particular way
+the {\mys syntax tree}\index{syntax tree} of a \kir expression.
+Here is how it works:
+
+Starting from the current cursor position, the
+\begin{itemize}
+\item {\tt up} key moves the cursor to the hierarchically higher constructor
+(or from a {\mys son node}\index{son node} to its immediate {\mys father node}\index{father node});
+\item {\tt down} key moves the cursor from left to right and round robin
+through all nodes that are tied to the same immediate father node; 
+\item {\tt right} key lets the cursor traverse the syntax tree in
+ {\mys pre-order}\index{pre-order traversal} (i.e., recursively top-down and left-right);
+\item {\tt left} key lets the cursor traverse the syntax tree in {\mys post-order}\index{post-order traversal}
+(i.e., recursively right-left and bottom-up)\footnote{If your keyboard includes a {\mys home key}\index{home key}, it moves the cursor from anywhere within an expression
+directly to the topmost constructor.}.
+\end{itemize}
+
+Now you can play with the cursor keys a little more systematically and
+thereby find out which components of an expression are constructors,
+which are atoms, and which are just blind syntactical sugar. For instance,
+whichever way you are moving about the current {\sc fa} expression, you will never
+get the cursor on the {\tt else} or on any of the parentheses {\tt ),[,]}. They
+just let the expression look a little more structured and readable,
+ but they are
+of no relevance syntactically.  You may also note that, contrary to what
+we said earlier about variables being atoms, the identifier {\tt Modulo}
+seems to be taken as  a constructor.
+This is due to the fact that in this particular high-level representation of an 
+application there is no explicit constructor (which would be an applicator); so the function symbol is taken for it instead.
+
+Alternatively, the expressions may be traversed in a line-oriented mode (as every conventional
+editor does). This mode may  be enabled with a special control command which will be introduced 
+later on.
+ 
+After this
+little excursion into cursor movement, you may now
+ continue with the construction of the greatest common divisor
+program. 
+
+The current {\sc fa} expression must become the right-hand
+side of a function definition for {\tt Modulo[X,Y]}, which must
+in turn be embedded in a {\tt def} construct.
+All you need to do to accomplish this is to maneouver the cursor to
+the topmost constructor (which is the {\tt if}) and
+ to type as input something like
+$$
+{\tt Modulo [\;] = \%}
+$$
+ if, for the time being, you don't want to think about
+the formal parameters of the function. The important part of this input is the
+percentage sign {\tt \%}. It acts as a {\mys placeholder}\index{placeholder} for which the current
+ cursor expression will be substituted  upon entering 
+ the input
+ as the new cursor expression. 
+However, what you actually get when hitting the return key may not be exactly
+what you would expect: the editor returns as the new cursor expression a
+{\tt def} construct comprising a function definition for {\tt Modulo[ ]}
+(i.e., a function which as of now is without parameters) and, surprisingly enough, as a goal
+expression another copy of the body of this function. 
+%------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Modulo [   ] = if ( X le Y )
+                 then X
+                 else Modulo [ ( X - Y ), Y ]
+in if ( X le Y )
+   then X
+   else Modulo [ ( X - Y ), Y ]
+
+\end{verbatim}
+%-------------------------------------------------------------
+Being faced with a goal expression that you didn't ask for has to
+ do with implementation details of the editor which you don't need
+ to worry about. To proceed with your editing, it really doesn't matter
+whether or not you have in this place an expression other than the empty
+symbol {\tt \#}. In either case, you'll have to make this syntactical
+position the cursor expression and type as input (a fragment of) the expression
+you want to be there, which in our example would be
+$$
+ {\tt gcd\; [\; 6, 4  }\;\;\;\;\;                         . 
+$$
+If you then move the cursor into the position between the parentheses
+{\tt [ ]} in the function header, type
+$$
+ {\tt x,\; y}
+$$
+ in the input line
+(which brings up {\tt <var\_list> } in the message line), and hit the return
+key, you get as the new cursor expression:
+%------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Modulo [ X, Y ] = if ( X le Y )
+                    then X
+                    else Modulo [ ( X - Y ), Y ]
+in Gcd [ 6, 4 ]
+
+\end{verbatim}
+%----------------------------------------------------------------
+
+Note that the list of formal parameters may be {\mys expanded}\index{adding function parameters} by moving the 
+cursor to the parameter position prior to or
+after which you wish to insert the new parameter, and by entering
+ the input line
+$$
+ {\tt z,\%}\;\;\;\;\; {\rm or}\;\;\;\;\;\; {\tt \%, z}\;\;\;\;                         ,
+$$
+ respectively
+ (where {\tt z} is taken as the identifier
+that is to be added). Conversely, a parameter in cursor position may be {\mys removed}\index{removing function parameters}
+from the list 
+by hitting the {\tt delete} key on your keyboard. You are free to test both
+operations on
+your current {\sc fa} expression without wrecking it. In the same way you
+ may also {\mys expand} or {\mys shrink}\index{adding arguments}\index{removing arguments} the list of
+arguments of a function application for it features the same syntactical
+structure as a function header. 
+
+
+Let's now return to the business of completing the greatest common divisor 
+program.  What remains to be done is
+ to include the second function definition, the one
+for {\tt Gcd [X,Y]}, into the {\tt def} construct. 
+To do so, you first need to move the cursor to the identifier
+{\tt Modulo} which is the leading symbol in the function header of the existing definition.
+Whenever then you start typing anything in the input
+line, the message line responds with {\tt <var| fdec>}, meaning that you
+may replace either just the identifier {\tt Modulo} or the
+entire function definition with another expression of the same kind,
+neither of which you actually want to do. The third possibility is to
+include in the input a {\mys reference}\index{referencing the cursor expression} {\tt \%} to this cursor expression
+ and thus embedd it bottom-up in the desired context. 
+
+When using as input
+$$
+ {\tt \%, gcd [\;]\; =\;\;\;  }\;\;\;\;\;,
+$$
+the editor will add the fragment
+of the definition for {\tt Gcd} after that for {\tt Modulo}\footnote{As of
+now, there is now way of doing it the other way around, i.e., to put the definition
+of {\tt Gcd} before that of {\tt Modulo}.}.  The resulting
+cursor expression looks like this:
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Modulo [ X, Y ] = if ( X le Y )
+                    then X
+                    else Modulo [ ( X - Y ), Y ],
+  Gcd [   ] = #
+in Gcd [ 6, 4 ]
+
+\end{verbatim}
+%-----------------------------------------------------------------
+Now you may go ahead to fill out the missing argument list and the
+missing function body of {\tt Gcd} in just about the same way as 
+for the function {\tt Modulo}. If everything is done, you should
+get the cursor expression
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Modulo [ X, Y ] = if ( X le Y )
+                    then X
+                    else Modulo [ ( X - Y ), Y ],
+  Gcd [ X, Y ] = if ( X eq Y )
+                 then X
+                 else if ( X gt Y )
+                      then Gcd [ Y, Modulo [ X, Y ] ]
+                      else Gcd [ X, Modulo [ Y, X ] ]
+in Gcd [ 6, 4 ]
+
+\end{verbatim}
+%------------------------------------------------------------------
+which is ready for execution.
+
+Of course, you may edit this program in any other way you wish. For instance,
+you could start with the input {\tt def} which produces in the {\sc fa} field
+a {\tt def} construct with an empty position each for a function definition
+and a goal expression. From there you can design the program strictly
+top-down by {\mys recursive refinement}\index{recursive refinement}. Once you are more familiar with \kir,
+you will also know that there is a primitive function {\tt mod} available
+which renders the defined function {\tt Modulo} superfluous.
+
+Before executing this program (which irrevocably destroys the original program text),
+ you better store it away on a permanent file since you may wish to use it several times.
+In order to do so, it is important to get acquainted with
+a few {\mys control functions}\index{control function} of \pired that are available
+as {\mys logical function keys}\index{function key}\index{logical function key}
+ranging from F1 to F16. Some or all of these logical keys may be 
+assigned, as part of the \pired initialization procedure,
+ to {\mys physical function keys}\index{physical function key} that are available on
+your particular workstation or terminal. If your keyboard doesn't
+ have that many keys
+or some of them already have other system functions assigned to them,
+you may either re-define the use of the available keys according to your
+preference (you will be told later on in section 4.5 
+how this is to be done) or instead type
+{\tt :n} (where n is the number of the logical function key).
+
+Most of the logical function keys, in one way or another, relate to the particularities
+ of the reduction semantics supported by \pired. As pointed out before,
+executing a program is realized as a sequence of meaning-preserving
+ program transformations,
+of which each produces (the internal representation of) 
+a legitimate \kir program. In order to make intermediate programs
+of interest visible to the user for inspection,
+\pired provides the means to control, by means of a so-called {\mys reduction counter}\index{reduction counter},
+the number of transformation (or reduction) steps after which it ought to stop,
+ and to display the program expression reached at that point. If the program
+is to run to completion in one shot, then this number must simply be chosen
+ large enough to allow for a reduction sequence of the expected length. 
+
+Moreover, there are several means to {\mys store programs} or program parts 
+temporarily
+on various {\mys back-up buffers}\index{buffer}\index{back-up buffer}, or permanently on an {\mys editor file system}\index{editor file system}\index{file system}
+where they survive a \pired session. Temporary storage
+enables you to return quickly to initial programs or to previous states of
+execution. This feature is particularly helpful during the design and validation phase of a program.
+
+The operations that control the number of {\mys reduction steps}\index{controlling the number of reductions}
+are assigned to the function keys\footnote{Whenever we refer, 
+fron now on, to function keys, we mean the logical keys of \pired.}
+ as follows:
+\begin{description}
+\item[{\tt F1}] performs at most one reduction step on the current cursor expression
+and returns the resulting expression in its place;
+\footnote{The number of reductions performed under F1 can be re-defined by changing the
+respective entry in the initialization file for your \pired version (see also
+appendix 2)};
+\item[{\tt F9}] performs in one go at most 1000 reduction steps on the cursor
+expression and, again, returns the resulting expression in its place;
+\item[{\tt F8}] gets you in a general {\mys command mode}\index{command mode} in which you are asked on the
+message line to enter a particular command on the input line. In this mode
+you may type {\tt r n} (note that there must be a blank between
+the {\tt r} (which stands for reductions) and the {\tt n}) 
+and then hit the return key
+to have at most some n reductions performed on the cursor expression\footnote{The upper limit for n is basically given by the integer format 
+ of the machine on which you have \pired installed.}. 
+The phrase `..at most..' refers to the fact that the reduction of the
+cursor expression may terminate with a
+constant expression
+before exhausting the number of steps
+that you allowed for. The number of reduction steps that has actually been
+performed always shows up in the message line upon returning the resulting
+expression.
+\end{description}
+
+The following function keys are available for {\mys storing} and {\mys retrieving}\index{storing cursor expressions}\index{retrieving cursor expressions}
+cursor expressions:
+\begin{description}
+\item[{\tt F10}] gets you into an {\mys output mode}\index{output mode}
+in which you are asked on the message line to enter the name of an
+{\mys editor file}\index{editor file}  into which the cursor expression is to be written.
+You simply type the desired name (legitimate file names depend on the
+ underlying operating systems; usually all character strings starting with a
+ letter will do) and hit the return key. If the file name is new, the
+system will respond in the message line with
+$$
+ {\tt wrote\; 1\; expression\; to\; filename.ed}\;\;\;\;\;,
+$$
+ if a file with this name already exists, it will ask you
+to verify that you want it to be overwritten. 
+\item[{\tt F2}] gets you into an {\mys input mode}\index{input mode} in which you are asked on the message
+line to enter the name of an editor file. If the file exists, the system
+ responds on the message line with
+$$
+ {\tt\; 1\; expression\; read\; from \;filename.ed}
+$$
+and replaces with this expression the actual cursor expression. Otherwise it
+will tell you that a file with the given name can not be opened.
+\item[{\tt F14} {\rm or} {\tt F15}] writes the cursor expression in a first or a second
+{\mys auxiliary buffer}\index{auxiliary buffer}, respectively;
+\item[{\tt F6} {\rm or} {\tt F7}] replaces the cursor expression with an expression
+ read from a first or second auxiliary buffer, respectively;
+\item[{\tt F13}] writes the cursor expression in another {\mys back-up buffer}\index{back-up buffer},
+which is implicitely done whenever you start a reduction sequence;
+\item[{\tt F5}] exchanges the cursor expression with the expression held
+in the back-up buffer\footnote{Note that each of these buffers can hold at
+most one expression: whenever you write in succession two or more
+ expressions in a buffer, only the last expression can be retrieved, all others are lost.}
+\end{description}
+
+Note that if you accidently get into the wrong mode our your input cannot
+be accepted under the current mode for reasons of which  
+you will be appropriately informed on the message line, you may get out
+of this situation
+ by first clearing the input line with the {\tt delete} key and then hitting
+the return key, which will also clear the message line.
+
+After you've stored your {\tt Gcd} program away on a permanent file, say {\tt gcd},
+ you are all set to execute the program.
+
+ If you are confident about the program's correctness, 
+you may press the function key
+F9, thus allowing for at most 1000 reduction steps, and you will immediately
+get as a new cursor expression the correct value {\tt 2}.  
+On the message line you will also
+find that it took 27 reduction steps to get there. 
+
+You may now reload the program from the {\tt gcd} file, 
+and run it again, e.g.,  now in a stepwise mode.
+To do this, you just 
+push the function key F1 several times and 
+look at what comes up in the {\sc fa} field.
+
+The expression returned after the first step looks like this: 
+%-------------------------------------------------------------------
+\begin{verbatim}
+if ( 6 eq 4 )
+then 6
+else if ( 6 gt 4 )
+     then ap def 
+               Modulo [ X , Y ] = if ( X le Y )
+                                  then X
+                                  else Modulo [ ( X - Y ) , Y ] ,
+               Gcd [ X , Y ] = if ( X eq Y )
+                               then X
+                               else if ( X gt Y )
+                                    then Gcd [ Y , Modulo [ X , Y ] ]
+                                    else Gcd [ X , Modulo [ Y , X ] ]
+             in Gcd
+          to [ 4 , ap def 
+                        Modulo [ X , Y ] = if ( X le Y )
+                                           then X
+                                           else Modulo [ ( X - Y ) , Y ]
+                      in Modulo
+                   to [ 6 , 4 ] ]
+     else ap def 
+               Modulo [ X , Y ] = if ( X le Y )
+                                  then X
+                                  else Modulo [ ( X - Y ) , Y ] ,
+               Gcd [ X , Y ] = if ( X eq Y )
+                               then X
+                               else if ( X gt Y )
+                                    then Gcd [ Y , Modulo [ X , Y ] ]
+                                    else Gcd [ X , Modulo [ Y , X ] ]
+             in Gcd
+          to [ 6 , ap def 
+                        Modulo [ X , Y ] = if ( X le Y )
+                                           then X
+                                           else Modulo [ ( X - Y ) , Y ]
+                      in Modulo
+                   to [ 4 , 6 ] ]
+
+\end{verbatim}
+%------------------------------------------------------------------
+
+What has happened here is the following:
+The application {\tt Gcd[6,4]} in the goal expression of the original program
+has been expanded by 
+the function body of {\tt Gcd}, i.e.,by the right-hand side of its
+definition, which consists of two nested 
+{\tt if\_then\_else} clauses. 
+Moreover, in this body all occurrences of the formal parameters {\tt X} and
+{\tt Y} have been substituted by the actual parameters (or argument values)
+{\tt 6} and {\tt 4}, respectively, and -- this is the most interesting part --
+ all applications of
+\begin{itemize} 
+\item the function identifier {\tt Gcd} are embedded in applications of 
+copies of the entire original {\tt def} construct,
+\item the function identifier {\tt Modulo} are embedded in  applications
+of copies of a {\tt def} construct from which
+ the definition of {\tt Gcd} is deleted. 
+\end{itemize}
+Both applications are returned by \pired in the syntactical form
+$$
+{\tt ap \; def \; ... \; in\; Gcd\; |\; Modulo  \; to [ ..., ...] }
+$$
+where {\tt ap} is the explicit {\mys applicator} introduced in chapter 2.
+The original {\tt def} construct has disappeared.
+
+If you take a close look, you will also note that
+the {\tt def} constructs thus distributed over the original 
+goal expression have inserted in their own goal term positions
+just the identifiers of the functions that need to
+be applied to the arguments in the enclosing applications. 
+Identifiers in this position merely act as selectors for a
+function from the set of definitions. Moreover, this set 
+is stripped down to
+ just the functions that are actually referenced from within
+the goal expressions: if you have {\tt Gcd} there, both {\tt Gcd} and {\tt
+Modulo} are required since the latter is referenced from within the former;
+if you have {\tt Modulo} there, the definition for {\tt Gcd} is dropped
+since {\tt Modulo} recursively just calls itself. 
+
+The next  four reduction steps on the cursor expression are quite simple: they
+evaluate the two nested {\tt if\_then\_else} clauses and return the application shown on top of the next page.
+%--------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+ap def 
+     Modulo [ X , Y ] = if ( X le Y )
+                        then X
+                        else Modulo [ ( X - Y ) , Y ] ,
+     Gcd [ X , Y ] = if ( X eq Y )
+                     then X
+                     else if ( X gt Y )
+                          then Gcd [ Y , Modulo [ X , Y ] ]
+                          else Gcd [ X , Modulo [ Y , X ] ]
+   in Gcd
+to [ 4 , ap def 
+              Modulo [ X , Y ] = if ( X le Y )
+                                 then X
+                                 else Modulo [ ( X - Y ) , Y ]
+            in Modulo
+         to [ 6 , 4 ] ]
+
+\end{verbatim}
+\end{figure}
+%--------------------------------------------------------------------
+Here you have in fact an application of the function {\tt Gcd} to a first
+argument value {\tt 4} and to a second argument value which is to be computed
+from an application of {\tt Modulo} to the arguments {\tt 6} and {\tt 4}.
+To understand what happens next, you need to know that \pired realizes
+a so-called {\mys applicative order} (or {\mys call\_by\_value})\index{applicative 
+order reduction regime}\index{call\_by\_value}
+reduction regime: before a function is applied to its arguments, the
+arguments themselves are being evaluated first. So, in our particular
+situation, the reduction process will continue with the application of
+{\tt Modulo} in the argument position of {\tt Gcd}.
+
+The expression that returns after one more reduction step therefore has this
+application replaced by the instantiated body of {\tt Modulo} which, in
+another three steps, reduces to an application of {\tt Modulo} to
+the arguments {\tt 2} and {\tt 4}. The value of this is obviously {\tt 2},
+which you reach after three more steps. 
+
+Now you have completed a full cycle through the reduction
+of an application of the function {\tt Gcd}.
+As a result you get, in slightly different notation, the original
+program which, however, has its goal expression 
+replaced by {\tt Gcd[4,2]}. The difference relates to the representation of this application: the entire {\tt def} construct with {\tt Gcd} as 
+a function
+selector in its goal expression is now applied, by means of an explicit
+applicator, to the arguments {\tt 4} and {\tt 2}.  
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+ap def 
+     Modulo [ X , Y ] = if ( X le Y )
+                        then X
+                        else Modulo [ ( X - Y ) , Y ] ,
+     Gcd [ X , Y ] = if ( X eq Y )
+                     then X
+                     else if ( X gt Y )
+                          then Gcd [ Y , Modulo [ X , Y ] ]
+                          else Gcd [ X , Modulo [ Y , X ] ]
+   in Gcd
+to [ 4 , 2 ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+Knowing that it takes five reduction steps to get from an application of
+{\tt Gcd} to arguments, of which the first is greater than the second, to
+the point where its nested {\tt if\_then\_else} clauses are evaluated,
+you may simply skip all the tedious intermediate steps by first entering the
+command mode with the function key F8 and then typing into the input line
+{\tt r 5}. Upon hitting the return key, you will get the expression: 
+%----------------------------------------------------------------------
+\begin{verbatim}
+
+ap def 
+     Modulo [ X , Y ] = if ( X le Y )
+                        then X
+                        else Modulo [ ( X - Y ) , Y ] ,
+     Gcd [ X , Y ] = if ( X eq Y )
+                     then X
+                     else if ( X gt Y )
+                          then Gcd [ Y , Modulo [ X , Y ] ]
+                          else Gcd [ X , Modulo [ Y , X ] ]
+   in Gcd
+to [ 2 , ap def 
+              Modulo [ X , Y ] = if ( X le Y )
+                                 then X
+                                 else Modulo [ ( X - Y ) , Y ]
+            in Modulo
+         to [ 4 , 2 ] ]
+
+\end{verbatim}
+%---------------------------------------------------------------------
+
+You  may now wish to have evaluated 
+the application of {\tt Modulo} in the second argument
+position of the outermost application without bothering about the necessary
+number of
+reduction steps on the one hand (which depends on the actual number of
+recursive calls for {\tt Modulo}), and without
+having the reduction either stop short of or proceed beyond that point on the
+other hand. This is quite easy to accomplish since functional programs are {\mys referentially 
+transparent}\index{referential transparency}, i.e., the result of reducing a subexpression
+is invariant against the context in which this is done. So, all you need
+to do is to first make the application of {\tt Modulo} the new cursor
+expression by moving the cursor down under the applicator and then  hit
+the function key F9 to trigger a reduction sequence of at most 1000 steps 
+(which is way more than necessary to reach a function value). Without
+effecting any changes elsewhere,
+\pired will return, after only seven reduction steps, the correct value {\tt 2} in
+ this argument position and thus complete the second call of {\tt Gcd},as is shown on the next page.
+
+%-----------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+ap def 
+     Modulo [ X , Y ] = if ( X le Y )
+                        then X
+                        else Modulo [ ( X - Y ) , Y ] ,
+     Gcd [ X , Y ] = if ( X eq Y )
+                     then X
+                     else if ( X gt Y )
+                          then Gcd [ Y , Modulo [ X , Y ] ]
+                          else Gcd [ X , Modulo [ Y , X ] ]
+   in Gcd
+to [ 2 , 2 ]
+
+\end{verbatim}
+\end{figure}
+%--------------------------------------------------------------------------
+From here on it is quite easy to figure out how many more steps are
+required to terminate the program, given that both arguments of
+{\tt Gcd} are now equal. It takes one step to instantiate
+ the function {\tt Gcd}  one more time, one step to evaluate to {\tt true}
+the predicate of the outermost {\tt if\_then\_else} clause in the body of
+{\tt Gcd}, and one last step to select as the final result for the greatest
+common divisor the value {\tt 2} in the consequence of that clause.
+But: before you initiate these steps, don't forget to move the cursor
+back to the topmost applicator of
+ the expression displayed in the {\sc fa} field, otherwise nothing will happen.
+
+ A session with \pired may be ended either the brutal way, i.e., by typing
+{\tt CTR-c} or {\tt CTR-z}, or by entering the command mode and
+ then typing {\tt exit}.
+
+Now you have a pretty good idea of how \pired basically works, but
+ there is lots more to learn about both the
+language \kir and the handling of the editor.
+

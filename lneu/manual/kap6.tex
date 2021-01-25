@@ -1,0 +1,749 @@
+\section{Structured Objects and Pattern Matching}
+\subsection{Primitive Operations on Lists}
+The simplest way of representing structured objects in \kir are {\mys lists}\index{list} or {\mys sequences}\index{sequence}
+of expressions which have the general form
+$$
+{\tt <expr\_1,\;\ldots\;,expr\_n>},
+$$
+where $<$ is an $n$-ary {\mys list constructor}\index{list constructor}, $>$ is an obligatory {\mys end-of-list symbol}\index{end-of-list symbol},
+and $expr\_1,\;\ldots\;,expr\_n$ may be any of the legitimate \kir expressions, i.e.,
+lists (sequences) may also be recursively nested without any bounds on their depths.
+
+There are a number of primitive {\mys structuring functions}\index{structuring function} available. They
+require as arguments a list parameter {\tt list} and an index parameter {\tt index} 
+specifying one or several index positions
+which are to be affected by the respective operations. 
+These applications are reducible if both arguments substituted for the parameters 
+are of the respective type and the
+{\tt index} value does not exceed the arity of the list. Otherwise the applications remain as
+they are.
+
+In particular, the following functions are available:
+\begin{description}
+\item{\tt lselect[index,list]} which returns from a list the evaluated component
+expression found in index position {\tt index};
+\item{\tt lcut[index,list]} which cuts off as many of the leading components of a list as
+specified by a positive value of {\tt index}, and cuts off as many of the trailing components
+of the list as specified by a negative value of {\tt index};
+\item{\tt lrotate[index,list]} which rotates a list by as many positions as
+ specified by the {\tt index} value
+to the right if this value is positive, and to the left if it is negative;
+\end{description}
+
+Other functions whose applications require a slightly different syntax include
+\begin{description}
+\item {\tt lreplace[index,expr,list]} which replaces the component in position {\tt index}
+of {\tt list} by the value of {\tt expr}, thereby conceptually creating a new list;
+\item{\tt reverse[list]} which simply reverses the order of components of a list;
+\item{\tt lunite[list\_1,list\_2] } which appends the components of {\tt list\_2}
+to those of {\tt list\_1}, thus forming a new united list.
+\end{description}
+
+A simple program which searches for the occurrence of a particular value in a sequence of
+integer numbers  may illustrate the use of two of these functions,
+{\tt lselect} and {\tt lcut} (see top of next page):
+
+%----------------------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+def 
+  Search [ Sequ , El ] = if empty [ Sequ ]
+                         then 'not found`
+                         else if ( lselect [ 1 , Sequ ] eq El )
+                              then 'found`
+                              else Search [ lcut [ 1 , Sequ ] , El ]
+in Search [ < 5 , 7 , 9 , 4 , 6 , 3 , 6 , 2 , 1 > , 7 ]
+
+\end{verbatim}
+\end{figure}
+%-----------------------------------------------------------------------------------
+The function {\tt Search} basically inspects what is actually 
+the first element of a list substituted
+for the parameter {\tt Sequ}, and compares it for  equality with a value substituted for {\tt El} and, if
+this is the case, returns the string {\tt 'found`}. Otherwise, it is recursively applied
+to the remainder of the list until either the next element matches or the list is exhausted
+(or empty), in which case the string {\tt 'not found`} is returned. So, when applied to arguments as
+above, the program terminates, after two recursive calls of {\tt Search}, with {\tt 'found`}; if the
+ second argument is changed to {\tt 8}, it terminates, after 10 recursive calls of {\tt Search}, with
+{\tt 'not found`}.
+
+At this point it should be explained why \kir does not yet support the primitive functions
+{\tt head}, {\tt tail} and {\tt cons} which you can find in  many other functional or
+function-based languages. The reason for this is that lists (sequences) generally are $n$-ary
+ structures whereas these functions are usually defined for binary structures. The latter are
+merely  special cases of the former which \pired distinguishes neither in the external nor in
+the internal (graph) representations. So, implementing these functions could potentially
+lead to ambiguities. However, this feature is available in \orel/2 and will soon be implemented in \kir as well. 
+
+Two more things need to be mentioned: If you write programs that need to concatenate
+two lists,
+you may do so by using either {\tt lunite} or alternatively the infix notation
+$$
+{\tt (sequ\_1\; ++\; sequ\_2)}
+$$
+which is semantically the same. Likewise, applications of the function {\tt select} may be
+alternatively specified as
+$$
+{\tt (index\;|\; list)}
+$$
+In fact, \pired usually transforms occurrences of
+{\tt lunite} or {\tt select} into these infix notations when returning intermediate programs.
+
+\subsection{Strict Pattern Matching}
+The structuring functions just introduced
+ are complete in the sense that they suffice to specify all
+application problems involving structured objects (in a strict sense some of them are even
+redundant). However, \kir also provides, in the form of {\mys pattern matches}\index{pattern matching}, elegant means to
+manipulate structures in a more general sense. 
+
+{\mys Pattern matching} is available in all modern functional languages ~\cite{turn86,lavi87,huda88} and primarily used
+as an elegant way of defining functions as ordered sets of alternative equations. In this setting,
+pattern matching may simply be seen as a generalized parameter-passing mechanism. 
+
+However, since pattern matching generally is an operation which extracts (sub-) structures of
+particular shapes and elements (or element types) from given structural contexts and substitutes
+them for placeholders in other structural contexts, its full potential definitely lies in
+complex {\mys rule-based modifications}\index{rule-based computation} of structured objects. Exploiting this potential is 
+a particularly difficult and hence challenging problem when it comes to performing 
+structuring operations on lists (sequences) of heterogeneously typed components with varying 
+nesting levels and arities. Here pattern specifications may have to include so-called
+{\mys wild cards}\index{wild card} which extract (sub-) structures of variable lengths from otherwise fitting contexts, e.g., in order to decompose a structure depending on the occurrence of specific patterns
+in varying syntactical (structural) positions. Such pattern matching generally requires
+backtracking and additional {\mys guards} which test for certain properties of the matching
+components.  
+ 
+Pattern matches are in \kir defined in terms of special functions which have the form of
+so-called {\sc when}-{\mys clauses}\index{{\sc when}-clause}:
+$$
+{\tt when\;( Pattern\_1,\;Pattern\_2,\;\ldots\;,Pattern\_n)\;guard\;Guard\_expr\;do\;P\_expr}.
+$$
+In this construct, {\tt Pattern\_i} denotes either a variable, a constant, a type specicification,
+or a recursively nested sequence (list) of these items. The {\tt when} constructor, similar to
+a {\tt sub}, binds free occurrences of the pattern variables in the
+ optional {\mys guard expression}\index{guard expression}
+ {\tt Guard\_expr} 
+and in the {\mys body expression}\index{function body} {\tt P\_expr}. The application of such a pattern matching
+function to $n$ argument terms is denoted as\footnote{Note that the parentheses {\tt (,)}
+should be dropped if there is just on pattern specified following the {\tt when}, otherwise
+the editor may reject your program.}:
+$$
+\begin{array}{ll}
+{\tt ap}&{\tt case}\;
+\\  & {\tt when\;(Pattern\_1;\;\ldots\;,Pattern\_n)\;guard\;Guard\_expr\;do\;P\_expr}\;
+\\ & {\tt end}
+\\ {\tt to}& {\tt [\;Arg\_1, \;\ldots\;Arg\_n\;]}
+\end{array}
+$$
+and reduces as follows: If the syntactical structures of the patterns and of the corresponding
+(evaluated) argument terms match in that for all pairs {\tt Pattern\_i/Arg\_i}
+\begin{itemize}
+\item for each (sub-) sequence of the pattern there exists a corresponding (sub-) sequence in
+the argument so that
+\item each variable of the pattern can be associated with a (sub-) structure of the argument,
+\item each constant of the pattern matches literally with a constant in an equivalent
+syntactical position of the argument;
+\item each type specification of the pattern matches with an object of this type in an
+equivalent syntactical position of the argument,
+\end{itemize}
+then all free occurrences of the pattern variables in {\tt Guard\_expr} and {\tt P\_expr}
+are substituted by the respective argument (sub-) structures. If, in addition, the guard 
+expression thus instantiated evaluates to {\tt true}, then the entire application
+reduces to the {\mys weak normal form} of the instantiated body expression {\tt P\_expr}.
+Otherwise, the arguments are considered not within the domain of the pattern matching
+function (or not of a compatible type), i.e., the application remains as it is. Following this
+interpretation, a pattern in fact defines a {\mys structured data type}\index{structured data type}: it is the set of all
+objects which match the pattern and satisfy the guard.
+
+When applying pattern matches, they must by convention be embedded in
+so-called {\mys {\sc case}-constructs}\index{{\sc case}-construct}. To do so, you may simply type in the input line a fragment of it, 
+{\tt ap case when}, whereupon the editor will return in the {\sc fa} field:
+%---------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when # guard # do #
+   #
+to [ # ]
+
+
+\end{verbatim}
+%-----------------------------------------------------------------------------------
+Now you may proceed to replace the empty symbols as you like. Note that the editor
+inserts a {\tt \#} even in the place where you would expect the keyword {\tt end}.
+This relates to a generalization of the {\tt case} construct to which we will return
+a little later.
+
+You should play with a few simple example programs to find out what pattern matching can do for
+you. The following may be quite instructive:
+%------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when ( X , Y , 2 ) guard ( empty [ lcut [ 1 , Y ] ] eq false ) do X [ Y ]
+   end
+to [ reverse , < 1 , 2 , 3 , 4 > , 2 ]
+
+\end{verbatim}
+%-------------------------------------------------------------------------------------
+Here you have under the {\tt when} clause three simple patterns, of which two are 
+variables and one is a constant. The guard tests whether the argument substituted for the
+second pattern, i.e., for the variable {\tt Y}, is a list of at least two elements. This being the case, the argument substituted
+for {\tt X} is applied to the argument substituted for {\tt Y} in the body of the pattern
+matching function. Since the list of arguments comprises the 
+primitive list function {\tt reverse} in the first position, a list of four numbers in the second
+ position, and the constant value {\tt 2} in the third position, the pattern match ought to succeed.
+So, let's see what happens step-by-step.
+
+After one reduction step, \pired  will produce on your screen the application of a 
+modified {\tt case} construct to the same list of arguments (note that the layout mode is
+from now on changed to {\tt vertical} in order to have all expressions fit onto the page):
+%---------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when ( . , . , . )
+    guard ( empty( lcut( 1 , < 1 , 2 , 3 , 4 > ) ) eq false )
+    do reverse( < 1 , 2 , 3 , 4 > )
+   otherwise ap case 
+                when ( X , Y , 2 )
+                 guard ( empty( lcut( 1 , Y ) ) eq false )
+                 do X [ Y ]
+                end
+             to [ reverse , < 1 , 2 , 3 , 4 > , 2 ]
+   end
+to [ reverse , < 1 , 2 , 3 , 4 > , 2 ]
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+The patterns in the {\tt when} clause are now replaced by dots, indicating that the patterns
+did match the arguments (a variable matches every legitimate \kir expression), as a consequence
+of which they have been substituted for all occurrences of the pattern variables in both
+the guard expression and the body expression, i.e., the function {\tt reverse} for {\tt X}
+and the list {\tt <1,2,3,4>} for {\tt Y}. In addition to this, \pired has extended the {\tt case} 
+construct by  an {\mys otherwise expression}\index{otherwise expression} consisting of the complete original application.
+This is the {\mys escape hatch} for the case that the guard expression reduces to something
+other than the Boolean constant {\tt true}. However, another three reduction steps will reduce the
+guard to {\tt true} and throw this alternative away, returning:
+%-----------------------------------------------------------------------------------------
+\begin{verbatim}
+
+reverse( < 1 , 2 , 3 , 4 > ) ,
+
+\end{verbatim}
+%--------------------------------------------------------------------------------------------
+which in one more step reduces to
+%----------------------------------------------------------------------------------------
+\begin{verbatim}
+
+< 4 , 3 , 2 , 1 > .
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+Now you may try to to reduce the same program with just one element in the argument
+list:
+%----------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when ( X , Y , 2 )
+    guard ( empty [ lcut [ 1 , Y ] ] eq false )
+    do X [ Y ]
+   end
+to [ reverse , < 1 > , 2 ]
+
+\end{verbatim}
+%-------------------------------------------------------------------------------------
+The guard term now reduces to {\tt false} since {\tt lcut[1,<1>]}
+yields the empty list {\tt <>}. As a consequence of this, the copy of the original application
+held as {\tt otherwise} expression is reproduced as result. \pired suppresses further reductions
+on this application in order to avoid unending recursions.
+
+The pattern matches themselves may be made to fail by the following variant of this program:
+%------------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when ( X , Y , 2 )
+    guard ( empty( lcut( 1 , Y ) ) eq false )
+    do X [ Y ]
+   end
+to [ reverse , < 1 , 2 , 3 , 4 > , 3 ]
+
+\end{verbatim}
+%-------------------------------------------------------------------------------------------
+Here you have in the third argument position the constant value {\tt 3} which does not
+match the {\tt 2} in the corresponding pattern position. So, the pattern match is not at all
+applicable to the argument list, i.e., \pired reproduces the application without performing
+a reduction step (or leaves it as it is). 
+
+You may test for yourself other odd argument sets, e.g., a constant value,
+an application or a variable in the second argument position, where 
+a list is expected. In all cases, the system reproduces the original application
+since neither of these arguments belongs to the domain of the pattern matching function.
+
+Another example program which shows you how a nested sequence can be decomposed
+is the following:
+%----------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when  < < X , Y > , Z >  guard true do Z [ X , Y ]
+   end
+to [ < < 3 , 2 > , + > ]
+
+\end{verbatim}
+%--------------------------------------------------------------------------------------
+Here you have a pattern which exactly matches the argument. With the guard trivially set to
+{\tt true}, \pired returns after one reduction step the instantiated body (in infix notation 
+though) {\tt ( 3 + 2 )}, and after one more step the value {\tt 5}.
+
+The match does also succeed if you have substructures rather than atomic components
+in your argument sequence since, again, a variable in the pattern matches all legitimate 
+\kir expressions. Thus, an application of the same pattern matching function to a list
+of lists 
+%---------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when  < < X , Y > , Z >  guard true do Z [ X , Y ]
+   end
+to [ < < < 1 , 2 > , < 3 , 4 > > , ++ > ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------------------------
+reduces in one step to {\tt ( < 1 , 2 > ++ < 3 , 4 > )} and in another step to
+{\tt < 1 , 2 , 3 , 4 >}.
+
+There is a mismatch between the pattern and the argument if the latter contains fewer
+or more components on a nesting level than are specified in the former, e.g., as in
+%----------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when < < X , Y > , Z > guard true do Z [ X , Y ]
+   end
+to [ < < < 1 , 2 > , < 3 , 4 > , < 5 , 6 > > , ++ > ]
+
+\end{verbatim}
+%----------------------------------------------------------------------------------------
+ or in
+%-----------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when < < X , Y > , Z > guard true do Z [ X , Y ]
+   end
+to [ < < < 1 , 2 > > , ++ > ] .
+
+\end{verbatim}
+%-----------------------------------------------------------------------------------
+Neither of these two applications therefore constitutes an instance of reduction:
+they are constant expressions which remain unchanged.
+
+As you may have expected, the {\mys {\sc case}-construct}\index{{\sc case}-construct} can be expanded to
+include several pattern matches and an optional {\tt otherwise} expression.
+Applications of such an {\mys alternative pattern match}\index{alternative pattern match} have the general syntactical form: 
+
+$$
+\begin{array}{ll}
+{\tt ap}&{\tt case}\;
+\\  & \;\;{\tt when\;(Pattern\_11;\;\ldots\;,Pattern\_1n)\;guard\;Guard\_expr\_1\;do\;P\_expr\_1}\;
+\\ & \;\;\;\;\;\;\vdots
+\\  & \;\;{\tt when\;(Pattern\_m1;\;\ldots\;,Pattern\_mn)\;guard\;Guard\_expr\_m\;do\;P\_expr\_m}\;
+\\ & \;\;{\tt otherwise \; Esc\_expr}
+\\ & {\tt end}
+\\ {\tt to}& {\tt [\;Arg\_1, \;\ldots\;Arg\_n\;]}
+\end{array}
+$$
+ 
+The {\tt case} construct constitutes an $n$-ary function which, when applied to $n$ argument
+terms, tries all pattern matches in the sequence from top to bottom. The first
+successful match, including a satisfiable guard, is reduced to its (weak) normal form which,
+by definition, is also the normal form of the entire {\tt case} application. If none of the
+pattern/guard combinations matches, then the result is the normal form of the
+{\tt otherwise} expression as it is either explicitely specified or, if this specification
+ is missing, to the {\tt case} application itself which \pired alternatively takes for it (compare
+also the first example program in this section).
+
+\subsection{An Example : Quicksorting}
+Let us now study a more elaborate program which uses alternative pattern matching in a
+rather tricky way: {\mys quicksorting} a sequence of integer values.
+
+The {\mys quicksort algorithm}\index{quicksort algorithm} basically works as follows: If the sequence
+is empty or contains just one element, then it is already sorted, and you are done.
+If it contains two or more elements, then the second element is taken as a so-called
+{\mys pivot number} against which all elements of the sequence are compared: those that are
+smaller are put into a first subsequence, those that equal the pivot number are
+put into a second subsequence, and those that are greater are sorted into a third 
+subsequence. Subsequently, the first and the third subsequence are recursively quicksorted
+until they contain only one element or are empty and thus are sorted. The second subsequence is
+trivially sorted. Finally, all sorted subsequences are recursively concatenated to a flat
+sequence which has all elements of the original sequence  sorted in ascending order. 
+
+A \kir program that realizes this algorithm is shown on the opposite page (note that the vertical layout
+mode is on, otherwise the program would not fit onto the page).
+
+This program breaks down into the definition of a function
+\begin{description}
+\item[{\tt Quicksort}] which in its body uses a {\tt case} construct to check 
+whether the argument substituted for the parameter {\tt Sequ} is 
+an empty sequence or a sequence of one element, and otherwise applies to it 
+another pattern match which constructs the recursive calls of {\tt Quicksort} to the 
+subsequences received from an application of the function
+\item[{\tt Sort}] which sorts, by means of the parameter {\tt Pivot}, the
+sequence substituted for {\tt Sequ} into three subsequences named {\tt U,V,W},
+\end{description}
+as just described. The goal expression of the {\tt def} construct applies
+{\tt Quicksort} to a sequence of integer values.
+%-------------------------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+def 
+  Quicksort [ Sequ ] =
+   ap case when <> guard true do <> ,
+      when < X > guard true do < X >
+      otherwise ap case 
+                   when < S_1 , S_2 , S_3 > guard true
+                    do ( Quicksort [ S_1 ] ++ ( S_2 ++ Quicksort [ S_3 ] ) )
+                   end
+                to [ Sort [ lselect [ 2 , Sequ ] , Sequ , <> , <> , <> ] ]
+      end
+   to [ Sequ ] ,
+  Sort [ Pivot , Sequ , U , V , W ] =
+   let First = lselect [ 1 , Sequ ]
+   in if empty [ Sequ ]
+      then < U , V , W >
+      else Sort [ Pivot ,
+                     lcut [ 1 , Sequ ] ,
+                                   if ( First lt Pivot )
+                                   then ( U ++ < First > )
+                                   else U , if ( First eq Pivot )
+                                            then ( V ++ < First > )
+                                            else V , if ( First gt Pivot )
+                                                     then ( W ++ < First > )
+                                                     else W ]
+in Quicksort [ < 6 , 4 , 8 , 1 , 9 , 4 , 3 , 2 > ]
+ 
+\end{verbatim}
+\end{figure}
+%-----------------------------------------------------------------------------------
+
+Now, let's see how this program reduces.
+
+The first reduction step just expands the goal expression by substituting
+ the argument sequence for all occurrences of {\tt Sequ} and the entire
+{\tt def} construct for all occurrences of {\tt Quicksort} and {\tt Sort}
+in the body of {\tt Quicksort}. The next step reduces the application of the 
+outermost {\tt case} construct of this body, returning the {\tt otherwise} expression
+since the sequence contains more than one element (see next page).
+%-------------------------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+ 
+ap case 
+   when < S_1 , S_2 , S_3 > guard true
+    do ( ap def 
+              Quicksort [ Sequ ] =
+               ap case 
+                  when <> guard true do <> ,
+                  when < X > guard true do < X >
+                  otherwise ap case 
+                               when < S_1 , S_2 , S_3 > guard true
+                                do ( Quicksort [ S_1 ] ++ ( S_2 ++ Quicksort [ S_3 ] ) )
+                               end
+                            to [ Sort [ ( 2 | Sequ ) , Sequ , <> , <> , <> ] ]
+                  end
+               to [ Sequ ] ,
+              Sort [ Pivot , Sequ , U , V , W ] =
+               let First = ( 1 | Sequ )
+               in if empty( Sequ )
+                  then < U , V , W >
+                  else Sort [ Pivot ,
+                                lcut( 1 , Sequ ) ,
+                                  if ( First lt Pivot )
+                                  then ( U ++ < First > )
+                                  else U , if ( First eq Pivot )
+                                  then ( V ++ < First > )
+                                  else V , if ( First gt Pivot )
+                                           then ( W ++ < First > )
+                                           else W ]
+            in Quicksort
+         to [ S_1 ] ++ ( S_2 ++ ap def 
+                                     Quicksort [ Sequ ] = 
+                                         ap case
+                                            when <>
+                                             guard true
+                                             do <>,
+                                            ?
+                                         to [ Sequ ] ,
+                                        ?
+                                   in Quicksort
+                                to [ S_3 ] ) )
+   end
+to [ ? ]
+
+\end{verbatim}
+\end{figure}
+%-------------------------------------------------------------------------------------------
+
+The important part of this expression is what is hiding under the question mark in the
+argument position of the new {\tt case} application, which is the application of {\tt Sort}
+to concrete argument terms. This application is supposed to reduce to a sequence of
+three subsequences which are sorted against the second element of the original argument
+sequence. When moving the cursor under this question mark and pressing the function key
+F9 (for 1000 reduction steps), you get in this position, as expected,
+%-----------------------------------------------------------------------------------------
+\begin{verbatim}
+
+< < 1 , 3 , 2 > , < 4 , 4 > , < 6 , 8 , 9 > >
+
+\end{verbatim}
+%------------------------------------------------------------------------------------------
+The next reduction step applies the pattern {\tt < S\_1 , S\_2 , S\_3 > } to this argument
+and creates recursive calls of {\tt Quicksort} to the sequences associated with
+{\tt S\_1} and {\tt S\_3} which are concatenated with the sequence bound to {\tt S\_2}
+(in order to avoid unnecessary details, the layout modes {\tt abb\_def} and {\tt dgoal} are
+turned on here):
+%--------------------------------------------------------------------------------------
+\begin{verbatim}
+
+( ap def* 
+     in Quicksort
+  to [ < 1 , 3 , 2 > ] ++ ( < 4 , 4 > ++ ap def* 
+                                            in Quicksort
+                                         to [ < 6 , 8 , 9 > ] ) )
+
+\end{verbatim}
+%---------------------------------------------------------------------------------------
+If you now move the cursor to the innermost application of {\tt Quicksort} and reduce it
+locally, you will get
+%----------------------------------------------------------------------------------------
+\begin{verbatim}
+
+( ap def* 
+     in Quicksort
+  to [ < 1 , 3 , 2 > ] ++ ( < 4 , 4 > ++ ( ap def* 
+                                              in Quicksort
+                                           to [ < 6 > ] ++ ( < 8 > ++ ap def* 
+                                                                         in Quicksort
+                                                                      to [ < 9 > ] ) ) ) )      ,
+
+\end{verbatim}
+%--------------------------------------------------------------------------------------------
+and when locally reducing the new applications of {\tt Quicksort} on the right
+%------------------------------------------------------------------------------------
+\begin{verbatim}
+
+( ap def*
+     Quicksort
+  to [ < 1 , 2 , 3 > ] ++ ( < 4 , 4 > ++ ( < 6 > ++ ( < 8 > ++ < 9 > ) ) ) )          ,
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+and so on, until you get as the final result the sorted list
+%--------------------------------------------------------------------------------
+\begin{verbatim}
+
+< 1 , 2 , 3 , 4 , 4 , 6 , 8 , 9 >     .
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+If you have fun playing with this program, you may try a somewhat larger argument sequence, say,
+%--------------------------------------------------------------------------------------
+\begin{verbatim}
+
+< 54 , 87 , 5 , 2 , 98 , 45 , 23 , 45 , 56 , 12 , 343 , 87542 ,
+  98 , 56 , 5 , 3 , 5 , 8 , 1 , 9 , 7 , 56 , 44 , 45 , 76 , 87 ,
+  98 , 99 , 12 , 34 , 45 , 56 , 76 , 54 , 43 , 32 , 21 , 98 ,
+  99 , 5 , 2 , 3 , 4 , 45 , 56 , 88 , 3 , 5 , 0 , 99 , 88 , 23 ,
+  12 , 54 , 87 , 67 , 46 , 86 , 98 , 3 , 4 , 6 , 98 , 0 , 45 ,
+  65 , 3 , 1 , 9 , 7 , 65 , 5 , 4 , 98 , 6532 , 34 , 76 , 56 ,
+  2 , 3 , 98 , 6 , 5 , 4 , 3 , 8 , 7 , 1 , 19 , 12 , 32 , 19 ,
+  5 , 6 , 3 , 9 , 7 , 12 , 14 , 16 , 82 , 1 , 2 , 54 , 5 , 4 ,
+  3 , 2 , 99 , 9 , 88 , 8 , 99 , 5 , 3 , 6 , 6 , 7 , 5 , 4 , 3 ,
+  99 , 88 , 77 , 66 , 55 , 44 , 88 , 99 , 44 , 66 , 77 , 88 ,
+  11 , 12 , 13 , 77 , 55 , 5 , 6 >
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+and reduce it in one go by setting the reduction counter to  some generous value, say 
+{\tt 9999999}, which by all means suffices to have the computation terminate. Almost instantly,
+\pired will respond with the sorted list
+%------------------------------------------------------------------------------------
+\begin{verbatim}
+
+< 0 , 0 , 1 , 1 , 1 , 1 , 2 , 2 , 2 , 2 , 2 , 3 , 3 , 3 , 3 , 3 ,
+  3 , 3 , 3 , 3 , 3 , 3 , 4 , 4 , 4 , 4 , 4 , 4 , 5 , 5 , 5 , 5 ,
+  5 , 5 , 5 , 5 , 5 , 5 , 5 , 5 , 6 , 6 , 6 , 6 , 6 , 6 , 7 , 7 ,
+  7 , 7 , 7 , 8 , 8 , 8 , 9 , 9 , 9 , 9 , 11 , 12 , 12 , 12 , 12 ,
+  12 , 12 , 13 , 14 , 16 , 19 , 19 , 21 , 23 , 23 , 32 , 32 , 34 ,
+  34 , 43 , 44 , 44 , 44 , 45 , 45 , 45 , 45 , 45 , 45 , 46 , 54 ,
+  54 , 54 , 54 , 55 , 55 , 56 , 56 , 56 , 56 , 56 , 56 , 65 , 65 ,
+  66 , 66 , 67 , 76 , 76 , 76 , 77 , 77 , 77 , 82 , 86 , 87 , 87 ,
+  87 , 88 , 88 , 88 , 88 , 88 , 88 , 98 , 98 , 98 , 98 , 98 , 98 ,
+  98 , 98 , 99 , 99 , 99 , 99 , 99 , 99 , 99 , 343 , 6532 , 87542 > ,
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+after having  actually performed {\tt 8782} reduction steps.
+
+\subsection{Pattern Matching with Wild Cards}
+Sofar you have only learned about pattern matches that are strict in the sense that the argument
+terms must {\mys exactly match} the structures specified in the patterns, which is
+to say that the arities
+of all matching  nodes (which are the list constructors) must be exactly the same. However,
+when dealing with $n$-ary lists (sequences), this requirement is often too restrictive to
+specify real-life applications in an elegant and concise way. For instance, you may wish to
+search through a sequence  of expressions for the occurrence of a particular substructure but you neither
+know nor are interested in its exact position (it may not even occur at all),
+ and you also don't care about the other
+components of the sequence. Or, you may wish to identify in a sequence of variable length
+one or several substructures,
+modify or remove them, and do something else with the remaining fragments.
+
+\kir supports these applications by means of patterns that may include so-called
+{\mys wild cards}\index{wild card}\index{patterns with wild cards}. Syntactically, these are atomic pattern components (or leaf nodes) just
+like variables or constants.
+However, semantically they  are to match against subsequences of varying lengths, depending
+on the pattern context in which they occur on the one hand, and on the particular shapes
+of the arguments on the other hand. Wild cards may or may not be
+combined with pattern variables, in which case matching subsequences of the arguments
+are, as before, substituted for occurrences of these variables in the respective body expressions.  
+
+The following wild cards are available or scheduled for a later release of \kir (the latter are
+marked by a $^\ddagger$ ):
+\begin{itemize}
+\item  {\tt .  } or {\tt Var} which matches against a subsequence of exactly one item
+length;
+\item  {\tt ...} or {\tt as ... Var} which covers  subsequences of minimal lengths,
+including empty sequences;
+\item  {\tt .+}$^\ddagger$  or {\tt as .+ Var}$^\ddagger$ which covers  subsequences of minimal lengths, excluding
+empty sequences;
+\item {\tt .*}$^\ddagger$ or {\tt .* Var}$^\ddagger$ which covers subsequences of maximal lengths, including empty sequences.
+\end{itemize}
+As you may have guessed, the construct {\tt as wild\_card Var} is the one that substitutes
+ the matching subsequences for occurrences of the variable {\tt Var}. 
+
+Some simple examples may help you to get an idea as to what can be done with these wild cards.
+
+The first one is to demonstrate, in several variants, which parts of a sequence are matched
+by the various wild cards.
+%--------------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when < ... , < U , V > , as ... P , < W , Z > , ... >
+    guard true do < < U , W , Z , V > , P >
+   end
+to [ < 1 , 2 , < 4 , 5 > , 3 , < 6 , 6 > , < 8 , 8 , 8 > , < 7 , 9 > , 4 , 3 > ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------------------------
+Here you can expect a match of the following kind: 
+\begin{itemize}
+\item the {\tt ... } matches against the first two elements of the sequence which are simply
+ignored;
+\item the {\tt <U,V>} matches against the first substructure of two elements, which is {\tt <4,5>};
+\item the {\tt as ... P} matches against the shortest intervening subsequence that is between the last and the next 
+substructure of two elements, which is just the {\tt 3};
+\item the {\tt <w,z>} matches  agains the {\tt <6,6>}, and
+\item the remaining {\tt ...} matches against the rest of the sequence which, again, is
+ignored.
+\end{itemize}
+Thus, after one reduction step you get:
+%--------------------------------------------------------------------------------------
+\begin{verbatim}
+
+< < 4 , 6 , 6 , 5 > , < 3 > >
+
+\end{verbatim}
+%---------------------------------------------------------------------------------------
+If you now change the wild card {\tt as ... P} to {\tt as .* P} (assuming it would be available), it covers a subsequence
+of maximal length to the next occurrence of a subsequence with two elements (which is
+{\tt <7,9>}):
+%-----------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when < ... , < U , V > , as .* P , < W , Z > , ... >
+    guard true do < < U , W , Z , V > , P >
+   end
+to [ < 1 , 2 , < 4 , 5 > , 3 , < 6 , 6 > , < 8 , 8 , 8 > , < 7 , 9 > , 4 , 3 > ]
+
+\end{verbatim}
+%--------------------------------------------------------------------------------------
+This would reduce in one step to:
+%--------------------------------------------------------------------------------
+\begin{verbatim}
+
+< < 4 , 7 , 9 , 5 > , < 3 , < 6 , 6 > , < 8 , 8 , 8 > > >
+ 
+\end{verbatim}
+%--------------------------------------------------------------------------------
+Another interesting variant is this one:
+%---------------------------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when < .* , < U , V > , as ... P , < W , Z > , ... >
+    guard true do < < U , W , Z , V > , P >
+   end
+to [ < 1 , 2 , < 4 , 5 > , 3 , < 6 , 6 > , < 8 , 8 , 8 > , < 7 , 9 > , 4 , 3 > ]
+
+\end{verbatim}
+%--------------------------------------------------------------------------------
+Here we have in the first pattern position a wild card requiring a top-level 
+subsequence of maximal length to a substructure of two elements which, however,
+must be followed by another subsequence after which there must a second
+substructure of two elements. This is generally not easy to figure out, requiring
+a lot of backtracking and retrying, until the correct solution is found.
+However, the pattern matching facilities of \pired  will soon be
+ smart enough to handle this and return
+as the correct solution the one that matches {\tt <U,V>} against {\tt <6,6>}
+and {\tt <W,Z>} against {\tt <7,9>}:
+%-----------------------------------------------------------------------------------
+\begin{verbatim}
+
+< < 6 , 7 , 9 , 6 > , < < 8 , 8 , 8 > > >
+
+\end{verbatim}
+%-----------------------------------------------------------------------------------
+You may play with  other variants of this example for yourself, e.g., with more
+than just two strict sub-patterns and different wild cards in between, in order to
+develop a better understanding of how this form of pattern matching works.
+
+A last example which shows how pattern matching with wild cards can be used in 
+the context of recursive functions is a program which tests a sequence of
+integer values for the {\mys palindrome}\index{palindrome property} property, meaning that reading the 
+sequence from left to right is the same as reading it from right to left. This problem
+can be specified as follows:
+%-------------------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Pal [ Sequ ] =  ap case 
+                     when <> guard true do 'palindrome` ,
+                     when < . > guard true do 'palindrome` ,
+                     when < U , as ... W , V > guard ( U eq V ) do Pal [ W ]
+                     otherwise 'no palindrome`
+                     end
+                  to [ Sequ ]
+in Pal [ < 1 , 2 , 3 , 4 , 4 , 3 , 2 , 1 > ]
+
+\end{verbatim}
+%------------------------------------------------------------------------------------
+The {\tt case} construct in the body of the function {\tt Pal}
+basically does the following: if the argument sequence substituted for {\tt Sequ}
+is either empty or contains just one element, then the sequence is a palindrome
+and we are done. If it contains more than one element, the third {\tt when}
+clause extracts the first and the last element, compares them for equality and, if this
+is the case, applies the function {\tt Pal} recursively to the subsequence without the
+first and the last element. If none of the patterns matches, then the sequence is no
+palindrome.
+
+As you reduce this program step-by-step, you will note that in cycles of four steps
+(which it takes to complete recursive calls of {\tt Pal}) \pired returns the initial program
+ with the actual first and last elements cut off the argument sequence, until the sequence is
+empty and you get the string {\tt 'palindrome`} as result. 

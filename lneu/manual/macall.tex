@@ -1,0 +1,661 @@
+%--------- first of 597 lines --------------------------
+\newcommand{\mys}{\sf} % sans serif (!!); bold; italics
+\newcommand{\titel}[1]{{\em #1}}
+\newcommand{\orel}{{\sc Orel}}
+\newcommand{\BeReL}{{\sc Orel}}
+\newcommand{\pired}{$\pi$--{\sc red }}
+\newcommand{\kir}{{\sc KiR }}
+%-------------------------------------
+%----------- allmac : first of 3654 lines -----------
+%-- f62.tex ----------------------------------------------------------
+\newcommand{\myluarrow}[2]{%
+\begin{picture}(2,#1)
+\linethickness{0mm}
+\put(0,0){\framebox(2,#1)[c]{%
+$\left.\rule{0mm}{#2\unitlength} \right\Uparrow$}}
+\end{picture}
+}
+%%::::::::::::::
+%%mac03.tex
+%%::::::::::::::
+%----------- mac03 : first of 42 lines -----------
+%-- sollte in macall bleiben !! ------------------
+%  macros : aus kap3
+%----------------------------------------
+\newcommand{\ksub}[1]{{\bf #1}}
+\newcommand{\kop}[1]{{\bf #1}}
+\newcommand{\kif}[1]{{\bf #1}}
+\newcommand{\kds}[1]{{\bf #1}}
+%-------------------------------------
+%----------- mac03 : last of 42 lines --------------------------
+%%::::::::::::::
+%%mac04.tex
+%%::::::::::::::
+%-- f41.tex, f62.tex, f613.tex, f8.18 (f719.tex) --------------------
+\newcommand{\mynewldarrow}[1]{%
+\begin{picture}(2,2)(0,-4)
+\linethickness{0mm}
+\put(0,-3.9){\framebox(2,4)[c]{$\Downarrow$}}
+\thinlines
+\put(0.4,0){\line(0,1){#1}}
+\put(1.4,0){\line(0,1){#1}}
+\put(1.4,#1){\line(0,1){0.95}}
+\end{picture}
+}
+%-- f41.tex, f62.tex ----------------------------------------------------------
+\newcommand{\mynewluarrow}[1]{%
+\begin{picture}(2,2)(0,-0.8)
+\linethickness{0mm}
+\put(0,#1){\framebox(2,4)[c]{$\Uparrow$}}
+\thinlines
+\put(0.5,0.1){\line(0,1){#1}}
+\put(1.4,0.1){\line(0,1){#1}}
+\put(1.4,-0.8){\line(0,1){1.1}}
+\end{picture}
+}
+%-- f41.tex, f62.tex, f8.18 (f719.tex) --------------------
+\newcommand{\mynewtlarrow}[1]{%
+\begin{picture}(10,2)(-4,0)
+\linethickness{0mm}
+\put(-3.8,-0.25){\framebox(4,2)[c]{$\Leftarrow$}}
+\thinlines
+\put(0,1.5){\line(1,0){#1}}
+\put(0,0.55){\line(1,0){#1}}
+\put(#1,1.5){\line(1,0){0.8}}
+\end{picture}
+}
+%-- f41.tex, f62.tex, f8.18 (f719.tex) --------------------
+\newcommand{\mynewblarrow}[1]{%
+\begin{picture}(10,2)(-4,0)
+\linethickness{0mm}
+\put(-3.8,-0.25){\framebox(4,2)[c]{$\Leftarrow$}}
+\thinlines
+\put(0,1.5){\line(1,0){#1}}
+\put(0,0.5){\line(1,0){#1}}
+\put(#1,0.5){\line(1,0){0.8}}
+\end{picture}
+}
+%%::::::::::::::
+%%mac0407.tex
+%%::::::::::::::
+%----- mac0407 : first of 17 lines ------------------------------------
+%-------------------------------------------------------
+%   center left mathmode
+%   (array mit einer Spalte)
+%-------------------------------------------------------
+%
+\newcommand{\mcent}[1]{%
+\def\ls{\\\noalign{\smallskip}}
+\def\lm{\\\noalign{\medskip}}
+\begin{displaymath}
+\begin{array}{l}
+\openup10pt
+#1
+\end{array}
+\end{displaymath}}
+%
+%----- mac0407 : first of 17 lines ------------------------------------
+%%::::::::::::::
+%%mac05.tex
+%%::::::::::::::
+%%::::::::::::::
+%%mac0506.tex
+%%::::::::::::::
+%----------- mac0506 : first of 12 lines -----------
+% macros in kap5, kap6
+%-- im text  ---------------------
+%waagerechter Pfeil mit kleinem Strich
+\newcommand{\pfeil}{\mbox{%
+\protect\begin{picture}(10,4)
+\protect\put(1,1){\vector(1,0){8}}
+\protect\put(1,0){\line(0,1){2}}
+\protect\end{picture}}}
+%----------- mac0506 : first of 12 lines -----------
+%%::::::::::::::
+%%mac06.tex
+%%::::::::::::::
+%%::::::::::::::
+%%mac0608.tex
+%%::::::::::::::
+%----------- mac0608 : first of 63 lines -----------
+%-- alg boxes im text ------
+\newcommand{\EAR}{\begin{picture}(13,4)
+\put(6,1.5){\oval(12,4.2)}
+\put(1.3,0){$EAR$}
+%put(0,-0.5){\framebox(12,4)[c]{$EAR$}}
+\end{picture}
+}
+%---------------------------
+%----------- macarrow : first of 63 lines -----------
+%-- f62.tex, f613.tex, f8.18 (f719.tex) --------------------
+\newcommand{\myldarrow}[2]{%
+\begin{picture}(2,#1)
+\linethickness{0mm}
+\put(0,0){\framebox(2,#1)[c]{$\left.\rule{0mm}{#2\unitlength} \right\Downarrow$}}
+\end{picture}
+}
+%-- f6.2, f8.18 (f719.tex) --------------------
+\newcommand{\mylrarrow}[1]{%
+\begin{picture}(10,2)(-4,0)
+\linethickness{0mm}
+\put(-3.5,-0.25){\framebox(4,2)[r]{$\Leftarrow$}}
+\put(#1,-0.25){\framebox(4,2)[l]{$\Rightarrow$}}
+\thinlines
+\put(0.2,1.5){\line(1,0){#1}}
+\put(0.2,0.4){\line(1,0){#1}}
+\end{picture}
+}
+%-- f62.tex, f8.18 (f719.tex) --------------------
+\newcommand{\mylarrow}[1]{%
+\begin{picture}(10,2)(-4,0)
+\linethickness{0mm}
+\put(-3.7,-0.3){\framebox(4,2)[c]{$\Leftarrow$}}
+\thinlines
+\put(0,1.4){\line(1,0){#1}}
+\put(0,0.4){\line(1,0){#1}}
+\end{picture}
+}
+%-- f62.tex, f8.18 (f719.tex) --------------------
+\newcommand{\myrarrow}[1]{%
+\begin{picture}(10,2)
+\linethickness{0mm}
+\put(#1,-0.3){\framebox(4,2)[c]{$\Rightarrow$}}
+\thinlines
+\put(0.3,1.4){\line(1,0){#1}}
+\put(0.3,0.4){\line(1,0){#1}}
+\end{picture}
+}
+%----------- macarrow : last of 63 lines -----------
+%----------- mac0608 : last of 63 lines -----------
+%%::::::::::::::
+%%mac07.tex
+%%::::::::::::::
+%----- mac07 : first of 74 lines ------------------------------------
+%%%-------------------------------------------------------
+%%%   center left no-mathmode
+%%%   (tabular mit einer Spalte)
+%%%-------------------------------------------------------
+%%%
+%%\newcommand{\mcentn}[1]{%
+%%\def\ls{\\\noalign{\smallskip}}
+%%\def\lm{\\\noalign{\medskip}}
+%%\begin{displaymath}
+%%\begin{tabular}{l}
+%%%\openup10pt
+%%#1
+%%\end{tabular}
+%%\end{displaymath}}
+%%%-- f1 -------------------------------------------------------------
+%%\newcommand{\sca}{%
+%% \begin{picture}(285,35)(0,0)
+%%\put(65,10){\line(3,2){22.5}}
+%%\put(125,10){\line(-3,2){22.5}}
+%%  \linethickness{0 mm}
+%%  \put(75,25){\framebox(40,10){%
+%%    {\bf scalar}$^{(2)}$
+%%  }}
+%%  \put(55,0){\framebox(20,10){%
+%%    $type$
+%%  }}
+%%  \put(115,0){\framebox(20,10){%
+%%  $value$
+%%  }}
+%% \end{picture}
+%%  }
+%%%-- f1 -------------------------------------------------------------
+%%\newcommand{\vect}{%
+%% \begin{picture}(285,75)(0,0)
+%%%-------------------------------------------------------------------
+%%\put(70,40){\line(2,1){30}}
+%%\put(170,35){\line(-5,2){50}}
+%%%-------------------------------------------------------------------
+%%\put(140,10){\line(2,1){30}}
+%%\put(210,10){\line(-2,1){30}}
+%%%-------------------------------------------------------------------
+%%  \linethickness{0 mm}
+%%  \put(90,55){\framebox(40,10){%
+%%    {\bf vector}$^{(2)}$
+%%  }}
+%%  \put(60,30){\framebox(20,10){%
+%%    $type$
+%%  }}
+%%  \put(165,25){\framebox(20,10){%
+%%    $<^{(d)}$
+%%  }}
+%%  \put(130,0){\framebox(20,10){%
+%%    $value\_1$
+%%  }}
+%%  \put(170,0){\framebox(10,10){%
+%%    $\ldots$
+%%  }}
+%%  \put(200,0){\framebox(20,10){%
+%%    $value\_d$
+%%  }}
+%% \end{picture}
+%%}
+%%%-- f1 -------------------------------------------------------------
+%%\newcommand{\tre}{%
+%% \begin{picture}(285,45)(0,0)
+%%%-------------------------------------------------------------------
+%%\put(75,10){\line(2,1){30}}
+%%\put(145,10){\line(-2,1){30}}
+%%%-------------------------------------------------------------------
+%%  \linethickness{0 mm}
+%%  \put(100,25){\framebox(20,10){%
+%%% \put(140,25){%plus 40 !!!
+%%    $<^{(n)}$
+%%  }}
+%%  \put(60,0){\framebox(30,10){%
+%%    $expr\_1$
+%%  }}
+%%  \put(100,0){\framebox(20,10){%
+%%    $\cdots$
+%%  }}
+%%  \put(130,0){\framebox(30,10){%
+%%    $expr\_n$
+%%  }}
+%% \end{picture}
+%%} }
+%%%-------------------------------------------------------------------
+%----- mac07 : last of 74 lines ------------------------------------
+%%::::::::::::::
+%%mac08.tex
+%%::::::::::::::
+%%::::::::::::::
+%%mac0809.tex
+%%::::::::::::::
+%----------- mac0809 : first of 26 lines --------------------------
+%-- text und f86.tex --------------------
+% `mm' auswechseln gegen `ex' o.ae. !!!!
+%----------------------------------------
+\newcommand{\npi}{%
+%%\mbox{\boldmath
+%%$/\!\!/\!\!\raisebox{3.1 mm}{\_}\!\raisebox{3.1 mm}{\_}\,$}
+\mbox{\boldmath
+%$/\!\!/\!\!\raisebox{0.75 em}{\_}\!\raisebox{0.75 em}{\_}\,$}
+$/\!\!/\!\!\raisebox{1.65 ex}{\_}\!\raisebox{1.65 ex}{\_}\,$}
+}
+\newcommand{\nbnpi}{%
+%%\mbox{%
+%%$/\!\!/\!\!\raisebox{3.1 mm}{\_}\!\raisebox{3.1 mm}{\_}\,$}
+\mbox{%
+$/\!\!/\!\!\raisebox{1.65 ex}{\_}\!\raisebox{1.65 ex}{\_}\,$}
+}
+%---------------------------------------------------------------------
+%  stack (picture) length 90
+%---------------------------------------------------------------------
+\newcommand{\stackhe}[2]{%
+%% \linethickness{0mm}
+%% \framebox(90,10){%
+%%   \thinlines
+%%   \begin{minipage}{90\unitlength}
+\begin{picture}(90,10)
+\thicklines
+% Stack E
+\put(3,1){\line(1,0){80}}
+\put(3,9){\line(1,0){76}}
+\put(83,1){\line(-1,2){4}}
+\put(84,0){\small  #1}
+\linethickness{0mm}
+\put(5,1){\framebox(74,8)[l]{\small {#2}}}
+\thinlines
+\end{picture}
+%% \end{minipage}
+%% }
+}
+%-------------------------------------------------------
+%   array mit zwei Spalten und {%links
+%   (no math mode)
+%-------------------------------------------------------
+%
+\newcommand{\mleftlpn}[1]{%
+\def\ls{\\\noalign{\smallskip}}
+\def\lm{\\\noalign{\medskip}}
+\vbox{%
+$
+\left\{% 
+\begin{tabular}{lp{9.5cm}} % wg. 10pt fuer mit !!
+%begin{tabular}{lp{12 cm}}
+#1
+\end{tabular}
+\right.
+$
+}}
+%----------- mac0809 : last of 26 lines --------------------------
+%%::::::::::::::
+%%mac09.tex
+%%::::::::::::::
+%-- sollte in macall bleiben !! ------------------
+%-------------------------------------
+\newcommand{\DEL}{{\bf \Delta}}
+%-------------------------------------
+\newcommand{\etasign}{$\eta$}
+%-------------------------------------
+\newcommand{\apm}{\mbox{\bf @\hspace*{-1ex}\rule[-.7ex]{0.5pt}{3ex}\hspace*{1.25ex}}\,}
+\newcommand{\apmh}[1]{\mbox{\bf @\hspace*{-1ex}\rule[-.7ex]{0.5pt}{3ex}\hspace*{0.75ex}}^{#1}}
+%-------------------------------------
+\newcommand{\NALS}{{\it alphas}}
+\newcommand{\NLAS}{{\it lambdas}}
+\newcommand{\NAPS}{{\it apps}}
+%----------------------------------------
+%%::::::::::::::
+%%mac11.tex
+%%::::::::::::::
+%-- auch kap8 --------------------------------------------------------
+\newcommand{\marklt}[1]{%
+\begin{picture}(15,4)
+\thinlines
+\put(15,2){\circle*{1}}
+\put(15,2){\line(-1,0){5}}
+\linethickness{0 mm}
+\put(0,0){\framebox(10,4)[r]{\footnotesize #1~}}
+\thinlines
+\end{picture}
+}
+%-- auch kap8, kap4 --------------------------------------------------
+\newcommand{\markrt}[1]{%
+\begin{picture}(15,4)
+\thinlines
+\put(0,2){\circle*{1}}
+\put(0,2){\line(1,0){5}}
+\linethickness{0 mm}
+\put(5,0){\framebox(10,4)[l]{\footnotesize ~#1}}
+\thinlines
+\end{picture}
+}
+%---------------------------------------------------------------------
+%----- mac11 : first of 545 lines -----------
+\newcommand{\SEMPTY}{\begin{picture}(4.0,2.0)
+\thinlines
+\put(0,0){\usebox{\slantzwei}}
+\put(2,0){\usebox{\slantbzwei}}
+\thinlines
+\put(0,0){\line(1,0){1.3}}
+\put(4,0){\line(-1,0){1.3}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slanttodrei}
+%setlength{\unitlength}{1mm}
+\savebox{\slanttodrei}(3,3)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(3,3)
+\thinlines
+\multiput(3,3)(-0.1,-0.05){30}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slanttwotwo}
+%setlength{\unitlength}{1mm}
+\savebox{\slanttwotwo}(2.2,2.2)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(2.2,2.2)
+\thinlines
+\multiput(0,0)(0.1,0.1){22}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantdtwotwo}
+%setlength{\unitlength}{1mm}
+\savebox{\slantdtwotwo}(2.2,2.2)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(2.2,2.2)
+\thinlines
+\multiput(0,2.2)(0.1,-0.1){22}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantdonesix}
+%setlength{\unitlength}{1mm}
+\savebox{\slantdonesix}(2.2,2.2)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(2.2,2.2)
+\thinlines
+\multiput(0,2.2)(0.1,-0.1){16}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantddrei}
+%setlength{\unitlength}{1mm}
+\savebox{\slantddrei}(3,3)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(3,3)
+\thinlines
+\multiput(0,3)(0.1,-0.1){30}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantbeins}
+%setlength{\unitlength}{1mm}
+\savebox{\slantbeins}(1,1)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(1,1)
+\thinlines
+\multiput(1,0)(-0.1,0.1){10}{\line(1,0){0.1}}
+%multiput(2,0)(-0.125,0.125){16}{\circle*{0.5}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantbzwei}
+%setlength{\unitlength}{1mm}
+\savebox{\slantbzwei}(2,2)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(2,2)
+\thinlines
+\multiput(2,0)(-0.1,0.1){20}{\line(1,0){0.1}}
+%multiput(2,0)(-0.125,0.125){16}{\circle*{0.5}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantbdrei}
+%setlength{\unitlength}{1mm}
+\savebox{\slantbdrei}(3,3)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(3,3)
+\thinlines
+\multiput(3,0)(-0.1,0.1){30}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantbvier}
+%setlength{\unitlength}{1mm}
+\savebox{\slantbvier}(4,4)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(4,4)
+\thinlines
+\multiput(4,0)(-0.1,0.1){40}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantbdreise}
+%setlength{\unitlength}{1mm}
+\savebox{\slantbdreise}(4,4)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(4,4)
+\thinlines
+\multiput(4,0)(-0.1,0.1){36}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slanteins}
+%setlength{\unitlength}{1mm}
+\savebox{\slanteins}(1,1)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(1,1)
+\thinlines
+\multiput(0,0)(0.1,0.1){10}{\line(1,0){0.1}}
+%multiput(0,0)(0.125,0.125){16}{\circle*{0.5}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantzwei}
+%setlength{\unitlength}{1mm}
+\savebox{\slantzwei}(2,2)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(2,2)
+\thinlines
+\multiput(0,0)(0.1,0.1){20}{\line(1,0){0.1}}
+%multiput(0,0)(0.125,0.125){16}{\circle*{0.5}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantdrei}
+%setlength{\unitlength}{1mm}
+\savebox{\slantdrei}(3,3)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(3,3)
+\thinlines
+\multiput(0,0)(0.1,0.1){30}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantvier}
+%setlength{\unitlength}{1mm}
+\savebox{\slantvier}(4,4)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(4,4)
+\thinlines
+\multiput(0,0)(0.1,0.1){40}{\line(1,0){0.1}}
+\end{picture}
+}
+%---------------------------------------------------------------------
+\newsavebox{\slantdreise}
+%setlength{\unitlength}{1mm}
+\savebox{\slantdreise}(4,4)[c]{ %setlength{\unitlength}{1mm}
+\begin{picture}(4,4)
+\thinlines
+\multiput(0,0)(0.1,0.1){36}{\line(1,0){0.1}}
+\end{picture}
+}
+%%::::::::::::::
+%%macall.tex
+%%::::::::::::::
+%-------- macall.tex : first of 128 lines --------------------------
+\newcounter{LAS}
+\newcounter{APS}
+%---------------------------------------------------------------------
+\newcommand{\nlet}[1]{\mbox{$\not{\!#1}$}}
+%---------------------------------------------------------------------
+%math. Zeichen in boldmath
+\newcommand{\MATH}[1]{\mbox{{\boldmath $#1$}}}
+%---------------------------------------------------------------------
+\newcommand{\idots}{\mathinner{\ldotp\ldotp}}
+%---------------------------------------------------------------------
+\makeatletter
+%-------------------------------
+\def\ivdots{\vbox{\baselineskip4\p@ \lineskiplimit\z@
+\kern6\p@\hbox{.}\hbox{.}}}
+%-------------------------------
+\makeatother
+%---------------------------------------------------------------------
+\newdimen\descripdim
+\newenvironment{descrip}[1]{%
+\def\descrlabelwidth{.2\linewidth}
+\def\mlabel##1{##1\hfil}
+\list{#1}{%
+\let\makelabel\mlabel
+\settowidth\descripdim{#1}
+\ifdim \descripdim >\labelwidth
+\ifdim \descripdim >\descrlabelwidth
+\descripdim\descrlabelwidth\fi
+\labelwidth\descripdim \leftmargin\descripdim
+\advance\leftmargin\labelsep
+\else \labelwidth\descripdim\fi
+}
+}%
+{\endlist}
+%---------------------------------------------------------------------
+% bf \mbox{\bf @} und lambda
+%---------------------------------------------------------------------
+\newcommand{\lamvee}{\stackrel{\vee}{\lambda}}
+\newcommand{\aph}[1]{{\mbox{\bf @}}^{#1}}
+\newcommand{\apsh}[1]{\stackrel{\sim}{\mbox{\bf @}}^{#1}}
+\newcommand{\lash}[1]{\stackrel{\sim}{\mbox{\boldmath $\lambda$}}^{#1}\!\!\!}
+\newcommand{\las}{\stackrel{\sim}{\mbox{\boldmath $\lambda$}}\!}
+\newcommand{\Las}{\stackrel{\sim}{\mbox{$\bf \Lambda$}}}
+\newcommand{\LA}{\mbox{$\bf \Lambda$}}
+\newcommand{\ap}{\mbox{\bf @}}
+\newcommand{\kon}[1]{\mbox{\bf #1}}
+\newcommand{\apq}{\overline{\mbox{\bf @}}}
+\newcommand{\apqh}[1]{\overline{\mbox{\bf @}}^{#1}}
+\newcommand{\apqs}{\overline{\mbox{\bf @}^{*}}}
+\newcommand{\apns}{\mbox{\bf @}^{*}}
+\newcommand{\aps}{\stackrel{\sim}{\mbox{\bf @}}}
+%-- nur aus kap6 ?? --------------------------------------------------
+\newcommand{\appq}{\overline{\mbox{\bf @}_p}}
+\newcommand{\app}{\mbox{\bf @}_p}
+\newcommand{\apph}[1]{\mbox{\bf @}_p^{#1}}
+%-- kap6, kap8 -----------------------
+%\newcommand{\NA}{\bf \nabla}
+\newcommand{\NA}{\MATH{\nabla}}
+\newcommand{\nbNA}{{\nabla}}
+%-------------------------------------------------------
+%   Symbole fuer `Menge der natuerlichen Zahlen'
+%   \nz : mathmode
+%   \nat : roman
+%   \nata : small caps
+%-------------------------------------------------------
+%
+\def\nz{\relax\ifmmode {I\hskip -3pt N}
+\else{\hbox{$I\hskip -3pt N$}}\fi}
+%12 pt : \def\nz{\relax\ifmmode {I\hskip -3.5pt N}
+%12 pt : \else{\hbox{$I\hskip -3.5pt N$}}\fi}
+%---------------------------------
+%def\nat{\relax\ifmmode {\rm I\hskip -1.5pt N}
+%else{I\hskip -1.5pt N}\fi}
+%---------------------------------
+%def\nata{\relax\ifmmode {\hbox{\sc I\hskip -2.0pt N}}
+%else{\sc I\hskip -2.0pt N}\fi}
+%----------------------------------------------------------------
+%input{berel}
+%------------------------------------------------------------------
+% THE \LaTeX LOGO IS DEFINED HERE.
+%------------------------------------------------------------------
+%\def\LaTeX{{\rm L\kern-.36em\raise.3ex\hbox{\sc a}\kern-.15em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%------------------------------------------------------------------
+% THE \HLDFL LOGO IS DEFINED HERE.
+%------------------------------------------------------------------
+%newcommand{\HLDFL}{{\sc HlDFl}}
+\newcommand{\HLDFL}{{\sc hl}%
+\kern-.1em{\sc D}\kern-.1em%
+\raise.3ex\hbox{\sc f}\kern-.1em{\sc l}\kern.2em}
+%------------------------------------------------------------------
+% THE \HLFL LOGO IS DEFINED HERE.
+%------------------------------------------------------------------
+%newcommand{\HLFL}{{\sc HlFl}}
+\newcommand{\HLFL}{{\sc hl}\kern-.1em{\sc F}\kern-.1em{\sc l}\kern.2em}
+%------------------------------------------------------------------
+% THE \BeReL LOGO IS DEFINED HERE.
+%------------------------------------------------------------------
+%%\newcommand{\BeReL}{{\protect\rm B\protect\kern-.1em\protect\raise.3ex%
+%%\protect\hbox{\protect\sc e}\protect\kern-.1em
+%%R\protect\kern-.125em\protect\raise.3ex\protect\hbox{\protect\sc e}%
+%%\protect\kern-.1emL\protect\kern.2em}}
+%\newcommand{\BeReL}{{\protect\rm B\protect\kern-.1em\protect\raise.3ex%
+%\protect\hbox{\protect\sc e}\protect\kern-.17em
+%    R\protect\kern-.1667em\protect\raise.3ex%
+%\protect\hbox{\protect\sc e}\protect\kern-.125emL\protect\kern.2em}}
+%
+%\newcommand{\BeReLb}{{\rm B\kern-.1em\raise.3ex\hbox{\sc e}\kern-.17em
+%    R\kern-.1667em\lower.7ex\hbox{E}\kern-.125emL\kern.2em}}
+%
+%\newcommand{\BeReLa}{{\rm B\kern-.1em{\sc e}\kern-.1em
+%    R\kern-.1em{\sc e}\kern-.1emL\kern.2em}}
+%
+%\newcommand{\BeReLc}{{\rm B\kern-.1em\hbox{\sc e}\kern-.1em
+%    R\kern-.1667em\lower.7ex\hbox{E}\kern-.125emL\kern.2em}}
+%-- kap6, kap11 -------------------------------------
+%\newsavebox{\algbox}
+%\setlength{\unitlength}{1mm}
+%\savebox{\algbox}(15,6)[c]{\setlength{\unitlength}{1mm}
+\newcommand{\algbox}[1]{%
+\begin{picture}(15,6)
+\thinlines
+\put(0,6){\line(1,0){15}}
+\put(0,0){\line(1,0){15}}
+\put(0,3){\oval(6,6)[l]}
+\put(15,3){\oval(6,6)[r]}
+\linethickness{0 mm}
+\put(0,0){\framebox(15,6)[c]{\small #1}}
+\end{picture}
+}
+%----------------------------------------------------
+%-------- macall.tex : last of 128 lines ----------------------------
+%%::::::::::::::
+%%macdia.tex
+%%::::::::::::::
+%%::::::::::::::
+%%macnet.tex : jetzt mac0203
+%%::::::::::::::
+%%::::::::::::::
+%%macsave.tex
+%%::::::::::::::
+%----------- allmac : first of 3654 lines -----------
+%--------- last of 597 lines --------------------------

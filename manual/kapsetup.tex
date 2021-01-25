@@ -1,0 +1,99 @@
+From udi Thu Apr 14 09:51:15 1994
+From: udi (Ulrich Diedrichsen)
+Subject: Install-Anleitung
+To: wk (Werner Kluge)
+Date: Thu, 14 Apr 1994 09:51:12 +0200 (MET DST)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Length: 2930
+
+Moin,
+
+Ich habe eine neue kurze Install-Anleitung geschrieben.
+Voraussetzung fuer eine erfolgreich Installation ist, das das pi-red
+System mit dem syntaxgesteuerten Editor installiert und compiliert ist.
+In der Installationanleitung gehe ich davon aus, das eine Datei
+"udi.tar.Z" existiert mit meinen Sourcen. Die Sourcen befinden sich
+im Verzeichnis :  ~base/udi
+
+Da mein Englisch nicht so toll ist, habe ich es in deutsch geschrieben :
+
+--------------------------------------------------------------------------------
+
+Um mein Packet zu compilieren/installieren muss man zuerst das File
+udi.tar.Z entcompremieren:
+
+  uncompress udi.tar.Z
+
+Danach muss das Tar-Archive-File udi.tar ausgepackt werden :
+
+  tar xvf udi.tar
+
+Hierdurch wird ein neues Unterverzeichnis mit dem Namen ./udi angelegt.
+
+Um die Sourcen zu compilieren muessen folgende Schritte durchgefuehrt werden :
+
+1.)  cd udi
+
+2.)  Die Datei "README" sollte vor der Installation gelesen werden.
+
+3.)  In der Datei "Install" muessen einige Pfade angepasst werden. Bei
+     der Anpassung muessen die Hinweise in der Datei beachtet werden.
+     Folgende Pfade muessen an die jeweilige Installation angepasst werden :
+
+     REDLIB    = Pfad der pi-red Simulator Library.
+     REDSRC    = Sourcecodepfad des pi-red Simulators.
+     
+     SFEDSRC   = Sourcecodepfad des syntaxgesteuerten Editors.
+     XFEDLIB   = Pfad der X-Window Version der Library des 
+                 syntaxgesteuerten Editors.
+
+     TOPPATH   = Der absolute Pfad des Verzeichnisses in dem sich das Install
+                 File befindet.
+
+     SFED_PATH = Suchpfad der Hilfsdatei (creduma.h) fuer den syntaxgesteuerten
+                 Editor
+
+4.)  Aufruf des Install-Shellskripts via : ./Install
+
+5.)  Setzen zweier Environmentvariablen :
+
+      - Die Variable $PATH muss das Verzeichnis ./bin enthalten.
+      - Die Variable $FHELPFILE muss auf die Hilfsdatei fuer den 
+        syntaxgesteuerten Editor verweisen.
+
+      Das Install-Skript zeigt am Ende der Ausfuehrung einen Vorschlag
+      fuer die Belegungen der beiden ENV-Variablen.
+
+6.)   Compilation der Source-Dateien :
+
+      - cd src
+      - make depend
+      - make
+
+7.)   Nach erfolgreicher Compilation befinden sich im Verzeichnis :
+
+      * udi/bin   Die Ausfuehrbaren Programme:
+                  - Xred
+                  - kir
+                  - marco
+                  - sxred
+
+      * udi/lib   Libraries und Beispielmakefiles :
+                  - Example.Makefile.Compiler-Editor
+                  - Example.Makefile.CompilerGen
+                  - editor.o
+                  - libkir.o
+                  - libmarco.o
+                  - marco-main.o
+
+      Eine kurze Erklaerung dieser Dateien findet man in dem README.
+
+8.)   Um die erzeugten Programme und Objektdateien wieder zu loeschen
+      muss man in Verzeichnis udi das Shellskript "./DeInstall" aufrufen.
+
+
+-- 
+Ulrich Diedrichsen      udi@informatik.uni-kiel.d400.de
+

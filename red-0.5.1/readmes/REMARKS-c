@@ -1,0 +1,61 @@
+dg 18.05.92
+To aid compatibility with another branch of the reduction machine
+development (pi-red*), the language construct LETP is supported.
+LETP is translated by the editor into an application of a case-expression.
+The editor Parms.add_par1 is used to distinguish between pi-red+ and
+other reduction engines (see cparm.h).
+
+dg 18.06.92
+small versionen (mit dummy-routinen) der files
+rmstruct.c, rvstruct.c rbibfunc.c werden benutzt (siehe *.small)
+
+dg 11.08.92
+habe mich mit n-stelligen cases rumgeplagt. einfache faelle
+funktionieren schon. beim schliessen von cases hapert's noch.
+fehlerbeispiel in case1.ed. korrigiert.
+fehlerbeispiel in case3.ed. korrigiert.
+
+dg 12.08.92
+die n-stelligen cases funktionieren. meistens zumindest.
+beispielprogramme case0.ed - case9.ed. sogar der auf
+n-stellige cases umgeschriebene unify algorithmus unify-n.ed
+funktioniert. auch beim schrittweisen reduzieren; es gab allerdings
+eine reduktionssequenz die nicht das richtige ergebnis lieferte.
+dem muss noch auf den grund gegangen werden.
+
+dg 12.08.92
+die n-stelligen cases funktionieren jetzt noch oefter.
+habe auch das letp aufgebohrt, dass es mit n-pattern funktioniert.
+jedoch:
+fehlerbeispiel in case7.ed
+
+dg 09.09.92
+der aerger mit den n-stelligen cases geht weiter.
+fehlerbeispiel in case7.ed
+fehlerbeispiel in case10.ed
+fehlerbeispiel in case13.ed. repariert!
+und: der hartnaeckige fehler err-map2.ed ist beseitigt.
+aber: einzelschrittreduktion von unify-n.ed immer noch nicht korrekt.
+
+dg 10.09.92
+grosser aerger mit case7.ed. der guard ist nicht boolsch, es
+werden also snapplikationen konstruiert, die kommen jedoch
+etwas kaputt zurueck. auch die einargumentigen cases funktionieren
+nicht. siehe fehlerbeispiel case7-1.ed.
+vermutlich muss der body des whens, dessen guard nicht boolsch wird
+vollstaendig berechnet werden (snaps ausfuehren!).
+
+dg 11.09.92/14.09.92
+scheint so als wuerden die n-stelligen cases funktionieren. juhu!
+mit den csh-skript
+   ~dg/bin/testred ~dg/edlib/case*.ed
+koennen die gesammelten testbeispiele ausprobiert werden.
+wieteres testbeispiel ~dg/edlib/unify-n.ed
+
+sogar Sven-Bodos und Carstens Moerderprogramme (sorry sbs & car!)
+liefen durch. Dummerweise war dabei mehr Heap-Platz vonnoeten
+als in der 2-Stack-Version.
+Moeglich Gruende dafuer:
+- Pattern-Matching (von Barkowski) nicht optimal integriert.
+- Code-Interpreter verschlampt Heap-Strukturen und gibt sie nicht frei.
+

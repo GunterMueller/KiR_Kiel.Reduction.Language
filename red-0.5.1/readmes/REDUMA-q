@@ -1,0 +1,161 @@
+====================================================================
+===    Module der compilierenden Version der reduma (pi-RED+)    ===
+====================================================================
+
+Autor: dg 22.09.92 (Dietmar Gaertner) 
+
+Einige grundsaetzliche Bemerkungen.
+
+Allerlei zu den Reduktionsmaschinen pi-RED/pi-RED*/pi-RED+ findet man
+in den Diplomarbeiten von
+
+- Joerg Schepers, Ralf Zimmer und Harald Bloedorn (Uni Bonn). Veraltet!
+- Claus Assmann, Dietmar Gaertner (Editor)
+- Martin Seeger (neuer, noch nicht so recht funktionsfaehiger Editor,
+  basierend auf lex/yacc/X11)
+- Andreas Hurck, Christoph Schuppius. Auch nicht mehr das Allerneueste!
+- Heiko Barkowski (Pattern-Matching), Joerg Jacobsen (PM und Transzendente Funktionen)
+- Eberhard Struck (Primitive Funktionen, Heap)
+- Barbara Leick, Ursula Strack (Zweistackversion, pi-RED*)
+- Rilo Naumann (Messungen am Heap)
+- Ulrich Hoffmann (ZF-Expressions, neues Pattern-Matching). Nicht in pi-RED+!
+- Winfried Bosy, Frank Meissner (Target-Code-Generierung, loleila/FAST)
+- Thomas Gussow (generation scavenging in pi-RED+ und loleila/FAST)
+- (ich habe sicherlich noch einige vergessen)
+
+sowie in den Doktorarbeiten von
+
+- Claudia Schmittgen (Original pi-RED)
+- Ralf Zimmer        (pi-RED, verteilt, experimentelle Typsysteme)
+- Joerg Schepers     (Petri-Netz-basierte Prozesss-Systeme)
+- Dietmar Gaertner   (Compilierende Version pi-RED+)
+- Claus Assmann      (Hardware-Prozessor FAST)
+- Harald Bloedorn    (Pattern-Matching, Zwei-Stack-Version pi-RED*)
+
+sowie in Arikeln von
+
+- Prof. Kluge
+- diversen oben genannten Damen und Herren.
+
+
+Aber merke: Die einzige vollstaendige und korrekte Spezifikation dessen,
+            was ein Programm tun soll ist sein Source-Code !!!
+
+            (Und das auch nur in etwa, denn es kommt ja auch noch auf
+             den Compiler und die ausfuehrende Maschine draufan) 
+
+
+Nun folgt eine kurze Klassifizierung der Module der Reduktionsmaschinen pi-RED/pi-RED+.
+
+Initialisierungen
+------------------
+
+../red-c/rreduce.c	: Schnittstelle zum Editor; funktion reduce();
+			  Initialisiereungen (Stacks, Heap etc.)
+			  Umcodierung der Stackelemente (z.B. Integers als Stackelemente)
+../red-c/rreduct.c	: Steuermodul. Stoesst preprocessing (eac(), ea_create()),
+                          compiling (ear(), loleila()), processing (inter()) und
+                          postprocessing (ea_retrieve()) an.
+
+Ressource-Management
+--------------------
+
+../red-c/rstack.c	: Stack-Management.
+../red-c/rheap.c	: Heap-Management. Reference-Counting.
+../red-c/rscavenge.c	: Heap-Management. Generation-Scavenging.
+../red-c/rstate.c	: Globale Variablen.
+
+
+Preprocessing
+-------------
+
+../red-c/rea-cre.c	: Preprocessing. Basisroutine ea_create().
+../red-c/reac.c		: Preprocessing. Auslagern von konstanten Objekten.
+../base/red/rsubfunc.c	: Preprocessing. lambda-Funktionen.
+../base/red/rrecfunc.c	: Preprocessing. rec-Funktionen. Veraltet.
+../base/red/rr1pr.c	: Preprocessing.
+../base/red/rclose.c	: Preprocessing.
+../base/red/lte-frev.c	: Preprocessing. Letrec.
+../base/red/lnrecfunc.c	: Preprocessing. Letrec.
+../base/red/lr-stor.c	: Preprocessing. Letrec.
+../base/red/lr-num.c	: Preprocessing. Letrec.
+../base/red/lfun-def.c	: Preprocessing. Letrec.
+../base/red/lnr1pre.c	: Preprocessing. Letrec.
+../base/red/lr-close.c	: Preprocessing. Letrec.
+../base/red/rstswi.c	: Preprocessing. Pattern-Matching.
+../base/red/rst-match.c	: Preprocessing. Pattern-Matching.
+../base/red/rwhen-pre.c	: Preprocessing. Pattern-Matching.
+../base/red/rpatvar.c	: Preprocessing. Pattern-Matching.
+../base/red/rstpre.c	: Preprocessing. Store Objects.
+../red-c/rst-dec.c	: Preprocessing. Store Decimals.
+../base/red/rsts-dec.c	: Preprocessing. Store Decimals.
+../red-c/rvalir.c	: Preprocessing. Integer and Real Values.
+
+Compilation
+-----------
+
+../red-c/rear.c		: Compiler in abstrakten Maschinencode.
+../base/red/rcomp.c	: Pattern-Match Compiler.
+
+Processing
+----------
+
+../red-c/rinter.c	: Processing. Abstract Stack Processor (ASP).
+../red-c/ram.c		: Processing. Pattern-Matching Abstract Machine.
+../base/red/rstpro.c	: Processing. Store.
+../red-c/rvalfunc.c	: Processing. Value Transforming Funktionen.
+../red-c/rlogfunc.c	: Processing. Logische Funktionen.
+../red-c/rquery.c	: Processing. Abfragefunktionen.
+../red-c/rlstruct.c	: Processing. Strukturierungsfunktionen auf Listen.
+../red-c/rmstruct.c	: Processing. Strukturierungsfunktionen auf Matrizen.
+../red-c/rvstruct.c	: Processing. Strukturierungsfunktionen auf Vektoren.
+../red-c/rbibfunc.c	: Processing. Transzendente Funtionen.
+../base/red/rred-eq.c	: Processing. Test auf Gleichheit.
+../base/red/rval-int.c	: Processing. Integer-Funktionen.
+../base/red/rlog-mvt.c	: Processing. Logische Funktionen auf Matrizen und Vektoren.
+../red-c/rconvert.c	: Processing. Konvertierungsroutinen.
+../base/red/rdig-add.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-sub.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-mul.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-div.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-mod.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-v1.c	: Processing. Digit-String Arithmetik.
+../base/red/rdig-v2.c	: Processing. Digit-String Arithmetik.
+
+Postprocessing
+--------------
+
+../red-c/rea-ret.c	: Postprocessing. Basisroutinen ea_retrieve() und ae_retrieve().
+../red-c/rnf.c		: Postprocessing. Reduce To Normal-Form.
+../base/red/lr-args.c	: Postprocessing. Letrec.
+../base/red/lr-prot.c	: Postprocessing. Letrec.
+../base/red/lr-ret.c	: Postprocessing. Letrec.
+../base/red/lpa-sub.c	: Postprocessing. Letrec.
+../red-c/rretrieve.c	: Postprocessing. Patern-Matching.
+../base/red/rpos.c	: Postprocessing.
+../base/red/rr1eapos.c	: Postprocessing.
+../base/red/rpartsub.c	: Postprocessing.
+../base/red/rpartrec.c	: Postprocessing.
+../red-c/rret-dec.c	: Postprocessing.
+../red-c/rconvir.c	: Postprocessing. Konvertierung von Integers und Reals.
+
+Debug-System
+------------
+
+../red-c/rruntime.c	: Debug-System. Display.
+../red-c/rdesc.c	: Debug-System. Print Descriptors.
+../red-c/rbreak.c	: Debug-System. Breakpoints.
+../red-c/rprint.c	: Debug-System. Print Stackelems.
+../base/red/r-debug.c	: Debug-System. Pattern-Matching.
+
+Sonstiges
+---------
+
+../base/red/rhinout.c	: Auxiliary. Ein- und Auslagern.
+../base/red/rtrav.c	: Auxiliary. Traversier-Routinen.
+../base/red/ldel-expr.c	: Auxiliary. Delete-Routine.
+
+../red-c/dumpheap.c	: Auxiliary. Read/Write Heap.
+../red-c/setup.c	: Auxiliary. Read Setups (default: red.setup).
+../red-c/rdummies.c	: Auxiliary. Dummy-Routinen.
+

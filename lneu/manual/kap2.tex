@@ -1,0 +1,253 @@
+\section{A Kernel of \kir}
+
+Non-trivial functional programs are {\mys expressions}\index{expression} composed of 
+(mutually recursive) {\mys function definitions}\index{function definition} and {\mys function applications}\index{function application}~\cite{abel85,macq87,bird88}.
+They are {\mys pure algorithms}\index{pure algorithm} which, in contrast
+to conventional imperative programs, just specify what is to be
+computed rather than including detailled schedules of how to actually
+execute them on some underlying machinery~\cite{back78}. 
+The elementary operations to be performed are only partially ordered,
+merely reflecting the 
+logical structure of the appplication
+problem. There is no notion of a memory either: as in algebra, 
+variables are `unknowns' which may serve
+as placeholders for other expressions to be substituted
+for them, but they do not represent changeable values. 
+
+A functional program written in \kir typically has the syntactical form
+$$
+\begin{array}{lclcl}
+&& {\tt def}
+\\
+&& \phantom{{\sc in}\;\;}\vdots
+\\
+&& \phantom{{\sc in}\;\;}{\tt F[X\_1, \ldots, X\_n]}&=&{\tt F\_expr}
+\\
+&& \phantom{{\sc in}\;\;}\vdots\\
+&& \phantom{{\sc in}\;\;}{\tt H[Y\_1, \ldots, Y\_m]}&=&{\tt H\_expr}
+\\
+&& \phantom{{\sc in}\;\;}\vdots \\
+&& {\tt in\;\; S\_expr\;}.
+\end{array}
+$$
+This {\sc define}-construct specifies a set of {\mys recursive functions}\index{recursive function}
+in terms of which the value of the so-called {\mys goal-expression}\index{goal expression}
+{\tt S\_expr} is to be computed.
+We refer to the left-hand sides of the function
+definitions as {\mys function headers}\index{function header}
+and to the right-hand sides as {\mys function body
+expressions} (or {\mys function bodies}\index{function body} for short).
+
+For instance,
+the function header {\tt F[X\_1,\ldots, X\_n]} declares {\tt F} to be a
+function of {\tt n} {\mys variables}\index{variable}
+(or {\mys formal parameters}\index{formal parameter})
+{\tt X\_1,\ldots, X\_n}. The function body
+expression {\tt F\_expr}
+specifies an algorithm for the computation of {\mys function
+values}\index{function value} of {\tt F} in terms of
+\begin{itemize}
+\item the variables {\tt X\_1,\ldots, X\_n} and {\tt F} (in which case the
+function is recursive);
+\item applications of subfunctions of {\tt F};
+\item applications of functions declared at the same level as {\tt F},
+e.g., the function {\tt H}.
+\end{itemize}
+
+These {\sc define}-{\mys constructs}\index{{\sc define}-construct}
+may recursively appear as function body
+expressions to define local subfunctions.
+For instance, {\tt F\_expr} may be specified as
+$$
+\begin{array}{lcl}
+{\tt def} \\
+\phantom{{\sc in}\;\;}\vdots \\
+\phantom{{\sc in}\;\;}{\tt G[V\_1, \ldots, V\_m]}&=&{\tt G\_expr} \\
+\phantom{{\sc in}\;\;}\vdots \\
+{\tt in}\;\; {\tt F\_expr'}\;,
+\end{array}
+$$
+where the function {\tt G} and all other functions defined at this
+and lower
+levels are {\mys subfunctions}\index{subfunction}
+of {\tt F}. All variables defined in a
+particular function are also defined in its subfunctions.
+All {\mys function names}\index{function name} (or {\mys function identifiers})\index{function identifier} specified under a particular {\sc define}-construct
+should be unique\footnote{ In fact, \pired allows that some or all functions be named 
+identically. Applied occurrences of function identifiers must then be 
+preceded
+by backslashes whose numbers uniquely identify the positions of the respective
+function definitions in the {\sc define} constructs.}.
+
+%-------------------------
+\arraycolsep 5pt
+%-------------------------
+A more appropriate notion for the status of a variable is
+that of its {\mys binding scope}\index{binding scope}.
+With respect to a program specified in the above form, scopes may
+be roughly defined as follows:
+\begin{itemize}
+\item the
+formal parameters {\tt X\_1,\ldots, X\_n} are {\mys bound}
+in the function {\tt F} but {\mys free}\index{bound variable}\index{free variable}
+in its subfunctions, e.g., in the function {\tt G};
+\item the formal parameters {\tt V\_1,\ldots, V\_m} are bound in
+{\tt G} but, again, free in the subfunctions of {\tt G};
+\item function identifiers are mutually recursively bound in all
+functions defined at the same hierarchical level; they are
+also bound in the goal expression: {\tt G} is bound in
+{\tt F\_expr'}, and {\tt F} and {\tt H} are bound in {\tt S\_expr}.
+\end{itemize}
+We will henceforth refer to
+variables which are free in subfunctions but bound higher up
+as being {\mys relatively free}\index{relatively free variable};
+
+In addition to functions that are given names, \kir also
+admits non-recursive {\mys nameless} (or {\mys anonymous)
+functions}\index{anonymous function} of the form
+$$
+{\tt sub\; [X\_1,\ldots, X\_n]\; in\;Expr}\;\;\;,
+$$
+where {\tt X\_1,\ldots, X\_n} again denote formal parameters
+and {\tt Expr} denotes the function body expression.
+
+Other expressions may be recursively constructed from
+\begin{itemize}
+\item {\mys function applications}\index{function application},
+which generally are denoted as
+$$
+\begin{array}{rl}
+{\tt ap} & {\tt Func} \\
+{\tt to} & {\tt [\;Arg\_1,\;\ldots\;,\;Arg\_n]}
+\end{array}
+$$
+or alternatively as
+$$
+ {\tt Func[Arg\_1,\ldots, Arg\_r]}\;\;\;,
+$$
+where {\tt Func} may be (any legitimate \kir expression which
+is expected to evaluate to)  the name of a function defined
+by an equation, a nameless function (in which case only the
+former representation will be accepted)
+or a symbol representing a primitive function, and
+{\tt Arg\_1,\ldots, Arg\_r} are argument expressions\footnote{\pired sometimes exchanges, in the course of evaluating a program,
+ these representations against each other as a matter of convenience:
+ it usually prefers the former if {\tt Func} itself is an application, a
+nameless function, or a composite expression, and the latter if it is a function name or
+a variable.};
+\item
+%-------------------------
+\arraycolsep 2pt
+%-------------------------
+{\sc let} {\mys clauses}\index{{\sc let}-clause} of the general form
+$$
+\begin{array}{llcl}
+{\tt let} & \; & \; & \;
+\\ &\phantom{{\sc in}\;\;}\vdots \\
+&\phantom{{\sc in}\;\;}{\tt X}&=&{\tt X\_expr} \\
+&\phantom{{\sc in}\;\;}\vdots\\
+&\phantom{{\sc in}\;\;}{\tt Y}&=&{\tt Y\_expr} \\
+&\phantom{{\sc in}\;\;}\vdots \\
+{\tt in} \; & {\tt Expr} & \;&\;
+\end{array}
+$$
+which specify the (values of) {\tt X\_expr} and {\tt Y\_expr} as substitutes
+for free occurrences of the variables {\tt X} and {\tt Y}, respectively,
+in {\tt Expr};
+%-------------------------
+\arraycolsep 5pt
+%-------------------------
+\item {\sc if-then-else} {\mys clauses}\index{{\sc if-then-else}
+clause} of the form
+$$\begin{array}{ll}
+{\tt if} & {\tt Pred\_expr}\\
+{\tt then} & {\tt True\_expr}\\
+{\tt else} & {\tt False\_expr}
+\end{array} $$
+of which {\tt Pred\_expr}, {\tt True\_expr} and {\tt False\_expr} are
+also referred to as the {\mys predicate}, the {\mys consequence} and
+the {\mys alternative}\index{predicate}\index{consequence}\index{alternative}, respectively.
+\item {\mys lists} or {\mys sequences of
+expressions}\index{list}\index{sequence}, denoted as
+$$
+\mbox{{\tt $<$Expr\_1,\ldots, Expr\_n$>$}}
+$$
+as a means for representing {\mys structured objects}\index{structured object}.
+
+\end{itemize}
+
+%-----------------
+\sloppy % o.k. mit
+%-----------------
+The set of {\mys primitive functions}\index{primitive function} of \kir includes
+the familiar binary {\mys arithmetic}, {\mys logical} and {\mys relational
+operators}\index{arithmetic operator}\index{logical operator}\index{relational operator}, applications of which are usually denoted in (or by \pired
+turned into)
+parenthesized form as\footnote{Note that {\tt Op} need not necessarily
+be a binary operator right away: it may be any legitimate \kir expression which eventually reduces to one.}
+$$
+{{\tt (Arg\_2}\;{\tt Op}\; {\tt Arg\_1)}}\;\;\;.
+$$
+There are also a number of primitive
+structuring and predicate functions applicable to lists which
+we will introduce later on.
+ 
+As a first example, here is a simple \kir program which computes the
+{\mys greatest common divisor}\index{greatest common divisor program} of two integer numbers:
+$$
+\begin{array}{lclll}
+{\tt def} && \\
+\phantom{{\sc in}\;\;}{\tt Gcd[X, Y]}&=& {\tt if}&
+\multicolumn{2}{l}{
+{\tt (X\; eq\;Y)}} \\
+&& {\tt then}& {\tt X} \\
+&& {\tt else}& {\tt if}&{\tt (X \; gt\; Y)}\\
+&& & {\tt then}&{\tt Gcd[Y, Modulo[X, Y]]}\\
+&& & {\tt else}&{\tt Gcd[X, Modulo[Y, X]]}\\
+\phantom{{\sc in}\;\;}{\tt Modulo[X, Y]}&=& {\tt if}&
+\multicolumn{2}{l}{
+{\tt (X\; le\; Y)}
+}\\
+&& {\tt then}& {\tt X} \\
+&&  {\tt else}&
+\multicolumn{2}{l}{{\tt Modulo[(X - Y), Y]}}
+\\ \multicolumn{3}{l}{{\tt in\;\;Gcd[4,6]}}
+\end{array}
+$$
+It consists of two recursive functions, of which {\tt Gcd[X,Y]} 
+is directly called in the goal-expression to
+return the greatest common divisor of actual integer
+values substituted for {\tt X} and {\tt Y} (which in this 
+particular example are {\tt 4} and {\tt 6}, respectively),
+and {\tt Modulo[X,Y]} is called
+as a subfunction of {\tt Gcd[X,Y]} to compute the remainder of {\tt X}
+after division by {\tt Y}.
+
+As a convention, \kir uses lower case letters to denote {\mys keywords}\index{keyword}
+such as {\tt def, if ,then, else, in } etc., whereas all identifiers
+introduced by the programmer (function names and formal parameters) 
+start with upper case letters. As we will see in the next section,
+this is nothing that you need to worry about for this is taken care of
+by the \pired editor\footnote{However, be warned that if you accidently
+type any of the keywords with upper case letters, say {\tt If}, {\tt Then}, etc.,
+they are taken as variables.}.
+
+It may be noted that \kir programs (as programs of any other functional
+language, for that matter) exhibit the same overall structure
+as imperative
+programs. The set of function definitions replaces the set of
+procedure declarations, and the goal expression replaces the statement
+part. This structure recursively extends into all local definitions (or
+declarations). {\sc let}-expressions combine local {\mys variable declarations}\index{variable declaration}
+with {\mys single assignments}\index{single assignment} of values (of expressions). 
+
+Since \kir is an {\mys untyped language}\index{untyped language}, its programs do not include
+explicit type declarations.
+Type compatibility checks between primitive functions and the
+operands to which they are actually applied are dynamically
+performed by the run-time
+system of \pired based on type-tags that are carried along with all
+objects of a program.   
+
+With this basic knowledge about \kir at hand, we are now ready to have
+a closer look at the workings of \pired.

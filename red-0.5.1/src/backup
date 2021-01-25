@@ -1,0 +1,2 @@
+#|/bin/csh
+gtar cvWf /tmp/sourcen.tar DOKUMENTATION/* GROUPS INIT* Makefile* d_gen* groups_to_c *.[ch]

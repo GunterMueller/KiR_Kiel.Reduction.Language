@@ -1,0 +1,612 @@
+\section{Full $\beta$-Reductions and Higher-Order Functions}
+Let us now return to writing programs in \kir since there is lots more
+to learn about its constructs and features, particularly about those 
+that are not available in most other functional or function-based languages.
+
+One concerns the implementation of a full-fledged operational 
+{\mys $\lambda$-calculus}\index{$\lambda$-calculus} as an absolutely essential pre-requisite for
+simple {\mys symbolic computations}\index{symbolic computation}, particularly when it comes
+to exploiting the full
+potential of {\mys higher-order functions}\index{higher-order function}, including {\mys self-applications}\index{self-application}
+and {\mys partial applications}\index{partial application}. Parameter passing by full-fledged 
+{\mys $\beta$-reductions}\index{$\beta$-reduction} guarantees the orderly
+resolution of {\mys naming conflicts}\index{naming conflict} between (relatively) free
+and bound variable occurrences.  This problem potentially  arises
+whenever, in the course of reducing defined function applications,
+argument terms other than basic values are being substituted into the scopes
+of other functions (or abstractions). If this is done naively, occurrences
+of free variables in the argument terms may get {\mys parasitically
+bound}\index{parasitic binding} and thus change the meaning of the entire program. Even worse,
+depending on the order in which reductions are
+performed in a particular program, this phenomenon may 
+or may not occur, i.e., the {\mys referential transparency}\index{referential transparency} which allows you
+to perform reductions in any part of a program would be lost.  
+
+Two simple examples may help to illustrate this problem.
+
+The first one relates to the use of the function
+$$
+{\tt twice[f,x]\;=\;f[f[x]]} 
+$$
+which applies its first argument (the one substituted for {\tt f}) twice
+to its second argument (the one substituted for {\tt x}). If this function
+of two parameters is just applied to itself, i.e., we have both
+a {\mys self-application} and a {\mys partial application}, we eventually
+ get another
+function of two parameters which in fact doubles the application
+ of {\tt twice},
+i.e., it applies its first argument four times to its second argument.
+
+A \kir program which first computes this function and then
+applies it to another function, say {\tt square[x] = (x * x)},
+and to an argument value, say {\tt 2}, looks like this:
+%------------------------------------------------------------------
+\begin{verbatim}
+
+let Double_twice = def 
+                     Twice [ F , X ] = F [ F [ X ] ]
+                   in Twice [ Twice ] ,
+    Square = sub [ X ]
+             in ( X * X )
+in Double_twice [ Square , 2 ]
+
+\end{verbatim}
+%-------------------------------------------------------------------
+Note that this program has
+the functions {\tt Double\_twice} and {\tt Square} defined
+as {\tt let} variables since both are
+non-recursive. This ensures that the right-hand side
+of the definition for {\tt Double\_twice} is evaluated, i.e., a new
+ function is actually computed, before it is applied in the outermost
+ goal expression\footnote{Remember that the semantics of {\tt let} constructs
+prescribes the substitution of {\tt let}-defined variables
+ by the {\mys values} (or {\mys normal forms}\index{normal form}) 
+of the respective defining expressions, whereas the recursively
+bound variables of a {\tt def}
+construct are always substituted by the function bodies as they are.}. 
+Moreover, when defining {\tt Double\_twice} in this form,
+you don't need to think about names for its formal parameters. As
+you will see in just a moment, they are implicitely already defined. 
+
+If you now select the right-hand side of the definition for
+{\tt Double\_twice}, i.e., the {\tt def}-construct for {\tt Twice},
+as the actual cursor expression and reduce it step-by-step, you
+ will end up, after six reductions, with a new defining expression for {\tt Double\_twice}
+(don't worry for the moment what happens in between for the expressions
+that come up may be rather confusing on first sight):
+%-------------------------------------------------------------------
+\begin{verbatim}
+
+let Double_twice = sub [ X ]
+                   in sub [ X ]
+                      in \X [ \X [ \X [ \X [ X ] ] ] ] ,
+    Square = sub [ X ]
+             in ( X * X )
+in Double_twice [ Square , 2 ]
+
+\end{verbatim}
+%---------------------------------------------------------------------
+{\tt Double\_twice} is here returned as
+ a so-called {\mys curried function}\index{curried function} of two parameters, i.e.,
+two nested functions of one parameter each,  since its body is embedded
+in two nested {\tt sub} constructs. But strangely enough, both {\tt sub}s
+bind the same variable name {\tt X}. Moreover, if you have a close look at the
+ body of this function,
+you will notice that there are four occurrences of {\tt $\setminus$X}, i.e., of
+the variable {\tt X} preceded by a {\mys back\_slash}\index{back\_slashing variables}, and one occurrence of
+{\tt X} without it. Now, just what is this supposed to mean? 
+
+
+The answer to this is very simple: The back\_slashes are
+generated as an integral part of the {\mys  $\beta$-reduction rule}\index{$\beta$-reduction}
+ as it is implemented in \pired.
+Rather than introducing other variable names (as the
+classical definition of $\beta$-reduction requires~\cite{bar81,hind86}), this rule
+realizes a {\mys dynamic indexing scheme}\index{dynamic indexing scheme} which renders conflicting
+variable occurrences distinguishable and sustains a {\mys static} (or lexical)
+{\mys scoping rule}\index{static scoping}\index{lexical scoping}.
+The back\_slashes preceding the occurrence of a particular variable,
+ say {\tt X}, 
+simply  count the number of {\mys binders}\index{binder} {\tt sub[X]} for the same
+variable name that, on a straight path in the syntax tree, are between this
+occurrence and the binder {\tt sub[X]} that actually binds it.
+
+In our example, this means that
+\begin{itemize}
+\item the variable occurrence {\tt X} is bound to the innermost {\tt sub[X]}
+for there must be no other {\tt sub[X]} in between;
+\item all variable occurrences {\tt $\setminus$X} are bound to
+ the outermost {\tt sub[X]}
+for there must be one binder {\tt sub[X]} in between (which is the
+innermost {\tt sub[X]}).
+\end{itemize}
+Thus we have two identically named parameters {\tt X} in this function whose
+occurrences in the body can nevertheless be uniquely related
+ to different {\mys binding levels}\index{binding level} (or occurrences of binders {\tt sub[X]})\footnote{You will find  a precise definition of binding levels and of 
+the $\beta$-reduction rule in terms of these back\_slashes (or 
+{\mys protection keys}\index{protection key}) further down in this chapter, after we have worked
+our way through the second example and thus developed a better
+intuitive understanding as to how back\_slashes are being manipulated.}.
+	
+When continuing with further step-by-step reductions of the entire
+program, i.e., after having moved the cursor back underneath the
+{\tt let}-constructor, \pired first
+substitutes in the goal expression all formal by actual parameters,
+returning the application: 
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+ap sub [ X ]
+   in sub [ X ]
+      in \X [ \X [ \X [ \X [ X ] ] ] ]
+to [ sub [ X ]
+     in ( X * X ) , 2 ]
+
+\end{verbatim}
+%-----------------------------------------------------------------
+The next step reduces the outermost application and thereby substitutes
+all occurrences of {\tt $\setminus$X} which are bound to the outermost {\tt sub[X]}
+by the {\tt Square} function, returning the application of a unary
+function to the remaining argument {\tt 2}:
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+ap sub [ X ]
+   in ap sub [ X ]
+         in ( X * X )
+      to [ ap sub [ X ]
+              in ( X * X )
+           to [ ap sub [ X ]
+                   in ( X * X )
+                to [ ap sub [ X ]
+                        in ( X * X )
+                     to [ X ] ] ] ]
+to [ 2 ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+Another reduction step substitutes by the argument {\tt 2}
+ all occurrences of {\tt X} in the function body that are bound
+to the remaining {\tt sub[X]}. This is just the {\tt X} in the argument
+position of the innermost of the nested applications:
+%-----------------------------------------------------------------------
+\begin{verbatim} 
+
+ap sub [ X ]
+   in ( X * X )
+to [ ap sub [ X ]
+        in ( X * X )
+     to [ ap sub [ X ]
+             in ( X * X )
+          to [ ap sub [ X ]
+                  in ( X * X )
+               to [ 2 ] ] ] ]
+
+
+\end{verbatim}
+%-------------------------------------------------------------------
+From this point on, the applications of {\tt Square} are reduced 
+from innermost to outermost, yielding {\tt 65536} as the final result.
+
+If the system would perform {\mys naive substitutions}\index{naive substitution} instead of full-fledged
+$\beta$-reductions, things would turn out quite  differently. Starting 
+with the above program and again making the defining expression for
+{\tt Double\_twice} the cursor expression, we would get after six reduction steps
+another function body for {\tt Double\_twice}\footnote{Note that this 
+function has been manipulated by hand to what it is. \pired could
+not derive it by regular means from the original program.}:
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+let Double_twice = sub [ X ]
+                   in sub [ X ]
+                      in X [ X [ X [ X [ X ] ] ] ] ,
+    Square = sub [ X ]
+             in ( X * X )
+in Double_twice [ Square , 2 ]
+
+\end{verbatim}
+%----------------------------------------------------------------------
+As all  occurrences of {\tt X} in its body would be bound to the innermost
+{\tt sub[X]}, and there would be no variable occurrence bound to the
+outermost {\tt sub[X]}, the program would produce, after three more
+reduction steps, the nested application
+%----------------------------------------------------------------------
+\begin{verbatim}
+
+ap 2
+to [ ap 2
+     to [ ap 2
+          to [ ap 2
+               to [ 2 ] ] ] ]
+
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+which, of course, is dead wrong.
+
+Note that an entirely different course of actions takes place if the
+program is reduced strictly from outermost to innermost, i.e., with
+the cursor always remaining under the outermost constructor. As you
+ may check out for yourself, \pired then does not fully reduce the
+partial application {\tt Twice[Twice]}. Instead, it just substitutes the 
+defining expression
+of {\tt Twice} in itself and applies the abstraction thus obtained
+directly to the
+arguments {\tt Square} and {\tt 2}, as it always continues with what
+is actually the topmost application. However, irrespective of this
+and all subsequent 
+intermediate expressions that are being brought about, the computation 
+again terminates with the correct value {\tt 65536}.
+
+Let us now turn to a more elaborate example which shows you how the number
+of back\_slashes dynamically changes in the course of performing
+$\beta$-reductions that produce name clashes over several binding levels.
+%-----------------------------------------------------------------------
+\begin{verbatim}
+
+ap sub [ U , V ]
+   in ap sub [ V ]
+         in ap sub [ V ]
+               in ap sub [ V ]
+                     in ap sub [ V ]
+                           in ap sub [ V ]
+                                 in ap V
+                                    to [ U ]
+                              to [ ap V
+                                   to [ U ] ]
+                        to [ ap V
+                             to [ U ] ]
+                  to [ ap V
+                       to [ U ] ]
+            to [ ap V
+                 to [ U ] ]
+      to [ ap V
+           to [ U ] ]
+to [ V ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+This program simply applies a nameless function of two parameters
+{\tt U} and {\tt V} to a single argument {\tt V}, i.e., we have a {\mys partial
+ application}\index{partial application} to a {\mys globally free variable}\index{globally free variable}. When substituting this
+variable for free occurences of {\tt U} in the body of this function, it
+ is going to penetrate the scopes
+of several nested binders {\tt sub[V]},
+including the one that is left over from the outermost binder {\tt sub[U,V]}. 
+
+A full-fledged $\beta$-reduction of this application yields the expression
+ shown on top of the opposite page.
+%------------------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+sub [ V ]
+in ap sub [ V ]
+      in ap sub [ V ]
+            in ap sub [ V ]
+                  in ap sub [ V ]
+                        in ap sub [ V ]
+                              in V [ \\\\\\V ]
+                           to [ V [ \\\\\V ] ]
+                     to [ V [ \\\\V ] ]
+               to [ V [ \\\V ] ]
+         to [ V [ \\V ] ]                       <=
+   to [ V [ \V ] ]
+
+\end{verbatim}
+\end{figure}
+%--------------------------------------------------------------------------
+Here you can clearly see that each occurrence of what originally was the
+free variable {\tt V} now carries as many back\_slashes as there are
+binders {\tt sub[V]} into the scopes of which it has been substituted. This is to say
+that there is again no {\tt sub[V]} to which these occurrences are bound,
+i.e., the variable maintains its status of being globally free (Note also
+that the editor has changed all innermost applications originally 
+denoted as {\tt ap V to [ U ]} into {\tt V [$\setminus$\ldots$\setminus$V]}).
+
+Further reductions will systematically eat up from outermost to innermost
+the applications inside the body of the new function, unless you change 
+this order by selecting an inner application as the actual 
+cursor expression. So, let's do first  what is currently 
+the outermost application. It
+is going to substitute the argument term {\tt V[$\setminus$V]} for  
+occurrences of {\tt V} that are bound to the outermost sub[V] of
+ the abstraction that is in function position of this application
+(which is just the {\tt V} in the line marked by a {\tt <=}). Thus,
+what we get next is this:
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+sub [ V ]
+in ap sub [ V ]
+      in ap sub [ V ]
+            in ap sub [ V ]
+                  in ap sub [ V ]
+                        in V [ \\\\\V ]
+                     to [ V [ \\\\V ] ]      <<==
+               to [ V [ \\\V ] ]
+         to [ V [ \\V ] ]
+   to [ ap V [ \V ]
+        to [ \V ] ]
+
+\end{verbatim}
+%------------------------------------------------------------------
+
+The substitution has taken place as expected, but you may also notice that 
+all occurrences of {\tt $\setminus$ \ldots $\setminus$V} have lost one of
+their back\_slashes. This is due to the fact that,
+ together with the application, a binder {\tt sub[V]} has disappeared too,
+i.e., the number of nested scopes has been reduced by one with respect
+to all occurrences of back\_slashed {\tt V}'s.
+
+You are now invited  to move the cursor to the innermost application
+ for a change and perform a reduction there. Other than substituting 
+{\tt V[$\setminus\setminus\setminus\setminus$V]} (which is the
+argument term in the line marked {\tt <<==}) for the innermost {\tt V}, it
+just decrements by one the number of back\_slashes of the variable
+occurrence {\tt $\setminus\setminus\setminus\setminus\setminus$V},
+but leaves all other back\_slashed occurrences of {\tt V} as they are. This
+reflects the fact that only the innermost binder {\tt sub[V]} has disappeared.
+
+Continuing in any order will finally result in an abstraction
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+sub [ V ]
+in ap ap ap ap ap V [ \V ]
+               to [ \V ]
+            to [ \V ]
+         to [ \V ]
+      to [ \V ]
+   to [ \V ]
+
+\end{verbatim}
+%-------------------------------------------------------------------------
+whose body is composed of nested applications of the bound variable {\tt V}
+to occurrences of the free variable {\tt $\setminus$V}. 
+
+If you now apply this abstraction to another free variable, say {\tt U},
+you get
+after one more $\beta$-reduction
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+ap ap ap ap ap U [ V ]
+            to [ V ]
+         to [ V ]
+      to [ V ]
+   to [ V ]
+to [ V ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+in which no more binders and hence no more back\_slashed variables occur.
+ 
+The back\_slashes formally define the {\mys binding status}\index{binding status}
+ (or {\mys binding level}\index{binding level}) of a variable occurrence
+as follows~\cite{brui72,berk82b}:
+
+Let {\tt $\setminus_{\tt (n)}$ V} denote a variable occurrence preceded
+by $n$ back\_slashes,  then with respect to a binder {\tt sub[V]} which is $k$
+intervening binders {\tt sub[V]} away from it
+(counted upwards in the syntax tree), this variable is said to be
+\begin{itemize}
+\item {\mys protected}\index{protected variable} if $k\;<\; n$;
+\item {\mys free}\index{free variable} if $k\;=\;n$;
+\item {\mys bound}\index{bound variable} if $k\;>\;n$.
+\end{itemize}
+ 
+Since the purpose of the back\_slashes obviously is to protect a
+variable occurrence against parasitic bindings, we will also refer to
+them from now on more appropriately as {\mys protection keys}\index{protection key}, and
+to the number of protection keys preceding a variable also as
+its {\mys protection index}\index{protection index}.
+
+Of course, what has been defined here for the binding status of
+a variable relative to a {\tt sub}-binder applies equivalently to
+variables bound in a recursive function definition of the form
+$$
+{\tt F[X\_1,\;\ldots\;,X\_n]\;=\;Expr}\;\;.
+$$
+Following standard $\lambda$-notation, this definition can be equivalently 
+written as
+$$
+{\tt F\;=\;sub[X\_1,\;\ldots\;,X\_n]\;in\;Expr}\;\;,
+$$
+which is also the syntax used for the internal graph representation.
+ 
+The {\mys $\beta$-reduction}\index{$\beta$-reduction rule} rule for an application of the general form
+$$
+{\tt ap\;sub[V]\;in\;Expr\;to\;[Arg]}
+$$
+as it is implemented in \pired can now be defined thus:
+
+An occurrence of a variable{\tt $\setminus_{\tt (n)}$V} in the body expression
+{\tt Expr}
+\begin{itemize}
+\item decrements its protection index $n$ by one if it is protected;
+\item is substituted by the argument {\tt Arg} if it is free;
+\item is left unchanged if it is bound.
+\end{itemize}
+An occurrence of {\tt $\setminus_{\tt (n)}$V} in the argument term {\tt Arg}
+\begin{itemize}
+\item is left unchanged if it is free or bound;
+\item increments its protection index $n$ by $m$ if it is
+protected and substituted into
+the scopes of $m$ nested binders {\tt sub[V]} inside {\tt Expr}.
+\end{itemize}
+
+There is an interesting facet to this dynamic indexing scheme that you
+should be aware of,  even though it may be not too relevant from a
+high-level programmer's point of view: 
+all formal parameters of a defined function may be named
+ identically (or mechanically transformed into identical names) 
+since occurrences of these parameters in the function body
+ can be uniquely related to their correct binding levels solely by means
+of their protection indices. 
+
+To get this point across, consider first the following 
+ application of a simple function that is defined in terms of three
+distinctly named formal parameters {\tt X}, {\tt Y} and {\tt Z}:
+%------------------------------------------------------------------------
+\begin{verbatim}
+  
+def 
+  F [   ] = sub [ X , Y , Z ]
+            in X [ Y [ Z [ X , Y ] ] ]
+in F [ A , B , C ]
+
+\end{verbatim}
+%----------------------------------------------------------------------------
+ Thus it is pretty obvious where
+the argument terms {\tt A}, {\tt B} and {\tt C} of this application will
+be substituted. When reducing it, we get:
+%------------------------------------------------------------------------
+\begin{verbatim}
+
+A [ B [ C [ A , B ] ] ]
+
+\end{verbatim}
+%--------------------------------------------------------------------------
+Since occurrences of formal parameters in a function body are merely
+{\mys placeholders}\index{placeholder} for things that eventually will be substituted for them,
+it is, of course,
+ completely irrelevant which parameter names you actually choose. The result
+of applying the function will always be the same.
+So, you may change any of the parameter names as long as the changes are
+made consistently and do not get into  conflicts with other names.
+
+A renaming scheme which accomplishes this is known from the theory
+of the $\lambda$-calculus as so-called {\mys $\alpha$-conversion}\index{$\alpha$-conversion}. It is
+based on an abstraction
+$$
+{\tt Alpha\;=\;sub[\;U\;,\;V\;]\;in\;U[\;V\;]}  
+$$
+which, when applied to another abstraction, converts the outermost parameter
+of the latter to {\tt V}. You may convince yourself of this by means
+of the following example:
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Alpha [   ] = sub [ U , V ]
+                in U [ V ]
+in Alpha [ sub [ X ]
+           in X [ X ] ]
+
+\end{verbatim}
+%-------------------------------------------------------------------
+Here we have a {\mys partial application}\index{partial application} of {\tt Alpha} which, in a first step,
+reduces to an abstraction in one parameter {\tt V}. The application that has
+come about in its body inserts, in a second step, the variable {\tt V}
+for occurrences of {\tt X} in the body of {\tt sub[ X ] in X [ X ]},
+as a result of which you get this abstraction with {\tt X} replaced
+by {\tt V}. Note that this is a special case of  a higher-order function: {\tt Alpha} is some kind of {\mys identity function} which returns the
+functions to which it is applied with just the outermost 
+formal parameter name 
+exchanged, but otherwise in the same syntactical form. 
+
+Things are getting decidedly more interesting if you wish to convert
+all formal parameters of an abstraction into the same name, say 
+again {\tt V}. Since the $\alpha$-conversion scheme employs full-fledged
+$\beta$-reductions, nothing should go wrong. So, let's try
+it with the function of three parameters introduced in the
+above example.
+
+In order to have all three binders of this function converted in one go,
+you should modify the $\alpha$-conversion function so that it recursively
+eats its way through them from outermost to innermost.
+ The following program will do this job: 
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Alpha [ N , U , V ] = if ( N gt 1 )
+                        then Alpha [ ( N - 1 ) , U [ V ] ]
+                        else U [ V ]
+in Alpha [ 3 , def 
+                 F [   ] = sub [ X , Y , Z ]
+                           in X [ Y [ Z [ X , Y ] ] ]
+               in F ]
+
+\end{verbatim}
+%-------------------------------------------------------------------
+The $\alpha$-conversion function now has a third parameter {\tt n}
+which must be set to the number of  parameters that you want to be converted
+ (this parameter simply terminates recursive calls of {\tt Alpha}),
+which in this particular case are three. If you reduce this program step-by-step, you may get a little confused about the intermediate expressions that
+build up (that's just the way reduction works by the books), but you will end up
+with an abstraction of the form:
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+sub [ V ]
+in sub [ V ]
+   in sub [ V ]
+      in \\V [ \V [ V [ \\V , \V ] ] ]
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+which has all variables converted to {\tt V} and different binding levels
+distinguished by protection keys. All occurrences of
+\begin{itemize}
+\item {\tt V} are bound to the innermost {\tt sub[V]};
+\item {\tt $\setminus$V} are bound to the {\tt sub[V]} in the middle;
+\item {\tt $\setminus\setminus$V} are bound to the outermost {\tt sub[V]}.
+\end{itemize}
+To convince yourself that this is the same function as before, you may simply
+type as input {\tt ap \% [a,b,c} and hit the return key, which creates the 
+application:
+%---------------------------------------------------------------------
+\begin{verbatim}
+
+ap sub [ V ]
+   in sub [ V ]
+      in sub [ V ]
+         in \\V [ \V [ V [ \\V , \V ] ] ]
+to [ A , B , C ]
+
+
+\end{verbatim}
+%----------------------------------------------------------------------
+Three more reduction steps will produce the same resulting expression as
+before:
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+A [ B [ C [ A , B ] ] ]
+
+\end{verbatim}
+%---------------------------------------------------------------------
+So, you are free to apply any function to any other function in order to
+compute new functions without worrying about variable names and binding
+ scopes. The $\beta$-reduction rule untangles correctly the messiest
+situations of name clashes you can think of, i.e., it maintains all 
+scopes as originally defined and thus guarantees {\mys 
+referential transparency}\index{referential transparency} and the {\mys Church-Rosser property}\index{Church-Rosser property}.
+It also avoids the alienation of intermediate programs beyond recognition as
+it maintains the variable names of the original
+program unless you explicitely change them into others by $\alpha$-conversion.
+However, even more important is that functions are thus truly treated as
+first class ojects: they cannot only be passed as parameters but also be 
+returned in intelligible form, i.e., in \kir notation, as results of
+rather complex computations. 
+
+This is in sharp contrast to most other implementations of functional
+languages which, contrary to what is claimed, separate the world of
+functions from the world of objects they can be applied to~\cite{burs80,harp86,turn85a,huda88}. This is
+primarily a consequence of compiling functions, in one way or another, to
+ static code, which for all practical purposes precludes full-fledged
+$\beta$-reductions~\cite{augu84,john87,appe87}. Thus, rather than computing new functions as results, say, of
+partial applications, the respective run-time systems internally form so-called
+{\mys closures}\index{closure}, i.e., packages composed of pieces of code and (references to)
+argument objects,
+and notify  you merely of the fact that the computation has terminated
+with a function of some number of arguments, but they cannot tell you
+what the function looks like. Also, since these systems are based on
+ {\mys polymorphically typed languages}\index{polymorphic typing}, accepting only programs that
+are well typed, they cannot deal with globally free variables either. 
+ 
+
+

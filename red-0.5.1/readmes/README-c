@@ -1,0 +1,13 @@
+This is the README-file of the subdirectory red-c.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+red-c contains the source- (*.c *.h) and change-files (*.c[ch][0-9])
+of the compiled graph reduction system pi-red+.
+
+Makefile     : makefile
+README       : this file
+REDUMA       : some info about reduction machine implementations
+*.h *.c      : header- and source files
+*.sh *.ch    : original header- and source files (modified by chge)
+*.c[ch][0-9] : change files
+

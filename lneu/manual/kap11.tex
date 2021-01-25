@@ -1,0 +1,97 @@
+\section*{Appendix 3: Installing \pired on a Host System}
+\addcontentsline{toc}{section}{Appendix 3: Installing \pired on your System}
+
+The following primarily concerns the installation of \pired$^+$, i.e., of the
+ compiled graph reducer version of \pired, which is our standard version for
+release to the public. The installation of the interpreter
+ version \pired$^*$ is very similar.
+
+\pired$^+$ will be made available to you on a floppy disc as a compressed
+ {\tt tar} file. In order to get it loaded into your system, you must
+execute, under the directory under which you wish to install it, the
+UNIX commands 
+\begin{verbatim}
+           tar  xvf  /dev/rfd0c 
+           uncompress  red.tar.Z 
+           tar  xvf  red.tar
+\end{verbatim}
+in this sequence. This will open up a new subdirectory {\tt red/} under
+ which you can find all the (executable) files and further subdirectories 
+necessary to compile and assemble the complete reduction system. 
+
+If you have under the same directory another version of \pired configured for a
+different target machine, first execute
+\begin{verbatim}
+            make  clean
+\end{verbatim}
+to delete all files that may be invalid. Also, on a UNIX system V/4 
+make sure that {\tt /usr/bin} precedes  {\tt usr/ucb} in the directory path
+since the {\tt cc} command in the latter uses libraries which have bugs.
+
+If you wish to install \pired on either a SUNSPARC or an Apollo system,
+you simply need to run next the executable file 
+\begin{verbatim}
+            configure  sun|apollo          .
+\end{verbatim}
+in order to prepare both the editor and the run-time system 
+ for compilation to executable code.
+For all other systems, you may have to set `by hand' several flags in two
+{\tt makefiles} named {\tt fed/Makefile} and {\tt src/Makefile}. These
+compiler flags are as follows:
+
+\vspace{5mm}
+
+\noindent Editor flags contained in {\tt fed/Makefile} (with default setting):
+ 
+\vspace{4mm}
+
+\begin{tabular}{ll}
+{\tt -DUNIX=1} & for UN*X OS systems;\\
+{\tt -DAPOLLO=0} & for Apollo systems set this to 1;\\
+{\tt -DTRICK1\_AP=1} & for internal use only (don't change);\\
+{\tt -DKEDIT=0} & for use with a distributed version of \pired (don't change);\\
+{\tt -DM\_PATT=1} & for multiple pattern matches;\\
+{\tt -DTRACE=0} & for internal use only (don't change);\\
+{\tt -DClausR=0} & for extended system version with logical variables (don't 
+change);\\
+{\tt -DB\_DEBUG=0} & for internal use only (don't change);\\
+\end{tabular}
+\\
+\newpage
+\noindent Run-time flags contained in {\tt src/Makefile} (with default setting):
+
+\vspace{5mm}
+
+\begin{tabular}{ll}
+{\tt -DUNIX=1} & for UN*X OS systems;\\
+{\tt -DODDSEX=0} & for Littleendian systems set this to 1;\\
+{\tt -DAPOLLO=0} & for Apollo systems set this to 1;\\
+{\tt -DSYS5=0} & for System5 systems set this to 1;\\
+{\tt -DPI\_RED\_PLUS=1} & for internal use only (don't change);\\
+{\tt -DRED\_TO\_NF=1} & enables reductions to normal forms;\\
+{\tt -DDEBUG=0} & disables custom-made debug system;\\
+{\tt -DDBUG=0} & disables fred-fish's debug package;\\
+\end{tabular}
+
+\vspace{5mm}
+
+\noindent Having executed the {\tt configure*} file or set the
+ compiler flags directly, you may now call
+\begin{verbatim}
+            make
+\end{verbatim}
+which finally produces the executable file {\tt reduma*}. Calling it brings \pired 
+into existence on your host system, i.e., the user interface 
+shows up on the screen (window) you are
+working with.
+
+Before calling {\tt make}, it is advisable to look into the initialization file {\tt red.init} in order to make sure that the system  is
+set up with the parameters as you  need them for most of your
+ applications. This concerns primarily the sizes of the various
+ run-time structures (heap size, stack sizes, etc.). This is good 
+practice insofar as any changes of these parameters 
+ by 
+the respective system commands do not survive a
+session, i.e., whenever you call the system with the command 
+{\tt reduma}, it is initialized with the old parameters taken from
+{\tt red.init} at compile time. 

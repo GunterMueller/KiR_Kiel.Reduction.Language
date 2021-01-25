@@ -1,0 +1,3 @@
+#! /bin/sh
+d_gen_defines GROUPS >d_mess_groups.h
+d_gen_names GROUPS >d_mess_names.h

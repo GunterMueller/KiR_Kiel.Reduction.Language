@@ -1,0 +1,71 @@
+This file documents the compilation of the Reduma. Copyright (C)
+1988, 1989, 1992 University of Kiel. You may copy,
+distribute, and modify it freely as long as you preserve this copyright
+notice and permission notice.
+
+Compiling Reduma
+*****************
+
+ Follow these steps to compile Reduma on a Unix system.
+
+  1. If you have built Reduma previously in the same directory for a
+     different target machine, do `make clean' to delete all files
+     that might be invalid. 
+
+  2. Make sure that your system has either `gawk' (version 2.15 or higher)
+     or nawk (gawk 2.13 has a bug).
+     On a System V release 4 system, make sure `/usr/bin' precedes
+     `/usr/ucb' in `PATH'.  The `cc' command in `/usr/ucb' uses
+     libraries which have bugs.
+
+  3. Run `configure' to configure the Makefiles for your machine.
+
+         configure machine
+
+     where machine is one of the following system:
+
+         sun, apollo, next, sgi, hp, linux
+ 
+     If you are trying to compile the Reduma on another machine,
+     you have to edit two Makefiles (in the same way) by hand:
+
+     1. editor.obj/Makefile
+     2. lred.obj/Makefile
+
+     In order to be able to do so we provide some informations about
+     the compiler flags used in reduma at the of this text.
+
+  4. Just type `make' or `make install' to build the executable "lred".
+     To determine to location where to install lred change the entry
+     for BINDIR within the file `red.cnf'.
+
+Reduma Compiler Flags
+*********************
+
+Editor Flags:
+in fed/Makefile:
+
+-DUNIX=1        for UN*X OS Systems
+-DAPOLLO=0      for Apollo Systems: set this to 1
+
+-DTRICK1_AP=1   internal use only
+-DKEDIT=0       for use with a distributed version (don't touch !)
+-DM_PATT=1      for use with multiple pattern match
+-DTRACE=0       internal use only
+-DClausR=0      for use with system from Claus Reinke (don't touch !)
+-DB_DEBUG=0     internal use only
+
+Pi_Red_Plus Flags:
+in src/Makefile:
+
+-DUNIX=1        for UN*X OS Systems
+-DODDSEX=0	for Littleendian Systems: set this to 1
+-DAPOLLO=0      for Apollo Systems: set this to 1
+-DSYS5=0	for System5 Systems: set this to 1
+
+-DPI_RED_PLUS=1	internal use only
+-DRED_TO_NF=1	enable reduction to NFs rather than to WNFs
+-DDEBUG=0	disable custom made debug system
+-DDBUG_OFF	disable fred-fish`s debug package
+-DSCAVENGE=0	use reference counting instead of generation scarvenging
+-DSCAV_DEBUG=0	disable debug system for generation scarvenging system

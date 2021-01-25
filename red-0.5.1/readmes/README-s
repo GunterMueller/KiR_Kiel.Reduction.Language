@@ -1,0 +1,17 @@
+This is the README file of the directory red-s
+==============================================
+
+Makefile for the reduction system pired+ with
+generation scavengin garbage collector.
+
+CAUTION!
+
+(dg 30.07.92)
+
+Only a subset of KiR (with respect to primitive functions)
+is supported. These are artimetic/logic operations (+,- etc.)
+basic list functions (lselect, lcut, lunite, lreplace, empty, ldim).
+
+The complex matrix and vector operations are not yet prepared for
+generation scavenging garbage collection.
+

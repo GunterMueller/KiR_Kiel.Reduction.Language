@@ -1,0 +1,107 @@
+\section{Preface and Introduction}
+
+This document is primarily intended as a user's and programmer's guide 
+for the reduction system \pired.
+However, it may also serve
+as an introduction to {\mys functional programming}\index{functional 
+programming}, particularly
+to some flavors which are not supported by most other {\mys functional}
+(or function-based) {\mys languages}\index{functional languages} and
+systems such as {\sc hope, miranda, sml, haskell} or {\sc id}~\cite{burs80,turn85a,turn86,harp86,harp88a,huda88,nikh88}. 
+
+\pired is a complex software system of more than 2.5 MByte C-code (including some options and extensions that are of an experimental nature and therefore not part of the standard version described here) which can be
+installed on all UNIX-based systems\footnote{An installation guide is included in appendix 3.}. It provides a sophisticated
+{\mys syntax-directed editor}\index{syntax-directed editing} and a complete run-time environment
+ for functional
+ languages featuring the {\mys reduction semantics}\index{reduction semantics} of an applied
+{\mys $\lambda$-calculus}\index{$\lambda$-calculus} ~\cite{chur41,bar81,hind86}. Both programming and program execution are
+supported as fully interactive processes. Programs may be constructed either
+top-down or bottom-up by systematically inserting expressions
+into place-holder positions of other expressions or by replacing
+expressions with others. Program execution is realized as a sequence of
+{\mys meaning-preserving} program {\mys transformations} based on a fixed set of
+{\mys rewrite} (or {\mys reduction}) {\mys rules}~\index{rewrite rule}\index{reduction rule}, of which 
+the most important one is a 
+full-fledged {\mys $\beta$-reduction}\index{$\beta$-reduction}\footnote{$\beta$-reduction 
+essentially defines the substitution of actual for formal function
+ parameters, including the orderly resolution of {\mys naming conflicts}\index{naming conflict}
+that may arise between free variable occurrences in argument terms
+and variables bound in function terms.}
+~\cite{berk75,berk82b}. Programs  may either be run to completion `in
+one shot' or be reduced
+in a step-by-step mode, with intermediate programs being displayed to the user for
+inspection and modifications. In particular, reductions
+may be carried out in any selected part of a program without creating
+side effects in other parts. Thus, \pired is
+ an excellent
+tool for efficient program design and for validating program correctness, and also for teaching basic programming language concepts.
+Due to the availability of a full-fledged $\lambda$-calculus, \pired
+fully supports {\mys higher-order functions}\index{higher-order function}: functions may be 
+freely applied to other functions or to themselves, and
+new functions resulting from the evaluation of (partial) function applications 
+may be made visible to the user in high-level notation.
+
+\pired is available with implementations of the functional languages \kir (for {\mys Kiel Reduction Language})
+or \orel/2 (for {\mys Our Reduction Language}/version 2). Both are
+strict, statically scoped and dynamically typed. In addition to
+the features that are
+common to almost all functional languages, they include APL-like
+structured data types \cite{iv62,abr70,schm86,schm91} for efficient numerical computations, and
+sophisticated
+{\mys pattern matching}\index{pattern matching} facilitaties which make them ideal tools for prototyping
+other languages and their run-time environments. 
+Since differences between both languages are
+largely syntactical, we will introduce in this document only \kir.
+This choice is based on more extensive experience with this language in
+writing large application programs and on its slightly more amenable syntax.
+For a description and formal specification of \orel/2 (whose syntax 
+closely  resembles that of {\sc sml} and {\sc miranda}), the interested reader
+is referred to \cite{ples90}.  
+   
+In its present form, \pired is the result of a complete overhaul of the
+$\lambda$-calculus-based reduction concept and the string reduction machinery proposed by
+Berkling as early as 1975 \cite{berk75,berk78}, which was first
+ implemented by Hommes as a software
+simulator \cite{homm77b,homm80} and then by Kluge as an experimental
+ hardware machine \cite{klug79,klug80}. The
+improvements primarily concern the inclusion of more powerful language
+constructs, improved editing facilities, and  efficient run-time support by means of graph
+reduction techniques~\cite{schm91,zim91}, 
+fine-tuned parameter-passing mechanisms and garbage collection schemes.
+
+Currently there are two versions of \pired available, of which
+\begin{itemize}
+\item $\pi$--{\sc red}$^*$ is a {\mys high-level interpreter}\index{high-level
+interpretation} for graph representations
+of $\lambda$-terms (which internally are converted into supercombinators)~\cite{schm91};
+\item $\pi$--{\sc red}$^+$ performs {\mys graph reduction}\index{compiled graph reduction} based on compiled code for
+user-defined functions~\cite{gaer91}, and thus runs by a factor of about 2 to 8
+faster than $\pi$--{\sc red}$^*$, depending on the nature of the 
+application programs.
+\end{itemize}
+
+In this document we will merely describe what you can see of \pired at
+the
+user interface, typically an alphanumerical display terminal or a terminal
+emulation on a graphical window, and how you have to work with it
+in order to edit and execute \kir programs. Setting out with a small
+language kernel, 
+the syntactical constructs of \kir and their
+semantics, i.e., the reduction rules by which they are being transformed,
+will be introduced in the order of increasing complexity and sophistication,
+as we proceed.
+Rather than giving formal definitions, we will  
+largely work with selected example programs.
+In doing this, we will also show
+how the editing facilities may be used to recursively construct large programs
+from smaller pieces and how to validate programs (or parts thereof)
+during the design process by stepwise execution and inspection of
+intermediate states of computations.  
+
+A formal definition of the syntax of \kir follows in an appendix 
+at the end of this document. A second appendix gives an overview
+over the \pired editor functions and the command language, and a third appendix briefly describes how \pired can be installed on your system.
+
+\pired has been developed jointly at the University of Kiel and at the
+ GMD in St. Augustin, with major contributions by Claus Assmann, Harald Bloedorn, Dietmar Gaertner, Heinz Mevissen, Joerg Schepers, Heinz Schluetter, Claudia Schmittgen and Ralf Zimmer.
+

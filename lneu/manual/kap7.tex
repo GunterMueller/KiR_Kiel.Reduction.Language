@@ -1,0 +1,341 @@
+\subsection{Pattern Matching with User-Defined Constructors}
+You may have askes yourself why pattern matching as introduced in the preceding section
+is confined to list structures, but is not applicable to other non-atomic \kir expressions,
+e.g., applications or user-defined functions (abstractions). Though one can immediately
+think of many interesting applications of such a feature, there is a very simple and good reason
+for not supporting it: it would render the results of computations dependent on execution
+orders and thus violate the {\mys Church-Rosser property}\index{Church-Rosser property} and also {\mys referential transparency}\index{referential transparency}. As
+a consequence, we would end up having a  rather versatile {\mys term rewriting system}\index{term rewriting system}, but not
+anymore a purely functional reduction system. 
+
+In order to `fake' at least syntactically the applicability
+ of pattern matching
+to objects other than just lists (sequences), \kir supports
+ {\mys user-specified constructors}\index{user-defined constructor}. They may be used to construct 
+expressions of a {\mys meta-level language}\index{meta-level language} that sits on top of \kir and can
+be interpreted only by {\mys rewrite rules}\index{rewrite rule} specified as pattern matches. This
+feature, among many other applications, greatly facilitates rapid
+ prototyping and testing of abstract machines, compilation schemes, type
+checkers etc.  for other programming language, imperative or declarative
+ (including \kir itself).
+
+A {\mys meta-level expression} generally  has the syntactical form:
+$$
+{\tt Constr\{Expr\_1\;,\; Expr\_2\;,\; \ldots\;,\; Expr\_n\}}
+$$
+where {\tt Constr} is a character string beginning with a letter
+ which, in conjunction with the
+curly brackets {\tt \{} and {\tt \}} that enclose the 
+sequence of $n$ \kir expressions {\tt Expr\-1} , \ldots , {\tt Expr\_n},
+is taken as an $n$-ary user-specified constructor. In particular, 
+the \kir expressions
+may be recursively constructed from other meta-level expressions.
+  Note that the constructor symbol, though the editor converts its 
+first letter to upper case, is not treated as a variable, and that
+the sequence
+within the brackets may be empty, in which case you have a $0$-ary
+constructor.
+
+A pattern that matches against such an expression 
+must feature the same constructor name and the same arity\footnote{except
+in those cases where the pattern contains wild card synbols}, but may
+only have legitimate pattern components in the places of the expressions.
+These are variables, constants, wild cards, 
+type specifications, and recursively 
+non-atomic patterns made up from ordinary list constructors 
+or user-specified constructors. 
+
+The following is a simple example which shows how pattern matching with
+user-specified constructors works:
+%----------------------------------------------------------------
+\begin{verbatim}
+
+ap case 
+   when C_1{< U , V > , 'abc` , C_2{W}} guard true do C_2 [ U [ V , W ] ]
+   end
+to [ C_1{< + , 6 > , 'abc` , C_2{4}} ]
+
+\end{verbatim}
+%-----------------------------------------------------------------
+Here the pattern obviously matches against the argument term in all components
+that matter, i.e., the application reduces to the body of the {\tt when}
+clause in which the variables {\tt U, V, W} are replaced by {\tt +, 6, 4},
+respectively:
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+C_2 [ ( 6 + 4 ) ] .
+
+\end{verbatim}
+%-------------------------------------------------------------------
+One more reduction step yields {\tt C\_2 [ 10]} .
+
+You may convince yourself that changing the names of the user-specified
+constructors or of their arities either in the pattern or in the argument
+(but not identically in both (!)) leads to a mismatch, i.e., the application
+itself is returned as its normal form.
+
+The particular syntax for meta-level expressions and for the corresponding
+ patterns, of course, is more or less syntactic sugar. The same ends may be achieved
+by expressions of the form 
+$$
+{\tt <\;'constr`\;,\;Expr\_1\;,\;\ldots\;,\;Expr\_n\;>}
+$$
+and equvalent patterns, in which the user-introduced 
+constructors are represented as
+ordinary list constructors in combination with 
+dedicated character strings (i.e., constants) in the first (or any other)
+index positions of the respective sequences. In fact, \pired uses internally
+this representation as it reduces exactly as desired. There is one significant
+ difference to ordinary lists though: structures made up from user-defined constructors
+can only be re-structured by pattern matching; primitive structuring functions are not
+applicable to them.
+
+\subsection{A Case Study : the SECD Machine}
+Let us now look at an interpreter for Landin's {\mys SECD machine}\index{SECD machine}~\cite{land64} 
+as a perfect example to demonstrate the expressive power of pattern matching
+with both ordinary lists and user-defined constructs.
+In its original form, the SECD machine was conceived as
+an abstract applicative order
+evaluator for expressions of a pure $\lambda$-calculus. It derives its name
+from the four data structures it uses as a run-time environment. These 
+data structures are operated as {\mys push-down stacks}, of which
+\begin{description}
+\item[{\mys stack S}] holds evaluated $\lambda$-terms in essentially the
+order in which they are encountered during the traversal of the original
+$\lambda$-expression;
+\item[{\mys stack E}] is an environment stack which holds name/value pairs
+ representing instantiations of free occurrences of $\lambda$-bound
+variables;
+\item[{\mys stack C}] is a control structure which 
+accommodates the expression that still needs to be processed;
+\item[{\mys stack D}] serves as a dump for actual machine states that need to be saved when entering into the evaluation of a new application.
+\end{description}
+The operation of this machine is specified in terms of a state transition
+function
+$$
+\tau\;:\;(\;S,\;E,\;C,\;D)\;\rightarrow\;(\;S',\;E',\;C',\;D')
+$$
+which maps a current into a next machine state. To do so, the function $\tau$
+must distinguish among six basic constellations on the stack-tops
+ of components of (partially or fully evaluated) $\lambda$-terms. These
+constellations can be readily expressed in terms of pattern matches
+collected in a {\tt case} construct. They include the occurrence of
+\begin{itemize}
+\item an empty control structure C in conjunction with a non-empty dump,
+in which case a new machine state must be retrieved from the dump;
+\item a variable on top of the control structure, in which case the associated
+value must be looked up in the environment E and pushed into the value stack
+S;
+\item a $\lambda$-abstraction on top of the control structure, in which case
+a closure representing its value in the actual environment E must be created
+on top of stack S;
+\item an applicator on top of C in conjunction with a closure on top
+of S, in which case a new name/value pair must be added to the environment E;
+\item an applicator on C in conjunction with any other term on on top of
+S, in which case the value of applying the topmost to the second-to-top 
+item on stack S must be computed and pushed into S;
+\item an application on top of the control structure which, in compliance with
+the applicative order regime, must be reconfigured on C so as to have its
+argument and function terms in this order precede an explicit applicator;
+\end{itemize}
+
+The $\lambda$-terms to be processed by the interpreter that we wish to
+specify for this machine may be defined in the following meta-syntax in order
+to distinguish them from the $\lambda$-terms of \kir proper:
+$$
+{\tt Term\;\rightarrow\;Var\{X\}\;|\;Lambda\{X\;,\;Term\}\;|\;Apply\{Term\;,\;Term\}} \;\;.
+$$
+Thus, we consider only the terms of a pure $\lambda$-calculus, treating
+variables, abstractions and applications as special constructor expressions
+which in fact define a meta-language on top of \kir. In addition we have 
+{\mys closures} of the general form {\tt Clos\{ E, X, Expr\}} which define {\tt Expr} as the value to be substituted for occurrences of the variable {\tt X} in the environment {\tt E}.
+
+The specification of the interpreter may be based on the representation of the run-time environment as a sequence
+of four subsequences which correspond to the four push-down stacks.
+The state transition
+ function $\tau$ can then be implemented straightforwardly
+by means of the {\tt case} construct shown below. It is composed of six pattern
+matches which realize the above rewrite rules.
+
+As you can see, all rules straightforwardly
+map old into new states. The second rule is slightly
+more complicated than the others for it must call upon a recursive
+function {\tt Search} to search the environment {\tt E} for
+the value with which a variable appearing on top of the control
+structure is instantiated.
+
+%-----------------------------------------------------------------------
+%\begin{figure}
+\begin{verbatim}
+
+case 
+when < < X , S > , E , <> , < < Ss , Se , Sc , Sd > , Rest > >
+ guard true
+ do < < X , Ss > , Se , Sc , Sd > ,
+when < S , E , < Var{X} , C > , D >
+ guard true
+ do let Val = def 
+                Search [ E ] =
+                 let First = lselect( 1 , E )
+                 in if empty( E )
+                    then Var{X}
+                    else if ( lselect( 1 , First ) eq X )
+                         then lselect( 2 , First )
+                         else Search [ lcut( 1 , E ) ]
+              in Search [ E ]
+    in < < Val , S > , E , C , D > ,
+when < S , E , < Lam{X , Expr} , C > , D >
+ guard true
+ do < < Clos{E , X , Expr} , S > , E , C , D > ,
+when < < Clos{Env , X , Expr} , < Hed , S > > , E , < Ap{ } , C > , D >
+ guard true
+ do < <> , ( < < X , Hed > > ++ Env ) , < Expr , <> > ,
+           < < S , E , C , D > , D > > ,
+when < < Hed , < Heta , Rest > > , E , < Ap{ } , C > , D >
+ guard true
+ do < < Eval [ Hed , Heta ] , Rest > , E , C , D > ,
+when < S , E , < Apply{E_1 , E_2} , C > , D >
+ guard true
+ do < S , E , < E_2 , < E_1 , < Ap{ } , C > > > , D >
+otherwise < Env , 'irreg termination` >
+end
+
+\end{verbatim}
+%\end{figure}
+%---------------------------------------------------------------------
+Since the function $\tau$ must be recursively applied to the
+run-time environment
+(or machine state) until both the control structure and the dump
+ are empty, we simply define a recursive function {\tt Secd} whose
+body includes another {\tt case} construct composed of
+\begin{itemize}
+\item a {\tt when} clause which handles the termination condition;
+\item an {\tt otherwise} clause under which {\tt Secd} is recursively
+applied to the new state (or environment) resulting from the
+ application to the current state, represented by the variable {\tt Env}, of the {\tt case } construct that realizes $\tau$.
+\end{itemize}
+ 
+We thus get the following complete program specification for the
+interpreter function  {\tt Secd}, in the body of 
+which the abbreviated inner {\tt case} construct is the one
+shown on the preceding page which  realizes the state transition rules.
+%--------------------------------------------------------------------
+\begin{verbatim}
+ 
+def 
+  Secd [ Env ] =
+   ap case 
+      when < S , E , <> , <> >
+       guard true
+       do < S , E , <> , <> , Done >
+      otherwise Secd [ ap case 
+                          ? 
+                          ?
+                       to [ Env ] ]
+      end
+   to [ Env ]
+in Secd
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+
+Let us now try to apply the interpreter function {\tt Secd} to a
+concrete $\lambda$-expression which in \kir would look like this:
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+ap ap sub [ U ]
+      in sub [ V ]
+         in U [ V ] 
+to [ sub [ X ] in X , W ]
+
+\end{verbatim}
+%----------------------------------------------------------------
+As can be easily verified,
+ this application reduces in three steps to the free variable {\tt W}.
+
+In the special constructor syntax that can be understood by the interpreter,
+this application must be specified as:
+%-----------------------------------------------------------------------
+\begin{verbatim}
+
+Apply{Apply{Lam{'u`,Lam{'v`,Apply{Var{'u`},Var{'v`}}}} ,
+            Lam{'x`,Var{'x`}}},Var{'w`}}                         .
+
+\end{verbatim}
+%-----------------------------------------------------------------------
+It is important to note here that what are supposed to be concrete 
+variable names in this syntax must be specified as constants, i.e.,
+as character strings embedded in quotation marks. If you would not
+ do this, they
+would become variables of \kir but not of the meta-level $\lambda$-terms that are to be interpreted and as such could get
+parasitically bound outside the intended context. Moreover, the interpreter 
+must compare, as
+part of its second pattern match in the inner {\tt case} construct, 
+variable occurrences in the $\lambda$-terms of your special
+ meta-language against matching entries in the environment structure
+E. This can be done only on the basis of {\mys instantiations} with
+constant values of the pattern variables in terms of which this
+comparison is specified.
+
+In order to interpret the above meta-language expression, it must be 
+ put into the position of the third subsequence of the argument sequence
+for the function {\tt Secd} (which represents the control structure C), with all other subsequences initially empty:
+%------------------------------------------------------------------------
+\begin{verbatim}
+
+< <> , <> ,
+< Apply{Apply{Lam{'u`,Lam{'v`,Apply{Var{'u`},Var{'v`}}}} ,
+              Lam{'x`,Var{'x`}}},Var{'w`}}, <> > ,    <> >
+
+\end{verbatim}
+%---------------------------------------------------------------------
+Thus, the complete program, ready for execution, is this (with the
+body of {\tt Secd} again abbreviated):
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+ap def 
+     Secd [ Env ] =
+      ap case 
+            ?
+            ?
+      to [ Env ]
+   in Secd
+to [ < <> , <> ,
+     < Apply{Apply{Lam{'u`,Lam{'v`,Apply{Var{'u`},Var{'v`}}}} ,
+                   Lam{'x`,Var{'x`}}},Var{'w`}}, <> > ,    <> > ]
+
+\end{verbatim}
+%--------------------------------------------------------------------
+Provided you didn't make any mistakes when editing this program,
+it returns after 96 reduction steps the correct solution in the form of
+the following environment structure:
+%-------------------------------------------------------------------
+\begin{verbatim}
+
+< < Var{'w`} , <> > , <> , <> , <> , Done >
+
+\end{verbatim}
+%--------------------------------------------------------------------
+i.e., with the variable construct {\tt Var\{'w`\}} as the sole entry
+ of the value stack S, and with all other stacks empty.
+
+You may alternatively try to work your way through a step-by-step execution
+of this program, but be warned that it may take quite a while for you to
+figure out what is going on in a particular situation and where
+the next transformation step is going to take place. Since intermediate
+programs cannot be completely visualized on the screen without many
+ question marks, it is helpful to study the first few steps very carefully
+in order to be able to select as the actual cursor expressions the {\tt case}
+applications which are to be reduced next and need to be inspected in detail. 
+
+As an interesting exercise, you could try to supplement this SECD
+machine interpreter, within the framework of an applied $\lambda$-
+calculus, by the data types {\tt boolean}, {\tt integer number}
+and {\tt list}, including a complete set of primitive functions
+defined on these types (e.g., the ones you have available in \kir).
+This will enable you to  write in this extended meta-language a few
+more interesting application programs
+and have them executed on your interpreter.

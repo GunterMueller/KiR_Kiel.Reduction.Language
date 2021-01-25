@@ -1,0 +1,52 @@
+#
+# CONFIG-FILE FOR THE SYNTAX ORIENTED EDITOR
+#
+
+#
+# editor.o  : linkable module of syntax oriented editor
+# xeditor.o : linkable module of the syntax oriented editor with X frontend
+#
+
+BINDIR = bin/
+LIBDIR = lib/
+
+editor.o:
+
+CC=gcc
+SRCROOT = fed/
+SRCDIR  = src/
+OBJROOT = fed/
+
+case $MACHINE in
+  sun)
+    CFLAGS = -DTERMIOS=1 -DSETBUFFER
+    ;;
+  apollo)
+    CFLAGS = -DAPOLLO=1
+    ;;
+  next)
+    CFLAGS = -DSETBUFFER
+    ;;
+  sgi)
+    CFLAGS = -DTERMIOS=1
+    ;;
+  hp)
+    CFLAGS = -DTERMIOS=1
+    ;;
+  linux)
+    CFLAGS = -DTERMIOS=1 -DSETBUFFER
+    ;;
+esac
+
+CFLAGS += -DX_UDI=0
+CFLAGS +=-DUNIX -DKEDIT -DM_PATT -DTRACE -DClausR -DB_DEBUG=0 $(EDFLAGS)
+FILES  = cmain.c cedit.c cglobals.c ciotab.c cetab.c cinput.c cfiles.c \
+         cgetexp.c cgetstr.c cmatrix.c cmatch.c cscanexp.c cscroll.c \
+         cnewscr.c ctermio.c csearch.c cdispl.c cfdispl.c cscred.c cstacks.c \
+         cpexp.c ccommand.c chelp.c csubst.c credclr.c ctransl1.c initredp.c
+
+
+#xeditor.o: editor.o
+#
+#CFLAGS -= -DX_UDI=0
+#CFLAGS += -DX_UDI=1

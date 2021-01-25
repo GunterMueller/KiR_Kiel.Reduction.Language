@@ -1,0 +1,159 @@
+%=======================windows===========================================
+\section*{Appendix 3: The X-Window Frontend for the Editor}
+\addcontentsline{toc}{section}{Appendix 3: The X-Window Frontend for the Editor}
+
+
+For some UNIX-based systems there is also available an X-window frontend which
+may be called with {\tt Xred}.
+It facilitates handling the editor in that it realizes many of the editor
+controls, parametrization of the run-time system, file handling etc. as
+menue functions, i.e., you can mainly work with a mouse rather than typing editor
+commands.  There are also two important extensions that come with 
+the X-windows implementation: it is now possible to load ASCII files
+and to switch between syntax-oriented and line-oriented editing. Since the user
+is guided by menues, there is also no need to learn the syntax of the
+editor commands. 
+
+The following system versions are required to support {\tt Xred}:
+\begin{itemize}
+\item UNIX system V, release 3.2 with IPC message queues enabled;
+\item X window system X11R5 or higher;
+\item X-view 3.2 or higher toolkit;
+\item colour work station or X-terminal.
+\end{itemize}
+
+\begin{figure}[htb]
+\let\picnaturalsize=N
+\def\picsize{12cm}
+\def\picfilename{pics/xred-main.eps}
+\centerline{\ifx\picnaturalsize N\epsfxsize \picsize\fi \epsfbox{\picfilename}}
+\caption{\label{window} Screen layout of the Xred main window}
+\end{figure}
+
+Figure ~\ref{window} shows the main window of the X-window frontend.
+It consists of the following three parts (from top to bottom):
+\begin{itemize}
+\item  the command panel which includes eight menue buttons and also
+displays the (file) name of the program that is actually in use;
+\item the usual alphanumerical interface of \pired~, as described in
+chapter 3;
+\item the window footer which displays various short help and editor messages.
+\end{itemize}
+The X-frontend is just another interface sitting on top of
+ the editor program that controls the alphanumerical interface. All features 
+and functions, other than those that have been added,
+ are working in the same way as before.
+
+Under one of the menues, you may also call a text editor object which opens up
+another window, in which you can use a simple line-oriented mode 
+to edit (parts of) \kir~ programs. Provided they are syntactically correct,
+they may be inserted in any syntactical position
+of the expression that is under the control of the main window. The layout of
+the text editor object is shown in fig. ~\ref{textobject}. It too features 
+a command panel with eight function buttons, a main field which holds the text to be
+edited, and a window footer for various messages.  
+
+\begin{figure}[htb]
+\let\picnaturalsize=N
+\def\picsize{12cm}
+\def\picfilename{pics/texted.eps}
+\centerline{\ifx\picnaturalsize N\epsfxsize \picsize\fi \epsfbox{\picfilename}}
+\caption{\label{textobject} Screen layout of the text editor object}
+\end{figure}
+
+All system functions of the main window are grouped into eight menues which may be accessed
+through the menue buttons of the command panel.  Following
+standard conventions, the menue entries that show up when clicking one of the
+menue buttons may be followed by three dots or by arrows. 
+Selecting one of the former menues opens up a user request box, selecting one of the latter
+opens up another sub-menue. All menues may be pinned on the screen in order to
+ use its functions repeatedly.
+
+Here is a brief explanation of the available menues:
+\begin{itemize}
+\item the menue {\sc file} includes all the file handling functions. These are
+\begin{description}
+\item[{\tt clear}] which clears the {\sc fa}-field of the editor and the backup buffer;
+\item[{\tt load ...}] which opens a file request box to load a file of one of the formats
+{\tt .ed} (for input/output files) {\tt .red} (for red expression files) or
+{\tt .pp} (for pretty print (ASCII) files). If you try to load a {\tt .pp} file
+which contains a syntax error, the frontend will switch to a text editor object
+for corrections, otherwise the frontend asks you whether you want the expression
+stored away as an {\tt .ed} file.
+\item[{\tt include}] which opens a file request box to insert into the actual cursor position
+an expression read from a file of one of the three legitimate formats;
+\item[{\tt save}] which saves the actual cursor expression under the file name last used;
+\item[{\tt save as ...}] which opens a file request box to specify a file name under which
+the complete actual expression is to be saved; 
+\item[{\tt save expression ...}] which opens a file request box to specify  a file name
+under which the actual cursor expression is to be saved;
+\item[{\tt load setups ...}] which loads the setup file for the system parameters for 
+inspection and changes;
+\item[{\tt save setups ...}] which stores the (updated) parameter set shown on the screen
+in the setup file;
+\item[{\tt exit}] which quits the X-window frontend;
+\end{description} 
+All functions followed by ... bring up a file request box which displays the
+files or directories (folders) that are available under the directory in which you
+called {\tt Xred}. You may select one of the files or directories, preferably {\tt red.o} in
+the latter case,
+to which you wish to store or from which you wish to  fetch the actual cursor expression.
+Clicking one of the directories brings up the
+next lower level of files or directories, clicking the name of a file of type
+ {\tt .ed} actually does the copying of the file contents 
+into the actual cursor position (or vice versa).
+\item the menue {\sc edit} includes some functions which support syntax-oriented
+editing:
+\begin{description}
+\item[{\tt undo}] undoes the last modification in that it copies the
+contents of the back-up buffer into the actual cursor position;
+\item[{\tt copy}] copies the actual cursor expression into the backup buffer;
+\item[{\tt paste}] inserts the expression held in the backup buffer into the actual
+cursor position;
+\item[{\tt cut}] moves the actual cursor expression into the backup buffer,
+leaving an empty symbol {\tt \#} in its syntactical position;
+\item[{\tt texteditor ...}] calls the text editor object 
+which shows up on your screen as another window with essentially
+the same layout. In its expression field you will find the cursor
+expression of the main window set up for line-oriented editing, while the cursor
+position in the main window is now replaced by a system-generated identifier for
+the text editor object. You may now directly use the keyboard of your workstation
+to modify or edit your program text. You may insert into this text
+all expressions stored under dollar variables. When clicking the
+{\tt done} button in the command field, the text editor window disappears 
+and the edited expression replaces the identifier in the expression field
+of the main window. Note that returning in this way to the main window is only possible if
+the expression is syntactically correct, otherwise the text editor window stays in place
+and displays an error message at the bottom. Thus it is  now
+your responsibility to construct syntactically correct expressions.   
+\end{description}
+\item the menue {\sc buffers} includes the functions by which the actual
+cursor expression is written to or read from one of the buffers (using
+self-explaining inscriptions of the buttons);
+\item the menue {\sc reduce} includes the functions which control the reduction
+process:
+\begin{description}
+\item[{\tt undo last reduction}] re-installs the cursor expression as before the last sequence of reductions;
+\item[{\tt base expression}] sets the cursor to the top of the entire expression;
+\item[{\tt one step}] performs at most one reduction step on the cursor expression;
+\item[{\tt set reduction counter ...}] opens a request box for the specification of an
+initial reduction counter value (which may be done by clicking the up/down arrows to
+the right of the counter field or by directly typing it into this
+field);
+\item[{\tt use reduction counter}] performs on the cursor expression at most as many
+reduction steps as specified by the last counter setting; 
+\item[{\tt reduce expression}] performs an unlimited number of reduction steps and should
+therefore be used only if it is absolutely certain that the  cursor expression 
+ terminates eventually;
+\end{description}
+\item the {\sc options} menue allows you to set up certain system parameters
+such as the parameters of the run-time system, some properties of the frontend, and
+the layout of the expressions under the syntax-oriented editor mode;
+\item the {\sc extra} menue contains some special functions like tool boxes for
+frequently used commands;
+\item the {\sc help} menue includes the help files, with the various help items
+classified in the same way as under the alphanumerical frontend. 
+\end{itemize}
+
+
+

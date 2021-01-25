@@ -1,0 +1,279 @@
+\section*{Appendix 2: Summary of the \pired Controls}
+\addcontentsline{toc}{section}{Appendix 2: Summary of the \pired Controls}
+
+For quick references, we will in this appendix give a brief 
+description of all the control functions of \pired
+as they can also be looked up under the {\tt help} 
+feature that may be called with the function key F4. 
+\\
+
+\begin{description}
+
+\item[Calling and Terminating \pired]$\;$\\
+\pired, if properly installed on your UNIX system, should be available under your own or someone elses user directory
+in a file directory {\tt red}. The executable file {\tt reduma} 
+may be found under the path name {\tt red/red.o}. These are the commands to call and exit from \pired:
+\begin{description}
+\item[{\rm call}]: {\tt reduma [-options] [ file [, file ] ]}
+\\ (the material enclosed in the brackets [,] is optional) 
+\item[{\rm exit}]: {\tt CTRL-c, CTRL-z} or editor command {\tt exit}
+\item[{\rm options}]:
+\\ t: reduces the specified file and displays the time required; 
+\\ i: instead of {\tt red.init} uses the specified file as initialization file;
+\\ c: reduces the first file and compares it with the second file (if
+ specified);   
+\\ p: prints all specified editor files in the prettyprint format, using
+the extension {\tt .pp}.
+\end{description}
+
+With any of the options enabled, \pired runs in a batch mode, 
+otherwise it runs in the interactive mode.
+\\
+
+\item[The Line Editor] $\;$\\
+The line editor handles what you type in the input line displayed at 
+your screen. There is a  bound on the length of the input line 
+which is shown in 
+the right-hand corner of the message field. An input may exceed this length,
+in which case you can see only part of it in the input field.
+The functions that are available to manipulate 
+ the contents of the input line other than
+ just typing it are the following:
+\begin{description}
+\item[{\tt F3}]: turns on the insert mode in which existing input 
+may be modified;
+\item[{\tt CTRL-e}]: turns the insert mode off;
+\item[{\tt DEL}]: deletes the character to the left of the current
+cursor position;
+\item[{\tt F4}]: deletes the character at the current cursor position;
+\item[{\tt CTRL-d}]: deletes all characters from (and including) the current cursor position to the end of the input line;
+\item[{\tt cursor-home}]: positions the cursor at the first input character;
+\item[{\tt cursor-up}]: moves the part of the input line actually displayed
+ half a line to the left;
+\item[{\tt cursor-down}]: moves the part of the  input line  actually displayed 
+ half a line to the right;
+\item[{\tt tab}]: moves the cursor to the next tab stop.
+\end{description}
+
+\item[Function Keys] $\;$\\
+\pired supports 16 logical function keys F1 .. F16 which may or
+may not be assigned to (some of) the physical function keys that 
+are available on your keyboard. You may define these assignments
+ by yourself with the help of a {\tt defkeys} command as described
+under the command interpreter. Alternatively, you may type in the
+input line (with the message line cleared) {\tt :n}, where {\tt n}
+ is the number of the logical function key, which will be 
+echoed as {\tt Fn}.
+
+\begin{description}
+\item[{\tt F1}]: performs at most one reduction step on the current cursor expression\footnote{This is a default value which can be changed using the editor command {\tt redcnt}.};
+\item[{\tt F2}]: enters the read mode for {\tt .edit} files; 
+\item[{\tt F3}]: displays in the {\sc fa} field of your screen the
+actual cursor expression;
+\item[{\tt F4}]: calls the \pired help file;
+\item[{\tt F5}]: reads an expression from a backup buffer\footnote{Note that this buffer by default always contains the expression held under the
+current cursor position prior to the last shift of reductions.};
+\item[{\tt F6}]: reads an expression from a first auxiliary buffer\footnote{In conjunction with special editor commands, this buffer may
+be used for dedicated purposes.};
+\item[{\tt F7}]: reads an expression from a second auxiliary buffer;
+\item[{\tt F8}]: enters the command mode;
+\item[{\tt F9}]: performs at most 1000 reduction steps on the current 
+cursor expression;
+\item[{\tt F10}]: enters the write mode for {\tt .edit} files; 
+\item[{\tt F11}]: displays in the {\sc fa} field the father expression of the current cursor expression; 
+\item[{\tt F12}]: unassigned;
+%
+\addtocounter{footnote}{-3}
+%
+\item[{\tt F13}]: writes the current cursor expression into a backup
+buffer\footnotemark;
+\item[{\tt F14}]: writes the current cursor expression into a first auxiliary buffer;
+\item[{\tt F15}]: writes the current cursor expression into a second auxiliary buffer;
+\item[{\tt F16}]: terminates \pired.
+\end{description}
+
+
+\item[The Command Interpreter] $\;$\\
+The command mode may be entered by means of the function key F8. 
+Under this mode, only one command may be executed at a time. \pired
+returns to the normal edit mode immediately afterwards.
+
+The following commands are available:
+\\
+\begin{description}
+
+\item[{\rm The Editor Commands}] $\;$\\
+\begin{description}
+\item[{\tt abb\_def}]: abbreviates all {\tt def} constructs;
+\item[{\tt abb\_idef}]: abbreviates only all inner {\tt def} constructs;
+\item[{\tt append file}]: appends prettyprint to {\tt file};
+\item[{\tt arity}]: displays the arity of the constructor that is in
+cursor position;
+\item[{\tt cat file}]: displays the contents of the file {\tt file};
+\item[{\tt cmd shell\_cmd}]: issues the shell command {\tt shell\_cmd} to a shell;
+\item[{\tt comp}]: compares the expression in the first auxiliary buffer with the current cursor expression;
+\item[{\tt curmode[par]}] enables the line-oriented cursor mode with {\tt par = on } and
+the syntax-oriented cursor mode with {\tt par = off}, the latter also being the
+default option;
+\item[{\tt defkeys}]: enters the mode under which logical function keys and cursor movements can be assigned to physical function keys on 
+your keyboard;
+\item[{\tt dfct}]: shows the function headers of abbreviated {\tt def}
+constructs;
+\item[{\tt dgoal}]: shows the goal expressions of abbreviated {\tt def}
+constructs;
+\item[{\tt dmode[ n ]}]: defines the number of nesting levels up to 
+which an expression is being displayed (with {\tt n = -1} showing all
+ levels);
+\item[{\tt editparms}]: shows all editor parameters;
+\item[{\tt exit}]: terminates the editor;
+\item[{\tt ext[ i [extension]]}]: defines the extensions of the various file types that can be used under the \pired editor, with {\tt i} being assigned as follows:
+\\
+\\0: input/output file   {\tt .ed};
+\\1: prettyprint file    {\tt .pp};
+\\2: document file       {\tt .doc};
+\\3: protocol file       {\tt .prt};
+\\4: ASCII file (portable) {\tt .asc};
+\\5: red expression file {\tt .red};
+\\6: pre-processed expr  {\tt .pre};          
+\\
+\item[{\tt find}]: searches, from the current cursor position downwards, for the first
+occurrence of a sub-expression that matches the expression stored in the topmost position
+of the first auxiliary buffer, if there is one;
+\item[{\tt findexpr[expr]}]: searches, from the current cursor position downwards, 
+for the first occurrence of of a sub-expression that matches {\tt expr};
+\item[{\tt help[text]}]: searches for help;
+\item[{\tt initfile[file]}]: changes the name of the initialization 
+file to {\tt file};
+\item[{\tt initparms}]: reads the parameters held in the initialization file;
+\item[{\tt load[file]}]: loads into the current cursor position an 
+expression from {\tt file} (which must be of type {\tt .red});
+\item[{\tt next}]: tries to find under the current cursor expression 
+the next occurrence of the expression
+held in the first auxiliary buffer;
+\item[{\tt pp[file]}]: prettyprints the current cursor expression
+to {\tt file.pp};
+\item[{\tt print[file]}]: prints the current cursor expression to
+{\tt file.asc};
+\item[{\tt protocol file}]: appends to the file {\tt file.prt}
+the (intermediate) expressions obtained after every shift of reductions;
+\item[{\tt protocol}]: terminates protocolling;
+
+\item[{\tt read[file]}]: reads an ASCII text expression from {\tt file.asc};
+\item[{\tt redcnt n}]: sets the default reduction counter assigned to
+ the function key {\tt F1} to the value {\tt n};
+\item[{\tt reduce n}]: performs at most {\tt n} reduction steps on the
+current cursor expression;
+\item[{\tt redparms}]: shows the reduction parameters;
+\item[{\tt refresh}]: refreshes the screen;
+\item[{\tt replace[expr\_1; expr\_2; mode]}] searches, from the current cursor position
+downwards, for occurrences of sub-expressions that match {\tt expr\_1}, and replaces
+them by {\tt expr\_2}, with {\tt mode} specifying whether all replacements are to
+be made in one go {\tt mode = all} under interactive control {\tt mode = ask}; 
+\item[{\tt saveparms}]: saves reduction and editor parameters;
+\item[{\tt shell}]: calls another UNIX shell;
+\item[{\tt small on|off}]: sets the display mode;
+\item[{\tt stack}]: displays the contents of the \pired run-time stacks;
+\item[{\tt store[file]}]: saves an expression on {\tt file.red};
+\item[{\tt time}]: shows the time used up for the last shift of
+reductions;
+\end{description}
+For the most frequently used of these commands there exist abbreviations.
+\\
+\item[{\rm Setting System Parameters}]$\;$\\ 
+\begin{description}
+\item[{\tt pagesize no\_of\_bytes}]: sets the size of the communication page
+to the \pired interpreter;
+\item[{\tt heapdes no\_of\_entries}]: specifies the number of entries in
+the descriptor array;
+\item[{\tt heapsize no\_of\_bytes}]: specifies the size of the heap segment in numbers of bytes;
+\item[{\tt qstacksize no\_of\_el}]:  specifies, in numbers of stack elements (of four bytes), the sizes of the stacks E,A,H of the run-time
+environment of \pired;
+\item[{\tt mstacksize no\_of\_el}]: specifies the size of stack M of
+the
+run-time environment;
+\item[{\tt istacksize no\_of\_el}]: specifies the size of the argument
+stack I of the run-time environment;
+\item[{\tt fixformat}]: converts all decimal numbers into binary coded
+integer or floating point formats of the host system;
+\item[{\tt varformat}]: performs all arithmetic operations on decimal
+number representations with unlimited precision (this is the defasult
+option of \pired);
+\item[{\tt base}]: defines the base for the decimal number representation under the {\tt varformat};
+\item[{\tt trunc no\_of\_digits}]: specifies an upper limit on the number of digits displayed for any decimal number;
+\item[{\tt mult\_prec no\_of\_digits}]: specifies, in numbers of digits
+after the decimal point, the precision for decimal multiplications;
+\item[{\tt div\_prec no\_of\_digits}]: specifies, in numbers of digits
+after the decimal point, the precision for decimal divisions;
+\item[{\tt betacount on|off}]: when on, counts only reductions of defined function applications, otherwise all $\delta$-reductions as well.
+
+\end{description}
+\end{description}
+
+\item[The File System] $\;$\\
+\pired supports several types of files to store and communicate 
+\kir expressions. It makes use of the underlying UNIX file system.
+All files are stored under the same directory under which the
+executable file {\tt reduma} is being called.
+The file types are distinguished by appropriate default extensions
+which are being appended to the file names upon file creation by
+type-specific commands. The following types are available:
+
+\begin{description}
+\item[{\rm input/output files (type 0)}]$\;$\\$\;$\\
+This file type carries the default extension (suffix) {\tt .ed}. It
+ is used to create libraries of \kir expressions in the
+ internal editor format. \\$\;$\\
+Commands:\\$\;$\\
+Writing an {\tt .ed} file: function key F10 followed by {\tt file\_name};\\
+Writes the current cursor expression into the file {\tt file\_name.ed}. If this file already exists, its actual contents are overwritten.\\$\;$\\
+Reading an {\tt .ed} file: function key F2 followed by {\tt file\_name};\\
+Overwrites the current cursor expression with the expression held
+ in the file {\tt file\_name.ed} if it exists.\\$\;$\\
+{\tt .ed} files may also be referenced from within \kir programs
+by {\tt \$file\_name} (which must start with the first letter typed as
+upper case), in which case the full expressions held in the files are
+ literally substituted for the references before executing the programs.
+\item[{\rm prettyprint files (type 1)}]$\;$\\
+This file type carries the default extension {\tt .pp}. \kir
+ expressions are in these files stored in the same layout in which
+ they appear on the screen. In this form, they may be either directly
+ printed or included in other text files.\\$\;$\\
+Commands:\\$\;$\\
+Writing a new or overwriting an existing {\tt .pp} file: {\tt pp[file\_name]}.
+\item[{\rm document files (type 2)}]:$\;$\\
+The default extension for this file type is {\tt .doc}. The command 
+{\tt doc file\_name} is an abbreviation for the UNIX system command
+{\tt \$EDITOR file\_name.doc}. 
+\item[{\rm protocol files (type 3)}]$\;$\\
+The default extension for this file type is {\tt .prt}. It may be used to store a succession of intermediate \kir expressions while executing
+ a program in a stepwise mode.\\$\;$\\
+Commands:\\$\;$\\
+Opening a protocol file: {\tt prot file\_name}\\
+Closing a protocol file: {\tt prot}\\ 
+\item[{\rm ASCII files (type 4)}]$\;$\\
+The default extension is {\tt .asc}. This file type uses a special 
+external format for \kir expressions which is portable to 
+other (text) editors.\\$\;$\\
+Commands:\\$\;$\\
+Writing an ASCII file: {\tt print[file\_name]}\\
+(Over)writes the file {\tt file\_name.asc} with the current cursor expression;\\$\;$\\
+Reading an ASCII file: {\tt read[file\_name]}\\
+Overwrites the current cursor expression with the expression held
+in the file {\tt file\_name.asc}, if it exists.\\
+\item[{\rm red files (type 5)}]$\;$\\
+The default extension of this file type is {\tt .red}. This is another
+input/output file type which, in difference to files of type 0, treats
+\kir expressions as macros: reducing them, e.g., in the context of
+a larger program into which they are being inserted, decrements the 
+reduction counter by just one, irrespective of the actual number
+of reduction steps that are carried out.\\$\;$\\
+Commands:\\$\;$\\
+Writing a {\tt .red} file: {\tt store[file\_name]}\\
+(Over)writes the file {\tt file\_name.red} with the current cursor expression;\\$\;$\\
+Reading a {\tt .red} file: {\tt load[file\_name]}\\
+Overwrites the current cursor expression with the expression in
+{\tt file\_name.red}.
+
+\end{description}
+
+\end{description}

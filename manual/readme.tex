@@ -1,0 +1,96 @@
+
+This README describes the installation and compilation of :
+
+ - marco (Make Another Reduction COmpiler)
+   marco is a 2 pass compiler generator for functional languages which use
+   the pi-red reductionsystem for program execution. A marco generated compiler
+   translates high-level functional program into low-level Orel/0 programs.
+
+   The marco source (./src/marco) is splitted into three sections :
+   
+    * First the compilergenerator (compgen) which translates a compiler-
+      specification in a compiler.
+
+    * Second the compilerlibrary (library) which is a compilerindependent function-
+      library.
+
+    * Third : Two examples (examples) compilerspecification for macro.
+
+      + kir  : A macro-generated KiR (KIel Reduction Language).
+      + calc : A simple calculator tool.
+
+ - Xred (This XView frontend for the syntax-directed editor)
+   The source for this X-windows-based frontend is in ./src/xv
+
+ - Some help functions (sources) :
+
+   * clt_srv : A client-server module for the syntax-directed editor and the
+     X-Windows frontend.
+
+   * dbug : Fred Fish DBUG package for internal debugging purposes.
+
+and two other program packages, which are NOT part of this archive :
+
+ - fed
+   The syntax directed editor for the pi-red reduction system.
+
+ - red
+   The pi-red reductionssystem.
+
+Before you can compile a program from this packages, you have to 
+install first the fed and red packages !!
+
+----------------------------------------------------------------------------------
+REQUIRMENTS :
+----------------------------------------------------------------------------------
+
+This packages requires following stuff :
+
+ - Unix System V 3.2
+ - X11 R5 system
+ - XView 3.2 Includes & Library in your library path
+ - System V IPC message queues
+
+To run the Xred program your MUST have the server version of the syntax-directed
+editor named "sxred" in your binary-search path.
+
+Without these requirments the programs will NOT run correct.
+
+----------------------------------------------------------------------------------
+INSTALLATION :
+----------------------------------------------------------------------------------
+
+Setup your pathes in the Install file and run this script. To compile
+the sources you must change your directory to src. Then type 
+
+ make depend
+ make
+
+After compilation are in the toplevel path bin links to the generated programs.
+To use this programs you have to copy this files to your binary search path.
+
+----------------------------------------------------------------------------------
+PROGRAMS : 
+----------------------------------------------------------------------------------
+
+After succesfull compilation you will get 4 programs in ./bin :
+
+ * Xred    : X-window frontend for sxred.
+ * sxred   : Serverversion of fed.
+ * kir     : A KiR compiler.
+ * marco   : Tool for building the KiR-compiler.
+
+Copy these programs to your binary search path.
+
+----------------------------------------------------------------------------------
+DEINSTALLATION :
+----------------------------------------------------------------------------------
+
+To cleanup run the DeInstall script.
+
+-- 
+Ulrich Diedrichsen      udi@informatik.uni-kiel.d400.de
+Oooooh, eight carousels!  We're in for a real treat!
+ <from> Marge welcomes her sisters, laden with slides of their latest trip,
+        ``Krusty Gets Busted''
+

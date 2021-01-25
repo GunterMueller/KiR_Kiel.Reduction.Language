@@ -1,0 +1,172 @@
+#
+# CONFIG-FILE FOR THE (DISTRIBUTED) PI-RED-PLUS SYSTEM
+#
+
+#
+# reduction machine targets:
+#
+# lred   : quick sequential version
+# dlred  : debug sequential version
+# sred   : quick sequential version with generation scavenging
+# dsred  : debug sequential version with generation scavenging
+#
+# dired  : quick ncube host version
+# ncred  : quick ncube node version
+#
+# didred : debug ncube host version
+# dncred : debug ncube node version
+#
+# mdired : quick ncube host measure version
+# mncred : quick ncube node version
+#
+
+
+#--------------------#
+# Global presettings #
+#--------------------#
+#
+# All definitions made here apply to all versions, but
+# can be overruled by local definitions in the Version definition part.
+#
+
+# Compiler/ Linker presettings (CC, CFLAGS, LD, LDFLAGS, LIBS & INCS) #
+#---------------------------------------------------------------------#
+
+# 
+# gcc
+#
+CC = gcc -D_ANSI_
+CFLAGS = -O
+LIBS = -lm
+
+# Path presettings (SRCROOT, SRCDIR, OBJROOT, OBJDIR, BINROOT & BINDIR) #
+#-----------------------------------------------------------------------#
+#
+# SRC... : where to find the .c/.o/.a if no absolute path is specified
+#          if neither SRC... nor an absolute path is specified, the
+#          actual directory is assumed.
+# OBJ... : analogously to SRC... concerning .o files generated from .c files.
+# BIN... : specifies the location where the result will be put.
+#
+
+BINDIR = bin/
+
+# File presettings #
+#------------------#
+#
+# Here the FILES Variable may be presetted. The FILES variable allows
+# different kinds of files to be specified:
+# .c - files for files, which have to be compiled;
+# .o - files for files, which just have to be linked.
+# In addition to that references on Variables ( $<varname> ) and
+# references on objects defined in this .cnf file ( [obj-name] )
+# are supported.
+#
+
+# The first line of .h-files belongs to the so called base-version
+# which was a non-compiling system.
+#
+
+HEADERFILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h \
+        dumpheap.h rinter.h rprimf.h rstdinc.h traps.h rdigit.h rlmvt.h \
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h tags.h
+
+#-------------------------------#
+# Machine dependend presettings #
+#-------------------------------#
+#
+# The variable $MACHINE is introduced by the respective call of 
+# configure, e.g. "configure sun" results in $MACHINE = sun .
+#
+
+case $MACHINE in
+  sun)
+    CFLAGS += -Dsparc
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    EDFLAGS = -DTERMIOS=1
+    ;;
+  apollo)
+    CFLAGS += -DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  next)
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    ;;
+  sgi)
+    CFLAGS += -Olimit 2000 -Wf,-XNh2000 -D_SGI_
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    EDFLAGS = -DTERMIOS=1
+    ;;
+  hp)
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    EDFLAGS = -DTERMIOS=1
+    ;;
+  linux)
+    CFLAGS += -DUNIX=1 -DODDSEX=1
+    EDFLAGS = -DTERMIOS=1
+    ;;
+esac
+
+#-------------------------#
+# Version definition part #
+#-------------------------#
+#
+# A version definition looks like:
+#
+# <version-name>: [ inherited version ] # names may end .o .a
+# [<varname> = ...]     # for completely overruling any previous 
+#                         settings of <varname>
+# [<varname> += ...]    # for extending the actual setting of <varname>
+# [<varname> -= ...]    # for extracting entries from the actual 
+#                         setting of <varname>
+# [@<filename>: <objlist>   # this option allows rules for (an) object(s)
+# {                         # (from <objlist>) to be explicitly specified.
+# ...                       # <filename> referrs to a file from FILES
+# }]                        # for which hence no further rule is generated.
+#                             Thus single files can be compiled even several
+#                             times with arbitrary options
+#
+
+#
+# lred: standard version with ref.counting, no-debug
+#
+
+editor.o:
+
+SRCDIR = editor/
+FILES = + cfiles.c cmain.c cscred.c cgetexp.c \
+	cmatch.c cscroll.c ctransl1.c ccommand.c cgetstr.c cmatrix.c csearch.c \
+	cdispl.c cglobals.c cnewscr.c cstacks.c initredp.c cedit.c \
+	chelp.c cpexp.c csubst.c cetab.c cinput.c credclr.c ctermio.c \
+	cfdispl.c ciotab.c cscanexp.c
+
+CFLAGS += $(EDFLAGS)
+
+
+
+lred:
+
+#
+# The first 'Block' of .c-files (ldel-expr.c - rsts-dec.c) belongs to
+# the so called base-version which was a non-compiling system.
+# The last two files (rinter.c & rdummies.c) provide the interpretation
+# routines for the ASM-Code.
+#
+
+SRCDIR = src/
+FILES =  ldel-expr.c lr-ret.c rdig-mul.c rpos.c rstswi.c lfun-def.c \
+        lr-stor.c rdig-sub.c rr1eapos.c rsubfunc.c lnr1pre.c lte-frev.c \
+        rdig-v1.c rr1pr.c rtrav.c lnrecfunc.c rdig-v2.c rrecfunc.c \
+        rval-int.c lpa-sub.c rclose.c rhinout.c rred-eq.c rwhen-pre.c \
+        lr-args.c rcomp.c rlog-mvt.c rst-match.c lr-close.c rdig-add.c \
+        rpartrec.c rstpre.c lr-num.c rdig-div.c rpartsub.c rstpro.c lr-prot.c \
+        rdig-mod.c rpatvar.c rsts-dec.c \
+        dumpheap.c rlogfunc.c rreduct.c rstate.c ram.c rea-cre.c \
+        rlstruct.c rret-dec.c rvalfunc.c rea-ret.c rretrieve.c rvalir.c \
+        reac.c rnf.c rruntime.c rconvert.c rear.c setup.c \
+        rconvir.c rheap.c rquery.c rst-dec.c rdesc.c rreduce.c rstack.c \
+        rbibfunc.c rmstruct.c rvstruct.c \
+        rinter.c rdummies.c [editor.o]
+LIBS += -ltermcap
+CFLAGS += -DPI_RED_PLUS=1 -DRED_TO_NF=1
+CFLAGS += -O
+CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0

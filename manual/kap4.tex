@@ -1,0 +1,645 @@
+\section{More about the Editor and the \pired System}
+
+In this chapter we will address a few more things you ought to know
+about the \pired editor and the system by which it is backed up. They'll 
+make life a little easier
+for you when it comes to editing  and running in a step-by-step mode
+large programs, and to filing your programs.
+
+There is also a {\mys help file}\index{help file} available which you may consult
+if you get lost.
+ When pressing the function key F4,
+you will get an overview over nine {\mys help keys}\index{help key} which will guide you further down into several groups of editor and system functions. In addition to that
+you will also find a complete definition of the syntax of \kir and, in short
+  form, a description of how to edit and execute \kir programs.   
+
+\subsection{The Layout of \kir Programs on your Display}
+
+The {\mys syntax-directed editor}\index{syntax-directed editing} of \pired works with a screen of
+fixed size on which a given program expression is to be laid out.
+Unlike line-oriented editors, it does not include a scrolling
+mechanism. Thus, if the full layout of an expression
+expands beyond the screen size, the editor must introduce 
+abbreviations in various syntactical positions in order to make it fit.
+
+The greatest common divisor program is a very
+good-natured example in this sense. Since
+both functions used in the program are tail-end recursive, it never 
+expands beyond one function call and thus almost (!) always completely
+fits onto the screen. However, depending on its actual size you may or may
+not have noticed in the expanded function body of {\tt Gcd} that is
+being returned after the first reduction step syntactical positions
+here and there which are filled with question marks {\tt ?}. They
+ are {\mys abbreviations}\index{abbreviating expressions} of the subexpressions which the editor
+was unable to lay out in the remainig space.
+
+You can see more of these question marks if the programs are getting
+bigger in size or if they are specified in terms of 
+recursive functions that are not tail-end and thus recursively expand on 
+the screen when executing them. 
+
+A good example in kind is the {\mys factorial function}\index{factorial function}. Initially, it
+fits conveniently
+into the {\sc fa} field, with lots of space left. 
+%-------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  F [ N ] = if ( N gt 1 )
+            then ( N * F [ ( N - 1 ) ] )
+            else 1
+in F [ 20 ]
+
+\end{verbatim}
+%-------------------------------------------------------------------
+When reducing this program step-by-step you will see that it builds up nested
+multiplications from left to right, with the application of the 
+function definition to the decrementing argument 
+shifting away in the same direction.
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+
+( 20 * ( 19 * ( 18 * ( 17 * ap def 
+                                 F [ N ] = if ( N gt 1 )
+                                           then ( N * F [ ( N - 1 ) ] )
+                                           else 1
+                               in F
+                            to [ 16 ] ) ) ) )
+
+\end{verbatim}
+%----------------------------------------------------------------------
+ Rather than letting it spill over on the right-hand
+side of the screen, the editor lets this application `disappear'
+ under a question mark so that a full {\mys top-level expression}\index{top-level
+expression} (i.e., the
+outermost syntactical structure) remains visible.
+%-----------------------------------------------------------------
+\begin{verbatim}
+
+
+( 20 * ( 19 * ( 18 * ( 17 * ( 16 * ( 15 * ( 14 * ( 13 * ? ) ) ) ) ) ) ) )
+
+\end{verbatim}
+%--------------------------------------------------------------------
+
+ As you proceed with further reductions, the expression continues
+ to expand under the question mark 
+(provided the argument value is large enough), but 
+what you can see of it on the screen remains as it is. 
+
+In order to display what is hidden behind a question mark you simply need to
+move the cursor either directly under it or to a constructor that is close to it, say
+the innermost opening parenthesis by which it is preceded. If you now press the
+function key F3, the {\sc fa} field fills with the new cursor expression (i.e., the cursor
+re-appears in the left upper corner of the screen), and the
+surrounding context disappears. This expression may contain more question marks
+behind which you may look by proceeding in the same way. In doing this, you
+recursively {\mys climb down}\index{climbing down the syntax tree} the syntax tree of your (intermediate) program to the sub-expression that you are interested in. As explained before, you may perform reductions in this part of the program
+without worrying about undesirable side-effects in other parts: there simply aren't any.
+
+The easiest way of {\mys climbing up}\index{climbing up the syntax tree} in the syntax tree and thus returning
+to larger contexts is to move the cursor to the topmost constructor of the expression that
+is currently in  the {\sc fa} field (if it is not already there) and to hit the {\tt up} key.  Every time you do this,
+you move upwards to the next father node of the syntax tree as usual,  but you also
+ get displayed on your screen the full
+expression of which this node is the topmost constructor, possibly with increasingly  larger
+ sub-expressions again  disappearing behind question marks as you move on in this direction.
+If you wish to return in one step to the top of the entire program, simply type
+on your keyboard {\tt CTR-n}. There is no other way of moving upwards, e.g.,
+by reversing the steps you have taken downwards. 
+
+Another problem for which a remedy is necessary arises in connection with large sets of 
+fairly complex {\mys function definitions}\index{nested function definitions}, possibly nested over several levels. 
+These definitions may easily take up the entire space that is available on the screen, 
+in many cases requiring lots of abbreviations in the form of question marks. This situation is
+getting worse when performing just a few reduction steps after which an expanded intermediate
+program is to be displayed. It will likely contain, in even more abbreviated form,
+ several basically identical copies of
+{\tt def} constructs which have been (recursively) substituted for function identifiers in
+ the original goal expression. All abbreviations that occur in such a
+program representation are introduced by the
+editor, mainly based on the screen space that is left in a particular situation, not
+with respect to components that are of primary interest, say
+ the changeable program parts where reductions are actually 
+taking place. Thus, valuable screen space   is generally  wasted for things that you
+may not be interested in, whereas the important parts disappear behind question marks.
+ 
+In order to have a little more {\mys control}\index{controlling abbreviations} over what is being displayed and how it is laid
+out, the editor provides under the command mode F8
+a few commands that introduce abbreviations in dedicated places (syntactical positions)
+of a program. 
+They include
+\begin{description}
+\item[{\tt abb\_def}]  which leaves the topmost level of function definitions intact but abbreviates
+all others;
+\item[{\tt abb\_idef}] which abbreviates only function definitions that are local to
+others (i.e. {\tt def} constructs in {\tt def} constructs);
+\item[{\tt dgoal}] which displays the goal expression of an abbreviated {\tt def} construct;
+\item[{\tt dfct}] which displays the headers of abbreviated function definitions;
+\item[{\tt small}] which reduces the space demand of an expression by suppressing 
+blanks in the layout whereever possible without creating ambiguities;
+\item[{\tt vertical}] which changes the layout of syntactical constructs from
+horizontal to vertical;
+\end{description}
+
+Once you are in the command mode (after having pressed F8), you may type into the input line any one of these
+commands followed by {\tt on} or {\tt off} (with one blank in between), whichever way you want it.
+Any combination of these {\mys layout control modes}\index{layout control mode}\index{layout mode} is legitimate and applies to all components
+of the expression that is actually in the {\sc fa} field. A particular
+ mode combination is sustained until explicitely changed, i.e., it may apply to several programs
+on which you work in succession.
+
+The best way of getting acquainted with these {\mys layout commands}\index{layout command} is by means of
+a suitable program example which in a nutshell clearly exposes their effects.
+A good one is the following nonsense program:
+%---------------------------------------------------------------
+\begin{figure}
+\begin{verbatim}
+
+ap def 
+     F [ U, V ] = def 
+                     G [ U, V ] = def 
+                                     H [ U, V ] = G [ F, H ]
+                                   in F [ G, H ]
+                   in G [ F, G ]
+   in F [ F, F ]
+to [ C ]
+
+\end{verbatim}
+\end{figure}
+%------------------------------------------------------------------
+It consists of three nested function definitions which in some seemingly
+ weird way
+recursively call on each other, making
+full use of the {\mys higher-order function}\index{higher-order function} feature of \kir:
+all applications are solely
+specified in terms of function identifiers both in function and
+argument positions, i.e., as applications of functions to functions which
+ return new functions as results. So, it is worth the while to study
+ the program behavior
+also from this point of view.
+
+ When performing a few reductions step by step, you
+will note that the program expands to some extent due to the substitution
+of function identifiers by the respective complete function definitions, but 
+otherwise it behaves reasonably well insofar as it cycles, in periods of
+six reduction steps, through the same sequence of intermediate programs.
+Thus, the program is in fact tail-end recursive. Since it obviously never
+terminates, it is also meaningless.
+ 
+However, let's return to the original purpose of introducing this program.
+Since it produces in a rather intricate way nesting levels of
+function defintions and function applications, it is also ideally suited
+to study on any of the intermediate programs
+ which parts of it are being suppressed or exposed by turning the
+ {\tt abb\_def}, {\tt abb\_idef},
+{\tt dgoal} and {\tt dfct} modes on and off, and how the layout changes when
+activating or deactivating the {\tt vertical} mode\footnote{The {\tt small} mode has no effect on the layout of this program, you will have to wait until we
+introduce more \kir constructs to find out what it does.}.
+
+Having played with these layout modes for a while, you may have gotten a little confused as to which of them are actually on and which are off. To find out
+what the current situation is, you may enter the command {\tt editparms}
+which brings up on your screen a number of {\mys editor parameters}, of
+which those that are of interest at the moment are at the bottom of the list.
+Hitting the {\tt enter} (or {\tt return}) key gets you back to the 
+standard \pired user interface. 
+
+\subsection{Deleting Terms from a \kir Program}
+
+By means of the above program we may also get a little more specific
+ about the {\mys deletion}\index{deleting sub-terms} of  (sub-)
+ terms from an existing program. We indicated in the
+preceding section that this can be done by
+making a term to be deleted the cursor expression (i.e., move
+the cursor to its topmost constructor) and then hitting the {\tt delete}
+key on your keyboard: the term will disappear and the surrounding 
+program will generally change its syntactical structure accordingly. So, let's
+try a few {\tt delete} operations on the program to see what happens.
+
+The best way of systematically studying the effects of the {\tt delete}
+function  is to
+ set out with the components of the innermost {\tt def} construct,
+say, by deleting the formal parameter {\tt U} from the header of the
+function {\tt H} or by deleting the argument {\tt H} from the application
+on the right-hand side of this definition. In either case, the term simply
+disappears together with the comma by which it was separated from the
+other term inside the brackets. Next you may wish to delete the entire
+application {\tt G[F]} from the right-hand side of the definition. So,
+you move the cursor under the function term {\tt G} and hit the {\tt delete}
+key, whereupon the editor returns the empty term {\tt \#} in its place.
+The same happens if you do this to the goal expression {\tt G[F,G]}. In both
+cases, the selected term disappears, but otherwise the syntactical 
+structure of the {\tt def} construct is sustained for there are still
+fragments left that cannot simply go down the drain with what you 
+intended to take away. 
+
+Moving the cursor under a {\tt def} constructor and hitting the {\tt delete}
+key replaces the entire {\tt def} construct by what originally was its
+goal (or body) expression, i.e., it deletes all the function definitions
+and thus turns into free variables all occurrences of function identifiers
+left over in the goal. You may observe this effect over several steps
+ by removing the {\tt def}
+constructs in your program systematically from innermost to outermost.
+If there is just one function defined under a {\tt def}, the same 
+can be accomplished by moving the cursor under the function name
+in the header of the definition. If it comprises more
+function definitions, only the one thus selected
+is removed from the entire construct.
+
+As a general rule, the {\mys {\tt delete} function}\index{delete function}
+\begin{itemize}
+\item removes from an $n$-ary structure the selected component and
+thus shrinks it to a structure of arity $(n-1)$, provided the component
+is one of those whose numbers may vary, e.g., a list element,
+a sub-term of an application,
+ or a function definition in a {\tt def} construct;
+\item replaces with an empty term {\tt \#}
+ an essential component of a construct, e.g., the
+goal expression in a {\tt def} construct, the right-hand side of a
+function definition, or any component in a construct with a
+fixed arity, e.g., in an {\tt if\_then\_else} clause. 
+\end{itemize}
+
+\subsection{Some Other Useful Editor Commands}
+
+While strictly syntax-directed editing greatly facilitates writing
+syntactically correct programs, there are also, and inevitably so, some inconveniences
+associated with it, of which one is the movement of the cursor, and the other one
+relates to searching for and replacing certain (sub-) expressions, possibly in several places.
+
+The default cursor movement as explained on pages 10 and 11 in fact follows 
+the $n$-ary tree structures built up by the constructor syntax that is used for
+the internal representation of \kir-programs as $\lambda$-terms.
+ Since this syntax does not in an obvious way
+relate to the syntax of \kir~ as you see it on  your screen, 
+the cursor movements effected by pressing
+the respective keys sometimes appear to be rather unusual and unexpected relative to what you
+are used to from line-oriented editing.  
+
+To remedy this problem, you have available under the command mode (to be entered with
+the function key F8) an editor command {\tt curmode[par]} which, when used 
+with the parameter
+\begin{description}
+\item[{\tt par = off}] enables the syntax-oriented (tree traversing) cursor movement;
+\item[{\tt par = on}] enables a line-oriented mode in which the cursor is moved as
+indicated by the arrows on the keys.
+\end{description}
+
+Another three editor commands may be used to search for and replace (sub-) expressions
+by others. They are
+\begin{description}
+\item[{\tt findexpr[string]}] which searches, from the current cursor position downwards,
+for the first occurrence of a subexpression starting with {\tt string}, i.e., the subexpression
+need not be fully specified. The command {\tt next} may be used to search for subsequent
+ occurrences.  
+\item[{\tt find}] works as {\tt findexpr}, but takes as search pattern the topmost expression
+held in the first auxiliary buffer.
+\item[{\tt replace[expr\_1;expr\_2; mode]}] which searches, again from the current cursor
+position downwards, for occurrences of the subexpression {\tt expr\_1} and replaces them
+with the expression {\tt expr\_2}. The parameter {\tt mode} may be set to
+\begin{description}
+\item[{\tt mode = all}] to have replaced  all occurrences of {\tt expr\_1} from the cursor 
+position downwards; 
+\item[{\tt mode = ask}] in which case the editor will ask you what to do next, with the
+following options:
+\begin{description}
+\item[y] make a replacement;
+\item[n] skip and move on to the next occurrence of the search expression;
+\item[a] terminate the {\tt ask} mode and do all replacements from the current
+position downwards;
+\item[q] quit the {\tt replace} command.
+\end{description}
+\end{description}
+\end{description}
+If the parameters of the {\tt replace} command are not specified, the editor will ask
+you to do so.
+After completion of a {\tt replace} command the system tells you on the message line
+how many replacements have actually been made.
+
+\subsection{The Filing System}
+
+In order to provide some essential {\mys file services}\index{file service}, \pired makes use of
+the underlying UNIX file system. All files which you create while
+working with the system are stored under the same directory
+under which you've  called the {\mys executable file}\index{executable file} {\tt reduma} for
+\pired itself. If \pired is installed under your own user
+directory,  then you can find {\tt reduma} under the path name
+$$
+{\tt ../user/red/red.o}\;\;.
+$$
+Now, there are basically two ways of {\mys calling}\index{calling \pired} {\tt reduma}. You can do this
+\begin{itemize}
+\item either directly under your {\tt user} directory with
+$$
+{\tt <unix\_prompt> : red/red.o/reduma}\;\;,
+$$
+in which case all files are placed under {\tt user};
+\item or by first climbing down the directory path with
+$$
+{\tt <unix\_prompt> : cd\; red/red.o}\;\; 
+$$
+and then calling it with
+$$
+{\tt <unix\_prompt> : reduma}\;\;,\;\;
+$$
+in which case you'll find all your files under the directory
+path {\tt user/red/red.o}\footnote{Note that the compiled version
+ \pired$^+$ requires a special file directory {\tt ed/} under the 
+directory {\tt red/} (and at the same level as the executable file
+ {\tt reduma*}) under which all editor files are being allocated.
+ If not yet existing, this directory must be opened up with
+the UNIX command {\tt mkdir ed}, otherwise no new editor files can be created under the output mode.}.
+\end{itemize}
+
+The first item applies equivalently if \pired is installed under another
+ user's directory which you
+are allowed to access. Then you may call it with
+$$
+{\tt <unix\_prompt>:\sim/other\_user/red/red.o/reduma}\;\;,
+$$
+but all files which you create are again allocated under your own
+{\tt user} directory. 
+
+There are several {\mys file types}\index{file type} which are distinguished by appropriate
+{\mys default extensions}\index{default extension} to the file names. These extensions are automatically 
+added by the editor in compliance with the modus of creation. 
+ 
+You know already about the most important file type (or format),
+ so-called {\mys editor files}\index{editor file}, whose names are extended by the suffix 
+{\tt .ed}. This file type may be used to create {\mys libraries}\index{\kir library} of 
+\kir expressions, e.g., of complete programs or
+frequently used function definitions, 
+or as an intermediate store for program 
+components in the process of designing large programs. Creating
+and accessing edit files is controlled by the function keys
+F10 and F2. The former enables the {\mys output mode}\index{output mode} under which the
+current cursor expression (which
+may be different from the {\sc fa}-field) may be written into a
+ new or an existing edit file;
+the latter enables the {\mys input mode}\index{input mode} under which the current
+cursor expression may be replaced by the \kir expression held in
+an existing edit file. 
+
+Assembling  large programs from several \kir expressions that are stored away 
+in edit files can be elegantly supported by yet another input mode. Rather
+than explicitely copying the files, they may simply be referenced from within
+a program by so-called {\mys dollar variables}\index{dollar variable}\index{referencing edit files} of the form 
+{\tt \$file\_name}, i.e., by their names preceded by a dollar sign. Before
+actually executing a  program, 
+the pre-processor of \pired substitutes all dollar variables
+by the respective file contents. This is done systematically
+from outermost to innermost since all
+expressions thus inserted may contain further references to
+other edit files. Note that some care must be taken on the part
+ of the programmer to avoid {\mys cyclic references}\index{cyclic 
+edit file references}.
+
+You may test this feature on your {\mys greatest common divisor program}\index{greatest common divisor program}, say,
+by first copying the function body of
+{\tt Gcd} into a file named {\tt Body}, and then replacing it with 
+{\tt \$Body}. The program then looks like this: 
+%--------------------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Modulo [ X , Y ] = if ( X le Y )
+                     then X
+                     else Modulo [ ( X - Y ) , Y ] ,
+  Gcd [ X , Y ] = $Body
+in Gcd [ 6 , 4 ]
+
+\end{verbatim}
+%----------------------------------------------------------------------
+If you now trigger the system to
+ perform one reduction step, you will see that the complete body of
+{\tt Gcd}  again shows up in  all occurrences of the {\tt def} construct,
+i.e., the program behaves exactly as if the body would have been
+directly included.
+
+At this point you may wonder why there isn't a dynamic version of this input
+mode which expands dollar variables by the respective edit file contents
+ at run\_time, and only if and when absolutely necessary. Though this mode may
+save a lot of memory space, there are severe problems with it
+which largely arise from potential occurrences of free variables in expressions
+that are filed away. They cannot be naively substituted into a running program
+without a high risk of changing binding scopes and thus its meaning 
+(or semantics). 
+
+Another type of input/output files are so-called
+{\mys red files}\index{red file}. The \kir expressions stored in them are treated as 
+{\mys macros}\index{macro expression} in the following sense: whenever they are reduced in the 
+context of a large program, they decrement the {\mys reduction counter}\index{reduction counter}
+just by one (or count as one instance of reduction), irrespective of the
+actual number of reduction steps that must 
+be performed. They are distinguished by the suffix {\tt .red} 
+following the file name. You may use (under the command mode F8) 
+the {\mys editor commands}\index{editor command}
+\begin{description}
+\item[{\tt store[file\_name]}] to store the cursor expression under
+the file {\tt file\_name.red};
+\item[{\tt load[file\_name]}] to  overwrite the cursor expression with
+ the contents of the file {\tt file\_name.red} .
+\end{description}
+Similar to edit files, these red files may be referenced from within a
+ program with
+{\tt \_file\_name}, i.e., with an underscore rather than a {\tt \$}
+preceding the file name.
+
+You may also copy your cursor expression into an {\mys ASCII file}\index{ASCII file}, using the
+command {\tt print[file\_name]}, or overwrite the cursor expression with
+the contents of an existing ASCII file for \kir expressions, using
+{\tt read[file\_name]}. ASCII file names have the suffix {\tt .asc}
+appended to them.
+
+There is yet another file type called {\mys prettyprint}\index{prettyprint file} in  which 
+\kir expressions may be stored in the same layout and fond in which
+you can see them on your screen. These files may either be directly
+printed or included in other text files. In fact, all the example programs  
+in this manual are, through prettyprint files, copied from the 
+screen.  The command {\tt pp file\_name} creates a new (or overwrites
+an existing) prettyprint file with the cursor expression and appends the
+suffix {\tt .pp} to the file name.
+
+\subsection{Setting the System Parameters}
+
+In order to be able to deal with certain {\mys memory space problems}\index{memory space management}
+that may occur when running large programs, you need to have at least 
+some rudimentary understanding of the internal workings of \pired.
+There are also some particularities about the {\mys arithmetic subsystem}\index{arithmetic subsystem} 
+ used in \pired that you ought to know about. 
+
+\pired is an {\mys applicative order graph reduction system}\index{graph reduction system} which uses
+the following {\mys run\_time data structures}\index{\pired run\_time environment}~\cite{schm91b,gaer91}:
+\begin{itemize}
+\item a {\mys program graph}\index{program graph} (held in a {\mys heap
+segment}\index{heap}) whose inner and outer {\mys nodes}\index{graph node} roughly
+correspond to {\mys constructors}\index{constructor} and string representations of atomic 
+expressions (such as variables, constants, primitive function symbols etc.),
+respectively, and whose edges correspond to pointers connecting these
+nodes;
+\item an array of {\mys node descriptors}\index{node descriptor} which, as an integral part
+of the program graph, contains information
+about {\mys class}, {\mys type} and {\mys shape} of the (sub-) expressions represented by
+the graph nodes;
+\item one or several {\mys run\_time stacks}\index{run\_time stack} which accommodate the {\mys activation records}\index{activation record}, {\mys workspaces}\index{workspace} etc. for
+instantiations of defined functions; 
+\item (as part of the interpreter version \pired$^*$)
+a {\mys shunting yard}\index{shunting yard} comprising three stacks
+about which graph structures are {\mys traversed}\index{traversing graphs} in search for instances
+ of reductions.
+\end{itemize}
+Both the heap and the {\mys descriptor array}\index{descriptor array} are managed based on a 
+{\mys reference counting scheme}\index{reference counting} which releases as early as possible
+ the space occuppied by graph structures that are no longer needed.
+ However, as heap space is allocated and de-allocated in pieces of variable
+ lenghts, it may require
+compaction from time to time in order to satisfy a particular space
+demand for the placement of a new (sub-) graph.
+ All descriptors have the same size 
+and may therefore be placed into any array entry.
+
+When calling \pired, the sizes of the memory segments which accommodate
+these run\_time structures are {\mys initialized}\index{\pired initialization}\index{initialization file} from a {\tt red.init} file
+with pre-specified values. The {\mys editor command}\index{editor command} {\tt redparms} will display
+on the screen the {\mys memory configuration}\index{memory configuration} (together with some other system
+parameters) with which you are working.
+
+You have several commands available to modify this configuration, say,
+if one of your programs has been aborted because it has run
+ out of space\footnote{You will always be notified in the message line
+of the exact cause of the problem, i.e., in which run\_time structure the
+overflow has occured.}: 
+\begin{description}
+\item[{\tt heapsize no\_of\_bytes}] specifies, in numbers of bytes,
+the size of the heap segment; 
+\item[{\tt heapdes no\_of\_entries}] specifies the number of entries in
+the descriptor array;
+\item[{\tt qstacksize no\_of\_el}] specifies, in numbers of stack elements
+(of four bytes), the size of the larger stacks of the shunting yard;
+\item[{\tt mstacksize no\_of\_el}] specifies the size of the smaller stack
+of the shunting yard;
+\item[{\tt istacksize no\_of\_point}] specifies, in numbers of pointers
+(again of four bytes length), the size of the run\_time stack.
+\end{description}
+You should change these parameters if and only if you really understand
+what you are doing, i.e., you know about the internal program representation
+and the way programs are reduced in \pired. However, as a rule of thumb,
+you should have at least 500 kBytes of heap space allocated to run 
+programs of modest size, and the ratios between all other
+parameters should be roughly as follows:
+$$
+\begin{array}{l}
+heapsize\;:\;heapdes\;:\;qstacksize\;:\;mstacksize\;:\;istacksize\;=
+\phantom{xxxx}
+\\ \multicolumn{1}{r}{500\;:\;5\;:\;20\;:\;10\;:\;20\;.}
+\end{array}
+$$
+As already indicated, another set of {\mys system parameters}\index{system parameters} relates to
+the way {\mys arithmetic operations}\index{arithmetic operation} are performed in \pired. You have the
+choice between a {\mys decimal mode}\index{decimal mode}\index{binary mode} which works with variable length
+number representations\footnote{Internally, all numbers
+are represented relative to a base of 10000 (as opposed to
+ BCD codes) for efficiency reasons.} and a {\mys binary mode}\index{binary mode} which,
+ as usual, works with the fixed integer and floating point formats of
+ your host system. The command
+\begin{description}
+\item[{\tt varformat}] enables the decimal mode which performs all arithmetic
+operations with potentially unlimited {\mys precision}\index{precision of arithmetic operations} (it is the mode that
+you get as a default option when starting \pired);
+\item[{\tt fixformat}] enables the binary mode, under which all decimal
+numbers specified in your high-level \kir program are automatically 
+converted to floating point formats if they include a decimal point, 
+and to integer formats if they don't.
+\end{description}
+In the decimal mode you can compute
+breathtakingly long numbers which fill the entire {\sc fa}-field,
+e.g., if you run the factorial program with an argument value of 1000
+or more. However, you may also wish to, and in the case of division you have
+to (!), put an upper limit on the precision of your result values,
+ i.e. primarily on the number of digits to the right of the decimal point.
+So, \pired has parameterized precisions for the results of 
+multiply and divide operations, but also with respect to the maximal number of
+digits that are displayed on the screen. The commands which may be used to
+re-define them other than initialized at start-up time are:
+\begin{description}
+\item[{\tt div\_prec no\_of\_digits}] for the divide precision;
+\item[{\tt mult\_prec no\_of\_digits}] for the multiply precision;
+\item[{\tt trunc no\_of\_digits}] for the upper limit on
+the number of digits
+displayed on the screen.
+\end{description}
+There is one more parameter called {\tt beta\_count} by which you may
+determine what the {\mys reduction counter}\index{reduction counter} is supposed to keep track of. You have
+the choice between
+\begin{description}
+\item[{\tt beta\_count on}], in which case are counted  only reductions of
+ defined function applications which require
+ the instantiation of formal by actual parameters (or $\beta$-reductions);
+\item[{\tt beta\_count off}], in which case are counted all instances of
+reduction (i.e., including applications of primitive functions).
+\end{description}
+All changes effecting the system parameters are immediately confirmed
+on the message line. Alternatively, you may inspect all parameters at
+once by means of the command {\tt redparms}. It will also show you
+the times used up by your last sequence of reductions for pre-processing,
+processing and post-processing.
+
+\subsection{Defining the Function Keys on your Keyboard}\index{function key definition}
+
+As pointed out in chapter 3, the function keys used by \pired are
+{\mys logical}\index{logical function key}, i.e., the functions they are supposed to perform
+are not necessarily assigned to the {\mys physical 
+function keys}\index{physical function key} that you find on
+the keyboard of your workstation or terminal. Some of these keys
+may be used otherwise by the underlying host system, and there
+may not even be as many physical keys as \pired has logical keys.
+The easiest way to get around this problem is to use only the
+logical keys by typing {\tt :n } (where {\tt n} is the logical key
+number), which echoes in the input line as {\tt Fn}.
+
+However, if you wish to assign at least some of the logical keys, e.g.,
+those most frequently used, to physical keys on your keyboard, you may
+do so by entering the command mode and then typing the command 
+{\tt defkeys}. It will bring up on your display screen the actual table
+of {\mys key definitions}\index{key definition table} as it is currently available on your system.
+This table comprises three columns, of which 
+\begin{itemize} 
+\item the first simply enumerates all logical keys of \pired, with
+indices running from {\tt 0} to {\tt 20};
+\item the second lists the logical keys associated with these indices,
+with the first five keys controlling the cursor movement, and the 
+remaining 16 keys defining the function keys (of which {\tt SHIFT\_F1
+.. SHIFT\_F8} stand for {\tt F9 .. F16}, respectively);
+\item the entries of the third column may or may not 
+contain some weird codes which identify the physical keys assigned
+ to the particular logical keys (if an entry is empty, then no
+physical key is assigned).
+\end{itemize}
+Typical table entries on a SUN workstation look like this:
+\begin{verbatim}
+
+  0 :       UP : 0x1b 0x5b 0x41
+
+  8 :       F4 : 0x1b 0x5b ox32 0x32 0x37 0x7a
+
+ 14 : SHIFT_F2 : 0x1b 0x5b 0x32 0x33 0x32 0x7a
+
+\end{verbatim}
+ 
+On top of this table you are asked to enter the index of the logical
+key to which you wish to assign a physical key. Having done so,
+you are asked to hit the particular physical key, followed by two 
+blanks, which will enter the code for this key in the table (thereby
+ possibly overwriting an existing assignment). This works only for
+physical function keys (including those reserved for cursor movement)
+that are not yet otherwise pre-assigned by the host system.
+
+ You may
+do these assignments for several keys in succession. If you are
+ finished, 
+simply hit the return key, and you will get back to the standard
+\pired screen layout. The key assignments, together with all other
+system parameters,  are entered into the \pired 
+{\mys initialization file}\index{initialization file} {\tt red.init}. 
+

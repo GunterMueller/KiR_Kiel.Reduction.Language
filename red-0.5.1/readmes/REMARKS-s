@@ -1,0 +1,7 @@
+Bemerkungen:
+
+21.05.92: hatte ein segmentation fault mit red nqsort[50]
+          (O2, DEBUG=1, SCAVENGE=1)
+          tritt nicht mehr auf bei (-g DEBUG=1, SCAVENGE=1 SCAV_DEBUG=1)
+          merkwuerdig!
+          

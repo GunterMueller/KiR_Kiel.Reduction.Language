@@ -1,0 +1,4 @@
+dg 18.06.92
+took out the -O flag from the compilation of rreduct.c and rinter.c
+because the sun optimizer produces slower code with -O !!!
+

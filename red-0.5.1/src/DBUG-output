@@ -1,0 +1,423 @@
+REDUCE: Habe DBUG-Output enabled !
+>get_entry
+|   SETUP: Es war:  MaxRedcnt : %d , 1444060, 2000000001
+<get_entry
+>get_entry
+|   SETUP: Es war:  JumpPrefered : %s , -268438224, 830360
+<get_entry
+>get_entry
+|   SETUP: Es war:  LazyLists : %s , -268438224, 830360
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeAreaPercent : %d , 1444068, 10
+<get_entry
+>get_entry
+|   SETUP: Es war:  Changes_default : %d , 1444072, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  Normalform : %d , 1444076, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  Targetdir : %s, 1444088, 830488
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapDumpFile : %s, 1444168, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapLoadFile : %s, 1444248, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapBase : %d, 1444728, 0
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapAlign : %d, 1444732, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapDumpFormat : %s, 1444408, 830616
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapLoadFormat : %s, 1444488, 830616
+<get_entry
+>get_entry
+|   SETUP: Es war:  TagSystem : %s, 1444648, 830664
+<get_entry
+>get_entry
+|   SETUP: Es war:  CreationAreaPercent : %lu, 1444736, 30
+<get_entry
+>get_entry
+|   SETUP: Es war:  SurvivorSpacePercent : %lu, 1444740, 9
+<get_entry
+>get_entry
+|   SETUP: Es war:  MaxAge  : %u, 1444744, 2
+<get_entry
+>get_entry
+|   SETUP: Es war:  RSBlock : %lu, 1444748, 32
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeFile : %s , 1443816, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeDump : %s , 1443896, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  TraceFile : %s , 1443976, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  OutLen   : %d , 1444084, 3
+<get_entry
+>get_entry
+|   SETUP: Es war:  OutInstr : %s , -268438224, 830368
+<get_entry
+>InitHeapManagement
+|   >inithp
+|   |   >init_var
+|   |   <init_var
+|   |   >deschain
+|   |   <deschain
+|   <inithp
+|   >newbuff
+|   |   >get_HBLOCK
+|   |   |   >hpchain
+|   |   |   <hpchain
+|   |   <get_HBLOCK
+|   <newbuff
+|   >newbuff
+|   |   >get_HBLOCK
+|   |   |   >hpchain
+|   |   |   <hpchain
+|   |   <get_HBLOCK
+|   <newbuff
+|   >crea_global_desc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   <crea_global_desc
+<InitHeapManagement
+REDUCE: Habe DBUG-Output enabled !
+>get_entry
+|   SETUP: Es war:  MaxRedcnt : %d , 1444060, 2000000001
+<get_entry
+>get_entry
+|   SETUP: Es war:  JumpPrefered : %s , -268438232, 830360
+<get_entry
+>get_entry
+|   SETUP: Es war:  LazyLists : %s , -268438232, 830360
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeAreaPercent : %d , 1444068, 10
+<get_entry
+>get_entry
+|   SETUP: Es war:  Changes_default : %d , 1444072, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  Normalform : %d , 1444076, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  Targetdir : %s, 1444088, 830488
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapDumpFile : %s, 1444168, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapLoadFile : %s, 1444248, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapBase : %d, 1444728, 0
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapAlign : %d, 1444732, 1
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapDumpFormat : %s, 1444408, 830616
+<get_entry
+>get_entry
+|   SETUP: Es war:  HeapLoadFormat : %s, 1444488, 830616
+<get_entry
+>get_entry
+|   SETUP: Es war:  TagSystem : %s, 1444648, 830664
+<get_entry
+>get_entry
+|   SETUP: Es war:  CreationAreaPercent : %lu, 1444736, 30
+<get_entry
+>get_entry
+|   SETUP: Es war:  SurvivorSpacePercent : %lu, 1444740, 9
+<get_entry
+>get_entry
+|   SETUP: Es war:  MaxAge  : %u, 1444744, 2
+<get_entry
+>get_entry
+|   SETUP: Es war:  RSBlock : %lu, 1444748, 32
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeFile : %s , 1443816, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  CodeDump : %s , 1443896, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  TraceFile : %s , 1443976, 830520
+<get_entry
+>get_entry
+|   SETUP: Es war:  OutLen   : %d , 1444084, 3
+<get_entry
+>get_entry
+|   SETUP: Es war:  OutInstr : %s , -268438232, 830368
+<get_entry
+>ReInitHeap
+|   >init_var
+|   <init_var
+|   >deschain
+|   <deschain
+|   >newbuff
+|   |   >get_HBLOCK
+|   |   |   >hpchain
+|   |   |   <hpchain
+|   |   <get_HBLOCK
+|   <newbuff
+|   >newbuff
+|   |   >get_HBLOCK
+|   |   |   >hpchain
+|   |   |   <hpchain
+|   |   <get_HBLOCK
+|   <newbuff
+|   >crea_global_desc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newheap
+|   |   |   >get_HBLOCK
+|   |   |   |   >hpchain
+|   |   |   |   <hpchain
+|   |   |   <get_HBLOCK
+|   |   <newheap
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   <crea_global_desc
+<ReInitHeap
+REDUCE: Habe DBUG-Output enabled !
+>st_expr
+|   >newdesc
+|   |   >deschain
+|   |   <deschain
+|   |   >deschain
+|   |   <deschain
+|   <newdesc
+|   >newheap
+|   |   >get_HBLOCK
+|   |   |   >hpchain
+|   |   |   <hpchain
+|   |   <get_HBLOCK
+|   <newheap
+<st_expr
+>newdesc
+|   >deschain
+|   <deschain
+|   >deschain
+|   <deschain
+<newdesc
+>res_heap
+<res_heap
+>rel_heap
+<rel_heap
+>inter
+|   DELTA2: func: 294952; arg 1: 5 (class -1, type -1); arg2: 3 (class -1, type -1)
+|   >red_div
+|   |   >newdesc
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   |   >deschain
+|   |   |   <deschain
+|   |   <newdesc
+|   <red_div
+|   >isdesc
+|   <isdesc

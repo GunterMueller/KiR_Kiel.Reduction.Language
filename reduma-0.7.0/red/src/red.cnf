@@ -1,0 +1,279 @@
+# CONFIG-FILE FOR THE (DISTRIBUTED) PI-RED-PLUS SYSTEM
+#
+
+#
+# reduction machine targets:
+#
+# lred    : quick sequential version
+# lred.o  : linkable object module
+# dlred   : debug sequential version
+# dlred.o : linkable debug object module
+# sred    : quick sequential version with generation scavenging
+# dsred   : debug sequential version with generation scavenging
+# tred    : quick sequential tilde version
+# dtred   : debug sequential tilde version
+
+#--------------------#
+# Global presettings #
+#--------------------#
+#
+# All definitions made here apply to all versions, but
+# can be overruled by local definitions in the Version definition part.
+#
+
+# Compiler/ Linker presettings (CC, CFLAGS, LD, LDFLAGS, LIBS & INCS) #
+#---------------------------------------------------------------------#
+
+# 
+# gcc
+#
+CC = gcc 
+CFLAGS = -ansi -Wall -D_ANSI_
+# for nCUBE Versions add -I/usr/ncube/current/usr/include 
+MAKEDEPEND = gcc -M >>Makefile
+LIBS = -lm
+
+# Path presettings (SRCROOT, SRCDIR, OBJROOT, OBJDIR, BINROOT & BINDIR) #
+#-----------------------------------------------------------------------#
+#
+# SRC... : where to find the .c/.o/.a if no absolute path is specified
+#          if neither SRC... nor an absolute path is specified, the
+#          actual directory is assumed.
+# OBJ... : analogously to SRC... concerning .o files generated from .c files.
+# BIN... : specifies the location where the result will be put.
+# LIB... : specifies the location for libraries and linkable object moduls
+#
+
+SRCROOT = red/
+SRCDIR = src/
+OBJROOT = red/
+BINDIR = bin/
+LIBDIR = lib/
+
+# File presettings #
+#------------------#
+#
+# Here the FILES Variable may be presetted. The FILES variable allows
+# different kinds of files to be specified:
+# .c - files for files, which have to be compiled;
+# .o - files for files, which just have to be linked.
+# In addition to that references on Variables ( $<varname> ) and
+# references on objects defined in this .cnf file ( [obj-name] )
+# are supported.
+#
+
+# User defined presettings (any variable) #
+#-----------------------------------------#
+
+EDO = /home/base/lib/editor.o
+IE = /home/sbs/Clib/xtermio.o
+DBH = /home/sbs/c/redsys/ncred/src/DBH.o
+
+# The first line of .h-files belongs to the so called base-version
+# which was a non-compiling system.
+#
+
+HEADERFILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h \
+        dumpheap.h rinter.h rprimf.h rstdinc.h traps.h rdigit.h rlmvt.h \
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h rstack.h tags.h\
+        DBHexport.h DBMexport.h DBdebug.h GLobal.h case.h \
+        d_mess_groups.h d_mess_io.h d_mess_merge.h d_mess_names.h dbug.h\
+        list.h pminstr.h rncheap.h rncmessage.h rncsched.h rncstack.h rops.h
+
+#-------------------------------#
+# Machine dependend presettings #
+#-------------------------------#
+#
+# The variable $MACHINE is introduced by the respective call of 
+# configure, e.g. "configure sun" results in $MACHINE = sun .
+#
+
+case $MACHINE in
+  sun)
+    CFLAGS += -Dsparc
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    ;;
+  apollo)
+    CFLAGS += -DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  next)
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    ;;
+  sgi)
+    CFLAGS += -Olimit 2000 -Wf,-XNh2000 -D_SGI_
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  hp)
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  linux)
+    CFLAGS += -DUNIX=1 -DODDSEX=1
+    ;;
+esac
+
+#-------------------------#
+# Version definition part #
+#-------------------------#
+#
+# A version definition looks like:
+#
+# <version-name>: [ inherited version ] # names may end .o .a
+# [<varname> = ...]     # for completely overruling any previous 
+#                         settings of <varname>
+# [<varname> += ...]    # for extending the actual setting of <varname>
+# [<varname> -= ...]    # for extracting entries from the actual 
+#                         setting of <varname>
+# [@<filename>: <objlist>   # this option allows rules for (an) object(s)
+# {                         # (from <objlist>) to be explicitly specified.
+# ...                       # <filename> referrs to a file from FILES
+# }]                        # for which hence no further rule is generated.
+#                             Thus single files can be compiled even several
+#                             times with arbitrary options
+#
+
+#
+# lred: standard version with ref.counting, no-debug
+#
+
+lred.o:
+
+#
+# The first 'Block' of .c-files (ldel-expr.c - rsts-dec.c) belongs to
+# the so called base-version which was a non-compiling system.
+# The last two files (rinter.c & rdummies.c) provide the interpretation
+# routines for the ASM-Code.
+#
+
+FILES =  ldel-expr.c lr-ret.c rdig-mul.c rpos.c rstswi.c lfun-def.c \
+        lr-stor.c rdig-sub.c rr1eapos.c rsubfunc.c lnr1pre.c lte-frev.c \
+        rdig-v1.c rr1pr.c rtrav.c lnrecfunc.c rdig-v2.c rrecfunc.c \
+        rval-int.c lpa-sub.c rclose.c rhinout.c rred-eq.c rwhen-pre.c \
+        lr-args.c rcomp.c rlog-mvt.c rst-match.c lr-close.c rdig-add.c \
+        rpartrec.c rstpre.c lr-num.c rdig-div.c rpartsub.c rstpro.c lr-prot.c \
+        rdig-mod.c rpatvar.c rsts-dec.c \
+        dumpheap.c rlogfunc.c rreduct.c rstate.c ram.c rea-cre.c \
+        rlstruct.c rfstruct.c rret-dec.c rvalfunc.c rea-ret.c rretrieve.c rvalir.c \
+        reac.c rnf.c rruntime.c rconvert.c rear.c setup.c \
+        rconvir.c rheap.c rquery.c rst-dec.c rdesc.c rreduce.c rstack.c \
+        rbibfunc.c rmstruct.c rvstruct.c \
+        rinter.c rdummies.c rextcode.c rprint.c rtasm.c rintact.c riafunc.c 
+CFLAGS += -O -DPI_RED_PLUS=1 -DRED_TO_NF=1 -DNOREF=0 -DSTORE=0
+CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0
+
+lred: lred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [lred.o] $EDO
+    ;;
+  1)
+    FILES = [lred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+
+#
+# tred: tilde version with ref-counting, no debug
+#
+
+tred.o: lred.o
+
+FILES -= lfun-def.c lnr1pre.c lnrecfunc.c lr-close.c lr-num.c lr-ret.c \
+	lr-stor.c lte-frev.c rclose.c rcomp.c rea-cre.c rea-ret.c rpartrec.c \
+	rpartsub.c rpatvar.c rpos.c rr1eapos.c rr1pr.c rrecfunc.c rretrieve.c \
+        rst-match.c rstswi.c rsubfunc.c rwhen-pre.c ram.c
+FILES += pre-casefunc.c pre-hfunc.c pre-lrecfunc.c pre-nea-cre.c \
+	 pre-nsubfunc.c pre-pm-ptfu.c pre-pmpatvar.c \
+	 pos-rea-ret.c pos-postfunc.c pos-casepost.c pos-p-fail.c \
+	pmdimli.c pmam.c \
+	pmsupport.c pmanalyze.c rmessage.c
+
+CFLAGS -= -DSTORE=0
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DSTORE=1
+
+tred: tred.o
+
+@rmessage.c: rstore.o
+{
+rstore.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rstore.o
+}
+
+case ?[editor.o] in
+  0)
+    FILES = [tred.o] $EDO
+    ;;
+  1)
+    FILES = [tred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+
+#
+# dtred: debug tilde version with ref-counting
+#
+
+dtred.o: tred.o
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -=  -DDEBUG=0 -DDBUG_OFF
+CFLAGS +=  -DDEBUG=1
+LIBS += -ltermcap
+
+dtred: dtred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [dtred.o] $EDO
+    ;;
+  1)
+    FILES = [dtred.o] [editor.o]
+    ;;
+esac
+LIBS += -ltermcap
+FILES += [dbug.o]
+
+#
+# dlred: standard debug-version with ref.counting
+#
+dlred.o: lred.o
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -=  -DDEBUG=0 -DDBUG_OFF
+CFLAGS +=  -DDEBUG=1
+LIBS += -ltermcap
+
+dlred: dlred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [dlred.o] $EDO
+    ;;
+  1)
+    FILES = [dlred.o] [editor.o]
+    ;;
+esac
+LIBS += -ltermcap
+FILES += [dbug.o]
+
+#
+# dbug.o
+#
+
+dbug.o:
+
+FILES = dbug.c
+CFLAGS -= -ansi -Wall
+LIBS -= -lm
+
+@dbug.c: dbug.obj
+{
+dbug.obj: $(SRCDIR)/dbug.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)dbug.c -o $(OBJDIR)dbug.obj
+}
+

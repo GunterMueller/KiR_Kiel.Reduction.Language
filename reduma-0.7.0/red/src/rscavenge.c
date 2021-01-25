@@ -1,0 +1,1912 @@
+/* $Log: rscavenge.c,v $
+ * Revision 1.5  1994/03/08  19:03:12  mah
+ * *** empty log message ***
+ *
+ * Revision 1.4  1993/11/25  14:10:40  mah
+ * ps_i, ps_a changed to ps_a, ps_w
+ *
+ * Revision 1.2  1992/12/16  12:50:55  rs
+ * ANSI-Version
+ *
+ * Revision 1.1  1992/11/04  18:12:30  base
+ * Initial revision
+ * */
+/**************************************************************************************
+*
+* Heap-Management durch Generation Scavenging
+*
+* Schnittstelle:
+*
+* init_scavenge		Allokierung des Heap und Initialisierung der Bereiche
+*			(Bereichsgroessen aus red.setup)
+* reinit_scavenge	Reinitialisierung der Bereiche
+* exit_scavenge		Freigabe des Heap
+* 
+* dynamic_gc		Einschalten des dynamic-Allokierungsmodus
+*			(Der Standard nach init_ und reinit_scavenge ist static,
+*			nach der Preprocessing-Phase muss daher dynamic_gc
+*			aufgerufen werden (siehe rreduct.c))
+*
+* disable_/enable_scav  Allokierungsmodi: gc ein- und ausschalten
+*
+* get_desc		Allokierung eines Deskriptors, die Adresse wird zurueckgegeben
+* get_heap2 (n, p)	Allokierung eines Heap-Blockes.
+*			n - Groesse des Blockes in Worten (1 Wort = 4 Byte)
+*			p - Adresse an die die Blockadresse geschrieben werden soll
+*			Rueckgabe: 1 (ok), 0 (Fehler)
+* get_heap (n)          Allokierung eines Heap-Blockes
+*                       n - Groesse des Blockes in Worten
+*                       Rueckgabe: Adresse des Blockes oder NULL
+* get_buff (n)		Allokierung eines Heap-Blockes, nur in statischer Allokierungs-
+*			phase benutzen.
+*			n - Groesse des Blockes in Worten
+*			Rueckgabe: Adresse des Blockes oder NULL
+*
+**************************************************************************************/
+
+#if SCAVENGE
+
+#include <stdio.h>
+#if (!APOLLO)
+#include <malloc.h>
+#endif
+#include <memory.h>            /* RS 6.11.1992 */ 
+
+#include "rstackty.h"
+#include "rstelem.h"
+#include "rheapty.h"
+#include "rscavenge.h"
+#if (!APOLLO)
+#include <string.h>            /* RS 7.12.1992 */
+#endif
+
+/* Adressen von statischen und dynamische Allokierungsbereichen */
+
+       word *sta_adr;
+       word *sta_free;
+
+static word *dyn_adr;
+static word *dyn_free;
+static word sta_size, dyn_size;
+
+static byte bstatic;         /* 1 - static alloc, 0 - dynamic alloc */
+static byte bgcenable;
+
+/* creation area, past/future survivor space, old space */
+
+word *ca_adr, *pss_adr, *fss_adr, *os_adr;
+word *ca_free, *pss_free, *fss_free, *os_free;
+word ca_size, pss_size, fss_size, os_size;
+
+word *ca_end, *pss_end, *fss_end, *os_end, *rs_end, *ns_end;	/* fuer LOLEILA */
+
+/* compact area */
+
+word *co_adr;
+word co_size;
+
+/* remembered set */
+
+word *rs_adr;
+word *rs_free;
+word rs_size;
+word rs_block;	/* Groesse, um die rs waechst bzw. schrumpft */
+word rs_used;	/* Anzahl der belegten rs-Eintraege */
+
+/* sonstige Variablen */
+
+int maxage;	/* maximales Alter im new space */
+static word *pheap_ret; /* siehe get_heap */
+
+/* externe Variablen */
+
+extern StackDesc *ps_w, *ps_a;
+extern word *_desc;
+extern STACKELEM _scav1, _scav2, _scav3;
+extern int CodeAreaPercent;
+extern word *hpbase;
+
+/* RS 6.11.1992 */ 
+extern post_mortem();
+
+/* extern word *memalign();  TB, 6.11.1992 */
+extern char* memalign(); /* RS 26.3.1993 */
+extern long clock(); /* TB, 6.11.1992 */
+extern int sizeofstack(); /* TB, 6.11.1992 */    /* stack,c */
+extern STACKELEM midstack(); /* TB, 6.11.1992 */ /* stack.c */
+extern void updatestack(); /* TB, 6.11.1992 */   /* stack.c */
+
+int get_objects(); /* TB, 6.11.1992 */ 
+
+int init_scavenge ();
+int reinit_scavenge ();
+int exit_scavenge ();
+
+void static_gc ();
+void dynamic_gc ();
+
+void enable_scav ();
+void disable_scav ();
+
+char *get_desc ();
+int get_heap2 ();
+char *get_heap ();
+char *get_buff ();
+
+extern int get_setup ();
+
+static void init_rs ();
+static int compact_rs ();
+static int add_rs_elem ();
+static int delete_rs_elem ();
+
+static word *scav_alloc ();
+
+static int scavenge ();
+
+static int compact_ns ();
+static int parse_stack ();
+static int parse_object ();
+static word *copy_and_forward ();
+static word *copy_fss ();
+static word *copy_os ();
+
+static int compact_os ();
+
+static int in_os ();
+static int in_ns ();
+static int in_src ();
+
+#if SCAV_DEBUG
+#define min(arg1,arg2) ((int)arg1 <= (int)arg2 ? arg1 : arg2)
+#define max(arg1,arg2) ((int)arg1 <= (int)arg2 ? arg2 : arg1)
+
+typedef struct
+  {
+  word count;
+  word size;
+  }
+  REP;
+
+static REP pr[20+1];
+static word scav_count;
+static REP fail;
+static double scavtime;
+static int rsmax;
+
+void scav_out ();
+void scav_write_log ();
+void scav_write_spaces ();
+void scav_write_ws ();
+void scav_write_heap ();
+void scav_write_report ();
+char *scav_handle ();
+static void init_scav_out ();
+static void scav_write_data ();
+static void scav_write_area ();
+static void report ();
+#endif
+
+
+/****************************************************************************************
+*
+* init_scavenge
+*
+* Initialisierung des dynamischen Heap fuer die Speicherverwaltung
+*
+****************************************************************************************/
+
+int init_scavenge (heapsize_byte)
+
+unsigned long heapsize_byte;
+
+{
+static word *base = 0;
+
+word heapsize;
+word size;
+word dyn_proz;
+word sur_proz;
+
+if (base != 0)
+  {
+  free (base);
+  base = 0;
+  }
+
+
+
+/*** Scavenge-Bereiche initialisieren ***/
+
+heapsize = heapsize_byte / 4;
+heapsize -= CASTDATASIZE;
+
+if ((long) heapsize < 0)
+  post_mortem ("heap too small for CAST info block\n");
+
+get_setup (" CreationAreaPercent : %lu", &dyn_proz, 30); 
+get_setup (" SurvivorSpacePercent : %lu", &sur_proz,  9);
+
+dyn_size = (heapsize * dyn_proz) / 100;
+pss_size = (heapsize * sur_proz) / 100;
+fss_size = pss_size;
+os_size  = heapsize - (dyn_size + pss_size + fss_size);
+
+get_setup (" MaxAge  : %u",  &maxage, 2);
+get_setup (" RSBlock : %lu", &rs_block, 32);
+
+dyn_size = (dyn_size + 3) & 0xfffffffc;
+pss_size = (pss_size + 3) & 0xfffffffc;
+fss_size = (fss_size + 3) & 0xfffffffc;
+os_size  = (os_size  + 3) & 0xfffffffc;
+rs_block = (rs_block + 3) & 0xfffffffc;
+
+  /* Die Bereichsgroessen muessen ein Vielfaches von vier (Worten = 16 Byte) sein, da
+     Pointer daran erkannt werden, dass die niederwertigen vier Bit "0" sind. */
+
+if (rs_block >= os_size)
+  post_mortem ("Remembered set must be smaller than old space\n");
+
+size = (CASTDATASIZE + dyn_size + pss_size + fss_size + os_size) * sizeof (word);
+base = (word *) memalign (16, size); 
+
+if (base == NULL)
+  return 0;
+
+memset ((char *) base, 0, size);
+
+dyn_adr = base + CASTDATASIZE;
+pss_adr = &dyn_adr[dyn_size];
+fss_adr = &pss_adr[pss_size];
+os_adr  = &fss_adr[fss_size];
+
+dyn_free = dyn_adr;
+pss_free = pss_adr;
+fss_free = fss_adr;
+os_free  = os_adr;
+
+hpbase = base;
+
+
+
+/*** Hilfs- (Adress-) Bereich fuer die os-Kompaktierung anlegen ***/
+
+/*
+co_size = os_size / 5;
+if (os_size % 5)
+  co_size++;
+
+co_adr = &os_adr[os_size-co_size];
+os_size -= co_size;
+*/
+
+
+
+/*** remembered set initialisieren ***/
+
+rs_size = rs_block;
+rs_adr = &os_adr[os_size-rs_size];
+rs_free = rs_adr;
+rs_used = 0;
+
+init_rs (rs_size);
+
+os_size -= rs_size;
+
+
+
+/*** statischer Allokierungsmodus ***/
+
+ca_adr  = sta_adr  = os_adr;
+ca_free = sta_free = os_free;
+ca_size = sta_size = os_size;
+
+bstatic = 1;
+
+
+
+_scav1 = _scav2 = _scav3 = 0;
+
+
+
+#if SCAV_DEBUG
+  init_scav_out ();
+  scav_out ("\ninit_scavenge\n\n");
+  scav_write_spaces ();
+
+  scav_count = 0;
+  memset ((void *)pr, 0, sizeof (pr));   /* cast RS 7.12.1992 */
+  scavtime = 0;
+  rsmax = 0;
+  fail.count = fail.size = 0;
+#endif
+
+return 1;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* reinit_scavenge
+*
+* Reinitialisierung des Heap
+*
+****************************************************************************************/
+
+int reinit_scavenge (heapsize_byte)
+
+unsigned long heapsize_byte;     /* not used */
+
+{
+word d;
+
+if (!bstatic)
+  {
+  os_adr = sta_adr;
+  os_size += sta_size;
+  }
+
+dyn_free = dyn_adr;
+pss_free = pss_adr;
+fss_free = fss_adr;
+os_free  = os_adr;
+
+memset ((char *) dyn_adr, 0, 
+        (dyn_size + pss_size + fss_size + os_size) * sizeof (word));
+
+d = rs_size - rs_block;
+
+rs_adr += d;
+rs_size = rs_block;
+rs_free = rs_adr;
+rs_used = 0;
+
+init_rs (rs_size);
+
+os_size += d;
+
+ca_adr  = sta_adr  = os_adr;
+ca_free = sta_free = os_free;
+ca_size = sta_size = os_size;
+
+bstatic = 1;
+
+_scav1 = _scav2 = _scav3 = 0;
+
+#if SCAV_DEBUG
+  /*init_scav_out ();*/
+  scav_out ("\nreinit_scavenge\n\n");
+  scav_write_spaces ();
+
+  scav_count = 0;
+  memset ((void *)pr, 0, sizeof (pr));  /* cast 7.12.1992 */
+  scavtime = 0;
+  rsmax = 0;
+  fail.count = fail.size = 0;
+#endif
+
+return 1;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* exit_scavenge
+*
+* Freigeben des dynamischen Heap
+*
+****************************************************************************************/
+
+int exit_scavenge ()
+
+{
+/* return free (dyn_adr); */
+ return(0);          /* RS 6.11.1992 */ 
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* Umschalten in den dynamischen Allokierungsmodus
+*
+****************************************************************************************/
+
+void dynamic_gc ()
+
+{
+if (!bstatic)
+  return;
+
+sta_free = ca_free;
+sta_size = sta_free - sta_adr;
+
+os_adr = sta_free;
+os_free = os_adr;
+os_size -= sta_size;
+
+ca_adr  = dyn_adr;
+ca_free = dyn_free;
+ca_size = dyn_size;
+
+ca_end = ca_adr + ca_size;	/* fuer LOLEILA */
+pss_end = pss_adr + pss_size;
+fss_end = fss_adr + fss_size;
+os_end = os_adr + os_size;
+rs_end = rs_adr + rs_size;
+ns_end = sta_adr;
+
+bstatic = 0;
+bgcenable = 1;
+
+#if SCAV_DEBUG
+  scav_out ("\ndynamic alloc\n\n");
+  scav_write_spaces ();
+#endif
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* enable or disable scavenging (only necessary in dynamic allocation mode)
+*
+****************************************************************************************/
+
+void enable_scav ()
+{
+bgcenable = 1;
+}
+
+void disable_scav ()
+{
+bgcenable = 0;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* remembered set Funktionen
+*
+****************************************************************************************/
+
+static void init_rs (size)
+
+word size;
+
+{
+word i;
+
+for (i = 0; i < size - 1; i++)
+  rs_adr[i] = (word) &rs_adr[i+1];
+
+rs_adr[size-1] = 0;
+}
+
+
+
+
+
+static int compact_rs ()
+
+{
+return 1;
+}
+
+
+
+
+
+static int add_rs_elem (p)
+
+word *p;
+
+{
+word *w;
+word b;
+
+if (rs_free == 0)
+  {
+  b = rs_block;
+
+  while (rs_adr - os_free < b && b > 0)
+    b -= 4;
+
+  if (b == 0)
+    post_mortem ("SCAV: not enough room to add remembered set element");
+
+  os_size -= b;
+  rs_size += b;
+  rs_adr -= b;
+  init_rs (b);
+  rs_free = rs_adr;
+  }
+
+w = (word *) *rs_free;
+*rs_free = (word) p;
+rs_free = w;
+rs_used++;
+
+return 1;
+}
+
+
+
+
+
+static int delete_rs_elem (i)
+
+int i;
+
+{
+if ((word) rs_adr <= rs_adr[i] && rs_adr[i] < (word) (rs_adr + rs_size))
+  return 1;
+
+rs_adr[i] = (word) rs_free;
+rs_free = &rs_adr[i];
+rs_used--;
+
+if (3 * (rs_block / 2) <= rs_size - rs_used)
+  compact_rs ();
+
+return 1;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* Allokierungsroutinen
+*
+****************************************************************************************/
+
+static word *scav_alloc (n)
+
+word n;
+
+{
+word *pret;
+
+if (n > ca_size)
+  if (bstatic)
+    {
+#if SCAV_DEBUG
+    char buffer[80];
+    sprintf (buffer, "static req = %d, size = %d\n", n, ca_size);
+    scav_out (buffer);
+#endif    
+    post_mortem ("SCAV: static allocation area too small");
+    }
+  else
+    post_mortem ("SCAV: dynamic allocation area too small");
+
+if (ca_free + n > ca_adr + ca_size)
+  if (bstatic)
+    {
+#if SCAV_DEBUG
+    char buffer[80];
+    sprintf (buffer, "sta req = %d, free = %d\n", n, 
+             (ca_adr + ca_size) - ca_free);
+    scav_out (buffer);
+#endif
+    post_mortem ("SCAV: allocation of static data failed");
+    }
+
+#if SCAV_DEBUG
+  else
+    {
+    int ret, i /*,x*/; /* TB, 6.11.992 */
+    /*char buffer[256], str[30];*/ /* TB, 6.11.992 */
+    REP pr_loc[20+1];
+    double pre, post;
+
+    scav_count++;
+
+    /* sprintf (buffer, "\n\n\nALLOCATION REQUEST No %lu: %lu\n", scav_count, n);
+    scav_out (buffer);
+
+    scav_write_spaces (); 
+    scav_write_heap ();
+    scav_write_ws (); 
+    scav_write_report (); */
+
+    pre = clock () /*/ 1000000.0*/; 
+    ret = scavenge ();
+    post = clock () /*/ 1000000.0*/;
+
+    scavtime += (post - pre);
+
+    /*sprintf (buffer, "SCAVENGE: %lf\n", post - pre);
+    scav_out (buffer);
+
+    scav_write_spaces (); 
+    scav_write_heap ();
+    scav_write_ws ();  
+    scav_write_report (); */
+
+    get_objects (pss_adr, pss_free, pr_loc);
+    for (i = 1; i < maxage; i++)
+      {
+      pr[i].count += pr_loc[i].count;
+      pr[i].size  += pr_loc[i].size;
+      }
+
+    get_objects (os_adr, os_free, pr_loc);
+
+    fail.count = fail.size = 0;
+
+    for (i = 0; i < maxage; i++)
+      {
+      fail.count += pr_loc[i].count;
+      fail.size += pr_loc[i].size;
+      }
+
+    pr[maxage].count = pr_loc[maxage].count;
+    pr[maxage].size  = pr_loc[maxage].size;
+
+    if (rs_used > rsmax)
+      rsmax = rs_used; 
+ 
+    /*
+    sprintf (buffer, "cnt = %d:   ", scav_count);
+    for (i = 0; i < maxage; i++)
+      {
+      x = max (scav_count - max ((i - 1), 0), 1);
+      sprintf (str, "%d (%lu/%lu)   ", i + 1, pr[i].count/x, pr[i].size/x);
+      strcat (buffer, str);
+      }
+    strcat (buffer, "\n");
+    scav_out (buffer);
+    */
+
+    /*sprintf (buffer, "rs = %lu\n", rs_used);
+    scav_out (buffer);*/
+
+    if (!ret)
+      post_mortem ("SCAV: allocation of dynamic data failed");
+    }
+
+#else
+  else if (!scavenge ())
+    post_mortem ("SCAV: allocation of dynamic data failed");
+
+#endif /* SCAV_DEBUG  auskommentiert RS 3.12.1992 */
+
+
+pret = ca_free;
+ca_free += n;
+return pret;
+}
+
+
+
+
+
+char *get_desc ()
+
+{
+return (char *) scav_alloc ((word) 4);   /* cast RS 7.12.1992 */
+}
+
+
+
+
+
+int get_heap2 (n, p)
+
+word n;
+word **p;
+
+{
+word *pret;
+PBLOCK pblock;
+word over;
+
+pheap_ret = (word *) p;   /* pheap_ret wird in scavenge korrigiert */ 
+
+over = n + 2;
+over = (over + 3) & 0xfffffffc;
+
+pret = scav_alloc (over);
+
+if (!pret)
+  return 0;
+
+pblock = (PBLOCK) pret;
+
+pblock->type = 0;
+pblock->class = 0;
+pblock->age = 1;
+pblock->flags = BLOCK_FLAG;
+
+pblock->size = (hword) n;
+pblock->over = (hword) over;
+
+*pheap_ret = (word) &pblock->content[0];
+pheap_ret = 0;
+return 1;
+}
+
+
+
+
+
+char *get_heap (n)
+ 
+word n;
+ 
+{
+word *pret;
+word over;
+PBLOCK pblock;
+
+over = n + 2;
+over = (over + 3) & 0xfffffffc;
+ 
+pret = scav_alloc (over);
+ 
+if (!pret)
+  return 0;
+ 
+pblock = (PBLOCK) pret;
+ 
+pblock->type = 0;
+pblock->class = 0;
+pblock->age = 1;
+pblock->flags = BLOCK_FLAG;
+ 
+pblock->size = (hword) n;
+pblock->over = (hword) over;
+ 
+return (char *) &pblock->content[0];
+}
+
+
+
+
+
+char *get_buff (n)
+
+word n;
+
+{
+if (bstatic != 1 && bgcenable == 1)	/* dynamic alloc. phase and heap movement allowed */
+  post_mortem ("SCAV: Allocation of fixed heap block during dynamic allocation phase");
+
+return get_heap (n); 
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* Scavenging
+*
+*****************************************************************************************/
+
+static word *os_save, *fss_save;   /* Start noch nicht untersuchter Objekte */
+
+
+
+
+
+static int scavenge ()
+
+{
+int i;
+word *p;
+
+if (bgcenable == 0)
+  post_mortem ("SCAV: creation area full while no heap movement allowed");
+
+fss_free = fss_adr;
+os_save = os_free;
+fss_save = fss_free;
+
+i = compact_ns ();
+
+if (i == 0)
+  if (compact_os ())
+    i = compact_ns ();
+
+if (i > 0)
+  {
+  p = pss_adr;
+  pss_adr = fss_adr;
+  fss_adr = p;
+
+  ca_free = ca_adr;
+  pss_free = fss_free;
+  fss_free = fss_adr;
+
+  memset ((void *)ca_adr, 0, ca_size * sizeof (word));   /* cast RS 7.12.1992 */
+  }
+
+return i;
+}
+
+
+
+
+
+/*****************************************************************************************
+*
+* Kompaktierung des new space
+*
+*****************************************************************************************/
+
+static int compact_ns ()
+
+{
+int i;
+word *p;
+
+
+
+/*** Untersuchen des remembered set ***/
+
+for (i = 0; i < rs_size; i++)
+  if (in_os (rs_adr[i]))
+    if (!parse_object (rs_adr[i], i))
+      return 0;
+
+
+
+/*** Untersuchen des working set ***/
+
+if (!parse_stack (ps_w))
+  return 0;
+
+if (!parse_stack (ps_a))
+  return 0;
+ 
+if (Q_POINTER (_desc) && in_src (_desc))
+  {
+  p = copy_and_forward (_desc);
+  if (p == 0)
+    return 0;
+  _desc = p;
+  }
+
+if (Q_POINTER (_scav1) && in_src (_scav1))
+  {
+  p = copy_and_forward (_scav1);
+  if (p == 0)
+    return 0;
+  _scav1 = (STACKELEM) p;
+  }
+
+if (Q_POINTER (_scav2) && in_src (_scav2))
+  {
+  p = copy_and_forward (_scav2);
+  if (p == 0)
+    return 0;
+  _scav2 = (STACKELEM) p;
+  }
+
+if (Q_POINTER (_scav3) && in_src (_scav3))
+  {
+  p = copy_and_forward (_scav3);
+  if (p == 0)
+    return 0;
+  _scav3 = (STACKELEM) p;
+  }
+
+
+
+/*** Untersuchen neuer Objekte in os und fss ***/
+
+while (os_free > os_save || fss_free > fss_save)
+  {
+  if (fss_free > fss_save)
+    {
+    p = fss_free;
+
+    while (fss_save < p)
+      {
+      if ((i = parse_object (fss_save, -1)) == 0)
+        return 0;
+      fss_save += i;
+      }
+    }
+
+  if (os_free > os_save)
+    {
+    p = os_free;
+
+    while (os_save < p)
+      {
+      if ((i = parse_object (os_save, -1)) == 0)
+        return 0;
+      os_save += i;
+      }
+    }
+  }
+
+return 1;
+}
+ 
+
+
+
+
+/*----------------------------------------------------------------------------------------
+|
+| Untersuchen des parametrierten Stacks auf Verweise in ca und pss, Kopieren
+| der entsprechenden Objekte und Korrigieren der Verweise auf dem Stack.
+|
++---------------------------------------------------------------------------------------*/
+
+static int parse_stack (ps)
+
+StackDesc *ps;
+
+{
+int i;
+word n, w;
+
+n = SIZEOFSTACK (*ps);
+
+for (i = 0; i < n; i++)
+  {
+  w = MIDSTACK (*ps, i);
+
+  if (Q_POINTER (w) && in_src ((word *) w))
+    {
+    if (!copy_and_forward (w))
+      return 0;
+
+    UPDATESTACK (*ps, i, ((PFORWARD) w) -> forward);
+    }
+  }
+
+return 1;
+}
+
+
+
+
+
+/*----------------------------------------------------------------------------------------
+|
+| Untersuchen des parametrierten Heap-Objektes auf Verweise in ca und pss, Kopieren
+| der entsprechenden Objekte und Korrigieren der Verweise in dem Heap-Objekt.
+| Ist "rsindex" nicht negativ, so ist "pobj" Mitglied des remembered set mit dem Index
+| "rsindex".
+| Zurueckgegeben wird die Laenge des Heap-Objektes (in Worten) oder 0 (im Fehlerfall).
+| 
++---------------------------------------------------------------------------------------*/
+
+static int parse_block ();
+static int parse_descriptor ();
+
+
+
+static int parse_object (pobj, rsindex)
+
+word *pobj;
+int rsindex;
+
+{
+SC_HEAD *phead;
+int /*i,*/ ret, /*ofs,*/ bNS;         /* RS 6.11.1992 */ 
+/* word *pdata, *pdesc, *p;              RS 6.11.1992 */ 
+
+phead = (SC_HEAD *) pobj;
+bNS = 0;
+
+
+
+/*** pobj ist Block ***/
+
+if (phead->flags & BLOCK_FLAG)
+  {
+  if (!parse_block (pobj, &bNS))
+    return 0;
+  ret = ((PBLOCK) pobj) -> over;
+  }
+
+
+
+/*** pobj ist Deskriptor ***/
+
+else
+  {
+  if (!parse_descriptor (pobj, &bNS))
+    return 0;
+  ret = 4;
+  }
+
+
+
+/*** Behandlung des remembered set ***/
+
+if (in_os (pobj))
+  if (rsindex >= 0 && !bNS)
+    delete_rs_elem (rsindex);
+  else if (rsindex < 0 && bNS)
+    add_rs_elem (pobj);
+
+return ret;
+}
+ 
+
+
+
+
+static int parse_block (pobj, bNS)
+
+PBLOCK pobj;
+int *bNS;
+
+{
+hword size, start;
+int i;
+word *pret;
+
+if (pobj->type == 0)
+  {
+  size = pobj->size;
+  start = 0;
+  }
+
+else if (pobj->type == 1)
+  {
+  size = pobj->content[0];
+  start = 1;
+  }
+
+else
+  return 1;
+
+*bNS = 0;
+
+for (i = start; i < (int)size; i++) /* "int" von TB */
+  if (Q_POINTER (pobj->content[i]))
+    {
+    pret = copy_and_forward ((word *) pobj->content[i]);
+    if (!pret)
+      return 0;
+    pobj->content[i] = (word) pret;
+    if (in_ns (pret))
+      *bNS = 1;
+    }
+
+return 1;
+}
+
+
+
+
+ 
+static int parse_descriptor (pobj, bNS)
+
+word *pobj;
+int *bNS;
+
+{
+SC_HEAD *head;
+PBLOCK pblock;
+int i;
+word *pret;
+
+struct
+  {
+  byte  ptr_type;    /* 0 - nix, 1 - ptd, 2 - pth */
+  hword ofs;         /* offset zum Blockbeginn */
+  byte  blk_type;    /* Blocktyp (siehe parse_block) */
+  hword size;        /* Nutzdatenlaenge */
+  }
+  field[3];
+
+memset ((void *)field, 0, sizeof (field));  /* cast RS 7.12.1992 */
+head = (SC_HEAD *) pobj;
+
+switch (head->class)
+  {
+  case C_LIST:
+    field[1].ptr_type = 1;
+    field[2].ptr_type = 2;
+
+    if (pobj[2] != 0)
+      field[2].ofs = ((ST_LIST *) pobj) -> special + 2;
+    else
+      field[2].ofs = 2;
+
+    field[2].blk_type = 0;
+    /* field[2].size = ((ST_LIST *) pobj) -> dim + field[2].ofs - 2; */
+    break;
+
+  case C_EXPRESSION:
+    switch (head->type)
+      {
+      case TY_SUB:
+      case TY_COND:
+      case TY_ZF:
+        field[1].ptr_type = 2;
+        field[1].ofs      = 2;
+        field[1].blk_type = 1;
+
+        field[2].ptr_type = 2;
+        field[2].ofs      = 2;
+        field[2].blk_type = 1;
+
+      case TY_LREC:
+        field[1].ptr_type = 2;
+        field[1].ofs      = 2;
+        field[1].blk_type = 1;
+
+        field[2].ptr_type = 2;
+        field[2].ofs      = 2;
+        field[2].blk_type = 0;
+        /* field[2].size     = (hword) ((ST_LREC *) pobj) -> nfuncs; */
+        break;
+
+      case TY_LREC_IND:
+        field[1].ptr_type = 1;
+        if (T_POINTER ((word *) pobj[3]))
+          field[2].ptr_type = 1;
+        break;
+
+      case TY_EXPR:
+      case TY_NAME:
+        field[2].ptr_type = 2;
+        field[2].ofs      = 2;
+        field[2].blk_type = 1;
+        break;
+      }
+    break;
+
+  case C_FUNC:
+    if (head->type == TY_CLOS)
+      {
+      field[1].ptr_type = 2;
+      field[1].ofs      = 2;
+      field[1].blk_type = 0;
+      /* field[1].size     = ((ST_CLOS *) pobj) -> args + 1; */
+      }
+    else
+      field[2].ptr_type = 1;
+    break;
+
+  case C_MATCHING:
+    switch (head->type)
+      {
+      case TY_CLAUSE:
+        field[1].ptr_type = 1;
+
+        field[2].ptr_type = 2;
+        field[2].ofs      = 2;
+        field[2].blk_type = 0;
+        /* field[2].size     = 3; */
+        break;
+
+      case TY_SELECTION:
+        field[1].ptr_type = 1;
+        field[2].ptr_type = 1;
+        break;
+      }
+    break;
+
+  case C_PATTERN:
+    field[1].ptr_type = 1;
+    field[2].ptr_type = 1;
+    break;
+
+  case C_CONSTANT:
+    field[2].ptr_type = 1;
+    break;
+ 
+  case C_DIGIT:
+    field[2].ptr_type = 2;
+    field[2].ofs      = 2;
+    field[2].blk_type = 3;
+    /* field[2].size     = ((ST_DIGIT *) pobj) -> ndigit; */
+    break;
+
+  case C_MATRIX:
+  case C_VECTOR:
+  case C_TVECTOR:
+    field[1].ptr_type = 1;
+
+    field[2].ptr_type = 2;
+    field[2].ofs      = 2;
+    field[2].blk_type = 3;
+    break;
+  }
+
+*bNS = 0;
+
+for (i = 0; i < 3; i++)
+  {
+  if (field[i].ptr_type != 0 && pobj[i+1] != 0)
+    {
+    if (field[i].ptr_type == 1)
+      {
+      pret = copy_and_forward ((word *) pobj[i+1]);
+      if (!pret)
+        return 0;
+      pobj[i+1] = (word) pret;
+      }
+
+    else
+      {
+      pblock = (PBLOCK) ((word *) pobj[i+1] - field[i].ofs);
+      pblock->type = field[i].blk_type;
+      pret = copy_and_forward (pblock);
+      if (!pret)
+        return 0;
+      pobj[i+1] = (word) (pret + field[i].ofs);
+      }
+
+    if (in_ns (pret))
+      *bNS = 1;
+    }
+  }
+
+return 1;
+}
+
+
+
+
+   
+/*----------------------------------------------------------------------------------------
+|
+| Kopieren des parametrierten Objektes. Anschliessend wird die Adresse der Kopie in
+| das Original geschrieben.
+| 
++---------------------------------------------------------------------------------------*/
+
+static word *copy_and_forward (pblock)
+
+PBLOCK pblock;
+
+{
+word *pdest;
+int size;
+
+if (!in_src (pblock))
+  return (word *) pblock;
+
+if (pblock->flags & FORWARD_FLAG)
+  return (word *) (((PFORWARD) pblock) -> forward);
+
+if (pblock->flags & BLOCK_FLAG)
+  size = pblock->over;
+else
+  size = 4;
+
+pblock->age++;
+
+if ((int) pblock->age <= maxage)
+  pdest = copy_fss (pblock, size);
+else
+  pdest = copy_os (pblock, size);
+
+if (!pdest)
+  {
+  pblock->age--;
+  return 0;
+  }
+
+pblock->flags |= FORWARD_FLAG;
+((PFORWARD) pblock) -> forward = (word) pdest;
+
+if ((word *) pblock <= pheap_ret && pheap_ret < (word *) pblock + size)
+  pheap_ret = pdest + (pheap_ret - (word *) pblock);
+
+return pdest;
+}
+
+
+
+
+
+/*----------------------------------------------------------------------------------------
+|
+| Kopieren des parametrierten Objektes von der Groesse "size" in fss.
+| Zurueckgegeben wird die Adresse der Kopie.
+| 
++---------------------------------------------------------------------------------------*/
+
+static word *copy_fss (pobj, size)
+
+word *pobj;
+word size;
+
+{
+word *pret = fss_free;
+
+if (fss_free + size <= fss_adr + fss_size)
+  {
+  memcpy ((void *)fss_free, (void *) pobj, size * sizeof (word)); /* casts RS 7.12.1992 */
+  fss_free += size;
+  return pret;
+  }
+
+else
+  return copy_os (pobj, size);
+}
+
+
+
+
+
+/*----------------------------------------------------------------------------------------
+|
+| Kopieren des parametrierten Objektes von der Groesse "size" in os.
+| Zurueckgegeben wird die Adresse der Kopie.
+| 
++---------------------------------------------------------------------------------------*/
+
+static word *copy_os (pobj, size)
+
+word *pobj;
+word size;
+
+{
+word *pret = os_free;
+
+if (os_free + size <= os_adr + os_size)
+  {
+  memcpy ((void *)os_free, (void *) pobj, size * sizeof (word));  /* casts RS 7.12.1992 */ 
+  os_free += size;
+  return pret;
+  }
+
+else
+  return 0;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* Funktionen fuer Bereichsueberpruefungen
+*
+****************************************************************************************/
+
+static int in_os (pobj)
+
+word *pobj;
+
+{
+if (os_adr <= pobj && pobj < os_adr + os_size)
+  return 1;
+else
+  return 0;
+}
+
+
+
+static int in_ns (pobj)
+
+word *pobj;
+
+{
+if ((ca_adr  <= pobj && pobj < ca_adr + ca_size)   ||
+    (pss_adr <= pobj && pobj < pss_adr + pss_size) ||
+    (fss_adr <= pobj && pobj < fss_adr + fss_size))
+  return 1;
+else
+  return 0;
+}
+
+
+
+static int in_src (pobj)
+
+word *pobj;
+
+{
+if ((ca_adr  <= pobj && pobj < ca_adr + ca_size)   ||
+    (pss_adr <= pobj && pobj < pss_adr + pss_size))
+  return 1;
+else
+  return 0;
+}
+
+
+
+
+
+/****************************************************************************************
+*
+* Kompaktierung des old space
+*
+****************************************************************************************/
+
+static int compact_os ()
+
+{
+#if SCAV_DEBUG
+  scav_out ("\nno old space compaction:\n\n");
+  /* scav_write_spaces ();
+  scav_write_ws ();
+  scav_write_heap (); */
+  scav_write_report ();
+#endif /* SCAV_DEBUG auskommentiert RS 3.12.1992 */
+
+post_mortem ("SCAV: old space compaction not implemented");
+return(0);        /* RS 6.11.1992 */ 
+}
+
+
+
+
+
+#if SCAV_DEBUG
+
+/****************************************************************************************
+*
+* Testumgebung
+*
+****************************************************************************************/
+
+#define logfile "scavenge.log"
+
+
+
+static void init_scav_out ()
+
+{
+FILE *stream;
+
+stream = fopen (logfile, "w");
+fclose (stream);
+}
+
+
+
+void scav_out (line)
+
+char *line;
+
+{
+FILE *stream;
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV_DEBUG: cannot open log file");
+
+fprintf (stream, line);
+fclose (stream);
+}
+
+
+
+static void scav_write_data (stream, i, w)
+
+FILE *stream;
+int i;
+word w;
+
+{
+char area[20];
+
+fprintf (stream, "%8d  %10lu  %.8lXH  %s\n", i, w, w, scav_handle ((word *) w, area));
+}
+
+
+
+char *scav_handle (pw, area)
+
+word *pw;
+char *area;
+
+{
+if (sta_adr <= pw && pw < sta_adr + sta_size)
+  sprintf (area, "sta %lu", pw - sta_adr);
+
+else if (dyn_adr <= pw && pw < dyn_adr + dyn_size)
+  sprintf (area, "dyn %lu", pw - dyn_adr);
+
+else if (pss_adr <= pw && pw < pss_adr + pss_size)
+  sprintf (area, "pss %lu", pw - pss_adr);
+
+else if (fss_adr <= pw && pw < fss_adr + fss_size)
+  sprintf (area, "fss %lu", pw - fss_adr);
+
+else if (os_adr <= pw && pw < os_adr + os_size)
+  sprintf (area, "os %lu", pw - os_adr);
+
+else if (rs_adr <= pw && pw < rs_adr + rs_size)
+  sprintf (area, "rs %lu", pw - rs_adr);
+
+else
+  area[0] = '\0';
+
+return area;
+}
+
+
+
+void scav_write_spaces ()
+
+{
+FILE *stream;
+/*int i;*/  /* TB, 6.11.992 */
+
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV_DEBUG: cannot open log file");
+
+fprintf (stream, "sta: adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n",
+         (int)sta_adr, (int)sta_adr, (int)sta_free, (int)sta_free, sta_size);
+fprintf (stream, "dyn: adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n\n",
+         (int)dyn_adr, (int)dyn_adr, (int)dyn_free, (int)dyn_free, dyn_size);
+
+fprintf (stream, "ca : adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n",
+         (int)ca_adr, (int)ca_adr, (int)ca_free, (int)ca_free, ca_size);
+fprintf (stream, "pss: adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n",
+         (int)pss_adr, (int)pss_adr, (int)pss_free, (int)pss_free, pss_size);
+fprintf (stream, "fss: adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n",
+         (int)fss_adr, (int)fss_adr, (int)fss_free, (int)fss_free, fss_size);
+fprintf (stream, "os : adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n\n",
+         (int)os_adr, (int)os_adr, (int)os_free, (int)os_free, os_size);
+
+fprintf (stream, "rs : adr = %8lu (%.8lXH), free = %8lu (%.8lXH), size = %8lu\n\n",
+         (int)rs_adr, (int)rs_adr, (int)rs_free, (int)rs_free, rs_size);
+
+fclose (stream);
+}
+
+
+
+void scav_write_ws ()
+
+{
+FILE *stream;
+int n, i;
+word w;
+char buffer[80], area[20];
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV_DEBUG: Cannot open log file");
+
+n = SIZEOFSTACK (*ps_w);
+
+fprintf (stream, "\nStack a:\n\n");
+
+for (i = 0; i < n; i++)
+  {
+  w = MIDSTACK (*ps_w, i);
+  scav_write_data (stream, i, w);
+  }
+
+n = SIZEOFSTACK (*ps_a);
+
+fprintf (stream, "\nStack i:\n\n");
+
+for (i = 0; i < n; i++)
+  {
+  w = MIDSTACK (*ps_a, i);
+  scav_write_data (stream, i, w);
+  }
+
+sprintf (buffer, "\n_desc    =%10lu  %.8lXH  %s\n",
+         (int)_desc, (int)_desc, scav_handle ((word *) _desc, area));
+fprintf (stream, buffer);
+
+sprintf (buffer, "_scav1   =%10lu  %.8lXH  %s\n",
+         _scav1, _scav1, scav_handle ((word *) _scav1, area));
+fprintf (stream, buffer);
+sprintf (buffer, "_scav2   =%10lu  %.8lXH  %s\n",
+         _scav2, _scav2, scav_handle ((word *) _scav2, area));
+fprintf (stream, buffer);
+sprintf (buffer, "_scav3   =%10lu  %.8lXH  %s\n",
+         _scav3, _scav3, scav_handle ((word *) _scav3, area));
+fprintf (stream, buffer);
+
+sprintf (buffer, "pheap_ret=%10lu  %.8lXH  %s\n\n",
+         (int)pheap_ret, (int)pheap_ret, scav_handle ((word *) pheap_ret, area));
+fprintf (stream, buffer);
+
+fclose (stream);
+}
+
+
+
+void scav_write_heap ()
+
+{
+FILE *stream;
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV_DEBUG: Cannot open log file");
+
+fprintf (stream, "\nCreation Area:\n\n");
+scav_write_area (stream, ca_adr, ca_free);
+
+fprintf (stream, "\nPast Survivor Space:\n\n");
+scav_write_area (stream, pss_adr, pss_free);
+
+fprintf (stream, "\nFuture Survivor Space:\n\n");
+scav_write_area (stream, fss_adr, fss_free);
+
+fprintf (stream, "\nOld Space:\n\n");
+scav_write_area (stream, os_adr, os_free);
+
+if (rs_used > 0)
+  {
+  fprintf (stream, "\nRemembered Set:\n\n");
+  scav_write_area (stream, rs_adr, rs_adr + rs_size);
+  }
+
+fclose (stream);
+}
+
+
+
+static void scav_write_area (stream, adr, free)
+
+FILE *stream;
+word *adr, *free;
+
+{
+int type, size=0, index=0, do_write;
+word *pos;
+PBLOCK pblock=0;
+
+type = 0;
+pos = adr;
+
+while (pos < free)
+  {
+  do_write = /*0*/ 1;
+
+  switch (type)
+    {
+    /* nix */	
+    case 0:
+      pblock = (PBLOCK) pos;
+      if (pblock->flags & BLOCK_FLAG)
+        {
+        type = 1;
+        size = 2;
+        index = 1;
+        do_write = 1;
+        }
+      else
+        {
+        type = 3;
+        size = 4;
+        index = 1;
+        do_write = 1;
+        }
+      break;
+
+    /* block header */
+    case 1:
+      index++;
+      if (index == size)
+        {
+        type = 2;
+        size = pblock->over - size;
+        index = 0;
+        }
+      do_write = 1;
+      break;
+
+    /* block data */
+    case 2:
+      index++;
+      if (index == size)
+        type = 0;
+      if (IS_POINTER (*pos))
+        do_write = 1;
+      break;
+
+    /* descriptor */
+    case 3:
+      index++;
+      if (index == size)
+        type = 0;
+      do_write = 1;
+      break;
+    } 
+   
+  if (do_write)
+    scav_write_data (stream, pos - adr, *pos);
+
+  pos++;
+  }
+}
+
+
+
+void scav_write_report ()
+
+{
+FILE *stream;
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV: cannot open log file");
+
+fprintf (stream, "\nHeap Report:\n\n");
+
+report (stream, "ca : ", ca_adr, ca_free);
+report (stream, "pss: ", pss_adr, pss_free);
+report (stream, "fss: ", fss_adr, fss_free);
+report (stream, "os : ", os_adr, os_free);
+
+fprintf (stream, "\n");
+fclose (stream);
+}
+
+
+
+static void report (stream, desc, start, end)
+
+FILE *stream;
+char *desc;
+word *start, *end;
+
+{
+
+REP *prep;
+char buffer[256], str[30];
+word *pos;
+PBLOCK pblock;
+int index, i;
+word size;
+
+strcpy (buffer, desc);
+size = (maxage + 1) * sizeof (REP);
+
+prep = (REP *) malloc (size);
+
+if (prep == NULL)
+  {
+  strcat (buffer, "not enough memory to report\n");
+  fprintf (stream, buffer);
+  return;
+  }
+
+memset ((void *)prep, 0, size);
+pos = start;
+
+while (pos < end)
+  {
+  pblock = (PBLOCK) pos;
+  index  = min (pblock->age - 1, maxage);
+  prep[index].count++;
+
+  if (pblock->flags & BLOCK_FLAG)
+    size = pblock->over;
+  else
+    size = 4;
+
+  prep[index].size += size;
+  pos += size;
+  }
+
+for (i = 0; i <= maxage; i++)
+  if (prep[i].count > 0)
+    {
+    sprintf (str, "%d (%lu/%lu)     ", i + 1, prep[i].count, prep[i].size);
+    strcat (buffer, str);
+    }
+
+strcat (buffer, "\n");
+fprintf (stream, buffer);
+}
+ 
+
+
+int get_objects (start, end, prep)
+
+word *start, *end;
+REP *prep;
+
+{
+int i, index;
+word size;
+word *pos;
+PBLOCK pblock;
+
+for (i = 0; i <= maxage; i++)
+  {
+  prep[i].count = 0;
+  prep[i].size  = 0;
+  }
+
+pos = start;
+
+while (pos < end)
+  {
+  pblock = (PBLOCK) pos;
+  index = pblock->age - 1;
+  prep[index].count++;
+
+  if (pblock->flags & BLOCK_FLAG)
+    size = pblock->over;
+  else
+    size = 4;
+
+  prep[index].size += size;
+  pos += size;
+  }
+
+return 1;
+}
+
+  
+
+void scav_write_log ()
+
+{
+FILE *stream;
+int i;
+REP pr_loc;
+
+stream = fopen (logfile, "a");
+
+if (stream == NULL)
+  post_mortem ("SCAV_DEBUG: Cannot open log file");
+
+fprintf (stream, "\n");
+fprintf (stream,   "number of scavenges      = %d\n", scav_count);
+
+pr_loc.count = pr_loc.size = 0;
+
+for (i = 1; i <= maxage; i++)
+  {
+  fprintf (stream, "objects copied to age %d  = %d (%d)\n",
+           i+1, pr[i].count, pr[i].size);
+  pr_loc.count += pr[i].count;
+  pr_loc.size  += pr[i].size;
+  }
+
+fprintf (stream,   "objects copied early     = %d (%d)\n",
+         fail.count, fail.size);
+
+pr_loc.count += fail.count;
+pr_loc.size  += fail.size;
+
+fprintf (stream,   "number of objets copied  = %d (%d)\n",
+         pr_loc.count, pr_loc.size);
+
+fprintf (stream,   "max size of rs           = %d\n", rsmax);
+fprintf (stream,   "time used for scavenge   = %f\n\n", scavtime / 1000000.0);
+/* %lf in %f umgewandelt, RS 26.3.1993 */
+
+fclose (stream);
+}
+
+
+#endif /* SCAV_DEBUG  auskommentiert von RS 3.12.1992 */
+
+
+
+#endif /* SCAVENGE */
+

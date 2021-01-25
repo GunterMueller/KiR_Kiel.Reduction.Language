@@ -1,0 +1,15 @@
+This is the README-file of the subdirectory red-q.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+red-q contains the following files:
+
+Makefile   : makefile for the (quick) compiled version of pi-RED+
+red        :
+red.init   :
+red.setup  :
+*.o        :
+
+dg 18.05.92
+To aid compatibility with another branch of the reduction machine
+development (pi-red*), the language construct LETP is supported.
+

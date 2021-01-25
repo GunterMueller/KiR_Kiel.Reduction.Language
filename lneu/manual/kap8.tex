@@ -1,0 +1,1244 @@
+\section{Vectors and Matrices as System-Supported Data Types}
+\subsection{Problem Identification}
+All serious computational problems involve {\mys value-transforming}\index{value-transforming operation} and {\mys structuring operations}\index{structuring operation} on large {\mys structured objects}\index{structured object}, in scientific and engineering applications 
+especially on {\mys arrays}\index{array} of {\mys numerical values}. The proper 
+representation of these objects and the efficient implementation
+of operations on them is a considerable problem in all functional
+languages and systems. Conceptually, all operations must create
+new objects rather than overwrite existing ones in order to keep
+the computations free of side effects. Copying repeatedly
+large data structures in which only a few entries have been modified is extremely costly in terms of both processing time and memory 
+space expended.
+
+The language \kir as you know it sofar is particularly ill
+equipped in this respect since it provides just the bare essentials
+for structuring operations on {\mys heterogeneously typed
+ lists}\index{heterogeneously typed list}
+(sequences) of \kir expressions. The ensuing lack of expressive
+power often results in rather awkward programs even for 
+simple problems which may inflict
+a considerable run-time complexity. 
+
+A typical example would be a \kir program for the {\mys multiplication}
+of two {\mys matrices}\index{matrix multiplication} represented as lists of lists of numbers. With only
+the primitive (re-) structuring operations {\tt lselect},
+{\tt lcut}, {\tt lunite} or pattern matching available, this
+rather straightforward problem would turn out to be a rather
+sophisticated piece of artful programming. 
+
+Assuming that a first argument matrix of $n$ rows and $k$ columns 
+is represented as a list of $n$ sublists of $k$ entries each, and
+a second argument matrix of $k$ rows and $m$ columns is
+ represented as a list of $k$ sublists of $m$ entries each, this problem must be
+broken up into applications of the functions in two arguments
+\begin{description}
+\item[{\tt Mm\_prod}] (for {\mys matrix-matrix product}) which 
+recursively pairs all inner lists (row vectors) of its first
+argument matrix with the entire second argument matrix,
+applies another function {\tt Vm\_prod} to them, and concatenates the resulting lists (which are supposed to be the rows of the
+product matrix);
+\item[{\tt Vm\_prod}] (for {\mys vector-matrix product}) which
+recursively pairs a list (vector) expected in its first
+argument position with all inner lists (column vectors) of
+the matrix representation expected in its second argument position,applies a third function {\tt Vv\_prod} to them, and concatenates the
+resulting values (which are to become the components of the row
+vectors of the product matrix);
+\item [{\tt Vv\_prod}] (for {\mys vector-vector product}) which recursively pairs
+the elements of the flat lists (vectors) expected in both of its
+argument positions, multiplies them and adds them up.
+\end{description}
+Thus, the entire matrix multiplication program would look 
+like this:
+%---------------------------------------------------------
+\begin{verbatim}
+
+def 
+  Mm_prod [ Ma_1 , Ma_2 ] =
+   let X = lcut [ 1 , Ma_1 ] ,
+       Y = Vm_prod [ lselect [ 1 , Ma_1 ] ,
+                     Ma_2 ]
+   in if empty [ X ]
+      then < Y >
+      else ( < Y > ++ Mm_prod [ X , Ma_2 ] ) ,
+  Vm_prod [ Vec , Matr ] =
+   let X = lcut [ 1 , Matr ] ,
+       Y = Vv_prod [ Vec , lselect [ 1 , Matr ] ]
+   in if empty [ X ]
+      then < Y >
+      else ( < Y > ++ Vm_prod [ Vec , X ] ) ,
+  Vv_prod [ Vec1 , Vec2 ] =
+   let X = lcut [ 1 , Vec1 ] ,
+       Y = lcut [ 1 , Vec2 ] ,
+       Z = ( lselect [ 1 , Vec1 ] * lselect [ 1 , Vec2 ] )
+   in if and [ empty [ X ] ,
+               empty [ Y ] ]
+      then Z
+      else ( Z + Vv_prod [ X , Y ] )
+in Mm_prod [ < < 1 , 2 > ,
+               < 3 , 4 > ,
+               < 5 , 6 > > ,
+             < < 5 , 6 > ,
+               < 3 , 4 > ,
+               < 1 , 2 > > ]
+
+\end{verbatim}
+%--------------------------------------------------------
+To transpose one of the argument matrices, if this should be necessary, requires another three function definitions of about the same
+complexity.
+
+Executing this program in one shot returns, after 287 reductions,
+the correct product matrix
+%-------------------------------------------------------------
+\begin{verbatim}
+
+< < 17 , 11 , 5 > ,
+  < 39 , 25 , 11 > ,
+  < 61 , 39 , 17 > >        .
+
+\end{verbatim}
+%--------------------------------------------------------------
+This rather formidable program primarily specifies the recursive decomposition of the argument matrices into their atomic components,
+embedded in the recursive construction of the resulting product
+matrix from other atomic components which are being generated
+by applications of the function {\tt Vv\_prod}. The multiplication
+of an $n*k$ matrix by a $k*m$ matrix thus calls $n$ times the
+function {\tt Mm\_prod}, $m$ times the function {\tt Vm\_prod}
+in each call of {\tt Mm\_prod}, and $k$ times the function
+{\tt Vv\_prod} in each call of {\tt Vm\_prod}, i.e., we have
+altogether $n*m*k$ recursive function calls. On first sight, this
+computational complexity seems to be appropriate for the
+ particular problem since it equals the number of elementary arithmetic
+operations (additions and multiplications) that need to be carried out. However, the inefficient and hence expensive part is due to the generation of these operations by means of recursive function
+applications, of which each involves the substitution of two
+formal by actual parameters, the evalution of an
+ {\tt if\_then\_else}
+clause, and applications of primitive function which decompose and
+assemble lists. Depending on implementation details, the complexities of the latter operations in both time and space consumption 
+may be rather substantial.
+
+Another problem with this program concerns the {\mys compatibility}
+of both argument matrices w.r.t. their {\mys shapes} and {\mys element types}\index{shape compatibility}\index{type compatibility}.
+If neither is the case, program execution may get stuck with
+the entire computation unfolded to the point where either the
+function {\tt Vv\_prod} has consumed one of its argument lists
+with further elements left in the other, in which case the shapes
+are not compatible\footnote{The syntax of lists even renders it
+possible to have varying numbers of elements in each of the
+sublists (the row or column vectors) of a matrix
+ representation}, or any of the arithmetic operations is not
+applicable since the lists contain elements other than numbers
+ (which syntactically is perfectly legitimate).
+
+To see what happens in these cases, let's 
+first replace the {\tt 1} in the first row of the first
+argument matrix by a character string {\tt 'abc`}, in which case
+no arithmetic operations involving this element can be carried
+out due to incompatible types. Thus you get, after 281 reduction steps, the following structure\footnote{It is easy to
+see why this reduction sequence took six steps less than the
+one that applied to the matrix which had in place of the string
+{\tt 'abc`} a number: there are three multiplications and three
+additions left over that could not be done.}:
+%------------------------------------------------------------
+\begin{verbatim}
+
+< < ( ( 'abc` * 5 ) + 12 ) ,
+    ( ( 'abc` * 3 ) + 8 ) ,
+    ( ( 'abc` * 1 ) + 4 ) > ,
+  < 39 , 25 , 11 > ,
+  < 61 , 39 , 17 > >
+
+\end{verbatim}
+%--------------------------------------------------------------
+
+Now let's try incompatible shapes by just taking one element, the {\tt 1}, off the
+ first row of the first matrix. Here is what you get as an
+incomplete result matrix after 266 reduction steps:
+%-----------------------------------------------------------
+\begin{verbatim}
+
+< < ( 10 + if ( empty( lcut( 1 , <> ) ) and true )
+           then ( lselect( 1 , <> ) * 6 )
+           else ( ( lselect( 1 , <> ) * 6 ) + ap def 
+                                                   ?
+                                                   ? 
+                                              to [ .. ] ) ) ,
+    ( 6 + if ( empty( lcut( 1 , <> ) ) and true )
+          then ( lselect( 1 , <> ) * 4 )
+          else ( ( lselect( 1 , <> ) * 4 ) + ap def 
+                                                  ?
+                                                  ?
+                                             to [ .. ] ) ) ,
+    ( 2 + if ( empty( lcut( 1 , <> ) ) and true )
+          then ( lselect( 1 , <> ) * 2 )
+          else ( ( lselect( 1 , <> ) * 2 ) + ap def 
+                                                  ?
+                                                  ?
+                                             to [ .. ] ) ) > ,
+  < 39 , 25 , 11 > ,
+  < 61 , 39 , 17 > >
+
+\end{verbatim}
+%------------------------------------------------------------
+As you can see, the computation stops with a constant expression
+containing expanded function calls upon failing to extract a
+ second element from the first row of the first argument matrix
+(by trying to cut off an element from a list that is already 
+empty). Since the predicate terms of the {\tt if\_then\_else}
+clauses thus cannot be reduced to Boolean constants, no further
+reductions take place in the respective alternative terms.
+Note that only the first row of the product matrix remains 
+incomplete, whereas the other two rows are flawlessly computed
+as before.
+
+The inconveniences of writing programs in this awkward form and
+of having them reduced to a large extent (but to
+ no avail) in case of {\mys type incompatibilities} of the argument
+ objects led to the introduction in \kir of the {\mys composite} (or
+{\mys array})
+{\mys data types}\index{structured data type}\index{array data type}\index{composite data type} {\tt vector}\index{vector}\index{matrix} and {\tt matrix}. The basic ideas are
+more or less directly adopted from the programming language 
+APL~\cite{iv62} and the {\mys data type architectures}\index{data type architecture} proposed in~\cite{abr70,gi82}.
+
+\subsection{Re-Structuring Vectors and Matrices}
+Including in \kir {\mys composite data types} greatly facilitates
+programming complex numerical application problems, making
+programs more concise and hence more comprehensible. It relieves the
+programmer of the tedious and error-prone burden of specifying
+operations on composite objects in terms of nested recursive
+functions (or iteration loops) which essentially prescribe their
+decomposition and (re-) construction, and it also does
+away, to a considerable degree, with the run-time complexity
+(particularly space consumption) thus inflicted . This is
+primarily due to the implementation of a variety of standardized
+(re-) structuring and value-transforming operations as 
+{\mys system primitives}\index{system-supported primitives} of \pired, applications of which
+ are $\delta$-reduced in one conceptual step. Most of
+the primitive functions are {\mys overloaded}
+(or {\mys generic}\index{overloading}\index{generic type}), i.e., they are applicable to any type- and shape-
+compatible combination of atomic values (scalars), vectors
+ and matrices. Type- and shape-compatibility tests are done
+ dynamically at run-time: the operations are carried out if and
+only if these tests succeed.
+
+Before looking at 
+anything else, you should make yourself familiar with the
+\kir representations of vectors and matrices
+and how they can be edited on your display screen. Though
+they are essentially based on lists (or sequences) of elements,
+there are things that are a little different. Whereas ordinary
+lists may have as components any of the legitimate \kir expressions (including lists) and thus are heterogeneously typed, vectors
+and matrices are composite objects whose elements are atomic and of the
+same basic (elementary) type such as decimal numbers,
+ boolean values, and character strings. Moreover,  matrices
+ require that all its rows (or columns) have the same number of
+ elements. Following these constraints, 
+the editor rejects any attempts to introduce into
+certain positions of 
+a partially specified structured object elements that either syntactically or
+because of their types don't
+belong there. 
+
+{\mys Vectors}\index{vector}\index{matrix} and {\mys matrices} are distinguished 
+from ordinary lists by special {\mys keywords}\index{keyword} which also define the types of the elements. These keywords are taken as the outermost
+constructors of the objects. For vectors they include
+\begin{description}
+\item[{\tt vect}] for a row vector of decimal numbers;
+\item[{\tt bvect}] for a row vector of boolean constants;
+\item[{\tt svect}] for a row vector of character strings;
+\end{description}
+and {\tt tvect}, {\tt btvect}, {\tt stvect} for the respective
+transposed (or column) vectors. It is important to note that
+applications of dyadic
+value-transforming functions on vectors (and on matrices 
+as well), as you will see a little later, can be reduced
+if and only if the constellation of row and column vectors (or matrices)
+complies with the respective rules of linear algebra. 
+
+You may edit a vector of numbers by typing in the input line
+{\tt vect} which, upon hitting the enter key,
+ will return to the {\sc fa} field as {\tt vect< \# >}. The empty
+symbol may now be replaced with any sequence of numbers
+separated by commas, say {\tt 1,5,6,7}, yielding:
+%-----------------------------------------------------------
+\begin{verbatim}
+
+vect< 1 , 5 , 6 , 7 > .
+ 
+\end{verbatim}
+%-----------------------------------------------------------
+Further elements may be inserted into this vector anywhere you
+like and in the same way you learned to do it with lists: you
+simply move the cursor under the element preceding the position
+of insertion and type {\tt \%,} followed by the sequence of
+numbers you wish to have sqeezed in there. For instance, with
+the cursor under the {\tt 1} and with {\tt \%, 2,3,4} as input
+you will get:
+%-----------------------------------------------------------
+\begin{verbatim}
+
+vect< 1 , 2 , 3 , 4 , 5 , 6 , 7 >  .
+
+\end{verbatim}
+%-----------------------------------------------------------
+However, if you try to insert anything other than a number,
+say the string 'abc`, it will not be accepted as a legitimate
+input, i.e., the vector in the {\sc fa} field remains as before,
+and on the message line you will be notified that a number is
+expected instead.
+
+The transposed version of this vector may be edited using
+the keyword {\tt tvect}, which will give you in the {\sc fa}
+field:
+%-----------------------------------------------------------
+\begin{verbatim}
+
+tvect< 1 ,
+       2 ,
+       3 ,
+       4 ,
+       5 ,
+       6 ,
+       7 >  .
+
+\end{verbatim}
+%-----------------------------------------------------------
+The (re-) {\mys structuring functions}\index{structuring operation} that may be applied to vectors
+are essentially the same as those for lists. They are 
+distinguished by a prefix letter {\tt v} instead of {\tt  l},
+i.e., we have {\tt vselect}, {\tt vcut}, {\tt vrotate},
+{\tt vreplace}, {\tt vunite}, with the same index
+parameters as for lists. In addition, there is a function
+{\tt transpose} which returns the transpose of the actual
+vector.
+
+Typical applications of these functions have the following
+ effects:
+\begin{itemize}
+\item Selecting an element from a vector:
+%--------------------------------------------------------
+\begin{verbatim}
+vselect [ 3 , vect< 7 , 6 , 5 , 4 , 3 , 2 , 1 > ]
+\end{verbatim}
+%----------------------------------------------------
+returns the value {\tt 5};
+\item Rotating a vector to the left: 
+%--------------------------------------------------------------
+\begin{verbatim}
+vrotate [ 3 , vect< 1 , 2 , 3 , 4 , 5 , 6 , 7 > ]
+\end{verbatim}
+%-----------------------------------------------------------
+returns
+%-----------------------------------------------------
+\begin{verbatim}
+vect< 4 , 5 , 6 , 7 , 1 , 2 , 3 >    ;
+\end{verbatim}
+%-----------------------------------------------------------
+\item Cutting elements off the trailing end of a vector: 
+%-----------------------------------------------------
+\begin{verbatim}
+vcut( ~2 , vect< 1 , 2 , 3 , 4 , 5 , 6 , 7 > )
+\end{verbatim}
+%-----------------------------------------------------------
+returns\footnote{Note that in the application of {\tt vcut} the 
+parameter value
+{\tt \~2} must be read as a negative number.}
+%-----------------------------------------------------
+\begin{verbatim}
+vect< 1 , 2 , 3 , 4 , 5 >    ;
+\end{verbatim}
+%-----------------------------------------------------------
+\item Transposing a vector from column to row: 
+%-----------------------------------------------------
+\begin{verbatim}
+transpose [ tvect< 1 ,
+                   2 ,
+                   3 ,
+                   4 ,
+                   5 ,
+                   6 ,
+                   7 > ]
+\end{verbatim}
+%-------------------------------------------------------
+returns
+%-----------------------------------------------------
+\begin{verbatim}
+vect< 1 , 2 , 3 , 4 , 5 , 6 , 7 >    ;
+\end{verbatim}
+%-------------------------------------------------------
+\item Concatenating two vectors:
+%------------------------------------------------------
+\begin{verbatim}
+vunite [ tvect< 1 , 2 , 3 , 4 > , vect< 5 , 6 , 7 , 8 > ]
+\end{verbatim}
+returns
+\begin{verbatim}
+vect< 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 >    ;
+\end{verbatim}
+(Note that this function application does not work on
+vectors of which one is transposed but the other is not).
+%-----------------------------------------------------
+\item Replacing an element:
+%-----------------------------------------------------
+\begin{verbatim}
+vreplace [ 3 , 11 , vect< 8 , 7 , 6 , 5 , 4 , 3 , 2 , 1 > ]
+\end{verbatim}
+returns
+\begin{verbatim}
+vect< 8 , 7 , 11 , 5 , 4 , 3 , 2 , 1 >    .
+\end{verbatim}
+%--------------------------------------------------------
+\end{itemize}
+
+Legitimate keywords for (the construction of) two-dimensional
+matrices are
+\begin{description}
+\item[{\tt mat}] for matrices of decimal numbers;
+\item[{\tt bmat}] for matrices of boolean constants;
+\item[{\tt smat}] for matrices of character strings;
+\item[{\tt mmat}] for matrices of matrices.
+\end{description}
+
+ A matrix of numbers may be edited by typing in the input line
+{\tt mat}, which will be echoed in the {\sc fa} field as:
+%-------------------------------------------------------
+\begin{verbatim}
+
+mat 
+< # >.           .
+
+\end{verbatim}
+%--------------------------------------------------------
+The keyword {\tt mat} is here taken as the outermost constructor of the matrix, and the {\tt \#} is the placeholder for its first
+row. So, if you type in the input line, say, {\tt 3,2,1} with
+the cursor underneath the {\tt \#}, you will get this:
+%------------------------------------------------------
+\begin{verbatim}
+
+mat 
+< 3 , 2 , 1 >.           .
+
+\end{verbatim}
+%------------------------------------------------------
+As long as you have only one row in your matrix, you may
+add further entries as you like, e.g., if you type {\tt 5,4,\%}
+with the cursor underneath the {\tt 3}, you get:
+%---------------------------------------------------------
+\begin{verbatim}
+
+mat 
+< 5 , 4 , 3 , 2 , 1 >.           .
+ 
+\end{verbatim}
+%---------------------------------------------------------
+Likewise, you may delete any number of elements from this
+structure. 
+
+Now let's  try to add more rows. You may do so by moving the cursor under the opening parenthesis {\tt <} of the row that already
+exists and simply type as input something like {\tt \%,< 6,}. It will show up in the {\sc  fa} field as:
+%----------------------------------------------------------
+\begin{verbatim}
+
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< 6 , # , # , # , # >.           .
+
+\end{verbatim}
+%-----------------------------------------------------------
+Something interesting has happened here: even though the second
+row was incompletely specified, the editor has laid out its complete
+structure, taking the number of elements of the first row as the
+row length for the entire matrix. This length is fixed from now on, i.e., if you try to add or delete elements to or from
+a row, you will not succeed. There are only two things that you
+can do: fill out the empty symbols of incompletely specified
+ rows, and add or delete entire rows since only the number of 
+columns remains variable. 
+You are invited to check this out by adding another two empty
+rows, say following the first row, and by immediately deleting
+one of them so that, in the end, you get this:
+%-----------------------------------------------------------
+\begin{verbatim}
+  
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< # , # , # , # , # > ,
+< 6 , # , # , # , # >.           .
+
+\end{verbatim}
+%---------------------------------------------------------
+Now you should complete the matrix by inserting numbers
+into the placeholder positions in any way you prefer it,
+say thus:
+%--------------------------------------------------------
+\begin{verbatim}
+
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 4 , 5 > ,
+< 6 , 7 , 8 , 9 , 0 >.   ,
+
+\end{verbatim}
+%------------------------------------------------------
+and store it away on an {\tt edit} file so that you have available
+some vehicle to play around with. 
+
+The (re-) {\mys structuring operations}\index{structuring operation} that are applicable to
+matrices are essentially the same as those for lists and
+vectors. The function names have to be pre-fixed with an {\tt m}
+instead of {\tt l} or {\tt v}, i.e., you may use {\tt mselect},
+{\tt mcut}, {\tt mrotate}, {\tt mreplace} and {\tt munite}.
+There is one significant difference though: applications of
+these functions usually require two
+index parameters  to specifies how the operations are to
+be performed along  both matrix coordinates.
+Thus, the general syntax of applications of these functions is:
+$$
+{\tt mfunc[index\_1,\;index\_2,\;matrix]}\;,
+$$
+with {\tt index\_1} and {\tt index\_2}
+specifying row and column indices, respectively. 
+ 
+Here is a number of representative examples for what these
+ functions do to the above matrix:
+\begin{itemize}
+\item Selecting an element from the matrix:
+%-------------------------------------------------------------
+\begin{verbatim}
+select( 3 , 4 , mat 
+                < 5 , 4 , 3 , 2 , 1 > ,
+                < 1 , 2 , 3 , 4 , 5 > ,
+                < 6 , 7 , 8 , 9 , 0 >. )
+\end{verbatim}
+returns the element {\tt 9} of the third row and the fourth
+column;
+%-----------------------------------------------------------
+\item Cutting off columns:
+%-----------------------------------------------------------
+\begin{verbatim}
+mcut [ 0 , 2 , mat 
+               < 5 , 4 , 3 , 2 , 1 > ,
+               < 1 , 2 , 3 , 4 , 5 > ,
+               < 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+returns
+\begin{verbatim}
+mat 
+< 3 , 2 , 1 > ,
+< 3 , 4 , 5 > ,
+< 8 , 9 , 0 >.       ;
+\end{verbatim}
+%-----------------------------------------------------------
+\item Rotating the rows of the matrix:
+%--------------------------------------------------------
+\begin{verbatim}
+mrotate [ ~1 , 0 , mat 
+                   < 5 , 4 , 3 , 2 , 1 > ,
+                   < 1 , 2 , 3 , 4 , 5 > ,
+                   < 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+returns
+\begin{verbatim}
+mat 
+< 6 , 7 , 8 , 9 , 0 > ,
+< 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 4 , 5 >.       ;
+\end{verbatim}
+%--------------------------------------------------
+\item Rotating the matrix in one step both
+along rows and columns:
+%--------------------------------------------------
+\begin{verbatim}
+mrotate [ ~1 , 2 , mat 
+                   < 5 , 4 , 3 , 2 , 1 > ,
+                   < 1 , 2 , 3 , 4 , 5 > ,
+                   < 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+returns
+\begin{verbatim}
+mat 
+< 8 , 9 , 0 , 6 , 7 > ,
+< 3 , 2 , 1 , 5 , 4 > ,
+< 3 , 4 , 5 , 1 , 2 >.       ;
+\end{verbatim}
+%----------------------------------------------------
+\item Replacing an element of the matrix:
+%-----------------------------------------------------
+\begin{verbatim}
+mreplace [ 2 , 4 , 11 , mat 
+                        < 5 , 4 , 3 , 2 , 1 > ,
+                        < 1 , 2 , 3 , 4 , 5 > ,
+                        < 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+returns
+\begin{verbatim}
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 11 , 5 > ,
+< 6 , 7 , 8 , 9 , 0 >.       ;
+\end{verbatim}
+%-------------------------------------------------------
+\item Replacing entire columns and rows can be accomplished
+by two variants of {\tt mreplace} which require different
+parameter specifications:
+%-------------------------------------------------------
+\begin{verbatim}
+mreplace_c( 3 , tvect< 4 ,
+                       4 ,
+                       4 > , mat 
+                             < 5 , 4 , 3 , 2 , 1 > ,
+                             < 1 , 2 , 3 , 4 , 5 > ,
+                             < 6 , 7 , 8 , 9 , 0 >. )       
+\end{verbatim}
+replaces the third column of the matrix by the column vector
+given in the second argument position, returning:
+\begin{verbatim}
+mat 
+< 5 , 4 , 4 , 2 , 1 > ,
+< 1 , 2 , 4 , 4 , 5 > ,
+< 6 , 7 , 4 , 9 , 0 >.     ;
+\end{verbatim}
+Likewise,
+\begin{verbatim}
+mreplace_r [ 2 ,
+             vect< 6 ,  6 , 6 , 6 , 6 > ,
+             mat 
+             < 5 , 4 , 3 , 2 , 1 > ,
+             < 1 , 2 , 3 , 4 , 5 > ,
+             < 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+replaces the second row of the matrix with the row vector
+specified as second argument and returns:
+\begin{verbatim}
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< 6 , 6 , 6 , 6 , 6 > ,
+< 6 , 7 , 8 , 9 , 0 >..     .
+\end{verbatim}
+%--------------------------------------------------------
+It is important to note that the objects to be substituted must be specified as vectors of the same lengths, element types
+and orientations as the ones that are to be replaced. No other
+structures will be accepted as legitimate arguments, i.e., the
+applications could not be reduced in these cases.
+\item Concatenating two matrices (in this case just for convenience a matrix with itself) along rows must
+be specified as:
+%-----------------------------------------------------------
+\begin{verbatim}
+munite( 1 , mat 
+            < 5 , 4 , 3 , 2 , 1 > ,
+            < 1 , 2 , 3 , 4 , 5 > ,
+            < 6 , 7 , 8 , 9 , 0 >. , mat 
+                                     < 5 , 4 , 3 , 2 , 1 > ,
+                                     < 1 , 2 , 3 , 4 , 5 > ,
+                                     < 6 , 7 , 8 , 9 , 0 >. )
+\end{verbatim}
+which returns
+\begin{verbatim}
+mat 
+< 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 4 , 5 > ,
+< 6 , 7 , 8 , 9 , 0 > ,
+< 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 4 , 5 > ,
+< 6 , 7 , 8 , 9 , 0 >.     ;
+\end{verbatim}
+and concatenating it with itself along columns must be specified 
+as:
+\begin{verbatim}
+munite( 2 , mat 
+            < 5 , 4 , 3 , 2 , 1 > ,
+            < 1 , 2 , 3 , 4 , 5 > ,
+            < 6 , 7 , 8 , 9 , 0 >. , mat 
+                                     < 5 , 4 , 3 , 2 , 1 > ,
+                                     < 1 , 2 , 3 , 4 , 5 > ,
+                                     < 6 , 7 , 8 , 9 , 0 >. )
+
+\end{verbatim}
+and returns
+\begin{verbatim}
+mat 
+< 5 , 4 , 3 , 2 , 1 , 5 , 4 , 3 , 2 , 1 > ,
+< 1 , 2 , 3 , 4 , 5 , 1 , 2 , 3 , 4 , 5 > ,
+< 6 , 7 , 8 , 9 , 0 , 6 , 7 , 8 , 9 , 0 >.   .
+\end{verbatim}
+Note that the first parameter must have the value {\tt 1}
+for row concatenation, and the value {\tt 2} for column
+concatenation; no other value in this position 
+is within the domain of {\tt munite}. Of course, concatenation
+succeeds if and only if the two argument matrices have the
+same element types and the same dimension along the direction
+in which they are to be glued together.
+\item Transposing a matrix, as in the case of vectors,
+is denoted as:
+%-----------------------------------------------------
+\begin{verbatim}
+transpose [ mat 
+            < 5 , 4 , 3 , 2 , 1 , 5 , 4 , 3 , 2 , 1 > ,
+            < 1 , 2 , 3 , 4 , 5 , 1 , 2 , 3 , 4 , 5 > ,
+            < 6 , 7 , 8 , 9 , 0 , 6 , 7 , 8 , 9 , 0 >. ]
+\end{verbatim}
+%----------------------------------------------------------
+and returns
+%--------------------------------------------------------
+\begin{verbatim}
+mat 
+< 5 , 1 , 6 > ,
+< 4 , 2 , 7 > ,
+< 3 , 3 , 8 > ,
+< 2 , 4 , 9 > ,
+< 1 , 5 , 0 > ,
+< 5 , 1 , 6 > ,
+< 4 , 2 , 7 > ,
+< 3 , 3 , 8 > ,
+< 2 , 4 , 9 > ,
+< 1 , 5 , 0 >.
+\end{verbatim}      .
+%---------------------------------------------------------
+\end{itemize}
+
+\subsection{Value-Transforming Operations}
+Most of the primitive {\mys value-transforming
+functions}\index{value-transforming operation}\index{generic type} are {\mys generic}: they  may be applied to (any compatible 
+combination of) scalars (atomic data), vectors and matrices.
+
+Let us first consider {\mys dyadic arithmetic operations}\index{arithmetic operation}. 
+Applications in infix notation have the general form
+$$
+{\tt (\;operand\_2\;arith\_op\;operand\_1\;)} \;,
+$$
+in which case you must use the symbols
+{\tt +}, {\tt -}, {\tt *} and {\tt /} as substitutes for the
+operator {\tt arith\_op}. Alternatively, you may specify
+the applications as
+$$
+{\tt arith\_op[\;operand\_1,\;operand\_2]}\;,
+$$
+in which case the operators must be denoted as {\tt plus},
+ {\tt minus}, {\tt mult} or  {\tt div}.
+
+The reduction rules for these applications are roughly as follows:
+\begin{itemize}
+\item if both operands are scalar values of the same type,
+ then the operation is performed as usual, with another
+scalar of the same type as result;
+\item if {\tt operand\_2} is a matrix or a vector and {\tt
+operand\_1} is a scalar of the same type, then the result
+is another matrix or vector, respectively, of the same size
+whose elements are computed by pairing the
+scalar value of {\tt operand\_1} with all elements of
+ {\tt operand\_2};
+\item if {\tt operand\_1} is a matrix  or a vector 
+and {\tt operand\_2} is a scalar, then we have the
+ complementary operation with the scalar value and the elements of
+the composite object in each pair interchanged;
+\item if both operands are either matrices or vectors of the same
+sizes and element types, then the result is another matrix
+or vector of that size whose elements are computed by
+pairing all elements with identical
+row and column indices from both operand objects.
+\end{itemize}
+
+The following examples may help to illustrate this:
+\begin{itemize}
+\item Dividing a scalar by all elements of a matrix:
+%--------------------------------------------------
+\begin{verbatim}
+( 2 / mat 
+      < 2 , 4 , 6 , 8 > ,
+      < 1 , 3 , 5 , 7 >. )
+\end{verbatim}
+reduces to another matrix
+\begin{verbatim}
+mat 
+< 1 , 0.5 , 0.33333 , 0.25 > ,
+< 2 , 0.66666 , 0.4 , 0.28571 >.     ;
+\end{verbatim}
+%---------------------------------------------------
+\item Doing the same with both operands interchanged, i.e., 
+dividing all elements of a matrix by a scalar:
+%--------------------------------------------------
+\begin{verbatim}
+( mat 
+  < 2 , 4 , 6 , 8 > ,
+  < 1 , 3 , 5 , 7 >. / 2 )
+\end{verbatim}
+yields
+\begin{verbatim}
+mat 
+< 1 , 2 , 3 , 4 > ,
+< 0.5 , 1.5 , 2.5 , 3.5 >.     ;
+\end{verbatim}
+\item Dividing two matrices elementwise:
+%--------------------------------------------------
+\begin{verbatim}
+( mat 
+  < 4 , 8 , 12 , 16 > ,
+  < 2 , 6 , 10 , 14 >. / mat 
+                         < 2 , 4 , 6 , 8 > ,
+                         < 1 , 3 , 5 , 7 >. )
+\end{verbatim}
+results in
+\begin{verbatim}
+mat 
+< 2 , 2 , 2 , 2 > ,
+< 2 , 2 , 2 , 2 >.     .
+\end{verbatim}
+%-----------------------------------------------------
+\end{itemize}
+
+There are three more dyadic functions available which
+operate in essentially the same 
+way on scalars, vectors and matrices:
+\begin{description} 
+\item[{\tt mod}] computes (elementwise) the remainder of
+the second operand after division by the first operand;
+\\example:
+%-------------------------------------------------------
+\begin{verbatim}
+( mat 
+  < 4 , 5 , 6 > ,
+  < 9 , 8 , 7 >. mod mat 
+                     < 2 , 2 , 4 > ,
+                     < 4 , 2 , 7 >. )
+\end{verbatim}
+reduces in one step to
+\begin{verbatim}
+mat 
+< 0 , 1 , 2 > ,
+< 1 , 0 , 0 >.      ;
+\end{verbatim}
+%------------------------------------------------------
+\item[{\tt max}] computes (elementwise) the maximum numbers
+of both operands;
+\\example:
+%-----------------------------------------------------
+\begin{verbatim}
+( mat 
+  < 4 , 5 , 6 > ,
+  < 9 , 8 , 7 >. max mat 
+                     < 7 , 6 , 4 > ,
+                     < 4 , 9 , 7 >. )
+\end{verbatim}
+reduces in one step to
+\begin{verbatim}
+mat 
+< 7 , 6 , 6 > ,
+< 9 , 9 , 7 >.      ;
+\end{verbatim}
+%------------------------------------------------------
+\item[{\tt min}] computes (elementwise) the minimum numbers
+of both operands;
+\\example:
+%---------------------------------------------------------
+\begin{verbatim}
+( mat 
+  < 4 , 5 , 6 > ,
+  < 9 , 8 , 7 >. min mat 
+                     < 7 , 6 , 4 > ,
+                     < 4 , 9 , 7 >. )
+\end{verbatim}
+reduces to
+\begin{verbatim}
+mat 
+< 4 , 5 , 4 > ,
+< 4 , 8 , 7 >.      .
+\end{verbatim}
+%---------------------------------------------------------
+\end{description}
+
+The most powerful primitive function is the one for the direct computation of {\mys inner products}\index{inner product}
+of composite objects with compatible shapes and element types. The
+syntax of its application is
+$$
+{\tt ip\;[\;operand\_1,\;operand\_2]}\;\;\;\;\; .
+$$
+Here are some typical applications:
+\begin{itemize}
+\item Vector-vector products:
+%----------------------------------------------
+\begin{verbatim}
+ip( vect< 4 , 5 , 6 , 7 > , tvect< 1 ,
+                                   2 ,
+                                   3 ,
+                                   4 > )
+\end{verbatim}
+reduces in one step to {\tt 60};
+\begin{verbatim}
+ip( tvect< 4 ,
+           5 ,
+           6 ,
+           7 > , vect< 1 , 2 , 3 , 4 > )      
+\end{verbatim}
+reduces in one step to
+\begin{verbatim}
+mat 
+< 4 , 8 , 12 , 16 > ,
+< 5 , 10 , 15 , 20 > ,
+< 6 , 12 , 18 , 24 > ,
+< 7 , 14 , 21 , 28 >.       .
+\end{verbatim}
+%-----------------------------------------------
+Note that one of the operand vectors must be transposed
+according to the rule books, otherwise the application is
+irreducible.
+\item Vector-matrix products:
+\begin{verbatim}
+ip [ vect< 3 , 2 , 1 > , mat 
+                         < 4 , 8 , 12 , 16 > ,
+                         < 5 , 10 , 15 , 20 > ,
+                         < 6 , 12 , 18 , 24 >. ]
+\end{verbatim}
+reduces to {\tt vect< 28 , 56 , 84 , 112 >} .
+\begin{verbatim}
+ip( mat 
+    < 4 , 8 , 12 , 16 > ,
+    < 5 , 10 , 15 , 20 > ,
+    < 6 , 12 , 18 , 24 >. , tvect< 1 ,
+                                   2 ,
+                                   3 ,
+                                   4 > )   
+\end{verbatim}
+reduces to
+\begin{verbatim}
+tvect< 120 ,
+       150 ,
+       180 >   .
+\end{verbatim}
+%-----------------------------------------------
+\item A matrix-matrix product:
+%--------------------------------------------
+\begin{verbatim}
+ip( mat 
+    < 4 , 8 , 12 , 16 > ,
+    < 5 , 10 , 15 , 20 > ,
+    < 6 , 12 , 18 , 24 >. , transpose [ mat 
+                                        < 4 , 8 , 12 , 16 > ,
+                                        < 5 , 10 , 15 , 20 > ,
+                                        < 6 , 12 , 18 , 24 >. ] )
+\end{verbatim}
+reduces in one step to
+\begin{verbatim}
+ip( mat 
+    < 4 , 8 , 12 , 16 > ,
+    < 5 , 10 , 15 , 20 > ,
+    < 6 , 12 , 18 , 24 >. , mat 
+                            < 4 , 5 , 6 > ,
+                            < 8 , 10 , 12 > ,
+                            < 12 , 15 , 18 > ,
+                            < 16 , 20 , 24 >. )     ,
+\end{verbatim}
+and in another step to
+\begin{verbatim}
+mat 
+< 480 , 600 , 720 > ,
+< 600 , 750 , 900 > ,
+< 720 , 900 , 1080 >.      .
+\end{verbatim}
+%-------------------------------------------------
+\end{itemize}
+There is another interesting set of primitive functions
+ available in \kir which for arithmetic operations on
+vectors and matrices has the effect of the higher-order
+primitive {\tt fold\_right} that is available in many other
+functional languages: it drives an arithmetic operator
+from left to right into a vector or simultaneously
+into all row and column vectors of a matrix, applying
+it recursively to the first element and to the rest of
+the vector(s).
+
+ The syntax for applications of these functions is
+$$
+{\tt vc\_func[vect<\;\ldots\;>]}
+$$
+for vectors, and
+$$
+{\tt c\_func[index\;,\;mat<\;\ldots\;,>,\;\ldots\;<\;\ldots\;>.]}
+$$
+for martrices, in which case {\tt index = 1} specifies
+folding along columns and {\tt index = 2} specifies folding along
+rows.
+{\tt func} is a non-terminal which 
+stands for either of the arithmetic function 
+symbols {\tt plus}, {\tt minus}, {\tt mult} or {\tt div}. 
+
+The reduction of these applications follows the general
+scheme
+$$
+\begin{array}{l}
+{\tt vc\_func[vect<a\_1,\;\ldots\;,a\_n>]\;\rightarrow\;}
+\phantom{xxxx}
+\\ \multicolumn{1}{r}{{\tt 
+(a\_1\;vc\_func\;(a\_2\;vc\_func\;(\;\ldots\;(a\_(n-1)\;vc\_func\;
+a\_n))}\;.}
+\end{array}
+$$
+Here are some typical examples which illustrate these operations:
+\begin{itemize}
+\item Addition along a vector:
+%----------------------------------------------------
+\begin{verbatim}
+vc_plus( vect< 16 , 8 , 4 , 2 , 1 > )
+\end{verbatim}
+reduces in one step to {\tt 31} ;
+%-----------------------------------------------------
+\item Substraction along the same vector:
+%----------------------------------------------------
+\begin{verbatim}
+vc_minus( vect< 16 , 8 , 4 , 2 , 1 > )
+\end{verbatim}
+reduces in one step to {\tt 11}  ;
+%-----------------------------------------------------
+\item Division along the columns of a matrix:
+%-----------------------------------------------------
+\begin{verbatim}
+c_div [ 1 , mat 
+            < 16 , 8 , 4 , 2 > ,
+            < 8 , 4 , 2 , 1 > ,
+            < 4 , 2 , 1 , 1 > ,
+            < 1 , 1 , 1 , 1 >. ]
+\end{verbatim}
+reduces in one step to {\tt vect< 8 , 4 , 2 , 2 >} ;
+%--------------------------------------------------
+\item Division along the rows of the same matrix:
+%--------------------------------------------------
+\begin{verbatim}
+c_div [ 2 , mat 
+            < 16 , 8 , 4 , 2 > ,
+            < 8 , 4 , 2 , 1 > ,
+            < 4 , 2 , 1 , 1 > ,
+            < 1 , 1 , 1 , 1 >. ]
+\end{verbatim}
+reduces to
+\begin{verbatim}
+tvect< 4 ,
+       4 ,
+       2 ,
+       1 >    .
+\end{verbatim}
+%-----------------------------------------------------
+\end{itemize}
+
+There are two more unary functions applicable to scalars,
+vectors and matrices of numbers which may be of interest:
+\begin{description}
+\item[{\tt neg}] multiplies all elements by {\tt $^{\sim}$1} (minus one);
+\item[{\tt abs}] returns all elements as absolute values.
+\end{description}
+
+The {\mys relational operators}\index{relational operator} of \kir are defined over scalar values,
+vectors and matrices too. The element types may be decimal numbers or character strings (in which case all comparisons are made
+based on lexical orders). As far as composite objects are
+ concerned, the applicability of these operators follows
+ essentially the same rules as for dyadic arithmetic operators:
+a  scalar value in one operand position
+is paired wih all elements of a composite object in the other
+argument position, and composite objects in both operand positions
+must have the same shapes so that elements of identical index
+ positions can be paired.
+
+Legitimate relational operators are
+\begin{description}
+\item[{\tt eq | ne}] which test both operands over all
+elements for equality or inequality, respectively;
+\item[{\tt f\_eq | f\_ne}] which test both operands elementwise
+for equality or inequality, respectively;
+\item[{\tt lt | le}] which test whether or not the (elements
+ of the)
+first operand are less than or less/equal (the elements of) the
+ second operand, respectively;
+\item[{\tt gt | ge}] which tests whether or not the (elements of the)
+first operand are greater or greater/equal (the elements of) the
+second operand, respectively,
+\end{description}
+and return  as results (vectors or matrices of) boolean values.
+
+Here are a few examples of how this works:
+\begin{itemize}
+\item Comparison of a decimal number against a vector of numbers:
+%---------------------------------------------------------
+\begin{verbatim}
+le( 3 , vect< 5 , 4 , 3 , 2 , 1 > )
+\end{verbatim}
+reduces to
+\begin{verbatim}
+bvect< true , true , true , false , false >    ;
+\end{verbatim}
+%------------------------------------------------------
+\item Comparison of two vectors of numbers:
+%-----------------------------------------------------
+\begin{verbatim}
+gt( vect< 1 , 2 , 3 , 4 , 5 > , vect< 5 , 4 , 3 , 2 , 1 > )
+\end{verbatim}
+reduces to
+\begin{verbatim}
+bvect< false , false , false , true , true >    ;
+\end{verbatim}
+%-----------------------------------------------------
+\item Comparison of two vectors of character strings:
+%-------------------------------------------------------
+\begin{verbatim}
+lt( stvect< 'abc` ,
+           'cde` ,
+           'uvw` ,
+           'xyz` > , stvect< 'ab` ,
+                            'cde` ,
+                            'uvwx` ,
+                            'zyx` > )
+\end{verbatim}
+reduces to
+\begin{verbatim}
+btvect< false ,
+        false ,
+        true ,
+        true >    ;
+\end{verbatim}
+%-----------------------------------------------------
+\item Comparison of two vectors of strings for equality
+over all elements:
+%--------------------------------------------------
+\begin{verbatim}
+eq( svect< 'abc` , 'cde` , 'uvw` , 'xyz` > ,
+           svect< 'ab` , 'cde` , 'uvwx` , 'zyx` > )
+\end{verbatim}
+reduces to {\tt false}    ;
+%----------------------------------------------------
+\item Elementwise comparison of the same vectors
+for inequality:
+%-------------------------------------------------
+\begin{verbatim}
+f_ne( svect< 'abc` , 'cde` , 'uvw` , 'xyz` > ,
+             svect< 'ab` , 'cde` , 'uvwx` , 'zyx` > )
+\end{verbatim}
+reduces to
+\begin{verbatim}
+bvect< true , false , true , true >    .
+\end{verbatim}
+%-------------------------------------------------
+\end{itemize}
+
+The {\mys logical operators}\index{logical operator} {\tt and}, {\tt or}, {\tt xor}
+and {\tt not} may be used in the same way on atomic
+or composite objects of boolean element type.
+
+\subsection{Query Functions and Class Conversion}
+\kir also supports a number of {\mys query functions}\index{query function} which
+are primarily intended to return {\mys structural} and {\mys type
+information} about composite objects, but one of them may also
+be used to classify other objects of the language. These 
+functions include
+\begin{description}
+\item[{\tt class}] which, when applied to the respective \kir
+objects, returns as values {\tt scalar}, {\tt vector}, {\tt matrix}, {\tt list}, or {\tt function}\footnote{It is important to note that
+there is no class {\tt application} for this would mean that we 
+have a test which, depending on reduction orders, could have
+two different outcomes and thus would violate the Church-Rosser
+property and referential transparency: if you have an application
+as argument of {\tt class} then you may get the class {\tt application} in response, if -- for one reason or another -- it cannot be
+reduced, or something else if it is being reduced before applying
+the function {\tt class} to it.};
+\item[{\tt type}] which, when applied to  scalars, vectors or matrices, returns their element types;
+\item[{\tt ldim | vdim | mdim}] which, when applied to lists, vectors, or matrices, respectively, returns their dimensions.
+\end{description}
+All other appplications of these query functions are irreducible.
+
+Thus, when applying to the matrix
+%-----------------------------------------------------
+\begin{verbatim} 
+mat 
+< 4 , 8 , 12 , 16 > ,
+< 5 , 10 , 15 , 20 > ,
+< 6 , 12 , 18 , 24 >.
+\end{verbatim}
+%-----------------------------------------------------
+the functions {\tt class}, {\tt type}, {\tt mdim}, you
+should get as responses {\tt matrix}, {\tt number}, {\tt (3,4)},
+respectively. 
+
+Finally, \kir provides a set of {\mys cast functions}\index{cast function} by which
+composite objects of appropriate shape and element type may be
+ converted into objects of other classes (or types). The following
+functions are available:
+\begin{description}
+\item[{\tt to\_scalar}] converts a vector or a matrix of just one
+element into a scalar;
+\item[{\tt to\_vector}] converts a matrix of just one row vector 
+or a scalar into a vector;
+\item[{\tt to\_tvector}] converts a matrix of just one column vector or a scalar into a transposed vector;
+\item[{\tt to\_matrix}] converts a scalar, a vector or a transposed vector into a matrix of appropriate shape;
+\item[{\tt transform}] converts a matrix into a flat list of
+elements by concatenating its rows in ascending order;
+\item[{\tt ltransform}], when applied as {\tt ltransform[index\_1, index\_2, list]}, converts a flat list substituted for {\tt list} into
+a matrix of {\tt index\_1} rows and {\tt index\_2} columns by
+ putting
+consecutive subsequences of {\tt index\_2} elements from {\tt list} in ascending order into rows.
+\end{description}
+Applications to objects other than those listed above are irreducible and therefore remain unchanged.
+
+Here are some examples:
+\begin{itemize}
+\item Converting a vector into a matrix:
+%--------------------------------------------------------------
+\begin{verbatim} 
+to_mat [ tvect< 1 ,
+                2 ,
+                3 ,
+                4 ,
+                5 > ]
+\end{verbatim}
+reduces to
+\begin{verbatim}
+mat 
+< 1 > ,
+< 2 > ,
+< 3 > ,
+< 4 > ,
+< 5 >.      ;
+\end{verbatim}
+%-------------------------------------------------------
+\item Converting a matrix into a flat list:
+%-------------------------------------------------------
+\begin{verbatim}
+transform [ mat 
+            < 4 , 8 , 12 , 16 > ,
+            < 5 , 10 , 15 , 20 > ,
+            < 6 , 12 , 18 , 24 >. ]
+\end{verbatim}
+reduces to
+\begin{verbatim}
+< 4 , 8 , 12 , 16 , 5 , 10 , 15 , 20 , 6 , 12 , 18 , 24 >    ;
+\end{verbatim}
+\item Converting a flat list into a matrix:
+\begin{verbatim}
+ltransform [ 6 , 2 , < 4 , 8 , 12 , 16 , 5 , 10 , 15 ,
+                                20 , 6 , 12 , 18 , 24 > ]
+\end{verbatim}
+reduces to
+\begin{verbatim}
+mat 
+< 4 , 8 > ,
+< 12 , 16 > ,
+< 5 , 10 > ,
+< 15 , 20 > ,
+< 6 , 12 > ,
+< 18 , 24 >.      .
+\end{verbatim}
+%-------------------------------------------------
+\end{itemize}
+
+The {\tt transform} and {\tt ltransorm} functions in conjunction
+with the {\tt to\_\ldots} functions basically allow you to
+ convert any
+composite object into any other composite object, though  not 
+always very  elegantly. Considerable difficulties arise with conversions
+into lists, and to some extent also from lists into objects of
+other classes. There is as yet no direct way of converting
+a vector into a list (you first have to convert it into a matrix),
+and -- what is particularly annoying -- you cannot directly convert
+a matrix into a nested list of the same shape. You can only
+convert it into a flat list, from which you must re-construct
+the original shape by means of a defined function which requires
+as additional parameters the dimensions extracted from the
+ matrix you started with. Thus, what is needed are functions that
+convert vectors and matrices into lists (of lists)
+ of the same shape, and
+convert lists of appropriate shapes and element types into
+vectors or matrices. They are not yet available in \kir, but we are working on it. 
+ 

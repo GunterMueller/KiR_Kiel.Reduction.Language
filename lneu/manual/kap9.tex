@@ -1,0 +1,311 @@
+\section*{Appendix 1: The Syntax of \kir}
+\addcontentsline{toc}{section}{Appendix 1: The Syntax of \kir}
+This appendix gives a reasonably complete formal definition of the
+ {\mys syntax}\index{\kir syntax} of \kir in the usual Backus/Naur notation. However,
+ some of the production rules which exhaustively break down everything into nuts and bolts details will just be explained verbally.
+To avoid confusion with the delimiters {\tt <} and {\tt >} of lists
+ (sequences) of the syntax proper,
+we use the delimiters {\tt $\langle$:} and {\tt :$\rangle$} 
+to enclose non-terminal symbols. Likewise, to enclose material
+which is to be repeated zero or several times, we use 
+the curly brackets (again with colons) {\tt \{:} and
+{\tt :\}}.
+
+The basic syntactic entities of which all \kir programs are
+constructed  are {\mys expressions}\index{expression}\index{term} (or {\mys terms}). Thus we have a start symbol
+{\tt $\langle$:expr:$\rangle$} from which derive the following 
+ non-terminals:
+$$
+\begin{array}{rclc}
+{\tt \langle:expr:\rangle} &\Longrightarrow & {\tt \langle:binding\_expr:\rangle} & |\\
+& & {\tt \langle:control\_expr:\rangle} & |\\
+& & {\tt \langle:ap\_expr:\rangle} & |\\
+& & {\tt \langle:struct\_expr:\rangle} & |\\
+& & {\tt \langle:const\_expr:\rangle} &
+\end{array}
+$$
+The {\mys binding expressions}\index{binding expression} that derive from {\tt $\langle$:binding\_expr:$\rangle$} are essentially all those which define functions and the
+scopes of their formal parameters, including one which directly substitutes non-recursively defined variables by the values of expressions:
+$$
+\begin{array}{rclc}
+{\tt \langle:binding\_expr:\rangle} & \Longrightarrow & {\tt \langle:recfunc\_def:\rangle} & |\\
+& & {\tt \langle:letvar\_def:\rangle} & |\\
+& & {\tt\langle:func\_def:\rangle} & |\\
+& & {\tt\langle:pattern\_match:\rangle} & 
+\end{array}
+$$
+The {\mys control expressions}\index{control expression} break down into {\tt then\_else}
+clauses\footnote{Note that complete {\tt if\_then\_else} clauses are
+{\mys applications} of 
+ {\tt then\_else} clauses to predicate expressions.} and {\tt case}
+constructs:
+$$
+\begin{array}{rclc}
+{\tt \langle:control\_expr:\rangle} & \Longrightarrow & {\tt then\;\langle:expr:\rangle\;else\;\langle:expr:\rangle} & |\\
+& & {\tt case\;\langle:pattern\_match:\rangle\;\{:,\;\langle:pattern\_match:\rangle:\}} &\\
+& & {\tt \{:otherwise\;\langle:expr:\rangle\;:\}\;end}
+\end{array}
+$$ 
+Note here that the {\tt otherwise} expression, contrary to the general
+definition of the brackets {\tt \{:} and {\tt :\}}, may appear at most
+once in a {\tt case} expression.
+
+The {\mys applicative expressions} come in four alternative forms which,
+ depending on the number of arguments and the class (or type) of the expressions that are
+in function positions, are appropriately chosen by the \pired editor
+when returning intermediate programs:
+$$
+\begin{array}{rclc}
+{\tt \langle:ap\_expr:\rangle} & \Longrightarrow &
+{\tt ap\;\langle:expr:\rangle\;to\;[\langle:expr:\rangle\;\{:,\;\langle:expr:\rangle:\}]} & |\\
+& & {\tt \langle:expr:\rangle[\langle:expr:\rangle\;\{:,\;\langle:expr:\rangle:\}]} & |\\
+& & {\tt (\;\langle:expr:\rangle\;\langle:expr:\rangle\;\langle:expr:\rangle\;)} & |\\
+& & {\tt if\;\langle:expr:\rangle\;then\;\langle:expr:\rangle\;else\;\langle:expr:\rangle\;} & 
+\end{array}
+$$
+The {\mys structured expressions}\index{structured expression} partition thus (the item marked $^\ddagger$
+ may not yet be implemented):
+$$
+\begin{array}{rclc}
+{\tt \langle:struct\_expr:\rangle} & \Longrightarrow & 
+{\tt \langle:tree:\rangle ^\ddagger
+\;| \; \langle:sequence:\rangle \; |
+\; \langle:vector:\rangle \; |\; \langle:matrix:\rangle} &
+\end{array}
+$$
+and, finally, we have the following {\mys constant expressions}\index{constant expression}:
+$$
+\begin{array}{rclc}
+{\tt \langle:const\_expr:\rangle} & \Longrightarrow & {\tt \langle:var:\rangle\;|\; \langle:num:\rangle\;|\; \langle:bool:\rangle\;} & |\\
+& & {\tt \langle:string:\rangle\;|\; \langle:prim\_func:\rangle\;} &
+\end{array}
+$$
+One level down, we have the following production rules for the various binding expressions:
+$$
+\begin{array}{rclc}
+{\tt \langle:recfunc\_def:\rangle} & \Longrightarrow &
+{\tt def\;\langle:func\_declar:\rangle\;in\; \langle:expr:\rangle} &\\
+{\tt \langle:letvar\_def:\rangle} & \Longrightarrow &
+{\tt let\;\langle:var\_declar;\rangle\;in\; \langle:expr:\rangle} &\\
+{\tt \langle:func\_def:\rangle} & \Longrightarrow &
+{\tt sub[\langle:var\_list:\rangle]\;in\; \langle:expr:\rangle} &\\
+{\tt \langle:pattern\_match:\rangle} & \Longrightarrow &
+{\tt when\;\langle:patterns:\rangle\;guard\; \langle:expr:\rangle\;do \langle:expr:\rangle} &
+\end{array}
+$$
+The non-terminals other than {\tt $\langle$:expr:$\rangle$} of these
+ rules in turn produce
+ the various {\mys function} and {\mys variable declarations}\index{function definition}\index{variable declaration} (or
+binding constructs):
+$$
+\begin{array}{rcl}
+{\tt \langle:func\_declar:\rangle} & \Longrightarrow & {\tt \langle:func\_def:\rangle\;
+\{:,\;\langle:func\_def:\rangle\;:\}}  \; \\
+{\tt \langle:func\_def:\rangle} & \Longrightarrow & {\tt \langle:ident:\rangle[\;\langle:id\_list:\rangle\;]\;=\;\langle:expr:\rangle}  \; \\
+{\tt \langle:var\_declar:\rangle} & \Longrightarrow & {\tt \langle:ident:\rangle\;=\;\langle:expr:\rangle\;\{:, \langle:ident:\rangle\;=\;\langle:expr:\rangle\;:\}}  \; \\
+{\tt \langle:id\_list:\rangle} & \Longrightarrow & {\tt \langle:ident:\rangle\;\{:,\; \langle:ident:\rangle\;:\}\; | \; \epsilon} \; \\
+{\tt \langle:patterns:\rangle} & \Longrightarrow & {\tt \langle:pattern:\rangle \; | \;  
+(\; \langle:pattern:\rangle\;\{:\;, \langle:pattern:\rangle\;:\})}  \;\\
+{\tt \langle:pattern:\rangle} & \Longrightarrow & {\tt \langle:pat\_el:\rangle\;\{:\;, \langle:pattern:\rangle\;:\}} \; |\\
+ & & {\tt \langle:user\_constr:\rangle\;\{\;\langle:pattern:\rangle\;\} \; | \; \epsilon}\; \\
+{\tt \langle:pat\_el:\rangle} & \Longrightarrow & {\tt \;.\; \; | \; \;\langle:ident:\rangle\;} \;|\; 
+ {\tt \;\ldots\; \; | \;  as\;\ldots\; \langle:ident:\rangle\;} \; |\\
+& & {\tt \;.+\;} \; | \; {\tt as\;.+\;\langle:ident:\rangle\;} \; |\;
+{\tt \;.*\;} \; | \; {\tt as\;.*\;\langle:ident:\rangle\;} \; |\;
+{\tt \langle:const:\rangle} \; \; 
+\end{array}
+$$
+ Note that in the various declarations parts we use the non-terminal
+{\tt $\langle:$ident$:\rangle$} to denote defining variable occurrences.
+They need to be distinguished syntactically
+from applied variable occurrences in the
+respective body expressions which may be preceded by one or several
+protection keys. Thus, for applied variable occurrences
+ we have the following production rule:
+$$
+{\tt \langle:var:\rangle\;\Longrightarrow\;\langle:ident:\rangle\;|\;\backslash \langle:var:\rangle}
+$$
+The structured expressions break down as follows (again: the item marked $^\ddagger$
+ may not yet be implemented):
+$$
+\begin{array}{rcll}
+{\tt \langle:tree:\rangle ^\ddagger} & \Longrightarrow & {\tt <>\;} \;|\; {\tt \;
+<\;\langle:expr:\rangle\;,\;\langle:expr:\rangle\;>} &\\
+{\tt \langle:sequence:\rangle} & \Longrightarrow & {\tt <>\;} \;|\; {\tt \;
+<\;\langle:expr:\rangle\;\{:,\;\langle:expr:\rangle:\}>} &\\
+{\tt \langle:vector:\rangle} & \Longrightarrow & {\tt vect<>\;} \;|\; {\tt \;
+vect<\langle:num:\rangle\;\{:,\;\langle:num:\rangle\;:\}>} \;|\;\\
+& & {\tt tvect<>\;} \;|\; {\tt \;tvect<\langle:num:\rangle\;\{:,\;\langle:num:\rangle\;:\}>} \;|\;\\
+& & {\tt bvect<>\;} \;|\; {\tt \;bvect<\langle:bool:\rangle\;\{:,\;\langle:bool:\rangle\;:\}>} \;|\;\\
+& & {\tt btvect<>\;} \;|\; {\tt \;btvect<\langle:bool:\rangle\;\{:,\;\langle:bool:\rangle\;:\}>} \;|\;\\
+& & {\tt svect<>\;} \;|\; {\tt \;svect<\langle:string:\rangle\;\{:,\;\langle:string:\rangle\;:\}>} &\\
+& & {\tt stvect<>\;} \;|\; {\tt \;stvect<\langle:string:\rangle\;\{:,\;\langle:string:\rangle\;:\}>} &\\
+{\tt \langle:matrix:\rangle} & \Longrightarrow & 
+{\tt mat<<>>.\;} \;|\; {\tt \; mat<\{:<\;\langle:num:\rangle\;\{:,\;\langle:num:\rangle\;>:\}>.} \;|\;\\
+& & {\tt bmat<<>>.\;} \;|\; {\tt \; bmat<\{:<\;\langle:bool:\rangle\;\{:,\;\langle:bool:\rangle\;>:\}>.} \;|\;\\
+& & {\tt smat<<>>.\;} \;|\; {\tt \; smat<\{:<\;\langle:string:\rangle\;\{:,\;\langle:string:\rangle\;>:\}>.} \\
+\end{array}
+$$
+Note that the production rules for matrices are context-sensitive
+ in the sense that the material inside the outermost curly brackets
+ represents row vectors,  all of which must have the {\mys same}
+ number of elements (which, of course, is not properly specified by
+ the simple context-free rules given above).
+
+The following {\mys atoms}\index{atom} may be derived from the non-terminals for
+ constant expressions: 
+\begin{description}
+\item[${\tt \langle:ident:\rangle}$] is any finite sequence of letters, decimal
+digits and special characters
+which starts with an upper case letter;
+\item[${\tt \langle:num:\rangle}$] is any finite sequence of decimal digits with
+or without a decimal point;
+\item[${\tt \langle:bool:\rangle}$] is either of the Boolean constants {\tt true}
+or {\tt false};
+\item[${\tt \langle:string:\rangle}$] is any finite sequence of letters, decimal
+digits and special characters which is enclosed in a pair of quotation marks {\tt '} and {\tt `};
+\item[${\tt \langle:user\_constr:\rangle}$] is a finite sequence of letters starting with an upper case letter.
+\end{description}
+
+The following is a complete list of {\mys primitive functions}\index{primitive function} as they can be derived from the non-terminal {\tt prim\_func}
+(the symbols in brackets, if
+any, are
+those used when denoting applications as
+ {\tt func[arg\_1,\ldots,arg\_n]}; a symbol followed by $^\ddagger$
+ means that the function is not yet
+implemented):
+\begin{itemize}
+\item {\mys monadic value-transforming functions}:
+$$
+\begin{array}{lclclclc}
+{\tt abs} &|& {\tt neg}&|\\
+{\tt exp} &|& {\tt ln} &|\\
+{\tt sin} &|& {\tt cos} &|& {\tt tan} &|\\
+{\tt floor} &|& {\tt ceil} &|& {\tt frac} &|& {\tt trunc} &|\\
+{\tt vc\_+\;(vc\_plus)} &|& {\tt vc\_-\;(vc\_minus)} &|& {\tt vc\_*\;(vc\_mult)} &|& {\tt vc\_/\;(vc\_div)}\; &|\\
+\end{array}
+$$
+\item {\mys monadic query functions}:
+$$
+\begin{array}{lclclc}
+{\tt ldim}\;\;\;\;\;\;\;\; &|& {\tt vdim}\;\;\;\;\;\;\;\; &|& {\tt mdim}\;\;\;\;\;\;\;\; &|\\
+ {\tt class} &|& {\tt type} &|& {\tt empty}
+\end{array}
+$$
+\item {\mys monadic structuring functions} (the functions marked $^\ddagger$
+ which apply
+to trees may not yet be implemented):
+$$
+\begin{array}{lclclclc}
+{\tt transpose} &|& {\tt reverse} &|\\
+ {\tt to\_scalar}\;\;\; &|& {\tt to\_vector}\;\;\; &|& {\tt to\_tvector}\;\; &|& {\tt to\_matrix}\;\;\; &| \\
+{\tt head ^\ddagger
+} &|& {\tt tail ^\ddagger
+} &\\
+\end{array}
+$$
+\item {\mys dyadic value-transforming functions}: 
+$$
+\begin{array}{lclclclc}
+{\tt +\; (plus)}\;\;\;\; &|& {\tt -\;(minus)}\;\;\; &|& {\tt *\;(mult)}\;\;\;\; &|& {\tt /\;(div)}\;\;\;\;\; &|\\
+{\tt mod}  &|& {\tt ip} &|& {\tt max} &|& {\tt min} &|\\
+{\tt and} &|& {\tt or} &|& {\tt xor} &|\\
+{\tt eq} &|& {\tt ne} &|& {\tt f\_eq}  &|& {\tt f\_ne} &|\\
+{\tt ge} &|& {\tt gt}&|& {\tt le} &|& {\tt lt} &\\
+\end{array}
+$$
+\item {\mys dyadic structuring functions}:
+$$
+\begin{array}{lclclclc}
+{\tt lselect}\;\;\;\;\; &|& {\tt lcut}\;\;\;\;\;\;\; &|& {\tt lrotate}\;\;\;\;\; &|& {\tt ++\;(lunite)}\;\;\;\;\; &|\\
+{\tt vselect} &|& {\tt vcut} &|& {\tt vrotate} &|& {\tt vunite} &|\\
+\end{array}
+$$
+\item {\mys triadic value-transforming functions}:
+$$
+\begin{array}{lclclclc}
+{\tt c\_+\;(c\_plus)}\; &|& {\tt c\_-\;(c\_minus)} &|& {\tt c\_*\;(c\_mult)}\; &|& {\tt c\_/\;(c\_div)}\;\; &|\\
+\end{array}
+$$
+\item {\mys triadic structuring functions}:
+$$
+\begin{array}{lclclclc}
+{\tt mselect}\;\;\;\;\; &|& {\tt mcut}\;\;\;\;\;\;\; &|& {\tt mrotate}\;\;\;\;\; &|& {\tt munite}\;\;\;\;\; &|\\
+{\tt mreplace\_r} &|& {\tt mreplace\_c} &|\\
+{\tt ltransform} &|&\\ 
+\end{array}
+$$
+\item {\mys quaternary structuring functions}:
+$$
+\begin{array}{lclc}
+{\tt mreplace}\;\;\;\;\; &|& {\tt repstr} &
+\end{array}
+$$
+\end{itemize}
+With the exception of the production rule for matrices, the syntax
+ of \kir is context-free. In
+particular, any legitimate \kir expression which derives from the start symbol ${\tt \langle:expr:\rangle}$ may be inserted wherever
+ this non-terminal occurs on the right hand side of a production rule.
+Moreover, \kir is a dynamically typed language. 
+No types need to be (and can be) 
+specified for the formal parameters of \kir programs, and
+ all substitutions by actual parameters are type-free. This is to say that all syntactically correct \kir expressions are legitimate
+arguments of defined function applications. 
+There is no static type checking that
+would reject programs which are not well typed. Type checks are dynamically
+performed at run-time upon potential
+ instances of $\delta$-reductions. Applications of primitive
+ functions that are not type-compatible are treated as constant
+ expressions rather than producing error messages, and reductions
+ continue in the remaining parts of the program.
+Thus, you have ample opportunity to write programs which are rather
+meaningless in the sense that they either don't terminate at all or
+produce lots of irreducible applications.
+
+This freedom of program design may be considered a
+ disadvantage insofar as a rigid monomorphic or polymorphic
+ typing discipline is often claimed
+to introduce more confidence in program correctness. This point is 
+stressed in most other functional or function-based languages~\cite{turn85a,harp88a,huda88}. Programs that are
+well typed at least will never produce type errors at run-time. However, they may nevertheless contain many other errors and may not terminate either.
+Thus, it is pretty safe to assume that the correctness argument
+ to some extent also serves as a pretext for a simple technical reason:
+typing is essential when it comes to compiling  programs to
+efficiently executable conventional machine code. Since 
+contemporary computing machines include only 
+rudimentary run-time type checking facilities at best,  the type consistency of programs must be statically
+inferred at compile time in order to guarantee that the code is in this respect fail-safe.
+
+Unfortunately, compilation to type-checked code is not compatible with
+a full-fledged
+ $\lambda$-calculus. Typing itself outlaws many useful higher-order
+functions (including self-applications) since all type systems that are
+currently in use cannot deal with recursive types~\cite{miln78,hind86}. Moreover,
+compiling to static code to some 
+extent separates the world of functions from the world of other 
+objects. 
+Whereas functions can still be passed as
+parameters, there is no way of computing new functions from function
+applications. Also, compiled and type-checked code must usually run
+ to completion in order to produce meaningful and 
+intelligible results. Thus, stepwise reduction and inspection of
+intermediate programs in a high-level representation cannot be
+supported either. 
+
+In contrast to this, the design of \pired was strictly 
+guided by the objective
+of supporting the reduction
+ semantics of a full-fledged $\lambda$-calculus. 
+This meant primarily high-level interpretation of $\lambda$-terms
+whenever necessary 
+(rather than executing just compiled code), and also the absence of a typing discipline.
+However, this does not rule out a static type-checker for
+\kir programs which infers polymorphic 
+types as far as possible. Nevertheless, neither need program execution
+be made dependent on the outcome of the type checking process, nor
+need all \kir programs be well typed in order
+to reduce them to normal forms that are free of irreducible redices. 
+In fact, such a type inference system exists for \orel/2~\cite{ples90,zim91} 
+and will
+in the future be available for \kir as well.
+ 
