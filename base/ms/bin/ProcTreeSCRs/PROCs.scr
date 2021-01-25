@@ -1,0 +1,91 @@
+DEFS:
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+
+	static int i, j, k;
+	static short rememberFromProcessor, rememberFromProcess,
+	             rememberToProcessor, rememberToProcess;
+
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            temp[1000], label[10];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+	int computeIndex(processor, process)
+	int processor, process;
+	{
+		return(processor*MAX_PROCESSES + process);
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		for(j=0; j<MAX_PROCESSES; ++j) {
+			pids[i][j] = -1;
+		}
+		numProcesses[i] = 0;
+	}
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "%s (%s) -- %s reduction steps",
+	        rememberFile, rememberTime, rememberSteps);
+	SET_TITLE(temp);
+
+	SET_NODES(ON);
+	SET_COLORS(LIGHT_YELLOW, GREEN, BLUE, LIGHT_RED);
+
+	NEXT_FRAME();
+
+	/* Root node... */
+	ADD_NODE(0, NOCARE, NOCARE, "0");
+
+	break;
+
+PROC_CREATE:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PC_PID) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PC_PID;
+	}
+
+	break;
+
+RECEIVE_END:
+	if(!strcmp(R_TYPE, "MT_NEW_PROCESS")) {
+		rememberFromProcessor = R_FROM_PROC;
+		rememberFromProcess = pid(R_FROM_PROC, R_FROM_PID);
+		rememberToProcessor = PROCESSOR;
+		rememberToProcess = pid(PROCESSOR, R_FOR_PID);
+		sprintf(label, "%d", rememberToProcessor);
+		ADD_NODE(computeIndex(rememberToProcessor,
+		                      rememberToProcess),
+		         computeIndex(rememberFromProcessor,
+		                      rememberFromProcess),
+		         DISTRIBUTED, label);
+		NEXT_FRAME();
+	}
+	break;
+
+PROC_TERMINATE:
+	REMOVE_NODE(computeIndex(PROCESSOR, pid(PROCESSOR, PT_PID)));
+	NEXT_FRAME();
+	break;
+
+END:
+	NEXT_FRAME();
+	break;

@@ -1,0 +1,34 @@
+#   
+# .inputrc fuer readline (insbesondere bash)
+#   
+# HISTORY
+#
+# 13.02.2000 wib   erste Version
+#
+
+# don't strip characters to 7 bits when reading
+set input-meta on
+  
+# allow iso-latin1 characters to be inserted rather
+# than converted to prefix-meta sequences
+set convert-meta off
+
+# display characters with the eighth bit set directly
+# rather than as meta-prefixed characters
+set output-meta on
+
+# ring the bell (values: none, [audible], visible)
+#set bell-style none
+
+# show possible completions immediately
+set show-all-if-ambiguous on
+
+# showing this number of items before asking user
+set completion-query-items 5000
+
+# show file type during completions
+set visible-stats on
+
+#
+# end of file
+#

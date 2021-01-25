@@ -1,0 +1,56 @@
+installing nCUBE-measurement-reduction-machines ...
+
+please note the following:
+--------------------------
+
+available binaries:
+
+mdired  :  the measurement-reduction-machine
+
+           - measurement data in binary format
+           - starting mncred on the nCUBE and m_remote_merge on a
+             remote workstation
+
+configuring mdired:
+
+INIT       :  can be configured within the displaying-system
+red.init   :  usual lred configuration
+red.setup  :  usual dired configuration plus the following additions
+
+RemoteHost       : the measurement files will be remote-copied to this host
+                   and then to a directory which is reachable (mounted) from
+                   this host
+MeasureRemoteDir : this is the temporary directory on the remote host
+MeasureTargetDir : this is the final target directory which must be reachable
+                   (mounted) from the remote host
+                   (note: MeasureRemoteDir = MeasureTargetDir won't work !)
+DelTmpFiles      : specifies whether or not the temporary files will be
+                   deleted, 1 = yes
+RemoteMergeBin   : specifies the binary for the remote merging program
+MeasFilePath     : specifies the path for the measurement files written by
+                   nCUBE nodes
+MeasFileHeader   : specifies an individual file prefix for the measurement files
+M_Acknowledge    : 1 = report measurement time and supplemental data, wait for
+                  user acknowledge
+MergingStrategy  : 0 for distributed merging, 1 for remote merging
+
+     (please note: all pathnames in red.init and ret.setup must end with /)
+
+movement of measurement files:
+------------------------------
+
+nCUBE-filesystem              - >  nCUBE-host /tmp
+
+nCUBE-host /tmp               - >  remote-host MeasureRemoteDir
+
+remote-host MeasureRemoteDir  - >  MeasureTargetDir
+
+
+SPECIAL ADD-ON:
+---------------
+
+mdemored : special measurement-reduction-machine with HEAP and STACK measurements
+           disabled, this decrements the measurement-slowdown 
+           (starts mdencred on the nCUBE)
+
+HAPPY MEASURING !

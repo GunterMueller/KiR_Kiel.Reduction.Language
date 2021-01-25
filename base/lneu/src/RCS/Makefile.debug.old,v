@@ -1,0 +1,435 @@
+head	1.1;
+access;
+symbols
+	lneu1:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	92.10.29.15.01.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version by Leick/Strack
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@.IGNORE:
+O=.o  
+SRC=../small.src/
+MYINC=$(SRC)
+CFLAGS=-c -g -I$(MYINC) -DUNIX=1 -DAPOLLO=0 -DSYS5=0 -DLETREC=0 -DODDSEX=0 -DDEBUG=1 -DHEAP=0
+LDF1=
+LDF2=-ltermcap -lm
+COMPILE=     
+#EDLIB=/home/idefix/ca/string/
+EDLIB=/home/majestix/ca/fed.o/
+EDO=$(EDLIB)editor.o
+#EDO=/ben2/ca/string/editor.o
+OBJ=lneu
+# ---------------------------------------------------------------------
+
+FILES=rear.o  reac.o rhinout.o rlogfunc.o \
+      rstpro.o rstpre.o rea-ret.o rdesc.o rheap.o \
+      nsubfunc.o casefunc.o nea-cre.o lrecfunc.o hfunc.o pm-ptfu.o \
+      rreduct.o  rprint.o rstack.o rstate.o \
+      pmam.o pmdimli.o  pmred-nomat.o pmredswi.o pmredeswi.o\
+      pmredwhen.o pmst-slice.o p-fail.o\
+      casepost.o condfunc.o close-cond.o preproc.o \
+      postfunc.o rreduce.o ksend.o testf.o \
+      rdig-add.o rdig-div.o rdig-mod.o rdig-sub.o  \
+      rdig-v1.o rdig-v2.o rlstruct.o rvstruct.o \
+      rquery.o rred-eq.o rret-dec.o rruntime.o  \
+      rtrav.o  pm-debug.o pmpatvar.o \
+      red-nomat-when.o
+
+MFILES=rear.mini.o  reac.o rhinout.o rlogfunc.o \
+      rstpro.o rstpre.o rea-ret.o rdesc.o rheap.o \
+      nsubfunc.o casefunc.o nea-cre.o lrecfunc.o hfunc.o pm-ptfu.o \
+      rreduct.o  rprint.o rstack.o rstate.o \
+      pmam.o pmdimli.o  pmred-nomat.o pmredswi.o pmredeswi.o\
+      pmredwhen.o pmst-slice.o p-fail.o\
+      casepost.o condfunc.o close-cond.o preproc.o \
+      postfunc.o rreduce.o ksend.o testf.o \
+      rdig-add.o rdig-div.o rdig-mod.o rdig-sub.o  \
+      rdig-v1.o rdig-v2.o rlstruct.o rvstruct.o \
+      rquery.o rred-eq.o rret-dec.o rruntime.o  \
+      rtrav.o  pm-debug.o pmpatvar.o \
+      red-nomat-when.o
+
+
+NFILES= rear.neu.o redclos.o reac.o rhinout.o rlogfunc.o \
+      rstpro.o rstpre.o rea-ret.o rdesc.o rheap.o \
+      nsubfunc.o casefunc.o nea-cre.o lrecfunc.o hfunc.o pm-ptfu.o \
+      rreduct.o  rprint.o rstack.o rstate.o \
+      pmam.o pmdimli.o  pmred-nomat.o pmredswi.o pmredeswi.o\
+      pmredwhen.o pmst-slice.o p-fail.o\
+      casepost.o condfunc.o close-cond.o preproc.o \
+      postfunc.o rreduce.o os-send.neu.o testf.o \
+      rdig-add.o rdig-div.o rdig-mod.o rdig-sub.o  \
+      rdig-v1.o rdig-v2.o rlstruct.o rvstruct.o \
+      rquery.o rred-eq.o rret-dec.o rruntime.o  \
+      rtrav.o  pm-debug.o pmpatvar.o \
+      red-nomat-when.o rval-int.o rst-dec.o rsts-dec.o rlog-mvt.o\
+      rconvir.o rvalfunc.o rvalir.o rdig-mul.o rbreak.o rbibfunc.o\
+      rmstruct.o rconvert.o
+
+CC=cc 
+# hier gehts los
+
+lneu :	$(NFILES) $(EDO)	
+	@@echo LINKING ..... 
+	cc  $(LDF1) -O $(EDO) $(NFILES) $(MY) $(LDF2) -o lneu 
+	@@echo LINKING READY 
+
+
+ledd :	$(FILES) $(EDO)
+	@@echo LINKING ..... 
+	cc  $(LDF1) $(EDO) $(FILES) $(MY) $(LDF2) -o ledd 
+	@@echo LINKING READY 
+
+link :
+	@@echo LINKING ..... 
+	cc  $(LDF1) $(EDO) $(FILES) $(MY) $(LDF2) -o ledd 
+	@@echo LINKING READY 
+ 
+lmini :	
+	@@echo LINKING ..... 
+	cc  $(LDF1) $(EDO) $(MFILES) $(MY) $(LDF2) -o lmini 
+	@@echo LINKING READY 
+
+
+
+ted :	$(FILES) $(TEDO)
+	@@echo LINKING ..... 
+	cc  $(LDF1) $(TEDO) $(FILES) $(MY) $(LDF2) -o ted 
+	@@echo LINKING READY 
+
+fedd :	$(FILES) $(EDO)
+	@@echo LINKING ..... 
+	cc  $(LDF1) $(EDO) $(FILES) $(MY) $(LDF2) -o $(OBJ) 
+	@@echo LINKING READY 
+fffedd : $(FILES)  $(FED)
+	cc -4  -o fedd \
+	$(FED) $(FILES) \
+	$(MY) -f -lm -ltermcap 
+	
+lib :	
+	sh -c " make-lib.sh ../small.d.o/libred "
+
+
+rear.o:	$(SRC)rear.c 
+	$(CC)		$(SRC)rear.c 	-DEAGER=1 $(CFLAGS)
+
+
+rear.mini.o:	$(SRC)rear.mini.c 
+	$(CC)		$(SRC)rear.mini.c 	-DEAGER=1 $(CFLAGS)
+
+rear.neu.o:	$(SRC)rear.neu.c 
+	$(CC)		$(SRC)rear.neu.c 	-DEAGER=1 $(CFLAGS)
+
+redclos.o:	$(SRC)redclos.c 
+	$(CC)		$(SRC)redclos.c 	-DEAGER=1 $(CFLAGS)
+
+newlrecfunc.o:	$(SRC)newlrecfunc.c 
+	$(CC)		$(SRC)newlrecfunc.c 	$(CFLAGS)
+
+
+reac.o:	$(SRC)reac.c 
+	$(CC)		$(SRC)reac.c 	$(CFLAGS)
+
+
+st-dec.o:	$(SRC)st-dec.c 
+	$(CC)		$(SRC)st-dec.c 	$(CFLAGS)
+
+rret-dec.o:	$(SRC)rret-dec.c 
+	$(CC)		$(SRC)rret-dec.c 	$(CFLAGS)
+
+rhinout.o:	$(SRC)rhinout.c 
+	$(CC)		$(SRC)rhinout.c 	$(CFLAGS)
+	
+rlogfunc.o:	$(SRC)rlogfunc.c 
+	$(CC)		$(SRC)rlogfunc.c 	$(CFLAGS)
+	
+rstpro.o:	$(SRC)rstpro.c 
+	$(CC)		$(SRC)rstpro.c 	$(CFLAGS)
+
+rea-ret.o:	$(SRC)rea-ret.c 
+	$(CC)		$(SRC)rea-ret.c 	$(CFLAGS)
+
+
+rdesc.o:	$(SRC)rdesc.c 
+	$(CC)		$(SRC)rdesc.c 	$(CFLAGS)
+
+
+rheap.o:	$(SRC)rheap.c 
+	$(CC)		$(SRC)rheap.c 	$(CFLAGS)
+
+rstpre.o:	$(SRC)rstpre.c 
+	$(CC)		$(SRC)rstpre.c 	$(CFLAGS)
+
+hfunc.o:	$(SRC)hfunc.c 
+	$(CC)		$(SRC)hfunc.c 	$(CFLAGS)
+
+nea-cre.o:	$(SRC)nea-cre.c 
+	$(CC)		$(SRC)nea-cre.c 	$(CFLAGS)
+
+nsubfunc.o:	$(SRC)nsubfunc.c 
+	$(CC)		$(SRC)nsubfunc.c 	$(CFLAGS)
+
+lrecfunc.o:	$(SRC)lrecfunc.c 
+	$(CC)		$(SRC)lrecfunc.c 	$(CFLAGS)
+
+casefunc.o:	$(SRC)casefunc.c 
+	$(CC)		$(SRC)casefunc.c 	$(CFLAGS)
+
+hfunc.neu.o:	$(SRC)hfunc.neu.c 
+	$(CC)		$(SRC)hfunc.neu.c 	$(CFLAGS)
+
+nea-cre.neu.o:	$(SRC)nea-cre.neu.c 
+	$(CC)		$(SRC)nea-cre.neu.c 	$(CFLAGS)
+
+nsubfunc.neu.o:	$(SRC)nsubfunc.neu.c 
+	$(CC)		$(SRC)nsubfunc.neu.c 	$(CFLAGS)
+
+lrecfunc.neu.o:	$(SRC)lrecfunc.neu.c 
+	$(CC)		$(SRC)lrecfunc.neu.c 	$(CFLAGS)
+
+casefunc.neu.o:	$(SRC)casefunc.neu.c 
+	$(CC)		$(SRC)casefunc.neu.c 	$(CFLAGS)
+
+rreduct.o:	$(SRC)rreduct.c 
+	$(CC)		$(SRC)rreduct.c 	$(CFLAGS)
+
+rstack.o:	$(SRC)rstack.c 
+	$(CC)		$(SRC)rstack.c 	$(CFLAGS)
+
+pm-ptfu.o:	$(SRC)pm-ptfu.c 
+	$(CC)		$(SRC)pm-ptfu.c 	$(CFLAGS)
+
+rstate.o:	$(SRC)rstate.c 
+	$(CC)		$(SRC)rstate.c 	$(CFLAGS)
+
+rprint.o:	$(SRC)rprint.c 
+	$(CC)		$(SRC)rprint.c 	$(CFLAGS)
+
+pmam.o:	$(SRC)pmam.c 
+	$(CC)		$(SRC)pmam.c 	$(CFLAGS)
+
+pmdimli.o:	$(SRC)pmdimli.c 
+	$(CC)		$(SRC)pmdimli.c 	$(CFLAGS)
+
+pmredswi.o:	$(SRC)pmredswi.c 
+	$(CC)		$(SRC)pmredswi.c 	-DEAGER=0 $(CFLAGS)
+
+pmredeswi.o:	$(SRC)pmredeswi.c
+	$(CC)	-DEAGER=1 $(CFLAGS)	$(SRC)pmredeswi.c 
+
+pmred-nomat.o:	$(SRC)pmred-nomat.c 
+	$(CC)		$(SRC)pmred-nomat.c 	$(CFLAGS)
+
+pmredwhen.o:	$(SRC)pmredwhen.c 
+	$(CC)		$(SRC)pmredwhen.c 	$(CFLAGS)
+
+pmst-slice.o:	$(SRC)pmst-slice.c 
+	$(CC)		$(SRC)pmst-slice.c 	$(CFLAGS)
+
+p-fail.o:	$(SRC)p-fail.c 
+	$(CC)		$(SRC)p-fail.c 	$(CFLAGS)
+
+casepost.o:	$(SRC)casepost.c 
+	$(CC)		$(SRC)casepost.c 	$(CFLAGS)
+
+condfunc.o:	$(SRC)condfunc.c 
+	$(CC)		$(SRC)condfunc.c 	$(CFLAGS)
+
+condfunc.neu.o:	$(SRC)condfunc.neu.c 
+	$(CC)		$(SRC)condfunc.neu.c 	$(CFLAGS)
+
+close-cond.o:	$(SRC)close-cond.c 
+	$(CC)		$(SRC)close-cond.c 	$(CFLAGS)
+
+postfunc.o:	$(SRC)postfunc.c 
+	$(CC)		$(SRC)postfunc.c 	$(CFLAGS)
+
+preproc.o:	$(SRC)preproc.c 
+	$(CC)		$(SRC)preproc.c 	$(CFLAGS)
+
+ksend.o:	$(SRC)ksend.c
+	$(CC)		$(SRC)ksend.c   	$(CFLAGS)
+
+os-send.neu.o:	$(SRC)os-send.neu.c
+	$(CC)		$(SRC)os-send.neu.c   -DSTANDALONE=1	 -DDREDUMA=1 $(CFLAGS)
+
+rreduce.o:	$(SRC)rreduce.c 
+	$(CC)		$(SRC)rreduce.c 	$(CFLAGS)
+
+testf.o:	$(SRC)testf.c 
+	$(CC)		$(SRC)testf.c 	$(CFLAGS)
+
+rdig-add.o:	$(SRC)rdig-add.c 
+	$(CC)		$(SRC)rdig-add.c 	$(CFLAGS)
+
+rdig-div.o:	$(SRC)rdig-div.c 
+	$(CC)		$(SRC)rdig-div.c 	$(CFLAGS)
+
+rdig-mod.o:	$(SRC)rdig-mod.c 
+	$(CC)		$(SRC)rdig-mod.c 	$(CFLAGS)
+
+rdig-sub.o:	$(SRC)rdig-sub.c 
+	$(CC)		$(SRC)rdig-sub.c 	$(CFLAGS)
+
+rdig-mul.o:	$(SRC)rdig-mul.c 
+	$(CC)		$(SRC)rdig-mul.c 	$(CFLAGS)
+
+rdig-v1.o:	$(SRC)rdig-v1.c 
+	$(CC)		$(SRC)rdig-v1.c 	$(CFLAGS)
+
+rdig-v2.o:	$(SRC)rdig-v2.c 
+	$(CC)		$(SRC)rdig-v2.c 	$(CFLAGS)
+
+rlstruct.o:	$(SRC)rlstruct.c 
+	$(CC)		$(SRC)rlstruct.c 	$(CFLAGS)
+
+rmstruct.o:	$(SRC)rmstruct.c 
+	$(CC)		$(SRC)rmstruct.c 	$(CFLAGS)
+
+rvstruct.o:	$(SRC)rvstruct.c 
+	$(CC)		$(SRC)rvstruct.c 	$(CFLAGS)
+
+rquery.o:	$(SRC)rquery.c 
+	$(CC)		$(SRC)rquery.c 	$(CFLAGS)
+
+rred-eq.o:	$(SRC)rred-eq.c 
+	$(CC)		$(SRC)rred-eq.c 	$(CFLAGS)
+
+rruntime.o:	$(SRC)rruntime.c 
+	$(CC)		$(SRC)rruntime.c 	$(CFLAGS)
+
+rst-dec.o:	$(SRC)rst-dec.c 
+	$(CC)		$(SRC)rst-dec.c 	$(CFLAGS)
+
+rsts-dec.o:	$(SRC)rsts-dec.c 
+	$(CC)		$(SRC)rsts-dec.c 	$(CFLAGS)
+
+rtrav.o:	$(SRC)rtrav.c 
+	$(CC)		$(SRC)rtrav.c 	$(CFLAGS)
+
+rval-int.o:	$(SRC)rval-int.c 
+	$(CC)		$(SRC)rval-int.c 	$(CFLAGS)
+
+rvalfunc.o:	$(SRC)rvalfunc.c 
+	$(CC)		$(SRC)rvalfunc.c 	$(CFLAGS)
+
+pm-debug.o:	$(SRC)pm-debug.c 
+	$(CC)		$(SRC)pm-debug.c 	$(CFLAGS)
+
+pmpatvar.o:	$(SRC)pmpatvar.c 
+	$(CC)		$(SRC)pmpatvar.c 	$(CFLAGS)
+
+red-nomat-when.o:	$(SRC)red-nomat-when.c 
+	$(CC)		$(SRC)red-nomat-when.c 	$(CFLAGS)
+
+rlog-mvt.o:	$(SRC)rlog-mvt.c 
+	$(CC)		$(SRC)rlog-mvt.c 	$(CFLAGS)
+
+rconvir.o:	$(SRC)rconvir.c 
+	$(CC)		$(SRC)rconvir.c 	$(CFLAGS)
+
+rvalir.o:	$(SRC)rvalir.c 
+	$(CC)		$(SRC)rvalir.c 	$(CFLAGS)
+
+rbreak.o:	$(SRC)rbreak.c 
+	$(CC)		$(SRC)rbreak.c 	$(CFLAGS)
+
+rbibfunc.o:	$(SRC)rbibfunc.c 
+	$(CC)		$(SRC)rbibfunc.c 	$(CFLAGS)
+
+rconvert.o:	$(SRC)rconvert.c 
+	$(CC)		$(SRC)rconvert.c 	$(CFLAGS)
+
+NAME.o:	$(SRC)NAME.c 
+	$(CC)		$(SRC)NAME.c 	$(CFLAGS)
+
+
+#
+## editor
+#ctransl1$O : $(ESRC)ctransl1.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cestack.h \
+#      $(INC)cencod.h $(INC)ckwtb.h $(INC)ctrans.h $(INC)ctred.h $(INC)cscred.h $(INC)cfiles.h
+#	$(CC) $(ESRC)ctransl1.c
+#ctolr$O : $(ESRC)ctolr.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h \
+#      $(INC)cencod.h $(INC)cetb.h $(INC)ctred.h
+#	$(CC) $(ESRC)ctolr.c
+#cfromlr$O : $(ESRC)cfromlr.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h \
+#      $(INC)cencod.h $(INC)ctred.h $(INC)cetb.h
+#	$(CC) $(ESRC)cfromlr.c
+#credclr$O : $(ESRC)credclr.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cscred.h \
+#      $(INC)ctermio.h $(INC)cestack.h $(INC)cencod.h $(INC)cetb.h $(INC)ctred.h $(INC)cparm.h $(INC)ccommand.h \
+#      $(INC)ckwtb.h
+#	$(CC) $(ESRC)credclr.c
+#cedit$O : $(ESRC)cedit.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)cencod.h $(INC)cetb.h $(INC)cback.h $(INC)cfiles.h $(INC)cparm.h $(INC)cglobals.h $(INC)ccommand.h
+#	$(CC) $(ESRC)cedit.c
+#cglobals$O : $(ESRC)cglobals.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cestack.h $(INC)cparm.h $(INC)cglobals.h
+#	$(CC) $(ESRC)cglobals.c
+#ciotab$O : $(ESRC)ciotab.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cestack.h $(INC)cencod.h $(INC)cetb.h $(INC)ckwtb.h
+#	$(CC) $(ESRC)ciotab.c
+#cetab$O : $(ESRC)cetab.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cetb.h
+#	$(CC) $(ESRC)cetab.c
+#cinput$O : $(ESRC)cinput.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cestack.h $(INC)cscred.h $(INC)ctermio.h $(INC)cback.h $(INC)ckwtb.h
+#	$(CC) $(ESRC)cinput.c
+#cfiles$O : $(ESRC)cfiles.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)cfiles.h
+#	$(CC) $(ESRC)cfiles.c
+#cgetexp$O : $(ESRC)cgetexp.c $(INC)cswitches.h $(INC)cportab.h $(INC)ctermio.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cscred.h $(INC)cestack.h $(INC)ckwtb.h $(INC)cback.h
+#	$(CC) $(ESRC)cgetexp.c
+#cgetstr$O : $(ESRC)cgetstr.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cestack.h $(INC)cback.h $(INC)ckwtb.h
+#	$(CC) $(ESRC)cgetstr.c
+#cmatrix$O : $(ESRC)cmatrix.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cestack.h $(INC)cencod.h $(INC)cetb.h $(INC)cback.h
+#	$(CC) $(ESRC)cmatrix.c
+#cmatch$O : $(ESRC)cmatch.c $(INC)cswitches.h $(INC)cportab.h $(INC)ctermio.h $(INC)cedit.h
+#	$(CC) $(ESRC)cmatch.c
+#cscanexp$O : $(ESRC)cscanexp.c $(INC)cswitches.h $(INC)cportab.h $(INC)ctermio.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cscred.h $(INC)cestack.h $(INC)ckwtb.h $(INC)cback.h
+#	$(CC) $(ESRC)cscanexp.c
+#cscroll$O : $(ESRC)cscroll.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h
+#	$(CC) $(ESRC)cscroll.c
+#cnewscr$O : $(ESRC)cnewscr.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h $(INC)cencod.h
+#	$(CC) $(ESRC)cnewscr.c
+#ctermio$O : $(ESRC)ctermio.c $(INC)ctermio.h
+#	$(CC) $(ESRC)ctermio.c
+#csearch$O : $(ESRC)csearch.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cscred.h $(INC)cestack.h $(INC)ckwtb.h $(INC)cparm.h $(INC)ccommand.h
+#	$(CC) $(ESRC)csearch.c
+#cdispl$O : $(ESRC)cdispl.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)cetb.h $(INC)ckwtb.h
+#	$(CC) $(ESRC)cdispl.c
+#cfdispl$O : $(ESRC)cfdispl.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)ckwtb.h $(INC)cfiles.h
+#	$(CC) $(ESRC)cfdispl.c
+#cscred$O : $(ESRC)cscred.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cscred.h $(INC)ctermio.h
+#	$(CC) $(ESRC)cscred.c
+#cstacks$O : $(ESRC)cstacks.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)ckwtb.h $(INC)ctred.h
+#	$(CC) $(ESRC)cstacks.c
+#cpexp$O : $(ESRC)cpexp.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cencod.h $(INC)cetb.h $(INC)cscred.h $(INC)cestack.h $(INC)cfiles.h
+#	$(CC) $(ESRC)cpexp.c
+#ccommand$O : $(ESRC)ccommand.c $(INC)cswitches.h $(INC)cportab.h $(INC)cscred.h $(INC)ctermio.h $(INC)cestack.h $(INC)cedit.h $(INC)cencod.h $(INC)cparm.h $(INC)ccommand.h $(INC)ckwtb.h $(INC)cetb.h $(INC)cfiles.h
+#	$(CC) $(ESRC)ccommand.c
+#chelp$O : $(ESRC)chelp.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cfiles.h $(INC)cscred.h $(INC)ctermio.h
+#	$(CC) $(ESRC)chelp.c
+#csubst$O : $(ESRC)csubst.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h $(INC)cscred.h $(INC)cencod.h $(INC)ctred.h
+#	$(CC) $(ESRC)csubst.c
+#canz$O : $(ESRC)canz.c $(INC)cswitches.h $(INC)cportab.h $(INC)cedit.h $(INC)cestack.h $(INC)cencod.h $(INC)ctred.h
+#	$(CC) $(ESRC)canz.c
+#ctrans1$O : $(ESRC)ctrans1.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h $(INC)cencod.h $(INC)ctred.h
+#	$(CC) $(ESRC)ctrans1.c
+#ctrans2$O : $(ESRC)ctrans2.c $(INC)cswitches.h $(INC)cportab.h $(INC)ctermio.h $(INC)cestack.h $(INC)cedit.h $(INC)cscred.h $(INC)cencod.h $(INC)ckwtb.h $(INC)ctred.h $(INC)cfiles.h
+#	$(CC) $(ESRC)ctrans2.c
+#cpredef$O : $(ESRC)cpredef.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h $(INC)cencod.h $(INC)ctred.h $(INC)ckwtb.h
+#	$(CC) $(ESRC)cpredef.c
+#cchain$O : $(ESRC)cchain.c $(INC)cswitches.h $(INC)cportab.h $(INC)cestack.h $(INC)cedit.h $(INC)cencod.h $(INC)ctred.h
+#	$(CC) $(ESRC)cchain.c
+#
+@

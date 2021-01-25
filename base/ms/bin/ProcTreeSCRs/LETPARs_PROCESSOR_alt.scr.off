@@ -1,0 +1,199 @@
+DEFS:
+	#define STACK_SIZE 1000
+
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS],
+	           tempProcess, processes[MAX_PROCESSORS], i, j,
+	           rememberProcessor[MAX_PROCESSORS][MAX_PROCESSES],
+	           rememberProcess[MAX_PROCESSORS][MAX_PROCESSES];
+
+	static short father[MAX_PROCESSORS][MAX_PROCESSES][STACK_SIZE],
+	             topOfStack[MAX_PROCESSORS][MAX_PROCESSES],
+	             actualNode[MAX_PROCESSORS][MAX_PROCESSES], lastNode,
+	             newNode[MAX_PROCESSORS][MAX_PROCESSES][MAX_PROCESSORS];
+
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            temp[1000], label[10];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+	void push(processor, process, i)
+	short processor, process, i;
+	{
+		short t;
+
+		if((t = ++topOfStack[processor][process]) < STACK_SIZE) {
+			father[processor][process][t-1] = i;
+		} else {
+			printf("Push on exceeded stack...\n");
+		}
+
+		return;
+	}
+
+
+	short pop(processor, process)
+	short processor, process;
+	{
+		short t;
+
+		if((t = --topOfStack[processor][process]) >= 0) {
+			return(father[processor][process][t]);
+		} else {
+			printf("Pop on empty stack..\n");
+			return((short)-1);
+		}
+	}
+
+
+	short peek(processor, process)
+	short processor, process;
+	{
+		short t;
+
+		if((t = topOfStack[processor][process]) >= 1) {
+			return(father[processor][process][t-1]);
+		} else {
+			printf("Peek on empty stack..\n");
+			return((short)-1);
+		}
+	}
+
+
+	int isEmpty(processor, process)
+	short processor, process;
+	{
+		return(topOfStack[processor][process] == 0);
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		for(j=0; j<MAX_PROCESSES; ++j) {
+			topOfStack[i][j] = 0;
+		}
+	}
+	
+	/* Colors for "Disributed", "Own" and "Nodes" */
+	SET_COLORS(LIGHT_YELLOW, GREEN, BLUE, LIGHT_RED);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "%s (%s) -- %s reduction steps",
+	        rememberFile, rememberTime, rememberSteps);
+	SET_TITLE(temp);
+
+	actualNode[0][0] = lastNode = 0;
+	ADD_NODE(lastNode, NOCARE, NOCARE, "0");
+	NEXT_FRAME();
+	break;
+
+COUNT_PUSHH:
+	tempProcess = pid(PROCESSOR, PROCESS);
+
+	push(PROCESSOR, tempProcess, actualNode[PROCESSOR][tempProcess]);
+
+	break;
+
+
+PROC_NODIST:
+	tempProcess = pid(PROCESSOR, PROCESS);
+
+	/* No distribution... */
+	++lastNode;
+	sprintf(label, "%d", PROCESSOR);
+	ADD_NODE(lastNode, peek(PROCESSOR, tempProcess), NODIST, label);
+	actualNode[PROCESSOR][tempProcess] = lastNode;
+	NEXT_FRAME();
+
+	break;
+	
+
+PROC_DIST:
+	tempProcess = pid(PROCESSOR, PROCESS);
+
+	if(PD_NEXT_PROC == -1) {
+		/* No distribution... */
+		++lastNode;
+		sprintf(label, "%d", PROCESSOR);
+		ADD_NODE(lastNode, peek(PROCESSOR, tempProcess),
+		         HOME, label);
+		actualNode[PROCESSOR][tempProcess] = lastNode;
+		NEXT_FRAME();
+	}
+
+	/* If PD_NEXT_PROC != -1 there will be a SEND_BEGIN for the
+	** distribution. See next case...
+	*/
+
+	break;
+
+
+SEND_BEGIN:
+	if(!strcmp(S_TYPE, "MT_NEW_PROCESS")) {
+		tempProcess = pid(PROCESSOR, PROCESS);
+
+		/* Distribution... */
+		++lastNode;
+		sprintf(label, "%d", S_TARGET_PROC);
+		ADD_NODE(lastNode, peek(PROCESSOR, tempProcess),
+		         DISTRIBUTED, label);
+		newNode[PROCESSOR][tempProcess][S_TARGET_PROC] = lastNode;
+		NEXT_FRAME();
+	}
+
+	break;
+
+PROC_CREATE:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PC_PID) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PC_PID;
+	}
+
+	processes[PROCESSOR] = PC_PID;
+
+	break;
+
+RECEIVE_END:
+	if(!strcmp(R_TYPE, "MT_NEW_PROCESS")) {
+		tempProcess = pid(PROCESSOR, processes[PROCESSOR]);
+
+		rememberProcessor[PROCESSOR][tempProcess] = R_FROM_PROC;
+		rememberProcess[PROCESSOR][tempProcess] = pid(R_FROM_PROC,
+		                                              R_FROM_PID);
+	}
+
+	break;
+
+PROC_RUN:
+	tempProcess = pid(PROCESSOR, PR_PID);
+
+	actualNode[PROCESSOR][tempProcess] =
+	        newNode[rememberProcessor[PROCESSOR][tempProcess]]
+	               [rememberProcess[PROCESSOR][tempProcess]]
+	               [PROCESSOR];
+
+	break;
+
+COUNT_WAIT:
+	pop(PROCESSOR, pid(PROCESSOR, PROCESS));
+
+	break;
+
+END:
+	break;

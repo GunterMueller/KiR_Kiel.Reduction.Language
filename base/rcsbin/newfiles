@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# newdirs
+#
+# Makes an initial check-in for all files (no directories!)
+# that are not yet under the control of RCS!
+# Can be started in any RCS-directory.
+# If started in the RCSROOT of an RCS-project, all 
+# RCS-directories that belong to the particular project 
+# will be examined recursively.
+#
+
+err () {
+	echo "`basename $0`: $@" 1>&2
+	}
+
+mke () {
+        for file in *
+        do
+          if [ ! -d RCS ]
+          then
+            mkdir RCS
+          fi
+          if [ -d $file -o -f RCS/$file,v ]
+          then
+            :
+          else
+            echo "found $file"
+#            rcs -i -q -t-"" $file    SACBASE only !
+            rcs -i $file
+            ci -q -u $file
+          fi
+        done
+  }
+
+  current=`pwd`
+  for dir in `fndr .`
+  do
+    cd $dir
+    echo "checking directory $dir ..."
+    mke 
+    cd $current
+  done

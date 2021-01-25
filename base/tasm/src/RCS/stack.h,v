@@ -1,0 +1,130 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.3
+date	95.06.14.15.03.57;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.20.07.13.23;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.07.07.34.20;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.3
+log
+@stack growing with increasing indices
+relocatible stacks (may expanded by demand)
+@
+text
+@#ifndef STACK_H
+#define STACK_H
+
+#include <malloc.h>
+
+typedef int stack;
+/* defines a new stack (also used in function headers) */
+#define astack(st)      stack ** base_ ## st, * mem_ ## st = NULL, * st_ ## st
+/* used to pass a stack as argument */
+#define getstack(st)    (base_ ## st), (st_ ## st)              /* calling function */
+#define vargstack(st, ap) (base_ ## st) = va_arg(ap, stack **),                         \
+                        (st_ ## st) = va_arg(ap, stack *),                              \
+                        (mem_ ## st) = NULL                /* pass stack as var-arg */
+#define argstack(st)    stack ** base_ ## st, stack * st_ ## st /* function header  */
+
+#define initstack(st, stacksize) ( mem_ ## st = (stack *)malloc(stacksize*sizeof(stack)),\
+                                  (mem_ ## st)[0] = stacksize,                           \
+                                  (mem_ ## st)[1] = BOTTOM,                              \
+                                  (mem_ ## st)[stacksize-1] = BOTTOM,                    \
+                                  base_ ## st = &(mem_ ## st),                           \
+                                  st_ ## st = &((mem_ ## st)[1]))
+#define reinitstack(st, stsize)  ( *(base_ ## st) = (stack *)realloc(*(base_ ## st), (stsize+STACKSIZE)*sizeof(stack)),                                                              \
+                                  (*(base_ ## st))[0] += STACKSIZE,                      \
+                                  st_ ## st = &(*(base_ ## st))[stsize-1],                \
+                                  (*(base_ ## st))[(*(base_ ## st))[0]-1] = BOTTOM)
+#define freestack(st)            free(mem_ ## st)
+
+
+#define push(st,x)	((*++(st_ ## st) == BOTTOM ? (yywarn("stack " #st " reallocated"), \
+                           reinitstack(st, (*(base_ ## st))[0])) : 0),                     \
+                         (*(st_ ## st) = (x)))
+#define peek(st, n)	(st_ ## st)[-(n)]
+#define set(st, n, x)	(st_ ## st)[-(n)] = (x)
+#define top(st)		peek(st, 0)
+#define drop(st, n)	((st_ ## st) -= n)
+#define pop(st)		(*(st_ ## st)--)
+#define isempty(st)	(top(st)==BOTTOM)
+/* remove used base_* warning
+ */
+
+#define BOTTOM          (stack)87654321
+#define STACKSIZE       16384
+
+extern int stacksize;
+#endif /* STACK_H */
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d7 8
+a14 1
+#define astack(s)       stack * st_ ## s, * base_ ## s
+d16 11
+a26 1
+#define BOTTOM          (stack)0x12345678
+a27 1
+extern int stacksize;
+d29 5
+a33 3
+#define push(st,x)	*--(st_ ## st) = (x)
+#define peek(st, n)	(st_ ## st)[n]
+#define set(st, n, x)	(st_ ## st)[n] = (x)
+d35 2
+a36 2
+#define drop(st, n)	((st_ ## st) += n)
+#define pop(st)		(*(st_ ## st)++)
+a37 1
+#define getstack(st)     (st_ ## st)
+a39 1
+#define setstack(st)     (base_ ## st = NULL, st_ ## st)
+d41 2
+a42 3
+#define initstack(s, stacksize) ( base_ ## s = (stack *)malloc(stacksize*sizeof(stack)),\
+                                  st_ ## s = &(base_ ## s)[stacksize-1],                \
+                                  push(s, BOTTOM) )
+d44 1
+a44 1
+#define STACKSIZE       16384
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 2
+d7 1
+a7 1
+#define ASTACK(s)       stack * st_ ## s, * base_ ## s
+d20 4
+@

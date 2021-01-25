@@ -1,0 +1,47 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1
+	red1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* $Log$ */
+/*-----------------------------------------------------------------------*/
+/*                                                                       */
+/* ak                                                   25.02.1992       */
+/*                                                                       */
+/* Exportierte Funktionen aus der Datei rnf.c                            */
+/* zur Reduktion zur Normalform eines Ausdrucks                          */
+/*                                                                       */
+/* reduce_to_nf ()                                                       */
+/*                                                                       */
+/* Aufgerufen in                                                         */
+/*                  rreduct.c                                            */
+/*                                                                       */
+/*-----------------------------------------------------------------------*/
+
+#define NF_MODUL /* Flag um mehrfaches Einbinden zu verhinden */
+
+extern void reduce_to_nf();
+
+@

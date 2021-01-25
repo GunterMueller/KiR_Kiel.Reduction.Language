@@ -1,0 +1,867 @@
+head	1.36;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.36
+date	95.05.29.12.01.49;	author um;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.05.24.10.15.58;	author um;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.05.23.11.54.34;	author um;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.05.17.07.56.20;	author um;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.05.12.11.57.31;	author um;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.04.28.07.38.43;	author um;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.04.20.10.07.43;	author um;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.04.12.07.51.15;	author um;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.04.11.08.19.35;	author um;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.03.28.09.10.33;	author um;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.03.28.08.33.25;	author um;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.03.27.08.44.09;	author um;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.03.22.10.41.48;	author um;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.03.16.09.01.36;	author um;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.03.15.08.24.50;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.03.13.10.59.42;	author um;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.03.06.09.51.03;	author um;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.03.02.15.21.35;	author um;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.02.14.08.07.49;	author um;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.02.07.08.54.02;	author um;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.02.02.13.21.44;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.01.18.07.50.52;	author um;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.01.16.07.25.00;	author um;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.12.28.09.14.30;	author um;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.22.08.23.29;	author um;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.15.14.18.14;	author um;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.15.09.36.42;	author um;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.09.09.42.10;	author um;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.06.09.48.48;	author um;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.01.14.29.48;	author um;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.30.07.32.46;	author um;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.25.12.52.37;	author um;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.25.08.57.55;	author um;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.24.09.55.41;	author um;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.10.21.11;	author um;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.36
+log
+@infinit loop removed
+@
+text
+@#ifndef _LOCTYPES
+#define _LOCTYPES
+
+#ifndef _MYTYPES
+#include "mytypes.h"
+#endif
+
+/* an stack is array of char with length in the first 4 bytes (long)	*/
+/* and top of stack in the second 4 bytes (long)			*/
+#define SZ_LONG		sizeof(long)
+#define MAX_LINE_LENGTH	120
+#define MIN_STACK_SIZE	16
+
+/* status for dump functions */
+#define CLOS_EXE	1
+#define NEW_PARAMS	2
+#define MUST_EXE	4
+
+#define BETAFUNCS(x)	(						\
+                          (						\
+			    (						\
+			      (beta==(x)) || (tail==(x))		\
+			    ) || 					\
+                            (						\
+			      (gammabeta==(x)) || (apply==(x))		\
+			    )						\
+			  ) || 						\
+			  (						\
+			    (						\
+			      (Case==(x)) || (gammacase==(x)) 		\
+			    ) ||					\
+			    (Gamma==(x))				\
+			  )						\
+                        )
+#define JCONDX(x)	(						\
+                          (						\
+                            (						\
+			      (jcond==(x)) || (jcond2==(x))		\
+			    ) ||					\
+                            (						\
+			      (jfalse==(x)) || (jfalse2==(x))		\
+			    )						\
+			  ) ||						\
+  			  (						\
+			    (jtrue==(x)) || (jtrue2==(x))		\
+			  )						\
+                        )
+#define MATCHX(x)	(						\
+                          (						\
+			    (						\
+			      (						\
+			        (matcharb==(x)) || (matchlist==(x))	\
+			      ) ||					\
+  			      (						\
+			        (tguard==(x)) || (matchint==(x))	\
+			      )						\
+			    ) || 					\
+			    (						\
+			      (						\
+			        (matcharbs==(x)) || (matchbool==(x))	\
+			      ) ||					\
+			      (						\
+			        (matchin==(x)) || (matchprim==(x))	\
+			      )						\
+			    )						\
+			  ) || 						\
+                          (matchstr==(x))				\
+                        )
+#define JCONDS(x)	( 						\
+                          ( 						\
+			    JCONDX(x)					\
+			  ) ||						\
+                          ( 						\
+			    MATCHX(x)					\
+			  )						\
+  			)
+  
+#define GETSTELMTYPE(x)		((x)->type)
+#define SETSTELMTYPE(x) 	GETSTELMTYPE(x)
+#define GETSTELMDATA(x,data)	((x)->dat.data)
+#define SETSTELMDATA(x,data)	GETSTELMDATA(x,data)
+#define GETTOPOFSTACK(x)	((x)->topofstack)
+#define SETTOPOFSTACK(x)	GETTOPOFSTACK(x)
+#define GETSTACKENTRY(x,e)	((x)->e)
+#define SETSTACKENTRY(x,e)	GETSTACKENTRY(x,e)
+#define GETTOPELM(x)		((x)->stack[GETTOPOFSTACK(x)-1]
+#define SETTOPELM(x)		GETTOPELM(x)
+
+typedef enum { kn_no, kn_partly, kn_depend, kn_sure,
+	       kn_clear				/* needed for dependencies */
+	     } KNOWLEDGE;
+
+#define VTP_NONE	4.0
+#define VTP_INT		0.1
+#define VTP_BOOL	0.1
+#define VTP_REAL	0.4
+#define VTP_PRIM	0.8
+#define VTP_FUNC	1.0
+#define VTP_CLOS	2.5
+#define VTP_LIST	1.4
+#define VTP_STRING	1.1
+#define VTP_VECT	1.0
+#define VTP_MATRIX	1.2
+#define VTP_ATOM	1.1
+#define VTP_VAR		1.4
+
+struct tagfuntypes;
+struct tagfunlist;
+struct tagstelm;
+struct tagstack;
+struct tagclosure;
+struct tagreturnadr;
+struct tagprimlist;
+struct tagsubtype;
+struct tagdepend;
+
+typedef struct tagsubtype
+  {
+  TP_TYPES type;
+  struct tagsubtype *next;
+  } SUBTYPE;
+
+typedef struct tagprimlist
+  {
+  PRIMF prim;
+  struct tagprimlist *next;
+  } PRIMLIST;
+
+typedef struct tagreturnadr
+  {
+  ORDER *ord;
+  struct tagstack *w,*a,*t,*r;
+  int	status,branch;
+  } RETURNADR;
+
+typedef struct tagclosure
+  {
+  FUNDESC *desc;				/* if desc==NULL then primfunc */
+  int i,j,k;
+  struct tagstelm *w;
+  struct tagstelm *t;
+  } CLOSURE;
+
+typedef struct tagstelm
+  {
+  TP_TYPES type;
+  SUBTYPE subtype;
+  union
+    {
+    FUNDESC *desc;
+    struct tagclosure *clos;
+    PRIMF prim;
+    RETURNADR *ret;
+    } dat;
+  } STELM;
+
+typedef struct tagstack
+  {
+  long topofstack;
+  long length;
+  STELM *stack;
+  } STACK;
+
+typedef struct tagdepend
+  {
+  struct tagfuntypes *func;
+  struct tagdepend   *next;
+  } DEPEND;
+
+typedef struct tagfuntypes
+  {
+  STELM *params;
+  STELM *tparams;
+  STELM result;
+  KNOWLEDGE knowledge;
+  FUNDESC *des;
+  DEPEND *depend;
+  ORDER *ord;
+  char *label;
+  struct tagfuntypes *next;	
+  } FUNTYPES;
+
+typedef struct tagfunlist
+  {
+  char *name;					/* function label */
+  int a,t;					/* no. elements on a,t stack */
+  FUNTYPES *funtypes;				/* all types of this func */
+  struct tagfunlist *org;			/* original funlistentry */
+  struct tagfunlist *next;
+  } FUNLIST;
+
+#endif@
+
+
+1.35
+log
+@bug in fkochside sample removed
+@
+text
+@d93 14
+@
+
+
+1.34
+log
+@bug with recursiv functions with changing parameters removed
+@
+text
+@d17 1
+@
+
+
+1.33
+log
+@jcond without bool bugfixed
+@
+text
+@d15 2
+a16 2
+#define EXE_CLOS	1
+#define NEW_PARAM	2
+d118 1
+a118 1
+  int	status;
+@
+
+
+1.32
+log
+@tildeargs reimplemented in function cache
+@
+text
+@d14 4
+d118 1
+@
+
+
+1.31
+log
+@tildeargs removed from functioncache
+@
+text
+@d153 1
+d166 1
+a166 1
+  int a;					/* no. elements on a,t stack */
+@
+
+
+1.30
+log
+@function duplication - first part
+@
+text
+@a152 1
+  STELM *tparams;
+d165 1
+a165 1
+  int a,t;					/* no. elements on a,t stack */
+@
+
+
+1.29
+log
+@lselect on empty list changed
+@
+text
+@d158 2
+d168 1
+@
+
+
+1.28
+log
+@primitive functions bugfixed
+@
+text
+@d127 1
+a129 1
+    SUBTYPE subtype;
+@
+
+
+1.27
+log
+@Gamma implemented
+@
+text
+@a76 2
+#define GETSTELMLIST(x)		((x)->listtype)
+#define SETSTELMLIST(x)		GETSTELMLIST(x)
+d95 1
+a95 1
+struct tagstelmlist;
+d98 1
+a98 1
+typedef struct tagstelmlist
+d100 3
+a102 3
+  struct tagstelm *stelm;
+  struct tagstelmlist *next;
+  } STELMLIST;
+a126 1
+  TP_TYPES listtype;
+d129 1
+a133 1
+    STELMLIST *stelmlist;
+@
+
+
+1.26
+log
+@PM implemented
+@
+text
+@d24 4
+a27 1
+			    (Case==(x)) || (gammacase==(x))		\
+@
+
+
+1.25
+log
+@PM partly implemented
+@
+text
+@d14 47
+a60 5
+#define BETAFUNCS(x)	((((beta==(x)) || (tail==(x))) || \
+                          ((gammabeta==(x)) || (apply==(x)))) || \
+			 ((Case==(x)) || (gammacase==(x))))
+#define MATCHS(x)	(((matcharb==(x)) || (matchlist==(x))) ||	\
+  			 ((tguard==(x)) || (matchint==(x))))
+d63 1
+a63 6
+			    ( 						\
+			       (jcond2==(x)) || (jcond==(x)) 		\
+			    ) ||				 	\
+			    ( 						\
+			       (jfalse==(x)) || (jfalse2==(x))		\
+			    )	 					\
+d66 1
+a66 1
+			    MATCHS(x)					\
+@
+
+
+1.24
+log
+@jcond changed, now using branch
+@
+text
+@d17 16
+a32 3
+#define JCONDS(x)	(((jcond2==(x)) || (jcond==(x))) || \
+                         ((jfalse==(x)) || (jfalse2==(x))))
+
+@
+
+
+1.23
+log
+@minor bug in mkcclos and jcond removed
+@
+text
+@a42 1
+struct tagdesclist;
+a58 6
+typedef struct tagdesclist
+  {
+  FUNDESC *desc;
+  struct tagdesclist *next;
+  } DESCLIST;
+
+d67 1
+a67 1
+  DESCLIST *desclist;				/* if desc==NULL then primfunc */
+d79 1
+a79 1
+    DESCLIST *desclist;
+@
+
+
+1.22
+log
+@lists bugfixed, implementation of PM started
+@
+text
+@d14 5
+a18 2
+#define BETAFUNCS(x)	(((beta==(x))||(tail==(x)))||((gammabeta==(x))||(apply==(x))))
+#define JCONDS(x)	(((jcond2==(x))||(jcond==(x)))||((jfalse==(x))||(jfalse2==(x))))
+@
+
+
+1.21
+log
+@lists on their way
+@
+text
+@a83 1
+    PRIMLIST *primlist;
+@
+
+
+1.20
+log
+@problems with depending recursiv functions removed
+@
+text
+@d41 1
+d51 6
+d84 1
+@
+
+
+1.19
+log
+@function dependency tree build
+@
+text
+@d30 2
+a31 1
+typedef enum { kn_no, kn_partly, kn_depend, kn_sure
+@
+
+
+1.18
+log
+@hashstring removed
+@
+text
+@d41 1
+d90 6
+d103 1
+@
+
+
+1.17
+log
+@lists have changed, primitiv apply bugfixed
+@
+text
+@d30 1
+a30 1
+typedef enum { kn_partly, kn_sure
+d60 8
+a87 8
+
+typedef struct tagclosure
+  {
+  DESCLIST *desclist;				/* if desc==NULL then primfunc */
+  int i,j,k;
+  STELM *w;
+  STELM *t;
+  } CLOSURE;
+@
+
+
+1.16
+log
+@lists have been changed, hash -> hashargs ...
+@
+text
+@d30 3
+d94 1
+@
+
+
+1.15
+log
+@list and descriptor concept changed
+@
+text
+@d21 2
+d36 2
+d39 6
+d60 1
+d67 1
+a67 1
+    struct tagstelm *stelm;
+@
+
+
+1.14
+log
+@first try with lists
+@
+text
+@d35 6
+d52 1
+a52 1
+    FUNDESC *desc;
+d56 1
+d69 1
+a69 1
+  FUNDESC *desc;				/* if desc==NULL then primfunc */
+@
+
+
+1.13
+log
+@new macros inserted
+@
+text
+@d15 1
+a15 1
+#define JCONDS(x)	(((jcond2==(x))||(jfalse==(x)))||(jcond==(x)))
+@
+
+
+1.12
+log
+@jcond2, rtm, mkcclos implemented
+@
+text
+@d17 11
+@
+
+
+1.11
+log
+@bugs removed and concept changed
+@
+text
+@d15 1
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d14 1
+a14 1
+#define BETAFUNCS(x)	(((beta==(x))||(tail==(x)))||(gammabeta==(x)))
+@
+
+
+1.9
+log
+@minor change
+@
+text
+@d14 1
+a14 1
+/* knowledge types */
+a15 4
+#define kn_sure		0		/* result is direktly returned */
+#define kn_preset	1		/* result is preset by '#restype ' */
+#define kn_partial	2		/* result is of one if-case */
+
+d21 7
+d37 1
+a37 1
+    void *data;
+a60 1
+  char knowledge;
+@
+
+
+1.8
+log
+@types changed
+@
+text
+@d59 1
+@
+
+
+1.7
+log
+@stack handling with closures debugged
+@
+text
+@d1 7
+a19 8
+typedef enum
+             {
+	     tp_badlocrec=-5,tp_badrecur,tp_doagain,tp_illegal,tp_data,
+	     tp_none=0,tp_int,tp_bool,tp_func,tp_prim,tp_real,tp_string,tp_clos
+             } TP_TYPES;
+
+#define tps_number	8		/* number of type-names */
+
+d69 2
+@
+
+
+1.6
+log
+@minor bug in apply removed
+@
+text
+@d19 1
+a19 1
+#define tps_number	7		/* number of type-names */
+d34 1
+d48 1
+a48 1
+  FUNDESC *desc;
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d16 1
+a16 1
+	     tp_none=0,tp_int,tp_bool,tp_func,tp_real,tp_string,tp_clos
+@
+
+
+1.4
+log
+@tp_data inserted
+@
+text
+@d15 2
+a16 2
+	     tp_badrecur=-4,tp_doagain,tp_illegal,tp_data,tp_none=0,tp_int,tp_bool,
+	     tp_func, tp_real,tp_string,tp_clos
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d15 2
+a16 2
+	     tp_badrecur=-3,tp_doagain,tp_illegal,tp_none,tp_int,tp_bool,tp_func,
+	     tp_real,tp_string,tp_clos
+d34 1
+@
+
+
+1.2
+log
+@new type tp_doagain
+@
+text
+@d15 2
+a16 1
+	     tp_badrecur=-3,tp_doagain,tp_illegal,tp_none,tp_int,tp_bool,tp_func
+d19 1
+a19 1
+#define tps_number	4		/* number of type-names */
+d25 1
+d30 5
+a34 1
+  FUNDESC  *desc;
+d43 8
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d15 1
+a15 1
+	     tp_badrecur=-2,tp_illegal,tp_none,tp_int,tp_bool,tp_func
+@

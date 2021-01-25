@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# fndr
+#
+# writes all relative pathnames of rcsdirs to stdout
+# as specified by the (optional) args.
+#
+
+err () {
+	echo "`basename $0`: $@" 1>&2
+	}
+
+fnd () {
+	if [ ! -d $@ ]
+	then
+	  err "$@ is not a directory"
+        else
+	  if [ -f $@/RCS/RCS-files,v ]
+	  then
+	    echo $@
+            found=true
+          fi
+	  if [ -f $@/RCS-directories ]
+	  then
+	    cat $@/RCS-directories | awk '{ print "'$@/'" $1 }'
+	  elif [ -f $@/RCS/RCS-directories,v ]
+	  then
+	    checkout $@/RCS-directories 1>&2
+	    if [ -f $@/RCS-directories ]
+	    then
+	      cat $@/RCS-directories | awk '{ print "'$@/'" $1 }'
+	    fi
+	  elif [ x$found != xtrue ]
+          then
+	    err "no RCS-files/RCS-directories in $@"
+	  fi
+        fi
+  }
+
+if [ $# = 0 ]
+then
+  fnd ${RCSROOT:-"."}
+else
+  while [ $# != 0 ]
+  do
+    fnd $1
+    shift 1
+  done
+fi
+
+

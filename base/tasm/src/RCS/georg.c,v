@@ -1,0 +1,1134 @@
+head	1.26;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.26
+date	96.04.04.16.00.36;	author car;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	96.04.04.12.55.37;	author car;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	96.01.16.19.43.32;	author car;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.06.14.15.03.26;	author car;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.06.09.14.00.57;	author car;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.06.08.15.14.16;	author car;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.05.15.14.11.26;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.05.12.18.53.31;	author car;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.05.12.13.40.49;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.04.20.09.57.23;	author car;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.04.19.16.58.13;	author car;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.04.13.15.32.51;	author car;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.03.15.09.48.39;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.03.13.09.00.37;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.03.03.17.51.47;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.02.02.09.50.13;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.01.30.16.28.04;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.01.25.17.31.31;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.01.25.16.44.05;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.19.15.18.26;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.08.09.31.08;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.07.13.51.21;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.01.10.57.09;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.28.12.54.42;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.25.17.28.25;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.26
+log
+@*** empty log message ***
+@
+text
+@#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+#include "main.h"
+#include "mytypes.h"
+#include "buildtree.h"
+#include "error.h"
+#include "loctypes.h"
+#include "tiny.h"
+#include "stack.h"
+#include "dbug.h"
+
+char * vgeorg = VGEORG;
+
+static ORDER * find_label_backwards(ORDER * p, const char * str)
+  {
+  char * s;
+
+  s = malloc(strlen(str)+2);
+  s[0]='j';
+  strcpy(&s[1], str);
+  while(p && (p->command != label) && strcmp(s, p->args.label))
+    p = GETPREVORDER(p);
+  free(s);
+  return p;
+  }
+
+void explode_rtf(ORDER * p)
+  {
+  switch(p->command) {
+    case rtc_i:
+      DBUG_PRINT("GEORG", ("inserting PUSHC_W"));
+      insert_order_list(new_order(pushcw_i, p->args.n), p);
+      break;
+    case rtc_b:
+      DBUG_PRINT("GEORG", ("inserting PUSHC_W"));
+      insert_order_list(new_order(pushcw_b, p->args.n), p);
+      break;
+    case rtc_pf:
+      DBUG_PRINT("GEORG", ("inserting PUSHC_W"));
+      insert_order_list(new_order(pushcw_pf, p->args.n), p);
+      break;
+    case rtf:
+      DBUG_PRINT("GEORG", ("inserting nothing"));
+      break;
+    case rtm:
+      DBUG_PRINT("GEORG", ("inserting MOVE_AW"));
+      insert_order_list(new_order(moveaw), p);
+      break;
+    case rtp:
+      DBUG_PRINT("GEORG", ("inserting PUSH_W"));
+      insert_order_list(new_order(pushw_p, p->args.desc), p);
+      break;
+    default:
+      yyfail("illegal return instruction detected");
+    }
+  }
+
+/* georg: converts the ASM code for conditionals
+ * 1) conditionals may be build by using sequences like:
+ *    pushret jcond ... rtf ... rtf
+ * 2) or alternatively by elimination the use of the return
+ *    instructions: jcond ... jump ...
+ * georg converts 1) in 2) and vs.
+ */
+
+int georg(int dogeorg)
+  {
+  int i, j, cmdid;
+  stack x;
+  char * str;
+  FUNCTION * fun;
+  ORDER * cmd, * p;
+  astack(s);
+
+  DBUG_ENTER("georg");
+  initstack(s, STACKSIZE);
+  push(s, BOTTOM);
+  for(fun = GETFIRSTFUNCTION(program_start); fun; fun = GETNEXTFUNCTION(fun)) {
+    /* always uses triples on stack:
+     * (cont)-label name | ident | ref. to order
+     */
+    push(s, 0); push(s, 0); push(s, 0);
+    DBUG_PRINT("GEORG", ("starting function %s", (int)GETNAME(fun)));
+    /* do reorganizing for all functions */
+    for(cmd = GETFIRSTORDER(fun); cmd; ) {
+      p = cmd; cmdid=0;
+      cmd = GETNEXTORDER(cmd);
+      switch(p->command) {
+        case ext:
+          /* keeps goal analogously to every other function
+           */
+          drop(s, 3);
+          break;
+        case pushret: {
+          /* PUSHRET is removed and the label is stored on top of stack
+           */
+          str = (char *)malloc(strlen(p->args.label));
+          strcpy(str, p->args.label);
+          if (dogeorg == GEORG_GENJUMP) {
+            DBUG_PRINT("GEORG", ("ignored PUSHRET(%p:%s)", str, str));
+            delete_order(p);
+            }
+          push(s, (stack)NULL);
+          push(s, (stack)pushret);
+          push(s, (stack)str);
+          break;
+          }
+        case jcond: if (cmdid == 0) cmdid = jcond2;
+        case jfalse: if (cmdid == 0) cmdid = jfalse2;
+        case jtrue: if (cmdid == 0) cmdid = jtrue2;
+          {
+          /* An unary conditional branch is converted into
+           * a binary. The second label is obtained from top of stack
+           */
+          str = (char *)top(s);
+          DBUG_PRINT("GEORG", ("COND*(%p:%s)", str, str));
+          if ((dogeorg == GEORG_GENJUMP)
+              && (peek(s, 1) == (stack)pushret)
+              && (strcmp(&str[4], &p->args.label[4]) == 0)) {
+            DBUG_PRINT("GEORG", ("replacing by COND2*(%s,%s)", p->args.label, str));
+            insert_order_list(new_order(cmdid, LABcond, LABcont, p->args.label, str), p);
+            delete_order(p);
+            }
+          push(s, (stack)NULL);
+          if (peek(s, 2)) {
+            char * s = str;
+            push(s, (stack)jcond);
+            str = (char *)malloc(strlen(s)+1);
+            strcpy(str, s);
+            }
+          else {
+            push(s, (stack)0);
+            str = (char *)malloc(strlen(p->args.label));
+            strcpy(str, p->args.label);
+            str[3] = 't';
+            }
+          push(s, (stack)str);
+          break;
+          }
+        case rtc_i:
+        case rtc_b:
+        case rtc_pf:
+        case rtf:
+        case rtm:
+        case rtp: {
+          /* convert the first return instruction (terminating conditionals)
+           * into a unconditional jump instruction and remove the
+           * second return instruction.
+           * optimized return instructions have to be split up into
+           * two simpler instructions
+           */
+          str = (char *)pop(s);
+          DBUG_PRINT("GEORG", ("return"));
+          switch((COMMAND)pop(s)) {
+            case pushret: /* second return in reduma built conditional */
+              DBUG_PRINT("GEORG", ("found PUSHRET"));
+              if (dogeorg == GEORG_GENJUMP) {
+                explode_rtf(p);
+                delete_order(p);
+                }
+              free(str);
+              drop(s, 1);
+              break;
+            case jcond: /* first return in reduma built embedded conditional */
+              DBUG_PRINT("GEORG", ("found JCOND"));
+              if (dogeorg == GEORG_GENJUMP) {
+                ORDER * ppp;
+                explode_rtf(p);
+                DBUG_PRINT("GEORG", ("inserting JUMP(%s)", str));
+                ppp=new_order(jump, LABcont, str);
+                insert_order_list(ppp, p);
+                delete_order(p);
+                free(str);
+                }
+              drop(s, 1);
+              break;
+            case rtf: /* first return in reduma build function body conditional */
+              DBUG_PRINT("GEORG", ("found RTF"));
+              drop(s, 1); free(str);
+              break;
+            case jcond2:
+              DBUG_PRINT("GEORG", ("found JCOND2"));
+              drop(s,1); free(str);
+              break;
+            case Case: /* return from when-clause */
+              /* DO NOT remove markers from stack, this is done by
+               * the adjacent label. Reason: multiple labels may
+               * prefix the same code segment
+               */
+              DBUG_PRINT("GEORG", ("found CASE"));
+              push(s, Case); push(s, (stack)str);
+              break;
+            case 0: /* last return of function encountered */
+              DBUG_PRINT("GEORG", ("found 0"));
+              drop(s, 1); free(str);
+              break;
+            default:
+              yyfail("INTERNAL ERROR: georg: illegal command id on stack");
+            }
+          /* now, remove all code lines below the return instruction
+           * up to the next END or label
+           */
+          while((GETORDERENTRY(cmd, command) != end)
+              && ( GETORDERENTRY(cmd, command) != label)) {
+            DBUG_PRINT("GEORG", ("removing dead code"));
+            p = cmd; cmd = GETNEXTORDER(cmd);
+            delete_order(p);
+            }
+          break;
+          }
+        case rtt: {
+          drop(s, 3);
+          break;
+          }
+        case jcond2:
+        case jfalse2:
+        case jtrue2: {
+          /* convert binary conditional branch instruction into unary,
+           * placing the continuation label on top of stack and
+           * inserting a PUSHRET instruction just before the
+           * conditional label
+           */
+          str = (char *)malloc(strlen(p->args.ret));
+          strcpy(str, p->args.ret);
+          DBUG_PRINT("GEORG", ("COND2*(%p:%s)", str, str));
+          push(s, (stack)NULL); push(s, (stack)0); push(s, (stack)str);
+          str = (char *)malloc(strlen(p->args.ret));
+          strcpy(str, p->args.ret);
+          push(s, (stack)p); push(s, (stack)jcond2); push(s, (stack)str);
+          break;
+          }
+        case jump: {
+          /* if the branch destination is on top of stack
+           * convert to unconditional branch into a return
+           * instruction (the destination stays on top of stack)
+           */
+          ORDER * q, * qq;
+          str = (char *)top(s);
+          DBUG_PRINT("GEORG", ("JUMP(%p:%s)", str, str));
+          if (str && (strcmp(p->args.label,str) == 0))
+            if (dogeorg == GEORG_GENRTF) {
+              if ((COMMAND)peek(s, 1) == jcond2) {
+                DBUG_PRINT("GEORG", ("replacing JCOND2*"));
+                drop(s, 2); q = (ORDER *)pop(s);
+                switch(GETORDERENTRY(q, command)) {
+                  case jcond2: GETORDERENTRY(q, command) = jcond; break;
+                  case jtrue2: GETORDERENTRY(q, command) = jtrue; break;
+                  case jfalse2: GETORDERENTRY(q, command) = jfalse; break;
+                  default: yyfail("INTERNAL ERROR: georg: illegal command id on stack");
+                  } 
+                str = q->args.ret;
+                if ((qq = find_label_backwards(q, q->args.label))) {
+                  DBUG_PRINT("GEORG", ("inserting PUSHRET before label %s", q->args.label));
+                  insert_order_list(new_order(pushret, LABcont, str), qq);
+                  }
+                else if ((qq = find_label_backwards(p, q->args.label))) {
+                  DBUG_PRINT("GEORG", ("inserting PUSHRET before JCOND"));
+                  insert_order_list(new_order(pushret, LABcont, str), q);
+                  }
+                else
+                  yyerror("missing label j%s", q->args.label);
+                }
+              else
+                drop(s, 3);
+              DBUG_PRINT("GEORG", ("inserting RTF"));
+              insert_order_list(new_order(rtf), p);
+              delete_order(p);
+              }
+            else
+              drop(s, 3);
+          break;
+          }
+        case label: {
+          /* if the top of stack label if equal to the encountered
+           * label a conditional is complete and the alternative has to
+           * be terminated by a return
+           * The label is removed from stack
+           * labels identifying PM are always removed from stack
+           */
+          DBUG_PRINT("GEORG", ("%s: LABEL(%p:%s)", p->args.label, str, str));
+          str = (char *)top(s);
+          if ((stack)str == BOTTOM) {
+            DBUG_PRINT("GEORG", ("unexpected label, must be dead code"));
+            while(GETORDERENTRY(p, command) != end) {
+              DBUG_PRINT("GEORG", ("removing dead code"));
+              delete_order(p);
+              p = cmd; cmd = GETNEXTORDER(cmd);
+              }
+            }
+          else {
+            if (str && ((strcmp(GETORDERARGS(p, label), str) == 0) ||
+                        (GETORDERARGS(p, n) == LABfail) ||
+                        (GETORDERARGS(p, n) == LABbt) ||
+                        (GETORDERARGS(p, n) == LABinloop) ||
+                        (GETORDERARGS(p, n) == LABundecided))) {
+              if (dogeorg == GEORG_GENRTF) {
+                DBUG_PRINT("GEORG", ("inserting RTF"));
+                insert_order_list(new_order(rtf), p);
+                }
+              free((void *)pop(s));
+              drop(s, 2);
+              }
+            }
+          break;
+          }
+        case matcharb:
+        case matcharbs:
+        case matchbool:
+        case matchin:
+        case matchint:
+        case matchlist:
+        case matchprim:
+        case matchstr: { /* prepare new exit for undecided branch */
+          DBUG_PRINT("GEORG", ("MATCH* encountered"));
+          for(i = j = 0; peek(s, i) != BOTTOM; i += 3)
+            if (peek(s, i) && (strcmp((char *)peek(s, i), GETORDERARGS(p, label)) == 0))
+              { j = 1; break; }
+          if (j == 0) {
+            str = (char *)malloc(strlen(p->args.label));
+            strcpy(str, p->args.label);
+            push(s, (stack)NULL); push(s, Case); push(s, (stack)str);
+            DBUG_PRINT("GEORG", ("%s pushed", (char *)top(s)));
+            }
+          for(i = j = 0; peek(s, i) != BOTTOM; i += 3)
+            if (peek(s, i) && (strcmp((char *)peek(s, i), GETORDERARGS(p, ret)) == 0))
+              { j = 1; break; }
+          if (j == 0) {
+            str = (char *)malloc(strlen(p->args.ret));
+            strcpy(str, p->args.ret);
+            push(s, (stack)NULL); push(s, Case); push(s, (stack)str);
+            DBUG_PRINT("GEORG", ("%s pushed", (char *)top(s)));
+            }
+          break;
+          }
+        case atend:
+        case atstart:
+        case tguard: { /* prepare an exit for the failt branch */
+          DBUG_PRINT("GEORG", ("ATEND/ATSTART/TGUARD/MATCH* encountered"));
+          for(i = j = 0; peek(s, i) != BOTTOM; i += 3)
+            if (peek(s, i) && (strcmp((char *)peek(s, i), GETORDERARGS(p, label)) == 0))
+              { j = 1; break; }
+          if (j == 0) {
+            str = (char *)malloc(strlen(p->args.label));
+            strcpy(str, p->args.label);
+            push(s, (stack)NULL); push(s, Case); push(s, (stack)str);
+            DBUG_PRINT("GEORG", ("%s pushed", (char *)top(s)));
+            }
+          break;
+          }
+        default:
+          /* in all other cases keep the proram unchanged */
+        }
+      }
+    if (top(s) != BOTTOM) {
+      while((x = pop(s)) != BOTTOM) {
+        fprintf(stderr, "%x:%s:%d\n", x, (x ? (char *)x : "(null)"), top(s));
+        drop(s, 2);
+        }
+      yyfail("internal error: stack not empty");
+      }
+    }
+  DBUG_RETURN(0);
+  }
+@
+
+
+1.25
+log
+@removes dead labels
+@
+text
+@d285 1
+a285 1
+            while(GETORDERENTRY(cmd, command) != end) {
+@
+
+
+1.24
+log
+@rtt was missing
+@
+text
+@d283 6
+a288 10
+          if ((stack)str == BOTTOM)
+            yyfail("illegal ASM structure could not be resolved");
+          if (str && ((strcmp(GETORDERARGS(p, label), str) == 0) ||
+                      (GETORDERARGS(p, n) == LABfail) ||
+                      (GETORDERARGS(p, n) == LABbt) ||
+                      (GETORDERARGS(p, n) == LABinloop) ||
+                      (GETORDERARGS(p, n) == LABundecided))) {
+            if (dogeorg == GEORG_GENRTF) {
+              DBUG_PRINT("GEORG", ("inserting RTF"));
+              insert_order_list(new_order(rtf), p);
+d290 14
+a303 2
+            free((void *)pop(s));
+            drop(s, 2);
+@
+
+
+1.23
+log
+@label check redesigned
+@
+text
+@d212 4
+@
+
+
+1.22
+log
+@georg takes a parameter
+@
+text
+@d118 3
+a120 3
+          if ((dogeorg == GEORG_GENJUMP) && (peek(s, 1) == (stack)pushret)) {
+            if (strcmp(&str[4], &p->args.label[4]))
+              yywarn("illegal structure in conditional *_%s",str);
+@
+
+
+1.21
+log
+@rtc_pf added
+bug fix
+@
+text
+@d67 1
+a67 1
+int georg()
+@
+
+
+1.20
+log
+@str freed again...
+@
+text
+@d39 4
+d120 1
+a120 1
+              yywarn("illegal structure in conditional *_%s",str[4]);
+d143 1
+@
+
+
+1.19
+log
+@ugly bug in memory management fixed
+(duplication of label for jcond)
+@
+text
+@d219 2
+@
+
+
+1.18
+log
+@bt/inloop label implemented
+@
+text
+@d122 2
+a123 1
+          if (peek(s, 2))
+d125 3
+d163 1
+d166 2
+a167 1
+                insert_order_list(new_order(jump, LABcont, str), p);
+@
+
+
+1.17
+log
+@complementary free for label allocation added
+@
+text
+@d80 1
+d270 2
+@
+
+
+1.16
+log
+@label transfered to char *
+@
+text
+@d24 1
+@
+
+
+1.15
+log
+@label ID integration
+@
+text
+@d17 1
+a17 1
+  char s[20];
+d19 1
+@
+
+
+1.14
+log
+@rtf & PM label
+@
+text
+@d115 1
+a115 1
+            insert_order_list(new_order(cmdid, p->args.label, str), p);
+d158 1
+a158 1
+                insert_order_list(new_order(jump, str), p);
+d235 1
+a235 1
+                  insert_order_list(new_order(pushret, str), qq);
+d239 1
+a239 1
+                  insert_order_list(new_order(pushret, str), q);
+d266 2
+a267 2
+                      (strncmp(GETORDERARGS(p, label), "fail_", 5) == 0) ||
+                      (strncmp(GETORDERARGS(p, label), "undecided_", 10) == 0))) {
+@
+
+
+1.13
+log
+@PM labels handling modified
+@
+text
+@d170 1
+a170 1
+              drop(s, 1); free(str);
+d173 4
+d178 1
+a178 1
+              drop(s,1); free(str);
+@
+
+
+1.12
+log
+@process PM
+@
+text
+@d160 1
+d166 1
+a166 1
+              drop(s, 1);
+d170 1
+a170 1
+              drop(s, 1);
+d174 1
+a174 1
+              drop(s,1);
+d178 1
+a178 1
+              drop(s, 1);
+d255 1
+d261 3
+a263 1
+          if (str && (strcmp(p->args.label,str) == 0)) {
+@
+
+
+1.11
+log
+@dbug info partly removed (STACK)
+@
+text
+@d63 1
+a63 1
+  int cmdid;
+a169 4
+              /*
+              push(s, rtf);
+              push(s, (stack)str);
+              */
+d171 4
+d182 9
+d257 2
+d266 44
+@
+
+
+1.10
+log
+@missing rtf inserted
+@
+text
+@a79 1
+      DBUG_PRINT("STACK", ("%x:%s:%d", top(s), (top(s) ? (char *)top(s) : "(null)"), peek(s,1)));
+@
+
+
+1.9
+log
+@minor change of location of jcond-label
+@
+text
+@d37 3
+@
+
+
+1.8
+log
+@inserted new conditional structure for cr
+@
+text
+@d202 1
+a202 1
+          ORDER * q;
+d217 6
+a222 2
+                if ((q = find_label_backwards(q, q->args.label))) {
+                  DBUG_PRINT("GEORG", ("inserting PUSHRET"));
+d226 1
+a226 1
+                  yyerror("missing label j%s", p->args.label);
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@a12 9
+/*
+#define MARKRET         0
+#define MARKCOND        1
+
+#define GETADR(p)       (void *)(((int)p)&~3)
+#define GETMARK(p)      (((int)p)&3)
+#define SETMARK(p, m)   ((void *)((((int)p)&~3)|m))
+*/
+
+d25 25
+a49 1
+  
+d71 4
+a74 1
+    push(s, 0);
+d77 1
+d82 1
+a82 1
+          /* keep goal analogously to every other function
+d84 1
+a84 1
+          drop(s, 1);
+d86 1
+a86 1
+        case pushret:
+d89 2
+a91 2
+            str = (char *)malloc(strlen(p->args.label));
+            strcpy(str, p->args.label);
+a92 1
+            push(s, (stack)str);
+d95 3
+a97 4
+          else {
+            DBUG_PRINT("GEORG", ("ignored PUSHRET"));
+            push(s, (stack)0);
+            }
+d99 1
+d103 1
+d108 16
+a123 8
+          if (dogeorg == GEORG_GENJUMP) {
+            DBUG_PRINT("GEORG", ("COND*(%p:%s)", str, str));
+            if (str && (strcmp(&str[4], &p->args.label[4]) == 0)) {
+              DBUG_PRINT("GEORG", ("inserting COND2*"));
+              insert_order_list(new_order(cmdid,
+                  p->args.label, str), p);
+              delete_order(p);
+              }
+a124 2
+          else
+            DBUG_PRINT("GEORG", ("ignored COND*"));
+d127 1
+d132 1
+a132 1
+        case rtp:
+d140 8
+a147 28
+          if (str && (dogeorg == GEORG_GENJUMP)) {
+            /* transform first RTF (then-case/2) to JUMP and drop second (else-case/1)
+             */
+            DBUG_PRINT("GEORG", ("RTF*(%p:%s)", str, str));
+            switch(p->command) {
+              case rtc_i:
+                DBUG_PRINT("GEORG", ("inserting PUSHC_W"));
+                insert_order_list(new_order(pushcw_i, p->args.n), p);
+                break;
+              case rtc_b:
+                DBUG_PRINT("GEORG", ("inserting PUSHC_W"));
+                insert_order_list(new_order(pushcw_b, p->args.n), p);
+                break;
+              case rtm:
+                DBUG_PRINT("GEORG", ("inserting MOVE_AW"));
+                insert_order_list(new_order(moveaw), p);
+                break;
+              case rtp:
+                DBUG_PRINT("GEORG", ("inserting PUSH_W"));
+                insert_order_list(new_order(pushw_p, p->args.desc), p);
+                break;
+              default:
+              }
+            if (top(s) && (strcmp(str, (char *)top(s)) == 0)) {
+              DBUG_PRINT("GEORG", ("inserting JUMP"));
+              insert_order_list(new_order(jump, str), p);
+              }
+            else
+d149 36
+a184 9
+            DBUG_PRINT("GEORG", ("ignored RTF*"));
+            delete_order(p);
+            }
+          else
+            DBUG_PRINT("GEORG", ("ignored RTF*"));
+          break;
+        case jcond2: if (cmdid == 0) cmdid = jcond;
+        case jfalse2: if (cmdid == 0) cmdid = jfalse;
+        case jtrue2: if (cmdid == 0) cmdid = jtrue;
+d190 5
+a194 17
+          if (dogeorg == GEORG_GENRTF) {
+            ORDER * q;
+            str = (char *)malloc(strlen(p->args.ret));
+            strcpy(str, p->args.ret);
+            DBUG_PRINT("GEORG", ("COND2*(%p:%s)", str, str));
+            push(s, (stack)str);
+            push(s, (stack)str);
+            if ((q = find_label_backwards(p, p->args.label))) {
+              DBUG_PRINT("GEORG", ("inserting PUSHRET"));
+              insert_order_list(new_order(pushret, p->args.ret), q);
+              }
+            DBUG_PRINT("GEORG", ("inserting COND*"));
+            insert_order_list(new_order(cmdid, p->args.label), p);
+            delete_order(p);
+            }
+          else
+            push(s, 0);
+d196 2
+a197 1
+        case jump:
+d202 30
+a231 9
+          str = (char *)pop(s);
+          if (str && (strcmp(p->args.label,str) == 0)) {
+            DBUG_PRINT("GEORG", ("JUMP(%p:%s)", str, str));
+            DBUG_PRINT("GEORG", ("inserting RTF"));
+            insert_order_list(new_order(rtf), p);
+            delete_order(p);
+            }
+          else
+            DBUG_PRINT("GEORG", ("ignored JUMP"));
+d233 2
+a234 1
+        case label:
+d240 4
+a243 4
+          if (dogeorg == GEORG_GENRTF) {
+            str = (char *)top(s);
+            if (str && (strcmp(p->args.label,str) == 0)) {
+              DBUG_PRINT("GEORG", ("LABEL(%p:%s)", str, str));
+a245 1
+              free((void *)pop(s));
+d247 2
+d251 1
+d257 4
+a260 2
+      while((x = pop(s)))
+        fprintf(stderr, "%x:%s\n", x, (x ? (char *)x : ""));
+@
+
+
+1.6
+log
+@eliminated fixed type instructions
+@
+text
+@d50 1
+a50 1
+  ASTACK(s);
+@
+
+
+1.5
+log
+@semi final version
+@
+text
+@a84 3
+        case jcond_b: if (cmdid == 0) cmdid = jcond2_b;
+        case jfalse_b: if (cmdid == 0) cmdid = jfalse2_b;
+        case jtrue_b: if (cmdid == 0) cmdid = jtrue2_b;
+a151 3
+        case jcond2_b: if (cmdid == 0) cmdid = jcond_b;
+        case jfalse2_b: if (cmdid == 0) cmdid = jfalse_b;
+        case jtrue2_b: if (cmdid == 0) cmdid = jtrue_b;
+@
+
+
+1.4
+log
+@press release
+@
+text
+@d2 1
+d10 1
+d13 9
+d46 1
+d50 1
+a50 1
+  STACK * st = NULL;
+d53 2
+a54 2
+  
+  st = st_push(st, new_stelm(tp_data, NULL));
+d56 1
+d62 5
+d73 2
+a74 1
+            st = st_push(st, new_stelm(tp_data, str));
+d77 4
+d91 1
+d93 3
+a95 1
+            if (st_read(st, 0)->dat.data) {
+d97 1
+a97 1
+                  p->args.label, st_read(st, 0)->dat.data), p);
+d101 50
+d167 5
+a171 2
+            st = st_push(st, new_stelm(tp_data, str));
+            if ((q = find_label_backwards(p, p->args.label)))
+d173 2
+d178 2
+d186 6
+a191 6
+          if (dogeorg == GEORG_GENJUMP) {
+            str = (char *)st_read(st, 0)->dat.data;
+            if (str && (strcmp(p->args.label,str) == 0)) {
+              insert_order_list(new_order(rtf), p);
+              delete_order(p);
+              }
+d193 2
+a195 39
+        case rtc_i:
+        case rtc_b:
+        case rtf:
+        case rtm:
+        case rtp:
+          /* convert the first return instruction (terminating conditionals)
+           * into a unconditional jump instruction and remove the
+           * second return instruction.
+           * optimized return instructions have to be split up into
+           * two simpler instructions
+           */
+          if (dogeorg == GEORG_GENJUMP) {
+            str = st_read(st, 0)->dat.data;
+            if (str) {
+              /* transform first RTF (then-case/2) to JUMP and drop second (else-case/1)
+               */
+              st_pop(st);
+              switch(p->command) {
+                case rtc_i:
+                  insert_order_list(new_order(pushcw_i, p->args.n), p);
+                  break;
+                case rtc_b:
+                  insert_order_list(new_order(pushcw_b, p->args.n), p);
+                  break;
+                case rtm:
+                  insert_order_list(new_order(moveaw), p);
+                  break;
+                case rtp:
+                  insert_order_list(new_order(pushw_p, p->args.desc), p);
+                  break;
+                default:
+                }
+              if (((int)str&1) == 0) {
+                insert_order_list(new_order(jump, str), p);
+                st = st_push(st, new_stelm(tp_data, (void *)((int)str+1)));
+                }
+              delete_order(p);
+              }
+            }
+d202 2
+a203 2
+          if (dogeorg == GEORG_GENJUMP) {
+            str = (char *)st_read(st, 0)->dat.data;
+d205 2
+d208 1
+a208 1
+              st_pop(st);
+d213 1
+a213 1
+          /* in all other cases leave the proram unchanged */
+d215 5
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d13 11
+d50 1
+a50 2
+          /* if converting to jump's remove PUSHRET and store
+             label on stack
+d65 30
+a94 3
+          if (st_read(st, 0)->dat.data) {
+            insert_order_list(new_order(cmdid,
+                p->args.label, st_read(st, 0)->dat.data), p);
+d98 13
+d116 32
+a147 19
+          str = st_read(st, 0)->dat.data;
+          if (str) {
+            /* transform first RTF (then-case/2) to JUMP and drop second (else-case/1)
+             */
+            st_pop(st);
+            switch(p->command) {
+              case rtc_i:
+                insert_order_list(new_order(pushcw_i, p->args.n), p);
+                break;
+              case rtc_b:
+                insert_order_list(new_order(pushcw_b, p->args.n), p);
+                break;
+              case rtm:
+                insert_order_list(new_order(moveaw), p);
+                break;
+              case rtp:
+                insert_order_list(new_order(pushw_p, p->args.desc), p);
+                break;
+              default:
+d149 12
+a160 3
+            if (((int)str&1) == 0) {
+              insert_order_list(new_order(jump, str), p);
+              st = st_push(st, new_stelm(tp_data, (void *)((int)str+1)));
+a161 1
+            delete_order(p);
+d163 1
+@
+
+
+1.2
+log
+@return -> jump implemented
+@
+text
+@d70 1
+d86 1
+a86 1
+            if ((int)str&1 == 0)
+d88 2
+a90 2
+            st_pop(st);
+            st = st_push(st, new_stelm(tp_data, (void *)((int)str+1)));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 5
+d7 3
+d13 8
+d23 74
+a96 1
+  return 0;
+@

@@ -1,0 +1,69 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.4
+date	2001.03.13.14.53.38;	author base;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2001.03.13.14.39.51;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2001.03.13.14.39.50;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.23.14.04.22;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.4
+log
+@directories editor.o.obj, xeditor.o.obj removed
+@
+text
+@src
+@
+
+
+1.3
+log
+@xeditor.o.obj inserted.
+@
+text
+@a1 2
+editor.o.obj
+xeditor.o.obj
+@
+
+
+1.2
+log
+@editor.o.obj inserted.
+@
+text
+@d3 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+@

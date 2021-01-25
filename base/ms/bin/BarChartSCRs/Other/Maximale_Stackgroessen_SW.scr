@@ -1,0 +1,153 @@
+DEFS:
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+		   numProcesses[MAX_PROCESSORS];
+
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+		    rememberFactor[100], temp[1000];
+
+	static int i, j, k;
+
+	#define NUM_STACKS 5
+	static char stackNames[NUM_STACKS][10] = {"A", "I", "R", "H", "hilf"};
+
+	static int maxStackSizes[NUM_STACKS][MAX_PROCESSORS][MAX_PROCESSES],
+		   actualStackSizes[NUM_STACKS][MAX_PROCESSORS][MAX_PROCESSES],
+	           actualSwitch[MAX_PROCESSORS][MAX_PROCESSES];
+
+	int name2Index(name)
+	char name[];
+	{
+		int i;
+
+		for(i=0; i<NUM_STACKS; ++i) {
+			if(!strcmp(name, stackNames[i])) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	SET_MODE(BAR_CHART);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "Stacksizes [S1(A) S2(I) R H hilf] -- %s",
+		rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	SET_NAME("Stacksizes");
+	SET_X_LABEL("Stacks");
+	SET_Y_LABEL("Size");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+
+	for(i=0; i<NUM_STACKS; ++i) {
+		CREATE_BAR(stackNames[i], i+1, NULL);
+
+		for(j=0; j<MAX_PROCESSORS; ++j) {
+			for(k=0; k<MAX_PROCESSES; ++k) {
+				maxStackSizes[i][j][k] =
+				actualStackSizes[i][j][k] = 0;
+				actualSwitch[j][k] = 0;
+			}
+		}
+	}
+
+	NEXT_FRAME();
+
+	break;
+
+STACK_PUSH:
+	i = name2Index(PS_STACK);
+	j = PROCESSOR;
+
+	/* Is this pid in the table yet? */
+	if((k = pid(PROCESSOR, PROCESS)) == -1) {
+		k = numProcesses[PROCESSOR]++;
+		pids[PROCESSOR][k] = PROCESS;
+	}
+
+	if((i <= 1) && actualSwitch[j][k]) {
+		i = 1-i; /* switched: A <--> I */
+	}
+
+	if(++actualStackSizes[i][j][k] > maxStackSizes[i][j][k]) {
+		maxStackSizes[i][j][k] = actualStackSizes[i][j][k];
+	}
+
+	break;
+
+STACK_POP:
+	i = name2Index(PP_STACK);
+	j = PROCESSOR;
+
+	/* Is this pid in the table yet? */
+	if((k = pid(PROCESSOR, PROCESS)) == -1) {
+		k = numProcesses[PROCESSOR]++;
+		pids[PROCESSOR][k] = PROCESS;
+	}
+
+	if((i <= 1) && actualSwitch[j][k]) {
+		i = 1-i; /* switched: A <--> I */
+	}
+
+	--actualStackSizes[i][j][k];
+
+	break;
+
+COUNT_RTF:
+COUNT_RTM:
+COUNT_RTC:
+COUNT_RTP:
+	/* Switch A and I */
+
+	j = PROCESSOR;
+
+	/* Is this pid in the table yet? */
+	if((k = pid(PROCESSOR, PROCESS)) == -1) {
+		k = numProcesses[PROCESSOR]++;
+		pids[PROCESSOR][k] = PROCESS;
+	}
+
+	actualSwitch[j][k] = !actualSwitch[j][k];
+
+	break;
+
+END:
+	for(i=0; i<NUM_STACKS; ++i) {
+		/* Find maximum... */
+		for(j=0; j<MAX_PROCESSORS; ++j) {
+			for(k=0; k<MAX_PROCESSES; ++k) {
+				if(maxStackSizes[i][j][k] >
+				   maxStackSizes[i][0][0]) {
+					maxStackSizes[i][0][0] =
+					maxStackSizes[i][j][k];
+				}
+			}
+		}
+
+		SET_HEIGHT(i+1, (double)maxStackSizes[i][0][0]);
+	}
+
+	NEXT_FRAME();
+	break;

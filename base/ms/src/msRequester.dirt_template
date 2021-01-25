@@ -1,0 +1,129 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "msRequester"
+%%ID  Created by tb on Thu Jul 29 11:15:27 1993
+%%%
+%T msRequester
+%F
+%%%
+%N msRequesterBox
+%c ukcLayoutWidgetClass
+%p msRequester
+%m true
+%o false
+%s x : 86
+%s y : 41
+%s width : 300
+%s height : 160
+%s borderWidth : 1
+%r background : #bbbbbb
+%f
+%%%
+%N  msRequesterTitle
+%c  ukcLayoutWidgetClass
+%p  msRequester.msRequesterBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 5
+%s  width : 290
+%s  height : 100
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msRequesterTitle1
+%c   ukcLabelWidgetClass
+%p   msRequester.msRequesterBox.msRequesterTitle
+%m   true
+%o   false
+%s   x : 5
+%s   y : 15
+%s   width : 281
+%s   height : 26
+%s   borderWidth : 1
+%r   borderColor : #888888
+%r   background : #888888
+%f
+%%%
+%N   msRequesterTitle2
+%c   ukcLabelWidgetClass
+%p   msRequester.msRequesterBox.msRequesterTitle
+%m   true
+%o   false
+%s   x : 5
+%s   y : 40
+%s   width : 281
+%s   height : 26
+%s   borderWidth : 1
+%r   borderColor : #888888
+%r   background : #888888
+%f
+%%%
+%N   msRequesterTitle3
+%c   ukcLabelWidgetClass
+%p   msRequester.msRequesterBox.msRequesterTitle
+%m   true
+%o   false
+%s   x : 5
+%s   y : 65
+%s   width : 281
+%s   height : 26
+%s   borderWidth : 1
+%r   borderColor : #888888
+%r   background : #888888
+%f
+%%%
+%N  msRequesterAction
+%c  ukcLayoutWidgetClass
+%p  msRequester.msRequesterBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 113
+%s  width : 290
+%s  height : 40
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msRequesterActionOK
+%c   ukcCommandWidgetClass
+%p   msRequester.msRequesterBox.msRequesterAction
+%m   true
+%o   false
+%s   x : 194
+%s   y : 6
+%s   width : 90
+%s   height : 25
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : OK
+%f
+%%%
+%N   msRequesterActionCancel
+%c   ukcCommandWidgetClass
+%p   msRequester.msRequesterBox.msRequesterAction
+%m   true
+%o   false
+%s   x : 99
+%s   y : 6
+%s   width : 90
+%s   height : 25
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Cancel
+%f
+%%%
+%N   msRequesterActionHelp
+%c   ukcCommandWidgetClass
+%p   msRequester.msRequesterBox.msRequesterAction
+%m   true
+%o   false
+%s   x : 4
+%s   y : 6
+%s   width : 90
+%s   height : 25
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Help
+%f

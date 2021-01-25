@@ -1,0 +1,3182 @@
+head	1.26;
+access;
+symbols
+	continuation_based_interactions:1.5;
+locks; strict;
+comment	@ * @;
+
+
+1.26
+date	2001.07.02.14.53.11;	author base;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	98.07.03.11.28.11;	author rs;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	98.06.17.15.27.06;	author rs;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	98.02.27.15.00.48;	author rs;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	97.02.18.09.35.47;	author stt;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	97.02.17.16.22.02;	author stt;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	96.07.31.12.37.04;	author stt;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	96.06.24.17.14.04;	author base;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	96.06.24.17.02.04;	author base;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	96.06.24.16.49.53;	author cr;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	96.06.24.13.26.51;	author cr;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	96.03.06.15.07.00;	author cr;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	96.03.05.13.26.43;	author stt;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	96.02.21.18.17.22;	author cr;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	96.02.20.13.26.03;	author cr;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	96.02.16.14.13.56;	author rs;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	96.02.13.13.25.46;	author stt;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	96.02.07.18.44.24;	author stt;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	96.01.08.15.36.59;	author stt;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.11.29.10.21.23;	author stt;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.11.27.09.28.48;	author stt;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.11.15.10.45.06;	author stt;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.11.14.11.11.30;	author stt;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.11.10.15.39.15;	author stt;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.11.09.15.47.44;	author stt;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.11.08.16.41.40;	author stt;	state Exp;
+branches;
+next	;
+
+
+desc
+@Interaction definitions
+@
+
+
+1.26
+log
+@compiler warnings eliminated
+@
+text
+@/*
+ * $Log: riafunc.c,v $
+ * Revision 1.25  1998/07/03 11:28:11  rs
+ * minor changes
+ *
+ * Revision 1.24  1998/06/17 15:27:06  rs
+ * support for train primitives as interactions
+ *
+ * Revision 1.23  1998/02/27  15:00:48  rs
+ * further bugfixes on speculative evaluation (preliminary, beware of debug messages !)
+ *
+ * Revision 1.22  1997/02/18  09:35:47  stt
+ * function fredirect completed
+ *
+ * Revision 1.21  1997/02/17  16:22:02  stt
+ * fredirect-dummy inserted
+ *
+ * Revision 1.20  1996/07/31  12:37:04  stt
+ * eof returns OK{true/false} now.
+ *
+ * Revision 1.19  1996/06/24  17:14:04  base
+ * lred/tred bug fix, 3rd
+ *
+ * Revision 1.18  1996/06/24  17:02:04  base
+ * lred bug fix, 2nd
+ *
+ * Revision 1.17  1996/06/24  16:49:53  cr
+ * bug fix: STORE and lred again :-(
+ *
+ * Revision 1.16  1996/06/24  13:26:51  cr
+ * red_put passes expr for store_send_graph in _desc
+ * preparations for TASM-variants of put/get/store/receive
+ *
+ * Revision 1.15  1996/03/06  15:07:00  cr
+ * store_receive_result places result directly in _desc (red_get)
+ *
+ * Revision 1.14  1996/03/05  13:26:43  stt
+ * copy, mkdir, rmdir, rename and remove implemented.
+ *
+ * Revision 1.13  1996/02/21  18:17:22  cr
+ * prototype implementation of interactions for arbitrary expressions
+ * uses modified send/receive-routines from rmessage.c
+ * compile with -DSTORE=1 to get the prototype (interactions get/put)
+ * or with -DSTORE=0 to get the original files.
+ * involved files so far: rheap.c riafunc.c rstelem.h rmessage.c
+ * rmessage.c has to be compiled once with -DSTORE=1 to get the
+ * modified send/receive-routines, and perhaps a second time with
+ * -DSTORE=0 to get its original functionality for the distributed
+ * versions.
+ *
+ * Revision 1.12  1996/02/20  13:26:03  cr
+ * added interactions get and put
+ *
+ * Revision 1.11  1996/02/16  14:13:56  rs
+ * no const variable used for array dimension (ncc problem)
+ *
+ * Revision 1.10  1996/02/13  13:25:46  stt
+ * some standard header includes moved to rintact.h
+ *
+ * Revision 1.9  1996/02/07  18:44:24  stt
+ * bugfix red_read
+ * keywords for finfo capitaliesed, keyword 'index' removed
+ *
+ * Revision 1.8  1996/01/08  15:36:59  stt
+ * major changes for monadic i/o, many comments
+ *
+ * Revision 1.7  1995/11/29  10:21:23  stt
+ * fflush() in output-routines added
+ * Appending of a Newline in fputs() removed
+ *
+ * Revision 1.6  1995/11/27  09:28:48  stt
+ * interactions uses "virtual working directory"
+ *
+ * Revision 1.5  1995/11/15  10:45:06  stt
+ * error in red_status corrected
+ *
+ * Revision 1.4  1995/11/14  11:11:30  stt
+ * fputs corrected
+ *
+ * Revision 1.3  1995/11/10  15:39:15  stt
+ * red_fgets for long strings corrected
+ *
+ * Revision 1.2  1995/11/09  15:47:44  stt
+ * code restructured
+ *
+ * Revision 1.1  1995/11/08 16:41:40  stt
+ * Initial revision
+ */
+
+/* --- riafunc.c ---------------------------------- stt --- 08.11.95 ---- 
+ *
+ * All interactions (except bind, unit and exit) are defined in this file.
+ *
+ * Structure of an interaction function:
+ * 1. Check all arguments for type and, if possible, value.
+ *    Return SYNERR if check fails.
+ * 2. Perform interaction.
+ * 3. Put result into _desc and return OK, if the interaction was successfull,
+ *    ERROR otherwise.
+ */
+
+
+#include <errno.h>
+#if (!D_DIST)
+/* #include <grp.h> */
+#endif
+#include <limits.h>
+#include <time.h>
+#include <sys/stat.h>
+
+#include "rstdinc.h"
+#if D_SLAVE
+#include "rncstack.h"
+#include "rncmessage.h"
+#else
+#include "rstackty.h"
+#endif
+#include "rheapty.h"
+#include "rstelem.h"
+#include "rextern.h"
+#include "rinter.h"
+#include "dbug.h"
+#include "rintact.h"
+
+#if TRAIN
+#include "/home/railway/inc/RailControl.h"  
+#endif /* TRAIN */
+
+#if !TASM_STORE
+
+/* -----------------------------------------------------------------------
+ * red_chdir:  Changes working directory.
+ */
+int red_chdir(STACKELEM path)
+{
+  int  returnval = SYNERR;
+  char *newpath = NULL;
+  DIR *dir;
+  
+  START_MODUL("red_chdir");
+  
+  GETSTRING(newpath,(PTR_DESCRIPTOR) path);
+
+  if (newpath != NULL)
+  {
+    COMPLETENAME(newpath, ISDIR);
+
+    if ((dir = opendir(newpath)) == NULL &&
+        errno != EACCES)
+    {
+      MAKESTRDESC(_desc,"chdir: Argument is not a directory.");
+      returnval = ERROR;
+      free(newpath);
+    }
+    else
+    {
+      closedir(dir);
+      free(virtual_wd);
+      virtual_wd = newpath;
+      MAKESTRDESC(_desc,"chdir");
+      returnval = OK;
+    }
+  }
+  
+  END_MODUL("red_chdir");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_copy: Copies a file.
+ */
+int red_copy(STACKELEM sname, STACKELEM tname)
+{
+  int returnval = SYNERR;
+  char *source = NULL, *target = NULL;
+  FILE *fs, *ft;
+  int nitems = 1024, readed;
+  char buf[1024];
+  struct stat statbuf;
+
+  START_MODUL("red_copy");
+
+  GETSTRING(source, (PTR_DESCRIPTOR) sname);
+  GETSTRING(target, (PTR_DESCRIPTOR) tname);
+
+  if (source != NULL)
+  {
+    if (target != NULL)
+    {
+      COMPLETENAME(source, ISFILE);
+      COMPLETENAME(target, ISFILE);
+
+      if ((fs = fopen(source,"r")) == NULL)
+      {
+        returnval = ERROR;
+        MAKESTRDESC(_desc,"copy: Cannot open source file.");
+      }
+      else if ((ft = fopen(target,"w")) == NULL)
+      {
+        fclose(fs);
+        returnval = ERROR;
+        MAKESTRDESC(_desc,"copy: Cannot open target file.");
+      }
+      else
+      {
+        if ((stat(source, &statbuf) == 0) && (S_ISDIR(statbuf.st_mode)))
+        {
+          returnval = ERROR;
+          MAKESTRDESC(_desc,"copy: Source file is a directory.");
+        }
+        else
+        {
+          while ((readed = fread(buf, 1, nitems, fs)) > 0)
+            fwrite(buf, 1, readed, ft);
+          returnval = OK;
+          MAKESTRDESC(_desc,"copy");
+        }
+        fclose(fs);
+        fclose(ft);
+      }
+      free(target);
+    }
+    free(source);
+  }
+  
+  END_MODUL("red_copy");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_dir:  Returns a list of all entries in the given directory.
+ */
+int red_dir(STACKELEM path)
+{
+  DIR *dir;
+  struct dirent *entry;
+  char *pathname;
+  PTR_DESCRIPTOR *names;
+  PTR_HEAPELEM   ptdv;
+  int num_names, max_names;
+  const int STEPNAMES = 50;
+  int returnval = SYNERR;
+
+  START_MODUL("red_dir");
+  
+  GETSTRING(pathname, (PTR_DESCRIPTOR) path);
+
+  if (pathname != NULL)
+  {
+    COMPLETENAME(pathname, ISDIR);
+    if ((dir = opendir(pathname)) == NULL)
+    {
+      MAKESTRDESC(_desc, "dir: Argument is not a directory or cannot be "
+                         "accessed.");
+      returnval = ERROR;
+    }
+    else
+    {
+      max_names = STEPNAMES;
+      num_names = 0;
+      if ((names = (PTR_DESCRIPTOR *)
+                   malloc(max_names*sizeof(PTR_DESCRIPTOR))) == NULL)
+        post_mortem("rintact: memory allocation for names not possible.");
+    
+      while ((entry = readdir(dir)) != NULL)
+      {
+        if (num_names >= max_names)
+        {
+          max_names += STEPNAMES;
+          if ((names = (PTR_DESCRIPTOR *)
+                    realloc(names, max_names*sizeof(PTR_DESCRIPTOR))) == NULL)
+            post_mortem("rintact: memory reallocation for names not possible.");
+        }
+    
+        MAKESTRDESC(names[num_names++], entry->d_name);
+      }
+      
+      closedir(dir);
+    
+      MAKEDESC(_desc, 1, C_LIST, TY_UNDEF);
+      L_LIST(*_desc,dim) = num_names;
+      L_LIST(*_desc,ptdd) = NULL;
+      GET_HEAP(num_names, A_LIST(*_desc,ptdv));
+      ptdv = R_LIST(*_desc,ptdv);
+      RES_HEAP;
+      memcpy((void *) ptdv, (void *) names, num_names*sizeof(PTR_DESCRIPTOR));
+      REL_HEAP;
+
+      free(names);
+      returnval = OK;
+    }
+    free(pathname);
+  }
+  
+  END_MODUL("red_dir");
+  return(returnval);
+}
+
+
+/* ----------------------------------------------------------------------- 
+ * red_eof:  Checks eof condition of file handle. Therefor it does a getc
+ * and an ungetc on the file.
+ */
+int red_eof(STACKELEM handle)
+{
+  char c, *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+  
+  START_MODUL("red_eof");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh,handlestr);
+  
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc,"eof: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ((c = fgetc(R_FILEHANDLE(*fh,fp))) != EOF)
+      {
+        ungetc(c, R_FILEHANDLE(*fh,fp));
+        _desc = (PTR_DESCRIPTOR) SA_FALSE;
+      }
+      else
+        _desc = (PTR_DESCRIPTOR) SA_TRUE;
+      returnval = OK;
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_eof");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fclose:  Close a file and removes its file handle from the
+ *              file handle list.
+ */
+int red_fclose(STACKELEM handle)
+{
+  char *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+
+  START_MODUL("red_fclose");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+  
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc,"fclose:Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if (fclose(R_FILEHANDLE(*fh,fp)) == EOF) 
+      {
+        MAKESTRDESC(_desc,"fclose: fclose not successful.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if (RMFILEHANDLE(fh) != 0)
+        {
+          MAKESTRDESC(_desc,"fclose: Cannot remove file handle.");
+          returnval = ERROR;
+        }
+        else
+        {
+          MAKESTRDESC(_desc,"fclose");
+          returnval = OK;
+        }
+      }
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_fclose");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fgetc:  Reads one character from the given file.
+ *             A character is a string with length 1.
+ */
+int red_fgetc(STACKELEM handle)
+{
+  char *handlestr;
+  FILEHANDLE *fh;
+  char cstr[] = { '\0', '\0'};
+  int returnval = SYNERR;
+
+  START_MODUL("red_fgetc");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc,"fgetc: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ( ! T_MODE_READ(R_FILEHANDLE(*fh,mode)))
+      {
+        MAKESTRDESC(_desc, "fgetc: File is not readable.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if ((cstr[0] = (char) fgetc(R_FILEHANDLE(*fh,fp))) == EOF)
+        {
+          MAKESTRDESC(_desc,"fgetc: End of file.");
+          returnval = ERROR;
+        }
+        else
+        {
+          MAKESTRDESC(_desc,cstr);  
+          returnval = 0;
+        }
+      }
+    }
+    free(handlestr);
+  }
+
+  END_MODUL("red_fgetc");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fgets:  Reads one line from the given file.
+ *             Reads till next '\n', '\n' is not returned.
+ */
+int red_fgets(STACKELEM handle)
+{
+  int LENGTH = 250, number;
+  char str[250], *bigstr, *newstr, *handlestr;
+  FILEHANDLE *fh;
+  int ende, returnval = SYNERR;
+  
+  START_MODUL("red_fgets");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+  
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc,"fgets: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ( ! T_MODE_READ(R_FILEHANDLE(*fh,mode)))
+      {
+        MAKESTRDESC(_desc, "fgets: File is not readable.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if (fgets(str, LENGTH, R_FILEHANDLE(*fh,fp)) == NULL)
+        {
+          MAKESTRDESC(_desc,"fgets: End of file.");
+          returnval = ERROR;
+        }
+        else
+        {
+          if (strlen(str) < LENGTH -1)
+            bigstr = str;
+          else
+          {
+            number = 1;
+            if ((bigstr = (char *) malloc(number * LENGTH)) == NULL)
+             post_mortem("rintact: memory allocation for bigstr not possible.");
+            
+            strcpy(bigstr,str);
+            ende = 0;
+
+            while ((ende == 0) &&
+                   (fgets(str, LENGTH, R_FILEHANDLE(*fh,fp)) != NULL))
+            {
+              number++;
+              if ((newstr = (char *) realloc(bigstr, number*LENGTH)) == NULL)
+                post_mortem("rintact: memory reallocation for bigstr "
+                            "not possible.");
+              bigstr = newstr;
+              strcat(bigstr,str);
+              if (strlen(str) < LENGTH -1)
+                ende = 1;
+            }
+          }
+            
+          number = strlen(bigstr);
+          if (bigstr[number - 1] == '\n')
+            bigstr[number - 1] = '\0';
+          MAKESTRDESC(_desc,bigstr);  
+          returnval = OK;
+          free(bigstr);
+        }
+      }
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_fgets");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_finfo:  Returns one element of the handle, depending on item.
+ *             'FULLNAME`   file name with path
+ *             'NAME`       file name without path
+ *             'PATH`       path only
+ *             'MODE`       file mode
+ */
+int red_finfo(STACKELEM handle, STACKELEM item)
+{
+  char *handlestr, *itemstr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+    
+  START_MODUL("red_finfo");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  GETSTRING(itemstr, (PTR_DESCRIPTOR) item);
+  
+  if ((handlestr != NULL) && (itemstr != NULL))
+  {
+    GETFILEHANDLE(fh, handlestr);
+    
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc, "finfo: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else if (strcmp(itemstr, "FULLNAME") == 0)
+    {
+      MAKESTRDESC(_desc, R_FILEHANDLE(*fh, filename));
+      returnval = OK;
+    }
+    else if (strcmp(itemstr, "NAME") == 0)
+    {
+      char *fullname = strdup(R_FILEHANDLE(*fh, filename));
+      int i = strlen(fullname);
+      while ((--i >= 0) && (fullname[i] != '/'))
+        ;
+      MAKESTRDESC(_desc, fullname+i+1);
+      free(fullname);
+      returnval = OK;
+    }
+    else if (strcmp(itemstr, "PATH") == 0)
+    {
+      char *fullname = strdup(R_FILEHANDLE(*fh, filename));
+      int i = strlen(fullname);
+      while ((--i >= 0) && (fullname[i] != '/'))
+        ;
+      fullname[i+1] = '\0';
+      MAKESTRDESC(_desc, fullname);
+      free(fullname);
+      returnval = OK;
+    }
+    else if (strcmp(itemstr, "MODE") == 0)
+    {
+      char modus[3];
+      
+      modus[0] = '\0';
+      if (T_MODE_R(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'r';
+      else
+      if (T_MODE_W(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'w';
+      else
+      if (T_MODE_A(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'a';
+
+      if (modus[0] == '\0')
+      {
+        MAKESTRDESC(_desc, "finfo: Filehandle has not a valid mode.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if (T_MODE_PLUS(R_FILEHANDLE(*fh, mode)))
+        {
+          modus[1] = '+';
+          modus[2] = '\0';
+        }
+        else
+          modus[1] = '\0';
+          
+        MAKESTRDESC(_desc,modus);
+        returnval = OK;
+      }
+    }
+    /* else returnval = SYNERR; */
+  }
+  free(handlestr);
+  free(itemstr);
+
+  END_MODUL("red_finfo");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fopen:  Opens a file. If successful, a FILEHANDLE will be returned
+ *             and appended to the environment-List.
+ */
+int red_fopen(STACKELEM name, STACKELEM mode)
+{
+  char *namestr, *modestr, *handle;
+  FILE *fp;
+  int len, returnval = SYNERR, wrong_mode = 0;
+  
+  START_MODUL("red_fopen");
+  
+  GETSTRING(namestr,(PTR_DESCRIPTOR) name);
+  GETSTRING(modestr,(PTR_DESCRIPTOR) mode);
+
+  if ((namestr != NULL) && (modestr != NULL))
+  {
+    len = strlen(modestr);
+    if ( (len == 1) ||  ( (len == 2) && (modestr[1] == '+') ) )
+    {
+      switch (modestr[0])
+      {
+        case 'r':
+        case 'w':
+        case 'a': break;
+        default : wrong_mode = 1;
+      }
+    }
+    else
+      wrong_mode = 1;
+  
+    if (wrong_mode != 1)
+    {
+      COMPLETENAME(namestr, ISFILE);
+    
+      if ((fp = fopen(namestr, modestr)) == NULL)
+      {
+        MAKESTRDESC(_desc,"fopen: Cannot open file.");
+        returnval = ERROR;
+      }
+      else
+      {
+        ADDFILEHANDLE(handle,fp,namestr,modestr);
+        
+        if (handle == NULL)
+        {
+          MAKESTRDESC(_desc,"fopen: Cannot create handle.");
+          returnval = ERROR;
+        }
+        else
+        {
+          MAKESTRDESC(_desc,handle);
+          returnval = OK;
+        }
+      }
+    }
+    free(namestr);
+    free(modestr);
+  }
+  
+  END_MODUL("red_fopen");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fputc:  Puts the character into the output file.
+ */
+int red_fputc(STACKELEM handle, STACKELEM c)
+{
+  char *handlestr, *outchar;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+ 
+  START_MODUL("red_fputc");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  GETSTRING(outchar, (PTR_DESCRIPTOR) c);
+  
+  if ((handlestr != NULL) && (outchar != NULL))
+  {
+    if (strlen(outchar) == 1)
+    {
+      GETFILEHANDLE(fh, handlestr);
+      
+      if (fh == NULL)
+      {
+        MAKESTRDESC(_desc, "fputc: 1. argument is not a valid file handle.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if ( ! T_MODE_WRITE(R_FILEHANDLE(*fh,mode)))
+        {
+          MAKESTRDESC(_desc, "fputc: File is not writeable.");
+          returnval = ERROR;
+        }
+        else
+        {
+          if (fputc(outchar[0], R_FILEHANDLE(*fh,fp)) == EOF)
+          {
+            MAKESTRDESC(_desc,"fputc: fputc not successful.");
+            returnval = ERROR;
+          }
+          else
+          {
+            fflush(R_FILEHANDLE(*fh,fp));
+            MAKESTRDESC(_desc, "fputc");
+            returnval = OK;
+          }
+        }
+      }
+    }
+    free(handlestr);
+    free(outchar);
+  }
+  
+  END_MODUL("red_fputc");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fputs:  Puts the string into the output file.
+ */
+int red_fputs(STACKELEM handle, STACKELEM str)
+{
+  char *handlestr, *outstring;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+  
+  START_MODUL("red_fputs");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  GETSTRING(outstring, (PTR_DESCRIPTOR) str);
+  
+  if (handlestr != NULL)
+  {
+    if (outstring != NULL)
+    {
+      GETFILEHANDLE(fh, handlestr);
+      
+      if (fh == NULL)
+      {
+        MAKESTRDESC(_desc, "fputs: 1. argument is not a valid file handle.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if ( ! T_MODE_WRITE(R_FILEHANDLE(*fh,mode)))
+        {
+          MAKESTRDESC(_desc, "fputs: File is not writeable.");
+          returnval = ERROR;
+        }
+        else
+        {
+          if (fputs(outstring, R_FILEHANDLE(*fh,fp)) == EOF)
+          {
+            MAKESTRDESC(_desc,"fputs: fputs not successful."); 
+            returnval = ERROR;
+          }
+          else
+          {
+            fflush(R_FILEHANDLE(*fh,fp));
+            MAKESTRDESC(_desc, "fputs");
+            returnval = OK;
+          }
+        }
+      }
+      free(outstring);
+    }
+    free(handlestr);
+  }
+
+  END_MODUL("red_fputs");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_redirect: redirects the standard input or output channel to
+ *               another terminal or file.
+ */
+int red_fredirect(STACKELEM channel, STACKELEM target)
+{
+  char *channelstr, *targetstr;
+  FILEHANDLE *fh;
+  FILE *fp;
+  int returnval = SYNERR;
+  int chan = 0;                 /* 2:STDOUT, 1:STDIN, 0:no filehandle */
+  
+  START_MODUL("red_fredirect");
+  
+  fh = NULL;    /* avoid 'uninitialized using' warning */
+  
+  GETSTRING(channelstr, (PTR_DESCRIPTOR) channel);
+  GETSTRING(targetstr, (PTR_DESCRIPTOR) target);
+  
+  if (channelstr != NULL)
+  {
+    if (targetstr != NULL)
+    {
+      if (strcmp(channelstr,"STDIN") == 0)
+        if ((GETFILEHANDLE(fh, "STDIN")) != NULL)
+          chan = 1;
+        else
+        {
+          MAKESTRDESC(_desc,"fredirect: Cannot find filehandle 'STDIN'.");
+          returnval = ERROR;
+        }
+      else if (strcmp(channelstr,"STDOUT") == 0)
+      {
+        if ((GETFILEHANDLE(fh, "STDOUT")) != NULL)
+          chan = 2;
+        else
+        {
+          MAKESTRDESC(_desc,"fredirect: Cannot find filehandle 'STDOUT'.");
+          returnval = ERROR;
+        }
+      }
+      /* else SYNERR */
+
+      if (chan == 1)
+      {
+        if (strcmp(targetstr,"RESET_IO") == 0)
+        {
+          L_FILEHANDLE(*fh,fp) = stdin;
+          MAKESTRDESC(_desc, "fredirect");
+          returnval = OK;
+        }
+        else
+        {
+          if ((fp = fopen(targetstr,"r")) != NULL)
+          {
+            L_FILEHANDLE(*fh,fp) = fp;
+            MAKESTRDESC(_desc, "fredirect");
+            returnval = OK;
+          }
+          else
+          {
+            MAKESTRDESC(_desc,"fredirect: Cannot open target.");
+            returnval = ERROR;
+          }
+        }
+      }
+      else if (chan == 2)
+      {
+        if (strcmp(targetstr,"RESET_IO") == 0)
+        {
+          L_FILEHANDLE(*fh,fp) = stdout;
+          MAKESTRDESC(_desc, "fredirect");
+          returnval = OK;
+        }
+        else
+        {
+          if ((fp = fopen(targetstr,"a")) != NULL)
+          {
+            L_FILEHANDLE(*fh,fp) = fp;
+            MAKESTRDESC(_desc, "fredirect");
+            returnval = OK;
+          }
+          else
+          {
+            MAKESTRDESC(_desc,"fredirect: Cannot open target.");
+            returnval = ERROR;
+          }
+        }
+      }
+      free(targetstr);
+    }
+    free(channelstr);
+  }
+
+  END_MODUL("red_fredirect");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_fseek:  Set the read/write pointer of the file handle to new position.
+ */
+int red_fseek(STACKELEM handle, STACKELEM offset, STACKELEM origin)
+{
+  char *handlestr, *origstr;
+  FILEHANDLE *fh;
+  int orig = 0, error = 0;
+  long int offs = 0;
+  int returnval = SYNERR;
+  
+  START_MODUL("red_fseek");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  
+  if (handlestr != NULL)
+  {
+    if (T_INT(offset))
+    {
+      offs = (long int) offset / 2;
+      GETSTRING(origstr, (PTR_DESCRIPTOR) origin);
+
+      if (origstr != NULL)
+      {
+        if (strcmp(origstr, "SEEK_SET") == 0)
+          orig = SEEK_SET;
+        else
+        if (strcmp(origstr, "SEEK_CUR") == 0)
+          orig = SEEK_CUR;
+        else
+        if (strcmp(origstr, "SEEK_END") == 0)
+          orig = SEEK_END;
+        else
+          error = 1;
+          
+        if (error == 0)
+        {
+          GETFILEHANDLE(fh, handlestr);
+          
+          if (fh == NULL)
+          {
+            MAKESTRDESC(_desc,"fseek: 1.argument is not a valid file handle.");
+            returnval = ERROR;
+          }
+          else
+          {
+            if (fseek(R_FILEHANDLE(*fh,fp), offs, orig) != 0)
+            {
+              MAKESTRDESC(_desc, "fseek: fseek not successful.");
+              returnval = ERROR;
+            }
+            else
+            {
+              MAKESTRDESC(_desc,"fseek");
+              returnval = OK;
+            }
+          }
+        }
+        free(origstr);
+      }
+    }
+    free(handlestr);
+  }
+
+  END_MODUL("red_fseek");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_ftell:  Returns the position of the file pointer in the named file.
+ */
+int red_ftell(STACKELEM handle)
+{
+  int pos;
+  char *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+  
+  START_MODUL("red_ftell");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+    
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc, "ftell: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      pos = ftell(R_FILEHANDLE(*fh,fp));
+      if (pos < 0)
+      {
+        MAKESTRDESC(_desc,"ftell: read error.");
+        returnval = ERROR;
+      }
+      else
+      {
+        _desc = (PTR_DESCRIPTOR) TAG_INT(pos);
+        returnval = OK;
+      }
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_ftell");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_getwd:  Returns the actual (virtual) working directory.
+ */
+int red_getwd()
+{
+  START_MODUL("red_getwd");
+  
+  MAKESTRDESC(_desc,virtual_wd);
+
+  END_MODUL("red_getwd");
+  return(OK);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_mkdir:  Creates a new directory.
+ */
+int red_mkdir(STACKELEM path)
+{
+  int returnval = SYNERR;
+  char *newdir = NULL;
+
+  START_MODUL("red_mkdir");
+  
+  GETSTRING(newdir, (PTR_DESCRIPTOR) path);
+
+  if (newdir != NULL)
+  {
+    COMPLETENAME(newdir, ISDIR);
+
+    if (mkdir(newdir, 0755) != 0)
+    {
+      returnval = ERROR;
+      switch (errno)
+      {
+        case EACCES:
+                MAKESTRDESC(_desc, "mkdir: Access denied for one component "
+                                   "of path.");
+                break;
+        case ENOENT:
+        case ENOTDIR:
+                MAKESTRDESC(_desc, "mkdir: One component of path does not "
+                                   "exist or is not a directory.");
+                break;
+        case EEXIST:
+                MAKESTRDESC(_desc, "mkdir: File / Directory already exists.");
+                break;
+        default:
+                MAKESTRDESC(_desc, "mkdir: Unspecified error occurred.");
+      }
+    }
+    else
+    {
+      returnval = OK;
+      MAKESTRDESC(_desc,"mkdir");
+    }
+    free(newdir);
+  }
+
+  END_MODUL("red_mkdir");
+  return(returnval);
+
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_read:  Read anz bytes from the file.
+ */
+int red_read(STACKELEM handle, STACKELEM anz)
+{
+  char *handlestr, *readed;
+  FILEHANDLE *fh;
+  int anzahl, gelesen;
+  int returnval = SYNERR;
+  
+  START_MODUL("red_read");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    if (T_INT(anz))
+    {
+      GETFILEHANDLE(fh, handlestr);
+ 
+      if (fh == NULL)
+      {
+        MAKESTRDESC(_desc,"read: 1. argument is not a valid file handle.");
+        returnval = ERROR;
+      }
+      else
+      {
+        anzahl = GET_INT(anz);
+        if ( ! T_MODE_READ(R_FILEHANDLE(*fh,mode)))
+        {
+          MAKESTRDESC(_desc, "read: File is not readable.");
+          returnval = ERROR;
+        }
+        else
+        {
+          if ((readed = (char *) malloc(anzahl + 1)) == NULL)
+            post_mortem("rintact: memory allocation for readed not possible.");
+          
+          clearerr(R_FILEHANDLE(*fh,fp));
+          gelesen = fread(readed, 1, anzahl, R_FILEHANDLE(*fh,fp));
+          if (gelesen == 0)
+          {
+            returnval = ERROR;
+            if (feof(R_FILEHANDLE(*fh,fp)))
+              MAKESTRDESC(_desc,"read: End of file.");
+            else
+              MAKESTRDESC(_desc,"read: Read error.");
+          }
+          else
+          {
+            readed[gelesen] = '\0';
+            MAKESTRDESC(_desc,readed);
+            returnval = OK;
+          }
+        }
+      }
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_read");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_remove:  Removes the file.
+ */
+int red_remove(STACKELEM name)
+{
+  int returnval = SYNERR;
+  char *namestr;
+  struct stat statbuf;
+
+  START_MODUL("red_remove");
+  
+  GETSTRING(namestr, (PTR_DESCRIPTOR) name);
+
+  if (namestr != NULL)
+  {
+    COMPLETENAME(namestr, ISFILE);
+
+    if ((stat(namestr, &statbuf) == 0) && (S_ISDIR(statbuf.st_mode)))
+    {
+      returnval = ERROR;
+      MAKESTRDESC(_desc,"remove: Argument is a directory.");
+    }
+    else if (unlink(namestr) != 0)
+    {
+      returnval = ERROR;
+      switch (errno)
+      {
+        case EACCES:
+                MAKESTRDESC(_desc, "remove: Access denied for one component "
+                                   "of path.");
+                break;
+        case EINVAL:
+                MAKESTRDESC(_desc, "remove: Cannot delete current directory."); 
+                break;
+        case ENOENT:
+        case ENOTDIR:
+                MAKESTRDESC(_desc, "remove: One component of path does not "
+                                   "exist or is not a directory.");
+                break;
+        default:
+                MAKESTRDESC(_desc, "remove: Unspecified error occurred.");
+      }
+    }
+    else
+    {
+      returnval = OK;
+      MAKESTRDESC(_desc,"remove");
+    }
+    free(namestr);
+  }
+
+  END_MODUL("red_remove");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_rename:  Renames the file.
+ */
+int red_rename(STACKELEM sname, STACKELEM tname)
+{
+  int returnval = SYNERR;
+  char *source = NULL, *target = NULL;
+
+  START_MODUL("red_rename");
+
+  GETSTRING(source, (PTR_DESCRIPTOR) sname);
+  GETSTRING(target, (PTR_DESCRIPTOR) tname);
+
+  if (source != NULL)
+  {
+    if (target != NULL)
+    {
+      COMPLETENAME(source, ISFILE);
+      COMPLETENAME(target, ISFILE);
+
+      if (rename(source, target) != 0)
+      {
+        returnval = ERROR;
+        switch (errno)
+        {
+          case EACCES:
+                  MAKESTRDESC(_desc, "rename: Access denied for one argument.");
+                  break;
+          case EINVAL:
+                  MAKESTRDESC(_desc, "rename: Arg1 is parent directory of "
+                                     "Arg2.");
+                  break;
+          case ENOENT:
+          case ENOTDIR:
+                  MAKESTRDESC(_desc, "rename: One component of path does not "
+                                     "exist or is not a directory.");
+                  break;
+          case EISDIR:
+                  MAKESTRDESC(_desc, "rename: Arg2 is a directory.");
+                  break;
+          case ENOTEMPTY:
+                  MAKESTRDESC(_desc, "rename: Target directory is not empty.") ;
+                  break;
+          default:
+                  MAKESTRDESC(_desc, "rename: Unspecified error occurred.");
+        }
+      }
+      else
+      {
+        returnval = OK;
+        MAKESTRDESC(_desc,"rename");
+      }
+      free(target);
+    }
+    free(source);
+  }
+
+  END_MODUL("red_rename");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_rmdir:  Removes the directory.
+ */
+int red_rmdir(STACKELEM path)
+{
+  int returnval = SYNERR;
+  char *olddir = NULL;
+  
+  START_MODUL("red_rmdir");
+  
+  GETSTRING(olddir, (PTR_DESCRIPTOR) path);
+
+  if (olddir != NULL)
+  {
+    COMPLETENAME(olddir, ISDIR);
+
+    if (rmdir(olddir) != 0)
+    {
+      returnval = ERROR;
+      switch (errno)
+      {
+        case EACCES:
+        case EINVAL:
+                MAKESTRDESC(_desc, "rmdir: Access denied for one component "
+                                   "of path.");
+                break;
+        case ENOENT:
+        case ENOTDIR:
+                MAKESTRDESC(_desc, "rmdir: One component of path not "
+                                   "exist or is not a directory.");
+                break;
+        case ENOTEMPTY:
+                MAKESTRDESC(_desc, "rmdir: Directory is not empty.");
+                break;
+        default:
+                MAKESTRDESC(_desc, "rmdir: Unspecified error occurred.");
+      }
+    }
+    else
+    {
+      returnval = OK;
+      MAKESTRDESC(_desc,"rmdir");
+    }
+    free(olddir);
+  }
+
+  END_MODUL("red_rmdir");
+  return(returnval);
+}
+
+
+/* ----------------------------------------------------------------------- 
+ * red_status:  Returns a list with permission string (like ls -l), user id,
+ *              group id, size and date of the last modification.
+ */
+int red_status(STACKELEM name)
+{
+  struct stat buf;
+  char *filename, helpstr[40];
+  struct group *group;
+  struct passwd *user;
+  PTR_HEAPELEM ptdv;
+  PTR_DESCRIPTOR per_desc, uid_desc, gid_desc, siz_desc, dat_desc;
+  char permission[] = "----------";
+  int returnval = SYNERR;
+  
+  START_MODUL("red_status");
+  
+  GETSTRING(filename, (PTR_DESCRIPTOR) name);
+
+  if (filename != NULL)
+  {
+    COMPLETENAME(filename, ISFILE);
+    
+    if (stat(filename, &buf) != 0)
+    {
+      switch (errno)
+      {
+        case EACCES:  MAKESTRDESC(_desc,"status: Search permission denied.");
+                      break;
+        case ENOENT:  MAKESTRDESC(_desc,"status: File does not exist.");
+                      break;
+        case ENOTDIR: MAKESTRDESC(_desc, "status: A component of the path "
+                                         "prefix is not a directory.");
+                      break;
+        default:      MAKESTRDESC(_desc,"status: Unspecified error occurred.");
+      }
+      returnval = ERROR;
+    }
+    else
+    {
+      switch (buf.st_mode & S_IFMT)
+      {
+        case S_IFREG:  permission[0] = '-'; break;
+        case S_IFCHR:  permission[0] = 'c'; break;
+        case S_IFBLK:  permission[0] = 'b'; break;
+        case S_IFDIR:  permission[0] = 'd'; break;
+        case S_IFLNK:  permission[0] = 'l'; break;
+        case S_IFSOCK: permission[0] = 's'; break;
+        case S_IFIFO:  permission[0] = 'p'; break;
+        default:       permission[0] = '?';
+      }
+    
+      if (buf.st_mode & S_IRUSR) permission[1] = 'r';
+      if (buf.st_mode & S_IWUSR) permission[2] = 'w';
+      if (buf.st_mode & S_IXUSR) permission[3] = 'x';
+      if (buf.st_mode & S_IRGRP) permission[4] = 'r';
+      if (buf.st_mode & S_IWGRP) permission[5] = 'w';
+      if (buf.st_mode & S_IXGRP) permission[6] = 'x';
+      if (buf.st_mode & S_IROTH) permission[7] = 'r';
+      if (buf.st_mode & S_IWOTH) permission[8] = 'w';
+      if (buf.st_mode & S_IXOTH) permission[9] = 'x';
+    
+      if (buf.st_mode & S_ISUID)
+      {
+        if (permission[3] == '-') permission[3] = 'S';
+        else                      permission[3] = 's';
+      }
+      
+      if (buf.st_mode & S_ISGID)
+      {
+        if (permission[6] == '-') permission[6] = 'S';
+        else                      permission[6] = 's';
+      }
+      
+      if (buf.st_mode & S_ISVTX)
+      {
+        if (permission[9] == '-') permission[9] = 'T';
+        else                      permission[9] = 't';
+      }
+      
+      MAKESTRDESC(per_desc, permission);
+      
+      if ((user = getpwuid(buf.st_uid)) == NULL)
+        post_mortem("rintact: Cannot get user.");
+      MAKESTRDESC(uid_desc, user->pw_name);
+      
+#if (!D_DIST)
+  /*    if ((group = getgrgid(buf.st_gid)) == NULL)
+        post_mortem("rintact: Cannot get goup.");
+      MAKESTRDESC(gid_desc, group->gr_name); */
+#endif
+      
+      sprintf(helpstr,"%d", (int) buf.st_size);
+      MAKESTRDESC(siz_desc, helpstr);
+    
+      strftime(helpstr, 40, "%H:%M:%S %d.%m.%Y", localtime(&buf.st_mtime));
+      MAKESTRDESC(dat_desc, helpstr);
+    
+      MAKEDESC(_desc, 1, C_LIST, TY_UNDEF);
+      L_LIST(*_desc,dim) = 5;
+      L_LIST(*_desc,ptdd) = NULL;
+      GET_HEAP(5, A_LIST(*_desc,ptdv));
+      ptdv = R_LIST(*_desc,ptdv);
+      RES_HEAP;
+      ptdv[0] = (int) per_desc;
+      ptdv[1] = (int) uid_desc;
+      ptdv[2] = (int) gid_desc;
+      ptdv[3] = (int) siz_desc;
+      ptdv[4] = (int) dat_desc;
+      REL_HEAP;
+      returnval = OK;
+    }
+    free(filename);
+  }
+
+  END_MODUL("red_status");
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_ungetc:  Puts the character c back into the named input stream.
+ *              If successful, the next read on this stream will return c.
+ */
+int red_ungetc(STACKELEM handle, STACKELEM c)
+{
+  char *cstr, *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+
+  START_MODUL("red_ungetc");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  GETSTRING(cstr, (PTR_DESCRIPTOR) c);
+
+  if ((handlestr != NULL) && (cstr != NULL))
+  {
+    if (strlen(cstr) == 1)
+    {
+      GETFILEHANDLE(fh, handlestr);
+    
+      if (fh == NULL)
+      {
+        MAKESTRDESC(_desc,"ungetc: Argument is not a valid file handle.");
+        returnval = ERROR;
+      }
+      else
+      {
+        if (ungetc(cstr[0], R_FILEHANDLE(*fh,fp)) == EOF) 
+        {
+          MAKESTRDESC(_desc,"ungetc: ungetc not successful.");
+          returnval = ERROR;
+        }
+        else
+        {
+          MAKESTRDESC(_desc,"ungetc");  
+          returnval = OK;
+        }
+      }
+    }
+    free(handlestr);
+  }
+  
+  END_MODUL("red_ungetc");
+  return(returnval);
+}
+
+#endif /* !TASM_STORE */
+
+#if STORE
+
+#if TASM_STORE
+#define PREFIX(f)               tasm_ ## f
+#define STRING_PREFIX(f)        "tasm_" f
+#else /* TASM_STORE */
+#define PREFIX(f)               f
+#define STRING_PREFIX(f)        f
+#endif /* TASM_STORE */
+
+extern int store; /* file descriptor of the store */
+extern void PREFIX(store_receive_result)();
+extern void PREFIX(store_send_graph)();
+
+#else /* STORE */
+#define PREFIX(f)               f
+#define STRING_PREFIX(f)        f
+#endif /* STORE */
+
+
+/* -----------------------------------------------------------------------
+ * red_get:  Reads one expression from the given file.
+ */
+int PREFIX(red_get)(STACKELEM handle)
+{
+  char *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+
+  START_MODUL(STRING_PREFIX("red_get"));
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc,"get: Argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ( ! T_MODE_READ(R_FILEHANDLE(*fh,mode)))
+      {
+        MAKESTRDESC(_desc, "get: File is not readable.");
+        returnval = ERROR;
+      }
+      else
+      {
+#if STORE
+        store = fileno(R_FILEHANDLE(*fh,fp));
+
+        PREFIX(store_receive_result)();            /* places result in _desc */
+
+        returnval = OK;
+#endif
+      }
+    }
+    free(handlestr);
+  }
+
+  END_MODUL(STRING_PREFIX("red_get"));
+  return(returnval);
+}
+
+
+/* -----------------------------------------------------------------------
+ * red_put:  Puts the expression into the output file.
+ */
+int PREFIX(red_put)(STACKELEM handle, STACKELEM expr)
+{
+  char *handlestr;
+  FILEHANDLE *fh;
+  int returnval = SYNERR;
+  
+  START_MODUL(STRING_PREFIX("red_put"));
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  
+  if (handlestr != NULL)
+  {
+    GETFILEHANDLE(fh, handlestr);
+    
+    if (fh == NULL)
+    {
+      MAKESTRDESC(_desc, "put: 1. argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ( ! T_MODE_WRITE(R_FILEHANDLE(*fh,mode)))
+      {
+        MAKESTRDESC(_desc, "put: File is not writeable.");
+        returnval = ERROR;
+      }
+      else
+      {
+#if STORE
+        store = fileno(R_FILEHANDLE(*fh,fp));
+        _desc = (PTR_DESCRIPTOR)expr;
+
+        PREFIX(store_send_graph)();
+
+        fflush(R_FILEHANDLE(*fh,fp));
+        MAKESTRDESC(_desc, "put");
+        returnval = OK;
+#endif /* STORE */
+      }
+    }
+    free(handlestr);
+  }
+
+  END_MODUL(STRING_PREFIX("red_put"));
+  return(returnval);
+}
+
+/*********************************************************************************/
+/* functions for control of the model railroad */
+
+#if TRAIN
+
+int red_set_speed(STACKELEM b, STACKELEM s)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_set_speed");
+
+  START_MODUL("red_set_speed");
+
+  if (T_INT(b) && T_INT(s)) {
+    i = set_speed(VAL_INT(b), VAL_INT(s));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+
+  END_MODUL("red_set_speed");
+  DBUG_RETURN(returnval);
+}
+
+int red_get_speed(STACKELEM b)
+{
+  int returnval = SYNERR;
+  int i;
+
+  DBUG_ENTER("red_get_speed");
+
+  START_MODUL("red_get_speed");
+
+  if (T_INT(b)) {
+    i = get_speed(VAL_INT(b));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+
+  END_MODUL("red_get_speed");
+  DBUG_RETURN(returnval);
+}
+
+int red_set_direction(STACKELEM b, STACKELEM d)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_set_direction");
+ 
+  START_MODUL("red_set_direction");
+ 
+  if (T_INT(b) && T_INT(d)) {
+    i = set_direction(VAL_INT(b), VAL_INT(d));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_set_direction");
+  DBUG_RETURN(returnval);
+}
+
+int red_get_direction(STACKELEM b)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_get_direction");
+ 
+  START_MODUL("red_get_direction");
+ 
+  if (T_INT(b)) {
+    i = get_direction(VAL_INT(b));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_get_direction");
+  DBUG_RETURN(returnval);
+}
+
+int red_set_point(STACKELEM p, STACKELEM o)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_set_point");
+ 
+  START_MODUL("red_set_point");
+ 
+  if (T_INT(p) && T_INT(o)) {
+    i = set_point(VAL_INT(p), VAL_INT(o));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_set_point");
+  DBUG_RETURN(returnval);
+}
+
+int red_get_point(STACKELEM p)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_get_point");
+ 
+  START_MODUL("red_get_point");
+ 
+  if (T_INT(p)) {
+    i = get_point(VAL_INT(p));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_get_point");
+  DBUG_RETURN(returnval);
+}
+
+int red_set_relay(STACKELEM b, STACKELEM p)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_set_relay");
+ 
+  START_MODUL("red_set_relay");
+ 
+  if (T_INT(b) && T_INT(p)) {
+    i = set_relay(VAL_INT(b), VAL_INT(p));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_set_relay");
+  DBUG_RETURN(returnval);
+}
+
+int red_get_relay(STACKELEM b)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_get_relay");
+ 
+  START_MODUL("red_get_relay");
+ 
+  if (T_INT(b)) {
+    i = get_relay(VAL_INT(b));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_get_relay");
+  DBUG_RETURN(returnval);
+}
+
+int red_set_signal(STACKELEM s, STACKELEM p)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_set_signal");
+ 
+  START_MODUL("red_set_signal");
+ 
+  if (T_INT(s) && T_INT(p)) {
+    i = set_signal(VAL_INT(s), VAL_INT(p));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    } 
+    
+  END_MODUL("red_set_signal");
+  DBUG_RETURN(returnval);
+} 
+
+int red_get_signal(STACKELEM s)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_get_signal");
+ 
+  START_MODUL("red_get_signal");
+ 
+  if (T_INT(s)) {
+    i = get_signal(VAL_INT(s));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_get_signal");
+  DBUG_RETURN(returnval);
+}
+
+int red_read_M1(STACKELEM b)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_read_M1");
+ 
+  START_MODUL("red_read_M1");
+ 
+  if (T_INT(b)) {
+    i = read_M1(VAL_INT(b));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_read_M1");
+  DBUG_RETURN(returnval);
+}
+
+int red_read_M2(STACKELEM b)
+{
+  int returnval = SYNERR;
+  int i;
+ 
+  DBUG_ENTER("red_read_M2");
+ 
+  START_MODUL("red_read_M2");
+ 
+  if (T_INT(b)) {
+    i = read_M2(VAL_INT(b));
+    if (i != FAILURE) {
+      _desc = TAG_INT(i);
+      returnval = OK;
+      }
+    }
+ 
+  END_MODUL("red_read_M2");
+  DBUG_RETURN(returnval);
+}
+
+#endif
+@
+
+
+1.25
+log
+@minor changes
+@
+text
+@d1 5
+a5 1
+/* $Log: riafunc.c,v $
+d88 1
+a88 2
+ *
+ * */
+d838 1
+d846 1
+d850 1
+d858 1
+d870 2
+d873 1
+d881 1
+d893 2
+d1381 1
+d1384 1
+d1387 1
+d1390 1
+d1393 1
+d1396 1
+@
+
+
+1.24
+log
+@support for train primitives as interactions
+@
+text
+@d2 3
+d1589 2
+d1843 1
+@
+
+
+1.23
+log
+@further bugfixes on speculative evaluation (preliminary, beware of debug messages !)
+@
+text
+@d2 3
+d99 1
+a99 1
+#include <grp.h> 
+d119 4
+d1383 1
+a1383 1
+      if ((group = getgrgid(buf.st_gid)) == NULL)
+d1385 1
+a1385 1
+      MAKESTRDESC(gid_desc, group->gr_name);
+d1581 255
+@
+
+
+1.22
+log
+@function fredirect completed
+@
+text
+@d2 3
+d95 3
+a97 1
+#include <grp.h>
+d1375 1
+d1379 1
+@
+
+
+1.21
+log
+@fredirect-dummy inserted
+@
+text
+@d2 3
+d745 1
+a745 1
+  if ((handlestr != NULL) && (outstring != NULL))
+d747 1
+a747 3
+    GETFILEHANDLE(fh, handlestr);
+    
+    if (fh == NULL)
+d749 3
+a751 6
+      MAKESTRDESC(_desc, "fputs: 1. argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      if ( ! T_MODE_WRITE(R_FILEHANDLE(*fh,mode)))
+d753 1
+a753 1
+        MAKESTRDESC(_desc, "fputs: File is not writeable.");
+d758 1
+a758 1
+        if (fputs(outstring, R_FILEHANDLE(*fh,fp)) == EOF)
+d760 1
+a760 1
+          MAKESTRDESC(_desc,"fputs: fputs not successful."); 
+d765 11
+a775 3
+          fflush(R_FILEHANDLE(*fh,fp));
+          MAKESTRDESC(_desc, "fputs");
+          returnval = OK;
+d778 1
+a780 1
+    free(outstring);
+d789 2
+a790 1
+ * red_redirect:
+d798 1
+d802 2
+a803 1
+/*
+d806 2
+a807 1
+  if ((channelstr != NULL) && (targetstr != NULL))
+d809 1
+a809 7
+    Feststellen, ob channel = 'STDIN' oder 'STDOUT'.
+    Wenn target = 'STDIN' dann fp = stdin
+    Wenn (mit STDOUT)
+    Sonst fp = fopen(target)
+    
+    GETFILEHANDLE(fh, channelstr);
+    if (fh == NULL)
+d811 57
+a867 8
+      MAKESTRDESC(_desc, "fredirect: 1. argument is not a valid file handle.");
+      returnval = ERROR;
+    }
+    else
+    {
+      L_FILEHANDLE(*fh,fp) = fp;
+      MAKESTRDESC(_desc, "fredirect");
+      returnval = OK;
+a868 1
+    free(targetstr);
+d871 1
+a871 1
+*/  
+@
+
+
+1.20
+log
+@eof returns OK{true/false} now.
+@
+text
+@d2 3
+d778 43
+@
+
+
+1.19
+log
+@lred/tred bug fix, 3rd
+@
+text
+@d2 3
+d306 1
+a306 2
+        MAKESTRDESC(_desc,"eof: Not end of file.");
+        returnval = ERROR;
+d309 2
+a310 4
+      {
+        MAKESTRDESC(_desc,"eof");
+        returnval = OK;
+      }
+@
+
+
+1.18
+log
+@lred bug fix, 2nd
+@
+text
+@d2 3
+d1363 4
+a1369 4
+
+extern int store; /* file descriptor of the store */
+extern void PREFIX(store_receive_result)();
+extern void PREFIX(store_send_graph)();
+@
+
+
+1.17
+log
+@bug fix: STORE and lred again :-(
+@
+text
+@d2 3
+a1362 1
+#endif /* STORE */
+d1367 1
+a1367 1
+#endif
+@
+
+
+1.16
+log
+@red_put passes expr for store_send_graph in _desc
+preparations for TASM-variants of put/get/store/receive
+@
+text
+@d2 4
+d1348 1
+d1352 6
+a1357 1
+#else
+d1360 1
+a1360 1
+#endif
+@
+
+
+1.15
+log
+@store_receive_result places result directly in _desc (red_get)
+@
+text
+@d2 3
+a90 3
+#if STORE
+#include "rstack.h"
+#endif
+d92 1
+d1341 2
+d1344 8
+d1353 2
+a1354 2
+extern void store_receive_result();
+extern void store_send_graph();
+d1361 1
+a1361 1
+int red_get(STACKELEM handle)
+d1367 1
+a1367 1
+  START_MODUL("red_get");
+d1391 3
+a1393 1
+        store_receive_result();                 /* places result in _desc */
+d1401 1
+a1401 1
+  END_MODUL("red_get");
+d1409 1
+a1409 1
+int red_put(STACKELEM handle, STACKELEM expr)
+d1415 1
+a1415 1
+  START_MODUL("red_put");
+d1439 5
+a1443 2
+        PUSH_E(expr);
+        store_send_graph();
+d1446 1
+a1446 1
+#endif
+d1452 1
+a1452 1
+  END_MODUL("red_put");
+@
+
+
+1.14
+log
+@copy, mkdir, rmdir, rename and remove implemented.
+@
+text
+@d2 3
+d1380 1
+a1380 2
+        store_receive_result();
+        _desc = (PTR_DESCRIPTOR)POP_E();
+@
+
+
+1.13
+log
+@prototype implementation of interactions for arbitrary expressions
+uses modified send/receive-routines from rmessage.c
+compile with -DSTORE=1 to get the prototype (interactions get/put)
+or with -DSTORE=0 to get the original files.
+involved files so far: rheap.c riafunc.c rstelem.h rmessage.c
+rmessage.c has to be compiled once with -DSTORE=1 to get the
+modified send/receive-routines, and perhaps a second time with
+-DSTORE=0 to get its original functionality for the distributed
+versions.
+@
+text
+@d2 11
+d134 7
+d142 43
+a185 1
+  MAKESTRDESC(_desc,"copy");
+d187 1
+a187 1
+  return(0);
+d417 2
+a418 7
+#if D_SLAVE
+#define LENGTH 250
+#else
+  const int LENGTH = 250;
+#endif
+  int number;
+  char str[LENGTH], *bigstr, *newstr, *handlestr;
+a654 13
+ * red_fprintf:  Like the C command.
+ */
+int red_fprintf(STACKELEM fp, STACKELEM format, STACKELEM args)
+{
+  START_MODUL("red_fprintf");
+  
+  MAKESTRDESC(_desc,"fprintf");
+  END_MODUL("red_fprintf");
+  return(0);
+}
+
+
+/* -----------------------------------------------------------------------
+a765 13
+ * red_fscanf:  Like the C command.
+ */
+int red_fscanf(STACKELEM fp, STACKELEM format)
+{
+  START_MODUL("red_fscanf");
+  
+  MAKESTRDESC(_desc,"fscanf");
+  END_MODUL("red_fscanf");
+  return(0);
+}
+
+
+/* -----------------------------------------------------------------------
+d806 1
+a806 1
+            MAKESTRDESC(_desc, "fseek: 1. argument is not a valid file handle.");
+a894 1
+ *                      iiiiiiiiii Vorlaeufig Missbraucht
+d898 2
+a899 3
+  FILE *fptr;
+  FILEHANDLE *fh;
+  int index = 0;
+d903 31
+a933 15
+  if ((fptr = fopen("environment","w")) == NULL)
+    MAKESTRDESC(_desc,"mkdir: Cannont open file.");
+  else
+  {
+    fh = environment;
+    while (fh != NULL)
+    {
+      fprintf(fptr, "\nFilehandle %d:\n", index);
+      fprintf(fptr, "Filepointer %d, Modus %d\n",
+               (int) R_FILEHANDLE(*fh,fp), (int) R_FILEHANDLE(*fh,mode));
+      fprintf(fptr, "Name: %s\n", R_FILEHANDLE(*fh,filename));
+      fprintf(fptr, "Handle: %s\n", R_FILEHANDLE(*fh,handle));
+      
+      index++;
+      fh = R_FILEHANDLE(*fh,next);
+d935 1
+a935 3
+    fclose(fptr);
+    
+    MAKESTRDESC(_desc,"mkdir");
+d937 1
+a937 1
+  
+d939 2
+a940 1
+  return(OK);
+d1014 4
+d1020 40
+a1059 1
+  MAKESTRDESC(_desc,"remove");
+d1061 1
+a1061 1
+  return(0);
+d1070 3
+d1074 48
+a1121 2
+  
+  MAKESTRDESC(_desc,"rename");
+d1123 1
+a1123 1
+  return(0);
+d1132 3
+d1137 36
+a1172 1
+  MAKESTRDESC(_desc,"rmdir");
+d1174 1
+a1174 1
+  return(0);
+@
+
+
+1.12
+log
+@added interactions get and put
+@
+text
+@d2 3
+d74 1
+a74 1
+#if 0
+d1165 1
+a1165 1
+#if 0
+d1167 1
+a1167 1
+extern void store_recieve_result();
+d1203 1
+a1203 1
+#if 0
+d1205 1
+a1205 1
+        store_recieve_result();
+d1250 1
+a1250 1
+#if 0
+@
+
+
+1.11
+log
+@no const variable used for array dimension (ncc problem)
+@
+text
+@d2 3
+d71 3
+d1159 101
+@
+
+
+1.10
+log
+@some standard header includes moved to rintact.h
+@
+text
+@d2 3
+d348 3
+d352 1
+@
+
+
+1.9
+log
+@bugfix red_read
+keywords for finfo capitaliesed, keyword 'index' removed
+@
+text
+@d2 4
+a45 1
+#include <dirent.h>
+a48 3
+#include <pwd.h>
+#include <stdlib.h>
+#include <string.h>
+@
+
+
+1.8
+log
+@major changes for monadic i/o, many comments
+@
+text
+@d2 3
+d424 4
+a427 5
+ *             'fullname`   file name with path
+ *             'name`       file name without path
+ *             'path`       path only
+ *             'mode`       file mode
+ *             'index`      Handle index as number
+d449 1
+a449 1
+    else if (strcmp(itemstr, "fullname") == 0)
+d454 1
+a454 1
+    else if (strcmp(itemstr, "name") == 0)
+d464 1
+a464 1
+    else if (strcmp(itemstr, "path") == 0)
+d475 1
+a475 1
+    else if (strcmp(itemstr, "mode") == 0)
+a507 5
+    else if (strcmp(itemstr, "index") == 0)
+    {
+      _desc = (PTR_DESCRIPTOR) TAG_INT(R_FILEHANDLE(*fh, index));
+      returnval = OK;
+    }
+d893 1
+a893 1
+  int anzahl;
+d913 1
+a913 1
+        anzahl = (long int) anz / 2;
+d925 2
+a926 1
+          if (fread(readed, 1, anzahl, R_FILEHANDLE(*fh,fp)) == 0)
+d936 1
+@
+
+
+1.7
+log
+@fflush() in output-routines added
+Appending of a Newline in fputs() removed
+@
+text
+@d2 4
+d26 11
+a36 2
+/* --- riafunc.c ---------------------------------- stt --- 08.11.95 ---- */
+/* --- Interaction definitions ------------------------------------------ */
+d64 3
+a66 6
+extern FILEHANDLE *environment;      /* rintact.c */
+extern char *virtual_wd;             /* rintact.c */
+
+/* ----------------------------------------------------------------------- */
+/* red_chdir:  change working directory                                    */
+/* ----------------------------------------------------------------------- */
+d69 1
+a69 1
+  int  returnval = 1;
+d77 1
+a77 3
+  if (newpath == NULL)
+    MAKESTRDESC(_desc,"chdir: Argument is not a string.");
+  else
+d79 1
+a79 1
+    COMPLETE_NAME(newpath);
+d85 1
+d94 1
+a94 1
+      returnval = 0;
+d103 3
+a105 3
+/* ----------------------------------------------------------------------- */
+/* red_copy:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d116 3
+a118 3
+/* ----------------------------------------------------------------------- */
+/* red_dir:  returns a list of all entries in the given directory          */
+/* ----------------------------------------------------------------------- */
+d128 1
+a128 1
+  int returnval = 1;
+d134 1
+a134 3
+  if (pathname == NULL)
+    MAKESTRDESC(_desc,"dir: Argument is not a string.");
+  else
+d136 1
+a136 1
+    COMPLETE_NAME(pathname);
+d138 1
+d141 2
+d176 1
+a176 1
+      returnval = 0;
+d186 4
+a189 4
+/* ----------------------------------------------------------------------- */
+/* red_eof:  checks eof condition of filehandle                            */
+/*           Therefor it does a getc and an ungetc on the file.            */
+/* ----------------------------------------------------------------------- */
+d194 1
+a194 1
+  int returnval = 1;
+d200 1
+a200 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc,"eof: Argument is not a string.");
+  else
+d205 4
+a208 1
+      MAKESTRDESC(_desc,"eof: Argument is not a valid filehandle.");
+d215 1
+d220 1
+a220 1
+        returnval = 0;
+d231 4
+a234 12
+/* ----------------------------------------------------------------------- */
+/* red_exit:  wird nicht verwendet, da exit im Interpreter abgefangen wird */
+/* ----------------------------------------------------------------------- */
+int red_exit()
+{
+  return(0);
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* red_fclose:  close a file                                               */
+/* ----------------------------------------------------------------------- */
+d239 1
+a239 1
+  int returnval = 1;
+d245 1
+a245 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc,"fclose: Argument is not a string.");
+  else
+d250 4
+a253 1
+      MAKESTRDESC(_desc,"fclose:Argument is not a valid filehandle.");
+d257 1
+d259 2
+d264 4
+a267 1
+          MAKESTRDESC(_desc,"fclose: Cannot remove filehandle.");
+d271 1
+a271 1
+          returnval = 0;
+d283 4
+a286 4
+/* ----------------------------------------------------------------------- */
+/* red_fgetc:  reads one charakter from file                               */
+/*             A charakter is a string with length 1.                      */
+/* ----------------------------------------------------------------------- */
+d292 1
+a292 1
+  int returnval = 1;
+d298 1
+a298 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc,"fgetc: Argument is not a string.");
+  else
+d303 4
+a306 1
+      MAKESTRDESC(_desc,"fgetc: Argument is not a valid filehandle.");
+d310 1
+d312 2
+d317 1
+d319 2
+d336 4
+a339 4
+/* ----------------------------------------------------------------------- */
+/* red_fgets:  reads one line from file                                    */
+/*             Reads till next '\n', '\n' is not returned.                 */
+/* ----------------------------------------------------------------------- */
+d346 1
+a346 1
+  int ende, returnval = 1;
+d352 1
+a352 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc,"fgets: Argument is not a string.");
+  else
+d357 4
+a360 1
+      MAKESTRDESC(_desc,"fgets: Argument is not a valid filehandle.");
+d364 1
+d366 2
+d371 1
+d373 2
+d406 1
+a406 1
+          returnval = 0;
+d419 106
+a524 5
+/* ----------------------------------------------------------------------- */
+/* red_fopen:  opens an file                                               */
+/*             If successful, a FILEHANDLE entry will be appended to the   */
+/*             environment-List.                                           */
+/* ----------------------------------------------------------------------- */
+d529 1
+a529 1
+  int len, returnval = 1, wrong_mode = 0;
+d536 1
+a536 3
+  if ((namestr == NULL) || (modestr == NULL))
+    MAKESTRDESC(_desc,"fopen: Argument is not a string.");
+  else
+d552 1
+a552 3
+    if (wrong_mode == 1)
+      MAKESTRDESC(_desc,"fopen: Not a valid mode.");
+    else
+d554 1
+a554 1
+      COMPLETE_NAME(namestr);
+d557 1
+d559 2
+d566 1
+d568 2
+d573 1
+a573 1
+          returnval = 0;
+d586 3
+a588 3
+/* ----------------------------------------------------------------------- */
+/* red_fprintf:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d599 3
+a601 3
+/* ----------------------------------------------------------------------- */
+/* red_fputc:  puts character into output file                             */
+/* ----------------------------------------------------------------------- */
+d606 2
+a607 2
+  int returnval = 1;
+  
+d613 1
+a613 3
+  if ((handlestr == NULL) || (outchar == NULL))
+    MAKESTRDESC(_desc, "fputc: Argument is not a string.");
+  else
+d615 1
+a615 3
+    if (strlen(outchar) != 1)
+      MAKESTRDESC(_desc, "fputc: 2. argument is not a single char.");
+    else
+d620 4
+a623 1
+        MAKESTRDESC(_desc, "fputc: 1. argument is not a valid filehandle.");
+d627 1
+d629 2
+d634 1
+d636 2
+d642 1
+a642 1
+            returnval = 0;
+d656 3
+a658 3
+/* ----------------------------------------------------------------------- */
+/* red_fputs:  puts string into output file                                */
+/* ----------------------------------------------------------------------- */
+d663 1
+a663 1
+  int returnval = 1;
+d670 1
+a670 3
+  if ((handlestr == NULL) || (outstring == NULL))
+    MAKESTRDESC(_desc, "fputs: Argument is not a string.");
+  else
+d675 4
+a678 1
+      MAKESTRDESC(_desc, "fputs: 1. argument is not a valid filehandle.");
+d682 1
+d684 2
+d689 1
+d691 2
+d697 1
+a697 1
+          returnval = 0;
+d710 3
+a712 3
+/* ----------------------------------------------------------------------- */
+/* red_fscanf:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d723 3
+a725 3
+/* ----------------------------------------------------------------------- */
+/* red_fseek:  reposit the read/write pointer                              */
+/* ----------------------------------------------------------------------- */
+d732 1
+a732 1
+  int returnval = 1;
+d738 1
+a738 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc, "fseek: 1. argument is not a string.");
+  else
+d740 1
+a740 3
+    if ( ! T_INT(offset))
+      MAKESTRDESC(_desc, "fseek: 2. argument is not an integer.");
+    else
+d745 1
+a745 3
+      if (origstr == NULL)
+        MAKESTRDESC(_desc, "fseek: 3. argument is not a string.");
+      else
+d747 8
+a754 4
+        GETFILEHANDLE(fh, handlestr);
+        
+        if (fh == NULL)
+          MAKESTRDESC(_desc, "fseek: 1. argument is not a valid filehandle.");
+d756 3
+d760 7
+a766 13
+          if (strcmp(origstr, "SEEK_SET") == 0)
+            orig = SEEK_SET;
+          else
+          if (strcmp(origstr, "SEEK_CUR") == 0)
+            orig = SEEK_CUR;
+          else
+          if (strcmp(origstr, "SEEK_END") == 0)
+            orig = SEEK_END;
+          else
+            error = 1;
+            
+          if (error)
+            MAKESTRDESC(_desc, "fseek: 3. argument is not a valid origin.");
+d770 1
+d772 2
+d777 1
+a777 1
+              returnval = 0;
+d792 3
+a794 61
+/* ----------------------------------------------------------------------- */
+/* red_fstatus:  returns the open mode of the file as a string             */
+/* ----------------------------------------------------------------------- */
+int red_fstatus(STACKELEM handle)
+{
+  char modus[3];
+  char *handlestr;
+  FILEHANDLE *fh;
+  int returnval = 1;
+    
+  START_MODUL("red_fstatus");
+  
+  GETSTRING(handlestr, (PTR_DESCRIPTOR) handle);
+  
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc, "fstatus: Argument is not a string.");
+  else
+  {
+    GETFILEHANDLE(fh, handlestr);
+    
+    if (fh == NULL)
+      MAKESTRDESC(_desc, "fstatus: Argument is not a valid filehandle.");
+    else
+    {
+      modus[0] = '\0';
+      if (T_MODE_R(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'r';
+      else
+      if (T_MODE_W(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'w';
+      else
+      if (T_MODE_A(R_FILEHANDLE(*fh, mode)))
+        modus[0] = 'a';
+
+      if (modus[0] == '\0')
+        MAKESTRDESC(_desc, "fstatus: Filehandle has not a valid mode.");
+      else
+      {
+        if (T_MODE_PLUS(R_FILEHANDLE(*fh, mode)))
+        {
+          modus[1] = '+';
+          modus[2] = '\0';
+        }
+        else
+          modus[1] = '\0';
+          
+        MAKESTRDESC(_desc,modus);
+        returnval = 0;
+      }
+    }
+    free(handlestr);
+  }
+
+  END_MODUL("red_fstatus");
+  return(returnval);
+}
+
+
+/* ----------------------------------------------------------------------- */
+/* red_ftell:  returns the position of the filepointer in the named file   */
+/* ----------------------------------------------------------------------- */
+d800 1
+a800 1
+  int returnval = 1;
+d806 1
+a806 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc, "ftell: Argument is not a string.");
+  else
+d811 4
+a814 1
+      MAKESTRDESC(_desc, "ftell: Argument is not a valid filehandle.");
+d819 1
+d821 2
+d826 1
+a826 1
+        returnval = 0;
+d837 3
+a839 3
+/* ----------------------------------------------------------------------- */
+/* red_getwd:  returns the working directory                               */
+/* ----------------------------------------------------------------------- */
+a841 2
+  int returnval = 1;
+  
+a844 1
+  returnval = 0;
+d847 1
+a847 1
+  return(returnval);
+d851 4
+a854 4
+/* ----------------------------------------------------------------------- */
+/* red_mkdir:  Kurze Beschreibung */
+/* iiiiiiiiii Vorlaeufig Missbraucht */
+/* ----------------------------------------------------------------------- */
+a859 1
+  int returnval = 1;
+d864 1
+a864 1
+    MAKESTRDESC(_desc,"fstatus: Cannont open file.");
+a881 1
+    returnval = 0;
+d885 1
+a885 1
+  return(returnval);
+d889 3
+a891 3
+/* ----------------------------------------------------------------------- */
+/* red_read:  read anz bytes from file                                     */
+/* ----------------------------------------------------------------------- */
+d897 1
+a897 1
+  int returnval = 1;
+d903 1
+a903 3
+  if (handlestr == NULL)
+    MAKESTRDESC(_desc,"read: 1. argument is not a string.");
+  else
+d905 1
+a905 5
+    GETFILEHANDLE(fh, handlestr);
+  
+    if (fh == NULL)
+      MAKESTRDESC(_desc,"read: 1. argument is not a valid filehandle.");
+    else
+d907 7
+a913 2
+      if ( ! T_INT(anz))
+        MAKESTRDESC(_desc, "read: 2. argument is not an integer.");
+d918 1
+d920 2
+d930 1
+d939 1
+a939 1
+            returnval = 0;
+d952 3
+a954 3
+/* ----------------------------------------------------------------------- */
+/* red_remove:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d965 3
+a967 3
+/* ----------------------------------------------------------------------- */
+/* red_rename:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d978 3
+a980 3
+/* ----------------------------------------------------------------------- */
+/* red_rmdir:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d991 4
+a994 3
+/* ----------------------------------------------------------------------- */
+/* red_status:  Kurze Beschreibung */
+/* ----------------------------------------------------------------------- */
+d1004 1
+a1004 1
+  int returnval = 1;
+d1010 1
+a1010 3
+  if (filename == NULL)
+    MAKESTRDESC(_desc,"status: Argument is not a string.");
+  else
+d1012 1
+a1012 1
+    COMPLETE_NAME(filename);
+d1015 1
+d1027 2
+d1093 1
+a1093 1
+      returnval = 0;
+d1103 4
+a1106 4
+/* ----------------------------------------------------------------------- */
+/* red_ungetc:  puts the character c back into the named input stream.     */
+/*              If successful, the next read on this stream will return c. */
+/* ----------------------------------------------------------------------- */
+d1111 1
+a1111 1
+  int returnval = 1;
+d1118 1
+a1118 3
+  if ((handlestr == NULL) || (cstr == NULL))
+    MAKESTRDESC(_desc,"ungetc: Argument is not a string.");
+  else
+d1120 1
+a1120 3
+    if (strlen(cstr) > 1)
+      MAKESTRDESC(_desc,"ungetc: 2.argument is not a single character.");
+    else
+d1125 4
+a1128 1
+        MAKESTRDESC(_desc,"ungetc: Argument is not a valid filehandle.");
+d1132 1
+d1134 2
+d1139 1
+a1139 1
+          returnval = 0;
+@
+
+
+1.6
+log
+@interactions uses "virtual working directory"
+@
+text
+@d2 3
+d507 1
+d555 1
+a555 1
+          fputc('\n', R_FILEHANDLE(*fh,fp));  /* append newline */
+@
+
+
+1.5
+log
+@error in red_status corrected
+@
+text
+@d2 3
+a47 1
+/* --- Der globale Link zu den Filehandlen ------------------------------- */
+d49 1
+d58 1
+d68 8
+a75 2
+    if (chdir(newpath) != 0)
+      MAKESTRDESC(_desc,"chdir: chdir was not successful.");
+d78 3
+a83 1
+    free(newpath);
+a87 1
+ 
+d126 1
+a753 1
+  char *str;
+d758 2
+a759 10
+  str = getcwd((char *) NULL,264);
+
+  if (str == NULL)
+    MAKESTRDESC(_desc,"getwd: getwd was not successful.");
+  else
+  {
+    MAKESTRDESC(_desc,str);
+    returnval = 0;
+    free(str);
+  }
+@
+
+
+1.4
+log
+@fputs corrected
+@
+text
+@d2 3
+d926 1
+a926 1
+    if (stat(filename, &buf) == 0)
+@
+
+
+1.3
+log
+@red_fgets for long strings corrected
+@
+text
+@d2 3
+d519 1
+a519 1
+    MAKESTRDESC(_desc, "fputs: 1. argument is not a string.");
+d522 4
+a525 2
+    if (outstring == NULL)
+      MAKESTRDESC(_desc, "fputs: 2. argument is not a string.");
+d528 2
+a529 4
+      GETFILEHANDLE(fh, handlestr);
+      
+      if (fh == NULL)
+        MAKESTRDESC(_desc, "fputs: 1. argument is not a valid filehandle.");
+d532 2
+a533 2
+        if ( ! T_MODE_WRITE(R_FILEHANDLE(*fh,mode)))
+          MAKESTRDESC(_desc, "fputs: File is not writeable.");
+d536 3
+a538 8
+          if (fputs(outstring, R_FILEHANDLE(*fh,fp)) == EOF)
+            MAKESTRDESC(_desc,"fputs: fputs not successful."); 
+          else
+          {
+            fputc('\n', R_FILEHANDLE(*fh,fp));  /* append newline */
+            MAKESTRDESC(_desc, "fputs");
+            returnval = 0;
+          }
+@
+
+
+1.2
+log
+@code restructured
+@
+text
+@d2 3
+d307 1
+a307 1
+  int returnval = 1, error = 0;
+d340 4
+a343 2
+        
+            do
+d345 9
+a353 12
+              if (fgets(str, LENGTH, R_FILEHANDLE(*fh,fp)) == NULL)
+                error = 1;
+              else
+              {
+                number++;
+                if ((newstr = (char *) realloc(bigstr, number*LENGTH)) == NULL)
+                  post_mortem("rintact: memory reallocation for bigstr "
+                              "not possible.");
+                bigstr = newstr;
+                strcat(bigstr,str);
+              }
+            } while ((strlen(str) >= LENGTH -1) & !error);
+d356 5
+a360 10
+          if (error)
+            MAKESTRDESC(_desc,"fgets: read error.");
+          else
+          {
+            number = strlen(bigstr);
+            if (bigstr[number - 1] == '\n')
+              bigstr[number - 1] = '\0';
+            MAKESTRDESC(_desc,bigstr);  
+            returnval = 0;
+          }
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1058
+@

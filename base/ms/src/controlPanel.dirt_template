@@ -1,0 +1,131 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "controlPanel"
+%%ID  Created by tb on Fri Mar  5 12:10:40 1993
+%%%
+%T controlPanel
+%F
+%%%
+%N msControlPanelBox
+%c ukcLayoutWidgetClass
+%p controlPanel
+%m true
+%o false
+%s x : 18
+%s y : 16
+%s width : 452
+%s height : 68
+%s borderWidth : 1
+%r background : #888888
+%f
+%%%
+%N  msControlPanelGoToStart
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/go_to_start
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelPlayBackward
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 68
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/play_backward
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelSkipBackward
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 132
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/step_backward
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelStop
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 196
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/stop
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelSkipForward
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 260
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/step_forward
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelPlayForward
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 324
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/play_forward
+%r  background : #bbbbbb
+%f
+%%%
+%N  msControlPanelGoToEnd
+%c  ukcCommandWidgetClass
+%p  controlPanel.msControlPanelBox
+%m  true
+%o  false
+%s  x : 388
+%s  y : 4
+%s  width : 58
+%s  height : 58
+%s  borderWidth : 1
+%r  label : >|
+%r  callback : msBarChartStepForward()
+%r  bitmap : bitmaps/go_to_end
+%r  background : #bbbbbb
+%f

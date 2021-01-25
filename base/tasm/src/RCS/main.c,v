@@ -1,0 +1,1426 @@
+head	1.56;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.56
+date	96.04.19.09.41.06;	author cr;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	96.02.20.15.54.53;	author rs;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	96.02.16.16.12.29;	author rs;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	96.02.15.11.56.48;	author sf;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	96.02.05.12.24.10;	author sf;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	96.01.18.08.18.48;	author um;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.11.23.10.18.26;	author sf;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.08.28.14.10.30;	author sf;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.08.28.12.27.07;	author sf;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.08.15.15.13.23;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.08.15.14.38.20;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.08.14.12.19.25;	author sf;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.08.10.09.42.30;	author car;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.07.12.12.56.14;	author sf;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.07.11.10.00.37;	author um;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.07.10.12.18.07;	author sf;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.07.07.12.38.52;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.07.07.12.10.30;	author sf;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.07.06.16.37.10;	author car;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.06.28.12.58.16;	author car;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.06.20.10.23.11;	author sf;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.06.15.07.28.26;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.06.13.14.35.05;	author sf;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.06.09.14.00.16;	author car;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.05.26.09.00.55;	author um;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.05.16.15.17.53;	author car;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.05.16.12.51.30;	author sf;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.05.11.12.51.05;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.04.21.06.32.09;	author car;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.04.20.12.09.51;	author um;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.04.12.13.30.55;	author sf;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.04.10.12.32.58;	author sf;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.04.10.10.47.44;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.04.05.09.51.15;	author sf;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.03.09.12.52.54;	author sf;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.02.10.17.16.30;	author car;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.02.02.12.44.54;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.02.02.12.18.45;	author car;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	94.12.22.17.17.44;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.12.20.11.13.07;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.12.20.08.01.38;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.12.20.07.53.41;	author um;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.12.20.07.29.23;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.12.19.16.04.29;	author um;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.19.13.55.52;	author um;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.19.13.50.05;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.19.09.24.58;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.08.15.59.08;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.05.15.10.33;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.11.28.15.31.37;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.28.12.53.53;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.25.17.30.11;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.25.07.39.21;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.23.07.38.00;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.21.10.00.10;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.56
+log
+@modulfile defaults to empty string
+@
+text
+@#include <stdlib.h>
+#include <string.h>
+#include "main.h"
+#include "error.h"
+#include "dbug.h"
+
+int verbose, lineno, optimize = 0;
+int FRED_FISH = FALSE, WATCH = FALSE, RED_CNT = FALSE, ODDSEX = FALSE, MODUL = FALSE;
+int NOSTACK2REG = FALSE;
+int DIST = 0;
+int TEST_STACK = 0;
+char * infile, * outfile, * execfilepath = "", * modulfile = "";
+char * default_name = "a.out";
+char * execfile = "";
+char * very_tmp;
+char * targetname;
+char * ncubelib = "/home/base/lib";
+char * redumalib = "/home/base/lib";
+char * tasmlib = "../lib";
+char * outfiletmp;
+extern char *get_str_space(char *);
+int dogeorg = 0, dotis = 0,  doris = 0, dotasm = 0, ref_inferred = 0, dogcc = 0;
+int dostaticlink = 0, useacc = 0;
+int dontremove = FALSE;
+int uses_apply = FALSE;
+int mess_enabled = 0;
+
+int asm_mode = ASM_SK;
+
+FILE *yyin, *yyout;
+
+char * version = VERSION,
+     * program;
+
+int stacksize = 16384, heapsize = 128*1024;
+
+int main(int argc, char * argv[])
+{
+  int errflg = 0;
+  char c;
+  char * dbug_opt = "";
+  extern char * optarg;
+  extern int optind;
+  extern int getopt(int, char **, char *);
+  extern int dup_num;
+  extern int do_dupe;
+  extern int arg_check;
+
+  do_dupe=0;
+  program = argv[0];
+  infile = outfile = targetname = NULL;
+  {
+    short a = 0x1234;
+    if ((char)a == 0x12) ODDSEX = TRUE;
+    else ODDSEX = FALSE;
+  }
+  while((c = getopt(argc, argv, "ZN:L:l:mno:O:Vvh#:Dad:WRgGtrcCM:XAST")) != -1)
+    switch(c) {
+      case 'V':
+      case '#': /* enter Fred Fish DBUG-Options */
+        dbug_opt = optarg; break;
+      case 'N': ncubelib = get_str_space(optarg);
+                strcpy(ncubelib, optarg);
+                break;
+      case 'n': /* initiate distribution */
+        DIST = TRUE;
+        ODDSEX = TRUE;
+        break;
+      case 'L': redumalib = get_str_space(optarg);
+                strcpy(redumalib, optarg);
+                break;
+      case 'm': mess_enabled = 1; /* measurements for the distributed version */
+                break;
+      case 'l': tasmlib = get_str_space(optarg);
+                strcpy(tasmlib, optarg);
+                break;
+      case 'O': /* set (compiler) optimizer level */
+        optimize = atoi(optarg); break;
+      case 'M': /* specify modul output filename */
+        modulfile = optarg; 
+        MODUL = TRUE; 
+        break;
+      case 'X': /* don`t remove the C-files */
+        dontremove = TRUE; break;
+      case 'T': /* test for stackoverflow */  
+        TEST_STACK = TRUE; break;
+      case 'o': /* specify output filename */
+        targetname = optarg; break;
+      case 'v': /* set verbose mode */
+        verbose = 1; break;
+      case 'Z': /* Don't put Stack pointers into registers*/
+        NOSTACK2REG=TRUE; break;
+      case 'D': /* enable Fred Fish DBUGging for compiled output */
+        FRED_FISH=TRUE; break;
+      case 'a': /* check arguments for duplication, too */
+        arg_check = 1;
+        do_dupe = 1;
+        break;
+      case 'd': /* set number of duplicated functions */
+        dup_num = atoi(optarg);
+        do_dupe = 1;
+        break;
+      case 'W':
+        WATCH=TRUE; break;
+      case 'R': /* enable reduction counting for compiled output */
+        RED_CNT=TRUE; break;
+      case 'G': /* run reorganizer: convert conditional jump to rtf */
+        dogeorg = GEORG_GENRTF;
+        break;
+      case 'g': /* run reorganizer: convert conditional rtf to jump */
+        dogeorg = GEORG_GENJUMP;
+        break;
+      case 't': /* run type inference system */
+        dotis = 1; break;
+      case  'r': /* run reference count inference system */
+        doris = 1; ref_inferred = 1; break;
+      case 'c': /* do backend compilation */
+        dotasm = 1; break;
+      case 'C': /* do backend compilation and compile to C */
+        dotasm = 1; dogcc = 1; break;
+      case 'h': /* display usage */
+        errflg++; break;
+      case 'A': /* set acc mode */
+        useacc = 1; break;
+      case 'S': /* set static linking */
+        dostaticlink = 1; break;
+      }  
+  if (dogeorg+dotis+doris+dotasm == 0) {
+    dogeorg = GEORG_GENJUMP; dotis = doris = dotasm = dogcc = 1;
+    }
+  if ((WATCH == TRUE) && (optimize >0)) {
+    yymessage ("incompatible options -W and -O, disabling -W");
+    WATCH = FALSE;
+    }
+  if ((RED_CNT == TRUE) && (optimize >0)) {
+    yymessage ("incompatible options -R and -O, disabling -R");
+    RED_CNT = FALSE;
+    }
+  if ((RED_CNT == TRUE) && (1 == doris)) {
+    yymessage ("incompatible options -R and -r, disabling -R");
+    RED_CNT = FALSE;
+    }
+  if (optind+1 < argc)
+    errflg++;
+  if (errflg) {
+    fprintf(stderr, "Usage: %s [options] file\n", argv[0]);
+    fprintf(stderr, "    for options see http://www.informatik.uni-kiel.de/~car/project/usage.html\n");
+    exit(1);
+    }
+
+  DBUG_PUSH(dbug_opt);
+  yymessage("%s version %s", argv[0], version);
+  if (optind < argc) {
+    infile = argv[optind];
+    if ((yyin = fopen(argv[optind], "r")) == NULL) {
+      fprintf(stderr, "%s: ", argv[0]);
+      perror(argv[optind]);
+      exit(1);
+      }
+    }
+  else {
+    yyin = stdin;
+    infile = "<stdin>";
+    }
+  if (!targetname && dogcc)
+    targetname = default_name;
+  if (targetname) 
+  {
+    very_tmp = strrchr(targetname, '/');
+    if (NULL != very_tmp)
+    {
+      execfilepath = (char *)malloc(strlen(targetname) - strlen(very_tmp) + 3);
+      strncpy(execfilepath, targetname, strlen(targetname) - strlen(very_tmp) + 1);
+      outfile = (char *)malloc(strlen(very_tmp) + 3);
+      strcpy(outfile, &very_tmp[1]);
+      execfile = (char *)malloc(strlen(very_tmp) + 3);
+      strcpy(execfile, &very_tmp[1]);
+    }
+    else
+    {
+      execfilepath = (char *)malloc(5);
+      strcpy(execfilepath, "./");
+      outfile = (char *)malloc(strlen(targetname) + 3);
+      strcpy(outfile, targetname);
+      execfile = (char *)malloc(strlen(targetname) + 3);
+      strcpy(execfile, targetname);
+    }
+    outfiletmp = (char *)malloc(strlen(outfile) + strlen(P_tmpdir) + 3);
+    sprintf(outfiletmp, "%s%s", P_tmpdir, outfile);
+
+    if (dotasm && ((strlen(outfile) < 2) || strcmp(&outfile[strlen(outfile)-2], ".c")))
+      strcat(outfile, ".c");
+    if (dogcc)
+    {
+      free(very_tmp);
+      very_tmp = (char *)malloc(strlen(outfiletmp) + 3);
+      strcpy(very_tmp, outfiletmp);
+      strcat(very_tmp, ".c");
+      if ((yyout = fopen(very_tmp, "w")) == NULL) {
+        fprintf(stderr,"unable to open %s\n", very_tmp);
+        perror(argv[0]);
+        exit(1);
+      }
+    }
+    else
+    {
+      free(very_tmp);
+      very_tmp = (char *)malloc(strlen(execfilepath) + strlen(outfile) + 3);
+      sprintf(very_tmp, "%s%s", execfilepath, outfile);
+      if ((yyout = fopen(very_tmp, "w")) == NULL) {
+        perror(argv[0]);
+        exit(1);
+      }
+    }
+  }
+  else
+    yyout = stdout;
+  lineno = 1;
+  if (yyparse()) {
+    fprintf(stderr, "parse failed for file %s.\n", infile);
+    exit(1);
+    }
+  lineno = 0;
+  if (correct_t_frame()) /* tilde frame size correction !!! */
+    fprintf(stderr, "at least one tilde-frame-size corrected.\n");
+  yymessage("code reorganizer version %s", vgeorg);
+  if (georg(GEORG_GENJUMP)) {
+    fprintf(stderr, "reorganizer failed for file %s.\n", infile);
+    exit(1);
+    }
+  if (dotis) {
+    yymessage("type inference system version %s", vtis);
+    if (tis()) {
+      fprintf(stderr, "type inference failed for file %s.\n", infile);
+      exit(1);
+      }
+    }
+  if (doris) {
+    yymessage("reference count inference system version %s", vris);
+    if (ris()) {
+      fprintf(stderr, "reference count inference failed for file %s.\n", infile);
+      exit(1);
+      }
+    }
+  if (dotasm) {
+    yymessage("TildeASM code compiler version %s", vcompile);
+    if (compile(modulfile)) {
+      fprintf(stderr, "compilation failed for file %s.\n", infile);
+      exit(1);
+      }
+    }
+  else {
+    if (dogeorg) {
+      yymessage("code reorganizer version %s", vgeorg);
+      if (georg(dogeorg)) {
+        fprintf(stderr, "reorganizer failed for file %s.\n", infile);
+        exit(1);
+        }
+      }
+    out_tree(program_start);
+    }
+  return(0);
+}
+@
+
+
+1.55
+log
+@more work on tasm + distribute + measure
+@
+text
+@d51 1
+a51 1
+  infile = outfile = modulfile = targetname = NULL;
+@
+
+
+1.54
+log
+@some changes for the distributed version + measurements
+@
+text
+@d57 1
+a57 1
+  while((c = getopt(argc, argv, "ZN:L:l:m:no:O:Vvh#:Dad:WRgGtrcCM:XAST")) != -1)
+@
+
+
+1.53
+log
+@-Z implemented
+@
+text
+@d26 1
+d57 1
+a57 1
+  while((c = getopt(argc, argv, "ZN:L:l:no:O:Vvh#:Dad:WRgGtrcCM:XAST")) != -1)
+d71 2
+@
+
+
+1.52
+log
+@three new keys: -N <path to nctred.o> -L <path to lred.o> -l <path to tasm library>
+@
+text
+@d9 1
+d56 1
+a56 1
+  while((c = getopt(argc, argv, "N:L:l:no:O:Vvh#:Dad:WRgGtrcCM:XAST")) != -1)
+d88 2
+@
+
+
+1.51
+log
+@*** empty log message ***
+@
+text
+@d16 3
+d20 1
+d55 1
+a55 1
+  while((c = getopt(argc, argv, "no:O:Vvh#:Dad:WRgGtrcCM:XAST")) != -1)
+d60 3
+d67 6
+@
+
+
+1.50
+log
+@error message
+@
+text
+@d205 1
+a205 1
+  if (correct_t_frame())		/* !!! tilde frame size correction !!! */
+@
+
+
+1.49
+log
+@default is: -grtCo a.out
+@
+text
+@d181 1
+@
+
+
+1.48
+log
+@new option: -T for stack overflow checks
+@
+text
+@d110 1
+a110 1
+    dogeorg = GEORG_GENJUMP; dotis = doris = dotasm = 1;
+a114 4
+    }
+  if ((TEST_STACK == TRUE) && (optimize >0) && (FALSE == FRED_FISH)) {
+    yymessage ("incompatible options -T and -O, disabling -T");
+    TEST_STACK = FALSE;
+@
+
+
+1.47
+log
+@default name for executable is a.out
+@
+text
+@d10 1
+d51 1
+a51 1
+  while((c = getopt(argc, argv, "no:O:Vvh#:Dad:WRgGtrcCM:XAS")) != -1)
+d68 2
+d115 4
+@
+
+
+1.46
+log
+@now path in targetname allowes
+@
+text
+@d11 1
+d144 1
+a144 4
+  {
+    yyfail("target filename required while using -C, aborting");
+    exit(1);
+  }
+@
+
+
+1.45
+log
+@new variable: determines if apply is used
+@
+text
+@d10 3
+a12 1
+char * infile, * outfile, * modulfile = "";
+d14 1
+d142 9
+a150 2
+  if (targetname) {
+    if (dogcc)
+d152 6
+a157 3
+      if (NULL == (outfile = (char *)malloc(strlen(targetname) + strlen(P_tmpdir) + 3)))
+        yyfail("unable to allocate memory");
+      sprintf(outfile, "%s%s", P_tmpdir, targetname);
+d161 6
+a166 3
+      if (NULL == (outfile = (char *)malloc(strlen(targetname) + 5)))
+        yyfail("unable to allocate memory");
+      sprintf(outfile, "./%s", targetname);
+d168 3
+d173 19
+a191 3
+    if ((yyout = fopen(outfile, "w")) == NULL) {
+      perror(argv[0]);
+      exit(1);
+d194 1
+@
+
+
+1.44
+log
+@options 'A' and 'S'
+@
+text
+@d15 1
+d73 1
+a73 1
+      case 'd': /* set nuber of duplicated functions */
+@
+
+
+1.43
+log
+@ODDSEX = TRUE if distributedODDSEX = TRUE if distributed
+@
+text
+@d13 1
+d45 1
+a45 1
+  while((c = getopt(argc, argv, "no:O:Vvh#:Dad:WRgGtrcCM:X")) != -1)
+d95 5
+a99 1
+        errflg++;
+@
+
+
+1.42
+log
+@tcorrect inserted
+@
+text
+@d39 5
+d51 1
+a95 4
+  {
+    short a = 0x1234;
+    if ((char)a == 0x12) ODDSEX = TRUE;
+  }
+@
+
+
+1.41
+log
+@*** empty log message ***
+@
+text
+@d159 2
+@
+
+
+1.40
+log
+@*** empty log message ***
+@
+text
+@a13 1
+int number_processes = 0; 
+d39 1
+a39 1
+  while((c = getopt(argc, argv, "n:o:O:Vvh#:Dad:WRgGtrcCM:X")) != -1)
+d44 1
+a44 1
+      case 'n': /* set number of processes and initiate distribution */
+d46 1
+a46 1
+        number_processes = atoi(optarg); break;
+@
+
+
+1.39
+log
+@new key: n# means distribute using # of processes.
+@
+text
+@d46 1
+@
+
+
+1.38
+log
+@outfile name mystery traced
+@
+text
+@d9 1
+d14 1
+d40 1
+a40 1
+  while((c = getopt(argc, argv, "o:O:Vvh#:Dad:WRgGtrcCM:X")) != -1)
+d45 2
+@
+
+
+1.37
+log
+@-V for DBUG added
+@
+text
+@a26 1
+  char tn[40];
+d132 1
+d136 1
+a136 1
+      if (NULL == (outfile = (char *)malloc(strlen(targetname) + 3)))
+d138 1
+a139 1
+    strcpy(outfile, targetname);
+a141 5
+    if (dogcc)
+    {
+      sprintf(tn, "%s%s", P_tmpdir, outfile);
+      strcpy(outfile, tn);
+    }
+@
+
+
+1.36
+log
+@new key: -X -> don`t remove temporarily made files
+@
+text
+@d41 1
+a55 4
+      case 'V': /* print overall version number */
+        fprintf(stderr, "%s version %s\n", argv[0], version);
+        if (c == 'V') exit(0);
+        break;
+@
+
+
+1.35
+log
+@bug fix
+@
+text
+@d12 1
+d39 1
+a39 1
+  while((c = getopt(argc, argv, "o:O:Vvh#:Dad:WRgGtrcCM:")) != -1)
+d49 2
+@
+
+
+1.34
+log
+@all generated files (*.[coh]) but the executable put into P_tmpdir
+@
+text
+@d129 10
+a138 2
+    if (NULL == (outfile = (char *)malloc(strlen(targetname) + strlen(P_tmpdir) + 3)))
+      yyfail("unable to allocate memory");
+d142 5
+a146 2
+    sprintf(tn, "%s%s", P_tmpdir, outfile);
+    strcpy(outfile, tn);
+@
+
+
+1.33
+log
+@georg may run twice
+@
+text
+@d26 1
+d129 1
+a129 1
+    if (NULL == (outfile = (char *)malloc(strlen(targetname) + 3)))
+d134 2
+@
+
+
+1.32
+log
+@option a for argumentchecking duplication added
+@
+text
+@a92 7
+  if ((1 == dotis) || ( 1 == doris) || (1 == dotasm)) {
+    if (dogeorg == GEORG_GENRTF)
+      fprintf(stderr, "warning: illegal combination: -G with -c or -t,  -G set to -g\n");
+    else if (dogeorg != GEORG_GENJUMP)
+      yymessage("%s",("option -g activated due to -t or -c"));
+    dogeorg = GEORG_GENJUMP;
+    }
+d146 4
+a149 6
+  if (dogeorg) {
+    yymessage("code reorganizer version %s", vgeorg);
+    if (georg()) {
+      fprintf(stderr, "reorganizer failed for file %s.\n", infile);
+      exit(1);
+      }
+d173 7
+@
+
+
+1.31
+log
+@namefile suffix handling improved
+@
+text
+@d32 2
+a33 1
+  
+d37 1
+a37 1
+  while((c = getopt(argc, argv, "o:O:Vvh#:Dd:WRgGtrcCM:")) != -1)
+d57 4
+@
+
+
+1.30
+log
+@another key: C means compile to C and call gcc after
+@
+text
+@d133 2
+a134 1
+    strcat(outfile, ".c");
+@
+
+
+1.29
+log
+@new var: ref_inferred
+@
+text
+@d2 1
+d10 2
+a11 1
+int dogeorg = 0, dotis = 0,  doris = 0, dotasm = 0, ref_inferred = 0;
+d35 2
+a36 2
+  infile = outfile = modulfile = NULL;
+  while((c = getopt(argc, argv, "o:O:Vvh#:Dd:WRgGtrcM:")) != -1)
+d47 1
+a47 1
+        outfile = optarg; break;
+d76 2
+d129 5
+a133 1
+  if (outfile) {
+@
+
+
+1.28
+log
+@http note
+@
+text
+@d9 1
+a9 1
+int dogeorg = 0, dotis = 0,  doris = 0, dotasm = 0;
+d71 1
+a71 1
+        doris = 1; break;
+@
+
+
+1.27
+log
+@option -dx for function duplication implemented
+@
+text
+@d107 1
+@
+
+
+1.26
+log
+@*** empty log message ***
+@
+text
+@d28 2
+d31 1
+d34 1
+a34 1
+  while((c = getopt(argc, argv, "o:O:Vvh#:DWRgGtrcM:")) != -1)
+d54 4
+@
+
+
+1.25
+log
+@*** empty log message ***
+@
+text
+@a11 2
+int compile_mode = 0;  /* 0 if compilation without ris and tis 
+                          1 if optimizer uses scanner/parser */
+d13 1
+a13 1
+FILE *yyin, *yyout, *help_file;
+a73 2
+  if (0 < optimize)
+    compile_mode = 1;
+a153 23
+    if (1 == compile_mode)
+    {
+      help_file = yyout;
+      if ((yyout = fopen("__pp_default", "w")) == NULL) {
+        fprintf(stderr, "%s: ", argv[0]);
+        perror(argv[0]);
+        exit(1);
+        }
+      out_tree(program_start);
+      fclose(yyout);
+      yyout = help_file;
+      fclose(yyin);
+      if ((yyin = fopen("__pp_default", "r")) == NULL) {
+        fprintf(stderr, "%s: ", argv[0]);
+        perror(argv[optind]);
+        exit(1);
+        }
+      if (yyparse())
+      {
+        fprintf(stderr, "parse failed for file %s.\n", infile);
+        exit(1);
+      }
+    }
+@
+
+
+1.24
+log
+@new mode for optimizing -> second parse
+@
+text
+@d15 1
+a15 1
+FILE *yyin, *yyout;
+d76 2
+a143 1
+    compile_mode = 1;
+a150 1
+    compile_mode = 1;
+d160 6
+d167 8
+@
+
+
+1.23
+log
+@incompatible switches: -R <=> -r  -> -R disabled
+@
+text
+@d12 2
+d142 1
+d150 1
+d158 9
+@
+
+
+1.22
+log
+@key -M for further use
+@
+text
+@d92 4
+@
+
+
+1.21
+log
+@reorganized default settings
+@
+text
+@d7 2
+a8 2
+int FRED_FISH = FALSE, WATCH = FALSE, RED_CNT = FALSE, ODDSEX = FALSE;
+char * infile, * outfile;
+d30 2
+a31 2
+  infile = outfile = NULL;
+  while((c = getopt(argc, argv, "o:O:Vvh#:DWRgGtrc")) != -1)
+d37 4
+d53 1
+a53 1
+      case 'R': /* enable reduction counting for comiled output */
+d150 1
+a150 1
+    if (compile()) {
+@
+
+
+1.20
+log
+@another try...
+@
+text
+@d15 2
+a16 1
+char * version = VERSION;
+a26 1
+  extern char * version, * vgeorg, * vtis, * vris, * vcompile;
+d29 1
+d71 1
+a71 1
+    dogeorg = 0; dotis = doris = dotasm = 1;
+d73 5
+a77 3
+  if ((GEORG_GENRTF == dogeorg) && ((1 == dotasm) || ( 1 == dotis) || (1 == doris)))
+  {
+    fprintf(stderr, "warning: illegal combination: -G with -c or -t,  -G set to -g\n");
+d79 1
+a79 6
+  }
+  if ((GEORG_GENJUMP != dogeorg) && ((1 == dotasm) || (1 == dotis) || (1 == doris)))
+  {
+    dogeorg = GEORG_GENJUMP;
+    yymessage("%s",("option -g activated due to -t or -c\n"));
+  }
+@
+
+
+1.19
+log
+@optimize option added
+@
+text
+@d28 1
+a28 1
+
+d30 1
+a30 1
+  while((c = getopt(argc, argv, "o:Vvh#:DWRgGtrcO:")) != -1)
+d77 1
+a77 1
+  if ((GEORG_GENJUMP != dogeorg) && ((1 == dotasm) || (1 == dotis) || (1 == doris))) 
+d142 16
+a157 1
+      fprintf(stderr, "reference count inference failed for file %s.\n", infile)@
+
+
+1.18
+log
+@lineno using changed
+@
+text
+@d1 1
+d6 1
+a6 1
+int verbose, lineno;
+d28 1
+a28 1
+  
+d30 1
+a30 1
+  while((c = getopt(argc, argv, "o:Vvh#:DWRgGtrc")) != -1)
+d34 2
+d72 1
+a72 1
+  if ((GEORG_GENRTF == dogeorg) && ((1 == dotasm) || ( 1 == dotis)))
+d77 1
+a77 1
+  if ((GEORG_GENJUMP != dogeorg) && ((1 == dotasm) || (1 == dotis))) 
+d82 8
+@
+
+
+1.17
+log
+@beautified warning
+@
+text
+@d5 1
+a5 1
+int verbose, lineno = 1;
+d108 1
+d113 1
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d71 1
+a71 1
+    fprintf(stderr, "warning: illegal combination: -G with -c or -t \n\t-G set to -g\n");
+@
+
+
+1.15
+log
+@message for option -v inserted if option -g is forced
+@
+text
+@d74 1
+a74 1
+  if ((1 == dotasm) || (1 == dotis)) 
+@
+
+
+1.14
+log
+@stacksize & heapsize
+@
+text
+@d74 5
+a78 1
+  if ((1 == dotasm) || (1 == dotis)) dogeorg = GEORG_GENJUMP;
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d16 2
+@
+
+
+1.12
+log
+@option change for -t
+@
+text
+@d72 1
+a72 1
+  if (1 == dotasm) dogeorg = GEORG_GENJUMP;
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d67 1
+a67 1
+  if ((GEORG_GENRTF == dogeorg) && (1 == dotasm))
+d69 1
+a69 1
+    fprintf(stderr, "warning: illegal combination: -G and -c\n\t-G set to -g\n");
+@
+
+
+1.10
+log
+@Options -g and -G exchanged
+warning if -G and -c => -G will be converted into -g then
+@
+text
+@d72 1
+@
+
+
+1.9
+log
+@Recognizes if machine is ODDSEX or not
+@
+text
+@d45 1
+a45 1
+      case 'g': /* run reorganizer: convert conditional jump to rtf */
+d48 1
+a48 1
+      case 'G': /* run reorganizer: convert conditional rtf to jump */
+d67 5
+@
+
+
+1.8
+log
+@ODDSEX (-O) as new command line parameter
+@
+text
+@d27 1
+a27 1
+  while((c = getopt(argc, argv, "o:OVvh#:DWRgGtrc")) != -1)
+a32 2
+      case 'O': /* specify ODDSEX */
+        ODDSEX = TRUE; break;
+d60 4
+@
+
+
+1.7
+log
+@error message improved
+@
+text
+@d6 1
+a6 1
+int FRED_FISH = FALSE, WATCH = FALSE, RED_CNT = FALSE;
+d27 1
+a27 1
+  while((c = getopt(argc, argv, "o:Vvh#:DWRgGtrc")) != -1)
+d33 2
+@
+
+
+1.6
+log
+@asm_mode integrated
+@
+text
+@d75 2
+a76 1
+      perror(argv[0]);
+@
+
+
+1.5
+log
+@mode flags made global
+@
+text
+@d10 2
+@
+
+
+1.4
+log
+@additional option G
+@
+text
+@d8 1
+a16 1
+  int dogeorg = 0, dotis = 0,  doris = 0, dotasm = 0;
+@
+
+
+1.3
+log
+@lineno initialized
+@
+text
+@d25 1
+a25 1
+  while((c = getopt(argc, argv, "o:Vvh#:DWRgtrc")) != -1)
+d27 1
+a27 1
+      case '#':
+d29 1
+a29 1
+      case 'o':
+d31 1
+a31 1
+      case 'v':
+d33 1
+a33 1
+      case 'V':
+d37 1
+a37 1
+      case 'D':
+d41 1
+a41 1
+      case 'R':
+d43 7
+a49 3
+      case 'g':
+        dogeorg = 1; break;
+      case 't':
+d51 1
+a51 1
+      case  'r':
+d53 1
+a53 1
+      case 'c':
+d55 1
+a55 1
+      case 'h':  
+d58 2
+a59 6
+  if (dogeorg+dotis+doris+dotasm == 0)
+    dogeorg = dotis = doris = dotasm = 1;
+  if (dotis+doris+dotasm) {
+    if (verbose && (dogeorg == 0))
+      fprintf(stderr, "enabling reorganizer\n");
+    dogeorg = 1;
+d64 1
+a64 1
+    fprintf(stderr, "Usage: %s [-v] [-V] [-#dbug_opt] [-ooutfile] file\n", argv[0]);
+@
+
+
+1.2
+log
+@initial incomplete version
+@
+text
+@d5 1
+a5 1
+int verbose, lineno;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d115 1
+a115 1
+    yymessage("ASM code compiler version %s", vcompile);
+@

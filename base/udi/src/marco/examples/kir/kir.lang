@@ -1,0 +1,821 @@
+%PROJECT [MAKEFILE,NAME=kir]
+
+%SCANNER [BUFFERSIZE=65536]
+
+%KEYWORDS [EXTENDER=KW]
+if then else case end otherwise
+ap to def let in sub when guard do
+as true false
+ok fail
+nilmat nilvect niltvect letp letpar
+
+ERROR		= error:
+
+EMPTYSTRING	= '`
+MATRIX_END	= >.
+
+%PRIMFUNCTIONS [EXTENDER=PF]
+abs neg exp ln sin cos tan floor ceil frac trunc
+dim ldim vdim mdim class type empty transpose
+reverse to_scal to_vect to_tvect to_mat
+head tail not
+mod ip max min and or xor
+eq ne f_eq f_ne ge gt le lt
+lselect lcut lrotate
+vselect vcut vrotate vunite
+lreplace
+mselect mcut mrotate munite
+mreplace_r mreplace_c ltransform
+mreplace repstr
+vc_plus vc_minus vc_mult vc_div
+plus minus mult div
+lunite c_plus c_minus c_mult c_div
+
+cut select rotate unite substr substruct to_list to_field
+mkstring c_max c_min
+cons hd tl
+arcsin arccos arctan quot
+
+BINLIST_CONS	= :
+BINLIST_CONCAT	= o
+ILSELECT	= |
+IVC_PLUS	= vc_+
+IVC_MINUS	= vc_-
+IVC_MULT	= vc_*
+IVC_DIV		= vc_/
+IPLUS		= +
+IMINUS		= -
+IMULT		= *
+IDIV		= /
+ILUNITE		= ++
+IC_PLUS		= c_+
+IC_MINUS	= c_-
+IC_MULT		= c_*
+IC_DIV		= c_/
+
+%TYPES [EXTENDER=TYP]
+vect tvect bvect btvect svect stvect
+mat bmat smat mmat
+primfunc userfunc number string bool function scalar
+list matrix vector tvector
+
+%COMMENTS [NESTED=NO,NEWLINES=NO]
+STARTSYMBOL	= /*
+ENDSYMBOL	= */
+
+%IDENTIFIERS [EXTENDER=ID]
+VAR 		= #REGEXPR #IDENTIFIER [A-Z_][A-Za-z0-9_]*
+NUMBER		= #REGEXPR #IDENTIFIER "~"?[0-9]+("."[0-9]+)?
+STRINGVAR	= #REGEXPR #IDENTIFIER "\""[A-Z_][A-Za-z0-9_]*"\""
+CHAR		= #BREAKCHARS "'`\""
+
+%DELIMITERS
+EMPTY_VEC	= <>
+COMMA		= ,
+BRA		= [
+KET		= ]
+RBRA		= (
+RKET		= )
+CBRA		= {
+CKET		= }
+POINT		= .
+DOTS		= ...
+P_PLUS		= .+
+BACKSLASH	= \
+LBRA		= <
+LKET		= >
+EQUAL		= =
+STR_START	= '
+STR_END		= `
+PAT_AS		=_ "as
+DPAT_AS		=_ ""as
+PAT_IN		=_ ""in
+DPAT_IN		=_ "in
+PAT_DOTS	=_ "...
+PAT_ALL		=_ ".+
+PAT_POINT	=_ ".
+QUOTE		=_ "
+DQUOTE		= ""
+HASH		= "#
+
+/*********************************************************************************/
+/*********************************************************************************/
+/*********************************************************************************/
+
+%PARSER
+
+%STRING [TOKEN=CHAR_ID,STARTSYMBOL=STR_START,ENDSYMBOL=STR_END]
+
+%SYNTAXRULES [EXPRESSIONSYMBOL=expr]
+
+expr : 
+  atomic_expr -{ COPY; }-
+  | constructor_expr -{ COPY; }-
+  | when_expr -{ COPY; }-
+  | "(" expr expr expr ")" -{
+      create_expr_3(EDIT_DUMMY,
+       $2,
+       $3,
+       $4
+      );
+    }- -[ $1 $2 $3 $4 $5 ]-
+  | user_con -{ COPY; }-
+  | func_call -{ COPY; }-
+  | "error:" char_string -{
+      create_error_message(EDIT_DUMMY,$2);
+    }- -[ $1 $2 \n ]-
+  | def_part -{ COPY; }-
+  | "o" expr expr -{ 
+      create_binlistconcat(EDIT_DUMMY,$2,$3);
+    }- -[ $1 $2 $3 ]-
+;
+
+expr_list :
+  <1,N,expr,","> -{ MKLIST(NT_EXPR,NULL); }- -[ $ELEM $DELI ]-
+;
+
+def_part :
+  "def" func_list "in" expr -{
+    create_define(EDIT_DUMMY,
+     $2,
+     $4
+    );
+  }- -[ $1 \< \n $2 \> $3 $4 ]-
+;
+
+func_list :
+  <1,N,func_decl,","> -{ MKLIST(NT_FUNDEF,NULL); }- -[ $ELEM $DELI \n ]-
+;
+
+func_decl :
+  VAR_ID "[" [var_list] "]" "=" expr -{ 
+    create_fundef(EDIT_DUMMY,
+     create_ident(EDIT_DUMMY,$1),
+     $3,
+     $6
+    );
+  }- -[ $1 $2 $3 $4 $5 \< $6 \> ]-
+;
+
+func_call :
+  VAR_ID "[" [expr_list] "]" -{
+    create_funcall(EDIT_USER_FC,
+     create_ident(EDIT_DUMMY,$1),
+     $3
+    );
+   }- -[ $1 $2 $3 $4 ]-
+  | prefix_functions "[" [expr_list] "]" -{
+      create_funcall(EDIT_PRIMITIVE_FC,$1,$3);
+    }- -[ $1 $2 $3 $4 ]-
+  | prefix_functions "(" [expr_list] ")" -{ 
+      create_funcall(EDIT_PREFIX_FC,$1,$3);
+    }- -[ $1 $2 $3 $4 ]-
+;
+
+user_con :
+  VAR_ID "{" [expr_list] "}" -{
+    create_usercon(EDIT_NORMAL_USERCON,
+     create_ident(EDIT_DUMMY,$1),
+     $3
+    );
+  }- -[ $1 $2 $3 $4 ]-
+;
+
+atomic_expr :
+  single_atom -{ COPY; }-
+  | NUMBER_ID -{
+      create_number(EDIT_DUMMY,$1);
+    }- -[ $1 ]-
+  | VAR_ID -{
+      create_ident(EDIT_DUMMY,$1);
+    }- -[ $1 ]-
+;
+
+single_atom :
+  primitive_func -{ COPY; }-
+  | attributes -{ COPY; }-
+  | boolean_const -{ COPY; }-
+  | nil_const -{ COPY; }-
+  | "ok" -{ 
+      create_constant(EDIT_DUMMY,RED_CONST_OK);
+    }- -[ $1 ]-
+  | "fail" -{
+      create_constant(EDIT_DUMMY,RED_CONST_FAIL);
+    }- -[ $1 ]-
+;
+
+attributes :
+  type -{ COPY; }-
+  | class -{ COPY; }-
+;
+
+type :
+  "primfunc" -{
+    create_type(EDIT_DUMMY,RED_TYPE_PRIMFUNC);
+   }- -[ \t $1 ]-
+  | "userfunc" -{
+      create_type(EDIT_DUMMY,RED_TYPE_USERFUNC);
+    }- -[ $1 ]-
+  | "number" -{
+      create_type(EDIT_DUMMY,RED_TYPE_NUMBER);
+    }- -[ $1 ]-
+  | "string" -{
+      create_type(EDIT_DUMMY,RED_TYPE_STRING);
+    }- -[ $1 ]-
+  | "bool" -{
+      create_type(EDIT_DUMMY,RED_TYPE_BOOL);
+    }- -[ $1 ]-
+;
+
+class :
+  "function" -{
+    create_class(EDIT_DUMMY,RED_CLASS_FUNCTION);
+   }- -[ $1 ]-
+  | "scalar" -{
+      create_class(EDIT_DUMMY,RED_CLASS_SCALAR);
+    }- -[ $1 ]-
+  | "list" -{
+      create_class(EDIT_DUMMY,RED_CLASS_LIST);
+    }- -[ $1 ]-
+  | "matrix" -{
+      create_class(EDIT_DUMMY,RED_CLASS_MATRIX);
+    }- -[ $1 ]-
+  | "vector" -{
+      create_class(EDIT_DUMMY,RED_CLASS_VECTOR);
+    }- -[ $1 ]-
+  | "tvector" -{
+      create_class(EDIT_DUMMY,RED_CLASS_TVECTOR);
+    }- -[ $1 ]-
+;
+
+boolean_const :
+  "true" -{
+    create_constant(EDIT_DUMMY,RED_BOOL_TRUE);
+   }- -[ $1 ]-
+  | "false" -{
+      create_constant(EDIT_DUMMY,RED_BOOL_FALSE);
+    }- -[ $1 ]-
+;
+
+nil_const :
+  "nilmat" -{
+    create_constant(EDIT_DUMMY,RED_CONST_NILMATRIX);
+   }- -[ $1 ]-
+  | "nilvect" -{
+      create_constant(EDIT_DUMMY,RED_CONST_NILVECTOR);
+    }- -[ $1 ]-
+  | "niltvect" -{
+      create_constant(EDIT_DUMMY,RED_CONST_NILTVECTOR);
+    }- -[ $1 ]-
+  | "<>" -{
+      create_constant(EDIT_DUMMY,RED_CONST_EMPTYLIST);
+    }- -[ $1 ]-
+  | "'`" -{
+      create_constant(EDIT_DUMMY,RED_CONST_EMPTYSTRING);
+    }- -[ $1 ]-
+;
+
+constructor_expr :
+  ap_expr           -{ COPY; }-
+  | sub_expr        -{ COPY; }-
+  | let_expr        -{ COPY; }-
+  | cond_expr       -{ COPY; }-
+  | if_expr         -{ COPY; }-
+  | case_expr       -{ COPY; }-
+  | lambda_bar_expr -{ COPY; }-
+  | data_structure  -{ COPY; }-
+;
+
+ap_expr :
+  "ap" expr "to" "[" expr_list "]" -{ 
+    create_application(EDIT_DUMMY,
+     $2,
+     $5
+    );
+  }- -[ $1 \< $2 \> \n $3 $4 $5 $6 ]-
+;
+
+sub_expr :
+  "sub" "[" var_list "]" "in" expr -{
+    create_substitute(EDIT_DUMMY,
+     $3,
+     $6
+    );
+  }- -[ $1 $2 $3 $4 \n $5 $6 ]-
+;
+
+var_list :
+  <1,N,VAR_ID,","> -{ MKLIST(NT_IDENTIFIER,create_ident); }- -[ $ELEM $DELI ]-
+;
+
+let_expr :
+  "let" binding_list "in" expr -{
+    create_let(EDIT_DUMMY,
+     $2,
+     $4
+    );
+  }- -[ $1 \< $2 \> $3 $4 ]-
+  | "letpar" binding_list "in" expr -{
+    create_letpar(EDIT_DUMMY,
+      $2,
+      $4
+     );
+    }- -[ $1 \< $2 \> $3 $4 ]-
+  | "letp" pat_binding_list "in" expr -{
+      create_letp(EDIT_DUMMY,
+       $2,
+       $4
+      );
+    }- -[ $1 \< $2 \> $3 $4 ]-
+;
+
+binding_list :
+  <1,N,binding,","> -{ MKLIST(NT_BINDING,NULL); }- -[ $ELEM $DELI \n ]-
+;
+
+binding :
+  VAR_ID "=" expr -{
+    create_binding(EDIT_NORMAL_BINDING,
+     create_ident(EDIT_DUMMY,$1),
+     $3
+    );
+  }- -[ $1 $2 $3 ]-
+;
+
+pat_binding_list :
+  <1,N,pat_binding,","> -{ MKLIST(NT_PATTBINDING,NULL); }- -[ $ELEM $DELI \n ]-
+;
+
+pat_binding :
+  pattern "=" expr -{
+    create_binding(EDIT_PATTERN_BINDING,
+     $1,
+     $3
+    );
+  }- -[ $1 $2 $3 ]-
+;
+
+if_expr :
+  "if" expr cond_expr -{
+    create_ifcond(EDIT_DUMMY,
+      $2,
+      $3
+    );
+  }- -[ \< $1 $2 \n $3 \> ]-
+;
+
+cond_expr :
+  "then" expr "else" expr -{
+    create_cond(EDIT_DUMMY,
+     $2,
+     $4
+    );
+  }- -[ $1 $2 \n $3 $4 ]-
+;
+
+case_expr :
+  "case" when_list "end" -{
+    create_case(EDIT_CASE,
+     $2,
+     NULL
+    );
+  }- -[ \< $1 \n $2 \> $3 ]-
+  | "case" when_list "otherwise" expr "end" -{
+      create_case(EDIT_CASE_OTHERWISE,
+       $2,
+       $4
+      );
+    }- -[ \< $1 \n $2 $3 $4 \> \n $5 ]-
+;
+
+when_list :
+  <1,N,when_expr,","> -{ MKLIST(NT_WHEN,NULL); }- -[ $ELEM $DELI \n ]-
+;
+
+when_expr :
+  "when" patterns "guard" expr "do" expr -{
+    create_when(EDIT_DUMMY,
+     $2,
+     $4,
+     $6
+    );
+  }- -[ $1 $2 $3 $4 $5 $6 ]-
+;
+
+lambda_bar_expr :
+  <"\\"> VAR_ID -{
+    create_prot_ident(EDIT_DUMMY,
+     $1,
+     $2
+    );
+  }- -[ $1 $2 ]-
+;
+
+data_structure :
+  list          -{ COPY; }-
+  | char_string -{ COPY; }-
+  | matrix      -{ COPY; }-
+  | vector      -{ COPY; }-
+;
+
+list :
+  "<" expr_list ">" -{ create_datalist(NT_EXPR,$2); }- -[ $1 $2 $3 \n ]-
+;
+
+matrix :
+  "mmat" "<" matrix_list ">." -{
+    create_matrix(EDIT_MATRIX_MAT,
+     RED_TYPE_MATRIX,
+     $3
+    );
+  }- -[ $1 $2 $3 $4 ]-
+  | "mat" "<" number_row_list ">." -{
+      create_matrix(EDIT_NUMBER_MAT,
+       RED_TYPE_NUMBER,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "bmat" "<" bool_row_list ">." -{
+      create_matrix(EDIT_BOOL_MAT,
+       RED_TYPE_BOOL,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "smat" "<" string_row_list ">." -{
+      create_matrix(EDIT_STRING_MAT,
+       RED_TYPE_STRING,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+;
+
+matrix_list :
+  <1,N,matrix,">" "," "<"> -{ MKLIST(NT_MATRIX,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+number_row_list :
+  <1,N,number_list,">" "," "<"> -{ MKLIST(NT_NUMBER_LIST,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+bool_row_list :
+  <1,N,bool_list,">" "," "<"> -{ MKLIST(NT_BOOL_LIST,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+string_row_list :
+  <1,N,string_list,">" "," "<"> -{ MKLIST(NT_STRING_LIST,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+number_list :
+  <1,N,NUMBER_ID,","> -{ MKLIST(NT_NUMBER,create_number); }- -[ $ELEM $DELI ]-
+;
+
+bool_list :
+  <1,N,boolean_const,","> -{ MKLIST(NT_CONST,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+string_list :
+  <1,N,char_string,","> -{ MKLIST(NT_STRING,SET_TYPE); }- -[ $ELEM $DELI ]-
+;
+
+vector :
+  "vect" "<" number_list ">" -{
+    create_vector(EDIT_NUMBER_VECT,
+     RED_TYPE_NUMBER,
+     $3
+    );
+  }- -[ $1 $2 $3 $4 ]-
+  | "bvect" "<" bool_list ">" -{ 
+      create_vector(EDIT_BOOL_VECT,
+       RED_TYPE_BOOL,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "svect" "<" string_list ">" -{
+      create_vector(EDIT_STRING_VECT,
+       RED_TYPE_STRING,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "tvect" "<" number_list ">" -{
+      create_tvector(EDIT_NUMBER_TVECT,
+       RED_TYPE_NUMBER,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "btvect" "<" bool_list ">" -{
+      create_tvector(EDIT_BOOL_TVECT,
+       RED_TYPE_BOOL,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+  | "stvect" "<"  string_list ">" -{
+      create_tvector(EDIT_STRING_TVECT,
+       RED_TYPE_STRING,
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+;
+
+patterns :
+  pattern -{
+    create_patterns(EDIT_DUMMY,$1);
+  }- -[ $1 ]- 
+  | "(" pattern_list ")" -{
+      create_patterns(EDIT_PATTERN_LIST,$2);
+  }- -[ $1 $2 $3 ]-
+;
+
+pattern :
+  atomic_expr -{ COPY; }-
+  | pat_structure -{ COPY; }-
+  | "as" pattern VAR_ID -{
+      create_aspattern(EDIT_AS_PAT,
+       $2,
+       create_ident(EDIT_DUMMY,$3)
+      );
+    }- -[ $1 $2 $3 ]-
+  | pat_skip -{ COPY; }-
+  | VAR_ID "{" [pattern_list] "}" -{
+      create_usercon(EDIT_PATTERN_USERCON,
+       create_ident(EDIT_DUMMY,$1),
+       $3
+      );
+    }- -[ $1 $2 $3 $4 ]-
+;
+
+pat_structure :
+  pat_list          -{ create_patternstructure(EDIT_PATSTR_LIST,$1); }- -[ $1 ]-
+  | pat_char_string -{ create_patternstructure(EDIT_PATSTR_STRING,$1); }- -[ $1 ]-
+  | matrix          -{ create_patternstructure(EDIT_PATSTR_MATRIX,$1); }- -[ $1 ]-
+  | vector          -{ create_patternstructure(EDIT_PATSTR_VECTOR,$1); }- -[ $1 ]-
+;
+
+pat_list :
+  "<" pattern_list ">" -{ create_datalist(NT_PATTERNS,$2); }- -[ $1 $2 $3 ]-
+;
+
+pattern_list :
+  <1,N,pattern,","> -{ MKLIST(NT_PATTERNS,create_patterns); }- -[ $ELEM $DELI ]-
+;
+
+pat_char_string :
+  "'" pchars "`" -{
+    create_patternstring(EDIT_DUMMY,
+     $2
+    );
+  }- -[ $1 \_ $2 \_ $3 ]-
+;
+
+pchars :
+ <1,N,pchar,NULL> -{ MKLIST(NT_PATTERNSTRING,NULL); }- -[ \_ $ELEM \_ ]-
+;
+
+pchar :
+  CHAR_ID -{ 
+    create_char(EDIT_DUMMY,
+     $1
+    );
+  }- -[ $1 ]-
+  | DQUOTE -{ create_char(EDIT_DUMMY,34); }-
+  | pat_char_skip -{ COPY; }-
+  | STRINGVAR_ID -{ create_stringident(EDIT_DUMMY,$1); }- -[ $1 ]-
+  | pat_char_string -{ COPY; }-
+  | PAT_AS "\"" pat_char_string STRINGVAR_ID -{
+      create_aspattern(EDIT_AS_STRPAT,
+       $3,
+       create_stringident(EDIT_DUMMY,$4)
+      );
+    }- -[ \_ $1 $2 $3 $4 ]-
+  | DPAT_AS "\"" pat_char_string STRINGVAR_ID -{
+      create_aspattern(EDIT_AS_STRPAT,
+       $3,
+       create_stringident(EDIT_DUMMY,$4)
+      );
+    }- -[ \_ $1 $2 $3 $4 ]-
+  | PAT_AS pat_char_skip STRINGVAR_ID -{
+      create_aspattern(EDIT_AS_SPAT,
+       $2,
+       create_stringident(EDIT_DUMMY,$3)
+      );
+    }- -[ \_ $1 $2 $3 ]-
+  | DPAT_AS pat_char_skip STRINGVAR_ID -{
+      create_aspattern(EDIT_AS_SPAT,
+       $2,
+       create_stringident(EDIT_DUMMY,$3)
+      );
+    }- -[ \_ $1 $2 $3 ]-
+  | PAT_AS pat_inchar_skip STRINGVAR_ID -{
+     create_aspattern(EDIT_ASIN_SPAT,
+      $2,
+      create_stringident(EDIT_DUMMY,$3)
+     );
+    }- -[ \_ $1 $2 $3 ]-
+  | DPAT_AS pat_inchar_skip STRINGVAR_ID -{
+     create_aspattern(EDIT_ASIN_SPAT,
+      $2,
+      create_stringident(EDIT_DUMMY,$3)
+     );
+    }- -[ \_ $1 $2 $3 ]-
+  | pat_inchar_skip -{ COPY; }-
+;
+
+pat_inchar_skip :
+  PAT_IN pat_char_skip char_string "\""-{
+    create_aspattern(EDIT_IN_SPAT,
+     $2,
+     $3
+    ); 
+  }- -[ $1 $2 $3 \_ $4 ]-
+ | DPAT_IN pat_char_skip char_string "\""-{
+    create_aspattern(EDIT_IN_SPAT,
+     $2,
+     $3
+    ); 
+  }- -[ $1 $2 $3 \_ $4 ]-
+ | PAT_IN pat_char_skip char_string -{
+    create_aspattern(EDIT_IN_SPAT,
+     $2,
+     $3
+    ); 
+  }- -[ $1 $2 $3 ]-
+ | DPAT_IN pat_char_skip char_string -{
+    create_aspattern(EDIT_IN_SPAT,
+     $2,
+     $3
+    ); 
+  }- -[ $1 $2 $3 ]-
+;
+
+pat_char_skip :
+ "\"." -{
+   create_symbol(EDIT_DUMMY,
+    RED_PATTERN_STR_DOT
+   );
+ }- -[ $1 ]-
+ | "\"..." -{
+     create_symbol(EDIT_DUMMY,
+      RED_PATTERN_STR_DOTDOTDOT
+     );
+   }- -[ $1 ]-
+ | "\".+" -{
+     create_symbol(EDIT_DUMMY,
+      RED_PATTERN_STR_DOTPLUS
+     );
+   }- -[ $1 ]-
+;
+
+pat_skip :
+  "." -{
+    create_symbol(EDIT_DUMMY,
+     RED_PATTERN_DOT
+    );
+  }- -[ $1 ]-
+  | "..." -{
+      create_symbol(EDIT_DUMMY,
+       RED_PATTERN_DOTDOTDOT
+      );
+    }- -[ $1 ]-
+  | ".+" -{
+      create_symbol(EDIT_DUMMY,
+       RED_PATTERN_DOTPLUS
+      );
+    }- -[ $1 ]-
+;
+
+char_string :
+  "'" chars "`" -{
+    create_string(EDIT_DUMMY,
+     $2
+    );
+  }- -[ $1 \_ $2 \_ $3 ]-
+;
+
+chars :
+  <1,N,char,NULL> -{ MKLIST(NT_CHAR,NULL); }- -[ $ELEM \_ ]-
+;
+
+char :
+  CHAR_ID       -{ create_char(EDIT_DUMMY,$1); }-
+  | DQUOTE	-{ create_char(EDIT_DUMMY,34); }-
+  | HASH	-{ create_char(EDIT_DUMMY,35); }-
+  | char_string -{ COPY; }-
+;
+
+/* Syntaxrules and transformation rule for primitive functions *******************/
+
+primitive_func :
+  prefix_functions   -{ COPY; }-
+  | infix_func      -{ COPY; }-
+  | infix_only_func -{ COPY; }-
+;
+
+prefix_functions :
+  "abs"          -{ create_primfunc(EDIT_DUMMY,RED_PPF_ABS); }- -[ $1 ]-
+  | "neg"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_NEG); }- -[ $1 ]-
+  | "not"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_NOT); }- -[ $1 ]-
+  | "exp"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_EXP); }- -[ $1 ]-
+  | "ln"         -{ create_primfunc(EDIT_DUMMY,RED_PPF_LN); }- -[ $1 ]-
+  | "sin"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_SIN); }- -[ $1 ]-
+  | "cos"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_COS); }- -[ $1 ]-
+  | "tan"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_TAN); }- -[ $1 ]-
+  | "floor"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_FLOOR); }- -[ $1 ]-
+  | "ceil"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_CEIL); }- -[ $1 ]-
+  | "frac"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_FRAC); }- -[ $1 ]-
+  | "trunc"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_TRUNC); }- -[ $1 ]-
+  | "vc_plus"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_VECTORPLUS); }- -[ $1 ]-
+  | "vc_minus"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_VECTORMINUS); }- -[ $1 ]-
+  | "vc_mult"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_VECTORMULT); }- -[ $1 ]-
+  | "vc_div"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_VECTORDIV); }- -[ $1 ]-
+  | "dim"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_DIM); }- -[ $1 ]-
+  | "ldim"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_LDIM); }- -[ $1 ]-
+  | "vdim"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_VDIM); }- -[ $1 ]-
+  | "mdim"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_MDIM); }- -[ $1 ]-
+  | "class"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_CLASS); }- -[ $1 ]-
+  | "type"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_TYPE); }- -[ $1 ]-
+  | "empty"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_EMPTY); }- -[ $1 ]-
+  | "c_min"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_CMIN); }- -[ $1 ]-
+  | "c_max"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_CMAX); }- -[ $1 ]-
+  | "transpose"  -{ create_primfunc(EDIT_DUMMY,RED_PPF_TRANSPOSE); }- -[ $1 ]-
+  | "reverse"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_REVERSE); }- -[ $1 ]-
+  | "to_scal"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOSCALAR); }- -[ $1 ]-
+  | "to_vect"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOVECT); }- -[ $1 ]-
+  | "to_tvect"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOTVECT); }- -[ $1 ]-
+  | "to_mat"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOMAT); }- -[ $1 ]-
+  | "to_list"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOLIST); }- -[ $1 ]-
+  | "to_field"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_TOFIELD); }- -[ $1 ]-
+  | "head"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_HEAD); }- -[ $1 ]-
+  | "tail"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_TAIL); }- -[ $1 ]-
+  | "mkstring"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_MKSTRING); }- -[ $1 ]-
+  | "substr"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_SUBSTR); }-
+  | "substruct"  -{ create_primfunc(EDIT_DUMMY,RED_PPF_SUBSTR); }- -[ $1 ]-
+  | "plus"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_PLUS); }- -[ $1 ]-
+  | "minus"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_MINUS); }- -[ $1 ]-
+  | "mult"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_MULT); }- -[ $1 ]-
+  | "div"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_DIV); }- -[ $1 ]-
+  | "max"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_MAX); }- -[ $1 ]-
+  | "min"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_MIN); }- -[ $1 ]-
+  | "hd"         -{ create_primfunc(EDIT_DUMMY,RED_PPF_BINHEAD); }- -[ $1 ]-
+  | "tl"         -{ create_primfunc(EDIT_DUMMY,RED_PPF_BINTAIL); }- -[ $1 ]-
+  | "cons"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_CONS); }- -[ $1 ]-
+  | "lselect"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_LSELECT); }- -[ $1 ]-
+  | "lunite"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_LUNITE); }- -[ $1 ]-
+  | "lcut"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_LCUT); }- -[ $1 ]-
+  | "lrotate"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_LROTATE); }- -[ $1 ]-
+  | "vselect"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_VSELECT); }- -[ $1 ]-
+  | "vcut"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_VCUT); }- -[ $1 ]-
+  | "vrotate"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_VROTATE); }- -[ $1 ]-
+  | "vunite"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_VUNITE); }- -[ $1 ]-
+  | "cut"        -{ create_primfunc(EDIT_DUMMY,RED_PPF_CUT); }- -[ $1 ]-
+  | "select"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_SELECT); }- -[ $1 ]-
+  | "rotate"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_ROTATE); }- -[ $1 ]-
+  | "unite"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_UNITE); }- -[ $1 ]-
+  | "c_plus"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_CPLUS); }- -[ $1 ]-
+  | "c_minus"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_CMINUS); }- -[ $1 ]-
+  | "c_mult"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_CMULT); }- -[ $1 ]-
+  | "c_div"      -{ create_primfunc(EDIT_DUMMY,RED_PPF_CDIV); }- -[ $1 ]-
+  | "mselect"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_MSELECT); }- -[ $1 ]-
+  | "mcut"       -{ create_primfunc(EDIT_DUMMY,RED_PPF_MCUT); }- -[ $1 ]-
+  | "mrotate"    -{ create_primfunc(EDIT_DUMMY,RED_PPF_MROTATE); }- -[ $1 ]-
+  | "munite"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_MUNITE); }- -[ $1 ]-
+  | "mreplace_r" -{ create_primfunc(EDIT_DUMMY,RED_PPF_MREPLACE_R); }- -[ $1 ]-
+  | "mreplace_c" -{ create_primfunc(EDIT_DUMMY,RED_PPF_MREPLACE_C); }- -[ $1 ]-
+  | "lreplace"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_LREPLACE); }- -[ $1 ]-
+  | "ltransform" -{ create_primfunc(EDIT_DUMMY,RED_PPF_LTRANSFORM); }- -[ $1 ]-
+  | "mreplace"   -{ create_primfunc(EDIT_DUMMY,RED_PPF_MREPLACE); }- -[ $1 ]-
+  | "repstr"     -{ create_primfunc(EDIT_DUMMY,RED_PPF_REPSTR); }- -[ $1 ]-
+;
+
+infix_func :
+  "vc_+"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_VECTORPLUS); }- -[ $1 ]-
+  | "vc_-" -{ create_primfunc(EDIT_DUMMY,RED_IPF_VECTORMINUS); }- -[ $1 ]-
+  | "vc_*" -{ create_primfunc(EDIT_DUMMY,RED_IPF_VECTORMULT); }- -[ $1 ]-
+  | "vc_/" -{ create_primfunc(EDIT_DUMMY,RED_IPF_VECTORDIV); }- -[ $1 ]-
+  | "mod"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_MOD); }- -[ $1 ]-
+  | "ip"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_IP); }- -[ $1 ]-
+  | "and"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_AND); }- -[ $1 ]-
+  | "quot" -{ create_primfunc(EDIT_DUMMY,RED_IPF_QUOT); }- -[ $1 ]-
+  | "or"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_OR); }- -[ $1 ]-
+  | "xor"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_XOR); }- -[ $1 ]-
+  | "eq"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_EQ); }- -[ $1 ]-
+  | "ne"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_NE); }- -[ $1 ]-
+  | "f_eq" -{ create_primfunc(EDIT_DUMMY,RED_IPF_FEQ); }- -[ $1 ]-
+  | "f_ne" -{ create_primfunc(EDIT_DUMMY,RED_IPF_FNE); }- -[ $1 ]-
+  | "ge"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_GE); }- -[ $1 ]-
+  | "gt"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_GT); }- -[ $1 ]-
+  | "le"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_LE); }- -[ $1 ]-
+  | "lt"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_LT); }- -[ $1 ]-
+  | "c_+"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_CPLUS); }- -[ $1 ]-
+  | "c_-"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_CMINUS); }- -[ $1 ]-
+  | "c_*"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_CMULT); }- -[ $1 ]-
+  | "c_/"  -{ create_primfunc(EDIT_DUMMY,RED_IPF_CDIV); }- -[ $1 ]-
+;
+
+infix_only_func :
+  "+"      -{ create_primfunc(EDIT_DUMMY,RED_IPF_PLUS); }- -[ $1 ]-
+  | "-"    -{ create_primfunc(EDIT_DUMMY,RED_IPF_MINUS); }- -[ $1 ]-
+  | "*"    -{ create_primfunc(EDIT_DUMMY,RED_IPF_MULT); }- -[ $1 ]-
+  | "/"    -{ create_primfunc(EDIT_DUMMY,RED_IPF_DIV); }- -[ $1 ]-
+  | "|"    -{ create_primfunc(EDIT_DUMMY,RED_IPF_LSELECT); }- -[ $1 ]-
+  | ":"    -{ create_primfunc(EDIT_DUMMY,RED_IPF_CONS); }- -[ $1 ]-
+  | "++"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_LUNITE); }- -[ $1 ]-
+;

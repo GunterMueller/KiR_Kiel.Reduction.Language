@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# fnrt
+#
+# writes all relative pathnames of rcsroots to stdout
+# as specified by the (optional) args.
+#
+
+err () {
+	echo "`basename $0`: $@" 1>&2
+	}
+
+fnd () {
+	if [ ! -d $@ ]
+	then
+	  err "$@ is not a directory"
+	elif [ -f $@/RCS/RCS-directories,v ]
+	then
+	  echo $@
+	else
+	  err "no RCS-directories in $@"
+	fi
+  }
+
+if [ $# = 0 ]
+then
+  fnd ${RCSROOT:-"."}
+else
+  while [ $# != 0 ]
+  do
+    fnd $1
+    shift 1
+  done
+fi
+
+

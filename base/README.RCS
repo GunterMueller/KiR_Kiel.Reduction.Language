@@ -1,0 +1,121 @@
+Sven-Bodo Scholz                                                Kiel, den 1.9.93
+=====================================================================================
+All the pi-red stuff is controlled by RCS. In order to support interleaved
+development under control of RCS we provided some scripts. Here you can
+find some infos on getting started.
+
+Currently, we deal with the following different RCS-projects which are
+located in seperated directories:
+
+   -red:	compiling reduma version
+   -fed:	the syntax oriented editor
+   -lneu:	no longer supported interpreting version of reduma
+
+(i) HOW TO GET ACCESS TO THE RCS-STUFF
+
+   1) you have to be member of the group BASE!
+   2) you should have ~base/rcsbin in your PATH before /usr/etc
+      since this directory contains a root only update...
+   3) you should have ~base/man in your MANPATH
+
+(ii) HOW TO GET ACCESS TO THE FILES UNDER RCS
+
+   1) you should read carefully the man pages on 
+      rcs-project / mkfl / update / locker / co / ci and rcs !
+   2) Mostly you will use update to obtain a read only copy
+      of the desired files, rcs to get a lock and ci to check
+      in your modified version; locker helps you finding out
+      who actually posesses locks on any files.
+   3) Don't worry that some optiones of rcs will not work, e.g.
+      breaking a lock, they are disabled on purpose for anybody but base.
+   4) All stable versions of the complete system are tagged; to get an
+      overview on those tagged versions read README.VERSIONS
+
+(iii) SOME RULES TO FOLLOW IN ORDER TO ALLOW FOR INTERLEAVING
+      CHANGES BY DIFFERENT USERS
+
+   1) Take as few locks on files as possible. 
+   2) NEVER CHECK IN A FILE WHICH IS NOT COMPILABLE!!!
+   3) NEVER LEAVE WITHOUT GIVING BACK YOUR LOCKS (checking in)!!
+   4) Give reasonable comments on what you have done when rcs asks
+      you to.
+   5) If another user wants to acces the same file like you do, check
+      in the respective file as soon as it is compilable.
+
+(iv) WHAT TO DO IF SOMETHING IS GOING WRONG
+
+   1) If you are sure that it is not a category (ii)1) error,
+      send mail to base.
+
+(v) EXAMPLE-SESSIONS:
+
+   1) Getting started
+      ---------------
+
+   You want to participate in the project red. Therefore you
+   create a new directory, where you want to deposit red as subdirectory.
+
+   for example:					mkdir reduma
+						cd reduma
+
+   checkout the actual version:                 update -s ~base/red red
+
+   prepare for your private configure:          ln -s red/src/red.cnf
+   (this is due to a bug in configure and will be erased in the next release)
+
+   create all makefiles:                        red/src/configure sun
+
+   make dependencies/versions .....
+
+   2) Add/ delete files to RCS
+      ------------------------
+   You want to put a new (source-)file under RCS; or you want one to be
+   "deleted" from the project( this only concerns the update-mechanism,
+   not the sources checked in from older revisions!).
+
+   !!! IMPORTANT: you should have a checked-out-version of all "valid"
+                  files in the subdirectories for which you invoke
+                  mkfl since you otherwise might "delete" a file.
+                  Moreover, you should make sure that the directory
+                  does NOT contain ANY superflouus files; normally
+                  "make clean" helps!!!!!
+
+   change to the directory in which you have added/deleted files or
+   to the root directory of the project.
+
+   update RCS-files:                            mkfl .
+
+   3) Add new directories to RCS
+      --------------------------
+   Ask the maintainer of ~sacbase to insert the respective directories
+   into the project and update RCS-directories in $RCSROOT.
+
+   4) Tagging a new version
+      ---------------------
+   This can only be done by the maintainer of ~sacbase.
+   For getting a complete "stamping" you should
+
+   i)   make sure the actual checked out RCS-files are up to date
+        (which can be achieved simply by using "update [$RCSROOT]")
+   ii)  choose a revision name NOT containing "."
+   iii) setrev <name> [$RCSROOT]
+
+   Finally you should register the version in README.VERSIONS.
+
+
+(vi) ADD NEW MODULE TO PROJECT:
+
+   you have to be base to do this!!
+
+   1) change to project directory 
+   2) create directory for new module
+   3) within module directory create a directory 'RCS` and a source directory
+      'src` (may be given another name, see SRCDIR/SRCROOT in your *.cnf)
+   4) within the source directory create anaother 'RCS` directory
+   5) create an empty file (e.g. touch) RCS-files within your source-dir
+   6) create a file RCS-directories within the module directory that
+      contains the names of all dirctories (each in a seperate line) belonging
+      to this module (e.g. 'src`)
+   7) copy the source files into the source directory and execute
+      'rcs -i <files>` and 'ci -u <files>` on it.
+   8) finally execute the shell-script mkfl to adjust the RCS-files

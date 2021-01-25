@@ -1,0 +1,54 @@
+\documentstyle[german,a4]{article}
+\begin{document}
+\centerline{\Large \bf Die Ticket-Initialisierungsdatei {\tt red.tickets}}
+\centerline{\small V1.0 --- \today}
+\section{Grammatik der Datei}
+\begin{verbatim}
+<ticket_file>     ::= <dim_specs>'.'
+<dim_specs>       ::= <dim_spec> | <dim_spec><dim_specs>
+<dim_spec>        ::= <dim_id><proc_specs>
+<dim_id>          ::= '*'<number>NL
+<proc_specs>      ::= <proc_spec> | <proc_spec><proc_specs>
+<proc_spec>       ::= '@'<proc_list>'('<ticket_list>')'<start_proc_list>NL
+<start_proc_list> ::= ';'<number> | ';'<number><start_proc_list>
+<proc_list>       ::= <proc_range> | <proc_range>,<proc_list>
+<proc_range>      ::= <number> | <number>'-'<number>
+<ticket_list>     ::= <ticket_spec> | <ticket_spec>;<ticket_list>
+<ticket_spec>     ::= <number> | <proc_list>:<number>
+<number>          ::= <digit> | <digit><number>
+\end{verbatim}
+\section{Eine Beispieldatei}
+\begin{tabular}{ll}
+1 & {\tt *1}\\ 
+2 & {\tt @0(1:4);1}\\
+3 & {\tt @1(3);0}\\
+4 & {\tt *2}\\
+5 & {\tt @0-2(3);1;2;3}\\
+6 & {\tt @3(0)}\\
+7 & {\tt .}\\
+\end{tabular}
+\\[2ex]
+{\bf Erl\"auterungen:}\\
+\begin{tabular}{ll}
+1 & Hier beginnt die Belegung f\"ur einen nCube der Dimension 1\\
+2 & Prozessor 0 bekommt 4 Tickets f\"ur Prozessor 1\\ 
+  & und verteilt zuerst an Prozessor 1\\
+3 & Prozessor 1 bekommt f\"ur alle direkten Nachbarn 3 Tickets\\
+  & und verteilt zuerst an Prozessor 0\\
+4 & Hier beginnt die Belegung f\"ur einen nCube der Dimension 2\\
+5 & Die Prozessoren 0,1 und 2 bekommen jeweils f\"ur ihre direkten\\
+  & Nachbarn 3 Tickets, 0 verteilt zuerst an 1, 1 an 2 und 2 an 3\\
+6 & Prozessor 3 bekommt f\"ur alle direkten Nachbarn 0 Tickets, kann\\
+  & also \"uberhaupt nicht verteilen.\\
+7 & Hier endet die Datei\\
+\end{tabular}
+\\[2ex]
+{\bf Anmerkungen:}
+\begin{itemize}
+\item Ist f\"ur die Gr\"o\3e eines Subcubes keine Initialisierung vorgegeben,
+wird die Standardbelegung benutzt.
+\item Ist f\"ur einen Prozessor keine Initialisierung vorgegeben, wird die
+Standardbelegung benutzt.
+\end{itemize}
+\end{document}
+

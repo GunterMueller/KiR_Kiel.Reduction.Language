@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# Syntax command {-arg}* file1 .. file<n>
+#
+
+# Prueft, die Dateien von links nach rechts solange, bis entweder eine
+# Datei in einem RCS-Verzeichnis oder eine Datei, die in einem
+# Vereichnis liegt, die ein RCS-Verzeichnis enthaelt, gefunden wird.
+# Dann wird die UID der entsprechenden Datei im RCS-Verzeichnis oder die
+# UID des RCS-Verzeichnisses selbst mit der UID des aktuellen Benutzers
+# verglichen. 
+# Wenn beide UIDs gleich sind, wird der Befehl
+# 'normal-command {-arg}* file1 .. file<n>', sonst
+# 'su-command {-arg}* # file1 .. file<n>' ausgefuehrt.
+#
+
+cmd="$0"
+
+# Hier werden die Argumente mit " eingeklammert, damit die Parameter
+# nicht beim naechsten Aufruf aufgeloest werden.
+
+args=""
+for argument do
+  args="$args \"$argument\""
+done
+
+
+uid=`getuid $HOME`
+rcsuid=$uid
+
+#
+# skip options.
+#
+while [ $# -ne 0 ]
+do
+  case $1 in
+	-*) shift;;
+	*)  break;;
+  esac
+done
+
+
+while [ $# -ne 0 ]
+do
+
+ file="`echo $1 | sed -e 's|\(.*RCS\)/[^/]*|\1|' -e t -e d`"
+
+#echo file:$file
+
+ if [ -n "$file" -a -d "$file" ]
+ then
+ if [ -f $1 ]
+ then
+  rcsuid=`getuid $1`; break
+ else
+  rcsuid=`getuid $file`; break
+ fi
+ fi
+ 
+ file="`echo $1 | sed -e 's|\(.*/\)\([^/]*\)|\1RCS/\2,v|' -e t -e 's|\(.*\)|RCS/\1,v|'`"
+ 
+#echo file:$file
+
+ if [ -f $file ]		# RCS/file,v
+ then
+  rcsuid=`getuid $file`; break
+ fi
+
+ file="`echo $file | sed -e 's|\(.*\)/[^/]*|\1|'`"
+ 
+#echo file:$file
+
+  if [ -d $file ]	# RCS
+  then
+    rcsuid=`getuid $file`; break
+  fi
+
+  shift
+
+done
+
+#echo "rcsuid:$rcsuid"
+
+if [ $uid != $rcsuid ]
+then
+ prefix="su"
+else
+ prefix="normal"
+fi
+
+#echo "command: $cmd"
+
+cmd="`echo $cmd | sed -e 's|\(.*/\)\([^/]*\)$|\1'$prefix'-\2|' -e t -e d`"
+
+#echo "command: $cmd"
+#echo "$cmd $args"
+
+eval "$cmd $args"

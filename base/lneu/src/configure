@@ -1,0 +1,188 @@
+#! /bin/sh
+
+# Configuration script for the Reduma.
+
+# Copyright (C) 1993 University of Kiel
+
+prgname="`basename $0`"
+dir=`pwd`
+dir=`basename $dir`
+awk=nawk
+if [ -f /usr/local/bin/gawk ]; then
+  awk=/usr/local/bin/gawk
+else
+  awk=nawk
+fi
+if [ -f /usr/bin/X11/makedepend ]; then
+  MAKEDEPEND=/usr/bin/X11/makedepend
+elif [ -f /usr/X11/bin/makedepend ]; then
+  MAKEDEPEND=/usr/X11/bin/makedepend
+elif [ -f /usr/X11R5/bin/makedepend ]; then
+  MAKEDEPEND=/usr/X11R5/bin/makedepend
+fi
+
+if [ $# -ne 1 ]; then
+  echo "usage: $prgname machine" >&2
+  echo "    known machines: sun, next, apollo, hp" >&2
+  exit 1
+fi
+
+case $1 in
+  sun)
+    MFLAGS="-DUNIX=1 -DODDSEX=0"
+    EDFLAGS="-DTERMIOS=1"
+    OBJEXT=.o
+    ;;
+  next)
+    MFLAGS="-DUNIX=1 -DODDSEX=0"
+    EDFLAGS=""
+    OBJEXT=.o
+    ;;
+  apollo)
+    MFLAGS="-DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DODDSEX=0"
+    EDFLAGS=""
+    OBJEXT=.o
+    ;;
+  sgi)
+    MFLAGS="-DUNIX=1 -DSYS5=1 -DODDSEX=0"
+    EDFLAGS="-DTERMIOS=1"
+    CCDEF="cc -Olimit 2000 -Wf,-XNh2000 -D_SGI_"
+    OBJEXT=.o
+    echo "compiler may have servere problems"
+    ;;
+  hp)
+    MFLAGS="-DUNIX=1 -DSYS5=1 -DODDSEX=0"
+    EDFLAGS="-DTERMIOS=1"
+    OBJEXT=.o
+    ;;
+  linux)
+    MFLAGS="-DUNIX=1 -DODDSEX=1"
+    EDFLAGS="-DTERMIO=1"
+    OBJEXT=.o
+    ;;
+esac
+
+$awk '
+BEGIN	{ mode="%global" }
+(FNR==1)&&(NR>1){ mode="editor" }
+(FILENAME=="editor.cnf") && edofile { next }
+/[\\][ 	]*$/	{ do { getline line; $0=$0"@"line } while(line~/[\\][ \t]*$/) }
+/^[#]/		{ next }
+		{ gsub("[ \t]+"," "); sub(" $","") }
+/:$/		{ sub(" ?:$",""); mode=$0; file[mode]=$0; next }
+/^[+]/		{ addfiles[mode]=addfiles[mode]" "substr($0,2); next }
+/^[-]/		{ subfiles[mode]=subfiles[mode]" "substr($0,2); next }
+/^RFLAGS ?=/	{ x=$0; sub("^RFLAGS ?= ?","",x); flags=flags" "x }
+/^MFLAGS ?=/	{ x=$0; sub("^MFLAGS ?= ?","",x); flags=flags" "x }
+/^STDFLAGS ?=/	{ x=$0; sub("^STDFLAGS ?= ?","",x); flags=flags" "x }
+/^STDCFILES ?=/	{ sub("STDCFILES ?= ?",""); stdcfiles=stdcfiles"@"$0; next }
+/^STDHFILES ?=/	{ stdhfiles=$0; next }
+/^STDFLAGS ?=/	{ stdflags=$0; next }
+/^EDOCFILES ?=/	{ sub("EDOCFILES ?= ?",""); edofiles=edofiles"@"$0; next }
+/^EDO ?=/	{ edofile=$0; sub("EDO ?= ?","",edofile); next }
+/^EDITOR ?=/	{ edofile=$0; sub("EDITOR ?= ?","",edofile); next }
+/^ ?$/		{ next }
+		{ vars[mode]=vars[mode]"\n"$0 }
+END	{ print "configuring for "MACHINE
+	  print "creating Makefile in ./"
+	  if (edofile)
+	    print "user supplied editor "edofile
+	  out="Makefile"
+	  print "# Makefile for Reduma\n# (c) 1993 University of Kiel\n#" >out
+	  print "# This Makefile is automatically generated\n# DO NOT EDIT BELOW !\n" >out
+	  print "CD = cd\nLN = ln -s\nRM = rm -f\nTAR = tar cf" >out
+	  print "PACK = compress\n" >out
+	  print vars["%global"]"\n" >out
+	  printf "all:" >out
+	  for(i in file)
+	    if (i!=EDO)
+              printf " "i >out
+	  print "\n" >out
+	  for(i in file) {
+	    if (i==EDO) {
+	      print "_"i":" >out
+	      print "\t@($(CD) "i"; $(MAKE) "i OBJEXT")" >out
+	      }
+	    else {
+	      print i": _"i >out
+	      print "\t$(RM) "i"\n\t$(LN) "i OBJEXT"/"i" "i >out
+	      print "_"i": "(edofile ? edofile : "_"EDO) >out
+	      print "\t@($(CD) "(i==EDO ? i : i OBJEXT)"; $(MAKE) "(i==EDO ? i OBJEXT : i)")" >out
+	      }
+	    }
+	  print "clean:" >out
+	  for(i in file) {
+	    if (i!=EDO)
+	      print "\t$(RM) "i >out
+	    print "\t@($(CD) "(i==EDO ? i : i OBJEXT)"; $(MAKE) clean)" >out
+	    }
+	  print "dist:" >out
+	  print "\t(cd ..; $(TAR) "DIR"/red.tar "DIR"/configure "DIR"/reduma.cnf "DIR"/editor.cnf "DIR"/src/*.[ch] "DIR"/editor/*.[ch] "DIR"/.red.*.*)" >out
+	  print "\t$(PACK) red.tar" >out
+	  print "tape:" >out
+	  print "\t$(TAR) cf /dev/rst0 configure reduma.cnf editor.cnf src fed" >out
+	  for(i in file) {
+	    out=(i==EDO ? i : i OBJEXT)"/Makefile"
+	    print "creating Makefile in "(i==EDO ? i : i OBJEXT)"/"
+	    if (i!=EDO)
+	      if (system("test -d "i OBJEXT)) system("mkdir "i OBJEXT)
+	    print "# Makefile for Reduma\n# (c) 1993 University of Kiel\n#" >out
+	    print "# This Makefile is automatically generated\n# DO NOT EDIT BELOW !\n" >out
+	    print "RM = rm -f" >out
+	    if (i==EDO) {
+	      print "LD = ld -r" >out
+	      if (CCDEF && (match(vars["%global"]vars[i],"CC ?=")==0))
+		print "\n# increasing limits of sgi compiler\nCC = "CCDEF >out
+	      print vars[i]"\nMFLAGS = "MFLAGS" "EDFLAGS"\n" >out
+	      files=edofiles" \\@"addfiles[i]
+	      }
+	    else {
+	      print "SRC = ../src\nINC = ../src" >out
+	      print "EDO = " (edofile ? edofile : "../"EDO"/"EDO OBJEXT) >out
+	      if (CCDEF && (match(vars["%global"]vars[i],"CC ?=")==0))
+		print "\n# increasing limits of sgi compiler\nCC = "CCDEF >out
+	      print vars["%global"]"\n"vars[i]"\nMFLAGS = "MFLAGS >out
+	      print stdflags"\n" >out
+	      files=stdcfiles" \\@"addfiles[i]
+	      }
+	    sub("^ *\\\\?@ *","",files); sub(" *\\\\?@ *$","",files)
+	    n=split(subfiles[i],a)
+	    for(j=1; j<=n; j++)
+	      if (sub(a[j],"",files)==0)
+	        print a[j]" no member of actual file list"
+	    filelist=files
+	    gsub("@ *.@","@",files); gsub("@ *","\n\t",files)
+	    print "CFILES = "files >out;
+	    gsub("[.]c ",OBJEXT" ",files); gsub("[.]c$",OBJEXT,files)
+	    print "OFILES = "files"\n" >out
+	    if (i==EDO) {
+	      print ".c"OBJEXT":" >out
+	      print "\t$(CC) -c $(CFLAGS) $(MFLAGS) $(RFLAGS) $(STDFLAGS) $*.c" >out
+	      print "\n"i OBJEXT": $(OFILES)" >out
+	      print "\t$(LD) -o "i OBJEXT" $(OFILES)" >out
+	      print "clean:\n\t$(RM) "i OBJEXT" $(OFILES) *.i *.bak tags *.log core *~" >out
+	      }
+	    else {
+	      print i": $(OFILES) $(EDO)" >out
+	      print "\t$(CC) $(LDFLAGS) -o "i" $(OFILES) $(EDO) $(LIBS)" >out
+	      print "clean:\n\t$(RM) "i" $(OFILES) *.i *.bak tags *.log core *~\n" >out
+	      n=split(filelist,a)
+	      for(j=1; j<=n; j++) {
+	        print substr(a[j],1,length(a[j])-2) OBJEXT": $(SRC)/"a[j] >out
+	        print "\t$(CC) -c $(CFLAGS) $(MFLAGS) $(RFLAGS) $(STDFLAGS) -I$(INC) $(SRC)/"a[j] >out
+	        }
+	      }
+	    gsub("[@\\\\]","" ,filelist)
+	    printf "\n" >out
+	    if (i!=EDO)
+	      { sub("^ *", "../src/",filelist); gsub(" +", " ../src/",filelist) }
+	    if (MAKEDEPEND) {
+	      printf "\n" >out
+	      close(out)
+	      system("cd "(i==EDO ? i : i OBJEXT)"; "MAKEDEPEND" "flags" "filelist)
+	      }
+	    }
+	}
+' MFLAGS="$MFLAGS" EDFLAGS=$EDFLAGS MACHINE=$1 OBJEXT=$OBJEXT MAKEDEPEND="$MAKEDEPEND" \
+  EDO="editor" CCDEF="$CCDEF" DIR="$dir" reduma.cnf editor.cnf && \
+echo "now enter \`make' to create lneu" >&2

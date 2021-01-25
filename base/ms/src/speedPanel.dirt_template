@@ -1,0 +1,169 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "positionPanel"
+%%ID  Created by tb on Thu Jul 29 09:16:54 1993
+%%%
+%T positionPanel
+%F
+%%%
+%N msSpeedPanelBox
+%c ukcLayoutWidgetClass
+%p positionPanel
+%m true
+%o false
+%s x : 48
+%s y : 30
+%s width : 255
+%s height : 68
+%s borderWidth : 1
+%r background : #888888
+%f
+%%%
+%N  msSpeedPanelLabelDelay
+%c  ukcLabelWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 9
+%s  width : 48
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Delay:
+%r  justify : right
+%r  borderColor : #888888
+%f
+%%%
+%N  msSpeedPanelLabelRate
+%c  ukcLabelWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 37
+%s  width : 48
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Rate:
+%r  justify : right
+%r  barColour : #000000
+%r  borderColor : #888888
+%f
+%%%
+%N  msSpeedPanelEnterDelay
+%c  ukcLabelWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 53
+%s  y : 9
+%s  width : 50
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #ffffff
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%r  internalHeight : 2
+%r  internalWidth : 4
+%f
+%%%
+%N  msSpeedPanelEnterRate
+%c  ukcLabelWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 53
+%s  y : 37
+%s  width : 50
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #ffffff
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%f
+%%%
+%N  msSpeedPanelScrollDelay
+%c  ukcScrollbarWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 129
+%s  y : 9
+%s  width : 100
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : horizontal
+%r  markSize : 0
+%r  thickness : 12
+%f
+%%%
+%N  msSpeedPanelScrollLeftDelay
+%c  ukcArrowWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 110
+%s  y : 9
+%s  width : 18
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : west
+%f
+%%%
+%N  msSpeedPanelScrollRightDelay
+%c  ukcArrowWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 230
+%s  y : 9
+%s  width : 18
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : east
+%f
+%%%
+%N  msSpeedPanelScrollRate
+%c  ukcScrollbarWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 129
+%s  y : 37
+%s  width : 100
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : horizontal
+%r  markSize : 0
+%r  thickness : 12
+%r  length : 100
+%f
+%%%
+%N  msSpeedPanelScrollLeftRate
+%c  ukcArrowWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 110
+%s  y : 37
+%s  width : 18
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : west
+%f
+%%%
+%N  msSpeedPanelScrollRightRate
+%c  ukcArrowWidgetClass
+%p  positionPanel.msSpeedPanelBox
+%m  true
+%o  false
+%s  x : 230
+%s  y : 37
+%s  width : 18
+%s  height : 18
+%s  borderWidth : 1
+%r  orientation : east
+%f

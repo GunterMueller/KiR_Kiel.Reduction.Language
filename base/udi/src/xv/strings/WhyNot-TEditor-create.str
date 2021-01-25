@@ -1,0 +1,15 @@
+#define WN_ALREADY_EDITING_SUBEXPRESSION \
+"\
+This expression contains a subexpression,\n\
+which is actually in use by another\n\
+texteditorobject. Finish first editing on the subexpression\n\
+and then try it again.\
+"
+
+#define WN_CURSOR_NOT_AT_EXPR \
+"\
+You didn't place the cursor at a expression.\n\
+It is only possible to edit subexpression with a\n\
+texteditorobject. Move cursor to beginning of a\n\
+expression and then try it again.\
+"

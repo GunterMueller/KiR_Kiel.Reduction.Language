@@ -1,0 +1,106 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	94.01.18.12.23.54;	author udi;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.11.23.13.59.25;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.23.13.57.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.3
+log
+@client-server extension
+@
+text
+@canz.c
+cback.h
+ccommand.c
+ccommand.h
+cdispl.c
+cedit.c
+cedit.h
+cedstate.h
+cencod.h
+cestack.h
+cetab.c
+cetb.h
+cfdispl.c
+cfiles.c
+cfiles.h
+cgetexp.c
+cgetstr.c
+cglobals.c
+cglobals.h
+chelp.c
+cinput.c
+ciotab.c
+ckwtb.h
+clt-srv.h
+cmain.c
+cmatch.c
+cmatrix.c
+cnewscr.c
+cparm.h
+cpexp.c
+cportab.h
+credclr.c
+creduma.h
+cscanexp.c
+cscred.c
+cscred.h
+cscroll.c
+csearch.c
+cstacks.c
+cstdef.h
+csubst.c
+cswitches.h
+ct.c
+ctermio.c
+ctermio.h
+ctonc.c
+ctrans.h
+ctransl1.c
+ctred.h
+dummy.c
+fed.cnf
+initredp.c
+rnc.c
+udi-EditDefines.h
+@
+
+
+1.2
+log
+@initial version
+@
+text
+@d24 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 53
+@

@@ -1,0 +1,322 @@
+head	1.11;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.11
+date	95.07.06.11.43.20;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.06.29.09.54.18;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.06.28.12.58.22;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.06.28.09.57.03;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.06.20.10.22.11;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.06.13.14.15.45;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.05.16.14.40.00;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.05.11.13.28.48;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.03.06.15.40.08;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.01.25.10.11.50;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.01.11.10.16.55;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.11
+log
+@DEBUG Flag
+@
+text
+@int main(int argc, char * argv[])
+{
+  extern void trap_handler();
+  char c;
+  int ta_heapsize = 2048*2048, ta_no_of_desc = 10000, ta_stacksize = 10240;
+  extern int red_cnt;
+  extern char * optarg;
+  extern int optind, opterr;
+  extern int getopt(int, char **, char *), controlled_exit(const char *);
+  extern char ri_tasmoutfile[120];
+
+  while((c = getopt(argc, argv, "V:#:k:h:d:R:I:s:")) != -1)
+    switch(c)
+    {
+#ifdef DEBUG
+      case 'V':
+      case '#': DBUG_PUSH(optarg); break;
+#endif
+      case 'k': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+      case 'h': ta_heapsize = atoi(optarg); break;
+      case 's': ta_stacksize = atoi(optarg); break;
+      case 'd': ta_no_of_desc = atoi(optarg); break;
+      case 'R': red_cnt = atoi(optarg); break;
+/* cr 28/03/95, kir(ff), START */
+      case 'I': inter_allowed = atoi(optarg); break;
+/* cr 28/03/95, kir(ff), END */
+    }
+  signal (SIGFPE, trap_handler);
+  _base = 10000;
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+  if (NULL ==(_st_w = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_a = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_t = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_r = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  st_w = _st_w;
+  st_a = _st_a;
+  st_t = _st_t;
+  st_r = _st_r;
+  build_dyn_funcdesctable(stat_funcdesctable, number_of_descs);
+  build_static_clos(number_of_descs);
+  initdata();
+  push_label(0);
+  apply(goal);
+  t_output(pop(w));
+  fprintf(stdout,"\n");
+  exit(0);
+  return (1);
+}
+
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d15 1
+d18 1
+@
+
+
+1.9
+log
+@-V for DBUG added
+@
+text
+@d12 1
+a12 1
+  while((c = getopt(argc, argv, "#:k:h:d:R:I:s:")) != -1)
+@
+
+
+1.8
+log
+@initiates the building of dynamic descriptors in debug mode
+@
+text
+@d15 1
+@
+
+
+1.7
+log
+@minor change
+@
+text
+@d72 1
+@
+
+
+1.6
+log
+@post_mortem -> controlled_exit
+@
+text
+@a0 1
+#include "main_opt.h"
+d12 1
+a12 5
+  OPT
+  OTHER { }
+  ENDOPT
+      
+  while((c = getopt(argc, argv, "k:h:d:R:I:s:")) != -1)
+d15 1
+@
+
+
+1.5
+log
+@Teppfuhler
+@
+text
+@d10 1
+a10 1
+  extern int getopt(int, char **, char *), post_mortem(const char *);
+d35 1
+a35 1
+      post_mortem("unable to allocate stack memory");
+d45 1
+a45 1
+      post_mortem("unable to allocate stack memory");
+d55 1
+a55 1
+      post_mortem("unable to allocate stack memory");
+d65 1
+a65 1
+      post_mortem("unable to allocate stack memory");
+@
+
+
+1.4
+log
+@updated
+@
+text
+@d38 1
+a38 1
+      fprintf(stderr, "unable to allocate stack memory");
+d48 1
+a48 1
+      fprintf(stderr, "unable to allocate stack memory");
+d58 1
+a58 1
+      fprintf(stderr, "unable to allocate stack memory");
+d68 1
+a68 1
+      fprintf(stderr, "unable to allocate stack memory");
+@
+
+
+1.3
+log
+@parameters for output and heap
+@
+text
+@d2 1
+a2 1
+int main(int argc, char *argv[])
+d4 1
+d6 1
+a6 1
+  int ta_heapsize = 8192*2048, ta_no_of_desc = 10000;
+d10 1
+a10 1
+  extern int getopt(int, char **, char *);
+d16 2
+a17 2
+
+  while((c = getopt(argc, argv, "a:A:h:d:R:")) != -1)
+d20 1
+a20 2
+      case 'a': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+      case 'A': AsciiOutput = 1; KiROutput = 0; strcpy(ri_tasmoutfile, optarg); break;
+d22 1
+d25 25
+d51 21
+d74 2
+a75 2
+  _base = 10000;
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+d80 4
+a83 1
+  return(1);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d2 1
+a2 1
+int main(int argc, char **argv)
+d4 8
+d16 9
+d28 1
+a28 1
+  InitHeapManagement(8192*1024,3200);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d11 1
+a11 1
+  InitHeapManagement(256*1024,100);
+@

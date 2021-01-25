@@ -1,0 +1,550 @@
+<html>
+<head>
+<title>Vorgehen</title>
+</head>
+
+<body>
+
+<h1>Vorgehen</h1>
+
+<b>Warnung:</b> <em>Der Inhalt dieser Seite wird laufend geändert/erweitert.
+Er dient als Leitfaden bei der Implementierung der Interaktionen und ist
+ansonsten in keiner Weise dokumentarisch.</em>
+<hr>
+<h3>Wo und wie sollen Interaktionen, die der Editor als vordefinierte Funktionen
+erkennt, umgesetzt werden?</h3>
+
+Ohne Änderung wird aus einer Interaktion (predef.Funk.) ein deltaX, falls
+genügend Argumente vorhanden sind, und ein mkdclos (Closure für pF)
+sonst. Dabei werden geschachtelte Applys sofort zusammengefasst. Im Verlauf der
+Reduktion werden (evt.) weitere Argumente in die Closure aufgenommen. (Dabei
+bleibt die Closure erhalten und wird nur erweitert (sf). Sie wird nicht
+aufgelöst und dann bei Bedarf neu gebildet.) Enthält die Closure dann
+genügend Argumente, so wird sie aufgelöst und ein deltaX generiert. 
+<p>
+Änderungen:<p>
+Der ASM-Compiler generiert aus den als Interaktion gekennzeichneten,
+predefinierten Funktionen einen Aufruf 'intact(action), falls die IA genügend
+Argumente hat. Andernfalls wird ein mkiclos (Desk. mit CLASS=C_FUNC,
+TYPE=TY_CLOS, ftype=TY_INTER) generiert. Löst dann der ASM-Interpreter eine
+mkiclos auf oder stößt er auf ein vom Compiler erzeugtes intact, so wird:
+<ol>
+<li> Ein IA-Deskriptor angelegt (der vom ASM-Interpreter nicht weiter reduziert
+     werden kann), oder
+<li> die IA ausgeführt, falls sich das Konstrukt auf toplevel befindet.
+     (Dies ist Gegenstand späterer Optimierungen.)
+</ol>
+
+Der IA-Interpreter kann nach Durchlauf des ASM-Interpreters nachschauen, ob ein
+solcher IA-Deskriptor auf toplevel liegt, die entsprechende IA ausführen, das
+Ergebnis an die Continuation übergeben (Applikation aufbauen) und den
+ASM-Interpreter neu starten.
+<p>
+<h3>Warum soll intact eingeführt werden? Kann das nicht alles delta übernehmen?
+Reicht es nicht, daß in I_DELTA die verschiedenen Routinen aufgerufen werden
+(red_IA's)?</h3>
+
+Im Fall der closure ist das richtig. Mit der Verwendung einer iclosure statt
+einer dclosure wird auch nur der Typ frühzeitig festgelegt, das Handling ist
+schon vorhanden. Die Einführung eines intact ist deshalb sinnvoll, weil die
+Ausführungsbedinung "toplevel" dann nur einmal eingebaut werden muss, statt
+in alle red_IA. Auch ist das Verhalten im Fehlerfall ein anderes. Im groben
+gleichen sich delta und intact aber.<p>
+<p>
+<h3>Durchzuführende Schritte:</h3>
+
+Dokumentation in red/src/rselem.h ergänzen: Eintrag für Konstruktoren und für
+Interaktionen (Funktion mit Flag in den höchsten 4 Bit).
+-done- <p>
+
+In allen bisherigen Einbauten vor get,put,print und scan ein f setzten (fgetc).
+-done- <p>
+
+In fed/cencode.h die Interaktionen einführen. Sie sind als primitive
+Funktionen getagt, haben aber im Namen das Bit 31 gesetzt.
+-done- <p>
+
+In den red-sourcen die Interaktionen einführen (codieren, Zugriffsmacros
+definieren, Zufgriffsmakros für prim. Funkt. ändern/anpassen, etc.)
+Zur Codierung: Da auch IA als Funktionen getagt werden müssen, muss im
+Valuefield ein Bit gesetzt werden (z.B. Bit 31 wie im Editor).
+-done- <p>
+
+An allen Stellen nachschauen, ob ein Aufruf von T_FUNC evt. durch T_PFUNC bzw.
+T_IFUNC ersetzt werden muss.
+-done- <p>
+
+Den Typ TY_INTACT definieren. Dann überall einbauen, wo nach dem Typ gefragt
+wird. Z.B. rprimf.h, char *typename. Suche nach TY_PRIM.
+-done- <p>
+
+Die Gestalt von IA-Deskriptoren definieren. (red/src/rheapty.h)
+Bsp.: INTER von cr
+-done- <p>
+
+rprimf.h um Tabellen für Interaktionen erweitern. (Diese wurden in rintact.c
+implementiert.) In der Funktion stelname muss dann bei IFUNC der entsprechende
+Tabelleneintrag geliefert werden.
+-done- <p>
+
+Dem Interpreter das Commando intact bekanntmachen. Orientieren an
+I_DELTAx, Argumente vom Stack holen, Deskriptor aufbauen.
+Dazu:
+In rinter.h I_INTACT definieren und in Tabelle instr_tab eintragen.
+In rinter.c case I_INTACT einfügen.
+-done- <p>
+
+Dem Interpreter den Umgang mit iClosures beibringen.
+Beim Auflösen von iclos IA-Deskriptoren erzeugen.
+(red/src/rinter.c)  Stelle "if (R_CLOS(*ptdesc,ftype) == TY_PRIM)":
+An dieser Stelle steht schon fest, daß die Closure aufgelöst wird.
+-done- <p>
+
+Der Postprozessor muß auch mit iClosures fertig werden. Evt. zu 'case TY_PRIM'
+nur einen 'case TY_INTACT' zufügen.  (pos-rea-ret.c, rnf.c)
+-done- <p>
+
+In red/src/rear.c, Funktion ear, hinter "if (T_PFUNC(x))" einen Fall "if
+(T_IFUNC(x))" anfügen. Beim Compilieren 'intact' erzeugen, wenn genügend
+Argumente vorhanden sind, bzw. eine iclos sonst.
+-done- <p>
+
+<hr>
+
+Wenn alle Interaktionen codiert sind, d.h. sie sind überall bekannt, tun aber
+noch nichts, dann kann eine erste Version eingeloggt werden. Dazu zuerst
+einloggen, dann alle Änderungen wiederholen. <p>
+
+<hr>
+
+Den IA-Interpreter einbauen, der die IA-Desc. auf toplevel 'ausführt'. Dazu
+müssen Funktionen für die IAs geschaffen werden. (Zunächst kann red_dummy
+verwendet werden.)
+-done- <p>
+
+Optimierung: Beim Auflösen von Closuren bzw. beim Ausführen von I_INTACT
+in inter() gleich die IA ausführen, wenn auf toplevel.<br>
+Bei einer solchen Optimierung ist zu prüfen, ob sie sich mit der verteilen
+Version verträgt. Z.B. ist das Stackhandling während der Processing Phase
+(inter()) ein Anderes als sonst. <p>
+ 
+Der IA-Interpreter wird direkt hinter inter() aufgerufen. Liegt eine
+Interaktion vor, so wird in einer Schleife wieder inter() aufgerufen. Der durch
+die Ausführung der Interaktion modifizierte Ausdruck wird nicht erneut
+compiliert, sonder es wird der bereits für die Continuation erzeugte Code
+verwendet, zusammen mit einem festen Codeteil zur Applikation der Continuation
+an das Interaktionsergebnis. Es ist nicht nötig, diese Applikation auch im
+Stack/Heap durch Deskriptoren darzustellen.
+-done- <p>
+
+Die primitiven Funktionen erwarten eine variable Anzahl von Stackelementen und
+liefern genau ein Integerwert, der den Erfolg der Delta-Anwendung bezeichnet.
+Das Ergebnis der Anwendung liegt in einer globalen Variable _desc.  Bei
+Interaktionen kann das genauso gemacht werden.  
+-done- <p>
+
+Die Interaktionen sollen einen Konstruktor der Gestalt OK{Wert} bzw.
+ERROR{Fehlerstatus [,Fehlermeldung]} zurückliefern.
+-done- <p>
+
+Für das Filehandling muß eine interne Umgebung verwaltet werden, die den Zustand
+des (benutzten Teils des) Filesystems darstellt. Zunächst soll es eine Liste von
+Strukturen sein, die folgende Felder besitzen:
+<ul>
+<li> C-Filepointer
+<li> voller Dateiname
+<li> Modus
+<li> Leseberechtigung
+<li> Schreibberechtigung
+<li> KiR-Handle
+</ul>
+
+Der KiR-Handle ist ein String und hat folgendes Format:<p>
+'*&lt voller Dateiname&gt *&lt Modus&gt *&lt Nr.&gt *` <p>
+Dabei besagt Nr., der wievielte Handle auf dieselbe Datei mit dem gleichen Modus
+es ist.
+-done- <p>
+
+<h3>Wie wird auf dieses interne Environment zugegriffen?</h3>
+
+<dl>
+<dt>Datei öffnen:
+<dd>Wenn die (Unix-) Umgebung das Öffnen erlaubt (C-fopen erfolgreich), dann
+muß ein neuer Eintrag in die Liste gemacht werden. Zur Erstellung des neuen
+KiR-Handels muß überprüft werden, ob diese Datei evt. schon (mehrfach) geöffnet
+ist, d.h. man muß mehrere Handle auf dieselbe Datei erlauben/unterscheiden
+können. Dazu muß der Eintrag den vollen Dateinamen sowie den Modus enthalten.
+
+<dt>Datei schließen:
+<dd>Wenn ein Eintrag mit dem angegebenen Handle existiert wird dieser gelöscht
+und die Datei geschloßen.
+
+<dt>Datei lesen:
+<dd>Überprüfen, ob der Eintrag mit dem angegebenen Handle die Lese-Berechtigung
+enthält.
+
+<dt>Datei schreiben:
+<dd>Überprüfen, ob der Eintrag mit dem angegebenen Handle die
+Schreib-Berechtigung enthält.
+
+<dt>Datei löschen:
+<dd>Alle Einträge, die auf diese Datei verweisen, löschen.
+</dl>
+
+Änderung der KiR-Handle-Struktur:
+<ul>
+<li> C-Filepointer
+<li> voller Dateiname
+<li> Modus, als Zahl codiert
+<li> Index eines Handles, der diesen von anderen Handle auf die selbe Datei
+unterscheidet. Erscheint auch als Nr. im Handle.
+<li> KiR-Handle
+</ul>
+
+Der Filename wird bisher in Kurzform eingetragen. Hier muß der komplette
+Filename hin.
+-done- <p>
+
+Für die Codierung des Modes wurden folgende Konstanten definiert: MODE_R = 1;
+MODE_W = 2; MODE_A = 4; MODE_PLUS = 8. Eine mit "a+" geöffnete Datei erhält also
+den Modus MODE_A | MODE_PLUS = 12.
+-done- <p>
+
+Zusätzlich wurden Makros zur Abfrage der Schreib- und Leseberechtigung
+implementiert, so daß die entsprechenden Einträge in der Struktur entfallen
+konnten. 
+-done- <p>
+
+Die Generierung des Handel-Index (Nr. in KiR-Handle) muß geändert werden.
+Momentan werden nach Schließung von Files bereits vergebene Indizes
+wiederverwendet.
+-done- <p>
+
+Vorläufig sollen folgende Interaktionen außer Acht gelassen werden: copy,
+fprintf, fscanf, mkdir, remove, rename, rmdir. Im Interaktions-Interpreter muß
+eine Sonderbehandlung für nicht-implementierte Interaktionen gemacht werden:
+solche Interaktionen werden nicht ausgewertet, d.h. das Programm bleibt voll
+erhalten.
+-done- <p>
+
+Die spezielle Exit-Interaktion braucht eine Sonderbehandlung, da ihr Argument
+keine Continuation ist, sondern ein Return-Wert des Programms. Exit soll das
+gesammte Programm, auch die Laufzeitumgebung (Editor, Reduma), beenden.
+-done- <p>
+
+Die Interaktionen status und fstatus müssen implementiert werden.
+-done- <p>
+
+Der Editor muß die Eingabe und Anzeige von Sonderzeichen (Kontrollsequenzen,
+ASCII-Werte ueber 127 etc.) ermöglichen.
+-done- <p>
+
+Wenn man im Editor einen Unterausdruck selektiert, so kann dieser ausgewertet
+werden, auch wenn es sich um eine Interaktion handelt (die dann ja nicht auf
+toplevel liegt). Der Editor erkennt, ob Unterausdrücke reduziert werden. In dem
+Fall muß ein Flag gesetzt werden, das die Auswertung von Interaktionen
+verhindert. Dieses Flag wird in der Parms-Struktur (Schnittstelle Editor-Reduma)
+übergeben.
+-done- <p>
+
+Standard-IO muß ermöglicht werden; dazu immer stdin, stdout und stderr öffnen
+und im Environment mit den Handles STDIN, STDOUT und STDERR hinterlegen.
+Außerdem muß diese Ein-Ausgabe in der aktuellen Shell laufen, d.h. daß zwischen
+den Editor-, Debug- und IO-Screens hin und her geschaltet werden muß.
+-done- <p>
+
+<h3>Wechseln des aktuellen Arbeitsverzeichnis</h3>
+Nach einem chdir() werden auch Trace-,Log-,Init-Dateien etc. (z.B.DBUG-output)
+im neuen Verzeichnis erwartet. Da eine ganze Menge Dateien davon betroffen sind
+ist die bessere Lösung wahrscheinlich, nicht an all den fremden Code-Stellen
+rumzuhacken, an denen Dateinamen verwaltet werden, sondern das chdir()
+"virtuell" ausführen zu lassen. D.h. es wird eine globale Variable mit dem
+"aktuellen" Verzeichnis verwaltet und bei allen Dateizugriffen per Name (fopen,
+dir, copy) wird dieses "virtuell-aktuelle" Verzeichnis mit dem Argument
+verknüpft. Dies betrifft nur Interaktionen, weshalb man an allen anderen Stellen
+weiterhin davon ausgehen kann, dass das "wirkliche" aktuelle Arbeitsverzeichnis
+jenes ist, in dem die Reduma gestartet wurde. Dieses Verzeichnis wird vom Editor
+gemerkt und an die Reduktionseinheit übergeben sowie beim ersten Aufruf des
+IA-Interpreter als "virtuell-aktuelles" Verzeichnis benutzt.
+-done- <p>
+
+Nach dem Auflösen einer Closure wird kein Interaktionsdeskriptor aufgebaut
+(falls nötig), sondern eine Applikation "intact arg ...". Diese wird vom
+IA-Interpreter nicht als Interaktionsaufruf erkannt. Siehe rinter.c, Zeile 5055:
+hier muß der Fall "Interaktion" rein.
+-done- <p>
+
+Ein Editor-Kommando zur Anzeige des Environment (Filehandle-Liste) sollte
+implementiert werden. (heißt 'environment')
+-done- <p>
+
+Außerdem ein Kommando zum kurzzeitigen Switch zum Ausgabescreen (z.B. bis zum
+Drücken von Return). So kann man die Standardausgaben sehen, ohne den Editor
+verlassen zu müssen. (heißt 'screenswitch')
+-done- <p>
+
+Wenn man im Editor unseres Systems auf einem String stehend die Space-Taste
+drückt, wird der String ins Eingabefeld kopiert (analog fuer einzelne
+character). Dabei sollten natürlich Sonderzeichen wieder in das
+Eingabe-Format gewandelt werden (4 Zeichen). Andernfalls lassen sich Strings
+mit Sonderzeichen nicht richtig darstellen.
+-done- <p>
+
+Die neuen Editorkommandos environment und screenswitch müssen dokumentiert
+und die Doku zur Papersyntax ins Englische übertragen werden.
+-done- <p>
+
+
+<h3>Implementierung von monadic style I/O</h3>
+
+Einen KiR-Prototypen zum monadic style findet man unter ~stt/red/ed/monadic.ed
+<p>
+
+Durchführung in 2 Schritten:
+<ol>
+<li> Bekanntmachung von Bind{} und Unit{}, Änderung der Stelligkeit aller
+Interaktionen (keine Continuation mehr), evt. Umbenennung einiger IA's.
+<li> Der Interaktionsinterpreter muß umgeschrieben werden, um den monadic style
+zu realisieren.
+</ol>
+
+Zu 1.: Bind{} und Unit{} werden auch als Interaktionen implementiert,
+obwohl sie nicht die Programmumgebung beeinflussen. Da sie jedoch Teil der
+Interaktionsbehandlung sind und ihre Verarbeitung im IA-Interpreter stattfindet
+lassen sie sich als Interaktionen besser verarbeiten und sind im Quellcode
+leichter auffindbar.
+-done- <p>
+
+Zu 2.: Bei der Auswertung eines Bind{} muß u.U. rekursiv in den linken Zweig des
+Bind{} abgestiegen werden. Da aber der Interpreter sowie der IA-Interpreter
+nicht rekursiv aufgerufen werden sollen, soll der rekursive Abstieg über einen
+Stack realisiert werden. D.h. muß in einem Bind{x,y} in das x abgestiegen
+werden, so hinterlegt man das Bind{x,y} (die Konstruktor-Adresse) auf einem
+Stack.  Ist man mit der Auswertung von x fertig, so gibt es verschiedene Fälle
+zu beachten:
+<ol>
+<li> x konnte zu einem Unit{y} ausgewertet werden. <br>
+     (evt. nach einem Aufruf von inter() ) Das Bind{x, Cont} wird vom Hilfsstack
+     geholt, sein RefCnt dekrementiert, Unit{y} auf den A-Stack gelegt und der
+     Code für "ap Cont to Unit{y}" aufgerufen.
+<li> x konnte nicht zu Unit{y} ausgewertet werden. <br>
+     In diesem Fall ist die Auswertung des gesammten Ausdrucks beendet, der
+     Hilfestack kann in einem Zug abgeräumt werden, um den Ausdruck wieder
+     herzustellen. Eine weitere Auswertung ist nicht möglich und braucht deshalb
+     auch nicht versucht zu werden. Zu beachten sind wiederum zwei Fälle:
+     <ul>
+     <li> Der RefCnt des Bind{} ist grösser als 1. <br>
+          Der RefCnt wird dekrementiert und eine Kopie mit RefCnt 1 angelegt.
+          Im "Vater"-Knoten wird der Zeiger auf das Bind{} entsprechend
+          umgebogen. In die Kopie wird das Auswertungsergebnis von x eingehängt.
+          Der RefCnt der Continuation muß inkrementiert werden.
+     <li> Der RefCnt des Bind{} ist gleich 1. <br>
+          Es wird keine Kopie des Bind{} erzeugt. Der RefCnt des x wird
+          dekrementiert und das Auswertungsergebnis des x wird eingehängt.
+     </ul>
+</ol>
+
+<b>Frage:</b> Welcher Stack kann benutzt werden und wie wird das gemacht
+(Bottom-Symbol, Überprüfung auf leeren Stack, was wird gespeichert)? <br>
+Der Hilfsstack (S_hilf) wird augenscheinlich während des inter() -
+intact_inter() - Zyklus nicht benutzt und ist leer, kann also uneingeschränkt
+Benutzt werden. D.h. kein extra Bottom-Symbol: Stack ist leer - kein rekursiver
+Aufstieg mehr nötig / möglich. Abgelegt wird die Adresse des Bind{} -
+Konstruktors. <br>
+Momentan wird der M-Stack verwendet. Dieser wird normalerweise von inter() leer
+vorgefunden und auch wieder so hinterlassen. Wenn intact_inter() dort etwas
+ablegt und danach inter() aufruft, bekommt es denn Stack unverändert zurück.
+Problem: Manchmal (z.B. wenn das Processing unterbrochen wurde) hinterläßt
+inter() doch etwas auf dem Stack (wahrscheinlich Müll). Damit muß intact_inter()
+fertig werden. <p>
+
+<hr>
+
+Interaktionen können nicht ausgewertete Ausdrücke oder Variablen als Argumente
+bekommen. Bisher werden sie dann "ausgewertet" und liefern eine Fehlermeldung.
+Dies ist aber nicht immer erwünscht oder korrekt.<br>
+Änderung der Vorgehensweise: Primitive Interaktionen, die falsche Argumente
+bekommen, sollen nicht unbedingt eine Fehlermeldung liefern, sondern unter
+Umständen (getreu dem sonstigen Verhalten der Reduma) einfach unausgewertet
+stehenbleiben. <br>
+Ich unterscheide vier Klassen von Argumenten:
+<ol>
+<li> Syntaktisch und logisch Korrekte.
+<li> Syntaktisch Korrekte, aber logisch Falsche, z.B. bei Schreibzugriffen auf
+zum Lesen geöffnete Files.
+<li> Syntaktisch Falsche, z.B. Konstanten mit erkennbar falschem Wert wie "hans"
+als Mode-Argument bei fopen().
+<li> Nicht Entscheidbare, z.B. Variablen oder (noch) nicht ausgewertete
+Ausdrücke.
+</ol>
+Die Klassen 1 und 2 lassen sich zur Klasse der syntaktisch korrekten Argumente
+zusammenfassen, die Klassen 3 und 4 zur Klasse der syntaktisch Falschen.
+Syntaxfehler lassen sich allein durch die Betrachtung des Arguments und der
+Interaktion feststellen. Auf die Argumente der Klassen 1 und 2 trifft dies nicht
+zu. <br>
+<b>Bemerkung</b>: Interaktionsaufrufe mit syntaktisch falschen Argumenten der
+Klasse 4 sind nicht unbedingt syntaktisch falsch. Nach Auswertung der Argumente
+(Auswertung des Ausdrucks bzw. Substitution der Variablen im größeren Kontext)
+können sie korrekte Aufrufe sein und evt. erfolgreich ausgewertet werden.
+<p>
+<b>Design-Entscheidung</b>: Interaktionen mit syntaktisch falschen Argumenten
+werden nicht ausgewertet, liefern also auch keine Fehlermeldung sondern bleiben
+unreduziert erhalten. <p>
+
+
+finfo: Kein Index abfragen lassen, da für Programmierer völlig ohne Bedeutung.
+Feldangabe in Großbuchstaben ('FULLNAME`, 'PATH` etc.).
+-done- <p>
+
+Interaktionen sollen den Reduktionszähler beeinflussen bzw. einen seperaten
+Interaktionszähler. Einfache Version: Reduktionszähler wird um 1 dekrementiert.
+-done- <p>
+
+Nullstellige Interaktionen (getwd): Der asm-Compiler macht aus <br>
+LET A=B IN getwd <br>
+<pre>
+         _desc(0x014b9460,FUNC,COMB,0,0,0x014b9450,func_14b9460);
+start_14b9460:
+         push_w(ptd(0x014b9430));
+         _name( 0x014b9430,1,"B" );
+         beta(func_14b9470);
+         ext();
+         end();
+         _desc(0x014b9470,FUNC,COMB,0,1,0x014b9440,func_14b9470);
+func_14b9470:
+         free1_a();
+         rtc(getwd);
+         end();
+</pre>
+statt
+<pre>
+         _desc(0x014b9460,FUNC,COMB,0,0,0x014b9450,func_14b9460);
+start_14b9460:
+         push_w(ptd(0x014b9430));
+         _name( 0x014b9430,1,"B" );
+         beta(func_14b9470);
+         ext();
+         end();
+         _desc(0x014b9470,FUNC,COMB,0,1,0x014b9440,func_14b9470);
+func_14b9470:
+         free1_a();
+         intact(getwd);
+         rtf();
+         end();
+</pre>
+Ähnliches passiert bei DEF A[]=getwd IN A <br>
+Problem beim PM: Muster ist Element getwd, Argument ist intact(getwd). <br>
+Evt. Lösung: getwd-Aufruf mit getwd() schreiben. <br>
+Nein. statt dessen werden 0-stellige Interaktionen nicht in
+Interaktionsdeskriptoren verpackt sondern bleiben als einfache Stackelemente
+liegen. So entfallen Sonderbehandlungen an vielen Stellen, nur in intact_inter()
+muessen jetzt 0-stellige Interaktionen gesondert erkannt werden.
+-done- <p>
+
+Überarbeitung des Bindstack Handlings: Wie fängt man (illegale?) Einträge ab?
+Problem war, daß nach einem Abbruch die Stacks initialisiert wurden, die
+binds_on_stack Variable aber ihren Wert behielt. Lösung: Variable jetzt global,
+wird immer vor Eintritt in die inter - intact_inter - Schleife auf Null gesetzt.
+-done- <p>
+
+In rintact.c in der IA_TAB muss "bind" durch "iabind" ersetzt werden, da es
+schon ein "bind" im ASM-Codefile gibt. (lex-Erkennung in tasm). Ersetze alle
+Interaktionen-Label durch ia_LABEL. (Unterscheidung im C-File von IA und
+C-Func.)
+-done- <p>
+
+Das Ausgabeformat der Filehandle für das environment-Kommando sollte
+überarbeitet werden.
+-done- <p>
+
+Beim Aufruf der Continuation muß ein Sonderfall für Closures mit einem fehlenden
+Argument gemacht werden (fuer F[x1, x2] bei dreistelligem F statt sub x in ...).
+(Optimierung des IA-Interpreters) <br>
+Nein. Es ist vom Zeitaufwand her ziemlich egal, ob der Test auf bestimmte
+Continuations in inter() (Aufruf mit I_APPLY) oder intact_inter() gemacht wird.
+Durch Verdopplung des Codes können aber zusätzliche Fehler entstehen. Siehe
+Profiling.
+-done- <p>
+
+In der verteilten Version müssen Stackzugriffe in der Processing-Phase (bisher
+nur inter() ) über Makros aus rstack.h getätigt werden. Sollte auch
+intact_inter() mal zur Processing-Phase gerechnet werden, müssen statt der jetzt
+Verwendeten die entsprechenden Makros aus rstack.h verwendet werden.
+-done- <p>
+
+Ein paar primitive Stringbehandlungsfunktionen (keine Interaktionen).
+<ul>
+<li> sprintf(Formatstring, Argumentliste):String
+<li> scanf(Formatstring, Eingabestring):Ergebnisliste <br>
+     Problem: Kein Eingabestrom, d.h. evt. enthält der String nicht genug Daten.
+     scanf läßt sich auch nicht mit einem String fuettern. Daher ist es
+     angebracht, nicht von scanf zu reden, sondern von atoi (Wenn das Argument
+     eine Stringdarstellung eines Integers oder Real-Wertes ist, dann erhält man
+     die entsprechende Zahl.
+<li> Char() und Ord() Funktionen für "Charakterarithmetik"
+</ul>
+
+Die fehlenden Interaktionen implementieren.
+-done- <p>
+
+Refcounting in neuen primf (rvalfunc.c).
+-done- <p>
+
+<hr><hr>
+
+<h2>ToDo-Liste</h2>
+
+Fehlerstatus ERROR umbenennen in NE für non­executable.
+-done- <p>
+
+Interaktion EOF umschreiben: soll OK{true/false} ergeben statt OK{eof}/NE{eof}.
+-done- <p>
+
+Die HTML-Dokumentation der Interaktionen sollte ein wenig aufgepeppt werden:
+Beispielprogramme in lesbarer Form, Arbeitshilfen wie "Wie integriere ich neue
+Interakionen?" etc., Verbesserungsvorschläge (z.B.:Alle Statusmeldungen
+vereinheitlichen und codieren, bei NE Code und Meldung ausgeben.)
+-done- <p>
+
+Bei Ausgabe von Programmen in Paper-Syntax werden noch einstellige
+Variablennamen groß und in längeren Namen nur der erste Buchstabe immer klein
+geschreiben.
+-done- <p>
+
+Editorkommando: Setzen des _issubexpression-Flag verhindern koennen.
+-done- <p>
+
+Zusätzlich bzw. alternativ zum StandardI/O wären drei neue Eintraege in der
+red.setup, die die Umlenkung des StdIO in / an / von / etc. Files, Terminals und
+andere Devices erlauben. Bei ungültigen Einträgen bleibt der Modus der
+entsprechenden Einträge in der Filehandle-Liste gleich 0. Alle Lese- und
+Schreib-Operationen müssen das dann abfangen (z.B. ERROR{'Filehandle has not a
+valid file pointer.`} ). <br>
+Statt Einträgen in red.setup wurden zwei Startoptionen '-x source' und '-y
+target' hinzugefügt. So muß nicht vor jedem Start die Korrektheit der
+setup-Parameter überprüft werden. Die Standardfehler-Ausgabe kann nicht
+umgeleitet werden.
+-done- <p>
+
+In rreduce.c das Löschen des stdin-Buffers nur dann durchführen, wenn STDIN für
+Interaktionen nicht umgeleitet wurde. Dies läßt sich einfach feststellen, sobald
+die entsprechenden Parameter aus red.setup ausgelesen werden. Ob Eingaben nach
+stdin gepiped wurden läßt sich aber auch dann nicht feststellen, ist für die
+interaktive Entwicklungsumgebung (Editor-Reduma) aber wohl auch nicht
+üblich.<br>
+Eine Änderung war nicht nötig, da nur die internen Standard-Filehandle mit
+anderen C-Filepointern belegt und nicht die eigentlichen stdio-Kanäle
+umgeleitet werden. Die anderen C-Filepointer-Buffer werden nicht gelöscht.
+-done- <p>
+
+Einfügen der Interaktion fredirect in riafunc.c und TASM.
+-done- <p>
+
+Dokumentation der neuen Features.
+-done- <p>
+
+refcnt-Problem lösen (überflüssige Deskriptoren bei/nach der
+Compilierung). <p>
+
+</body>
+</html>

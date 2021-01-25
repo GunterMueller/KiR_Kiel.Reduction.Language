@@ -1,0 +1,76 @@
+README fuer die experimentelle systemgesteuerte Verteilung
+----------------------------------------------------------
+
+- welche Ausdruecke werden verteilt ?
+
+  - Applikationen, die als Funktion einen Identifikator enthalten
+
+- wo muessen solche Ausdruecke stehen, damit sie systemgesteuert verteilt werden koennen ?
+
+  - in verschlachtelten Applikationen oder Listen-Konstruktoren
+
+- wo wird ein letpar eingefuegt ?
+
+  - um die jeweils aeusserste Applikation / Liste
+
+- wie kann man sich die generierten letpar-Konstrukte anschauen ?
+
+  - F8 und dann re 0, dann werden keine Reduktionsschritte ausgefuehrt, die generierten
+    letpar-Konstrukte bleiben stehen, AUSSER im aeussersten goal-Ausdruck
+    (da der Code dieses Ausdrucks durchlaufen wird, kann keine let/letpar/letp-Ausdruck
+     rekonstruiert werden)
+
+- wie kann man die systemgesteuerte Verteilung konfigurieren:
+
+  - neue Eintraege im red.setup:
+
+    AutoDist       : 0 disabled, 1 enabled
+    AutoDistUnary  : 1 keine Generierung von einstelligen letpars
+                     0 Generierung von einstelligen letpars
+    AutoDistPrefix : vom User zu definierendes Prefix fuer letpar-Variablen
+    AutoDistAck    : 0 keine Statistik-Ausgabe
+                     1 folgende Statistik-Ausgabe wird generiert (und muss mit RETURN
+                       bestaetigt werden):
+                      
+                       autodist statistics: ( 0 3 0 1 0 )
+
+                       Die erste Ziffer gibt an, wieoft versucht wurde, ein letpar zu 
+                       generieren, aber kein geeigneter Ausdruck vorlag.
+                       (sozusagen ein 0-stelliges letpar)
+                       Die Ziffern 2 bis 4 zeigen an, wieoft 1- bis 3-stellige letpar's
+                       eingefuegt werden konnten.
+                       Die letzte Ziffer kennzeichnet 4- oder mehrstellige letpar's.
+
+- wo greift die systemgesteuerte Verteilung im Reduktionssystem ein ?
+
+  im Pre-Processing zwischen der Auslagerung der Konstanten und dem Lifting
+  ( = die systemgesteuerte Verteilung ist eine rein syntaktische Transformation des
+      bestehenden Programmtextes)
+
+- wie ist die systemgesteuerte Verteilung realisiert ?
+
+  - neuer Traversiervorgang  (e -> a, a -> e)
+  - ist eine Applikation auf dem a-Stack angekommen, wird geprueft, ob die Funktion
+    ein Identifikator ist. Wenn ja, wird der ganze Ausdruck ausgelagert auf einen 
+    anderen Stack und statt des Ausdruckes eine letpar-Variable auf den a-Stack gelegt.
+    Ein Zaehler zaehlt die Anzahl der so ausgelagerten Ausdruecke.
+    Wurde das gesamte ap- oder list-Konstrukt traversiert, wird ein letpar-Konstrukt
+    generiert, falls der Zaehler >0 war.
+  - AutoDistUnary = 1 hat zur Folge, dass ein Ausdruck, der schon ausgelagert worden 
+    ist, durch einen extra-Traversiervorgang wieder eingelagert werden muss
+
+
+
+nicht unterstuetzt:
+-------------------
+
+- keine Konfiguration, ab wieviel zu verteilenden Ausdruecken eine 
+  Verteilung auch wirklich durchgefuehrt wird.
+  Loesung: statt letpar ein let generieren
+
+- bisher (nur) ap und list - Konstruktoren betrachtet (also auch ben.-def. Konstruktoren).
+  Keine weitere Verwending des list - Konstruktors (ausser im lrec-Konstruktor)
+  bekannt, trotzdem Obacht ! 
+
+
+***** dies ist eine Test-Version ****

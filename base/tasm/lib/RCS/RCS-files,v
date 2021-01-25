@@ -1,0 +1,343 @@
+head	1.19;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.19
+date	96.06.25.16.21.48;	author car;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	96.06.25.16.17.00;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	96.03.13.12.56.32;	author stt;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	96.02.20.12.47.58;	author cr;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	96.02.13.18.03.10;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	96.02.13.17.24.13;	author stt;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	96.02.01.11.49.16;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	96.01.29.09.53.10;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.07.07.09.37.08;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.06.20.10.56.29;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.06.14.13.57.36;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.06.13.14.16.53;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.06.13.10.20.00;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.05.01.13.15.59;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.04.26.14.05.36;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.03.29.16.36.30;	author cr;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.03.07.09.26.50;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.03.06.16.46.26;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.03.06.14.16.35;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.19
+log
+@inter.c removed again !@@^#$@@^$#^@@$#
+@
+text
+@DBdebug.h
+Makefile
+README.implementation.lib
+c_main.c
+dbug.c
+dbug.h
+debug.c
+host.c
+initdata.c
+intact.c
+main_opt.h
+ncdbug.c
+nr_rbibfunc.c
+nr_rconvert.c
+nr_rfstruct.c
+nr_rlogfunc.c
+nr_rlstruct.c
+nr_rmstruct.c
+nr_rquery.c
+nr_rvalfunc.c
+nr_rvstruct.c
+prolog.h
+rapply.c
+rapply.h
+rextern.h
+rheapty.h
+rintact.h
+rinter.h
+rlmvt.h
+rmeasure.h
+rmkclos.c
+rmkclos.h
+rncheap.h
+rncmessage.h
+rncsched.h
+rncstack.h
+rops.h
+roptasm.h
+rprimf.h
+rstackty.h
+rstdinc.h
+rstelem.h
+tlstruct.c
+tmvt_val.c
+tmvtstruct.c
+tprimf.h
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@a10 1
+inter.c
+@
+
+
+1.17
+log
+@inter.c removed.
+@
+text
+@d11 1
+a43 1
+tags
+@
+
+
+1.16
+log
+@added nr_rfstruct.c (compile with FLAG NOREF=1)
+@
+text
+@a10 1
+inter.c
+d15 1
+a21 1
+nr_rfstruct.c
+@
+
+
+1.15
+log
+@host.c, README.implementation.lib new
+@
+text
+@d22 1
+@
+
+
+1.14
+log
+@intact.c rintact.h rncheap.h added.
+@
+text
+@d3 1
+d8 1
+@
+
+
+1.13
+log
+@tags, ncdbug.c
+@
+text
+@d8 1
+d25 1
+d31 1
+@
+
+
+1.12
+log
+@ncube header files
+@
+text
+@d10 1
+d38 1
+@
+
+
+1.11
+log
+@DBUG included in standard, c_main.[h->c] moved
+@
+text
+@d1 1
+d23 1
+d28 3
+@
+
+
+1.10
+log
+@debug.c added
+@
+text
+@d2 1
+a2 3
+c_main.h
+db_c_main.h
+db_prolog.h
+@
+
+
+1.9
+log
+@tmvt_val.c added
+@
+text
+@d7 1
+d24 1
+@
+
+
+1.8
+log
+@functions for MVT
+@
+text
+@d33 1
+@
+
+
+1.7
+log
+@no ref_cnt prim.funcs
+@
+text
+@d33 1
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d10 8
+d21 1
+d23 1
+d26 1
+@
+
+
+1.5
+log
+@new file : tprimf.h
+@
+text
+@d21 1
+@
+
+
+1.4
+log
+@new file inter.c
+@
+text
+@d21 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d8 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d16 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 11
+d13 2
+@

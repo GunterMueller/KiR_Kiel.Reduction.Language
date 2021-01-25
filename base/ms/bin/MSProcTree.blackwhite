@@ -1,0 +1,22 @@
+msProcTree*background: #ffffff
+msProcTree*foreground: #000000
+
+msProcTree*msFilePanelLabelPath.borderWidth: 0
+msProcTree*msFilePanelLabelName.borderWidth: 0
+msProcTree*msScriptPanelLabelPath.borderWidth: 0
+msProcTree*msScriptPanelLabelName.borderWidth: 0
+msProcTree*msDisplayPanelLabelTitle.borderWidth: 0
+msProcTree*msProgressLabel.borderWidth: 0
+msProcTree*msCursorPanelLabelX.borderWidth: 0
+msProcTree*msCursorPanelLabelY.borderWidth: 0
+msProcTree*msPositionPanelLabelLine.borderWidth: 0
+msProcTree*msPositionPanelLabelFrame.borderWidth: 0
+msProcTree*msPositionPanelLabelTime.borderWidth: 0
+msProcTree*msSpeedPanelLabelDelay.borderWidth: 0
+msProcTree*msSpeedPanelLabelRate.borderWidth: 0
+msProcTree*myRequesterSelectLabelMask.borderWidth: 0
+msProcTree*myRequesterSelectLabelPath.borderWidth: 0
+msProcTree*myRequesterSelectLabelFile.borderWidth: 0
+msProcTree*msRequesterTitle1.borderWidth: 0
+msProcTree*msRequesterTitle2.borderWidth: 0
+msProcTree*msRequesterTitle3.borderWidth: 0

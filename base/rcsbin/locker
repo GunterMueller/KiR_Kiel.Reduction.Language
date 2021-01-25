@@ -1,0 +1,27 @@
+#!/usr/bin/sh
+#
+
+check () {
+	rlog -L -h $@ | gawk \
+	'BEGIN			   { locks=0; msg=0; } \
+	!msg && /^Working file: /  { msg=1; printf "%-24s ",$3 } \
+ 	/^locks: / 		   { locks=1 } \
+ 	locks && /^	/ 	   { printf "%s ", substr($1,0,length($1)-1) } \
+ 	/^access/ 		   { locks=0; msg=0; printf "\n" }'
+         }
+
+
+for root in `fnrt $@ 2>/dev/null`
+do
+  check $root/RCS-directories
+done
+
+for dir in `fndr $@`
+do
+  if [ ! -f $dir/RCS-files ]
+  then
+    checkout $dir/RCS-files
+  fi
+  check $dir/RCS-files `cat $dir/RCS-files | awk '{ print "'$dir/'" $1 }'`
+done
+

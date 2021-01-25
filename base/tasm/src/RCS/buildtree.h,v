@@ -1,0 +1,241 @@
+head	1.9;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.9
+date	95.04.12.13.31.58;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.04.10.07.42.37;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.22.08.30.57;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.22.08.23.05;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.21.15.49.27;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.23.15.53.44;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.10.50.37;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@#ifndef __BUILDTREE__
+#define __BUILDTREE__
+
+/* access program components */
+#define GETFIRSTFUNCTION(p)  ((p)->function)
+#define SETFIRSTFUNCTION(p)  GETFIRSTFUNCTION(p)
+#define GETFIRSTDESC(p)      ((p)->desc)
+#define SETFIRSTDESC(p)      GETFIRSTDESC(p)
+#define GETFIRSTDATA(p)      ((p)->data)
+#define SETFIRSTDATA(p)      GETFIRSTDATA(p)
+
+/* access components of function list */
+#define GETNAME(f)           ((f)->name)
+#define SETNAME(f)           GETNAME(f)
+#define GETDESC(f)           ((f)->desc)
+#define SETDESC(f)           GETDESC(f)
+#define GETFIRSTORDER(f)     ((f)->order)
+#define SETFIRSTORDER(f)     GETFIRSTORDER(f)
+#define GETNEXTFUNCTION(f)   ((f)->next)
+#define SETNEXTFUNCTION(f)   GETNEXTFUNCTION(f)
+#define GETFUNCINLINE(f)     ((f)->inlined)
+#define SETFUNCINLINE(f)     ((f)->inlined)
+
+/* access components of order list */
+#define GETNEXTORDER(o)      ((o)->next)
+#define SETNEXTORDER(o)      GETNEXTORDER(o)
+#define GETPREVORDER(o)      ((o)->prev)
+#define SETPREVORDER(o)      GETPREVORDER(o)
+#define GETORDERARGS(o,x)    ((o)->args.x)
+#define SETORDERARGS(o,x)    GETORDERARGS(o,x)
+#define GETORDERENTRY(o,x)   ((o)->x)
+#define SETORDERENTRY(o,x)   GETORDERENTRY(o,x)
+
+/* access components of function descriptor list */
+#define GETNEXTDESC(d)       ((d)->next)
+#define SETNEXTDESC(d)       GETNEXTDESC(d)
+#define GETDESCENTRY(d,x)    ((d)->x)
+#define SETDESCENTRY(d,x)    GETDESCENTRY(d,x)
+
+/* access components of data descriptor list */
+#define GETNEXTDATA(d)       ((d)->next)
+#define SETNEXTDATA(d)       GETNEXTDATA(d)
+#define GETDATAENTRY(d,x)    ((d)->x)
+#define SETDATAENTRY(d,x)    GETDATAENTRY(d,x)
+
+extern void delete_order(ORDER *);
+extern void insert_order_list(ORDER *, ORDER *);
+
+extern PROGRAM * conc_desc_fun(FUNDESC *, DATANODE *, FUNCTION *);
+
+extern FUNDESC * new_desc(DESCTAG, int, int, int, int, const char *);
+extern FUNDESC * conc_desc(FUNDESC *, FUNDESC *);
+
+extern DATANODE * conc_data(DATANODE *, DATANODE *);
+extern DATANODE * new_data(DATATAG, int, ...);
+
+extern FUNCTION * new_function(const char *, ORDER *);
+extern FUNCTION * conc_function(FUNCTION *, FUNCTION *);
+
+extern ORDER * new_order(COMMAND , ...);
+extern ORDER * conc_order(ORDER *, ORDER *);
+extern FUNCTION * find_function(char *);
+
+#endif
+@
+
+
+1.8
+log
+@[GS]ETFUNCINLINE (new macros)
+@
+text
+@d62 1
+@
+
+
+1.7
+log
+@link between orders and function descriptors
+@
+text
+@d21 2
+@
+
+
+1.6
+log
+@many new access macros
+@
+text
+@d15 2
+@
+
+
+1.5
+log
+@many new access macros
+@
+text
+@d4 1
+a4 1
+/* select program components */
+d6 1
+d8 1
+d10 1
+d12 1
+a12 1
+/* select components of function list */
+d14 1
+d16 1
+d18 1
+d20 1
+a20 1
+/* select components of order list */
+d22 1
+d24 1
+d26 1
+d28 1
+d30 1
+a30 1
+/* select components of function descriptor list */
+d32 1
+d34 1
+d36 1
+a36 1
+/* select components of data descriptor list */
+d38 1
+d40 1
+@
+
+
+1.4
+log
+@bug fixed in GETFIRSTDESC
+@
+text
+@d4 6
+d12 3
+d17 4
+a20 3
+#define GETFIRSTFUNCTION(p)  ((p)->function)
+#define GETNEXTFUNCTION(f)   ((f)->next)
+#define GETFIRSTDESC(p)      ((p)->desc)
+d22 5
+@
+
+
+1.3
+log
+@data structure list implemented
+@
+text
+@d10 1
+a10 1
+#define GETFIRSTDESC(f)      ((p)->desc)
+@
+
+
+1.2
+log
+@reals
+@
+text
+@d22 1
+a22 1
+extern DATANODE * new_data(DATATAG, DATANODE *, ...);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d18 1
+a18 1
+extern FUNDESC * new_desc(DESCTAG, const char *, int, int, const char *, const char *);
+@

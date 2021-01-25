@@ -1,0 +1,25 @@
+#!/bin/sh
+
+mkdir ms
+cd ms
+DEST_DIR=`pwd`
+MS_DIR=`dirname $0`
+
+cd $MS_DIR
+for n in msMain MSMain MSMain.color MSMain.blackwhite bin2ascii\
+         *.med GROUPS MODULES bitmaps scr2c.awk ms.prefs start ms\
+         dbug.h scriptMacros.h msMacros.h groups.h externVars.h ids.h
+do cp -R $n $DEST_DIR
+done
+
+strip $DEST_DIR/msMain
+
+for n in BarChart ProcArray HeapArray ProcTree
+do cp ms$n $DEST_DIR
+   cp MS$n* $DEST_DIR
+   cd $DEST_DIR
+   strip ms$n
+   mkdir ${n}SCRs
+   cd $MS_DIR
+   cp -R ${n}SCRs/* $DEST_DIR/${n}SCRs
+done

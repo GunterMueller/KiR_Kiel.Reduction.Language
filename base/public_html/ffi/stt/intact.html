@@ -1,0 +1,395 @@
+<html>
+<head>
+<title>Interactions in KiR</title>
+</head>
+
+<body>
+<H2>List of Interactions</H2>
+
+<b>File I/O .........................</b>
+<a href="#fopen">fopen</a> .
+<a href="#fclose">fclose</a> .
+<a href="#fgetc">fgetc</a> .
+<a href="#ungetc">ungetc</a> .
+<a href="#fputc">fputc</a> .
+<a href="#fgets">fgets</a> .
+<a href="#fputs">fputs</a> .
+<a href="#read">read</a> .
+<a href="#fredirect">fredirect</a>
+<br>
+<b>Random Access ..............</b>
+<a href="#fseek">fseek</a> .
+<a href="#ftell">ftell</a>
+<br>
+<b>Directory functions ..........</b>
+<a href="#dir">dir</a> .
+<a href="#getwd">getwd</a> .
+<a href="#chdir">chdir</a>
+<br>
+<b>File Information ..............</b>
+<a href="#eof">eof</a> .
+<a href="#finfo">finfo</a> .
+<a href="#status">status</a>
+<br>
+<b>File Handling ..................</b>
+<a href="#copy">copy</a> .
+<a href="#rename">rename</a> .
+<a href="#remove">remove</a> .
+<a href="#mkdir">mkdir</a> .
+<a href="#rmdir">rmdir</a> .
+<br>
+<b>Program Termination .......</b>
+<a href="#exit">exit</a>
+<p>
+
+First we intended to add fprintf and fscanf, also, but then we decided to add
+some primitive string conversion functions and use them together with fputs and
+fgets. <p>
+
+<H4>Some new primitive functions for number-string-conversion:</H4>
+
+<a href="#char">char</a> .
+<a href="#ord">ord</a> .
+<a href="#sprintf">sprintf</a> .
+<a href="#sscanf">sscanf</a> . . .
+(remember, these are not interactions)
+
+<p>
+
+<H4>Other Stuff</H4>
+
+<ul>
+<li> <a href="#newed">New editor options and commands.</a>
+<li> <a href="#links">More information</a> about monadic I/O and its
+     implementation in KiR.
+<li> <a href="examples.html">Example programms</a> for interactions in KiR.
+</ul>
+<p><hr>
+
+<H3>What are interactions?</H3>
+
+First of all, interactions are a link between the program and the "environment",
+in this case the filesystem. Programs with interactions can change the
+environment and the result of the program execution is influenced by it. <br>
+The interactions are like some standard I/O functions of C, though this seems 
+to be not the best solution for functional languages (take dir() as an example).
+Together with the bind-combintor one can do most things that one can do in C or
+PASCAL ... only much nicer.<p>
+
+<H3>Programming with monadic I/O</H3>
+
+An advantage of functional programming languages is that their program
+representation, in contrast to imperative languages, only fix a partial order of
+evaluation at run time. Wherever a function call with its exact number of
+arguments can be found inside a program it can be evaluated. This is possible
+because functions in functional languages are free of side effects and therefore
+guarantee the Church-Rosser property. But this is not true for the evaluation
+order of interactions. Therefore there must be a mechanism in the reduction
+system and some elements in the language which fix the evaluation order of
+interactions. <br>
+The mechanism used in Pi-Red based on monads. (See
+<a href="#Timm96">[Timm96]</a> and <a href="#PJW93">[PJW93]</a> for detailed
+information.) To fix the evaluation order of interactions the programmer must
+use two standard functions, unit() and bind().
+<dl>
+<dt> unit(x)
+<dd> unit(x) applies the monads type contructor to x. (!) That means that x is
+     the result of an interaction execution (every interaction returns
+     unit(result) ) and therefore is a proper argument for bind(). In KiR,
+     unit() does nothing and is used and needed only in connection with bind().
+<dt> bind(x,y)
+<dd> bind() concatenates two expressions and fix the evaluation order of
+     the interactions in them. First, all interactions in expression x are
+     executed and then, if x could be reduced to an expression
+     unit(<em>val</em>), the interactions in expression y. The expressions can
+     be of any sort, especially being or containing bind() itself to fix the
+     evaluation order of interactions in them. The second expression should be
+     an unary function because during the reduction of a bind()-expression the
+     second expression will be applied to the reduced first one.
+</dl>
+
+<b>How does the program notation fix the evaluation order of its interactions?
+</b> <br>
+There are only two positions where interactions are carried out: first, if they
+are the goal expression of the KiR program, and second, if the goal expression
+is a bind() and the interaction is the leftmost leaf of the tree, which is build
+up by multiple, nested bind()-expressions. <br>
+If the first expression of a bind() can be reduced to 'unit(x)'  the
+'bind(unit(x),expr)' will be reduced to 'expr[x]'. <p>
+
+Scheme: (assume that the expressions are goal expressions)
+<pre>
+interaction(args)  =&gt; unit(result)
+bind(unit(x), f)   =&gt; f[x]
+bind(expr, f)      =&gt; Evaluation of expr as if it was the goal expression.
+</pre>
+
+If the leftmost leaf of a bind() tree is no longer reducible and it is not a
+unit(), then no further interactions can be carried out. <p>
+
+
+<h3>Filehandles</h3>
+On success, the interaction fopen returns a string which is used as filehandle
+by some other interactions (fgetc, fclose). This filehandle has the following
+shape: <br>
+*&lt;filename&gt;*&lt;mode&gt;*&lt;nr&gt;* <br>
+where
+<ul>
+<li> &lt;filename&gt; is the name and path of the file.
+<li> &lt;mode&gt; is the file mode used by fopen.
+<li> &lt;nr&gt; is an index to separate several filehandles of the same file.
+</ul>
+
+By opening a file the new filehandle is inserted in a filehandle list. By
+closing a file its filehandle is removed from that list. To guarantee access to
+a file, the list must contain the given filehandle, i.e. if you uses a
+filehandle which is not in the list (perhaps you have already closed that
+file), access will be denied. The list is for internal usage only, but can
+be displayed by the editor command "environment" for debugging purposes.
+
+
+<H3>The return value of an interaction</H3>
+If an interaction is not executable, it returns a constructor of the shape
+NE{string}, where string is some kind of message. On success, it returns a
+constructor of the shape OK{value}, where value is the actual result of the
+interaction (a character for fgetc, a string for fopen, etc.). For interactions
+without an actual result value (fputc, fclose, etc.), the interaction name was
+returned. <br>
+Remember that the return value of an interaction is always enclosed by unit().
+<p>
+Examples:
+<pre>
+fgetc('*path/name*r*1*`)     --&gt; unit(OK{'r`})
+fclose('*path/name*r*1*`)    --&gt; unit(OK{'fclose`})
+fopen('Not_there`,'r`) --&gt; unit(NE{'fopen: Cannot open file.`})
+</pre>
+
+
+<h3>Standard I/O</h3>
+
+The three standard I/O streams are opened in KiR, too. The corresponding 
+filehandles are "STDIN", "STDOUT" and "STDERR". <p>
+
+Note:
+<ul>
+<li>The closing of 'STDIN' is not advisable. ;-)
+<li>You can use the 'fredirect`-interaction to redirect the standard input
+    or output channel.
+<li>The editor uses, if possible, a virtual screen which is not the shell
+    screen. Input and Output is done in the normal shell screen so that it
+    doesn't overwrite the editor screen. You can see the shell screen if
+    <ul>
+    <li>you exit the editor.
+    <li>you use the screenswitch command (see below).
+    <li>the KiR program expect user input.
+    </ul>
+<li>To avoid screen flickering, some people use the xterm resource
+    "titeInhibit" (= true). This setting prevent the usage of a virtual screen
+    by the editor, i.e. the editor uses the shell screen as well. In the latest
+    pi-red version this cause the editor screen being scrambled by the input /
+    output.
+</ul>
+<p><hr>
+
+
+<a name="newed"><H3>New editor commands/options</H3></a>
+
+There are some new editor commands to support the interactive development of
+programs containing interactions.
+<dl>
+<dt> screenswitch [scr]
+<dd> Switches from editor screen to shell screen. Press any key to switch back.
+     See note in section "Standard I/O", too.
+<dt> environment [env]
+<dd> Prints the current filehandle list to the shell screen and does a
+     screenswitch.
+<dt> iamode on|off [iam]
+<dd> If iamode is off, interactions can be executed only at toplevel. When you
+     select and reduce a subexpression, they will not be executed. With
+     iamode on, interaction will be executed in subexpressions, also.<p>
+     There is a new red.init line to set a standard value for iamode. It is
+     placed between the lines "vertical display" and "lineoriented cursor mode"
+     and is called "interact in subexpression : x", where x=0 for iamode off and
+     x=1 for iamode on.
+</dl>
+
+There are two new editor startup options.
+<dl>
+<dt> -x inputfile
+<dd> Redirects the standard input channel "STDIN" to inputfile (i.e.
+     /dev/ttyp2).
+<dt> -y outputfile
+<dd> Redirects the standard output channel "STDOUT" to outputfile.
+</dl>
+<p><hr>
+
+
+<a name="links"><H3>More Stuff</H3></a>
+<dl>
+<dt> <a name="PJW93">Simon L. Peyton Jones and Philip Wadler</a>
+<dd> "Imperative Functional Programming" <br>
+     <em>Proceedings 20th Symposium on Principles of Programming
+     Languages.</em> ACM, January 1993
+<dt> <a name="Timm96">Stephan Timm</a>
+<dd> <a href="stt_diplom.dvi.gz">"Zur Implementierung von
+     Ein/Ausgabe-Operationen in KiR"</a> <br>
+     Masterthesis, Inst. für Informatik und praktische Mathematik,
+     Universität Kiel, 1996
+<dt> <a href="examples.html">Samples</a>
+<dd> Some KiR example programs.
+<dt> <a href="developer.html">Developers Note</a>
+<dd> Instructions how to add new interactions to Pi-Red+ and hints for further
+     work.
+</dl>
+
+<p><hr>
+
+<h2>Alphabetically sorted list of Interactions</h2>
+
+<dl>
+<dt><a name="chdir"><B>chdir</B> ( <I>path</I> )</a>
+<dd> Change working directory.
+
+<dt><a name="copy"><B> copy</B> ( <I>filename filename</I> )</a>
+<dd> Copy one file. Does not work for directorys. If the target file does
+     exist, it will be deleted.
+
+<dt><a name="dir"><B>dir</B> ( <I>path</I> )</a>
+<dd> Returns a list of entries of the given directory.
+
+<dt><a name="eof"><B>eof</B> ( <I>filehandle</I> )</a>
+<dd> Returns TRUE, if the read/write pointer has reached the end of the
+     file, FALSE otherwise.
+
+<dt><a name="exit"><B>exit</B> ( <I>int</I> )</a>
+<dd> Terminates the program execution, the reduction unit and editor and
+     returns the given exit status.
+
+<dt><a name="fclose"><B>fclose</B> ( <I>filehandle</I> )</a>
+<dd> Closes a file and removes the filehandle from the filehandle list.
+
+<dt><a name="fgetc"><B>fgetc</B> ( <I>filehandle</I> )</a>
+<dd> Returns the next character from file.
+
+<dt><a name="fgets"><B>fgets</B> ( <I>filehandle</I> )</a>
+<dd> Returns the next line from file. The newline character that ends the line
+     is omitted.
+
+<dt><a name="finfo"><B>finfo</B> ( <I>filehandle field</I> )</a>
+<dd> If filehandle is in the filehandle list and field is one of the following
+     keywords finfo returns the value of the corresponding filehandle component
+     as a string:
+     <table>
+     <tr> <td>'FULLNAME`</td> <td> path and name</td> </tr>
+     <tr> <td>'NAME`</td>   <td>name only</td> </tr>
+     <tr> <td>'PATH`</td>   <td>path only</td> </tr>
+     <tr> <td>'MODE`</td>   <td>mode in which file was opened</td> </tr>
+     </table>
+
+<dt><a name="fopen"><B>fopen</B> ( <I>filename mode</I> )</a>
+<dd> Opens a file in the given mode, insert a new filehandle in the filehandle
+     list and returns that filehandle. mode must be out of
+     <table>
+     <tr> <td>'r`</td> <td>open for reading</td> </tr>
+     <tr> <td>'w`</td> <td>truncate or create for writing</td> </tr>
+     <tr> <td>'a`</td> <td>append: open for writing at end of  file,  or create
+                           for writing</td> </tr>
+     <tr> <td>'r+`</td> <td>open for update (reading and writing)</td> </tr>
+     <tr> <td>'w+`</td> <td>truncate or create for update</td> </tr>
+     <tr> <td>'a+`</td> <td>append; open or create for update at EOF</td> </tr>
+     </table>
+
+<dt><a name="fputc"><B>fputc</B> ( <I>filehandle char</I> )</a>
+<dd> Append character char to file.
+
+<dt><a name="fputs"><B>fputs</B> ( <I>filehandle string</I> )</a>
+<dd> Append string to file. An additional newline character is not appended.
+
+<dt><a name="fredirect"><B>fredirect</B> ( <I>filehandle outfile</I> )</a>
+<dd> Redirects the standard input or standard output to another terminal/file,
+     so <I>filehandle</I> must be either 'STDIN` or 'STDOUT`. <I>outfile</I>
+     must be the name of a file or terminal (i.e. /dev/ttyp2). To reset the
+     standard IO to it's normal value, use 'RESET_IO` as <I>outfile</I>.
+
+<dt><a name="fseek"><B>fseek</B> ( <I>filehandle offset pos</I> )</a>
+<dd> fseek() sets the position of the next input or output operation on the
+     stream. The new position is at the signed distance offset bytes from
+     pos, which must be out of
+     <table>
+     <tr> <td>'SEEK_SET`</td> <td>the beginning of the file</td> </tr>
+     <tr> <td>'SEEK_CUR`</td> <td>the current position</td> </tr>
+     <tr> <td>'SEEK_END`</td> <td>the end of the file</td> </tr>
+     </table>
+
+<dt><a name="ftell"><B>ftell</B> ( <I>filehandle</I> )</a>
+<dd> Returns the offset of the current position relative to the beginning of
+     the file in bytes.
+
+<dt><a name="getwd"><B>getwd</B> (  )</a>
+<dd> Returns the current working directory as a string.
+
+<dt><a name="mkdir"><B> mkdir</B> ( <I>path/dir</I> )</a>
+<dd> Creates a new directory.
+
+<dt><a name="read"><B>read</B> ( <I>filehandle int</I> )</a>
+<dd> Returns int characters from the file as a string.
+
+<dt><a name="remove"><B> remove</B> ( <I>filename</I> )</a>
+<dd> Deletes a file. Does not work for directorys.
+
+<dt><a name="rename"><B> rename</B> ( <I>filename filename</I> )</a>
+<dd> Moves/renames a file or directory. 
+
+<dt><a name="rmdir"><B> rmdir</B> ( <I>path/dir</I> )</a>
+<dd> Deletes an empty directory.
+
+<dt><a name="status"><B>status</B> ( <I>filename</I> )</a>
+<dd> Returns a list of permission string (like 'ls -l'), user ID, group ID,
+     size and date of the last modification ("HH:MM:SS TT.MM.JJJJ") of the
+     given file.
+
+<dt><a name="ungetc"><B>ungetc</B> ( <I>filehandle char</I> )</a>
+<dd> Pushes the character char back onto an input stream.
+</dl>
+
+<hr>
+
+<H2>Some new primitive functions for number-string-conversion</H2>
+(These are not interactions!)
+<dl>
+<dt><a name="char"><B>char</B> ( <I>int</I> )</a>
+<dd> Returns the character corresponding to the argument value (0-255).
+
+<dt><a name="ord"><B>ord</B> ( <I>char</I> )</a>
+<dd> Returns the ASCII-Value (int 0-255) corresponding to the argument.
+
+<dt><a name="sprintf"><B>sprintf</B> ( <I>pattern arg</I> )</a>
+<dd> Returns a string. sprintf is similar to the C function, but it only
+     provides int or real to string conversion. Therefore arg must be an integer
+     or real number and pattern must correspond to the type of arg. pattern
+     consist of
+     <ol>
+     <li> optional flags: '-`, '+` and ' ` (Blank)
+     <li> optional fieldwidth: [0-9]*
+     <li> optional precision: '.` [0-9]*
+     <li> type descriptor, {diouxX} for integer and {feEgG} for real numbers.
+     </ol>
+
+<dt><a name="sscanf"><B>sscanf</B> ( <I>pattern string</I> )</a>
+<dd> Returns a integer or real number. sscanf is similar to the C function,
+     but it only provides string to number conversion. pattern consist of
+     <ol>
+     <li> optional fieldwidth: [0-9]*
+     <li> type descriptor, {dioux} for integer and {feg} for real numbers.
+     </ol>
+</dl>
+
+See man pages and C documentation to learn more about pattern for sprintf and
+sscanf, but remember: there's only a pattern for one number.
+
+<p><hr>
+
+Please report bugs and comments to Claus Reinke.
+
+</body>
+</html>

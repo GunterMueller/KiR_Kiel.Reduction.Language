@@ -1,0 +1,11 @@
+# The following lines define the available modules
+#
+# The 1st field is the label to be shown in the menu, 
+# the 2nd one names the program to execute when this label is chosen.
+#
+# Empty lines and lines starting with a '#' are ignored...
+
+Plotter		msBarChart
+Processor-Array	msProcArray
+Heap-Array	msHeapArray
+Process-Tree	msProcTree

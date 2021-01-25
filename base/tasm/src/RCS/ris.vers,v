@@ -1,0 +1,233 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.14
+date	96.04.04.12.56.32;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	96.01.16.19.51.19;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.08.15.10.02.26;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.06.14.15.08.13;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.04.19.14.52.35;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.04.13.15.35.46;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.03.21.15.19.26;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.03.08.17.23.38;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.02.10.17.22.17;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.02.03.07.41.06;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.31.12.28.54;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.01.04.13.01.23;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.10.15.05;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.10.00.10;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@0.900a
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.026h
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.026e
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.025a
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.019a
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.018a
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.017a
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.013d
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.012a
+@
+
+
+1.5
+log
+@hash instruction extended
+@
+text
+@d1 1
+a1 1
+0.010b
+@
+
+
+1.4
+log
+@types, gamma, delta
+@
+text
+@d1 1
+a1 1
+0.009a
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.006a
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.001b
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+0.1a
+@

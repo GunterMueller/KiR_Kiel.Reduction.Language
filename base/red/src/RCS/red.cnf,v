@@ -1,0 +1,3358 @@
+head	1.72;
+access;
+symbols
+	continuation_based_interactions:1.54
+	pre_interactions:1.48
+	nCUBE~:1.39
+	red2:1.13;
+locks
+	base:1.72; strict;
+comment	@# @;
+
+
+1.72
+date	2001.07.02.15.15.14;	author base;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	2001.05.30.12.36.52;	author base;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	2001.03.13.18.29.19;	author base;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	2001.03.13.15.53.19;	author base;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	98.04.02.08.43.47;	author rs;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	98.03.31.11.56.19;	author rs;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	98.02.18.13.35.48;	author rs;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	96.10.24.11.32.15;	author rs;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	96.02.23.15.28.33;	author cr;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	96.02.23.14.24.49;	author cr;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	96.02.23.14.17.14;	author rs;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	96.02.21.20.16.46;	author cr;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	96.02.20.14.03.37;	author cr;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	96.02.16.16.16.04;	author rs;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	96.02.12.15.28.18;	author rs;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	96.01.29.13.19.45;	author car;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.12.15.10.23.26;	author rs;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.12.14.16.51.51;	author rs;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.11.08.16.24.45;	author stt;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.10.27.15.37.35;	author rs;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.10.20.13.22.16;	author rs;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.10.17.15.33.05;	author rs;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.09.13.11.19.31;	author rs;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.09.12.11.34.32;	author stt;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.09.04.09.13.33;	author rs;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.09.01.14.30.47;	author rs;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.08.17.11.57.33;	author car;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.07.10.09.15.38;	author car;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.07.03.11.39.31;	author car;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.06.30.12.32.42;	author rs;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.06.26.06.46.11;	author rs;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.05.22.09.15.15;	author rs;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.05.19.13.50.26;	author car;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.05.15.11.15.22;	author cr;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.03.07.14.54.02;	author sf;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.02.13.13.46.15;	author rs;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	94.11.14.10.56.13;	author mah;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	94.11.01.15.54.30;	author car;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	94.09.27.11.01.50;	author rs;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	94.09.26.11.05.02;	author rs;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	94.09.24.12.45.24;	author rs;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	94.09.13.10.07.41;	author rs;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	94.09.13.07.38.46;	author rs;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	94.09.09.14.22.19;	author mah;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	94.09.07.09.17.13;	author rs;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	94.08.29.14.19.17;	author car;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.08.26.12.09.24;	author car;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.07.20.15.06.05;	author car;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.06.20.06.01.54;	author car;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.06.15.11.17.18;	author dmk;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	94.05.17.10.33.22;	author ach;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	94.05.05.11.31.06;	author rs;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	94.05.05.10.01.20;	author rs;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	94.05.04.07.01.17;	author ach;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	94.05.03.11.44.13;	author ach;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.05.03.09.38.57;	author mah;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.03.11.13.40.18;	author car;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.02.04.12.44.31;	author car;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.01.20.08.06.45;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	93.11.25.12.34.09;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	93.11.24.14.00.09;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	93.11.05.06.50.10;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	93.11.01.16.07.05;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.11.01.16.02.45;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.11.01.07.23.12;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.11.01.07.07.25;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.10.27.12.54.29;	author rs;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.10.27.10.44.00;	author ach;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	93.10.27.10.41.39;	author rs;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.09.24.07.40.48;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.09.01.16.11.47;	author sbs;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.09.01.13.00.45;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@1st configure-file for red
+@
+
+
+1.72
+log
+@compiler warnings eliminated
+@
+text
+@# CONFIG-FILE FOR THE (DISTRIBUTED) PI-RED-PLUS SYSTEM
+#
+
+#
+# reduction machine targets:
+#
+# lred    : quick sequential version
+# lred.o  : linkable object module
+# dlred   : debug sequential version
+# dlred.o : linkable debug object module
+# sred    : quick sequential version with generation scavenging
+# dsred   : debug sequential version with generation scavenging
+# tred    : quick sequential tilde version
+# dtred   : debug sequential tilde version
+#
+# dired   : quick ncube host version
+# ncred   : quick ncube node version
+#
+# ditred  : quick tilde ncube host version
+# nctred  : quick tilde ncube node version
+#
+# didred  : debug ncube host version
+# dncred  : debug ncube node version
+#
+# didtred  : debug tilde ncube host version
+# dnctred  : debug tilde ncube node version
+#
+# xdidred : debug ncube host part with distributed debugging NOT SUPPORTED ANY LONGER
+# xdncred : debug ncube node part with distributed debugging NOT SUPPORTED ANY LONGER
+#
+# mdired  : quick ncube host measure version
+# mncred  : quick ncube node version
+#
+# mditred  : quick tilde ncube host measure version
+# mnctred  : quick tilde ncube node version
+#
+# mdemored : quick ncube host measure version (stack and heap measurements disabled)
+# mdencred : quick ncube node version (stack and heap measurements disabled)
+#
+# mdidred : debug ncube host measure version
+# mdncred : debug ncube node measure version
+#
+# mdidtred: debug tilde ncube host measure version
+# mdnctred: debug tilde ncube node measure version
+#
+# spired: new version by rs (time-slicing scheduler...speculative evaluation ?!)
+# spncred: ncube version
+#
+# dspired: debug host version
+# dspncred: debug ncube version
+#
+# mspired: host measure version
+# mspncred: ncube measure version
+#
+
+
+#--------------------#
+# Global presettings #
+#--------------------#
+#
+# All definitions made here apply to all versions, but
+# can be overruled by local definitions in the Version definition part.
+#
+
+# Compiler/ Linker presettings (CC, CFLAGS, LD, LDFLAGS, LIBS & INCS) #
+#---------------------------------------------------------------------#
+
+# 
+# gcc
+#
+CC = gcc 
+CFLAGS = -ansi -Wall -D_ANSI_ -D__EXTENSIONS__
+# for nCUBE Versions add -I/usr/ncube/current/usr/include 
+MAKEDEPEND = gcc -M >>Makefile
+LIBS = -lm
+
+# Path presettings (SRCROOT, SRCDIR, OBJROOT, OBJDIR, BINROOT & BINDIR) #
+#-----------------------------------------------------------------------#
+#
+# SRC... : where to find the .c/.o/.a if no absolute path is specified
+#          if neither SRC... nor an absolute path is specified, the
+#          actual directory is assumed.
+# OBJ... : analogously to SRC... concerning .o files generated from .c files.
+# BIN... : specifies the location where the result will be put.
+# LIB... : specifies the location for libraries and linkable object moduls
+#
+
+SRCROOT = red/
+SRCDIR = src/
+OBJROOT = red/
+BINDIR = bin/
+LIBDIR = lib/
+
+# File presettings #
+#------------------#
+#
+# Here the FILES Variable may be presetted. The FILES variable allows
+# different kinds of files to be specified:
+# .c - files for files, which have to be compiled;
+# .o - files for files, which just have to be linked.
+# In addition to that references on Variables ( $<varname> ) and
+# references on objects defined in this .cnf file ( [obj-name] )
+# are supported.
+#
+
+# User defined presettings (any variable) #
+#-----------------------------------------#
+
+EDO = ../../fed/editor.o.obj/editor.o
+IE = /home/sbs/Clib/xtermio.o
+DBH = /home/sbs/c/redsys/ncred/src/DBH.o
+
+# The first line of .h-files belongs to the so called base-version
+# which was a non-compiling system.
+#
+
+HEADERFILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h \
+        dumpheap.h rinter.h rprimf.h rstdinc.h traps.h rdigit.h rlmvt.h \
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h rstack.h tags.h\
+        DBHexport.h DBMexport.h DBdebug.h GLobal.h case.h \
+        d_mess_groups.h d_mess_io.h d_mess_merge.h d_mess_names.h dbug.h\
+        list.h pminstr.h rncheap.h rncmessage.h rncsched.h rncstack.h rops.h
+
+#-------------------------------#
+# Machine dependend presettings #
+#-------------------------------#
+#
+# The variable $MACHINE is introduced by the respective call of 
+# configure, e.g. "configure sun" results in $MACHINE = sun .
+#
+
+case $MACHINE in
+  sun)
+    CFLAGS += -Dsparc
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    ;;
+  apollo)
+    CFLAGS += -DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  next)
+    CFLAGS += -DUNIX=1 -DODDSEX=0
+    ;;
+  sgi)
+    CFLAGS += -Olimit 2000 -Wf,-XNh2000 -D_SGI_
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  hp)
+    CFLAGS += -DUNIX=1 -DSYS5=1 -DODDSEX=0
+    ;;
+  linux)
+    CFLAGS += -DUNIX=1 -DODDSEX=1 -DFEATURES
+    LDFLAGS += -L/usr/lib -L/usr/lib/termcap
+    ;;
+  win32)
+    CFLAGS += -DUNIX=1 -DODDSEX=1 -DFEATURES
+esac
+
+
+#-------------------------#
+# Version definition part #
+#-------------------------#
+#
+# A version definition looks like:
+#
+# <version-name>: [ inherited version ] # names may end .o .a
+# [<varname> = ...]     # for completely overruling any previous 
+#                         settings of <varname>
+# [<varname> += ...]    # for extending the actual setting of <varname>
+# [<varname> -= ...]    # for extracting entries from the actual 
+#                         setting of <varname>
+# [@@<filename>: <objlist>   # this option allows rules for (an) object(s)
+# {                         # (from <objlist>) to be explicitly specified.
+# ...                       # <filename> referrs to a file from FILES
+# }]                        # for which hence no further rule is generated.
+#                             Thus single files can be compiled even several
+#                             times with arbitrary options
+#
+
+
+#
+# lred: standard version with ref.counting, no-debug
+#
+
+lred.o:
+
+#
+# The first 'Block' of .c-files (ldel-expr.c - rsts-dec.c) belongs to
+# the so called base-version which was a non-compiling system.
+# The last two files (rinter.c & rdummies.c) provide the interpretation
+# routines for the ASM-Code.
+#
+
+FILES = ldel-expr.c lr-ret.c rdig-mul.c rpos.c rstswi.c lfun-def.c \
+        lr-stor.c rdig-sub.c rr1eapos.c rsubfunc.c lnr1pre.c lte-frev.c \
+        rdig-v1.c rr1pr.c rtrav.c lnrecfunc.c rdig-v2.c rrecfunc.c \
+        rval-int.c lpa-sub.c rclose.c rhinout.c rred-eq.c rwhen-pre.c \
+        lr-args.c rcomp.c rlog-mvt.c rst-match.c lr-close.c rdig-add.c \
+        rpartrec.c rstpre.c lr-num.c rdig-div.c rpartsub.c rstpro.c lr-prot.c \
+        rdig-mod.c rpatvar.c rsts-dec.c \
+        dumpheap.c rlogfunc.c rreduct.c rstate.c ram.c rea-cre.c \
+        rlstruct.c rfstruct.c rret-dec.c rvalfunc.c rea-ret.c rretrieve.c rvalir.c \
+        reac.c rnf.c rruntime.c rconvert.c rear.c setup.c \
+        rconvir.c rheap.c rquery.c rst-dec.c rdesc.c rreduce.c rstack.c \
+        rbibfunc.c rmstruct.c rvstruct.c \
+        rinter.c rdummies.c rextcode.c rprint.c rtasm.c rintact.c riafunc.c 
+CFLAGS += -O -DPI_RED_PLUS=1 -DRED_TO_NF=1 -DNOREF=0 -DSTORE=0
+CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0
+
+lred: lred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [lred.o] $EDO
+    ;;
+  1)
+    FILES = [lred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+
+
+#
+# tred: tilde version with ref-counting, no debug
+#
+
+tred.o: lred.o
+
+FILES -= lfun-def.c lnr1pre.c lnrecfunc.c lr-close.c lr-num.c lr-ret.c \
+	lr-stor.c lte-frev.c rclose.c rcomp.c rea-cre.c rea-ret.c rpartrec.c \
+	rpartsub.c rpatvar.c rpos.c rr1eapos.c rr1pr.c rrecfunc.c rretrieve.c \
+        rst-match.c rstswi.c rsubfunc.c rwhen-pre.c ram.c
+FILES += pre-casefunc.c pre-hfunc.c pre-lrecfunc.c pre-nea-cre.c \
+	 pre-nsubfunc.c pre-pm-ptfu.c pre-pmpatvar.c \
+	 pos-rea-ret.c pos-postfunc.c pos-casepost.c pos-p-fail.c \
+	pmdimli.c pmam.c \
+	pmsupport.c pmanalyze.c rmessage.c
+
+CFLAGS -= -DSTORE=0
+CFLAGS += -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DSTORE=1
+
+tred: tred.o
+
+@@rmessage.c: rstore.o
+{
+rstore.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rstore.o
+}
+
+case ?[editor.o] in
+  0)
+    FILES = [tred.o] $EDO
+    ;;
+  1)
+    FILES = [tred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+
+
+#
+# dtred: debug tilde version with ref-counting
+#
+
+dtred.o: tred.o
+
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+CFLAGS += -DDEBUG=1
+LIBS += -ltermcap
+
+dtred: dtred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [dtred.o] $EDO
+    ;;
+  1)
+    FILES = [dtred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+FILES += [dbug.o]
+
+
+# #
+# # sred: version with generation scavenging, no-debug
+# #
+# 
+# sred: lred.o
+# 
+# FILES -= rbibfunc.c rmstruct.c rvstruct.c
+# case ?[editor.o] in
+#   0)
+#     FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c $EDO
+#     ;;
+#   1)
+#     FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c [editor.o]
+#     ;;
+# esa
+# 
+# FILES += rscavenge.c
+# CFLAGS -= -DSCAVENGE=0
+# CFLAGS += -DSCAVENGE=1 
+# LIBS += -ltermcap
+
+
+#
+# dlred: standard debug-version with ref.counting
+#
+
+dlred.o: lred.o
+
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+CFLAGS += -DDEBUG=1
+LIBS += -ltermcap
+
+dlred: dlred.o
+
+case ?[editor.o] in
+  0)
+    FILES = [dlred.o] $EDO
+    ;;
+  1)
+    FILES = [dlred.o] [editor.o]
+    ;;
+esac
+
+LIBS += -ltermcap
+FILES += [dbug.o]
+
+
+# #
+# # dsred: debug-version with generation scavenging
+# #
+# 
+# dsred: sred
+# 
+# FILES += r-debug.c rbreak.c
+# CFLAGS -= -O
+# CFLAGS += -g
+# CFLAGS -= -DDEBUG=0 -DSCAV_DEBUG=0
+# CFLAGS += -DDEBUG=1 -DSCAV_DEBUG=1
+
+
+# #
+# # dired: standard distributed version - host program
+# #
+# 
+# dired: lred.o
+# 
+# case ?[editor.o] in
+#   0)
+#     FILES += rmessage.c d_autodist.c $EDO
+#     ;;
+#   1)
+#     FILES += rmessage.c d_autodist.c [editor.o]
+#     ;;
+# esac
+# 
+# CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"ncred\"
+# LDFLAGS = -L/usr/ncube/current/lib/sun4
+# MAKEDEPEND += -I/usr/ncube/current/usr/include
+# LIBS += -lncube -ltermcap
+# 
+# @@rmessage.c: rmessage.o
+# {
+# rmessage.o: $(SRCDIR)rmessage.c
+# 	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+# 	-o $(OBJDIR)/rmessage.o
+# }
+
+
+# #
+# # ncred: standard distributed version - ncube program
+# #
+# 
+# ncred.o:
+# 
+# FILES = rbibfunc.c rconvert.c rdig-add.c rdig-div.c rdig-mod.c \
+#         rdig-mul.c rdig-sub.c rdig-v1.c rdig-v2.c rlog-mvt.c rlstruct.c rfstruct.c \
+#         rmstruct.c rnc_misc.c ram.c rheap.c rinter.c rlogfunc.c \
+#         rncsupport.c rncmessage.c rquery.c rncsched.c rst-dec.c \
+#         rncstack.c rstpro.c rvalir.c rred-eq.c rsts-dec.c rval-int.c \
+#         rvalfunc.c rvstruct.c rintact.c riafunc.c
+# CC = ncc
+# MAKEDEPEND += -I/usr/ncube/current/usr/include
+# LD = nld -r
+# STRIP   = nstrip
+# CFLAGS = -DUNIX=1 -DODDSEX=1 -DPI_RED_PLUS=1 -DRED_TO_NF=1 -DNOREF=0
+# CFLAGS += -O -cwarn 2 -X c
+# CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0
+# CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=1 -DnCUBE=1 
+# LDFLAGS = -Ncomm 256000 -Nfile 32
+# 
+# ncred: ncred.o
+# 
+# FILES = [ncred.o] [ncdbug.o] rncmain.c
+
+
+# #
+# # ditred: tilde distributed version - host program
+# #
+# 
+# ditred.o: tred.o
+# 
+# FILES += d_autodist.c
+# CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\" -DD_SPEC=0
+# MAKEDEPEND += -I/usr/ncube/current/usr/include
+# 
+# @@rmessage.c: rmessage.o rstore.o
+# {
+# rmessage.o: $(SRCDIR)rmessage.c
+# 	$(CC) $(CFLAGS) -DNOSTORE -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+# 	-o $(OBJDIR)/rmessage.o
+# rstore.o: $(SRCDIR)rmessage.c
+# 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCDIR)rmessage.c \
+# 	-o $(OBJDIR)/rstore.o
+# }
+# 
+# ditred: ditred.o
+# 
+# case ?[editor.o] in
+#   0)
+#     FILES = [ditred.o] $EDO
+#     ;;
+#   1)
+#     FILES = [ditred.o] [editor.o]
+#     ;;
+# esac
+# 
+# LDFLAGS = -L/usr/ncube/current/lib/sun4
+# LIBS += -lncube -ltermcap
+
+
+# #
+# # nctred: tilde distributed version - ncube program
+# #
+# 
+# nctred.o: ncred.o
+# 
+# CFLAGS += -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DD_SPEC=0
+# FILES += spec_sched.c
+# 
+# nctred: nctred.o
+# 
+# FILES = [nctred.o] rncmain.c 
+
+
+# #
+# # didred: distributed debug-version - host program
+# #
+# 
+# didred: dired
+# 
+# FILES += rbreak.c r-debug.c [dbug.o]
+# CFLAGS -= -O -DDBUG_OFF -DDEBUG=0 -DD_CUBEBIN=\"ncred\"
+# CFLAGS += -g -DD_CUBEBIN=\"dncred\" -DDEBUG=1 -DMSG_CHKSUM=1 -DNCDEBUG=0
+
+
+# #
+# # dncred: distributed debug-version - ncube program
+# #
+# 
+# dncred: ncred.o
+# 
+# CFLAGS += -DNCDEBUG=0
+# FILES += [ncdbug.o] rncmain.c
+# CFLAGS -= -O -DDBUG_OFF
+# CFLAGS += -g -DMSG_CHKSUM=1
+
+
+# #
+# # didtred: distributed tilde-debug-version - host program
+# #
+# 
+# didtred: ditred.o
+# 
+# case ?[editor.o] in
+#   0)
+#     FILES += $EDO
+#     ;;
+#   1)
+#     FILES += [editor.o]
+#     ;;
+# esac
+# 
+# LDFLAGS = -L/usr/ncube/current/lib/sun4
+# LIBS += -lncube -ltermcap
+# FILES += rbreak.c r-debug.c [dbug.o]
+# CFLAGS -= -O -DDBUG_OFF -DDEBUG=0 -DD_CUBEBIN=\"nctred\"
+# CFLAGS += -g -DD_CUBEBIN=\"dnctred\" -DDEBUG=1 -DMSG_CHKSUM=1 -DNCDEBUG=0
+
+
+# #
+# # dncred: distributed tilde-debug-version - ncube program
+# #
+# 
+# dnctred: nctred.o
+# 
+# CFLAGS += -DNCDEBUG=0
+# FILES += [ncdbug.o] rncmain.c
+# CFLAGS -= -DDBUG_OFF -O
+# CFLAGS += -DMSG_CHKSUM=1 -g
+
+
+# #
+# # xdidred: distributed debug-version with DRD - host program
+# #
+# 
+# xdidred: didred
+# 
+# FILES += DBMdebug.c $DBH $IE
+# LIBS += -lX11
+# LDFLAGS += -L/usr/X11R5/lib
+# CFLAGS -= -DNCDEBUG=0 -DD_CUBEBIN=\"dncred\"
+# CFLAGS += -DNCDEBUG=1 -DD_CUBEBIN=\"xdncred\"
+# 
+# @@DBMdebug.c: DBMdebug.o
+# {
+# DBMdebug.o: $(SRCDIR)DBMdebug.c
+# 	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include/ncube -c $(SRCDIR)DBMdebug.c \
+# 	-o $(OBJDIR)DBMdebug.o
+# }
+
+
+# #
+# # xdncred: distributed debug-version with DRD - ncube program
+# #
+# 
+# xdncred: dncred
+# 
+# FILES += DBNCdebug.c
+# CFLAGS -= -DNCDEBUG=0
+# CFLAGS += -DNCDEBUG=1
+
+
+# #
+# # mdired: distributed measure version, binary measurement data - host program
+# # add -DM_BINARY to cflags for binary !
+# #
+# 
+# mdired: dired
+# 
+# FILES += d_mess_init.c
+# CFLAGS -= -DD_MESS=0
+# CFLAGS -= -DD_CUBEBIN=\"ncred\"
+# CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mncred\" -DM_BINARY
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0 
+
+
+# #
+# # mncred: distributed measure version - ncube program
+# # add -DM_BINARY to cflags for binary !
+# #
+# 
+# mncred: ncred.o
+# 
+# FILES += d_mess_init.c d_mess_merge.c rncmain.c
+# CFLAGS -= -DD_MESS=0
+# CFLAGS += -DD_MESS=1 -DM_BINARY
+# CFLAGS += -DD_MHEAP=1 -DD_MSTACK=1 -DD_MSCHED=1 -DD_MCOMMU=1
+# 
+# @@rheap.c: rheap.o mrheap.o
+# {
+# rheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+# mrheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+# }
+# 
+# @@rncstack.c: rncstack.o mrncstack.o
+# {
+# rncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+# mrncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+# }
+# 
+# @@rncsched.c: rncsched.o mrncsched.o
+# {
+# rncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+# mrncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+# }
+# 
+# @@rncmessage.c: rncmessage.o mrncmessage.o
+# {
+# rncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+# mrncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+# }
+
+
+# #
+# # mditred: distributed tilde measure version, binary measurement data - host program
+# # add -DM_BINARY to cflags for binary !
+# #
+# 
+# mditred: ditred.o
+# 
+# case ?[editor.o] in
+#   0)
+#     FILES += $EDO
+#     ;;
+#   1)
+#     FILES += [editor.o]
+#     ;;
+# esac
+# 
+# LDFLAGS = -L/usr/ncube/current/lib/sun4
+# LIBS += -lncube -ltermcap
+# FILES += d_mess_init.c
+# CFLAGS -= -DD_MESS=0
+# CFLAGS -= -DD_CUBEBIN=\"nctred\"
+# CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mnctred\" -DM_BINARY
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0
+
+
+# #
+# # mnctred: distributed tilde measure version - ncube program
+# # add -DM_BINARY to cflags for binary !
+# #
+# 
+# mnctred: nctred.o
+# 
+# FILES += d_mess_init.c d_mess_merge.c rncmain.c
+# CFLAGS -= -DD_MESS=0
+# CFLAGS += -DD_MESS=1 -DM_BINARY
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1
+# 
+# @@rheap.c: rheap.o mrheap.o
+# {
+# rheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+# mrheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+# }
+# 
+# @@rncstack.c: rncstack.o mrncstack.o
+# {
+# rncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+# mrncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+# }
+# 
+# @@rncsched.c: rncsched.o mrncsched.o
+# {
+# rncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+# mrncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+# }
+# 
+# @@rncmessage.c: rncmessage.o mrncmessage.o
+# {
+# rncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+# mrncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+# }
+
+
+# # 
+# # mdidred: distributed debug measure version, binary measurement data - host program
+# #
+# 
+# mdidred: mdired
+# 
+# FILES += [dbug.o]
+# FILES += r-debug.c rbreak.c
+# CFLAGS -= -O -DD_CUBEBIN=\"mncred\"
+# CFLAGS += -g -DD_CUBEBIN=\"mdncred\"
+# CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+# CFLAGS += -DDEBUG=1
+
+
+# #
+# # mdncred: debug distributed measure version - ncube program
+# #
+# 
+# mdncred: mncred
+# 
+# FILES += [ncdbug.o]
+# CFLAGS -= -O -DDBUG_OFF
+# CFLAGS += -g
+
+
+# #
+# # mdidtred: distributed debug tilde measure version, binary measurement data - host program
+# #
+# 
+# mdidtred: mditred
+# 
+# FILES += [dbug.o]
+# FILES += r-debug.c rbreak.c
+# CFLAGS -= -O -DD_CUBEBIN=\"mnctred\"
+# CFLAGS += -g -DD_CUBEBIN=\"mdnctred\"
+# CFLAGS -= -DDBUG_OFF
+# # CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+# # CFLAGS += -DDEBUG=1
+
+
+# #
+# # mdnctred: debug distributed tilde measure version - ncube program
+# #
+# 
+# mdnctred: mnctred
+# 
+# FILES += [ncdbug.o]
+# CFLAGS -= -O -DDBUG_OFF
+# CFLAGS += -g
+
+
+# #
+# # mdemored: distributed measure version, binary measurement data - host program
+# #           stack and heap measurements disabled
+# #
+# 
+# mdemored: mdired
+# 
+# CFLAGS -= -DD_CUBEBIN=\"mncred\"
+# CFLAGS += -DD_CUBEBIN=\"mdencred\"
+
+
+# #
+# # mdencred: distributed measure version - ncube program
+# #
+# 
+# mdencred: mncred
+# 
+# CFLAGS -= -DD_MHEAP=1
+# CFLAGS -= -DD_MSTACK=1
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0
+
+
+# #
+# # spired
+# #
+# 
+# spired: ditred
+# 
+# CFLAGS -= -DD_CUBEBIN=\"nctred\"
+# CFLAGS += -DD_CUBEBIN=\"spncred\" -DTIME_SLICE=0
+
+
+# #
+# # spncred
+# #
+# 
+# spncred: nctred
+# 
+# FILES += spec_sched.c
+# CFLAGS += -DTIME_SLICE=1
+
+
+# #
+# # mspired
+# #
+# 
+# mspired: mditred
+# 
+# CFLAGS -= -DD_CUBEBIN=\"mnctred\"
+# CFLAGS += -DD_CUBEBIN=\"mspncred\" -DTIME_SLICE=0
+
+
+# #
+# # mspncred
+# #
+# 
+# mspncred: mnctred
+# 
+# FILES += spec_sched.c
+# CFLAGS += -DTIME_SLICE=1
+
+
+# #
+# # dspired
+# #
+# 
+# dspired: didtred
+# 
+# CFLAGS -= -DD_CUBEBIN=\"dnctred\"
+# CFLAGS += -DD_CUBEBIN=\"dspncred\" -DTIME_SLICE=0
+
+
+# #
+# # dspncred
+# #
+# 
+# dspncred: dnctred
+# 
+# FILES += spec_sched.c
+# CFLAGS += -DTIME_SLICE=1
+
+
+#
+# dbug.o
+#
+
+dbug.o:
+
+FILES = dbug.c
+CFLAGS -= -ansi -Wall
+LIBS -= -lm
+
+@@dbug.c: dbug.obj
+{
+dbug.obj: $(SRCDIR)/dbug.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)dbug.c -o $(OBJDIR)dbug.obj
+}
+
+
+# #
+# # ncdbug.o
+# #
+# 
+# ncdbug.o:
+# 
+# FILES = dbug.c
+# CC = ncc
+# MAKEDEPEND +=-I/usr/ncube/current/usr/include
+# LD = nld -r
+# CFLAGS -= -ansi -Wall
+# CFLAGS += -Dunix
+# LIBS -= -lm
+# 
+# @@dbug.c: ncdbug.obj
+# {
+# ncdbug.obj: $(SRCDIR)/ncdbug.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)dbug.c -o $(OBJDIR)ncdbug.obj
+# }
+
+
+# #
+# # m_remote_merge
+# #
+# 
+# m_remote_merge:
+# 
+# FILES = m_remote_merge.c
+# CFLAGS += -O -DDBUG_OFF
+# LIBS -= -lm
+
+
+# #
+# # pvmtred: tilde distributed version using pvm-library - host program
+# #
+# #          adjust CFLAGS (include-path) and LDFLAGS (library-path) !!
+# #
+# # for SUN-only-Version:
+# #  CFLAGS += -I/home/mpis/pvm3/include
+# #  LDFLAGS = -L/home/mpis/pvm3/lib/SUN4
+# #
+# # for SUN/nCUBE-Version:
+# #  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/ -DD_PVM_NCUBE=1
+# #  LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+# #
+# 
+# pvmtred: tred.o
+# 
+# case ?[editor.o] in
+#   0)
+#     FILES += d_autodist.c $EDO
+#     ;;
+#   1)
+#     FILES += d_autodist.c [editor.o]
+#     ;;
+# esac
+# 
+# CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DD_PVM=1 -DAUTODIST -DD_CUBEBIN=\"pvmslavetred\"
+# CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/ -DD_PVM_NCUBE=1
+# LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+# LIBS += -ltermcap -lpvm3
+# 
+# @@rmessage.c: rmessage.o rstore.o
+# {
+# rmessage.o: $(SRCDIR)rmessage.c
+# 	$(CC) $(CFLAGS) $(INCLUDES) -DNOSTORE -c $(SRCDIR)rmessage.c \
+# 	-o $(OBJDIR)/rmessage.o
+# rstore.o: $(SRCDIR)rmessage.c
+# 	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCDIR)rmessage.c \
+# 	-o $(OBJDIR)/rstore.o
+# }
+
+
+# #
+# # pvmslavetred: tilde distributed version - pvm slave program
+# #
+# # for SUN-only-Version:
+# #  CC = gcc
+# #  CFLAGS -= -cwarn 2 -X c -DODDSEX=1
+# #  CFLAGS += -ansi -Wall -D_ANSI_ -DODDSEX=0 -Dsparc
+# #  CFLAGS += -I/home/mpis/pvm3/include
+# #  LDFLAGS -= -Ncomm 256000 -Nfile 32
+# #  LDFLAGS += -L/home/mpis/pvm3/lib/SUN4
+# #  LIBS += -lpvm3
+# #
+# # for SUN/nCUBE-Version:
+# #  CFLAGS += -DD_PVM_NCUBE=1
+# #  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/
+# #  LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+# #  LIBS += -lpvm3pe
+# 
+# pvmslavetred: nctred.o
+# 
+# CFLAGS += -DD_PVM=1 -DD_PVM_NCUBE=1
+# CFLAGS -= -DnCUBE=1 
+# CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/
+# LDFLAGS -= -Ncomm 256000 -Nfile 32
+# LDFLAGS += -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+# LIBS += -lpvm3pe
+# FILES += rncmain.c 
+
+
+# #
+# # mpvmtred: tilde distributed measure version (PVM)
+# #
+# 
+# mpvmtred: pvmtred
+# 
+# FILES += d_mess_init.c 
+# CFLAGS -= -DD_MESS=0 
+# CFLAGS -= -DD_CUBEBIN=\"pvmslavetred\"
+# CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mpvmslavetred\" -DM_BINARY
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0
+
+
+# #
+# # mpvmslavetred: tilde distributed measure version (PVM)
+# #
+# # for SUN-only-Version:
+# #  FILES += d_mess_init.c [dbug.o]
+# #
+# # for SUN/nCUBE-Version:
+#  FILES += d_mess_init.c 
+# 
+# mpvmslavetred: pvmslavetred
+# 
+# FILES += d_mess_init.c
+# CFLAGS -= -DD_MESS=0 
+# CFLAGS += -DD_MESS=1 
+# CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1 -DM_BINARY
+# 
+# @@rheap.c: rheap.o mrheap.o
+# {
+# rheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+# mrheap.o: $(SRCDIR)/rheap.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+# }
+# 
+# @@rncstack.c: rncstack.o mrncstack.o
+# {
+# rncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+# mrncstack.o: $(SRCDIR)/rncstack.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+# }
+# 
+# @@rncsched.c: rncsched.o mrncsched.o
+# {
+# rncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+# mrncsched.o: $(SRCDIR)/rncsched.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+# }
+# 
+# @@rncmessage.c: rncmessage.o mrncmessage.o
+# {
+# rncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+# mrncmessage.o: $(SRCDIR)/rncmessage.c
+# 	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+# }
+@
+
+
+1.71
+log
+@CC flag -D_BSD_SOURCE added
+@
+text
+@d72 1
+a72 1
+CFLAGS = -ansi -Wall -D_ANSI_ -D_BSD_SOURCE
+@
+
+
+1.70
+log
+@sred, dsred put into comments
+@
+text
+@d72 1
+a72 1
+CFLAGS = -ansi -Wall -D_ANSI_
+@
+
+
+1.69
+log
+@architecture linux added
+some targets put into comments
+@
+text
+@d193 1
+a193 1
+FILES =  ldel-expr.c lr-ret.c rdig-mul.c rpos.c rstswi.c lfun-def.c \
+d240 1
+a240 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DSTORE=1
+d272 2
+a273 2
+CFLAGS -=  -DDEBUG=0 -DDBUG_OFF
+CFLAGS +=  -DDEBUG=1
+d286 1
+d291 20
+a310 19
+#
+# sred: version with generation scavenging, no-debug
+#
+
+sred: lred.o
+
+FILES -= rbibfunc.c rmstruct.c rvstruct.c
+case ?[editor.o] in
+  0)
+    FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c $EDO
+    ;;
+  1)
+    FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c [editor.o]
+    ;;
+esac
+FILES += rscavenge.c
+CFLAGS -= -DSCAVENGE=0
+CFLAGS += -DSCAVENGE=1 
+LIBS += -ltermcap
+d322 2
+a323 2
+CFLAGS -=  -DDEBUG=0 -DDBUG_OFF
+CFLAGS +=  -DDEBUG=1
+d336 1
+d341 11
+a351 11
+#
+# dsred: debug-version with generation scavenging
+#
+
+dsred: sred
+
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -= -DDEBUG=0 -DSCAV_DEBUG=0
+CFLAGS += -DDEBUG=1 -DSCAV_DEBUG=1
+d368 1
+d439 1
+d450 1
+a450 1
+# CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DD_SPEC=0
+d495 1
+d620 1
+d867 1
+a867 1
+# #  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/  -DD_PVM_NCUBE=1
+d881 1
+@
+
+
+1.68
+log
+@removed D_SPEC=1
+@
+text
+@d151 2
+a152 1
+    CFLAGS += -DUNIX=1 -DODDSEX=1
+d154 2
+d158 1
+d179 1
+d222 1
+d262 1
+d268 1
+d289 21
+a309 17
+# #
+# # sred: version with generation scavenging, no-debug
+# #
+# sred: lred.o
+# FILES -= rbibfunc.c rmstruct.c rvstruct.c
+# case ?[editor.o] in
+#   0)
+#     FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c $EDO
+#     ;;
+#   1)
+#     FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c [editor.o]
+#     ;;
+# esac
+# FILES += rscavenge.c
+# CFLAGS -= -DSCAVENGE=0
+# CFLAGS += -DSCAVENGE=1 
+# LIBS += -ltermcap
+d314 1
+d316 1
+a337 10
+# #
+# # dsred: debug-version with generation scavenging
+# #
+# dsred: sred
+# FILES += r-debug.c rbreak.c
+# CFLAGS -= -O
+# CFLAGS += -g
+# CFLAGS -= -DDEBUG=0 -DSCAV_DEBUG=0
+# CFLAGS += -DDEBUG=1 -DSCAV_DEBUG=1
+
+d339 1
+a339 1
+# dired: standard distributed version - host program
+d342 1
+a342 13
+dired: lred.o
+case ?[editor.o] in
+  0)
+    FILES += rmessage.c d_autodist.c $EDO
+    ;;
+  1)
+    FILES += rmessage.c d_autodist.c [editor.o]
+    ;;
+esac
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"ncred\"
+LDFLAGS = -L/usr/ncube/current/lib/sun4
+MAKEDEPEND += -I/usr/ncube/current/usr/include
+LIBS += -lncube -ltermcap
+d344 5
+a348 6
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+a349 3
+#
+# ncred: standard distributed version - ncube program
+#
+d351 25
+a375 16
+ncred.o:
+FILES = rbibfunc.c rconvert.c rdig-add.c rdig-div.c rdig-mod.c \
+        rdig-mul.c rdig-sub.c rdig-v1.c rdig-v2.c rlog-mvt.c rlstruct.c rfstruct.c \
+        rmstruct.c rnc_misc.c ram.c rheap.c rinter.c rlogfunc.c \
+        rncsupport.c rncmessage.c rquery.c rncsched.c rst-dec.c \
+        rncstack.c rstpro.c rvalir.c rred-eq.c rsts-dec.c rval-int.c \
+        rvalfunc.c rvstruct.c rintact.c riafunc.c
+CC = ncc
+MAKEDEPEND += -I/usr/ncube/current/usr/include
+LD = nld -r
+STRIP   = nstrip
+CFLAGS = -DUNIX=1 -DODDSEX=1 -DPI_RED_PLUS=1 -DRED_TO_NF=1 -DNOREF=0
+CFLAGS += -O -cwarn 2 -X c
+CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=1 -DnCUBE=1 
+LDFLAGS = -Ncomm 256000 -Nfile 32
+a376 9
+ncred: ncred.o
+FILES = [ncred.o] [ncdbug.o] rncmain.c
+#
+# ditred: tilde distributed version - host program
+#
+ditred.o: tred.o
+FILES += d_autodist.c
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\" -DD_SPEC=0
+MAKEDEPEND += -I/usr/ncube/current/usr/include
+d378 25
+a402 9
+@@rmessage.c: rmessage.o rstore.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -DNOSTORE -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+rstore.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rstore.o
+}
+a403 11
+ditred: ditred.o
+case ?[editor.o] in
+  0)
+    FILES = [ditred.o] $EDO
+    ;;
+  1)
+    FILES = [ditred.o] [editor.o]
+    ;;
+esac
+LDFLAGS = -L/usr/ncube/current/lib/sun4
+LIBS += -lncube -ltermcap
+d405 32
+a436 3
+#
+# nctred: tilde distributed version - ncube program
+#
+a437 1
+nctred.o: ncred.o
+d439 12
+a450 2
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DD_SPEC=0
+FILES += spec_sched.c
+a451 2
+nctred: nctred.o
+FILES = [nctred.o] rncmain.c 
+d453 9
+a461 3
+#
+# didred: distributed debug-version - host program
+#
+a462 4
+didred: dired
+FILES += rbreak.c r-debug.c [dbug.o]
+CFLAGS -= -O -DDBUG_OFF -DDEBUG=0 -DD_CUBEBIN=\"ncred\"
+CFLAGS += -g -DD_CUBEBIN=\"dncred\" -DDEBUG=1 -DMSG_CHKSUM=1 -DNCDEBUG=0
+d464 10
+a473 3
+#
+# dncred: distributed debug-version - ncube program
+#
+a474 1
+dncred: ncred.o
+d476 19
+a494 4
+CFLAGS += -DNCDEBUG=0
+FILES += [ncdbug.o] rncmain.c
+CFLAGS -= -O -DDBUG_OFF
+CFLAGS += -g -DMSG_CHKSUM=1
+a495 3
+#
+# didtred: distributed tilde-debug-version - host program
+#
+d497 10
+a506 14
+didtred: ditred.o
+case ?[editor.o] in
+  0)
+    FILES += $EDO
+    ;;
+  1)
+    FILES += [editor.o]
+    ;;
+esac
+LDFLAGS = -L/usr/ncube/current/lib/sun4
+LIBS += -lncube -ltermcap
+FILES += rbreak.c r-debug.c [dbug.o]
+CFLAGS -= -O -DDBUG_OFF -DDEBUG=0 -DD_CUBEBIN=\"nctred\"
+CFLAGS += -g -DD_CUBEBIN=\"dnctred\" -DDEBUG=1 -DMSG_CHKSUM=1 -DNCDEBUG=0
+a507 3
+#
+# dncred: distributed tilde-debug-version - ncube program
+#
+d509 3
+a511 10
+dnctred: nctred.o
+
+CFLAGS += -DNCDEBUG=0
+FILES += [ncdbug.o] rncmain.c
+CFLAGS -= -DDBUG_OFF -O
+CFLAGS += -DMSG_CHKSUM=1 -g
+
+#
+# xdidred: distributed debug-version with DRD - host program
+#
+d527 5
+a531 4
+# 
+#
+# xdncred: distributed debug-version with DRD - ncube program
+#
+a538 4
+#
+# mdired: distributed measure version, binary measurement data - host program
+# add -DM_BINARY to cflags for binary !
+#
+d540 12
+a551 6
+mdired: dired
+FILES += d_mess_init.c
+CFLAGS -= -DD_MESS=0
+CFLAGS -= -DD_CUBEBIN=\"ncred\"
+CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mncred\" -DM_BINARY
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0 
+a552 4
+#
+# mncred: distributed measure version - ncube program
+# add -DM_BINARY to cflags for binary !
+#
+d554 43
+a596 1
+mncred: ncred.o
+a597 4
+FILES += d_mess_init.c d_mess_merge.c rncmain.c
+CFLAGS -= -DD_MESS=0
+CFLAGS += -DD_MESS=1 -DM_BINARY
+CFLAGS += -DD_MHEAP=1 -DD_MSTACK=1 -DD_MSCHED=1 -DD_MCOMMU=1
+d599 22
+a620 7
+@@rheap.c: rheap.o mrheap.o
+{
+rheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+mrheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+}
+a621 7
+@@rncstack.c: rncstack.o mrncstack.o
+{
+rncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+mrncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+}
+d623 43
+a665 7
+@@rncsched.c: rncsched.o mrncsched.o
+{
+rncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+mrncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+}
+a666 7
+@@rncmessage.c: rncmessage.o mrncmessage.o
+{
+rncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+mrncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+}
+d668 12
+a679 4
+#
+# mditred: distributed tilde measure version, binary measurement data - host program
+# add -DM_BINARY to cflags for binary !
+#
+a680 16
+mditred: ditred.o
+case ?[editor.o] in
+  0)
+    FILES += $EDO
+    ;;
+  1)
+    FILES += [editor.o]
+    ;;
+esac
+LDFLAGS = -L/usr/ncube/current/lib/sun4
+LIBS += -lncube -ltermcap
+FILES += d_mess_init.c
+CFLAGS -= -DD_MESS=0
+CFLAGS -= -DD_CUBEBIN=\"nctred\"
+CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mnctred\" -DM_BINARY
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0
+d682 9
+a690 4
+#
+# mnctred: distributed tilde measure version - ncube program
+# add -DM_BINARY to cflags for binary !
+#
+a691 1
+mnctred: nctred.o
+d693 13
+a705 4
+FILES += d_mess_init.c d_mess_merge.c rncmain.c
+CFLAGS -= -DD_MESS=0
+CFLAGS += -DD_MESS=1 -DM_BINARY
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1
+a706 7
+@@rheap.c: rheap.o mrheap.o
+{
+rheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+mrheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+}
+d708 9
+a716 7
+@@rncstack.c: rncstack.o mrncstack.o
+{
+rncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+mrncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+}
+a717 7
+@@rncsched.c: rncsched.o mrncsched.o
+{
+rncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+mrncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+}
+d719 9
+a727 7
+@@rncmessage.c: rncmessage.o mrncmessage.o
+{
+rncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+mrncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+}
+a728 3
+#
+# mdidred: distributed debug measure version, binary measurement data - host program
+#
+d730 9
+a738 50
+mdidred: mdired
+FILES += [dbug.o]
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O -DD_CUBEBIN=\"mncred\"
+CFLAGS += -g -DD_CUBEBIN=\"mdncred\"
+CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+CFLAGS += -DDEBUG=1
+
+#
+# mdncred: debug distributed measure version - ncube program
+#
+
+mdncred: mncred
+
+FILES += [ncdbug.o]
+CFLAGS -= -O -DDBUG_OFF
+CFLAGS += -g
+
+#
+# mdidtred: distributed debug tilde measure version, binary measurement data - host program
+#
+
+mdidtred: mditred
+FILES += [dbug.o]
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O -DD_CUBEBIN=\"mnctred\"
+CFLAGS += -g -DD_CUBEBIN=\"mdnctred\"
+CFLAGS -= -DDBUG_OFF
+
+# CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+# CFLAGS += -DDEBUG=1
+
+#
+# mdnctred: debug distributed tilde measure version - ncube program
+#
+
+mdnctred: mnctred
+
+FILES += [ncdbug.o]
+CFLAGS -= -O -DDBUG_OFF
+CFLAGS += -g
+
+#
+# mdemored: distributed measure version, binary measurement data - host program
+#           stack and heap measurements disabled
+#
+
+mdemored: mdired
+CFLAGS -= -DD_CUBEBIN=\"mncred\"
+CFLAGS += -DD_CUBEBIN=\"mdencred\"
+a739 9
+#
+# mdencred: distributed measure version - ncube program
+#
+
+mdencred: mncred
+
+CFLAGS -= -DD_MHEAP=1
+CFLAGS -= -DD_MSTACK=1
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0
+d746 1
+d749 2
+a750 1
+# 
+d756 1
+d759 2
+a760 1
+# 
+d766 1
+d769 2
+a770 1
+# 
+d776 1
+d779 2
+a780 1
+# 
+d786 1
+d789 2
+a790 1
+# 
+d796 1
+d800 1
+a816 3
+#
+# ncdbug.o
+#
+d818 19
+a836 1
+ncdbug.o:
+a837 7
+FILES = dbug.c
+CC = ncc
+MAKEDEPEND +=-I/usr/ncube/current/usr/include
+LD = nld -r
+CFLAGS -= -ansi -Wall
+CFLAGS += -Dunix
+LIBS -= -lm
+d839 9
+a847 5
+@@dbug.c: ncdbug.obj
+{
+ncdbug.obj: $(SRCDIR)/ncdbug.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)dbug.c -o $(OBJDIR)ncdbug.obj
+}
+a848 3
+#
+# m_remote_merge
+#
+d850 38
+a887 4
+m_remote_merge:
+FILES = m_remote_merge.c
+CFLAGS += -O -DDBUG_OFF
+LIBS -= -lm
+a888 13
+#
+# pvmtred: tilde distributed version using pvm-library - host program
+#
+#          adjust CFLAGS (include-path) and LDFLAGS (library-path) !!
+#
+# for SUN-only-Version:
+#  CFLAGS += -I/home/mpis/pvm3/include
+#  LDFLAGS = -L/home/mpis/pvm3/lib/SUN4
+#
+# for SUN/nCUBE-Version:
+#  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/  -DD_PVM_NCUBE=1
+#  LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+#
+d890 27
+a916 13
+pvmtred: tred.o
+case ?[editor.o] in
+  0)
+    FILES += d_autodist.c $EDO
+    ;;
+  1)
+    FILES += d_autodist.c [editor.o]
+    ;;
+esac
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DD_PVM=1 -DAUTODIST -DD_CUBEBIN=\"pvmslavetred\"
+CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/ -DD_PVM_NCUBE=1
+LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+LIBS += -ltermcap -lpvm3
+a917 9
+@@rmessage.c: rmessage.o rstore.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) $(INCLUDES) -DNOSTORE -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+rstore.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rstore.o
+}
+d919 11
+a929 17
+#
+# pvmslavetred: tilde distributed version - pvm slave program
+#
+# for SUN-only-Version:
+#  CC = gcc
+#  CFLAGS -= -cwarn 2 -X c -DODDSEX=1
+#  CFLAGS += -ansi -Wall -D_ANSI_ -DODDSEX=0 -Dsparc
+#  CFLAGS += -I/home/mpis/pvm3/include
+#  LDFLAGS -= -Ncomm 256000 -Nfile 32
+#  LDFLAGS += -L/home/mpis/pvm3/lib/SUN4
+#  LIBS += -lpvm3
+#
+# for SUN/nCUBE-Version:
+#  CFLAGS += -DD_PVM_NCUBE=1
+#  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/
+#  LDFLAGS = -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+#  LIBS += -lpvm3pe
+a930 1
+pvmslavetred: nctred.o
+d932 7
+a938 26
+CFLAGS += -DD_PVM=1 -DD_PVM_NCUBE=1
+CFLAGS -= -DnCUBE=1 
+CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/
+LDFLAGS -= -Ncomm 256000 -Nfile 32
+LDFLAGS += -L/home/mpis/pvm3nCUBE/pvm3/lib/NCUBE/
+LIBS += -lpvm3pe
+FILES += rncmain.c 
+
+#
+# mpvmtred: tilde distributed measure version (PVM)
+#
+
+mpvmtred: pvmtred
+FILES += d_mess_init.c 
+CFLAGS -= -DD_MESS=0 
+CFLAGS -= -DD_CUBEBIN=\"pvmslavetred\"
+CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mpvmslavetred\" -DM_BINARY
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0
+
+#
+# mpvmslavetred: tilde distributed measure version (PVM)
+#
+# for SUN-only-Version:
+#  FILES += d_mess_init.c [dbug.o]
+#
+# for SUN/nCUBE-Version:
+d940 39
+a978 40
+
+
+mpvmslavetred: pvmslavetred
+
+FILES += d_mess_init.c
+CFLAGS -= -DD_MESS=0 
+CFLAGS += -DD_MESS=1 
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1 -DM_BINARY
+
+@@rheap.c: rheap.o mrheap.o
+{
+rheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+mrheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+}
+
+@@rncstack.c: rncstack.o mrncstack.o
+{
+rncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+mrncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+}
+
+@@rncsched.c: rncsched.o mrncsched.o
+{
+rncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+mrncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+}
+
+@@rncmessage.c: rncmessage.o mrncmessage.o
+{
+rncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+mrncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+}
+@
+
+
+1.67
+log
+@minor changes for Solaris 2.x
+@
+text
+@d387 1
+a387 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\" -DD_SPEC=1
+d418 1
+a418 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1 -DD_SPEC=1
+@
+
+
+1.66
+log
+@some modifications for speculative evaluation
+@
+text
+@d28 2
+a29 2
+# xdidred : debug ncube host part with distributed debugging
+# xdncred : debug ncube node part with distributed debugging
+d109 1
+a109 1
+EDO = /home/rs/reduma/fed/editor.o.obj/editor.o
+d477 16
+a492 16
+
+xdidred: didred
+
+FILES += DBMdebug.c $DBH $IE
+LIBS += -lX11
+LDFLAGS += -L/usr/X11R5/lib
+CFLAGS -= -DNCDEBUG=0 -DD_CUBEBIN=\"dncred\"
+CFLAGS += -DNCDEBUG=1 -DD_CUBEBIN=\"xdncred\"
+
+@@DBMdebug.c: DBMdebug.o
+{
+DBMdebug.o: $(SRCDIR)DBMdebug.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include/ncube -c $(SRCDIR)DBMdebug.c \
+	-o $(OBJDIR)DBMdebug.o
+}
+
+d496 6
+a501 6
+
+xdncred: dncred
+
+FILES += DBNCdebug.c
+CFLAGS -= -DNCDEBUG=0
+CFLAGS += -DNCDEBUG=1
+@
+
+
+1.65
+log
+@/home/batman/base and /home/cheops/sbs changed to /home/base and /home/sbs
+@
+text
+@d109 1
+a109 1
+EDO = /home/base/lib/editor.o
+d387 1
+a387 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\"
+d418 2
+a419 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1
+d422 1
+a422 1
+FILES = [nctred.o] rncmain.c
+d471 2
+a472 2
+CFLAGS -= -O -DDBUG_OFF
+CFLAGS += -g -DMSG_CHKSUM=1
+@
+
+
+1.64
+log
+@cannot override -D flags in red.cnf.
+use flag NOSTORE to do it in rmessage.c
+@
+text
+@d109 3
+a111 3
+EDO = /home/batman/base/lib/editor.o
+IE = /home/cheops/sbs/Clib/xtermio.o
+DBH = /home/cheops/sbs/c/redsys/ncred/src/DBH.o
+@
+
+
+1.63
+log
+@attempt to fix the rmessage.c problem for distributed versions :-)
+rmessage.c in FILES and -DSTORE=1 in all tred.o based versions
+rmessage.c -DSTORE=1 => rstore.o
+rmessage.c -DSTORE=0 => rmessage.o
+rstore.o included in tred.o,ditred.o,pvmtred.o and all derived versions
+@
+text
+@d393 1
+a393 1
+	$(CC) $(CFLAGS) -DSTORE=0 -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+d813 1
+a813 1
+	$(CC) $(CFLAGS) $(INCLUDES) -DSTORE=0 -c $(SRCDIR)rmessage.c \
+@
+
+
+1.62
+log
+@rmessage.c-problem for the distributed versions fixed (for now ;-)
+@
+text
+@d238 7
+a381 1
+
+a384 3
+# FILES += rmessage.c left out
+#
+
+d387 1
+a387 2
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\" -DSTORE=0
+CFLAGS -= -DSTORE=1
+d390 1
+a390 1
+@@rmessage.c: rmessage.o
+d393 1
+a393 1
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+d395 3
+d799 1
+a799 1
+    FILES += rmessage.c d_autodist.c $EDO
+d802 1
+a802 1
+    FILES += rmessage.c d_autodist.c [editor.o]
+d809 10
+@
+
+
+1.61
+log
+@added rmessage.c to FILES and -DSTORE=1 to CFLAGS for tred
+for all other versions: -DSTORE=0
+@
+text
+@d375 1
+d379 3
+d383 3
+a385 2
+FILES += rmessage.c d_autodist.c
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\"
+@
+
+
+1.60
+log
+@flag added (NOREF) to distinguish between explicit and inplicit
+refcounting in rfstruct.c
+@
+text
+@d200 2
+a201 2
+        rinter.c rdummies.c rextcode.c rprint.c rtasm.c rintact.c riafunc.c
+CFLAGS += -O -DPI_RED_PLUS=1 -DRED_TO_NF=1 -DNOREF=0
+d231 1
+a231 1
+	pmsupport.c pmanalyze.c
+d233 2
+a234 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DUH_ZF_PM=1
+@
+
+
+1.59
+log
+@some changes concerning the integration of measurements
+in tasm
+@
+text
+@d201 1
+a201 1
+CFLAGS += -O -DPI_RED_PLUS=1 -DRED_TO_NF=1
+d366 1
+a366 1
+CFLAGS = -DUNIX=1 -DODDSEX=1 -DPI_RED_PLUS=1 -DRED_TO_NF=1
+@
+
+
+1.58
+log
+@making of ... :-) didtred fixed (thanks to car)
+@
+text
+@d361 1
+a361 1
+        rvalfunc.c rvstruct.c 
+d552 11
+a562 1
+mditred: ditred
+d644 4
+a647 2
+CFLAGS -= -DDEBUG=0 -DDBUG_OFF
+CFLAGS += -DDEBUG=1
+@
+
+
+1.57
+log
+@ditred.o
+@
+text
+@d436 11
+a446 1
+didtred: ditred
+@
+
+
+1.56
+log
+@sorry, wrong editor (~rs/...) ;-)
+@
+text
+@d377 11
+d389 1
+a389 1
+ditred: tred.o
+d392 1
+a392 1
+    FILES += rmessage.c d_autodist.c $EDO
+d395 1
+a395 1
+    FILES += rmessage.c d_autodist.c [editor.o]
+a397 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DnCUBE=1 -DAUTODIST -DD_CUBEBIN=\"nctred\"
+a398 1
+MAKEDEPEND += -I/usr/ncube/current/usr/include
+a399 7
+
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+@
+
+
+1.55
+log
+@NEW: rstack.h
+@
+text
+@d109 1
+a109 1
+EDO = /home/rs/reduma/fed/editor.o.obj/editor.o
+@
+
+
+1.54
+log
+@riafunc.c included
+@
+text
+@d109 1
+a109 1
+EDO = /home/batman/base/lib/editor.o
+d119 1
+a119 1
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h tags.h\
+d808 2
+a809 2
+FILES += d_mess_init.c [dbug.o]
+CFLAGS -= -DD_MESS=0 -DDBUG_OFF -O
+d811 1
+a811 1
+CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mpvmslavetred\" -g
+d826 4
+a829 4
+FILES += d_mess_init.c [ncdbug.o]
+CFLAGS -= -DD_MESS=0 -DDBUG_OFF -O
+CFLAGS += -DD_MESS=1 -g
+CFLAGS += -DD_MHEAP=1 -DD_MSTACK=1 -DD_MSCHED=1 -DD_MCOMMU=1
+@
+
+
+1.53
+log
+@UH_PM activated for the distributed versions
+@
+text
+@d200 1
+a200 1
+        rinter.c rdummies.c rextcode.c rprint.c rtasm.c rintact.c
+@
+
+
+1.52
+log
+@some modifications on the pvm versions
+@
+text
+@d405 1
+a405 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0
+d809 1
+a809 1
+CFLAGS -= -DD_MESS=0 -DDBUG_OFF
+d811 1
+a811 1
+CFLAGS += -DD_MESS=1 -DD_CUBEBIN=\"mpvmslavetred\"
+d827 2
+a828 2
+CFLAGS -= -DD_MESS=0 -DDBUG_OFF
+CFLAGS += -DD_MESS=1
+@
+
+
+1.51
+log
+@some changes concerning the distributed and pvm versions
+@
+text
+@a386 1
+CFLAGS -= -DUH_ZF_PM=1
+d757 1
+a757 1
+#  CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/  
+a769 1
+CFLAGS -= -DUH_ZF_PM=1
+d771 1
+a771 1
+CFLAGS += -I/home/mpis/pvm3nCUBE/pvm3/include/
+d778 14
+d795 3
+a797 6
+CC = gcc
+CFLAGS += -DD_PVM=1
+CFLAGS -= -DnCUBE=1
+CFLAGS -= -cwarn 2 -X c -DODDSEX=1
+CFLAGS += -ansi -Wall -D_ANSI_ -DODDSEX=0 -Dsparc
+CFLAGS += -I/home/mpis/pvm3/include
+d799 3
+a801 3
+LDFLAGS += -L/home/mpis/pvm3/lib/SUN4 
+LIBS += -lpvm3
+FILES += rncmain.c
+d817 6
+d826 1
+a826 1
+FILES += d_mess_init.c [dbug.o]
+@
+
+
+1.50
+log
+@pvm + measure versions + improved makedepend (USE it ! ;-)
+@
+text
+@d424 1
+a424 1
+dncred: ncred
+d427 1
+a427 1
+FILES += [ncdbug.o]
+d497 1
+a497 1
+mncred: ncred
+d499 1
+a499 1
+FILES += d_mess_init.c d_mess_merge.c
+d553 1
+a553 1
+mnctred: nctred
+d555 1
+a555 1
+FILES += d_mess_init.c d_mess_merge.c
+d558 1
+a558 1
+CFLAGS += -DD_MHEAP=1 -DD_MSTACK=1 -DD_MSCHED=1 -DD_MCOMMU=1
+d751 10
+d773 2
+a774 2
+CFLAGS += -I/home/mpis/pvm3/include
+LDFLAGS = -L/home/mpis/pvm3/lib/SUN4
+@
+
+
+1.49
+log
+@new file rintact.c
+@
+text
+@d73 2
+a74 1
+MAKEDEPEND = gcc -M -I/usr/ncube/current/usr/include >>Makefile
+d341 1
+d363 1
+d390 1
+d727 1
+d783 54
+@
+
+
+1.48
+log
+@minor changes to the pvm versions
+@
+text
+@d199 1
+a199 1
+        rinter.c rdummies.c rextcode.c rprint.c rtasm.c
+@
+
+
+1.47
+log
+@changes for the distributed tilde-versions
+@
+text
+@d272 17
+a288 17
+#
+# sred: version with generation scavenging, no-debug
+#
+sred: lred.o
+FILES -= rbibfunc.c rmstruct.c rvstruct.c
+case ?[editor.o] in
+  0)
+    FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c $EDO
+    ;;
+  1)
+    FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c [editor.o]
+    ;;
+esac
+FILES += rscavenge.c
+CFLAGS -= -DSCAVENGE=0
+CFLAGS += -DSCAVENGE=1 
+LIBS += -ltermcap
+d315 9
+a323 9
+#
+# dsred: debug-version with generation scavenging
+#
+dsred: sred
+FILES += r-debug.c rbreak.c
+CFLAGS -= -O
+CFLAGS += -g
+CFLAGS -= -DDEBUG=0 -DSCAV_DEBUG=0
+CFLAGS += -DDEBUG=1 -DSCAV_DEBUG=1
+d651 47
+a697 47
+#
+# spired
+#
+
+spired: ditred
+CFLAGS -= -DD_CUBEBIN=\"nctred\"
+CFLAGS += -DD_CUBEBIN=\"spncred\" -DTIME_SLICE=0
+
+#
+# spncred
+#
+
+spncred: nctred
+FILES += spec_sched.c
+CFLAGS += -DTIME_SLICE=1
+
+#
+# mspired
+#
+
+mspired: mditred
+CFLAGS -= -DD_CUBEBIN=\"mnctred\"
+CFLAGS += -DD_CUBEBIN=\"mspncred\" -DTIME_SLICE=0
+
+#
+# mspncred
+#
+
+mspncred: mnctred
+FILES += spec_sched.c
+CFLAGS += -DTIME_SLICE=1
+
+#
+# dspired
+#
+
+dspired: didtred
+CFLAGS -= -DD_CUBEBIN=\"dnctred\"
+CFLAGS += -DD_CUBEBIN=\"dspncred\" -DTIME_SLICE=0
+
+#
+# dspncred
+#
+
+dspncred: dnctred
+FILES += spec_sched.c
+CFLAGS += -DTIME_SLICE=1
+d766 1
+a766 1
+pvmslavetred: nctred
+d777 1
+@
+
+
+1.46
+log
+@ncdbug added for ncred
+@
+text
+@d440 1
+a440 1
+dnctred: nctred
+d443 1
+a443 1
+FILES += [ncdbug.o]
+@
+
+
+1.45
+log
+@supports nCUBE linkable modules
+@
+text
+@d370 1
+a370 1
+FILES = [ncred.o] rncmain.c
+@
+
+
+1.44
+log
+@DBUG module moved to link pass
+@
+text
+@d353 1
+a353 1
+ncred:
+d357 1
+a357 1
+        rncmain.c rncmessage.c rquery.c rncsched.c rst-dec.c \
+d361 2
+a367 1
+STRIP   = nstrip
+d369 2
+d400 1
+a400 1
+nctred: ncred
+d403 3
+@
+
+
+1.43
+log
+@some changes for the pvm version(s)
+@
+text
+@d252 1
+a252 1
+FILES += r-debug.c rbreak.c dbug.c
+d270 1
+d312 2
+@
+
+
+1.42
+log
+@pvmtred additionals
+@
+text
+@d748 4
+a751 3
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DD_SLAVE=0 -DPVM=1 -DAUTODIST -DD_CUBEBIN=\"pvmslavetred\"
+LDFLAGS = -L/usr/ncube/current/lib/sun4
+LIBS += -lncube -ltermcap
+d757 1
+a757 1
+pvmslavetred: ncred
+d759 9
+a767 2
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0 -DPVM=1
+
+@
+
+
+1.41
+log
+@D_SLAVE added
+@
+text
+@d296 1
+a296 1
+CFLAGS -=  -DDEBUG=0
+d733 27
+@
+
+
+1.40
+log
+@rfstrut in Dist
+@
+text
+@d335 1
+a335 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DnCUBE=0 -DAUTODIST -DD_CUBEBIN=\"ncred\"
+d361 1
+a361 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DnCUBE=1 
+d379 1
+a379 1
+CFLAGS += -DD_DIST=1 -DD_MESS=0 -DnCUBE=0 -DAUTODIST -DD_CUBEBIN=\"nctred\"
+@
+
+
+1.39
+log
+@rfstruct.c added
+@
+text
+@d352 1
+a352 1
+        rdig-mul.c rdig-sub.c rdig-v1.c rdig-v2.c rlog-mvt.c rlstruct.c \
+@
+
+
+1.38
+log
+@rtasm.c added to FILES
+@
+text
+@d195 1
+a195 1
+        rlstruct.c rret-dec.c rvalfunc.c rea-ret.c rretrieve.c rvalir.c \
+@
+
+
+1.37
+log
+@tred and dtred now use UH Pattern-Matching
+@
+text
+@d199 1
+a199 1
+        rinter.c rdummies.c rextcode.c rprint.c
+@
+
+
+1.36
+log
+@tilde version now uses pmam.c and pmdimli.c
+as tilde pattern match interpreter
+@
+text
+@d229 2
+a230 1
+	pmdimli.c pmam.c
+d232 1
+a232 1
+CFLAGS +=  -DWITHTILDE=1 -DCLOSEGOAL=0
+d252 1
+a252 1
+FILES += r-debug.c rbreak.c
+d255 1
+a255 1
+CFLAGS -=  -DDEBUG=0
+d378 1
+@
+
+
+1.35
+log
+@generate codefile in non-DEBUG-version
+@
+text
+@d225 1
+a225 1
+        rst-match.c rstswi.c rsubfunc.c rwhen-pre.c
+d228 2
+a229 1
+	 pos-rea-ret.c pos-postfunc.c pos-casepost.c pos-p-fail.c 
+@
+
+
+1.34
+log
+@MAKEDEPEND with nCUBE includes
+@
+text
+@d121 1
+a121 2
+        list.h pminstr.h rncheap.h rncmessage.h rncsched.h rncstack.h rops.h \
+        roptasm.h
+d199 1
+a199 2
+        rinter.c rdummies.c roptasm.c runify.c rprimf.c ruserf.c \
+        rextcode.c rprint.c
+@
+
+
+1.33
+log
+@new MAKEDEPEND
+@
+text
+@d73 1
+a73 1
+MAKEDEPEND = gcc -M >>Makefile
+@
+
+
+1.32
+log
+@new versions added
+@
+text
+@d73 1
+@
+
+
+1.31
+log
+@picard/earlgrey modifications
+@
+text
+@d46 2
+a47 2
+# picard: new experimental version by rs
+# earlgrey: ncube version of picard
+d49 6
+d641 17
+a657 1
+# picard
+d660 1
+a660 1
+picard: mditred
+d662 17
+a678 1
+CFLAGS += -DD_CUBEBIN=\"earlgrey\" -DTIME_SLICE=0
+d681 1
+a681 1
+# earlgrey
+d684 1
+a684 1
+earlgrey: mnctred
+@
+
+
+1.30
+log
+@modifications for earlgrey version
+@
+text
+@d640 1
+a640 1
+CFLAGS += -DD_CUBEBIN=\"earlgrey\"
+d648 1
+a648 1
+CFLAGS += -DTIME_SLICE
+@
+
+
+1.29
+log
+@dtred added
+@
+text
+@d647 2
+@
+
+
+1.28
+log
+@picard and earlgrey versions added
+@
+text
+@a0 1
+#
+d238 24
+@
+
+
+1.27
+log
+@*** empty log message ***
+@
+text
+@d47 3
+d610 14
+@
+
+
+1.26
+log
+@!DEBUG fixed
+@
+text
+@d192 1
+a192 1
+        rextcode.o rprint.o
+@
+
+
+1.25
+log
+@first final version (optasm)
+@
+text
+@d191 2
+a192 1
+        rinter.c rdummies.c roptasm.c runify.c rprimf.c ruserf.c
+d260 1
+a260 1
+FILES += r-debug.c rbreak.c rprint.c rextcode.c
+d283 1
+a283 1
+FILES += r-debug.c rbreak.c rprint.c rextcode.c
+d369 1
+a369 1
+FILES += rprint.c rbreak.c r-debug.c rextcode.c [dbug.o]
+d389 1
+a389 1
+FILES += rprint.c rbreak.c r-debug.c rextcode.c [dbug.o]
+d551 1
+a551 1
+FILES += r-debug.c rbreak.c rprint.c rextcode.c
+d573 1
+a573 1
+FILES += r-debug.c rbreak.c rprint.c rextcode.c
+@
+
+
+1.24
+log
+@first extension for optimizer
+@
+text
+@d191 1
+a191 1
+        rinter.c rdummies.c roptasm.c
+@
+
+
+1.23
+log
+@Headerfiles hinzugefuegt & HFILES durch HEADERFILE ersetzt
+@
+text
+@d112 2
+a113 1
+        list.h pminstr.h rncheap.h rncmessage.h rncsched.h rncstack.h rops.h
+d191 1
+a191 1
+        rinter.c rdummies.c
+@
+
+
+1.22
+log
+@rules for distributed tilde debug version added
+@
+text
+@d107 1
+a107 1
+HFILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h \
+d109 4
+a112 1
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h tags.h
+@
+
+
+1.21
+log
+@new tilde measure versions
+@
+text
+@d26 3
+d373 20
+@
+
+
+1.20
+log
+@tilde measure ncube versions added
+@
+text
+@d485 32
+@
+
+
+1.19
+log
+@rules for distributed tilde-version added
+@
+text
+@d32 3
+d41 3
+d462 24
+d502 22
+@
+
+
+1.18
+log
+@Correction in rule for tred.o
+@
+text
+@d14 1
+a14 1
+# tred    : quick sequentiel tilde version
+d20 3
+d317 32
+@
+
+
+1.17
+log
+@tilde version added
+@
+text
+@d202 3
+a204 4
+PRAE_FILES = pre-casefunc.c pre-hfunc.c pre-lrecfunc.c pre-nea-cre.c \
+	     pre-nsubfunc.c pre-pm-ptfu.c pre-pmpatvar.c
+POST_FILES = pos-rea-ret.c pos-postfunc.c pos-casepost.c pos-p-fail.c 
+FILES += $PRAE_FILES $POST_FILES
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@d14 2
+d187 30
+@
+
+
+1.15
+log
+@changes in codefile output
+@
+text
+@d226 1
+a226 1
+    FILES = [lred.o] [editor.o]
+@
+
+
+1.14
+log
+@extended codefile generation
+@
+text
+@d235 1
+a235 1
+FILES += r-debug.c rbreak.c rprint.c
+d289 1
+a289 1
+FILES += rprint.c rbreak.c r-debug.c [dbug.o]
+d395 1
+a395 1
+FILES += r-debug.c rbreak.c rprint.c
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@d212 1
+a212 1
+FILES += r-debug.c rbreak.c rprint.c
+@
+
+
+1.12
+log
+@compilation based on existance of editor
+@
+text
+@d85 1
+a85 1
+EDO = /home/batman/base/lib/editor.o
+@
+
+
+1.11
+log
+@enhanced obejct modules
+@
+text
+@d85 1
+a85 1
+EDO = /home/majestix/ca/fed.o/editor.o
+a108 1
+    EDFLAGS = -DTERMIOS=1
+a118 1
+    EDFLAGS = -DTERMIOS=1
+a121 1
+    EDFLAGS = -DTERMIOS=1
+a124 1
+    EDFLAGS = -DTERMIOS=1
+d179 9
+a187 1
+FILES = [lred.o] $EDO
+d195 8
+a202 1
+FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c $EDO
+d221 8
+a228 1
+FILES = [dlred.o] $EDO
+d246 8
+a253 1
+FILES += rmessage.c d_autodist.c $EDO
+d282 1
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d11 1
+d183 1
+a183 1
+FILES += $EDO
+d189 1
+a189 1
+sred: lred
+d191 1
+a191 1
+FILES += rbibfunc.small.c rmstruct.small.c rvstruct.small.c
+d195 1
+d200 1
+a200 1
+dlred: lred
+d206 6
+d227 2
+a228 2
+dired: lred
+FILES += rmessage.c d_autodist.c
+d231 1
+a231 1
+LIBS += -lncube
+@
+
+
+1.9
+log
+@lred.o module inserted, OBJDIR deleted
+@
+text
+@d9 1
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@a64 1
+OBJDIR = lred.obj/
+d154 1
+a154 1
+lred:
+a175 1
+LIBS += -ltermcap
+d177 4
+d182 1
+a182 1
+CFLAGS += -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0
+a187 1
+OBJDIR = sred.obj
+a197 1
+OBJDIR = dlred.obj
+a207 1
+OBJDIR = dsred.obj
+a218 1
+OBJDIR = dired.obj
+a235 1
+OBJDIR = ncred.obj
+a253 1
+OBJDIR = didred.obj
+a263 1
+OBJDIR = dncred.obj
+a274 1
+OBJDIR = xdidred.obj
+a293 1
+OBJDIR = xdncred.obj
+a303 1
+OBJDIR = mdired.obj
+a316 1
+OBJDIR = mncred.obj
+a358 1
+OBJDIR = mdidred.obj
+a371 1
+OBJDIR = mdncred.obj
+a381 1
+OBJDIR = mdemored.obj
+a390 1
+OBJDIR = mdencred.obj
+a400 1
+OBJDIR = dbug.obj
+a416 1
+OBJDIR = ncdbug.obj
+a434 1
+OBJDIR = m_remote_merge.obj
+@
+
+
+1.7
+log
+@added LIBDIR
+@
+text
+@d29 1
+a29 1
+# mdncred : debug ncube node version
+@
+
+
+1.6
+log
+@-g instead of -O for measure debug ncube versions...
+@
+text
+@d59 1
+a65 1
+# BINROOT = 
+d67 1
+@
+
+
+1.5
+log
+@rules for distibuted debug-versions corrected
+@
+text
+@d306 1
+d314 1
+a314 1
+CFLAGS += -DD_MESS=1 -DM_BINARY -DD_CUBEBIN=\"mncred\"
+d319 1
+d370 2
+a371 2
+CFLAGS -= -DD_CUBEBIN=\"mncred\"
+CFLAGS += -DD_CUBEBIN=\"mdncred\"
+d383 2
+a384 1
+CFLAGS -= -DDBUG_OFF
+@
+
+
+1.4
+log
+@rules for measurement debug versions added
+@
+text
+@d258 2
+a259 5
+CFLAGS -= -DDBUG_OFF -DDEBUG=0 -DD_CUBEBIN=\"ncred\"
+CFLAGS += -DD_CUBEBIN=\"dncred\"
+CFLAGS += -DDEBUG=1
+CFLAGS += -DMSG_CHKSUM=1
+CFLAGS += -DNCDEBUG=0
+d270 2
+a271 2
+CFLAGS -= -DDBUG_OFF
+CFLAGS += -DMSG_CHKSUM=1
+@
+
+
+1.3
+log
+@adapted to configure 1.2
+@
+text
+@d25 6
+d364 23
+d391 1
+a391 1
+mdemored: dired
+d393 2
+a394 5
+FILES += d_mess_init.c
+CFLAGS -= -DD_MESS=0
+CFLAGS -= -DD_CUBEBIN=\"ncred\"
+CFLAGS += -DD_MESS=1 -DM_BINARY -DD_CUBEBIN=\"mdencred\"
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=0 -DD_MCOMMU=0
+d400 1
+a400 1
+mdencred: ncred
+d403 3
+a405 4
+FILES += d_mess_init.c d_mess_merge.c
+CFLAGS -= -DD_MESS=0
+CFLAGS += -DD_MESS=1 -DM_BINARY
+CFLAGS += -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1
+d407 3
+a409 31
+@@rheap.c: rheap.o mrheap.o
+{
+rheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rheap.c -o $(OBJDIR)/rheap.o
+mrheap.o: $(SRCDIR)/rheap.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rheap.c -o $(OBJDIR)/mrheap.o
+}
+
+@@rncstack.c: rncstack.o mrncstack.o
+{
+rncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/rncstack.o
+mrncstack.o: $(SRCDIR)/rncstack.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncstack.c -o $(OBJDIR)/mrncstack.o
+}
+
+@@rncsched.c: rncsched.o mrncsched.o
+{
+rncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/rncsched.o
+mrncsched.o: $(SRCDIR)/rncsched.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncsched.c -o $(OBJDIR)/mrncsched.o
+}
+
+@@rncmessage.c: rncmessage.o mrncmessage.o
+{
+rncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/rncmessage.o
+mrncmessage.o: $(SRCDIR)/rncmessage.c
+	$(CC) $(CFLAGS) -DD_MESS_ONLY -c $(SRCDIR)/rncmessage.c -o $(OBJDIR)/mrncmessage.o
+}
+d424 4
+a442 1
+
+@
+
+
+1.2
+log
+@relative paths for ROOT
+@
+text
+@a257 7
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+
+d271 1
+a271 1
+# didred: distributed debug-version with DRD - host program
+a289 7
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+
+a312 7
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+
+a368 7
+
+@@rmessage.c: rmessage.o
+{
+rmessage.o: $(SRCDIR)rmessage.c
+	$(CC) $(CFLAGS) -I/usr/ncube/current/usr/include -c $(SRCDIR)rmessage.c \
+	-o $(OBJDIR)/rmessage.o
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d55 1
+a55 1
+SRCROOT = /home/batman/base/red/
+d57 1
+a57 1
+OBJROOT = /var/tmp/red/
+d59 1
+a59 1
+BINROOT = /home/batman/base/
+@

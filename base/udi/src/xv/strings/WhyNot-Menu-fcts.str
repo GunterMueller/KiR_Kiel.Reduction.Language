@@ -1,0 +1,16 @@
+#define WN_SYNTAX_EDITLINE_IS_ON \
+"\
+While editing the program\n\
+in the edit line is it not allowed to\n\
+reduce the program.\n\
+Finish you editing and then try it again.\
+"
+
+#define WN_EXECUTION_IS_LOCKED \
+"\
+While editing one or more expressions\n\
+with an texteditorobject,\n\
+isn't it possible to reduce a program.\n\
+Finish you editing and then try it again.\
+"
+

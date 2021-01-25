@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1
+	red2:1.1
+	red1:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	92.11.04.18.23.56;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@src
+@

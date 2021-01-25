@@ -1,0 +1,807 @@
+head	1.4;
+access;
+symbols
+	continuation_based_interactions:1.4
+	pre_interactions:1.4
+	nCUBE~:1.3
+	red2:1.3
+	red1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	95.05.22.09.11.14;	author rs;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.12.16.12.49.43;	author rs;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.4
+log
+@changed nCUBE to D_SLAVE
+@
+text
+@/* $Log: rdig-v2.c,v $
+ * Revision 1.3  1993/09/01  12:37:17  base
+ * ANSI-version mit mess und verteilungs-Routinen
+ *
+ * Revision 1.2  1992/12/16  12:49:43  rs
+ * ANSI-Version
+ *
+ * Revision 1.1  1992/11/04  18:12:30  base
+ * Initial revision
+ * */
+
+
+
+/*-----------------------------------------------------------------------------
+ *  digit-viel2:c  - external:  digit_abs, digit_frac, digit_trunc, digit_ceil,
+ *                              digit_floor, digit_neg
+ *         Aufgerufen durch:  red_abs, red_frac, red_trunc, usw.
+ *  digit-viel2:c  - internal:  keine;
+ *-----------------------------------------------------------------------------
+ */
+
+#include "rstdinc.h"
+#if D_SLAVE
+#include "rncstack.h"
+#else
+#include "rstackty.h"
+#endif
+#include "rheapty.h"
+#include "rextern.h"
+#include "rmeasure.h"
+#include "rdigit.h"
+
+#include "dbug.h"
+
+#if D_MESS
+#include "d_mess_io.h"
+#endif
+
+
+/*-----------------------------------------------------------------------------
+ * Spezielle externe Routinen:
+ */
+extern PTR_DESCRIPTOR newdesc();            /* heap:c       */
+extern PTR_DESCRIPTOR digit_add();          /* digit-add:c  */
+extern PTR_DESCRIPTOR digit_sub();          /* digit-sub:c  */
+#if DEBUG
+extern PTR_DESCRIPTOR digit_test();         /* digit-v1:c   */
+#endif
+
+/* ach 30/10/92 */
+extern int newheap();                       /* rheap.c */
+/* end of ach */
+
+/* RS 6.11.1992 */ 
+extern void disable_scav();                /* rscavenge.c */
+extern void enable_scav();                 /* rscavenge.c */
+/* END of RS 6.11.1992 */ 
+
+#if DEBUG
+extern void res_heap(); /* TB, 4.11.1992 */        /* rheap.c */
+extern void rel_heap(); /* TB, 4.11.1992 */        /* rheap.c */
+extern void test_dec_refcnt(); /* TB, 4.11.1992 */ /* rheap.c */
+extern void test_inc_refcnt(); /* TB, 4.11.1992 */ /* rheap.c */
+extern void DescDump(); /* TB, 4.11.1992 */        /* rdesc.c */
+#endif
+
+/*-----------------------------------------------------------------------------
+ *  digit_abs  --  liefert den Absolutbetrag einer Digit-Zahl zurueck.
+ *  globals    --  _digit_recycling  <r>                state:c
+ *                 _dig0             <r>
+ *                 debconf           <r>    (nur DEBUG) runtime:c
+ *-----------------------------------------------------------------------------
+ */
+
+PTR_DESCRIPTOR digit_abs(desc)
+PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR  res;
+   register int i, *data1, *data3, ndigit;
+   extern BOOLEAN _digit_recycling;
+#if DEBUG
+   extern int debconf;
+#endif
+
+  DBUG_ENTER ("digit_abs");
+
+   if  (R_DIGIT((*desc),sign) == PLUS_SIGN)     /* Zahl bleibt unveraendert */
+   {
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_abs",desc,0));
+   }
+
+   if (R_DESC((*desc),ref_count) == 1   &&   _digit_recycling)
+   {
+      INC_REFCNT(desc);                              /* alter Deskriptor */
+      L_DIGIT((*desc),sign) = PLUS_SIGN;             /* wiederverwendbar */
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_abs",desc,0));   /* d.h. lediglich Vor- */
+   }                                                 /* zeichen vertauschen */
+
+   ndigit = R_DIGIT((*desc),ndigit);
+   DIGDESC(res,ndigit);                     /* Deskriptor und Heapplatz anfordern */
+   L_DIGIT((*res),sign) = PLUS_SIGN;
+   L_DIGIT((*res),ndigit) = ndigit;
+   L_DIGIT((*res),Exp) = R_DIGIT((*desc),Exp);
+   RES_HEAP;
+   data1 = R_DIGIT((*desc),ptdv);           /* lokale Heapzeiger */
+   data3 = R_DIGIT((*res),ptdv);
+
+   for ( i=0; i<ndigit; i++)                /* Zahl kopieren */
+       data3[i] = data1[i];
+   REL_HEAP;
+   DBUG_RETURN(DIGIT_TEST(res,"digit_abs",desc,0));
+}
+
+
+/*
+----------------------------------------------------------------------------
+* digit_frac  --  schneidet bei einer Digit-Zahl alle Vorkommastellen ab.
+*
+* globals:    _digit_recycling    <r>       state:c
+*             _dig0               <r>       heap:c
+*             debconf             <r>       runtime:c   (nur DEBUG)
+*/
+
+PTR_DESCRIPTOR digit_frac(desc)
+PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR res;
+   register int i, *data1, *data3;
+   int ndigit, exp;
+   extern BOOLEAN _digit_recycling;                   /* state:c */
+
+#if DEBUG
+  extern int debconf;                       /* runtime:c */
+
+  DBUG_ENTER ("digit_frac");
+
+  if (debconf) printf("\n\ndigit-frac gestartet\n");
+#else
+  DBUG_ENTER ("digit_frac");
+#endif
+
+   if ( (exp = R_DIGIT((*desc),Exp)) - (ndigit = R_DIGIT((*desc),ndigit)) >= -1)
+   {
+      INC_REFCNT(_dig0);           /* Zahl hat keine Nachkommastellen */
+      DBUG_RETURN(_dig0);
+   }
+
+   if (exp < 0)
+   {                               /* Zahl hat nur Nachkommastellen */
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_frac",desc,0));
+   }
+
+/* jetzt muessen die obersten (= groessten) Ziffern abgeschnitten werden */
+
+   if ( R_DESC((*desc),ref_count) == 1  &&  _digit_recycling)
+   {                                        /* Deskriptor darf umgebaut werden */
+      L_DIGIT((*desc),ndigit) = ndigit -= (exp + 1);
+
+/* die oberen Ziffern werden abgeschnitten, indem einfach die Anzahl der Ziffern
+   reduziert wird */
+      L_DIGIT((*desc),Exp) = -1;
+      RES_HEAP;
+      while ((data3 = R_DIGIT((*desc),ptdv))[ndigit-1]  ==  0)  /* Normieren */
+      {
+         L_DIGIT((*desc),ndigit) = --ndigit;    /* Ziffernzahl verkleinern      */
+         L_DIGIT((*desc),Exp)--;                /* die Ziffer mit dem kleinsten */
+      }                                         /* Exponenten steht an der 0-ten */
+      REL_HEAP;                                 /* Stelle. Die Vorkommaziffern  */
+      INC_REFCNT(desc);                         /* bleiben, werden aber nicht   */
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_frac",desc,0));  /* mehr gebraucht          */
+   }
+
+   ndigit -= (exp + 1);                     /* neue Ziffernanzahl */
+   exp = -1;
+   DIGDESC(res,ndigit);                     /* Deskriptor und Heapplatz anfordern */
+
+   RES_HEAP;
+   data1 = R_DIGIT((*desc),ptdv);
+   while (data1[ndigit-1] == 0)             /* Normieren, dass durch das */
+   {                                        /* Ziffernabschneiden noetig */
+      ndigit--;                             /* wird                      */
+      exp--;
+   }
+   data3 = R_DIGIT((*res),ptdv);
+
+   for ( i=0; i < ndigit; i++)              /* kopieren der benoetigten */
+       data3[i] = data1[i];                 /* Ziffern                  */
+
+   REL_HEAP;
+   L_DIGIT((*res),ndigit) = ndigit;
+   L_DIGIT((*res),sign) = R_DIGIT((*desc),sign);
+   L_DIGIT((*res),Exp) = exp;
+   DBUG_RETURN(DIGIT_TEST(res,"digit_frac",desc,0));
+}
+
+
+
+/*---------------------------------------------------------------------------
+ *   digit_trunc  --  schneidet bei einer Digitzahl die Nachkommastellen ab.
+ *
+ *   globals:     _digit_recycling    <r>                  state:c
+ *                _dig0               <r>                  heap:c
+ *                debconf             <r>     (nur DEBUG)  runtime:c
+ */
+
+PTR_DESCRIPTOR digit_trunc(desc)
+
+PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR res;
+   register int i, *data1, *data3;
+   int ndigit, exp, j, k;
+   extern BOOLEAN _digit_recycling;                   /*  state:c */
+#if DEBUG
+   extern int debconf;                                /* runtime:c */
+
+   DBUG_ENTER ("digit_trunc");
+
+   if (debconf) printf("\n\n\n*** digit_trunc gestartet! ***\n");
+#else
+   DBUG_ENTER ("digit_trunc");
+#endif
+
+   if ( (ndigit = R_DIGIT((*desc),ndigit)) <= ((exp = R_DIGIT((*desc),Exp)) + 1))
+   {
+      INC_REFCNT(desc);                     /* keine Nachkommastellen */
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_trunc",desc,0));
+   }
+
+   if (exp < 0)           /* keine Vorkommastellen vorhanden gewesen */
+   {
+      INC_REFCNT(_dig0);
+      DBUG_RETURN(_dig0);
+   }
+
+/* jetzt muessen die untersten (= kleinsten) Ziffern abgeschnitten werden.
+   Da die kleinste Ziffer an nullter Stelle steht, muss die Ziffernfolge neu
+   ausgerichtet werden */
+   if ( R_DESC((*desc),ref_count) == 1  &&  _digit_recycling)
+   {                                     /* Deskriptor darf umgebaut werden */
+      data1 = R_DIGIT((*desc),ptdv);
+      j = ndigit - (exp + 1);            /* Ziffernzahl des Ergebnisses */
+      k = exp + 1;
+      while (data1[j] == 0)              /* Normieren, da durch das Ziffern- */
+      {                                  /* abschneiden Nullen am Rand stehen */
+         j++;                            /* koennen */
+         k--;
+         exp--;
+      }
+      for (i=0; i <= exp; i++,j++)       /* Ziffern verschieben, da die Ziffer */
+      {                                  /* mit dem niedrigsten Exponent   */
+         data1[i] = data1[j];            /* ganz vorne steht */
+      }
+      L_DIGIT((*desc),ndigit) = k;
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_trunc",desc,0));
+   }
+
+#if (D_SLAVE && D_MESS && D_MHEAP)
+   if ((res = (*d_m_newdesc)() ) == NULL)
+#else
+   if ((res = newdesc() ) == NULL)
+#endif
+      DBUG_RETURN((PTR_DESCRIPTOR)0);
+   DESC_MASK(res,1,C_DIGIT, TY_DIGIT);      /* Deskriptor initialisieren */
+   L_DIGIT((*res),sign) = R_DIGIT((*desc),sign);
+   L_DIGIT((*res),Exp) = exp;
+   data1 = R_DIGIT((*desc),ptdv);
+   j = (ndigit - (exp + 1));
+   k = exp + 1;
+   while (data1[j] == 0)           /* Normieren */
+   {                               /* d.h. Kopiergrenzen modifizieren */
+      j++;
+      k--;
+      exp--;
+   }
+   if (k == 0)              /* inzwischen keine Vorkommastellen mehr ueber */
+   {
+      INC_REFCNT(_dig0);
+      DEC_REFCNT(res);
+      DBUG_RETURN(_dig0);
+   }
+#if  DEBUG
+   if (k < 0) printf("\n\n trunc: negative Ziffernanzahl!\n");
+#endif
+#if (D_SLAVE && D_MESS && D_MHEAP)
+   if ((*d_m_newheap) (k, A_DIGIT((*res),ptdv) ) == 0)
+#else
+   if (newheap (k, A_DIGIT((*res),ptdv) ) == 0)
+#endif
+   {
+      DEC_REFCNT(res);
+      DBUG_RETURN((PTR_DESCRIPTOR)0);
+   }
+   data3 = R_DIGIT((*res),ptdv);
+   for (i=0; i<=exp; i++,j++)               /* Ziffern kopieren */
+   {
+      data3[i] = data1[j];
+   }
+   L_DIGIT((*res),ndigit) = k;              /* tatsaechliche neue Ziffernzahl */
+   DBUG_RETURN(DIGIT_TEST(res,"digit_trunc",desc,0));
+}
+
+/*
+-----------------------------------------------------------------------------
+*   digit_floor  --  schneidet bei einer Digitzahl die Nachkommastellen ab,
+*                    wobei abgerundet wird. Existieren keine Nachkommastellen,
+*                    so bleibt die Zahl unveraendert.
+*   globals:     _digit_recycling    <r>                 state:c
+*                _dig0,_dig1         <r>                 heap:c
+*                debconf             <r>  (nur DEBUG)    runtime:c
+*/
+
+PTR_DESCRIPTOR digit_floor(desc)
+PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR res;                      /* Ergebnis */
+   register int i, *data1, *data3;
+   int ndigit, exp, j;
+   COUNT sign;                              /* Vorzeichen */
+   extern BOOLEAN _digit_recycling;         /* state:c   */
+
+#if DEBUG
+  extern int debconf;                       /* runtime:c  */
+
+  DBUG_ENTER ("digit_floor");
+
+  if (debconf) printf("\n\ndigit-floor gestartet\n");
+#else
+  DBUG_ENTER ("digit_floor");
+#endif
+
+   if ( (ndigit = R_DIGIT((*desc),ndigit)) <= (exp = R_DIGIT((*desc),Exp)) + 1)
+   {
+      INC_REFCNT(desc);            /*  keine Nachkommastellen vorhanden */
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_floor",desc,0));
+   }
+
+   if (exp < 0)           /* keine Vorkommastellen vorhanden */
+   {
+      if (R_DIGIT((*desc),sign) == PLUS_SIGN)
+      {
+         INC_REFCNT(_dig0);
+         DBUG_RETURN(_dig0);
+      }
+      else                /* bei negativen Vorzeichen muss die Zahl um 1 */
+      {                   /* verkleinert werden -> (-1) erzeugen  */
+         DIGDESC(res,1);
+         L_DIGIT((*res),sign) =/*=*/ MINUS_SIGN;     /* ach 30/10/92 */
+         L_DIGIT((*res),Exp) = 0;
+         L_DIGIT((*res),ndigit) = 1;
+         R_DIGIT((*res),ptdv)[0] = 1;                /* die Ziffer */
+         DBUG_RETURN(DIGIT_TEST(res,"digit_floor",desc,0));
+      }
+   }
+
+   if ( R_DESC((*desc),ref_count) == 1  &&  _digit_recycling)
+   {                                 /* Zahl kann im alten Deskriptor zusammengeschoben werden */
+      data1 = R_DIGIT((*desc),ptdv);
+      j = ndigit - (exp + 1);
+      ndigit = exp + 1;
+      while (data1[j] == 0)        /* Normieren */
+      {
+         j++;
+         ndigit--;
+         exp--;
+      }
+      for (i=0; i <=exp; i++,j++)
+      {
+         data1[i] = data1[j];      /* zurueckbleibende Ziffern verschieben */
+      }
+      L_DIGIT((*desc),ndigit) = ndigit;
+      if (R_DIGIT((*desc),sign) == MINUS_SIGN)
+      {
+         data1[0]++;               /* im neg. Fall Zahl um ein verkleinern */
+         if (data1[0] >= BASE)     /* im Ueberlauffall die Subtraktion aufrufen */
+         {                         /* da sich der Uebertrag soweit fortpflanzen */
+            data1[0]--;            /* kann, dass neuer Deskriptor faellig wird */
+            res = (PTR_DESCRIPTOR) digit_sub(desc, _dig1);
+            if (res == 0)
+               DBUG_RETURN((PTR_DESCRIPTOR)0);
+            DBUG_RETURN(DIGIT_TEST(res,"digit_floor",desc,0));
+         }
+      }
+
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_floor",desc,0));
+   }
+
+   j = ndigit - (exp + 1);
+   ndigit = exp + 1;
+   DIGDESC(res, ndigit);
+   L_DIGIT((*res),sign) = sign = R_DIGIT((*desc),sign);
+   L_DIGIT((*res),Exp) = exp;
+   data1 = R_DIGIT((*desc),ptdv);
+#if DEBUG
+ if (ndigit <= 0)  printf ("\n\n\n floor: ndigit <= 0!!!\n");
+#endif
+
+   data3 = R_DIGIT((*res),ptdv);
+   for (i=0; i<=exp; i++,j++)
+   {
+      data3[i] = data1[j];
+   }
+   if (sign)
+   {
+      if ( ++data3[0] >= BASE)   /* eins subtrahieren, da Zahl negativ ist */
+      {
+         data3[0]--;               /* Wieder rueckgaengig machen wegen Uebertrag */
+         L_DIGIT((*res),ndigit) = ndigit;
+         desc = (PTR_DESCRIPTOR) digit_sub(res,_dig1);   /* vollstaendige Subtraktion */
+         DEC_REFCNT(res);                                /* wegen der komplexen Moeglich- */
+         if (desc == 0)                                  /* keiten, wie Uebertraege anfallen */
+            DBUG_RETURN((PTR_DESCRIPTOR)0);
+         DBUG_RETURN(DIGIT_TEST(desc,"digit_floor",desc,0));
+      }
+   }
+
+   while (data3[0] == 0)            /* Normieren */
+   {
+#if DEBUG
+  if (debconf) printf("Normieren\n");
+#endif
+      j = ndigit - 1;
+      for (i=0; i<j; i++)
+          data3[i] = data3[i+1];
+      ndigit--;
+   }
+   L_DIGIT((*res),ndigit) = ndigit;
+   DBUG_RETURN(DIGIT_TEST(res,"digit_floor",desc,0));
+}
+
+
+/*
+-----------------------------------------------------------------------------
+*   digit_ceil  --  schneidet bei einer Digitzahl die Nachkommastellen ab,
+*                    wobei abgerundet wird.
+*   globals:     _digit_recycling    <r>
+*                _dig0,_dig1         <r>
+*/
+
+PTR_DESCRIPTOR digit_ceil(desc)
+PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR res;
+   register int i, *data1, *data3;
+   int ndigit, exp, j;
+   COUNT sign;
+   extern BOOLEAN _digit_recycling;
+
+#if DEBUG
+  extern int debconf;
+
+  DBUG_ENTER ("digit_ceil");
+
+  if (debconf) printf("\n\ndigit-ceil gestartet\n");
+#else
+  DBUG_ENTER ("digit_ceil");
+#endif
+
+   if ( (ndigit = R_DIGIT((*desc),ndigit)) <= (exp = R_DIGIT((*desc),Exp)) + 1)
+   {                               /* keine Nachkommastellen */
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_ceil",desc,0));
+   }
+
+   if (exp < 0)     /* nur Nachkommastellen */
+   {
+      if (R_DIGIT((*desc),sign) == MINUS_SIGN)
+      {
+         INC_REFCNT(_dig0);
+         DBUG_RETURN(_dig0);
+      }
+      else
+      {
+         INC_REFCNT(_dig1);
+         DBUG_RETURN(_dig1);
+      }
+   }
+
+   if ( R_DESC((*desc),ref_count) == 1  &&  _digit_recycling)
+   {
+      data1 = R_DIGIT((*desc),ptdv);
+      j = ndigit - (exp + 1);
+      ndigit = exp + 1;           /* neue Ziffernzahl */
+      while (data1[j] == 0)       /* Normieren */
+      {
+         j++;
+         ndigit--;
+         exp--;
+      }
+      for (i=0; i <= exp; i++,j++)   /* Ziffern verschieben. Die kleinste steht */
+      {                              /* in data1[0] ! */
+         data1[i] = data1[j];
+      }
+      L_DIGIT((*desc),ndigit) = ndigit;
+      if (R_DIGIT((*desc),sign) == PLUS_SIGN)
+      {
+         data1[0]++;                /* eins Addieren wegen Aufrunden */
+         if (data1[0] >= BASE)      /* Uebertrag !!! */
+         {
+            data1[0]--;             /* Addieren zuruecknehmen */
+            res = (PTR_DESCRIPTOR) digit_add(desc,_dig1);  /* echtes Addieren mit */
+            if (res == 0)                                  /* Uebertragbehandlung */
+               DBUG_RETURN((PTR_DESCRIPTOR)0);
+            DBUG_RETURN(DIGIT_TEST(res,"digit_ceil",desc,0));
+         }
+      }
+      INC_REFCNT(desc);
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_ceil",desc,0));
+   }
+
+   j = ndigit - (exp + 1);
+   ndigit = exp + 1;               /* neue Ziffernzahl bestimmen */
+   DIGDESC(res,ndigit);            /* Deskriptor und Heapplatz anfordern */
+   L_DIGIT((*res),sign) = sign = R_DIGIT((*desc),sign);
+   L_DIGIT((*res),Exp) = exp;
+   data1 = R_DIGIT((*desc),ptdv);
+   data3 = R_DIGIT((*res),ptdv);
+   for (i=0; i<ndigit; i++,j++)      /* Ziffern kopieren */
+   {
+      data3[i] = data1[j];
+   }
+   if (sign == PLUS_SIGN)
+   {
+      if ( ++data3[0] >= BASE)       /* eins addieren und auf Ueberlauf testen */
+      {
+         data3[0]--;                 /* Addition zuruecknehmen */
+         L_DIGIT((*res),ndigit) = ndigit;
+         desc = (PTR_DESCRIPTOR) digit_add(res, _dig1);  /* "richtige" Addition */
+         DEC_REFCNT(res);
+         if (desc == 0)
+            DBUG_RETURN((PTR_DESCRIPTOR)0);
+         DBUG_RETURN(DIGIT_TEST(desc,"digit_ceil",desc,0));
+      }
+   }
+
+
+   while (data3[0] == 0)              /* Normieren */
+   {
+#if DEBUG
+  if (debconf) printf("Normieren\n");
+#endif
+      j = ndigit - 1;
+      for (i=0; i<j; i++)
+          data3[i] = data3[i+1];
+      ndigit--;
+   }
+
+   L_DIGIT((*res),ndigit) = exp + 1;
+   DBUG_RETURN(DIGIT_TEST(res,"digit_ceil",desc,0));
+}
+
+/*
+-----------------------------------------------------------------------------
+*   digit_neg  --  invertiert eine Digitzahl
+*   globals:     _digit_recycling    <r>                state:c
+*                _dig0               <r>                heap:c
+*                debconf             <r>  (nur DEBUG)   runtime:c
+*/
+
+PTR_DESCRIPTOR digit_neg(desc)
+ PTR_DESCRIPTOR desc;
+{
+   PTR_DESCRIPTOR res;
+   int i,ndigit;
+   STACKELEM *data1, *data3;
+   extern BOOLEAN _digit_recycling;                  /* state:c */
+#if DEBUG
+   extern BOOLEAN debconf;                           /* runtime:c */
+#endif
+
+   DBUG_ENTER ("digit_neg");
+
+   if (R_DIGIT((*desc),ptdv)[0] == 0) /* Die Null bekommt kein anderes Vorzeichen */
+   {
+      INC_REFCNT(desc);
+      DBUG_RETURN(desc);
+   }
+
+   if (_digit_recycling  &&  R_DESC((*desc),ref_count) == 1)
+   {
+      INC_REFCNT(desc);
+      if (R_DIGIT((*desc),sign) == PLUS_SIGN)
+         L_DIGIT((*desc),sign) = MINUS_SIGN;
+      else
+         L_DIGIT((*desc),sign) = PLUS_SIGN;
+      DBUG_RETURN(DIGIT_TEST(desc,"digit_neg",desc,0));
+   }
+
+   ndigit = R_DIGIT((*desc),ndigit);
+   DIGDESC(res,ndigit);
+   L_DIGIT((*res),sign) = (R_DIGIT((*desc),sign) ? PLUS_SIGN : MINUS_SIGN);
+   L_DIGIT((*res),Exp) = R_DIGIT((*desc),Exp);       /* PLUS_SIGN ist 0, waehrend MINUS_SIGN */
+   L_DIGIT((*res),ndigit) = ndigit;                  /* von 0 verschieden ist  */
+
+   RES_HEAP;
+   data3 = R_DIGIT((*res),ptdv);
+   data1 = R_DIGIT((*desc),ptdv);
+
+   for (i=0; i<ndigit; i++)
+       data3[i] = data1[i];
+
+   REL_HEAP;
+   DBUG_RETURN(DIGIT_TEST(res,"digit_neg",desc,0));
+}
+@
+
+
+1.3
+log
+@ANSI-version mit mess und verteilungs-Routinen
+@
+text
+@d2 3
+d23 1
+a23 1
+#if nCUBE
+d261 1
+a261 1
+#if (nCUBE && D_MESS && D_MHEAP)
+d288 1
+a288 1
+#if (nCUBE && D_MESS && D_MHEAP)
+@
+
+
+1.2
+log
+@ANSI-Version
+@
+text
+@d2 3
+d20 3
+d24 1
+d30 6
+d82 2
+d87 1
+a87 1
+      return(DIGIT_TEST(desc,"digit_abs",desc,0));
+d94 1
+a94 1
+      return(DIGIT_TEST(desc,"digit_abs",desc,0));   /* d.h. lediglich Vor- */
+d109 1
+a109 1
+   return(DIGIT_TEST(res,"digit_abs",desc,0));
+d133 2
+d136 2
+d143 1
+a143 1
+      return(_dig0);
+d149 1
+a149 1
+      return(DIGIT_TEST(desc,"digit_frac",desc,0));
+d169 1
+a169 1
+      return(DIGIT_TEST(desc,"digit_frac",desc,0));  /* mehr gebraucht          */
+d192 1
+a192 1
+   return(DIGIT_TEST(res,"digit_frac",desc,0));
+d215 3
+d219 2
+d226 1
+a226 1
+      return(DIGIT_TEST(desc,"digit_trunc",desc,0));
+d232 1
+a232 1
+      return(_dig0);
+d255 1
+a255 1
+      return(DIGIT_TEST(desc,"digit_trunc",desc,0));
+d258 3
+d262 2
+a263 1
+      return((PTR_DESCRIPTOR)0);
+d280 1
+a280 1
+      return(_dig0);
+d285 3
+d289 1
+d292 1
+a292 1
+      return((PTR_DESCRIPTOR)0);
+d300 1
+a300 1
+   return(DIGIT_TEST(res,"digit_trunc",desc,0));
+d325 2
+d328 2
+d335 1
+a335 1
+      return(DIGIT_TEST(desc,"digit_floor",desc,0));
+d343 1
+a343 1
+         return(_dig0);
+d352 1
+a352 1
+         return(DIGIT_TEST(res,"digit_floor",desc,0));
+d380 2
+a381 2
+               return((PTR_DESCRIPTOR)0);
+            return(DIGIT_TEST(res,"digit_floor",desc,0));
+d386 1
+a386 1
+      return(DIGIT_TEST(desc,"digit_floor",desc,0));
+d413 2
+a414 2
+            return((PTR_DESCRIPTOR)0);
+         return(DIGIT_TEST(desc,"digit_floor",desc,0));
+d429 1
+a429 1
+   return(DIGIT_TEST(res,"digit_floor",desc,0));
+d453 2
+d456 2
+d463 1
+a463 1
+      return(DIGIT_TEST(desc,"digit_ceil",desc,0));
+d471 1
+a471 1
+         return(_dig0);
+d476 1
+a476 1
+         return(_dig1);
+d504 2
+a505 2
+               return((PTR_DESCRIPTOR)0);
+            return(DIGIT_TEST(res,"digit_ceil",desc,0));
+d509 1
+a509 1
+      return(DIGIT_TEST(desc,"digit_ceil",desc,0));
+d532 2
+a533 2
+            return((PTR_DESCRIPTOR)0);
+         return(DIGIT_TEST(desc,"digit_ceil",desc,0));
+d550 1
+a550 1
+   return(DIGIT_TEST(res,"digit_ceil",desc,0));
+d572 2
+d577 1
+a577 1
+      return(desc);
+d587 1
+a587 1
+      return(DIGIT_TEST(desc,"digit_neg",desc,0));
+d604 1
+a604 1
+   return(DIGIT_TEST(res,"digit_neg",desc,0));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+a4 1
+/* $Log$ */
+d34 17
+d312 1
+a312 1
+         L_DIGIT((*res),sign) == MINUS_SIGN;
+@

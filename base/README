@@ -1,0 +1,25 @@
+kSven-Bodo Scholz						Kiel, den 1.9.93
+=====================================================================================
+This directory contains:
+
+BUGS.configure		known bugs of the configure-script in bin
+BUGS.fed		known bugs of the syntax oriented editor
+BUGS.red		known bugs of the pi red system
+COPYRIGHT		copyright notice
+README			this file
+README.RCS		some infos on our rcs configuration + user guideline
+README.VERSIONS		list of symbolic version names
+README.DEMOS		small description on how to make various reduma-demos
+README.MAKE		how to remake all the stuff
+bin/			binaries of all most recent versions which have a symb. name
+distrib/                all available distributions
+doc/			some documentation stuff 
+fed/			the sources for the syntax oriented editor
+lneu/			the sources of the interpreting version
+man/			the man pages for all ~base specific scripts
+ms/			the display tool for the monitoring system
+papers/                 
+rcsbin/			scripts supporting rcs
+red/			the sources of the compiling version (including meas/dist)
+tasm/                   
+udi/			the sources of the editor toolbox execpt of fed/

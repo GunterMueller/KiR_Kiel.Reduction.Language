@@ -1,0 +1,113 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	95.05.11.13.28.23;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.03.06.16.42.28;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@#ifndef _main_h
+
+#ifndef _dbug_h
+#include "dbug.h"
+#endif /* _dbug_h */
+
+#define _main_h
+
+/*******************************************************************************
+
+Some usefull macros for scanning command line arguments. For easy understanding
+here you can find some examples:
+
+- MAIN			>> no options <<
+  {...}
+
+- MAIN			>> only DBug option -# ... <<
+  {
+  OPT
+  OTHER {...}         ({...} may be empty)
+  ENDOPT
+  ...}
+
+- MAIN			>> DBUG option -# ..., v, f ... <<
+  {
+  OPT
+  ARG 'v': {...}
+  ARG 'f': PARM {...*argv...}
+	   NEXTOPT
+  OTHER {...}         ({...} may be empty)
+  ENDOPT
+  ...}
+
+*******************************************************************************/
+
+#define MAIN	void main(argc, argv)				\
+			int argc;				\
+			char ** argv;
+
+#define PARM	if (*++*argv) ;					\
+		else if (--argc > 0)				\
+		       ++argv;					\
+		else {						\
+		  --*argv, ++argc;				\
+		  break;					\
+		  }
+
+#define NEXTOPT	*argv += strlen(*argv) -1;
+
+#define OPT	while (--argc > 0 && **++argv == '-') {		\
+		  switch (*++*argv) {				\
+		    case 0:	--*argv;			\
+		           	break;				\
+		    case '-':	if (!(*argv)[1]) {		\
+				  ++argv, --argc;		\
+				  break;			\
+				  }				\
+		    default:	do {				\
+				  switch (**argv) {		\
+				    case '#':			\
+					PARM			\
+					DBUG_PUSH(*argv);	\
+					NEXTOPT
+#define ARG				continue;		\
+				    case
+#define OTHER				continue;		\
+				    }
+#define ENDOPT			  } while (*++*argv);		\
+				continue;			\
+		    }						\
+		    break;					\
+		  }
+
+#endif /* _main_h */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d60 1
+a60 1
+				    case 'Q':			\
+@

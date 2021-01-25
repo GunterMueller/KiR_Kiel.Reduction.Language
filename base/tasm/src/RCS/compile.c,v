@@ -1,0 +1,3226 @@
+head	1.74;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.74
+date	96.04.19.09.41.06;	author cr;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	96.04.11.13.23.20;	author cr;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	96.03.12.08.38.52;	author sf;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	96.03.06.14.52.19;	author sf;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	96.02.16.12.32.47;	author stt;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	96.02.15.09.28.30;	author sf;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	96.02.13.17.55.42;	author sf;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	96.02.13.16.05.27;	author stt;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	96.02.08.16.27.08;	author sf;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	96.02.08.12.58.27;	author sf;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	96.02.08.12.31.42;	author sf;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	96.02.05.12.25.20;	author sf;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	96.01.26.16.07.09;	author sf;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	96.01.25.18.26.36;	author sf;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.09.04.10.20.25;	author sf;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.08.29.12.05.16;	author sf;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.08.28.12.28.18;	author sf;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.08.15.14.38.20;	author sf;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.08.14.12.18.41;	author sf;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.08.14.08.43.31;	author sf;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.08.10.09.41.58;	author car;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.08.02.11.44.12;	author sf;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.07.12.16.09.19;	author sf;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.07.11.16.25.46;	author sf;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.07.10.13.43.33;	author car;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.07.07.14.58.22;	author sf;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.07.07.14.51.58;	author sf;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.07.07.13.27.25;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.07.07.12.11.56;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.07.07.11.25.35;	author car;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.07.07.09.36.50;	author sf;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.06.28.12.19.14;	author sf;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.06.28.10.00.41;	author sf;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.06.20.10.50.12;	author sf;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.06.13.14.35.05;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.06.02.16.34.01;	author sf;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.05.25.12.06.13;	author sf;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.05.16.16.10.31;	author sf;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.05.16.16.05.53;	author sf;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.05.16.14.36.50;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.05.03.08.47.25;	author sf;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.05.02.10.09.17;	author sf;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.04.27.14.57.50;	author sf;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.04.20.15.26.58;	author sf;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.04.12.13.30.26;	author sf;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.04.10.07.46.46;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.04.05.15.22.13;	author sf;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.03.29.16.08.24;	author cr;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.03.22.16.25.03;	author sf;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.03.20.12.36.28;	author sf;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.03.10.16.23.08;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.03.10.16.14.21;	author sf;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.03.09.12.52.54;	author sf;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.03.08.12.33.14;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.03.07.16.18.59;	author sf;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.03.06.15.22.20;	author sf;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.03.02.10.33.15;	author sf;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.02.02.14.30.04;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.01.26.11.47.31;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.01.25.10.21.09;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.01.06.16.47.31;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.01.02.14.20.55;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.29.14.43.30;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.21.16.36.35;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.20.16.48.56;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.20.15.57.38;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.08.13.10.34;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.05.15.28.58;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.02.09.56.21;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.29.12.53.06;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.23.15.21.29;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.22.09.33.38;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.21.12.58.47;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.08.01;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.74
+log
+@prepare for separate compilation
+step II: use modulfile as prefix for program-specific global variables
+in tasm-generated code (funcdesctable,funcclostable,data_table,
+number_of_descs,ptc_table,number_of_data,stat_funcdesctable)
+@
+text
+@/***********************************************************************/
+/* Compiles syntaxtree built by tasm2c.y. Call from tasm2c.y.          */
+/***********************************************************************/
+
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "main.h"
+#include "dbug.h"
+#include "mytypes.h"
+#include "globals.h"
+#include "buildtree.h"
+#include "comp_support.h"
+#include "error.h"
+#include "c_output.h"
+#include "optimizer.h"
+
+#define ONE_FUNCTION_LIMIT 600
+
+extern int FRED_FISH, WATCH, RED_CNT, ODDSEX, MODUL, DIST, TEST_STACK;
+extern PROGRAM *program_start;
+extern char *primf_tab[];
+extern int dontremove;
+extern int do_dupe;
+extern char *modulfile;
+
+void build_functable();
+void build_functable_one_function();
+void compile_function1();
+void compile_function2();
+void insert_fred_fish();
+void insert_function_header();
+void insert_redcnt_info();
+void build_control();
+int count_command(FUNCTION *);
+void insert_labels_one_function(FUNCTION *);
+
+#ifdef VCOMPILE
+  char *vcompile = VCOMPILE;
+#else /* VCOMPILE */
+  char *vcompile = "none";
+#endif /* VCOMPILE */
+
+char *funcprot;
+
+/*************************************************************/
+/* receives a name of a function or conditional and returns  */
+/* pointer to the equivalent descriptor                      */
+/* can't fail                                                */
+/*************************************************************/
+
+int search_funcname(char *find_me)
+{
+  int i=0;
+
+  FUNDESC *fd = GETFIRSTDESC(program_start);
+  FUNDESC *help;
+  FUNCTION *fn = GETFIRSTFUNCTION(program_start);
+  
+  while (strcmp(GETNAME(fn), find_me))
+    fn = GETNEXTFUNCTION(fn);
+  help = GETDESC(fn);
+  while (help != fd)  
+  {
+    i++;
+    fd = GETNEXTDESC(fd);
+  }
+  return(i);
+}
+
+int search_condname(char *find_me)
+{
+  int i=0;
+
+  FUNDESC *fd = GETFIRSTDESC(program_start);
+
+  while (1)
+  {
+    if (strcmp(GETDESCENTRY(fd, label), find_me))
+    { i++; fd = GETNEXTDESC(fd); continue;}
+    return(i);
+  }
+}
+
+/************************************************************/
+/* counts number of data entries                            */
+/************************************************************/
+
+int count_data(PROGRAM *p)
+{
+  int i = -1;
+  DATANODE *data = GETFIRSTDATA(p);
+  
+  while (NULL != data) 
+  {
+    data = GETNEXTDATA(data);
+    i++;
+  }
+  return(i);
+}
+  
+/***********************************************************************/
+/* initiates the compilation and controls the single compilationsteps. */
+/***********************************************************************/
+
+int compile(char *modulfile)
+{
+  FUNCTION *func;
+  int i;
+  int number_of_commands = 0;
+  char *help_str;
+  
+  DBUG_ENTER("compile");
+  if (NULL == (funcprot = (char *)malloc(L_tmpnam + 4)))
+    yyfail("unable to allocate memory");
+  tmpnam(funcprot);
+  strcat(funcprot, ".h");
+  help_str = strrchr(funcprot, '/');
+  funcprot = &help_str[1];
+  DBUG_PRINT("FILE", ("function prototype file : %s", funcprot));
+  func=GETFIRSTFUNCTION(program_start);
+  while (NULL != func)
+  {
+    number_of_commands += count_command(func);
+    func=GETNEXTFUNCTION(func);
+  }
+  if ((ONE_FUNCTION_LIMIT > number_of_commands) && !MODUL && 
+      (!uses_apply) && (!do_dupe) && (FALSE == RED_CNT) && (FALSE == DIST))
+    fprintf(yyout,"#define ONE_FUNCTION %d\n", number_of_commands);
+  if (TEST_STACK)
+    fprintf(yyout,"#define TEST_STACK 1\n");
+  if (DIST)
+    fprintf(yyout,"#define D_SLAVE 1\n");
+  if (dogcc && !DIST && !useacc)
+    fprintf(yyout,"#define USES_GCC 1\n");
+  if (MODUL)
+  {
+    if (ISASM_TILDE())
+      fprintf(yyout,"extern int withtilde;\n");
+    else
+    {
+      fprintf(yyout,"#define WITHTILDE 1\n");
+      fprintf(yyout,"extern int withtilde;\n");
+    }
+    fprintf(yyout, "extern int _formated;\n");
+    fprintf(yyout, "extern int red_cnt;\n");
+/* cr 28/03/95, kir(ff), START */
+    fprintf(yyout, "extern int inter_allowed;\n");
+/* cr 28/03/95, kir(ff), END */
+  }
+  else
+  {
+    if (ISASM_TILDE()) 
+    {
+      fprintf(yyout,"int withtilde = 1;\n");
+      fprintf(yyout,"#define WITHTILDE 1\n");
+    }
+    else
+      fprintf(yyout,"int withtilde = 0;\n");
+    fprintf(yyout, "int _formated = 1;\n");
+    fprintf(yyout, "int red_cnt = 10000000;\n");
+/* cr 28/03/95, kir(ff), START */
+    fprintf(yyout, "int inter_allowed = 1;\n");
+/* cr 28/03/95, kir(ff), END */
+  }
+
+  i = count_data(program_start);
+  fprintf(yyout, "int %sdata_table[%d];\n", modulfile, i + 2);   /* needs to be here `cause
+                                                    data_table needs to be initialized
+                                                    with a value > 0 */
+  fprintf(yyout, "int %snumber_of_data = %d;\n", modulfile, i + 1);
+  build_control(program_start);
+  fprintf(yyout, "#include \"prolog.h\"\n");
+  fprintf(yyout, "#include \"%s%s%s%s\"\n",
+      P_tmpdir, P_tmpdir[strlen(P_tmpdir)-1] == '/' ? "" : "/", modulfile, funcprot);
+
+  func=GETFIRSTFUNCTION(program_start);
+  if ((ONE_FUNCTION_LIMIT > number_of_commands) && !MODUL && 
+      (!uses_apply) && (!do_dupe) && (FALSE == RED_CNT) && (FALSE == DIST))
+  {
+    yymessage("compiling all asm-functions to one C-function");
+    make_one_function(program_start);
+
+    if (strcmp(GETNAME(func),"apply"))
+    {
+      if (optimize > 0) optimize_delta(func);
+      insert_labels_one_function(func);
+      insert_fred_fish(func);
+      insert_function_header(func);
+      if (RED_CNT)
+	insert_redcnt_info(func);
+      compile_delta(func);
+    }
+    if (NULL!=GETFIRSTDESC(program_start))
+      build_functable_one_function(GETFIRSTDESC(program_start), modulfile);
+    c_out_functable(functable, TRUE);
+    fprintf(yyout, "#include \"c_main.c\"\n");
+    c_out_data(program_start);
+    c_out_order_list(func);
+    func = GETNEXTFUNCTION(func);
+    while(NULL != func)
+    {
+      if (!strcmp(GETNAME(func),"apply"))
+        c_out_order_list(func);
+      func = GETNEXTFUNCTION(func);
+    }
+  }
+  else
+  {
+    if (NULL!=GETFIRSTDESC(program_start))
+      build_functable(GETFIRSTDESC(program_start), modulfile);
+    c_out_functable(functable, TRUE);
+    fprintf(yyout, "#include \"c_main.c\"\n");
+    c_out_data(program_start);
+    while (NULL!=func)
+    {
+      if (strcmp(GETNAME(func),"apply"))
+      {
+        if ((!RED_CNT) && (optimize > 0))
+          optimize_delta(func);
+	insert_labels(func);
+	insert_fred_fish(func);
+	insert_function_header(func);
+	if (RED_CNT)
+	  insert_redcnt_info(func);
+	compile_delta(func);
+      }
+      c_out_order_list(func);
+      func=GETNEXTFUNCTION(func);
+    }
+  }
+  if (MODUL)
+    c_build_func_prot(program_start, modulfile);
+  else 
+     c_build_func_prot(program_start, "");
+  fclose(yyout);
+  if (dogcc && outfile)
+  {
+    build_makefile(); 
+    call_makefile();
+    if (!dontremove)
+      clean_up();       
+  }
+  
+  DBUG_RETURN(0);
+}
+
+
+/**********************************************************************/
+/* Looks for a function called s in global functable                  */
+/* returns pointer to location of function descriptor                 */
+/**********************************************************************/
+
+FUNDESC *search_func(char *s)
+{
+  FUNDESC *f;
+ 
+  DBUG_ENTER("search_func"); 
+  f=GETFIRSTDESC(program_start);
+  DBUG_PRINT("SEARCH", ("looking for :%s",s));
+  while (NULL!=f)
+  {
+    DBUG_PRINT("SEARCH", ("found:%s",GETDESCENTRY(f, label)));
+    
+    if (!strcmp(s,GETDESCENTRY(f, label)))
+    break;
+    f=GETNEXTDESC(f);
+  }
+  if (NULL==f)
+    yyfail("%s","Unknown Function !\n");
+  DBUG_RETURN(f);
+}
+
+/**********************************************************************/
+/* Builds controlling function for the mutual calls of the functions. */
+/* Hangs it at end of the syntaxtree.                                 */
+/**********************************************************************/
+
+void build_control(PROGRAM *p)
+{
+  FUNCTION *f;
+  ORDER *os,*oe,*ohelp;
+
+  DBUG_ENTER("build_control");
+/* make a new function called apply */
+  f=GETFIRSTFUNCTION(p);
+  while (NULL!=GETNEXTFUNCTION(f)) f=GETNEXTFUNCTION(f);
+  SETNEXTFUNCTION(f)=(FUNCTION *)malloc(sizeof(FUNCTION));
+  if (NULL==GETNEXTFUNCTION(f))
+    yyfail("%s","Couldn't allocate memory !\n");
+  f=GETNEXTFUNCTION(f);
+  SETNEXTFUNCTION(f)=NULL;
+  if (NULL == (SETNAME(f) = (char *)malloc(strlen("apply") + 1)))
+    yyfail("memory allocation failure");
+  strcpy(SETNAME(f),"apply");
+
+/* first the header */  
+  os=new_order(code_ok,"int apply(int (*start)())");
+/* chain first order to function */
+  SETFIRSTORDER(f)=os;
+  
+/* then ending brace */  
+  oe=new_order(code_ok,"}");
+/* chain end to orderlist */
+  SETNEXTORDER(os)=oe;
+  SETPREVORDER(oe)=os;
+/* insert opening brace */
+  os=new_order(code_ok,"{");
+  insert_order_list(os,oe);
+  
+/* now inserting the code "while (NULL!=start) start=(int(*)())(*start)();"*/
+  if (DIST)
+  {
+    ohelp=new_order(code_ok,"while (NULL!=start)"
+                            " {\n  if (sig_msg_flag) msg_check();\n"
+                            "  start=(int(*)())(*start)();\n}");
+  }
+  else
+  {
+    ohelp=new_order(code_ok,"while (NULL!=start) start=(int(*)())(*start)();");
+  }
+  insert_order_list(ohelp,oe);
+
+  ohelp=new_order(code_ok, "return proc_retval;");
+  insert_order_list(ohelp,oe);
+
+  DBUG_VOID_RETURN;
+}
+ 
+
+/**********************************************************************/
+/* Inserts Fred-Fish-header at the beginning and end of each function */
+/* in the syntaxtree.                                                 */
+/* Also sets braces at the beginning and the end of the function.     */
+/**********************************************************************/
+
+void insert_fred_fish(FUNCTION *f)
+{
+  ORDER *o, *ohelp;
+  char *s;
+  
+  char text[120];
+  
+  DBUG_ENTER("insert_fred_fish");
+
+  sprintf(text,"DBUG_ENTER(\"%s\");",GETNAME(f));
+  
+  s=(char *)malloc(strlen(text)+1);
+  if (NULL==s)
+    yyfail("%s","Couldn't allocate memory !\n");
+  strcpy(s,text);
+  
+  o=new_order(code_ok,s);  
+  
+  insert_order_list(o,GETFIRSTORDER(f));
+  SETFIRSTORDER(f)=o;
+  
+  /* inserting DBUG_RETURN at end of function code */
+  ohelp=new_order(code_ok,"DBUG_RETURN(0);");
+  /* only dummy Return value to satisfy fred */
+
+  while (NULL!=GETNEXTORDER(o)) o=GETNEXTORDER(o);
+
+  SETNEXTORDER(o)=ohelp;
+  SETPREVORDER(ohelp)=o;
+  DBUG_VOID_RETURN;
+}  
+
+
+
+/**********************************************************************/
+/* Inserts function_header at the beginning of each function in the   */
+/* syntaxtree.                                                        */
+/* Also sets braces at the beginning and the end of the function.     */
+/**********************************************************************/
+
+void insert_function_header(FUNCTION *f)
+{
+  ORDER *o, *ohelp;
+  char text[120];
+  char *s;
+
+  sprintf(text,"int %s(void)",GETNAME(f));
+  s=(char *)malloc(strlen(text)+1);
+  if (NULL==s)
+    yyfail("%s","Couldn't allocate memory !\n");
+  strcpy(s,text);
+  
+  o=new_order(code_ok,s);
+  insert_order_list(o,GETFIRSTORDER(f));
+  SETFIRSTORDER(f)=o;
+  if (optimize > 0)
+    o=new_order(code_ok,"{ int t;");
+  else
+    o=new_order(code_ok,"{");
+  insert_order_list(o,GETNEXTORDER(GETFIRSTORDER(f)));
+
+/* inserting closing else brace at end of function code */
+  ohelp=new_order(code_ok,"}");
+  while (NULL!=GETNEXTORDER(o)) o=GETNEXTORDER(o);
+  SETNEXTORDER(o)=ohelp;
+  SETPREVORDER(ohelp)=o;
+}  
+
+/**********************************************************************/
+/* Inserts redcounttest before each deltaX, gammabeta, beta and ap    */
+/* and builds code for closure building while runtime. Inserts the    */
+/* built code into the syntaxtree                                     */
+/**********************************************************************/
+
+void insert_redcnt_info(FUNCTION *f)
+{
+  ORDER *o, *ohelp;
+  FUNDESC *fd;
+  char text[120];
+  char t_red[]="if (0==red_cnt) ";
+  int change;
+  
+  o=GETFIRSTORDER(f);
+  while (NULL!=o)
+  {
+    change=0;
+    switch(GETORDERENTRY(o, command))
+    {
+    case delta1:
+    {
+      change=1;
+      sprintf(text,"%s\nf_mkdclos(-1, 1, 1,%s);\nelse", \
+              t_red,primf_tab[GETPRF(GETORDERARGS(o, primf))]);
+      break;
+    }
+    case delta2:
+    {
+      change=1;
+      sprintf(text,"%s\nf_mkdclos(-1, 2, 2,%s);\nelse", \
+              t_red,primf_tab[GETPRF(GETORDERARGS(o, primf))]);
+      break;
+    }
+     case delta3:
+    {
+      change=1;
+      sprintf(text,"%s\nf_mkdclos(-1, 3, 3,%s);\nelse", \
+              t_red,primf_tab[GETPRF(GETORDERARGS(o, primf))]);
+      break;
+    }
+     case delta4:
+    {
+      change=1;
+      sprintf(text,"%s\nf_mkdclos(-1, 4, 4,%s);\nelse", \
+              t_red,primf_tab[GETPRF(GETORDERARGS(o, primf))]);
+      break;
+    }
+     case betanear:
+     case betafar:
+    {
+      change=1;
+      fd=search_func(GETORDERARGS(o, label));
+      sprintf(text,"%s\npush(f_mkbclos(%d, %sfuncdesctable[%d]));\nelse", t_red, \
+              GETDESCENTRY(fd, nv), modulfile, search_funcname(GETDESCENTRY(fd, label)));
+      break;
+    }
+     case Case:
+    {
+      change=1;
+      fd=search_func(GETORDERARGS(o, label));
+      sprintf(text,"%s\nf_mkcase(%d, %d, %sfuncdesctable);\nelse", t_red, \
+              GETDESCENTRY(fd, nv), search_funcname(GETDESCENTRY(fd, label)), modulfile);
+      break;
+    }
+     case tailnear:
+     case tailfar:
+    {
+      change=1;
+      fd=search_func(GETORDERARGS(o, label));
+      sprintf(text,"%s\npush(f_mkbclos(%d, %sfuncdesctable[%d]));\nelse", t_red, \
+              GETDESCENTRY(fd, nv), modulfile, search_funcname(GETDESCENTRY(fd, label)));
+      break;
+    }
+     case gammabetanear:
+     case gammabetafar:
+    {
+      change=1;
+      fd=search_func(GETORDERARGS(o, label));
+      sprintf(text,"%s\nf_mkgaclos(%d, %sfuncdesctable[%d], 2, 0);\nelse", \
+              t_red, GETDESCENTRY(fd, nv), 
+              modulfile, search_funcname(GETDESCENTRY(fd, label)));
+      break;
+    }
+/* apply will build closures itself if red_cont == 0 *****     
+     case apply:
+    {
+      change=1;
+      sprintf(text,"%s\nf_mkclos(%d);\nelse", \
+              t_red,GETORDERARGS(o, n));
+      break;
+    }
+*/
+     case jcond:
+     case jfalse:
+    {
+      change=1;
+      sprintf(text,"j%s",GETORDERARGS(o, label));
+      fd=search_func(text);
+      sprintf(text,"%s\n { f_condfail(%d,%sfuncdesctable[%d]);rtf();\n}\nelse", t_red, \
+              GETDESCENTRY(fd, nv), modulfile, search_condname(GETDESCENTRY(fd, label)));
+      break;
+    }
+     case jcond2:
+    {
+      change=1;
+      sprintf(text,"j%s",GETORDERARGS(o, label));
+      fd=search_func(text);
+      sprintf(text,"%s {\nf_condfail(1,%sfuncdesctable[%d]);goto %s;}\nelse", t_red, \
+              modulfile, search_condname(GETDESCENTRY(fd, label)), 
+              GETORDERARGS(o, ret));
+      break;
+    }
+     default:
+      ;
+    } /* switch */
+
+    if (1==change)
+    {
+      char *s;
+      
+/* inserting redcount test code before application code */
+      s=(char *)malloc(strlen(text)+1);
+      if (NULL==s)
+        yyfail("%s","Couldn't allocate memory !\n");
+      strcpy(s,text);
+      ohelp=new_order(code_ok,s);
+      insert_order_list(ohelp, o);
+/* inserting opening else brace before the application code */
+      ohelp=new_order(code_ok,"{ reduce_red_cnt();\n");
+      insert_order_list(ohelp, o);
+/* inserting closing else brace after the application code */
+      ohelp=new_order(code_ok,"}");
+      insert_order_list(ohelp, GETNEXTORDER(o));
+    }
+    o=GETNEXTORDER(o);
+  } /* while */  
+}
+
+
+
+
+/***********************************************************************/
+/* When a function is compiled it will be transferred to structure     */
+/* in which the C-code will be written. Also used by build_functable() */
+/***********************************************************************/
+
+void add_code_node(CODE *ftab, char *fmt, ...)
+{
+  va_list ap;
+  CODE *help;
+  
+  DBUG_ENTER("add_code_node");
+  while (NULL!=GETNEXTORDER(ftab)) ftab=GETNEXTORDER(ftab);
+  
+  va_start(ap, fmt);
+  
+  help=(CODE *)malloc(sizeof(CODE));
+  if (NULL==help)
+    yyfail("%s","Couldn't allocate memory !\n");
+  vsprintf(GETORDERENTRY(help, code), fmt, ap);
+  SETNEXTORDER(help)=NULL;
+  SETNEXTORDER(ftab)=help;
+  
+  va_end(ap);
+  DBUG_VOID_RETURN;
+}  
+  
+/***********************************************************************/
+/* Builds a functiontable for the C-code, so that while runtime a      */
+/* function descriptor can be found. Uses global variable functable    */
+/* from GLOBALS.H.                                                     */
+/***********************************************************************/
+char *findfunc(int i)
+{
+  FUNDESC *d = GETFIRSTDESC(program_start);
+
+  while (NULL != d)
+  {
+    if (i == GETDESCENTRY(d, address))
+      return(GETDESCENTRY(d, label));
+    d = GETNEXTDESC(d);
+  }
+  return("0");
+}
+
+char *findcase(int i)
+{
+  FUNDESC *d = GETFIRSTDESC(program_start);
+
+  while (NULL != d)
+  {
+    if (i == GETDESCENTRY(d, graph))
+      return(GETDESCENTRY(d, label));
+    d = GETNEXTDESC(d);
+  }
+  return("0");
+}
+
+void build_functable(FUNDESC *d, char *modulfile)
+{
+
+  char text[80];
+  
+  DBUG_ENTER("build_functable");
+  
+  strcpy(GETDESCENTRY(d, label),"goal");
+
+  sprintf(text, "T_DESCRIPTOR %sstat_funcdesctable[]={", modulfile);
+
+  add_code_node(functable, text);
+  while (NULL!=d)
+  {
+    if (DT_CONDITIONAL==GETDESCENTRY(d, tag))
+    {
+      char *s;
+      s = findfunc((GETDESCENTRY(d, address))+1);
+      if (!strcmp(s, "0"))
+        strcpy(text, "0");
+      else
+        sprintf(text, "(INSTR *)&%s", s); 
+/*       sprintf(text,"(INSTR *)&%s",findfunc((GETDESCENTRY(d, address))+1));*/
+/*      if (!strcmp(text, "(INSTR *)&0"))*/
+/*        strcpy(text, "0");*/
+    }
+    
+    if (DT_COMBINATOR == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, &%s, %d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+        add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+    }
+    else
+    if (DT_CASE == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_CASE, C_FUNC, 1,");
+        if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+          add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                      atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+        else
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_CASE,");
+        if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+          add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                      atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+        else
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+    }
+    else
+    if (DT_CONDITIONAL == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_CONDI, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                      text, GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_CONDI,");
+        add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                      text, GETDESCENTRY(d, graph));
+      }
+    }
+    d=GETNEXTDESC(d);
+    if (NULL != d) add_code_node(functable,",");
+    else add_code_node(functable,"};");
+  }
+  DBUG_VOID_RETURN;
+}
+
+
+
+void build_functable_one_function(FUNDESC *d, char *modulfile)
+{
+
+  char text[80];
+  
+  DBUG_ENTER("build_functable_one_function");
+  
+  strcpy(GETDESCENTRY(d, label),"0");
+
+  sprintf(text, "T_DESCRIPTOR %sstat_funcdesctable[]={", modulfile);
+
+  add_code_node(functable, text);
+  while (NULL!=d)
+  {
+    if (DT_CONDITIONAL==GETDESCENTRY(d, tag))
+    {
+      char *s;
+      s = findfunc((GETDESCENTRY(d, address))+1);
+      if (!strcmp(s, "0"))
+        strcpy(text, "0");
+      else
+        sprintf(text, "(INSTR *)%s", s); 
+/*       sprintf(text,"(INSTR *)&%s",findfunc((GETDESCENTRY(d, address))+1));*/
+/*      if (!strcmp(text, "(INSTR *)&0"))*/
+/*        strcpy(text, "0");*/
+    }
+    
+    if (DT_COMBINATOR == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, (INSTR *)%s, %d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+        add_code_node(functable,"\t%d, %d, (INSTR *)%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+    }
+    else
+    if (DT_CASE == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_CASE, C_FUNC, 1,");
+        if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+          add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                      atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+        else
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_CASE,");
+        if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+          add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                      atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+        else
+          add_code_node(functable,"\t%d, %d, (INSTR *)%s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                      GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+      }
+    }
+    else
+    if (DT_CONDITIONAL == GETDESCENTRY(d, tag))
+    {
+      if (ODDSEX)
+      {
+        add_code_node(functable,"\t{TY_CONDI, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                      text, GETDESCENTRY(d, graph));
+      }
+      else
+      {
+        add_code_node(functable,"\t{1, C_FUNC, TY_CONDI,");
+        add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d }", \
+                      GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                      text, GETDESCENTRY(d, graph));
+      }
+    }
+    d=GETNEXTDESC(d);
+    if (NULL != d) add_code_node(functable,",");
+    else add_code_node(functable,"};");
+  }
+  DBUG_VOID_RETURN;
+}
+@
+
+
+1.73
+log
+@prepare for separate compilation (again:-(
+step I: avoid use of program-specific global variables
+in tasm-generated code inside initdata.c and rmkclos.c
+(stat_funcdesctable,funcdesctable,number_of_descs,
+ funcclostable,ptc_table,data_table,number_of_data)
+@
+text
+@d26 1
+d169 1
+a169 1
+  fprintf(yyout, "int data_table[%d];\n", i + 2);   /* needs to be here `cause
+d172 1
+a172 1
+  fprintf(yyout, "int number_of_data = %d;\n", i + 1);
+d175 2
+a176 9
+  if (MODUL)
+  {
+    fprintf(yyout, "#include \"%s_%s\"\n", modulfile, funcprot);
+  }
+  else
+  {
+    fprintf(yyout, "#include \"%s%s%s\"\n",
+        P_tmpdir, P_tmpdir[strlen(P_tmpdir)-1] == '/' ? "" : "/", funcprot);
+  }
+d459 2
+a460 2
+      sprintf(text,"%s\npush(f_mkbclos(%d, funcdesctable[%d]));\nelse", t_red, \
+              GETDESCENTRY(fd, nv), search_funcname(GETDESCENTRY(fd, label)));
+d467 2
+a468 2
+      sprintf(text,"%s\nf_mkcase(%d, %d, funcdesctable);\nelse", t_red, \
+              GETDESCENTRY(fd, nv), search_funcname(GETDESCENTRY(fd, label)));
+d476 2
+a477 2
+      sprintf(text,"%s\npush(f_mkbclos(%d, funcdesctable[%d]));\nelse", t_red, \
+              GETDESCENTRY(fd, nv), search_funcname(GETDESCENTRY(fd, label)));
+d485 1
+a485 1
+      sprintf(text,"%s\nf_mkgaclos(%d, funcdesctable[%d], 2, 0);\nelse", \
+d487 1
+a487 1
+              search_funcname(GETDESCENTRY(fd, label)));
+d505 2
+a506 2
+      sprintf(text,"%s\n { f_condfail(%d,funcdesctable[%d]);rtf();\n}\nelse", t_red, \
+              GETDESCENTRY(fd, nv), search_condname(GETDESCENTRY(fd, label)));
+d514 2
+a515 2
+      sprintf(text,"%s {\nf_condfail(1,funcdesctable[%d]);goto %s;}\nelse", t_red, \
+              search_condname(GETDESCENTRY(fd, label)), 
+d614 1
+a614 4
+  if (!MODUL)
+    strcpy(text, "T_DESCRIPTOR stat_funcdesctable[]={");
+  else 
+    sprintf(text, "T_DESCRIPTOR %s_funcdesctable[]={", modulfile);
+d713 1
+a713 4
+  if (!MODUL)
+    strcpy(text, "T_DESCRIPTOR stat_funcdesctable[]={");
+  else 
+    sprintf(text, "T_DESCRIPTOR %s_funcdesctable[]={", modulfile);
+@
+
+
+1.72
+log
+@Macro defined if gcc is used
+@
+text
+@d465 1
+a465 1
+      sprintf(text,"%s\npush(f_mkbclos(%d, %d));\nelse", t_red, \
+d473 1
+a473 1
+      sprintf(text,"%s\nf_mkcase(%d, %d);\nelse", t_red, \
+d482 1
+a482 1
+      sprintf(text,"%s\npush(f_mkbclos(%d, %d));\nelse", t_red, \
+d491 1
+a491 1
+      sprintf(text,"%s\nf_mkgaclos(%d, %d, 2, 0);\nelse", \
+d511 1
+a511 1
+      sprintf(text,"%s\n { f_condfail(%d,%d);rtf();\n}\nelse", t_red, \
+d520 1
+a520 1
+      sprintf(text,"%s {\nf_condfail(1,%d);goto %s;}\nelse", t_red, \
+@
+
+
+1.71
+log
+@Macro defined if gcc is used
+@
+text
+@d134 1
+a134 1
+  if (dogcc)
+@
+
+
+1.70
+log
+@creation of "include intact.c" and interaction loop in apply() removed.
+@
+text
+@d134 2
+@
+
+
+1.69
+log
+@constant "funcprot.h" -> temporary name
+@
+text
+@a202 1
+    fprintf(yyout, "#include \"intact.c\"\n");
+a218 1
+    fprintf(yyout, "#include \"intact.c\"\n");
+a315 4
+/* insert begin of interaction loop. stt 13.02.96 */
+  os=new_order(code_ok,"do {");
+  insert_order_list(os,oe);
+
+a327 8
+
+/* insert interaction interpreter. stt 13.02.96 */
+  os=new_order(code_ok,"start=(int(*)())intact_tasm();");
+  insert_order_list(os,oe);
+
+/* insert end of interaction loop. stt 13.02.96 */
+  os=new_order(code_ok,"} while (NULL!=start);");
+  insert_order_list(os,oe);
+@
+
+
+1.68
+log
+@new function searches for conditional (search_condname)
+@
+text
+@d44 1
+d111 1
+d114 7
+d174 1
+a174 1
+    fprintf(yyout, "#include \"%s_funcprot.h\"\n", modulfile);
+d178 2
+a179 2
+    fprintf(yyout, "#include \"%s%sfuncprot.h\"\n",
+        P_tmpdir, P_tmpdir[strlen(P_tmpdir)-1] == '/' ? "" : "/");
+@
+
+
+1.67
+log
+@creation of "include intact.c" and interaction loop in apply() added.
+@
+text
+@d69 15
+d515 1
+a515 1
+              GETDESCENTRY(fd, nv), search_funcname(GETDESCENTRY(fd, label)));
+d524 1
+a524 1
+              search_funcname(GETDESCENTRY(fd, label)), 
+@
+
+
+1.66
+log
+@*** empty log message ***
+@
+text
+@d179 1
+d196 1
+d294 4
+d310 9
+@
+
+
+1.65
+log
+@bug fix in searchfuncname
+@
+text
+@d56 7
+a62 2
+
+  while (1)
+d64 2
+a65 5
+    if (strcmp(GETDESCENTRY(fd, label), find_me))
+      { i++; fd = GETNEXTDESC(fd); continue;}
+    return(i);
+ 
+  
+d67 1
+@
+
+
+1.64
+log
+@definition of _nil* removed
+@
+text
+@d55 2
+a56 2
+  FUNCTION *fd = GETFIRSTFUNCTION(program_start);
+  
+d59 2
+a60 2
+    if (strcmp(GETNAME(fd), find_me))
+    { i++; fd = GETNEXTFUNCTION(fd); continue;}
+d62 2
+@
+
+
+1.63
+log
+@bug fix in search_funcname
+@
+text
+@a144 5
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nil;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilmat;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilvect;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _niltvect;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilstring;\n");
+a150 5
+    fprintf(yyout, "PTR_DESCRIPTOR _nil;\n");
+    fprintf(yyout, "PTR_DESCRIPTOR _nilmat;\n");
+    fprintf(yyout, "PTR_DESCRIPTOR _nilvect;\n");
+    fprintf(yyout, "PTR_DESCRIPTOR _niltvect;\n");
+    fprintf(yyout, "PTR_DESCRIPTOR _nilstring;\n");
+@
+
+
+1.62
+log
+@in case of DIST other apply like procedure will be inserted
+@
+text
+@d55 1
+a55 1
+  FUNDESC *fd = GETFIRSTDESC(program_start);
+d59 2
+a60 2
+    if (strcmp(GETDESCENTRY(fd, label), find_me))
+    { i++; fd = GETNEXTDESC(fd); continue;}
+@
+
+
+1.61
+log
+@all asm-functions in one c-function not available with ncube
+@
+text
+@d298 10
+a307 1
+  ohelp=new_order(code_ok,"while (NULL!=start) start=(int(*)())(*start)();");
+@
+
+
+1.60
+log
+@bug fixed in generated call to f_mkdclos in case of red_cnt == 0
+@
+text
+@d99 1
+a99 1
+      (!uses_apply) && (!do_dupe) && (FALSE == RED_CNT))
+d165 1
+a165 1
+      (!uses_apply) && (!do_dupe) && (FALSE == RED_CNT))
+@
+
+
+1.59
+log
+@*** empty log message ***
+@
+text
+@d205 2
+a206 1
+	if (optimize > 0) optimize_delta(func);
+d404 1
+a404 1
+      sprintf(text,"%s\nf_mkdclos(0, 1, 1,%s);\nelse", \
+d411 1
+a411 1
+      sprintf(text,"%s\nf_mkdclos(0, 2, 2,%s);\nelse", \
+d418 1
+a418 1
+      sprintf(text,"%s\nf_mkdclos(0, 3, 3,%s);\nelse", \
+d425 1
+a425 1
+      sprintf(text,"%s\nf_mkdclos(0, 4, 4,%s);\nelse", \
+@
+
+
+1.58
+log
+@new preprocessor directive in generated C-file: TEST_STACK
+@
+text
+@d98 2
+a99 1
+  if ((ONE_FUNCTION_LIMIT > number_of_commands) && !MODUL && (!uses_apply) && (!do_dupe))
+d164 2
+a165 1
+  if ((ONE_FUNCTION_LIMIT > number_of_commands) && !MODUL && (!uses_apply) && (!do_dupe))
+@
+
+
+1.57
+log
+@now path in targetname allowes
+threshold for building only one function is now 600
+@
+text
+@d21 1
+a21 1
+extern int FRED_FISH, WATCH, RED_CNT, ODDSEX, MODUL, DIST;
+d100 2
+d165 1
+@
+
+
+1.56
+log
+@dont use one_function with code duplikation
+@
+text
+@d19 2
+d98 1
+a98 1
+  if ((optimize > number_of_commands) && !MODUL && (!uses_apply) && (!do_dupe))
+d161 1
+a161 1
+  if ((optimize > number_of_commands) && !MODUL && (!uses_apply) && (!do_dupe))
+@
+
+
+1.55
+log
+@ability to generated only one function
+@
+text
+@d23 1
+d90 2
+a91 1
+  if (optimize > 2)
+d93 2
+a94 6
+    func=GETFIRSTFUNCTION(program_start);
+    while (NULL != func)
+    {
+      number_of_commands += count_command(func);
+      func=GETNEXTFUNCTION(func);
+    }
+d96 1
+a96 1
+  if ((optimize > number_of_commands) && !MODUL)
+d159 1
+a159 1
+  if ((optimize > number_of_commands) && !MODUL)
+@
+
+
+1.54
+log
+@P_tmpdir
+@
+text
+@a5 1
+#include <varargs.h>
+d25 1
+d32 2
+d86 1
+d89 11
+a137 2
+  if (NULL!=GETFIRSTDESC(program_start))
+    build_functable(GETFIRSTDESC(program_start), modulfile);
+a158 3
+  c_out_functable(functable, TRUE);
+  fprintf(yyout, "#include \"c_main.c\"\n");
+  c_out_data(program_start);
+a159 10
+  if (optimize > 2)
+  {
+    func=GETFIRSTFUNCTION(program_start);
+    while (NULL != func)
+    {
+      if (strcmp(GETNAME(func),"apply"))
+        insert_functions(func);
+      func=GETNEXTFUNCTION(func);
+    }
+  }
+d161 1
+a161 1
+  while (NULL!=func)
+d163 2
+d168 1
+a168 1
+      insert_labels(func);
+d172 1
+a172 1
+        insert_redcnt_info(func);
+d175 5
+d181 30
+a210 1
+    func=GETNEXTFUNCTION(func);
+d674 101
+@
+
+
+1.53
+log
+@*** empty log message ***
+@
+text
+@d139 2
+a140 1
+    fprintf(yyout, "#include P_tmpdir\"funcprot.h\"\n");
+@
+
+
+1.52
+log
+@f_mkbclos: void -> int
+@
+text
+@d167 1
+@
+
+
+1.51
+log
+@always FRED FISH
+@
+text
+@d391 1
+a391 1
+      sprintf(text,"%s\nf_mkbclos(%d, %d);\nelse", t_red, \
+d408 1
+a408 1
+      sprintf(text,"%s\nf_mkbclos(%d, %d);\nelse", t_red, \
+@
+
+
+1.50
+log
+@nCUBE changed to D_SLAVE
+@
+text
+@a166 2
+      if (FRED_FISH)
+        insert_fred_fish(func);
+@
+
+
+1.49
+log
+@*** empty log message ***
+@
+text
+@d87 1
+a87 1
+    fprintf(yyout,"#define nCUBE 1\n");
+@
+
+
+1.48
+log
+@*** empty log message ***
+@
+text
+@d257 1
+a257 4
+  if (DIST)
+    ohelp=new_order(code_ok,"while (NULL!=start) start=(int(*)())(*start)();");
+  else
+    ohelp=new_order(code_ok,"while (NULL!=start) start=(int(*)())(*start)();");
+@
+
+
+1.47
+log
+@#define nCUBE
+@
+text
+@d260 1
+a260 1
+    ohelp=new_order(code_ok,"while (TRUE) start=(int(*)())(*start)();");
+@
+
+
+1.46
+log
+@no makefile in case of stdout as targetfile
+@
+text
+@d86 2
+@
+
+
+1.45
+log
+@apply: void -> int
+DIST
+@
+text
+@d180 1
+a180 1
+  if (dogcc)
+@
+
+
+1.44
+log
+@c_main. -> c_main.c, db_* removed
+@
+text
+@d20 1
+a20 1
+extern int FRED_FISH, WATCH, RED_CNT, ODDSEX, MODUL;
+d241 1
+a241 1
+  os=new_order(code_ok,"void apply(int (*start)())");
+d255 6
+a260 1
+  ohelp=new_order(code_ok,"while (NULL!=start) start=(int(*)())(*start)();");
+@
+
+
+1.43
+log
+@one more indirection in the descriptor table funcdesctable
+which is now called stat_funcdesctable
+funcdesctable is now an array of pointers to descriptors
+@
+text
+@d125 1
+a125 4
+  if (FRED_FISH)
+    fprintf(yyout, "#include \"db_prolog.h\"\n");
+  else
+    fprintf(yyout, "#include \"prolog.h\"\n");
+d145 1
+a145 4
+  if (FRED_FISH)
+    fprintf(yyout, "#include \"db_c_main.h\"\n");
+  else
+    fprintf(yyout, "#include \"c_main.h\"\n");
+@
+
+
+1.42
+log
+@debug mode: uses other descriptor handling
+@
+text
+@d551 1
+a551 7
+  {
+    if (FRED_FISH)
+      strcpy(text, "T_DESCRIPTOR stat_funcdesctable[]={");
+    else
+      strcpy(text, "T_DESCRIPTOR funcdesctable[]={");
+  }
+  
+@
+
+
+1.41
+log
+@realisation of new key -X -> dontremove
+@
+text
+@d551 8
+a558 2
+    strcpy(text, "T_DESCRIPTOR funcdesctable[]={");
+  else
+@
+
+
+1.40
+log
+@all generated files (*.[coh]) but the executable put into P_tmpdir
+@
+text
+@d23 1
+d190 2
+a191 1
+    clean_up();       
+@
+
+
+1.39
+log
+@_nilmat _nilvect _niltvect
+@
+text
+@d139 1
+a139 1
+    fprintf(yyout, "#include \"funcprot.h\"\n");
+@
+
+
+1.38
+log
+@WITHTILDE conditionally defined
+@
+text
+@d131 3
+d141 3
+@
+
+
+1.37
+log
+@*** empty log message ***
+@
+text
+@d90 2
+d93 1
+d103 1
+d105 2
+@
+
+
+1.36
+log
+@file closing error fixed
+@
+text
+@d177 1
+a177 1
+/*    clean_up();       */
+@
+
+
+1.35
+log
+@c_out_order_list argument now FUNCTION *
+builds makefile itself
+@
+text
+@d172 1
+d177 1
+a177 1
+    clean_up();
+@
+
+
+1.34
+log
+@data_table now always initialized
+@
+text
+@d165 1
+a165 1
+    c_out_order_list(GETFIRSTORDER(func));
+d172 6
+a177 2
+  
+  
+@
+
+
+1.33
+log
+@new variable : number_of_data
+@
+text
+@d111 3
+a113 2
+  if (-1 != i)
+    fprintf(yyout, "int data_table[%d];\n", i + 1);
+@
+
+
+1.32
+log
+@bug fix in parameters of mkgaclos
+@
+text
+@d112 2
+a113 1
+    fprintf(yyout, "int data_table[%d];\n", i+1);
+@
+
+
+1.31
+log
+@new function name handling
+@
+text
+@d400 1
+a400 1
+      sprintf(text,"%s\nf_mkgaclos(%d, %d, 2);\nelse", \
+@
+
+
+1.30
+log
+@second parameter added to call of build_functable
+@
+text
+@d221 2
+@
+
+
+1.29
+log
+@rudimentary function inlining
+@
+text
+@d114 1
+a114 1
+    build_functable(GETFIRSTDESC(program_start));
+@
+
+
+1.28
+log
+@additional parameter for f_mkdclos
+@
+text
+@d139 10
+@
+
+
+1.27
+log
+@new flag inter_allowed
+@
+text
+@d332 1
+a332 1
+      sprintf(text,"%s\nf_mkdclos(1, 1,%s);\nelse", \
+d339 1
+a339 1
+      sprintf(text,"%s\nf_mkdclos(2, 2,%s);\nelse", \
+d346 1
+a346 1
+      sprintf(text,"%s\nf_mkdclos(3, 3,%s);\nelse", \
+d353 1
+a353 1
+      sprintf(text,"%s\nf_mkdclos(4, 4,%s);\nelse", \
+@
+
+
+1.26
+log
+@redundant code removed
+@
+text
+@d93 3
+d105 3
+@
+
+
+1.25
+log
+@*** empty log message ***
+@
+text
+@d532 1
+a532 1
+    if (NULL != GETNEXTDESC(d))
+d534 1
+a534 1
+      if (DT_COMBINATOR == GETDESCENTRY(d, tag))
+d536 4
+a539 14
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+          add_code_node(functable,"\t%d, %d, &%s, %d },", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d },", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+d542 11
+a552 1
+      if (DT_CASE == GETDESCENTRY(d, tag))
+d554 9
+a562 24
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_CASE, C_FUNC, 1,");
+          if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+            add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d },", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                        atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+          else
+            add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d },", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_CASE,");
+          if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+            add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d },", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                        atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+          else
+            add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d },", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+a564 1
+      if (DT_CONDITIONAL == GETDESCENTRY(d, tag))
+d566 9
+a574 14
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_CONDI, C_FUNC, 1,");
+          add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d },", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                        text, GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_CONDI,");
+          add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d },", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                        text, GETDESCENTRY(d, graph));
+        }
+d578 1
+d580 1
+a580 19
+      if (DT_COMBINATOR == GETDESCENTRY(d, tag))
+      {
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};", 
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};", 
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+      }
+      else
+      if (DT_CASE == GETDESCENTRY(d, tag))
+d582 4
+a585 24
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_CASE, C_FUNC, 1,");
+          if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+            add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }};",
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                          atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+          else
+            add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d },",
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv),
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_CASE,");
+          if (!strncmp(GETDESCENTRY(d, label), "when_", 4))
+            add_code_node(functable,"\t%d, %d, (INSTR *)TAG_INT(%d), (T_PTD)%d }};",
+                          GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                          atoi(&GETDESCENTRY(d, label)[5]), GETDESCENTRY(d, graph));
+          else
+            add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};",
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv),
+                        GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+        }
+a587 1
+      if (DT_CONDITIONAL == GETDESCENTRY(d, tag))
+d589 4
+a592 14
+        if (ODDSEX)
+        {
+          add_code_node(functable,"\t{TY_CONDI, C_FUNC, 1,");
+          add_code_node(functable,"\t%d, %d, %s, %d }};", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), 
+                        text, GETDESCENTRY(d, graph));
+        }
+        else
+        {
+          add_code_node(functable,"\t{1, C_FUNC, TY_CONDI,");
+          add_code_node(functable,"\t%d, %d, %s, (T_PTD)%d }};", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), 
+                        text, GETDESCENTRY(d, graph));
+        }
+a594 1
+
+d596 2
+a598 1
+
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@d117 1
+d124 1
+d489 13
+d557 6
+a562 1
+          add_code_node(functable,"\t%d, %d, &%s, %d },", \
+d569 6
+a574 1
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d },", \
+d623 6
+a628 1
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};",
+d635 6
+a640 1
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};",
+@
+
+
+1.23
+log
+@CASE descriptor implemented
+@
+text
+@d115 1
+d118 1
+d120 1
+d123 1
+@
+
+
+1.22
+log
+@key -M for further use
+@
+text
+@d114 6
+a119 1
+  fprintf(yyout, "#include \"%sfuncprot.h\"\n", modulfile);
+d354 8
+d440 2
+a441 2
+/* When a function is compiled it will be transferred to structure */
+/* in which the C-code will be written. Also used by build_functable()*/
+d466 3
+a468 3
+/* Builds a functiontable for the C-code, so that while runtime a */
+/* function descriptor can be found. Uses global variable functable*/
+/* from GLOBALS.H.*/
+d483 1
+a483 1
+void build_functable(FUNDESC *d)
+d486 1
+a486 1
+  char text[20];
+d492 6
+a497 2
+  add_code_node(functable,"T_DESCRIPTOR funcdesctable[]={");
+  add_code_node(funcclostable,"T_DESCRIPTOR funcclostable[]={");
+d513 1
+a513 1
+    if (NULL!=GETNEXTDESC(d))
+d515 1
+a515 1
+      if (DT_COMBINATOR==GETDESCENTRY(d, tag))
+a516 28
+        if (ISASM_TILDE())        
+        {
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COMB }", \
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB, %d },",  \
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+        }
+        else
+        {
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COMB }", GETDESCENTRY(d, nv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB },", GETDESCENTRY(d, nv));
+          }
+        }
+d521 2
+a522 1
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+d528 2
+a529 1
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+d532 2
+a533 2
+      
+      if (DT_CONDITIONAL==GETDESCENTRY(d, tag))
+d535 1
+a535 1
+        if (ISASM_TILDE())        
+d537 4
+a540 12
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_CONDI }",  \
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI, %d },",    \
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+d544 4
+a547 10
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_CONDI }", GETDESCENTRY(d, nv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI },", GETDESCENTRY(d, nv));
+          }
+d549 4
+d557 2
+a558 1
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), text, GETDESCENTRY(d, graph));
+d564 2
+a565 1
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), text, GETDESCENTRY(d, graph));
+d571 1
+a571 1
+      if (DT_COMBINATOR==GETDESCENTRY(d, tag))
+a572 29
+        if (ISASM_TILDE())        
+        {
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COMB }};", 
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB, %d }};",
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+        }
+        else
+        {
+          if (ODDSEX)
+          {
+
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COMB }};", GETDESCENTRY(d, nv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB }};", GETDESCENTRY(d, nv));
+          }
+        }
+d576 3
+a578 2
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};", \
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+d583 3
+a585 2
+          add_code_node(functable,"\t%d, %d, (INSTR *)&%s, (T_PTD)%d }};", \
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), GETDESCENTRY(d, label), GETDESCENTRY(d, graph));
+d588 2
+a589 1
+      if (DT_CONDITIONAL==GETDESCENTRY(d, tag))
+d591 1
+a591 1
+        if (ISASM_TILDE())        
+d593 4
+a596 12
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1, /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_CONDI }};", 
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+          else
+          {
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI, %d }};",
+                          GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv));
+          }
+d600 4
+a603 11
+          if (ODDSEX)
+          {
+            add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_CONDI }};", GETDESCENTRY(d, nv));
+          }
+          else
+          {
+            add_code_node(funcclostable,"#else");
+            add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS, /*HEADER*/");
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI }};", GETDESCENTRY(d, nv));
+          }
+d605 4
+d613 2
+a614 1
+                        GETDESCENTRY(d, nv), GETDESCENTRY(d, nfv), text, GETDESCENTRY(d, graph));
+d620 2
+a621 1
+                        GETDESCENTRY(d, nfv), GETDESCENTRY(d, nv), text, GETDESCENTRY(d, graph));
+d625 1
+@
+
+
+1.21
+log
+@minor change in handling of the apply if red_cnt == 0
+@
+text
+@d20 1
+a20 1
+extern int FRED_FISH, WATCH, RED_CNT, ODDSEX;
+d79 1
+a79 1
+int compile(void)
+d85 9
+a93 2
+  if (ISASM_TILDE()) 
+    fprintf(yyout,"int withtilde = 1;\n");
+d95 9
+a103 3
+    fprintf(yyout,"int withtilde = 0;\n");
+  fprintf(yyout, "int _formated = 1;\n");
+  fprintf(yyout, "int red_cnt = 10000000;\n");
+d114 1
+a114 1
+  fprintf(yyout, "#include \"funcprot.h\"\n");
+d139 4
+a142 1
+  c_build_func_prot(program_start);
+@
+
+
+1.20
+log
+@apply closure
+@
+text
+@d352 1
+d355 1
+a355 1
+      change=0;
+d360 1
+@
+
+
+1.19
+log
+@primitive functions are tagged now
+@
+text
+@d354 1
+a354 1
+      change=1;
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d89 2
+a101 1
+  fprintf(yyout, "int _formated = TRUE;\n");
+d287 1
+a287 1
+  char t_red[]="if (0==red_cnt)";
+d300 1
+a300 1
+              t_red,primf_tab[GETORDERARGS(o, primf)]);
+d307 1
+a307 1
+              t_red,primf_tab[GETORDERARGS(o, primf)]);
+d314 1
+a314 1
+              t_red,primf_tab[GETORDERARGS(o, primf)]);
+d321 1
+a321 1
+              t_red,primf_tab[GETORDERARGS(o, primf)]);
+d365 1
+a365 1
+      sprintf(text,"%s\nf_mkcclos(%d,%d);\nelse", t_red, \
+d374 1
+a374 1
+      sprintf(text,"%s\n{f_mkcclos(1,%d);goto %s;}\nelse", t_red, \
+d395 1
+a395 1
+      ohelp=new_order(code_ok,"{");
+@
+
+
+1.17
+log
+@optimizer first level
+@
+text
+@d262 4
+a265 2
+
+  o=new_order(code_ok,"{");
+@
+
+
+1.16
+log
+@function call convert_tail eliminated
+@
+text
+@d10 1
+d18 1
+d113 1
+a113 1
+/*      convert_tail(func);    */
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d111 1
+a111 1
+      convert_tail(func);
+@
+
+
+1.14
+log
+@minor changes
+@
+text
+@a3 2
+/* Last change: 12.10.94                                               */
+/***********************************************************************/
+@
+
+
+1.13
+log
+@buildtree access macros implemented
+@
+text
+@d58 3
+d62 13
+d82 1
+d85 7
+d99 2
+d106 2
+d464 3
+a466 2
+      sprintf(text,"&%s",findfunc((GETDESCENTRY(d, address))+1));
+      if (!strcmp(text, "&0"))
+d468 5
+d516 1
+a516 1
+          add_code_node(functable,"\t%d, %d, &%s, %d },", \
+d554 1
+a554 1
+          add_code_node(functable,"\t%d, %d, %s, %d },", \
+d560 1
+a560 1
+          add_code_node(functable,"\t%d, %d, %s, %d },", \
+d601 1
+a601 1
+          add_code_node(functable,"\t%d, %d, &%s, %d }};", \
+d607 1
+a607 1
+          add_code_node(functable,"\t%d, %d, &%s, %d }};", \
+d651 1
+a651 1
+          add_code_node(functable,"\t%d, %d, %s, %d }};", \
+@
+
+
+1.12
+log
+@Now FRED-FISH works fine
+@
+text
+@d53 2
+a54 2
+    if (strcmp(fd->label,find_me))
+    { i++; fd = fd->next; continue;}
+d94 2
+a95 2
+    c_out_order_list(func->order);
+    func=func->next;
+d119 1
+a119 1
+    DBUG_PRINT("SEARCH", ("found:%s",f->label));
+d121 1
+a121 1
+    if (!strcmp(s,f->label))
+d123 1
+a123 1
+    f=f->next;
+d144 2
+a145 2
+  f->next=(FUNCTION *)malloc(sizeof(FUNCTION));
+  if (NULL==f->next)
+d148 2
+a149 2
+  f->next=NULL;
+  strcpy(f->name,"apply");
+d154 1
+a154 1
+  f->order=os;
+d159 2
+a160 2
+  os->next=oe;
+  oe->prev=os;
+d188 1
+a188 1
+  sprintf(text,"DBUG_ENTER(\"%s\");",f->name);
+d198 1
+a198 1
+  f->order=o;
+d204 1
+a204 1
+  while (NULL!=o->next) o=GETNEXTORDER(o);
+d206 2
+a207 2
+  o->next=ohelp;
+  ohelp->prev=o;
+d233 1
+a233 1
+  f->order=o;
+d241 2
+a242 2
+  o->next=ohelp;
+  ohelp->prev=o;
+d263 1
+a263 1
+    switch(o->command)
+d269 1
+a269 1
+              t_red,primf_tab[o->args.primf]);
+d276 1
+a276 1
+              t_red,primf_tab[o->args.primf]);
+d283 1
+a283 1
+              t_red,primf_tab[o->args.primf]);
+d290 1
+a290 1
+              t_red,primf_tab[o->args.primf]);
+d297 1
+a297 1
+      fd=search_func(o->args.label);
+d299 1
+a299 1
+              fd->nv, search_funcname(fd->label));
+d306 1
+a306 1
+      fd=search_func(o->args.label);
+d308 1
+a308 1
+              fd->nv, search_funcname(fd->label));
+d315 1
+a315 1
+      fd=search_func(o->args.label);
+d317 2
+a318 1
+              t_red, fd->nv, search_funcname(fd->label));
+d325 1
+a325 1
+              t_red,o->args.n);
+d332 1
+a332 1
+      sprintf(text,"j%s",o->args.label);
+d335 1
+a335 1
+              fd->nv, search_funcname(fd->label));
+d341 1
+a341 1
+      sprintf(text,"j%s",o->args.label);
+d344 2
+a345 1
+              search_funcname(fd->label), o->args.ret);
+d388 1
+a388 1
+  while (NULL!=ftab->next) ftab=ftab->next;
+d395 3
+a397 3
+  vsprintf(help->code, fmt, ap);
+  help->next=NULL;
+  ftab->next=help;
+d414 3
+a416 3
+    if (i == d->address)
+      return(d->label);
+    d = d->next;
+d428 1
+a428 1
+  strcpy(d->label,"goal");
+d434 1
+a434 1
+    if (DT_CONDITIONAL==d->tag)
+d436 1
+a436 1
+      sprintf(text,"&%s",findfunc((d->address)+1));
+d441 1
+a441 1
+    if (NULL!=d->next)
+d443 1
+a443 1
+      if (DT_COMBINATOR==d->tag)
+d451 1
+a451 1
+                          d->nv, d->nfv);
+d457 1
+a457 1
+                          d->nv, d->nfv);
+d465 1
+a465 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COMB }", d->nv);
+d470 1
+a470 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB },", d->nv);
+d477 1
+a477 1
+                        d->nv, d->nfv, d->label, d->graph);
+d483 1
+a483 1
+                        d->nfv, d->nv, d->label, d->graph);
+d487 1
+a487 1
+      if (DT_CONDITIONAL==d->tag)
+d495 1
+a495 1
+                          d->nv, d->nfv);
+d501 1
+a501 1
+                          d->nv, d->nfv);
+d509 1
+a509 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_CONDI }", d->nv);
+d514 1
+a514 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI },", d->nv);
+d521 1
+a521 1
+                        d->nv, d->nfv, text, d->graph);
+d527 1
+a527 1
+                        d->nfv, d->nv, text, d->graph);
+d533 1
+a533 1
+      if (DT_COMBINATOR==d->tag)
+d541 1
+a541 1
+                          d->nv, d->nfv);
+d547 1
+a547 1
+                          d->nv, d->nfv);
+d556 1
+a556 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COMB }};", d->nv);
+d561 1
+a561 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB }};", d->nv);
+d568 1
+a568 1
+                        d->nv, d->nfv, d->label, d->graph);
+d574 1
+a574 1
+                        d->nfv, d->nv, d->label, d->graph);
+d577 1
+a577 1
+      if (DT_CONDITIONAL==d->tag)
+d585 1
+a585 1
+                          d->nv, d->nfv);
+d591 1
+a591 1
+                          d->nv, d->nfv);
+d599 1
+a599 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_CONDI }};", d->nv);
+d605 1
+a605 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_CONDI }};", d->nv);
+d612 1
+a612 1
+                        d->nv, d->nfv, text, d->graph);
+d618 1
+a618 1
+                        d->nfv, d->nv, text, d->graph);
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d71 4
+d76 4
+a79 4
+/*
+  c_out_functable(funcclostable, FALSE);
+*/
+  fprintf(yyout, "#include \"c_main.h\"\n");
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d49 1
+a49 1
+  FUNDESC *fd = program_start->desc;
+d68 2
+a69 2
+  if (NULL!=program_start->desc) 
+    build_functable(program_start->desc);
+d76 1
+a76 1
+  func=program_start->function;
+d79 1
+a79 1
+    if (strcmp(func->name,"apply"))
+d111 1
+a111 1
+  f=program_start->desc;
+d138 2
+a139 2
+  f=p->function;
+  while (NULL!=f->next) f=f->next;
+d143 1
+a143 1
+  f=f->next;
+d193 1
+a193 1
+  insert_order_list(o,f->order);
+d200 1
+a200 1
+  while (NULL!=o->next) o=o->next;
+d221 1
+a221 1
+  sprintf(text,"int %s(void)",f->name);
+d228 1
+a228 1
+  insert_order_list(o,f->order);
+d232 1
+a232 1
+  insert_order_list(o,f->order->next);
+d236 1
+a236 1
+  while (NULL!=o->next) o=o->next;
+d255 1
+a255 1
+  o=f->order;
+d362 1
+a362 1
+      insert_order_list(ohelp, o->next);
+d364 1
+a364 1
+    o=o->next;
+d404 1
+a404 1
+  FUNDESC *d = program_start->desc;
+d488 1
+a488 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COND }",  \
+d494 1
+a494 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COND, %d },",    \
+d503 1
+a503 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COND }", d->nv);
+d508 1
+a508 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COND },", d->nv);
+d513 1
+a513 1
+          add_code_node(functable,"\t{TY_COND, C_FUNC, 1,");
+d519 1
+a519 1
+          add_code_node(functable,"\t{1, C_FUNC, TY_COND,");
+d578 1
+a578 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COND }};", 
+d584 1
+a584 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COND, %d }};",
+d593 1
+a593 1
+            add_code_node(funcclostable, "\t%d, 0, NULL, TY_COND }};", d->nv);
+d599 1
+a599 1
+            add_code_node(funcclostable, "\t0, %d, NULL, TY_COND }};", d->nv);
+d604 1
+a604 1
+          add_code_node(functable,"\t{TY_COND, C_FUNC, 1,");
+d610 1
+a610 1
+          add_code_node(functable,"\t{1, C_FUNC, TY_COND,");
+d616 1
+a616 1
+    d=d->next;
+@
+
+
+1.9
+log
+@jcond2 implemented
+@
+text
+@d402 12
+d418 2
+d428 7
+d514 2
+a515 2
+          add_code_node(functable,"\t%d, %d, 0, %d },", \
+                        d->nv, d->nfv, d->graph);
+d520 2
+a521 2
+          add_code_node(functable,"\t%d, %d, 0, %d },", \
+                        d->nfv, d->nv, d->graph);
+d605 2
+a606 2
+          add_code_node(functable,"\t%d, %d, 0, %d }};", \
+                        d->nv, d->nfv, d->graph);
+d611 2
+a612 2
+          add_code_node(functable,"\t%d, %d, 0, %d }};", \
+                        d->nfv, d->nv, d->graph);
+@
+
+
+1.8
+log
+@minor change
+@
+text
+@d333 9
+@
+
+
+1.7
+log
+@ODDSEX statically build in compiled code
+@
+text
+@d298 9
+@
+
+
+1.6
+log
+@builds now a table of closures. too
+@
+text
+@d20 1
+a20 1
+extern int FRED_FISH, WATCH, RED_CNT;
+d72 1
+d74 1
+d400 1
+a400 1
+        if (ISASM_TILDE())
+d402 12
+a413 9
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COMB }", 
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB, %d },",
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#endif");
+d417 23
+a439 17
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, TY_COMB }", d->nv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COMB },", d->nv);
+          add_code_node(funcclostable,"#endif");
+        }
+        add_code_node(functable,"#if ODDSEX");
+        add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, &%s, %d },", \
+                      d->nv, d->nfv, d->label, d->graph);
+        add_code_node(functable,"#else");
+        add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+        add_code_node(functable,"\t%d, %d, &%s, %d },", \
+                      d->nfv, d->nv, d->label, d->graph);
+        add_code_node(functable,"#endif");
+d444 29
+a472 1
+        if (ISASM_TILDE())
+d474 3
+a476 9
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COND }", 
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COND, %d },",
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#endif");
+d480 4
+a483 19
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, TY_COND }", d->nv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COND },", d->nv);
+          add_code_node(funcclostable,"#endif");
+        }
+        add_code_node(functable,"#if ODDSEX");
+        add_code_node(functable,"\t{TY_COND, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, 0, %d },", \
+                      d->nv, d->nfv, d->graph);
+        add_code_node(functable,"#else");
+        add_code_node(functable,"\t{1, C_FUNC, TY_COND,");
+        add_code_node(functable,"\t%d, %d, 0, %d },", \
+                      d->nfv, d->nv, d->graph);
+        add_code_node(functable,"#endif");
+/*        add_code_node(funcnametable,"\t\"%s\",", d->label);*/
+/*        add_code_node(funcadrtable,"\tNULL\n,");*/
+d490 41
+a530 10
+        add_code_node(functable,"#if ODDSEX");
+        add_code_node(functable,"\t{TY_COMB, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, &%s, %d }", \
+                      d->nv, d->nfv, d->label, d->graph);
+        add_code_node(functable,"#else");
+        add_code_node(functable,"\t{1, C_FUNC, TY_COMB,");
+        add_code_node(functable,"\t%d, %d, &%s, %d }", \
+                      d->nfv, d->nv, d->label, d->graph);
+        add_code_node(functable,"#endif\n\t};");
+        
+d534 16
+a549 1
+        if (ISASM_TILDE())
+d551 11
+a561 9
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, %d, TY_COND }", 
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COND, %d }",
+                        d->nv, d->nfv);
+          add_code_node(funcclostable,"#endif\n\t};");
+d563 6
+d571 4
+a574 19
+          add_code_node(funcclostable, "#if ODDSEX");
+          add_code_node(funcclostable, "\t{TY_CLOS, C_FUNC, 1,    /*HEADER*/");
+          add_code_node(funcclostable, "\t%d, 0, NULL, TY_COND }", d->nv);
+          add_code_node(funcclostable,"#else");
+          add_code_node(funcclostable, "\t{1, C_FUNC, TY_CLOS,    /*HEADER*/");
+          add_code_node(funcclostable, "\t0, %d, NULL, TY_COND }", d->nv);
+          add_code_node(funcclostable,"#endif\n\t};");
+        }
+        add_code_node(functable,"#if ODDSEX");
+        add_code_node(functable,"\t{TY_COND, C_FUNC, 1,");
+        add_code_node(functable,"\t%d, %d, 0, %d }", \
+                      d->nv, d->nfv, d->graph);
+        add_code_node(functable,"#else");
+        add_code_node(functable,"\t{1, C_FUNC, TY_COND,");
+        add_code_node(functable,"\t%d, %d, 0, %d }", \
+                      d->nfv, d->nv, d->graph);
+        add_code_node(functable,"#endif\n\t};");
+/*        add_code_node(funcnametable,"\t\"%s\"\n};", d->label);*/
+/*        add_code_node(funcadrtable,"\tNULL\n};");*/
+@
+
+
+1.5
+log
+@funcdesctable built for C-program
+@
+text
+@d71 3
+a73 3
+  c_out_functable(functable);
+/*  c_out_functable(funcnametable);*/
+/*  c_out_functable(funcadrtable);*/
+d391 1
+a391 4
+/*
+  add_code_node(funcnametable,"char *funcnametable[]={");
+  add_code_node(funcadrtable,"FUNPTR funcadrtable[]={");
+*/
+d398 22
+a428 10
+/*        if (program_start->desc == d)*/
+/*        {*/
+/*          add_code_node(funcnametable,"\t\"goal\",");*/
+/*          add_code_node(funcadrtable,"\t&goal,");*/
+/*        }*/
+/*        else*/
+/*        {*/
+/*          add_code_node(funcnametable,"\t\"%s\",", d->label);*/
+/*          add_code_node(funcadrtable,"\t&%s,", d->label);*/
+/*        }*/
+d433 22
+a480 10
+/*        if (program_start->desc == d)*/
+/*        {*/
+/*          add_code_node(funcnametable,"\t\"goal\"\n};");*/
+/*          add_code_node(funcadrtable,"\t&goal};");*/
+/*        }*/
+/*        else*/
+/*        {*/
+/*          add_code_node(funcnametable,"\t\"%s\"\n};", d->label);*/
+/*          add_code_node(funcadrtable,"\t&%s};", d->label);*/
+/*        }*/
+d485 22
+@
+
+
+1.4
+log
+@functable changed to reduma style (see rheapty.h:ST_COMB)
+@
+text
+@d39 20
+d72 2
+a86 2
+      
+
+d287 2
+a288 1
+     case beta:
+d292 2
+a293 2
+      sprintf(text,"%s\nmkbclos(%d,%d,%d,%d);\nelse", t_red, \
+              fd->nv, fd->nv, fd->nfv, (int)fd->graph);
+d296 2
+a297 1
+     case gammabeta:
+d301 2
+a302 2
+      sprintf(text,"%s\nmkgaclos(%d,%d,%d,%d);\nelse", t_red, \
+              fd->nv, fd->nv, fd->nfv, (int)fd->graph);
+d308 1
+a308 1
+      sprintf(text,"%s\nmkclos(%d);\nelse", \
+d318 2
+a319 2
+      sprintf(text,"%s\nmkcclos(%d,%d,%d,%d);\nelse", t_red, \
+              fd->nv, fd->nv, fd->nfv, (int)fd->graph);
+d385 1
+d387 2
+a388 1
+  add_code_node(functable,"ST_COMB functable[]={");
+d390 5
+d403 2
+a404 2
+        add_code_node(functable,"\t%d, %d, %d, %d },", \
+                      d->nv, d->nfv, d->address, d->graph);
+d407 2
+a408 2
+        add_code_node(functable,"\t%d, %d, %d, %d },", \
+                      d->nfv, d->nv, d->address, d->graph);
+d410 10
+d421 1
+d426 2
+a427 2
+        add_code_node(functable,"\t%d, %d, %d, %d },", \
+                      d->nv, d->nfv, d->address, d->graph);
+d430 2
+a431 2
+        add_code_node(functable,"\t%d, %d, %d, %d },", \
+                      d->nfv, d->nv, d->address, d->graph);
+d433 2
+d443 2
+a444 2
+        add_code_node(functable,"\t%d, %d, %d, %d }};", \
+                      d->nv, d->nfv, d->address, d->graph);
+d447 14
+a460 3
+        add_code_node(functable,"\t%d, %d, %d, %d }};", \
+                      d->nfv, d->nv, d->address, d->graph);
+        add_code_node(functable,"#endif");
+d466 2
+a467 2
+        add_code_node(functable,"\t%d, %d, %d, %d }};", \
+                      d->nv, d->nfv, d->address, d->graph);
+d470 5
+a474 3
+        add_code_node(functable,"\t%d, %d, %d, %d }};", \
+                      d->nfv, d->nv, d->address, d->graph);
+        add_code_node(functable,"#endif");
+@
+
+
+1.3
+log
+@spelling corrections
+@
+text
+@d242 1
+a242 1
+      sprintf(text,"%s\nmkdclos(1,%s);\nelse", \
+d249 1
+a249 1
+      sprintf(text,"%s\nmkdclos(2,%s);\nelse", \
+d256 1
+a256 1
+      sprintf(text,"%s\nmkdclos(3,%s);\nelse", \
+d263 1
+a263 1
+      sprintf(text,"%s\nmkdclos(4,%s);\nelse", \
+d364 1
+a364 14
+  add_code_node(functable,"struct ftable { ");
+  add_code_node(functable,"/* PRIM, CONDI or COMB      */");
+  add_code_node(functable,"\tDESCTAG tag;");
+  add_code_node(functable,"/* \"address\" of function      */");
+  add_code_node(functable,"\tint adr;");
+  add_code_node(functable,"/* number actual parameters */");
+  add_code_node(functable,"\tint n;");
+  add_code_node(functable,"/* number needed parameters */");
+  add_code_node(functable,"\tint m;");
+  add_code_node(functable,"/* Pointer to ap-graph      */");
+  add_code_node(functable,"\tvoid *graph;");
+  add_code_node(functable,"/* Functionname             */");
+  add_code_node(functable,"\tchar label[20];");
+  add_code_node(functable,"} functable[]={");
+d369 26
+a394 3
+      add_code_node(functable,"\t{%d, %d, %d, %d, (void *)%d, \"%s\"},", \
+                       d->address, d->tag, d->nfv, d->nv, \
+                    (int)d->graph, d->label);
+d396 26
+a421 4
+      add_code_node(functable,"\t{%d, %d, %d, %d, (void *)%d, \"%s\"}\n\t};", \
+                       d->address, d->tag, d->nfv, d->nv, \
+                    (int)d->graph, d->label);
+
+@
+
+
+1.2
+log
+@Bugfix in new_order()
+@
+text
+@d367 1
+a367 1
+  add_code_node(functable,"/* \"adress\" of function      */");
+d383 1
+a383 1
+                       d->adress, d->tag, d->nfv, d->nv, \
+d387 1
+a387 1
+                       d->adress, d->tag, d->nfv, d->nv, \
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d22 1
+d242 2
+a243 2
+      sprintf(text,"%s\nmkdclos(1,1,0,%d);\nelse", \
+              t_red,ohelp->args.primf);
+d249 2
+a250 2
+      sprintf(text,"%s\nmkdclos(2,2,0,%d);\nelse", \
+              t_red,ohelp->args.primf);
+d256 2
+a257 2
+      sprintf(text,"%s\nmkdclos(3,3,0,%d);\nelse", \
+              t_red,ohelp->args.primf);
+d263 2
+a264 2
+      sprintf(text,"%s\nmkdclos(4,4,0,%d);\nelse", \
+              t_red,ohelp->args.primf);
+d287 1
+a287 1
+              t_red,ohelp->args.n);
+@

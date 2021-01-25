@@ -1,0 +1,93 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	94.03.13.20.24.51;	author udi;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.23.13.57.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.2
+log
+@Fehler in der load red-File Fkt behoben
+@
+text
+@/* include file fuer stack-handling            cestack.h */
+/* (C) Copyright by Christian-Albrechts-University of Kiel 1993		*/
+/* letzte aenderung:    04.10.88                        */
+
+typedef long STACKELEM;
+
+struct astack
+ { STACKELEM	*stptr;		/* stackpointer         */
+   long		cnt;		/* counter		*/
+   long		siz;		/* pagesize		*/
+   STACKELEM	*pred;		/* predecessing page    */
+ };
+
+typedef struct astack STACK;
+#define SNULL   (STACKELEM *)0
+#define EST &E
+#define AST &A
+#define BST &B
+#define MST &M
+#define M1ST &M1
+#define M2ST &M2
+#define VST &V
+#define U1ST &U
+#define U2ST &U2
+#define U3ST &U3
+#define SST &S0
+#define S1ST &S1
+#define S2ST &S2
+#define S3ST &S3
+#define S4ST &S4
+#define S5ST &S5
+#define RST &R
+#define R1ST &R1
+#define R2ST &R2
+#define EADRST &EADR
+#define AADRST &AADR
+#define XST &X
+#define STKPAGE 256	/* alt: als int !		*/
+/* vereinbarungen in globals.c		*/
+extern STACK E,A,M,M1,M2,B,U,U2,U3,V,S0,S1,S2,S3,S4,S5,R,R1,R2,EADR,AADR;
+
+#ifndef isstack
+STACKELEM pop(),topof(),second(),move(),move2(),popnf(),movenf(),
+          bottom()
+#if !LETREC
+          ,movech(),chmove(),chmov2()
+#endif
+          ;
+void ppop(),push(),clearstack(),killstack(),incrarity(),decrarity(),pushi();
+#endif
+/* end of              cestack.h		*/
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d25 1
+d40 1
+a40 1
+extern STACK E,A,M,M1,M2,B,U,U2,V,S0,S1,S2,S3,S4,S5,R,R1,R2,EADR,AADR;
+@

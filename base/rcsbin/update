@@ -1,0 +1,118 @@
+#!/bin/sh
+#set -x
+
+err () {
+        echo "`basename $0`: $@" 1>&2
+        }
+
+close() {
+	if [ "`rlog -L -R -l$user $1`" != "" ]
+	then
+	  if `rcsdiff $1 >/dev/null 2>/dev/null`
+	  then
+	    echo "`basename $0`: warning: $1 was locked."
+	    rcs -u $1 2>/dev/null
+	  else
+	    echo -n "`basename $0`: checkin modified $1? "
+	    if [ `line` = y ]
+	    then
+	      ci $1
+	    else
+	      echo "rcs -u $1"
+	      rcs -u $1 2>/dev/null
+	    fi
+	  fi
+	fi
+	echo "rm -f $1"
+	rm -f $1
+	}
+
+cout() {
+	echo "co $COFLAGS $COPATH$@"
+	co $COFLAGS $@ 2>/dev/null
+	}
+
+export COFLAGS
+export COPATH
+review=false
+user=`whoami`
+CO=checkout
+
+while getopts Rs:r:d: OPT
+do
+  case $OPT in
+    s) source=$OPTARG;;
+    [rd]) review=true;
+       COFLAGS="-$OPT$OPTARG";
+       CO=cout;
+       if [ $OPTARG = new -o $OPTARG = actual ]; then unset COFLAGS; fi;;
+    *) echo "usage: `basename $0` [-s<source>] [-r<rev>] [-d<date>] <dir> ...";
+       exit 1;;
+  esac
+done
+shift `expr $OPTIND - 1`
+
+rootdir=`pwd`
+if [ "$source" != "" ]
+then
+  if [ -f $source/RCS/RCS-directories,v ]
+  then
+    for DIR in $@
+    do
+      if [ ! -f $DIR -a ! -d $DIR ]
+      then 
+        mkdir -p $DIR
+        ln -s $source/RCS $DIR/RCS
+      fi
+    done
+  else
+    err "illegal source $source"
+  fi
+fi
+
+if $review
+then
+  for DIR in `fndr $@ 2>/dev/null`
+  do
+    if [ -f $DIR/RCS-files ]
+    then
+      for FILE in RCS-files `cat $DIR/RCS-files`
+      do
+        close $DIR/$FILE
+      done
+    fi
+  done
+fi
+
+for ROOT in `fnrt $@ 2>/dev/null`
+do
+  if $review
+  then
+    close $ROOT/RCS-directories
+  fi
+  $CO $ROOT/RCS-directories
+  for DIR in `cat $ROOT/RCS-directories`
+  do
+    if [ ! -d $ROOT/$DIR -a ! -f $ROOT/$DIR ]
+    then
+      mkdir -p $ROOT/$DIR
+    fi
+    if [ ! -d $ROOT/$DIR/RCS -a ! -f $ROOT/$DIR ]
+    then
+      ln -s `ls -l $ROOT/RCS | awk '{print $NF}' | \
+          awk -F"/" '{ for(i=1;i<NF;i++) printf($i"/") }'`$DIR/RCS $ROOT/$DIR/RCS
+    fi
+  done
+done
+
+for DIR in `fndr $@`
+do
+  cd $DIR
+  COPATH=$DIR/
+  $CO RCS-files
+  for FILE in `cat RCS-files`
+  do
+    $CO $FILE
+  done
+  cd $rootdir
+done

@@ -1,0 +1,254 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	95.06.14.15.03.57;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.20.07.06.12;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.19.15.21.28;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.19.15.18.26;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.19.14.48.14;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.5
+log
+@yy* routines for output used
+gcnewdesc got fixed argument number
+@
+text
+@#ifndef HEAP_C
+#define HEAP_C
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include "heap.h"
+#include "stack.h"
+#include "error.h"
+#include "dbug.h"
+
+heapelem * heapbase, *heapspare;
+heapelem * heap;
+
+heapelem * initheap(int heapsize)
+  {
+  if ((heapbase = (heapelem *)malloc(heapsize)) == NULL) {
+    yyfail("can not allocate heap");
+    exit(1);
+    }
+  if ((heapspare = (heapelem *)malloc(heapsize)) == NULL) {
+    yyfail("can not allocate spare heap");
+    exit(1);
+    }
+  heap = (heapelem *)((int)heapbase+heapsize);
+  return heap;
+  }
+
+heapelem * swapheaps(int heapsize)
+  {
+  heapelem * pheap;
+
+  pheap = heapbase;
+  heapbase = heapspare;
+  heapspare = pheap;
+  return((heapelem *)((int)heapbase+heapsize));
+  }
+
+static desc * evacuate(desc * p)
+  {
+  desc * np;
+
+  if ((int)p < lastcmd)
+    return p;
+  if (lnode(p, type) == TYreloc)
+    return lreloc(p, dst);
+  else {
+    /* evacuate descriptor
+     */
+    np = _newdesc();
+    *np = *p;
+    lreloc(p, type) = TYreloc;
+    lreloc(p, dst) = np;
+    return np;
+    }
+  }
+
+int gctime=0;
+
+heapelem * gcnewdesc(int n, argstack(W), argstack(A), argstack(R), argstack(T))
+  {
+  void printstelem(int mode, int val);
+
+  DBUG_ENTER("gcnewdesc");
+  gctime -= clock();
+  DBUG_PRINT("GC", ("heapbase=%p, heapspare=%p\n", heapbase, heapspare));
+  heap = swapheaps(heapsize);
+  /* copy all active structures from A stack
+   */
+    DBUG_PRINT("GC", ("evacuating stack S[%d]", n));
+    while(!isempty(W)) {
+      DBUG_PRINT("GC", ("(%p)->", (void *)top(W)));
+      peek(W, -1) = (stack)evacuate((desc *)pop(W));
+      }
+    while(!isempty(A)) {
+      DBUG_PRINT("GC", ("(%p)->", (void *)top(A)));
+      peek(A, -1) = (stack)evacuate((desc *)pop(A));
+      }
+    while(!isempty(R)) {
+      DBUG_PRINT("GC", ("(%p)->", (void *)top(R)));
+      peek(R, -1) = (stack)evacuate((desc *)pop(R));
+      }
+    while(!isempty(T)) {
+      DBUG_PRINT("GC", ("(%p)->", (void *)top(T)));
+      peek(T, -1) = (stack)evacuate((desc *)pop(T));
+      }
+  DBUG_PRINT("GC", ("heapbase=%p, heap=%p heapspare=%p size=%d\n",
+    heapbase, heap, heapspare, n));
+  if ((int)heap-sizeof(desc) < (int)heapbase) {
+    yyfail("heap overflow");
+    exit(1);
+    }
+  yymessage("garbage collection completed, %d Bytes (%d%%) free",
+    ((int)heap-(int)heapbase) & ~0xf, (((int)heap-(int)heapbase) & ~0xf)*100/heapsize);
+  gctime += clock();
+  DBUG_RETURN((heapelem *)((int)heap-sizeof(desc)));
+  }
+
+#endif /* HEAP_C */
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@a6 1
+#include <stdarg.h>
+d9 1
+d18 1
+a18 1
+    fprintf(stderr, "can not allocate heap");
+d22 1
+a22 1
+    fprintf(stderr, "can not allocate spare heap");
+d43 2
+d46 1
+a46 1
+    return(lreloc(p, dst));
+d54 1
+a54 1
+    return(np);
+d60 1
+a60 1
+heapelem * gcnewdesc(int n, ...)
+a61 2
+  va_list ap;
+  astack(S);
+d66 1
+a66 1
+  /* printf("heapbase=%p, heapspare=%p\n", heapbase, heapspare); */
+a67 1
+  /* printf("heapbase=%p, heap=%p heapspare=%p\n", heapbase, heap, heapspare); */
+d70 4
+a73 7
+  va_start(ap, n);
+  for(; n > 0; n--) {
+    setstack(S) = va_arg(ap, stack *);
+    while(!isempty(S)) {
+      /* printf("evacuating stack S "); printstelem(-1, top(S)); printf("(%p)->", top(S)); */
+      peek(S, -1) = (stack)evacuate((desc *)pop(S));
+      /* printf("(%p)\n", peek(S, -1)); */
+d75 14
+a88 2
+    }
+  /* printf("heapbase=%p, heap=%p heapspare=%p size=%d\n", heapbase, heap, heapspare, n); */
+d90 1
+a90 1
+    fprintf(stderr, "heap overflow\n");
+d93 1
+a93 1
+  printf("garbage collection completed, %d Bytes (%d%%) free\n",
+@
+
+
+1.3
+log
+@heapsize inserted
+@
+text
+@a14 2
+int heapsize = 128*1024;
+
+d73 1
+a73 1
+    stackid(S) = va_arg(ap, stack *);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d15 2
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 2
+d10 1
+a10 1
+#include "heap.h"
+d58 1
+a58 1
+heapelem * gcnewdesc()
+d60 2
+d64 1
+d71 8
+a78 11
+  while(!isempty(a)) {
+    /* printf("evacuating stack a "); printstelem(-1, top(a)); printf("(%p)->", top(a)); */
+    peek(a, -1) = (stack)evacuate((desc *)pop(a));
+    /* printf("(%p)\n", peek(a, -1)); */
+    }
+  /* copy all active structures from W stack
+   */
+  while(!isempty(w)) {
+    /* printf("evacuating stack w "); printstelem(-1, top(w)); printf("(%p)->", top(w)); */
+    peek(w, -1) = (stack)evacuate((desc *)pop(w));
+    /* printf("(%p)\n", peek(w, -1)); */
+d88 1
+a88 1
+  return (heapelem *)((int)heap-sizeof(desc));
+@

@@ -1,0 +1,219 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@ANSI-version mit mess und verteilungs-Routinen
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/**************************************************************************/
+/*                                                                        */
+/* rnc_misc.c          miscellaneous functions for the nCube              */
+/*                                                                        */
+/* ach 01/03/93                                                           */
+/*                                                                        */
+/**************************************************************************/
+
+#include "rncstack.h"
+#include "rheapty.h"
+#include "rstdinc.h"
+#include "rstelem.h"
+
+#if D_MESS
+#include "d_mess_io.h"
+#endif
+
+#define TET  0                     /* was ist das ?  */
+
+extern DStackDesc D_S_hilf,D_S_A,D_S_H;
+
+/*---------------------------------------------------------------------------
+ * trav_a_hilf --  traversiert einen Ausdruck der nur aus Konstruktoren und
+ *                 Single Atoms besteht rekursiv von A nach Hilf.
+ * globals -       D_S_A,D_S_hilf;
+ *
+ * from: rtrav.c
+ *---------------------------------------------------------------------------
+ */
+void trav_a_hilf()
+{
+    register STACKELEM  x = D_POPSTACK(D_S_A);
+    register int        i;
+
+    if (T_CON(x))
+      for (i = ARITY(x); --i>=0; )
+        trav_a_hilf();
+    D_PUSHSTACK(D_S_hilf,x);
+}
+
+/*---------------------------------------------------------------------------
+ * trav_e_a --  traversiert einen Ausdruck der nur aus Konstruktoren und
+ *              Single Atoms besteht rekursiv von E nach A.
+ * globals :    D_S_H, D_S_A;
+ *
+ * from: rtrav.c
+ *---------------------------------------------------------------------------
+ */
+void trav_e_a()
+{
+    register STACKELEM  x = D_POPSTACK(D_S_H);
+    register int        i;
+
+    if (T_CON(x))
+      for (i = ARITY(x); --i>=0; )
+        trav_e_a();
+    D_PUSHSTACK(D_S_A,x);
+}
+
+/*---------------------------------------------------------------------------
+ * trav_hilf_a -- traversiert einen Ausdruck der nur aus Konstruktoren und
+ *                Single Atoms besteht rekursiv von hilf nach a.
+ * globals -      D_S_hilf, D_S_a;
+ *
+ * from: trav_hilf_a
+ *---------------------------------------------------------------------------
+ */
+void trav_hilf_a()
+{
+    register STACKELEM  x = D_POPSTACK(D_S_hilf);
+    register int        i;
+
+    if (T_CON(x))
+      for (i = ARITY(x); --i>=0; )
+        trav_hilf_a();
+    D_PUSHSTACK(D_S_A,x);
+}
+/*-----------------------------------------------------------------------------
+ * mvheap  -- ist eine Funktion mit Tradition, Sie legt den Ausdruck auf dem
+ *            Hilfstack in den Heap. Die Laenge dieses Ausdrucks legt sie an
+ *            den Anfang des Heapbereichs.
+ *            Auf "desc_entry" wird die Adresse des Heapbereichs abgelegt
+ *            in dem die Daten nun stehen.
+ *            Ist der Heap voll, so liefert mvheap eine 0 zurueck, eine 1 sonst.
+ * globals -- D_S_hilf        <w>
+ *
+ * from: rhinout.c
+ *-----------------------------------------------------------------------------
+ */
+int mvheap(desc_entry)
+int  * desc_entry;
+{
+  register PTR_HEAPELEM p;
+  register int          i;
+  int      size = D_SIZEOFSTACK(D_S_hilf);
+
+  if (!newheap(1 + size,desc_entry))
+  {
+    trav_hilf_a();
+    return(0);
+  }
+  p = (PTR_HEAPELEM) *desc_entry;
+
+  for (i = 1; i <= size; )
+    p[i++] = (T_HEAPELEM) D_POPSTACK(D_S_hilf);
+
+  p[0] = (T_HEAPELEM) (size + TET);
+  return(1);
+}
+
+/*---------------------------------------------------------------------------
+ * load_expr -- kopiert einen Heapausdruck auf den E-Stack.
+ *              Der Parameter pptr ist eine Adresse in einem Deskriptor,
+ *              in der ein Zeiger auf einen Heapausdruck mit
+ *              vorangestellter Laenge.
+ * called by -- ret_cond, ear, ua.
+ *
+ * from: rhinout.c
+ *--------------------------------------------------------------------------
+ */
+
+void load_expr(pptr)
+STACKELEM ** pptr;
+{
+  register int          size;
+  register STACKELEM       x;
+  register STACKELEM    *ptr;
+
+  START_MODUL("load_expr");
+#if MEASURE
+  measure(LOAD_EXPR);
+#endif
+
+  RES_HEAP;
+  ptr = *pptr;
+  size = ptr[0] - TET;
+
+  IS_SPACE(D_S_H,size);
+
+  while (size > 0)
+  {
+    x = ptr[size];
+    if (T_POINTER(x))
+      INC_REFCNT((PTR_DESCRIPTOR)x);
+    D_PPUSHSTACK(D_S_H,x);
+    size--;
+  }
+  REL_HEAP;
+
+  END_MODUL("load_expr");
+}
+
+/*----------------------------------------------------------------------------
+ * convi -- legt fuer den Integerparameter den es erhaelt eine entsprechende
+ *          Stackelementdarstellung auf den E-Stack.
+ * called by -- ret_scal;
+ * calls     -- keine;
+ * globals   -- D_S_H;
+ *
+ * from: rconvir.c
+ *----------------------------------------------------------------------------
+ */
+void convi(intval)
+register int intval;
+{
+  BOOLEAN  positive = TRUE;
+
+  START_MODUL("convi");
+
+  if (intval < 0)
+  {
+    if (intval == MININT)                               /* BM */
+      post_mortem("convi :  integer overflow");
+    positive = FALSE;
+    intval = -intval;
+  }
+
+  D_PUSHSTACK(D_S_H,(STACKELEM) DECPT); /* auch Integer haben am Ende einen '.' */
+
+  do
+  {
+    D_PUSHSTACK(D_S_H,(STACKELEM) SET_VALUE(DIG1,((intval % 10) + '0')));
+    intval /= 10;
+  }
+  while (intval > 0);
+
+  D_PUSHSTACK(D_S_H,(STACKELEM) (positive ? SET_ARITY(PLUS,1)
+                                          : SET_ARITY(MINUS,1)));
+  END_MODUL("convi");
+}
+
+
+@

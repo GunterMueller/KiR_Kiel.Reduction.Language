@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "DeInstallation script V 0.1"
+
+sh bin/RM_links
+cd src
+make clean
+cd ..
+
+echo
+echo "All subdirectory cleaned !"
+echo

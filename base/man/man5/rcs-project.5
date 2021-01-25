@@ -1,0 +1,147 @@
+.\" Copyright (c) 1992 by the University of Kiel.
+.\" All rights reserved.
+.\"
+.\"	@(#)rcs-project.5	1.0 (University of Kiel) 1/11/92
+.\"
+.ds r \&\s-1RCS\s0
+.TH RCS-PROJECT 5 "November 1, 1992"
+.UC
+.SH NAME
+rcs-project \- introduction to rcs-project
+.SH DESCRIPTION
+The Revision Control System (\*r) manages multiple revisions of files.
+\*r automates the storing, retrieval, logging, identification, and merging
+of revisions.  \*r is useful for text that is revised frequently, for example
+programs, documentation, graphics, papers, and form letters.
+.PP
+The basic user interface is extremely simple.  The novice user only needs
+to learn two commands:
+.BR ci (1)
+and
+.BR co (1).
+(see
+.BR rcsintro (1),
+.BR ci (1),
+.BR co (1),
+.BR rcs (1)).
+.LP
+RCS-project manages multiple directories belonging to the same project. Every
+RCS-project consists of an root directory which contains an \*r controlled file
+called
+.BR rcs-directories.
+This file contains a list of directory names that belong to the
+RCS-project.  Except for the root directory, all directories within
+the RCS-project contain a file
+.B rcs-files
+which specifies the files that are controled by RCS.
+.LP
+Using the RCS-project specific programs (see
+.BR locker (1),
+.BR mkfl (1),
+.BR setrev (1),
+.BR update (1))
+allows the user to work on the whole RCS-project.
+.SS "Functions of RCS-project"
+.IP \(bu
+To prohibit access conflicts when two or more programmers wish
+to modify the same revision of a file, \*r controlled files are locked
+while they are edited.
+.BR locker (1)
+displays locked files throughout the RCS-project or in parts
+of the project.
+.IP \(bu
+If the contents of the RCS-project change during the developement,
+the programmer has to adjust the corresponding
+.B rcs-files
+respective
+.BR rcs-directories .
+To do so the programmer can use
+.BR mkfl (1)
+to generate a new
+.B rcs-files
+file.
+.IP \(bu
+\*r may maintain revisions by a symbolic name, revision number or 
+revision dates. The programmer is able to retrieve a specific version
+using the command
+.B update
+(see
+.BR update (1))
+Revisions are numbered automatically by \*r, symbolic names are
+associated to an RCS-project using the
+.B setrev
+(see
+.BR setrev (1))
+command.
+.IP \(bu
+A new user may get his local copy of the rcs-project using
+.B update
+(see
+.BR update (1))
+and specifying an optional source directory. This results in setting
+up a minimal directory and file structure for participate in the project.
+see
+.SM EXAMPLES
+below.
+.SH EXAMPLES
+To initiate a fresh RCS-project the owner has to set up a suitable
+directory structure. Consider a project that only requires a
+.B src
+directory. The project owner has to set up the RCS-project by executing
+the following steps:
+.RS
+.sp.5
+.nf
+.BI "example% mkdir " "projectname"
+.BI "example% mkdir " "projectname" /src
+.BI "example% mkdir " "projectname" /RCS
+.BI "example% mkdir " "projectname" /src/RCS
+.fi
+.RE
+.LP
+Make sure that no other user has write access to the directories.
+Create files
+.B rcs-directories
+and
+.B rcs-files
+that contains the directories and files of the rcs-project:
+.RS
+.sp.5
+.nf
+.BI "example% cat > " "projectname" /rcs-directories
+src
+^D
+.BI "example% ci " "projectname" /rcs-directories
+.BI "example% touch " "projectname" /src/rcs-files
+.BI "example% ci " "projectname" /src/rcs-files
+.fi
+.RE
+.LP
+To introduce source-files to the rcs-project follow the steps
+described in
+.BR mkfl (1).
+.LP
+A new member of the team may obtain his onw copy the project using
+.B update \-s
+.IR "projectname localprojectname".
+.SH FILES
+.TP 1i
+.B RCS-files
+contains the names of all files within a directory that is controlled
+by RCS
+.TP
+.B RCS-directories
+contains the names of all directories belonging to an RCS-project
+.SH ENVIRONMENT
+.TP 1i
+.B RCSROOT
+default directory if no command-line directories are given
+.SH SEE\ ALSO
+.BR rcsintro (1),
+.BR ci (1),
+.BR co (1),
+.BR rcs (1),
+.BR locker (1),
+.BR mkfl (1),
+.BR setrev (1),
+.BR update (1)

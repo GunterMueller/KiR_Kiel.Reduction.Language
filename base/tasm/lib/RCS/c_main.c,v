@@ -1,0 +1,794 @@
+head	1.17;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.17
+date	96.07.03.08.47.07;	author rs;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	96.04.11.13.27.29;	author cr;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	96.03.08.13.29.36;	author rs;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	96.02.23.14.13.13;	author rs;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	96.02.21.17.22.26;	author rs;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	96.02.20.15.55.12;	author rs;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	96.02.19.19.19.55;	author rs;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	96.02.16.16.11.49;	author rs;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	96.02.06.18.33.49;	author rs;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	96.02.01.11.40.42;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	96.01.26.14.11.04;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	96.01.18.09.39.58;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.08.28.12.29.32;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.08.10.09.33.32;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.08.08.14.23.40;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.07.10.12.03.57;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.07.07.09.36.50;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.17
+log
+@D_DISTRIBUTE-definitions moved to prolog.h
+@
+text
+@/* $Log: c_main.c,v $
+ * Revision 1.16  1996/04/11  13:27:29  cr
+ * prepare for separate compilation (again:-(
+ * step I: avoid use of program-specific global variables
+ * in tasm-generated code inside initdata.c and rmkclos.c
+ * (cf. compile.c c_output.c)
+ *
+ * Revision 1.15  1996/03/08  13:29:36  rs
+ * D_DISTRIBUTE definition fixed
+ *
+ * Revision 1.14  1996/02/23  14:13:13  rs
+ * new (t)ASM commands: count(x), msdistend, msnodist
+ *
+ * Revision 1.13  1996/02/21  17:22:26  rs
+ * some more changes for D_MESS
+ *
+ * */
+
+#include <sys/time.h>
+
+int ta_heapsize = 2048*2048, ta_no_of_desc = 10000, ta_stacksize = 102400;
+double start_time;
+
+#if (D_SLAVE && D_MESS)
+#include "d_mess_io.h"
+extern PROCESS_CONTEXT* curr_pid;
+extern INSTR *distribute();
+extern PROCESS_CONTEXT *process_create();
+extern void process_terminate();
+extern void process_sleep();
+extern void process_wakeup();
+extern void process_run();
+extern void msg_send();
+extern void msg_receive();
+extern int proc_tab_size;
+#endif
+
+int main(int argc, char * argv[])
+{
+  extern void trap_handler();
+  extern int intact_tasm(void);
+  int dummy, no_output = 0;
+  char c, * dbug_args = NULL;
+  extern int red_cnt;
+  extern char * optarg;
+  extern int optind, opterr;
+  extern int getopt(int, char **, char *), controlled_exit(const char *);
+  extern char ri_tasmoutfile[120];
+#if D_SLAVE
+  extern int stack_seg_size;
+  extern int ticket_pool_counter;
+  char filename[80];
+  int type,flags=-1;
+#endif /* D_SLAVE */
+  struct timeval t0;
+
+  DBUG_ENTER("main");
+
+#if D_SLAVE
+  whoami(&proc_id,&dummy,&host,&cube_dim);
+#endif
+
+  DBUG_PRINT("AUX", ("parsing command line arguments..."));
+
+  while((c = getopt(argc, argv, "Z:E:X:M:Q:Y:m:q:x:y:z:n:f:t:V:#:k:h:d:R:I:s:o")) != -1) {
+    DBUG_PRINT("AUX", ("opt = %c", c));
+    switch(c)
+    {
+      case 'V': /* only for the debugger */
+
+      case '#': 
+#if D_SLAVE
+               if (((int)rindex(optarg,':')-(int)optarg)==
+                   ((int)index(optarg,'o')-1-(int)optarg)) { /* :o ? */
+                 /* appending number of processor */
+                 sprintf(filename, "%s%d", optarg, proc_id);
+                 DBUG_PUSH(filename);
+                 DBUG_PRINT("AUX", ("dbug-args: %s", filename));
+                 } 
+               else {
+                 DBUG_PUSH(dbug_args = optarg);
+                 DBUG_PRINT("AUX", ("dbug-args: %s", optarg));
+                 }
+#else
+                DBUG_PUSH(dbug_args = optarg); 
+#endif
+                DBUG_PRINT("AUX", ("fred fish enabled..."));
+                break;
+#if (D_SLAVE && D_MESS)
+      case 'm': d_bib_mask = atoi(optarg);
+                DBUG_PRINT("AUX", ("d_bib_mask: %d", d_bib_mask));
+                break;
+      case 'q': m_merge_strat = atoi(optarg);
+                DBUG_PRINT("AUX", ("m_merge_strat: %d", m_merge_strat));
+                break;
+      case 'x': m_ackno = atoi(optarg);
+                DBUG_PRINT("AUX", ("m_ackno: %d", m_ackno));
+                break;
+      case 'y': sprintf(m_mesfilehea, "%s", optarg);
+                DBUG_PRINT("AUX", ("m_mesfilehea: %s", m_mesfilehea));
+                break;
+      case 'z': sprintf(m_mesfilepath, "%s", optarg);
+                DBUG_PRINT("AUX", ("m_mesfilepath: %s", m_mesfilepath));
+                break;
+/*      case 'E': sprintf(_errmes, "%s", optarg);
+                DBUG_PRINT("HOST", ("_errmes: %s", _errmes));
+                break;
+      case 'X': sprintf(m_remote_host, "%s", optarg);
+                DBUG_PRINT("HOST", ("m_remote_host: %s", m_remote_host));
+                break; 
+      case 'M': m_del_files = atoi(optarg);
+                DBUG_PRINT("HOST", ("m_del_files: %d", m_del_files));
+                break;
+      case 'Q': sprintf(m_target_dir, "%s", optarg);
+                DBUG_PRINT("HOST", ("m_target_dir: %s", m_target_dir));
+                break;
+      case 'Y': sprintf(m_remote_dir, "%s", optarg);
+                DBUG_PRINT("HOST", ("m_remote_dir: %s", m_remote_dir));
+                break;  
+      case 'Z': sprintf(m_remote_bin, "%s", optarg);
+                DBUG_PRINT("HOST", ("m_remote_bin: %s", m_remote_bin));
+                break; */
+#endif /* (D_SLAVE && D_MESS) */
+      case 'k': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); 
+                DBUG_PRINT("AUX", ("outfile: %s", ri_tasmoutfile));
+                break;
+      case 'h': ta_heapsize = atoi(optarg); 
+                DBUG_PRINT("AUX", ("ta_heapsize: %d", ta_heapsize));
+                break;
+      case 's': ta_stacksize = atoi(optarg); 
+                DBUG_PRINT("AUX", ("ta_stacksize: %d", ta_stacksize));
+                break;
+      case 'd': ta_no_of_desc = atoi(optarg); 
+                DBUG_PRINT("AUX", ("ta_no_of_desc: %d", ta_no_of_desc));
+                break;
+      case 'R': red_cnt = atoi(optarg); 
+                DBUG_PRINT("AUX", ("red_cnt: %d", red_cnt));
+                break;
+      case 'o': no_output = 1; 
+                DBUG_PRINT("AUX", ("no_output: %d", no_output));
+                break;
+/* cr 28/03/95, kir(ff), START */
+      case 'I': inter_allowed = atoi(optarg); 
+                DBUG_PRINT("AUX", ("inter_allowed: %d", inter_allowed)); 
+                break;
+/* cr 28/03/95, kir(ff), END */
+    }
+  }
+
+  DBUG_PRINT("AUX", ("parsing command line arguments done !"));
+
+  /* time starts NOW 
+
+  gettimeofday (&t0, NULL);
+  start_time = t0.tv_sec + t0.tv_usec/1000000.0;   NOT !!!! ;-) */
+
+  signal (SIGFPE, trap_handler);
+  _base = 10000;
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+#if D_SLAVE
+  stack_seg_size = 256;
+  ticket_pool_counter = 0;
+  alloc_stack_memory(ta_stacksize);
+#else /* D_SLAVE */
+  if (NULL ==(_st_w = (int *)malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_a = (int *)malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_t = (int *)malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_r = (int *)malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  st_w = _st_w;
+  st_a = _st_a;
+  st_t = _st_t;
+  st_r = _st_r;
+#endif /* D_SLAVE */
+  build_dyn_funcdesctable(funcdesctable,stat_funcdesctable, number_of_descs);
+  build_static_clos(funcclostable,funcdesctable,number_of_descs);
+  initdata();
+#if D_SLAVE
+  DBUG_PRINT("AUX", ("I'm Processor %d out of %d", proc_id, 1<<cube_dim));
+  if (cube_dim && dbug_args) {
+    char dbug_buf[256];
+    DBUG_PRINT("AUX", ("I'm here inside"));
+    sprintf(dbug_buf, "dbug%d", (int)proc_id);
+    unlink(dbug_buf);
+    sprintf(dbug_buf, "%s:o,dbug%d", dbug_args, (int)proc_id);
+    DBUG_POP();
+    DBUG_PUSH(dbug_buf);
+    }
+    DBUG_PRINT("AUX", ("I'm here outside before nc_init"));
+  nc_init(ta_heapsize,ta_stacksize);
+
+#if D_MESS
+
+/* sorry, some D_MESS code extracted from rncmessage.c */
+/* I don't think there's need for another .c-file */
+   
+  d_init_mess(proc_id);
+
+#if (D_PVM && !D_PVM_NCUBE)
+      MPRINT_SPECIAL(D_MESS_FILE, M_TIMER, PROCESS_NR, -1, proc_tab_size, m_base);
+#else
+      MPRINT_SPECIAL(D_MESS_FILE, 0.0, PROCESS_NR, -1, proc_tab_size, m_base);
+#endif /* D_PVM */
+
+  if (d_bib_mask & (1 << MINDEX_PROC_DIST)) {
+    DBUG_PRINT ("MSG", ("PROC DIST measure enabled !"));
+    d_m_distribute = m_distribute; }
+  else
+    d_m_distribute = distribute;
+  if (d_bib_mask & (1 << MINDEX_PROC_CREATE)) {
+    DBUG_PRINT ("MSG", ("PROC CREATE measure enabled !"));
+    d_m_process_create = m_process_create; }
+  else
+    d_m_process_create = process_create;
+  if (d_bib_mask & (1 << MINDEX_PROC_TERMINATE)) {
+    DBUG_PRINT ("MSG", ("PROC TERMINATE measure enabled !"));
+    d_m_process_terminate = m_process_terminate; }
+  else
+    d_m_process_terminate = process_terminate;
+  if (d_bib_mask & (1 << MINDEX_PROC_SLEEP)) {
+    DBUG_PRINT ("MSG", ("PROC SLEEP measure enabled !"));
+    d_m_process_sleep = m_process_sleep; }
+  else
+    d_m_process_sleep = process_sleep;
+  if (d_bib_mask & (1 << MINDEX_PROC_RUN)) {
+    DBUG_PRINT ("MSG", ("PROC RUN measure enabled !"));
+    d_m_process_run = m_process_run; }
+  else
+    d_m_process_run = process_run;
+  if (d_bib_mask & (1 << MINDEX_PROC_WAKEUP)) {
+    DBUG_PRINT ("MSG", ("PROC WAKEUP measure enabled !"));
+    d_m_process_wakeup = m_process_wakeup; }
+  else
+    d_m_process_wakeup = process_wakeup;
+
+  d_m_msg_send = msg_send;
+  d_m_msg_receive = msg_receive;
+
+  if (d_bib_mask & (1 << MINDEX_SEND_BEGIN)) {
+    DBUG_PRINT ("MSG", ("SEND BEGIN measure enabled !"));
+    d_m_msg_send = m_msg_send;
+    m_msg_send_begin = 1; }
+  else
+    m_msg_send_begin = 0;
+  if (d_bib_mask & (1 << MINDEX_SEND_END)) {
+    DBUG_PRINT ("MSG", ("SEND END measure enabled !"));
+    d_m_msg_send = m_msg_send;
+    m_msg_send_end = 1; }
+  else
+    m_msg_send_end = 0;
+  if (d_bib_mask & (1 << MINDEX_RECEIVE_BEGIN)) {
+    DBUG_PRINT ("MSG", ("RECEIVE BEGIN measure enabled !"));
+    d_m_msg_receive = m_msg_receive;
+    m_msg_receive_begin = 1; }
+  else
+    m_msg_receive_begin = 0;
+  if (d_bib_mask & (1 << MINDEX_RECEIVE_END)) {
+    DBUG_PRINT ("MSG", ("RECEIVE END measure enabled !"));
+    d_m_msg_receive = m_msg_receive;
+    m_msg_receive_end = 1; }
+  else
+    m_msg_receive_end = 0;
+
+  m_init_merge();
+#endif /* D_MESS */
+
+  DBUG_PRINT("AUX", ("I'm here outside after nc_init"));
+
+  /* time starts NOW */
+
+  gettimeofday (&t0, NULL);
+  start_time = t0.tv_sec + t0.tv_usec/1000000.0; 
+
+  if (proc_id == 0)
+#if (D_SLAVE && D_MESS && D_MSCHED)
+    (*d_m_process_create)(map(0,0), NULL, red_cnt);
+#else
+    process_create(map(0,0), NULL, red_cnt);
+#endif
+  for(;;) {
+    DBUG_PRINT("AUX", ("entering scheduler"));
+    schedule();
+    push_r((STACKELEM)unmapl((int)code));
+    DBUG_PRINT("EXEC", ("code=%x",code));
+    /* subject to change */
+    switch(apply(R_COMB(*(funcdesctable[unmapf((int)code)]), ptc))) {
+      case IR_EXT:
+        DBUG_PRINT("AUX", ("execution done"));
+        t_output(pop(w),number_of_descs,funcdesctable,number_of_data,data_table,ptc_table);
+        fprintf(stdout,"\n");
+#if (D_SLAVE && D_MESS && D_MSCHED)
+        (*d_m_process_terminate)(curr_pid);
+#else
+        process_terminate(curr_pid);
+#endif
+        DBUG_PRINT("AUX", ("sending message back to the host..."));
+        type=MT_RESULT;
+        nwrite(NULL,0,host,type,&flags);
+        /* exit(0); ?!              slaves will be terminated by host.c */
+        break;
+      case IR_DIST_END:
+        DBUG_PRINT("AUX", ("distribution done"));
+#if (D_SLAVE && D_MESS && D_MSCHED)
+        (*d_m_process_terminate)(curr_pid);
+#else
+        process_terminate(curr_pid);
+#endif
+        break;
+      case IR_WAIT:
+        DBUG_PRINT("AUX", ("process suspended"));
+#if (D_SLAVE && D_MESS && D_MSCHED)
+        (*d_m_process_sleep)(curr_pid);
+#else
+        process_sleep(curr_pid);
+#endif
+        break;
+      }
+      if (sig_msg_flag)
+        msg_check();
+    }
+#else /* D_SLAVE */
+
+  /* time starts NOW */
+
+  gettimeofday (&t0, NULL);
+  start_time = t0.tv_sec + t0.tv_usec/1000000.0;  
+
+  DBUG_PRINT("AUX", ("running program"));
+  push_label(0);
+  push_r(((int)(&intact_tasm) | FUNCTIONRETURN));
+  push_label(0);
+  apply(goal);
+  if (!no_output)
+    t_output(pop(w),number_of_descs,funcdesctable,number_of_data,data_table,ptc_table);
+  fprintf(stdout,"\n");
+  exit(0);
+#endif /* D_SLAVE */
+}
+
+@
+
+
+1.16
+log
+@prepare for separate compilation (again:-(
+step I: avoid use of program-specific global variables
+in tasm-generated code inside initdata.c and rmkclos.c
+(cf. compile.c c_output.c)
+@
+text
+@d2 6
+a35 6
+#endif
+
+#if (D_SLAVE && D_MESS && D_MSCHED)
+#define D_DISTRIBUTE (*d_m_distribute)
+#else
+#define D_DISTRIBUTE distribute
+@
+
+
+1.15
+log
+@D_DISTRIBUTE definition fixed
+@
+text
+@d2 3
+d210 2
+a211 2
+  build_dyn_funcdesctable(stat_funcdesctable, number_of_descs);
+  build_static_clos(number_of_descs);
+d324 1
+a324 1
+        t_output(pop(w));
+d369 1
+a369 1
+    t_output(pop(w));
+@
+
+
+1.14
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@d2 3
+d27 2
+a32 1
+#endif
+@
+
+
+1.13
+log
+@some more changes for D_MESS
+@
+text
+@d2 3
+d7 2
+d10 1
+d24 5
+d48 1
+d145 5
+d295 7
+a301 1
+    DBUG_PRINT("AUX", ("I'm here outside after nc_init"));
+d303 3
+d307 1
+d319 3
+d323 1
+d331 3
+d335 1
+d339 3
+d343 1
+d350 6
+@
+
+
+1.12
+log
+@more work on tasm + distribute + measure
+@
+text
+@d1 3
+d46 1
+a46 1
+  while((c = getopt(argc, argv, "m:q:x:y:z:n:f:t:V:#:k:h:d:R:I:s:o")) != -1) {
+d86 18
+@
+
+
+1.11
+log
+@more work an tasm + distribute + measurements
+@
+text
+@d2 1
+d5 10
+d16 1
+d181 1
+d183 74
+a256 2
+   m_init_merge();
+#endif
+@
+
+
+1.10
+log
+@preparing tasm for measurments
+@
+text
+@d2 3
+a4 1
+int d_bib_mask = 0;
+d31 1
+a31 1
+  while((c = getopt(argc, argv, "n:f:t:V:#:k:h:d:R:I:s:o")) != -1) {
+d55 1
+d59 13
+d169 3
+@
+
+
+1.9
+log
+@some changes concerning the distributed version
+@
+text
+@d2 1
+d6 1
+d53 3
+d187 2
+@
+
+
+1.8
+log
+@DBUG_PRINTs, whoami went to top
+@
+text
+@d16 1
+a22 2
+  sprintf(filename, "d:t:o,/tmp/ncube_node_%d", proc_id);
+  DBUG_PUSH(filename);
+d25 4
+a28 1
+  while((c = getopt(argc, argv, "n:f:t:V:#:k:h:d:R:I:s:o")) != -1)
+d31 19
+a49 3
+#ifdef DEBUG
+      case 'V':
+      case '#': DBUG_PUSH(dbug_args = optarg); 
+a50 1
+#endif
+d52 7
+d60 9
+a68 5
+      case 'h': ta_heapsize = atoi(optarg); break;
+      case 's': ta_stacksize = atoi(optarg); break;
+      case 'd': ta_no_of_desc = atoi(optarg); break;
+      case 'R': red_cnt = atoi(optarg); break;
+      case 'o': no_output = 1; break;
+d70 3
+a72 1
+      case 'I': inter_allowed = atoi(optarg); break;
+d75 4
+d163 5
+a167 1
+        exit(0);
+@
+
+
+1.7
+log
+@default stacksize changed
+@
+text
+@d15 1
+d19 8
+a26 1
+  while((c = getopt(argc, argv, "V:#:k:h:d:R:I:s:o")) != -1)
+d31 2
+a32 1
+      case '#': DBUG_PUSH(dbug_args = optarg); break;
+d34 2
+a35 1
+      case 'k': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+a101 1
+  whoami(&proc_id,&dummy,&dummy,&cube_dim);
+d105 1
+d112 3
+a114 1
+  nc_init();
+@
+
+
+1.6
+log
+@new option for executable: -o suppress output
+@
+text
+@d1 1
+a1 1
+int ta_heapsize = 2048*2048, ta_no_of_desc = 10000, ta_stacksize = 10240;
+@
+
+
+1.5
+log
+@ta_heapsize, ta_no_of_desc and ta_stacksize no longer local
+@
+text
+@d5 1
+a5 1
+  int dummy;
+d18 1
+a18 1
+  while((c = getopt(argc, argv, "V:#:k:h:d:R:I:s:")) != -1)
+d30 1
+d134 2
+a135 1
+  t_output(pop(w));
+@
+
+
+1.4
+log
+@explicit cast
+@
+text
+@d1 1
+a6 1
+  int ta_heapsize = 2048*2048, ta_no_of_desc = 10000, ta_stacksize = 10240;
+@
+
+
+1.3
+log
+@ncube extendions 1st pass
+@
+text
+@d36 1
+a39 2
+#endif /* D_SLAVE */
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+d41 2
+a42 1
+  if (NULL ==(_st_w = malloc(sizeof(int) * ta_stacksize)))
+d52 1
+a52 1
+  if (NULL ==(_st_a = malloc(sizeof(int) * ta_stacksize)))
+d62 1
+a62 1
+  if (NULL ==(_st_t = malloc(sizeof(int) * ta_stacksize)))
+d72 1
+a72 1
+  if (NULL ==(_st_r = malloc(sizeof(int) * ta_stacksize)))
+d86 1
+@
+
+
+1.2
+log
+@nCUBE stuff
+@
+text
+@d4 2
+a5 1
+  char c;
+d12 4
+d17 1
+d23 1
+a23 1
+      case '#': DBUG_PUSH(optarg); break;
+d36 4
+d41 1
+d89 1
+a89 2
+  push_label(0);
+#ifdef nCUBE
+d91 9
+d101 2
+d104 1
+d106 1
+a106 1
+    push(r, (stack)unmapl((int)code);
+d109 1
+a109 1
+    switch(apply(R_COMB(funcdesctable[unmapf((int)code)], ptc))) {
+d111 3
+d115 1
+a115 1
+           exit(0);
+d117 1
+d119 1
+d121 1
+d123 1
+d128 3
+a130 1
+#else /* nCUBE */
+a131 1
+#endif /* nCUBE */
+d135 1
+a135 1
+  return (1);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d79 21
+d101 1
+@

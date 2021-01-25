@@ -1,0 +1,2389 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : UI Specification file
+%%ID  Application = "msProcArray"
+%%ID  Created by tb on Wed Sep  8 10:27:35 1993
+%Y msProcArrayMousePosition
+%Y msProcArrayClickRight
+%Y msProcArrayClickMiddle
+%Y msProcArrayClickLeft
+%Y msBarChartResizePlotter
+%Z msSpeedPanelSetRate
+%Z msSpeedPanelSetDelay
+%Z msSpeedPanelIncreaseRate
+%Z msSpeedPanelIncreaseDelay
+%Z msSpeedPanelEnterRate
+%Z msSpeedPanelEnterDelay
+%Z msSpeedPanelDecreaseRate
+%Z msSpeedPanelDecreaseDelay
+%Z msScriptPanelSave
+%Z msScriptPanelRun
+%Z msScriptPanelEnterPath
+%Z msScriptPanelEnterName
+%Z msScriptPanelEdit
+%Z msScriptPanelBrowse
+%Z msProcArrayDisplaySave
+%Z msProcArrayDisplayPrint
+%Z msPositionPanelEnterTime
+%Z msPositionPanelEnterFrame
+%Z msHistoryPanelSetLevel
+%Z msHistoryPanelIncreaseLevel
+%Z msHistoryPanelEnterLevel
+%Z msHistoryPanelDecreaseLevel
+%Z msFuturePanelSetLevel
+%Z msFuturePanelIncreaseLevel
+%Z msFuturePanelEnterLevel
+%Z msFuturePanelDecreaseLevel
+%Z msFilePanelEnterPath
+%Z msFilePanelEnterName
+%Z msFilePanelBrowse
+%Z msFileBrowserUpdate
+%Z msFileBrowserSelectFile
+%Z msFileBrowserInitialize
+%Z msFileBrowserAccept
+%Z msDisplayPanelSetTitle
+%Z msDisplayPanelSetStyleText
+%Z msDisplayPanelSetStyleNone
+%Z msDisplayPanelSetStyleColor
+%Z msDisplayPanelSetStyle
+%Z msDisplayPanelSetMeter
+%Z msDisplayPanelSetMeter
+%Z msDisplayPanelSave
+%Z msDisplayPanelRedrawe
+%Z msDisplayPanelRedraw
+%Z msDisplayPanelPrint
+%Z msDisplayPanelClear
+%Z msControlPanelStop
+%Z msControlPanelStepForward
+%Z msControlPanelStepBackward
+%Z msControlPanelSkipForward
+%Z msControlPanelSkipBackward
+%Z msControlPanelPlayForward
+%Z msControlPanelPlayBackward
+%Z msControlPanelPlayBackward
+%Z msControlPanelGoToStart
+%Z msControlPanelGoToEnd
+%Z msBarChartZoomZoomOut
+%Z msBarChartZoomYSetMin
+%Z msBarChartZoomYSetMax
+%Z msBarChartZoomXSetMin
+%Z msBarChartZoomXSetMax
+%Z msBarChartZoomShowAll
+%Z msBarChartStorePreferences
+%Z msBarChartStop
+%Z msBarChartStepForward
+%Z msBarChartStepBackward
+%Z msBarChartSetRate
+%Z msBarChartSetDelay
+%Z msBarChartPlayForward
+%Z msBarChartPlayBackward
+%Z msBarChartGoToStart
+%Z msBarChartGoToEnd
+%Z msBarChartFileCall
+%Z msBarChartExitHook
+%Z msBarChartDisplayYSetTitle
+%Z msBarChartDisplayYSetSubGrid
+%Z msBarChartDisplayYSetMin
+%Z msBarChartDisplayYSetMax
+%Z msBarChartDisplayYSetLog
+%Z msBarChartDisplayYSetLinear
+%Z msBarChartDisplayYSetGrid
+%Z msBarChartDisplayXSetTitle
+%Z msBarChartDisplayXSetSubGrid
+%Z msBarChartDisplayXSetMin
+%Z msBarChartDisplayXSetMax
+%Z msBarChartDisplayXSetLog
+%Z msBarChartDisplayXSetLinear
+%Z msBarChartDisplayXSetGrid
+%Z msBarChartDisplaySetTitle
+%Z msBarChartDisplaySave
+%Z msBarChartDisplayPrint
+%Z msBarChartDisplayLegend
+%Z msBarChartDisplayClear
+%Z mcControlPanelSkipBackward
+%Z exitHook
+%%%
+%A msProcArray
+%C MSProcArray
+%R x : 23
+%R y : 41
+%R width : 1083
+%R height : 709
+%R borderWidth : 0
+%R background : #bbbbbb
+%R translations : 
+%R winGravity : 0
+%R widthInc : 0
+%F
+%%%
+%N msProcArrayBox
+%c ukcLayoutWidgetClass
+%p msProcArray
+%m true
+%o false
+%s x : 0
+%s y : 0
+%s width : 1083
+%s height : 709
+%s borderWidth : 0
+%r background : #bbbbbb
+%r translations : 
+%f
+%%%
+%N  msProcArrayGraphicBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 5
+%s  width : 862
+%s  height : 588
+%s  borderWidth : 1
+%r  background : #888888
+%r  translations : 
+%f
+%%%
+%N   msProcArrayGraphicArea
+%c   ukcPassiveWidgetClass
+%p   msProcArray.msProcArrayBox.msProcArrayGraphicBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 852
+%s   height : 578
+%s   borderWidth : 1
+%r   translations : <Btn1Down>: msProcArrayClickLeft()\
+<Btn2Down>: msProcArrayClickMiddle()\
+<Btn3Down>: msProcArrayClickRight()\
+<MotionNotify>: msProcArrayMousePosition()\
+
+%f
+%%%
+%N  msCommandPanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 640
+%s  width : 204
+%s  height : 63
+%s  borderWidth : 1
+%z  horizFixed : true
+%r  background : #888888
+%f
+%%%
+%N   msCommandPanelExit
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msCommandPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 53
+%s   borderWidth : 1
+%r   label : Exit
+%r   callback : exitHook()
+%f
+%%%
+%N  msProcArrayControlBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 625
+%s  width : 862
+%s  height : 78
+%s  borderWidth : 1
+%z  vertFixed : true
+%r  background : #888888
+%f
+%%%
+%N   msCursorPanelBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msProcArrayBox.msProcArrayControlBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 82
+%s   height : 68
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msCursorPanelLabelX
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 9
+%s    width : 20
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : X:
+%r    justify : right
+%r    borderColor : #888888
+%f
+%%%
+%N    msCursorPanelLabelY
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 37
+%s    width : 20
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Y:
+%r    justify : right
+%r    barColour : #000000
+%r    borderColor : #888888
+%f
+%%%
+%N    msCursorPanelShowX
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox
+%m    true
+%o    false
+%s    x : 25
+%s    y : 9
+%s    width : 50
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%f
+%%%
+%N    msCursorPanelShowY
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox
+%m    true
+%o    false
+%s    x : 25
+%s    y : 37
+%s    width : 50
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%f
+%%%
+%N   msPositionPanelBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msProcArrayBox.msProcArrayControlBox
+%m   true
+%o   false
+%s   x : 92
+%s   y : 4
+%s   width : 120
+%s   height : 68
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msPositionPanelLabelLine
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 2
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Real:
+%r    justify : right
+%r    borderColor : #888888
+%f
+%%%
+%N    msPositionPanelLabelFrame
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 24
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Frame:
+%r    justify : right
+%r    barColour : #000000
+%r    borderColor : #888888
+%f
+%%%
+%N    msPositionPanelLabelTime
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 46
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Time:
+%r    justify : right
+%r    borderColor : #888888
+%f
+%%%
+%N    msPositionPanelShowLine
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 53
+%s    y : 2
+%s    width : 60
+%s    height : 18
+%s    borderWidth : 1
+%z    vertFixed : true
+%r    background : #888888
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%f
+%%%
+%N    msPositionPanelEnterFrame
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 53
+%s    y : 24
+%s    width : 60
+%s    height : 18
+%s    borderWidth : 1
+%z    vertFixed : true
+%r    background : #ffffff
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%r    editable : true
+%r    editing : true
+%r    editCallback : msPositionPanelEnterFrame()
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    msPositionPanelEnterTime
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox
+%m    true
+%o    false
+%s    x : 53
+%s    y : 46
+%s    width : 60
+%s    height : 18
+%s    borderWidth : 1
+%z    vertFixed : true
+%r    background : #ffffff
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%r    editable : true
+%r    editing : true
+%r    editCallback : msPositionPanelEnterTime()
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msControlPanelBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msProcArrayBox.msProcArrayControlBox
+%m   true
+%o   false
+%s   x : 218
+%s   y : 4
+%s   width : 398
+%s   height : 68
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msControlPanelGoToStart
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelGoToStart
+%r    bitmap : bitmaps/go_to_start
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelPlayBackward
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 61
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelPlayBackward()
+%r    bitmap : bitmaps/play_backward
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelSkipBackward
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 117
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelStepBackward()
+%r    bitmap : bitmaps/step_backward
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelStop
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 173
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelStop()
+%r    bitmap : bitmaps/stop
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelSkipForward
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 229
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelStepForward()
+%r    bitmap : bitmaps/step_forward
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelPlayForward
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 285
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelPlayForward()
+%r    bitmap : bitmaps/play_forward
+%r    background : #bbbbbb
+%f
+%%%
+%N    msControlPanelGoToEnd
+%c    ukcCommandWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox
+%m    true
+%o    false
+%s    x : 341
+%s    y : 8
+%s    width : 50
+%s    height : 50
+%s    borderWidth : 1
+%r    label : >|
+%r    callback : msControlPanelGoToEnd()
+%r    bitmap : bitmaps/go_to_end
+%r    background : #bbbbbb
+%f
+%%%
+%N   msSpeedPanelBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msProcArrayBox.msProcArrayControlBox
+%m   true
+%o   false
+%s   x : 622
+%s   y : 4
+%s   width : 234
+%s   height : 68
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msSpeedPanelLabelDelay
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 9
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Delay:
+%r    justify : right
+%r    borderColor : #888888
+%f
+%%%
+%N    msSpeedPanelLabelRate
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 3
+%s    y : 37
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    label : Rate:
+%r    justify : right
+%r    barColour : #000000
+%r    borderColor : #888888
+%f
+%%%
+%N    msSpeedPanelEnterDelay
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 53
+%s    y : 9
+%s    width : 40
+%s    height : 18
+%s    borderWidth : 1
+%z    vertFixed : true
+%r    background : #ffffff
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%r    internalHeight : 2
+%r    internalWidth : 4
+%r    editable : true
+%r    editing : true
+%r    editCallback : msSpeedPanelEnterDelay
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    msSpeedPanelEnterRate
+%c    ukcLabelWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 53
+%s    y : 37
+%s    width : 40
+%s    height : 18
+%s    borderWidth : 1
+%z    vertFixed : true
+%r    background : #ffffff
+%r    label : 0
+%r    justify : left
+%r    borderColor : #000000
+%r    editable : true
+%r    editing : true
+%r    editCallback : msSpeedPanelEnterRate
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    msSpeedPanelScrollDelay
+%c    ukcScrollbarWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 119
+%s    y : 9
+%s    width : 90
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : horizontal
+%r    markSize : 0
+%r    thickness : 12
+%r    background : #bbbbbb
+%r    jumpProc : msSpeedPanelSetDelay()
+%f
+%%%
+%N    msSpeedPanelScrollLeftDelay
+%c    ukcArrowWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 100
+%s    y : 9
+%s    width : 18
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : west
+%r    background : #bbbbbb
+%r    callback : msSpeedPanelDecreaseDelay
+%f
+%%%
+%N    msSpeedPanelScrollRightDelay
+%c    ukcArrowWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 210
+%s    y : 9
+%s    width : 18
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : east
+%r    background : #bbbbbb
+%r    callback : msSpeedPanelIncreaseDelay
+%f
+%%%
+%N    msSpeedPanelScrollRate
+%c    ukcScrollbarWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 119
+%s    y : 37
+%s    width : 90
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : horizontal
+%r    markSize : 0
+%r    thickness : 12
+%r    length : 90
+%r    background : #bbbbbb
+%r    jumpProc : msSpeedPanelSetRate
+%f
+%%%
+%N    msSpeedPanelScrollLeftRate
+%c    ukcArrowWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 100
+%s    y : 37
+%s    width : 18
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : west
+%r    background : #bbbbbb
+%r    callback : msSpeedPanelDecreaseRate
+%f
+%%%
+%N    msSpeedPanelScrollRightRate
+%c    ukcArrowWidgetClass
+%p    msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox
+%m    true
+%o    false
+%s    x : 210
+%s    y : 37
+%s    width : 18
+%s    height : 18
+%s    borderWidth : 1
+%r    orientation : east
+%r    background : #bbbbbb
+%r    callback : msSpeedPanelIncreaseRate
+%f
+%%%
+%N  msScriptPanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 143
+%s  width : 204
+%s  height : 156
+%s  borderWidth : 1
+%s  background : #888888
+%z  horizFixed : true
+%f
+%%%
+%N   msScriptPanelLabel
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 20
+%s   borderWidth : 1
+%r   label : Script
+%r   foreground : #ffffff
+%r   translations : :<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msScriptPanelLabelPath
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 31
+%s   width : 48
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Path:
+%r   justify : right
+%f
+%%%
+%N   msScriptPanelEnterPath
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 47
+%s   y : 31
+%s   width : 151
+%s   height : 18
+%s   borderWidth : 1
+%r   label : ./
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msScriptPanelEnterPath
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msScriptPanelLabelName
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 56
+%s   width : 48
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : File:
+%r   justify : right
+%f
+%%%
+%N   msScriptPanelEnterName
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 47
+%s   y : 56
+%s   width : 151
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msScriptPanelEnterName
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msScriptPanelRun
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 131
+%s   width : 194
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Run
+%r   callback : msScriptPanelRun
+%f
+%%%
+%N   msScriptPanelBrowse
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 81
+%s   width : 194
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Browse
+%r   callback : msScriptPanelBrowse(),WCPopupCB(*msFileBrowser)
+%f
+%%%
+%N   msScriptPanelSave
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 104
+%s   y : 106
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Save
+%r   callback : msScriptPanelSave(),WCPopupCB(*msFileBrowser)
+%f
+%%%
+%N   msScriptPanelEdit
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msScriptPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 106
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Edit
+%r   callback : msScriptPanelEdit(),WCPopupCB(*editor)
+%f
+%%%
+%N  msFilePanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 5
+%s  width : 204
+%s  height : 131
+%s  borderWidth : 1
+%z  horizFixed : true
+%r  background : #888888
+%f
+%%%
+%N   msFilePanelLabel
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 20
+%s   borderWidth : 1
+%r   label : File
+%r   foreground : #ffffff
+%r   translations : :<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msFilePanelLabelPath
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 31
+%s   width : 48
+%s   height : 17
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Path:
+%r   justify : right
+%f
+%%%
+%N   msFilePanelEnterPath
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : 47
+%s   y : 31
+%s   width : 151
+%s   height : 18
+%s   borderWidth : 1
+%r   label : /
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msFilePanelEnterPath()
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msFilePanelLabelName
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 56
+%s   width : 48
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : File:
+%r   justify : right
+%f
+%%%
+%N   msFilePanelEnterName
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : 47
+%s   y : 56
+%s   width : 151
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msFilePanelEnterName()
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msFilePanelBrowse
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 81
+%s   width : 194
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Browse
+%r   callback : msFilePanelBrowse(),WCPopupCB(*msFileBrowser)
+%f
+%%%
+%N   msFilePanelFilter
+%c   ukcMed3MenuWidgetClass
+%p   msProcArray.msProcArrayBox.msFilePanelBox
+%m   true
+%o   false
+%d   *msFilePanelFilter.message.background: #bbbbbb
+%s   x : 4
+%s   y : 106
+%s   width : 194
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   menuFile : filter.med
+%r   popupBitmap : bitmaps/menu16
+%f
+%%%
+%N  msProgressBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 600
+%s  width : 862
+%s  height : 18
+%s  borderWidth : 1
+%z  vertFixed : true
+%r  background : #888888
+%f
+%%%
+%N   msProgressLabel
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msProgressBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : -1
+%s   width : 70
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Progress:
+%r   justify : right
+%f
+%%%
+%N   msProgressBar
+%c   ukcPassiveWidgetClass
+%p   msProcArray.msProcArrayBox.msProgressBox
+%m   true
+%o   false
+%s   x : 78
+%s   y : 2
+%s   width : 778
+%s   height : 12
+%s   borderWidth : 1
+%s   background : #bbbbbb
+%f
+%%%
+%N  msHistoryPanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 513
+%s  width : 204
+%s  height : 56
+%s  borderWidth : 1
+%s  background : #888888
+%z  horizFixed : true
+%f
+%%%
+%N   msHistoryPanelLabel
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msHistoryPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 20
+%s   borderWidth : 1
+%r   label : History (Left Mousebutton)
+%r   foreground : #ffffff
+%r   translations : :<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msHistoryPanelEnterLevel
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msHistoryPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 31
+%s   width : 50
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 1
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msHistoryPanelEnterLevel
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msHistoryPanelScroll
+%c   ukcScrollbarWidgetClass
+%p   msProcArray.msProcArrayBox.msHistoryPanelBox
+%m   true
+%o   false
+%s   x : 80
+%s   y : 31
+%s   width : 99
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : horizontal
+%r   markSize : 0
+%r   thickness : 12
+%r   background : #bbbbbb
+%r   jumpProc : msHistoryPanelSetLevel
+%f
+%%%
+%N   msHistoryPanelScrollLeft
+%c   ukcArrowWidgetClass
+%p   msProcArray.msProcArrayBox.msHistoryPanelBox
+%m   true
+%o   false
+%s   x : 61
+%s   y : 31
+%s   width : 18
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : west
+%r   background : #bbbbbb
+%r   callback : msHistoryPanelDecreaseLevel
+%f
+%%%
+%N   msHistoryPanelScrollRight
+%c   ukcArrowWidgetClass
+%p   msProcArray.msProcArrayBox.msHistoryPanelBox
+%m   true
+%o   false
+%s   x : 180
+%s   y : 31
+%s   width : 18
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : east
+%r   background : #bbbbbb
+%r   callback : msHistoryPanelIncreaseLevel
+%f
+%%%
+%N  msFuturePanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 576
+%s  width : 204
+%s  height : 56
+%s  borderWidth : 1
+%s  background : #888888
+%z  horizFixed : true
+%f
+%%%
+%N   msFuturePanelLabel
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msFuturePanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 20
+%s   borderWidth : 1
+%r   label : Future (Right Mousebutton)
+%r   foreground : #ffffff
+%r   translations : :<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msFuturePanelEnterLevel
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msFuturePanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 31
+%s   width : 50
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 1
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msFuturePanelEnterLevel
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msFuturePanelScroll
+%c   ukcScrollbarWidgetClass
+%p   msProcArray.msProcArrayBox.msFuturePanelBox
+%m   true
+%o   false
+%s   x : 80
+%s   y : 31
+%s   width : 99
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : horizontal
+%r   markSize : 0
+%r   thickness : 12
+%r   background : #bbbbbb
+%r   jumpProc : msFuturePanelSetLevel
+%f
+%%%
+%N   msFuturePanelScrollLeft
+%c   ukcArrowWidgetClass
+%p   msProcArray.msProcArrayBox.msFuturePanelBox
+%m   true
+%o   false
+%s   x : 61
+%s   y : 31
+%s   width : 18
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : west
+%r   background : #bbbbbb
+%r   callback : msFuturePanelDecreaseLevel
+%f
+%%%
+%N   msFuturePanelScrollRight
+%c   ukcArrowWidgetClass
+%p   msProcArray.msProcArrayBox.msFuturePanelBox
+%m   true
+%o   false
+%s   x : 180
+%s   y : 31
+%s   width : 18
+%s   height : 18
+%s   borderWidth : 1
+%r   orientation : east
+%r   background : #bbbbbb
+%r   callback : msFuturePanelIncreaseLevel
+%f
+%%%
+%N  msDisplayPanelBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msProcArrayBox
+%m  true
+%o  false
+%s  x : 874
+%s  y : 306
+%s  width : 204
+%s  height : 200
+%s  borderWidth : 1
+%z  horizFixed : true
+%r  background : #888888
+%f
+%%%
+%N   msDisplayPanelLabel
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 194
+%s   height : 20
+%s   borderWidth : 1
+%r   label : Display
+%r   foreground : #ffffff
+%r   translations : :<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msDisplayPanelLabelTitle
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 0
+%s   y : 31
+%s   width : 48
+%s   height : 17
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Title:
+%r   justify : right
+%f
+%%%
+%N   msDisplayPanelEnterTitle
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 50
+%s   y : 31
+%s   width : 148
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   editCallback : msDisplayPanelSetTitle
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N   msDisplayPanelLabelStyle1
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 0
+%s   y : 61
+%s   width : 131
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Display parent
+%r   justify : center
+%f
+%%%
+%N   msDisplayPanelRedraw
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 147
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Redraw
+%r   callback : msDisplayPanelRedraw
+%f
+%%%
+%N   msDisplayPanelNoneStyle
+%c   ukcToggleWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 135
+%s   y : 57
+%s   width : 63
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : None
+%r   offBitmap : bitmaps/off_square
+%r   onBitmap : bitmaps/checked_square
+%r   background : #888888
+%r   callback : msDisplayPanelSetStyleNone
+%f
+%%%
+%N   msDisplayPanelTextStyle
+%c   ukcToggleWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 135
+%s   y : 76
+%s   width : 63
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : Text
+%r   offBitmap : bitmaps/off_square
+%r   onBitmap : bitmaps/checked_square
+%r   background : #888888
+%r   callback : msDisplayPanelSetStyleText
+%f
+%%%
+%N   msDisplayPanelColorStyle
+%c   ukcToggleWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 135
+%s   y : 95
+%s   width : 63
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : Color
+%r   offBitmap : bitmaps/off_square
+%r   onBitmap : bitmaps/checked_square
+%r   background : #888888
+%r   callback : msDisplayPanelSetStyleColor
+%f
+%%%
+%N   msDisplayPanelLabelStyle2
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 0
+%s   y : 77
+%s   width : 131
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : processor/process
+%r   justify : center
+%f
+%%%
+%N   msDisplayPanelLabelStyle3
+%c   ukcLabelWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 0
+%s   y : 93
+%s   width : 131
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : as:
+%r   justify : center
+%f
+%%%
+%N   msDisplayPanelClear
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 104
+%s   y : 147
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Clear
+%r   callback : msDisplayPanelClear
+%f
+%%%
+%N   msDisplayPanelSetLoadOMeter
+%c   ukcToggleWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 122
+%s   width : 194
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : Show Load-O-Meter
+%r   offBitmap : bitmaps/off_square
+%r   onBitmap : bitmaps/checked_square
+%r   background : #888888
+%r   callback : msDisplayPanelSetMeter()
+%f
+%%%
+%N   msDisplayPanelPrint
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 104
+%s   y : 174
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Print
+%r   callback : msDisplayPanelPrint
+%f
+%%%
+%N   msDisplayPanelSave
+%c   ukcCommandWidgetClass
+%p   msProcArray.msProcArrayBox.msDisplayPanelBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 174
+%s   width : 94
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Save
+%r   callback : msDisplayPanelSave(),WCPopupCB(*msFileBrowser)
+%f
+%%%
+%N msFileBrowser
+%c transientShellWidgetClass
+%p msProcArray
+%m true
+%o false
+%s x : 367
+%s y : 435
+%s width : 269
+%s height : 395
+%s borderWidth : 1
+%r title : msFileBrowser
+%f
+%%%
+%N  myRequesterBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msFileBrowser
+%m  true
+%o  false
+%s  x : 32
+%s  y : 31
+%s  width : 269
+%s  height : 395
+%s  borderWidth : 1
+%r  background : #bbbbbb
+%f
+%%%
+%N   myRequesterSelectBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msFileBrowser.myRequesterBox
+%m   true
+%o   false
+%s   x : 5
+%s   y : 5
+%s   width : 257
+%s   height : 345
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    myRequesterSelectEnterMask
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : 44
+%s    y : 37
+%s    width : 206
+%s    height : 18
+%s    borderWidth : 1
+%r    label : *
+%r    background : #ffffff
+%r    barColour : #000000
+%r    justify : left
+%r    editable : true
+%r    overflowRight : false
+%r    editing : true
+%r    editCallback : msFileBrowserUpdate()
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    myRequesterSelectLabel
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 5
+%s    width : 245
+%s    height : 18
+%s    borderWidth : 1
+%r    label : Select a file...
+%r    background : #bbbbbb
+%r    barColour : #000000
+%r    foreground : #ffffff
+%f
+%%%
+%N    myRequesterSelectLabelMask
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : -4
+%s    y : 37
+%s    width : 48
+%s    height : 17
+%s    borderWidth : 1
+%r    background : #888888
+%r    borderColor : #888888
+%r    label : Mask:
+%r    justify : right
+%f
+%%%
+%N    myRequesterSelectLabelPath
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : -4
+%s    y : 62
+%s    width : 48
+%s    height : 17
+%s    borderWidth : 1
+%r    background : #888888
+%r    borderColor : #888888
+%r    label : Path:
+%r    justify : right
+%f
+%%%
+%N    myRequesterSelectEnterPath
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : 44
+%s    y : 62
+%s    width : 206
+%s    height : 18
+%s    borderWidth : 1
+%r    label : /
+%r    background : #ffffff
+%r    barColour : #000000
+%r    justify : left
+%r    editable : true
+%r    overflowRight : false
+%r    editing : true
+%r    editCallback : msFileBrowserUpdate()
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    myRequesterSelectEnterFile
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : 44
+%s    y : 320
+%s    width : 206
+%s    height : 18
+%s    borderWidth : 1
+%r    label : 
+%r    background : #ffffff
+%r    barColour : #000000
+%r    justify : left
+%r    editable : true
+%r    overflowRight : false
+%r    editing : true
+%r    translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N    myRequesterSelectLabelFile
+%c    ukcLabelWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%s    x : -4
+%s    y : 320
+%s    width : 48
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #888888
+%r    borderColor : #888888
+%r    label : File:
+%r    justify : right
+%f
+%%%
+%N    myRequesterSelectScroll
+%c    ukcScrListWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m    true
+%o    false
+%d    *myRequesterSelectScroll.clip.background: #bbbbbb
+%d    *myRequesterSelectScroll.horizontal.background: #bbbbbb
+%d    *myRequesterSelectScroll.vertical.background: #bbbbbb
+%s    x : 5
+%s    y : 94
+%s    width : 245
+%s    height : 214
+%s    borderWidth : 1
+%r    background : #bbbbbb
+%r    callback : msFileBrowserSelectFile()
+%f
+%%%
+%N   myRequesterCommandBox
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msFileBrowser.myRequesterBox
+%m   true
+%o   false
+%s   x : 5
+%s   y : 358
+%s   width : 257
+%s   height : 30
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    myRequesterCommandCancel
+%c    ukcCommandWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 5
+%s    width : 120
+%s    height : 18
+%s    borderWidth : 1
+%r    background : #bbbbbb
+%r    label : Cancel
+%r    callback : WcPopdownCB(*msFileBrowser)
+%f
+%%%
+%N    myRequesterCommandOK
+%c    ukcCommandWidgetClass
+%p    msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox
+%m    true
+%o    false
+%s    x : 131
+%s    y : 5
+%s    width : 120
+%s    height : 18
+%s    borderWidth : 1
+%r    label : OK
+%r    background : #bbbbbb
+%r    callback : msFileBrowserAccept(), WcPopdownCB(*msFileBrowser)
+%f
+%%%
+%N editor
+%c transientShellWidgetClass
+%p msProcArray
+%m true
+%o false
+%s x : 207
+%s y : 421
+%s width : 500
+%s height : 300
+%s borderWidth : 1
+%f
+%%%
+%N  editorBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.editor
+%m  true
+%o  false
+%s  x : 0
+%s  y : 0
+%s  width : 500
+%s  height : 300
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   editorEditWindow
+%c   asciiTextWidgetClass
+%p   msProcArray.editor.editorBox
+%m   true
+%o   false
+%d   *editorEditWindow.textSource.editType: edit
+%d   *editorEditWindow.textSource.type: file
+%d   *editorEditWindow.textSource.length: 0
+%s   x : 4
+%s   y : 4
+%s   width : 491
+%s   height : 268
+%s   borderWidth : 1
+%r   scrollVertical : whenneeded
+%r   scrollHorizontal : whenneeded
+%f
+%%%
+%N   editorClose
+%c   ukcCommandWidgetClass
+%p   msProcArray.editor.editorBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 277
+%s   width : 491
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   background : #bbbbbb
+%r   label : Close
+%r   callback : WCPopdownCB(*editor)
+%f
+%%%
+%N msRequester
+%c transientShellWidgetClass
+%p msProcArray
+%m true
+%o false
+%s x : 412
+%s y : 414
+%s width : 300
+%s height : 143
+%s borderWidth : 0
+%r background : #bbbbbb
+%f
+%%%
+%N  msRequesterBox
+%c  ukcLayoutWidgetClass
+%p  msProcArray.msRequester
+%m  true
+%o  false
+%s  x : 0
+%s  y : 0
+%s  width : 300
+%s  height : 143
+%s  borderWidth : 0
+%r  background : #bbbbbb
+%f
+%%%
+%N   msRequesterTitle
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msRequester.msRequesterBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 4
+%s   width : 290
+%s   height : 90
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msRequesterTitle1
+%c    ukcLabelWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterTitle
+%m    true
+%o    false
+%s    x : 4
+%s    y : 10
+%s    width : 281
+%s    height : 26
+%s    borderWidth : 1
+%r    borderColor : #888888
+%r    background : #888888
+%f
+%%%
+%N    msRequesterTitle2
+%c    ukcLabelWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterTitle
+%m    true
+%o    false
+%s    x : 4
+%s    y : 35
+%s    width : 281
+%s    height : 26
+%s    borderWidth : 1
+%r    borderColor : #888888
+%r    background : #888888
+%f
+%%%
+%N    msRequesterTitle3
+%c    ukcLabelWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterTitle
+%m    true
+%o    false
+%s    x : 4
+%s    y : 60
+%s    width : 281
+%s    height : 26
+%s    borderWidth : 1
+%r    borderColor : #888888
+%r    background : #888888
+%f
+%%%
+%N   msRequesterAction
+%c   ukcLayoutWidgetClass
+%p   msProcArray.msRequester.msRequesterBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 100
+%s   width : 290
+%s   height : 36
+%s   borderWidth : 1
+%r   background : #888888
+%f
+%%%
+%N    msRequesterActionOK
+%c    ukcCommandWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterAction
+%m    true
+%o    false
+%s    x : 194
+%s    y : 5
+%s    width : 90
+%s    height : 25
+%s    borderWidth : 1
+%r    background : #bbbbbb
+%r    label : OK
+%f
+%%%
+%N    msRequesterActionCancel
+%c    ukcCommandWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterAction
+%m    true
+%o    false
+%s    x : 99
+%s    y : 5
+%s    width : 90
+%s    height : 25
+%s    borderWidth : 1
+%r    background : #bbbbbb
+%r    label : Cancel
+%f
+%%%
+%N    msRequesterActionHelp
+%c    ukcCommandWidgetClass
+%p    msProcArray.msRequester.msRequesterBox.msRequesterAction
+%m    true
+%o    false
+%s    x : 4
+%s    y : 5
+%s    width : 90
+%s    height : 25
+%s    borderWidth : 1
+%r    background : #bbbbbb
+%r    label : Help
+%f
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterFile ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandCancel ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandOK ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox ; vertical_above
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterFile ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandOK ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandCancel ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandCancel ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msProcArray.msFileBrowser.myRequesterBox ; horizontal_before
+%L msProcArray.msFileBrowser.myRequesterBox ; msProcArray.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msProcArray.msFileBrowser.myRequesterBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelX ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelY ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelX ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelShowY ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelShowX ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelShowX ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelShowX ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelX ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelShowY ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelY ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelFrame ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelLine ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelTime ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelFrame ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelShowLine ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelEnterFrame ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelShowLine ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelEnterTime ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelEnterFrame ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelShowLine ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelLine ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelLine ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelEnterFrame ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelFrame ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelFrame ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelEnterTime ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelTime ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelTime ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msPositionPanelBox.msPositionPanelLabelLine ; vertical_below
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelGoToStart ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayBackward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipBackward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelStop ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipForward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayForward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelGoToEnd ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelGoToEnd ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayForward ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayForward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipForward ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipForward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelStop ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelStop ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipBackward ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelSkipBackward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayBackward ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelPlayBackward ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelGoToStart ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox.msControlPanelGoToStart ; msProcArray.msProcArrayBox.msProcArrayControlBox.msControlPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelDelay ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterDelay ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRightDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftDelay ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollDelay ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRightRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRightDelay ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRightDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollDelay ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRightRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRate ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftDelay ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftRate ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterDelay ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelScrollLeftRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterRate ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelDelay ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelEnterRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelRate ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelDelay ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox.msSpeedPanelLabelRate ; msProcArray.msProcArrayBox.msProcArrayControlBox.msSpeedPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; msProcArray.msProcArrayBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msCommandPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; msProcArray.msProcArrayBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msCommandPanelBox ; msProcArray.msProcArrayBox.msCommandPanelBox.msCommandPanelExit ; msProcArray.msProcArrayBox.msCommandPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterPath ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterName ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterPath ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelPath ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelName ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelPath ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabel ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterPath ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelPath ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelPath ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterName ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelName ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelName ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelSave ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msFilePanelBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelFilter ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelBrowse ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelBrowse ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterName ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterName ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterPath ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterPath ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelPath ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelName ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelPath ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelBrowse ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelName ; vertical_above
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterPath ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelPath ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelEnterName ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelName ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabel ; msProcArray.msProcArrayBox.msFilePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelName ; msProcArray.msProcArrayBox.msFilePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabelPath ; msProcArray.msProcArrayBox.msFilePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelBrowse ; msProcArray.msProcArrayBox.msFilePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelFilter ; msProcArray.msProcArrayBox.msFilePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEnterName ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabelName ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelSave ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEdit ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelBrowse ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelRun ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEdit ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelRun ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelSave ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEdit ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelSave ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelEdit ; horizontal_before
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelRun ; msProcArray.msProcArrayBox.msScriptPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox.msFilePanelBox.msFilePanelLabel ; msProcArray.msProcArrayBox.msFilePanelBox ; vertical_above
+%L msProcArray.editor.editorBox ; msProcArray.editor.editorBox.editorClose ; msProcArray.editor.editorBox.editorEditWindow ; vertical_above
+%L msProcArray.editor.editorBox ; msProcArray.editor.editorBox.editorEditWindow ; msProcArray.editor.editorBox ; vertical_above
+%L msProcArray.editor.editorBox ; msProcArray.editor.editorBox.editorEditWindow ; msProcArray.editor.editorBox ; horizontal_before
+%L msProcArray.editor.editorBox ; msProcArray.editor.editorBox.editorClose ; msProcArray.editor.editorBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProcArrayGraphicBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox.msProcArrayGraphicArea ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayGraphicBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox.msProcArrayGraphicArea ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProgressBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; msProcArray.msProcArrayBox.msProgressBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProgressBox ; msProcArray.msProcArrayBox.msProgressBox.msProgressLabel ; msProcArray.msProcArrayBox.msProgressBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProgressBox ; msProcArray.msProcArrayBox.msProgressBox.msProgressLabel ; msProcArray.msProcArrayBox.msProgressBox ; vertical_above
+%L msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox.msCursorPanelLabelY ; msProcArray.msProcArrayBox.msProcArrayControlBox.msCursorPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msCommandPanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelEnterLevel ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScrollLeft ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScroll ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScrollRight ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msProgressBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScrollRight ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScroll ; horizontal_before
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScroll ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScrollLeft ; horizontal_before
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelScrollLeft ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelEnterLevel ; horizontal_before
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelEnterLevel ; msProcArray.msProcArrayBox.msFuturePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; msProcArray.msProcArrayBox.msFuturePanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScrollRight ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScroll ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScrollLeft ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelEnterLevel ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScrollRight ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScroll ; horizontal_before
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScroll ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScrollLeft ; horizontal_before
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelScrollLeft ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelEnterLevel ; horizontal_before
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelEnterLevel ; msProcArray.msProcArrayBox.msHistoryPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; msProcArray.msProcArrayBox.msHistoryPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msHistoryPanelBox.msHistoryPanelLabel ; msProcArray.msProcArrayBox.msHistoryPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msFuturePanelBox.msFuturePanelLabel ; msProcArray.msProcArrayBox.msFuturePanelBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabel ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelColorStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelTextStyle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelTextStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelNoneStyle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelNoneStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelEnterTitle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle3 ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle2 ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle2 ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle1 ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle1 ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelEnterTitle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle1 ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelTitle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelTitle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelEnterTitle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabel ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelEnterTitle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelTitle ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelTitle ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelNoneStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle1 ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelTextStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle2 ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelColorStyle ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle3 ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle3 ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle2 ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle1 ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelRedraw ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msProgressBox ; msProcArray.msProcArrayBox.msProgressBox.msProgressBar ; msProcArray.msProcArrayBox.msProgressBox.msProgressLabel ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msProcArrayGraphicBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFuturePanelBox ; msProcArray.msProcArrayBox.msProcArrayControlBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msProgressBox ; msProcArray.msProcArrayBox ; horizontal_before
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msFilePanelBox ; msProcArray.msProcArrayBox ; vertical_above
+%L msProcArray.msProcArrayBox.msScriptPanelBox ; msProcArray.msProcArrayBox.msScriptPanelBox.msScriptPanelLabel ; msProcArray.msProcArrayBox.msScriptPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msCommandPanelBox ; msProcArray.msProcArrayBox.msProgressBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msCommandPanelBox ; msProcArray.msProcArrayBox.msCommandPanelBox.msCommandPanelExit ; msProcArray.msProcArrayBox.msCommandPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msProgressBox ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabel ; msProcArray.msProcArrayBox.msDisplayPanelBox ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSetLoadOMeter ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelColorStyle ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSetLoadOMeter ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelLabelStyle3 ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelRedraw ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSetLoadOMeter ; vertical_above
+%L msProcArray.msProcArrayBox ; msProcArray.msProcArrayBox.msHistoryPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionOK ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle3 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle3 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox ; horizontal_before
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionOK ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterAction ; msProcArray.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; msProcArray.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; vertical_above
+%L msProcArray.msRequester.msRequesterBox ; msProcArray.msRequester.msRequesterBox.msRequesterTitle ; msProcArray.msRequester.msRequesterBox ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelClear ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSetLoadOMeter ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelClear ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelRedraw ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelPrint ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelClear ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSave ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelRedraw ; vertical_above
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelPrint ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSave ; horizontal_before
+%L msProcArray.msProcArrayBox.msDisplayPanelBox ; msProcArray.msProcArrayBox.msDisplayPanelBox.msDisplayPanelSave ; msProcArray.msProcArrayBox.msDisplayPanelBox ; horizontal_before

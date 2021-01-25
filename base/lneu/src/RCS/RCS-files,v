@@ -1,0 +1,193 @@
+head	1.6;
+access;
+symbols
+	lneu2:1.2
+	lneu1:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.6
+date	2001.05.25.11.46.35;	author base;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	2001.05.23.16.10.26;	author base;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2001.03.09.14.33.19;	author base;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2001.03.09.13.07.02;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.10.30.12.17.57;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.10.29.15.01.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version by Leick/Strack
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@case.h
+casefunc.c
+casepost.c
+close-cond.c
+condfunc.c
+configure
+cparm.h
+ct-tab.h
+dbug.c
+dbug.h
+hfunc.c
+list.h
+lrecfunc.c
+nea-cre.c
+nsubfunc.c
+os-send.neu.c
+p-fail.c
+pm-debug.c
+pm-ptfu.c
+pmam.c
+pmdimli.c
+pminstr.h
+pmpatvar.c
+pmred-nomat.c
+pmredeswi.c
+pmredswi.c
+pmredwhen.c
+pmst-slice.c
+postfunc.c
+preproc.c
+rbibfunc.c
+rbreak.c
+rconvert.c
+rconvir.c
+rdesc.c
+rdig-add.c
+rdig-div.c
+rdig-mod.c
+rdig-mul.c
+rdig-sub.c
+rdig-v1.c
+rdig-v2.c
+rdigit.h
+rea-ret.c
+reac.c
+rear.neu.c
+rear.neu_sc.c
+red-nomat-when.c
+redclos.c
+reduma.cnf
+rextern.h
+rheap.c
+rheapty.h
+rhinout.c
+rinstr.h
+rlmvt.h
+rlog-mvt.c
+rlogfunc.c
+rlogfunc_sc.c
+rlstruct.c
+rmeasure.h
+rmodulnr.h
+rmstruct.c
+rops.h
+rprint.c
+rquery.c
+rred-eq.c
+rreduce.c
+rreduct.c
+rret-dec.c
+rruntime.c
+rruntime.h
+rst-dec.c
+rstack.c
+rstackty.h
+rstate.c
+rstdinc.h
+rstelem.h
+rstpre.c
+rstpro.c
+rsts-dec.c
+rtrav.c
+rusedeb.h
+rval-int.c
+rvalfunc.c
+rvalfunc_sc.c
+rvalir.c
+rvstruct.c
+testf.c
+@
+
+
+1.5
+log
+@some files added
+@
+text
+@a0 1
+Makefile
+@
+
+
+1.4
+log
+@Makefile added .
+@
+text
+@d7 1
+d51 1
+@
+
+
+1.3
+log
+@Makefile moved to ..
+@
+text
+@d1 1
+@
+
+
+1.2
+log
+@modified version by Rathsack/Scholz
+@
+text
+@a0 1
+Makefile
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a1 2
+Makefile.debug.old
+Makefile.old
+d47 1
+d58 1
+d85 1
+@

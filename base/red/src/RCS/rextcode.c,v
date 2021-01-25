@@ -1,0 +1,1424 @@
+head	1.21;
+access;
+symbols
+	continuation_based_interactions:1.15
+	pre_interactions:1.14
+	nCUBE~:1.10;
+locks; strict;
+comment	@ * @;
+
+
+1.21
+date	96.06.11.16.11.24;	author base;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	96.06.11.16.06.14;	author cr;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	96.05.20.17.16.44;	author cr;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	96.02.27.12.24.14;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	96.02.23.09.57.04;	author stt;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	96.02.20.16.23.08;	author stt;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.11.06.17.07.42;	author stt;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.08.17.08.43.51;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.07.03.09.46.08;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.06.02.11.38.24;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.05.31.12.36.44;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.03.29.07.07.06;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.03.28.07.35.34;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.02.28.09.22.48;	author rs;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.01.05.12.02.44;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.30.10.15.00;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.01.15.54.30;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.08.26.12.09.24;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.02.04.12.44.31;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.01.20.08.39.41;	author mah;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.01.19.16.46.37;	author mah;	state Exp;
+branches;
+next	;
+
+
+desc
+@extended code dump to CodeFile
+@
+
+
+1.21
+log
+@STORE bug fixed
+@
+text
+@/*****************************************************************************/
+/* file rextcode.c                                                           */
+/*                                                                           */
+/*****************************************************************************/
+
+#include <ctype.h>
+#include <math.h>
+#include "rstdinc.h"
+#include "rstackty.h"
+#include "rheapty.h"
+#include "rstelem.h"
+#include "rextern.h"
+#include "rmeasure.h"
+#include "rinter.h"
+#include "rprimf.h"
+
+#include "dbug.h"
+
+
+extern void test_inc_refcnt();
+extern void rel_heap(), res_heap();
+extern void disable_scav();                /* rscavenge.c */
+extern void enable_scav();                 /* rscavenge.c */
+
+/* --- panik exit --- */
+
+#if    DEBUG
+#define POST_MORTEM(mes)      if (codefp) { fclose(codefp); codefp = NULL; post_mortem(mes); } else post_mortem(mes)
+  /* geaendert von stt */
+#else
+#define POST_MORTEM(mes)      post_mortem(mes)
+#endif /* DEBUG     immer auskommentiert von RS 3.12.1992 */
+
+
+char * convrstr();
+
+#if STORE
+/* the list of module names and imported expressions */
+/* has been constructed in reac.c:load_module        */
+
+typedef struct module_list { char *name;
+                             PTR_DESCRIPTOR expr;
+                             struct module_list * next;} MODULE_LIST;
+
+extern MODULE_LIST *m_start; 
+#endif /* STORE */
+
+
+/*---------------------------------------------------------------------*/
+/* printelements: (siehe auch ret_mvt() in rhinout.c)                  */
+/* Ausgabe der Elemente einer Matrix, eines Vektors, eines TVektors    */
+/* oder einer Liste in das codefile                                    */
+/*---------------------------------------------------------------------*/
+
+int printelements(codefp, desc, level)
+FILE *codefp;
+PTR_DESCRIPTOR desc;
+int level;
+{
+  DESC_CLASS class;
+  int nrows, ncols, size, i, j;
+  STACKELEM x;
+  char line[64], * type = 0;
+  PTR_DESCRIPTOR p;
+  void s_prstel();
+#if STORE
+  MODULE_LIST *m;
+#endif /* STORE */
+
+  if T_POINTER(desc) {
+#if STORE
+    for (m = m_start; m != NULL ; m = m->next)
+      if (m->expr == desc)
+      {
+        fprintf(codefp, "\t ");
+        for(i = 0; i < level; i++) fprintf(codefp, "  ");
+        fprintf(codefp, "_import(0x%08x,%d,\"%s\")",(int)desc, (int)strlen(m->name), m->name);
+        if (level==0) fprintf(codefp, ";\n");
+        return(0);
+      };
+#endif /* STORE */
+
+    class = R_DESC(*desc,class);
+    if (R_DESC(*desc,class) != C_FUNC)
+      fprintf(codefp, "\t ");
+    for(i = 0; i < level; i++) fprintf(codefp, "  ");
+    switch(class) {
+      case C_SCALAR: {
+        if (R_DESC((*desc), type) == TY_REAL)
+	  fprintf(codefp, "_real(0x%08x, %s)",
+              (int)desc, convrstr(R_SCALAR((*desc),valr)));
+        else
+          POST_MORTEM("unknown scalar");
+	break;
+	}
+      case C_LIST:  {
+  	size = R_LIST((*desc),dim);
+  	RES_HEAP;
+  	if (R_DESC((*desc), type) == TY_UNDEF)
+    	  fprintf(codefp, "_list( 0x%08x,%d", (int)desc, size);
+  	else
+    	  fprintf(codefp, "_str( 0x%08x,%d", (int)desc, size);
+  	for ( i = 0; i < size; i++) {
+    	  x = R_LIST((*desc),ptdv)[i];
+    	  if T_INT(x) {
+      	    x = VAL_INT(x);
+      	    fprintf(codefp, ",int(%d)", (int) x);
+    	    }
+   	  else if T_POINTER(x) {
+	    fprintf(codefp, ",\n");
+	    printelements(codefp, (PTR_DESCRIPTOR)x, level+1);
+	    if ((i < size-1) && !(T_POINTER(R_LIST((*desc),ptdv)[i+1]))) {
+	      fprintf(codefp, "\n\t ");
+              for(j = 0; j < level; j++) fprintf(codefp, "  ");
+	      }
+	    }
+   	  else if T_BOOLEAN(x) {
+      	    if (x == SA_FALSE)
+	      fprintf(codefp, ",bool(false)");
+      	    else
+              fprintf(codefp, ",bool(true)");
+	      }
+   	  else if T_STR(x) {
+     	    s_prstel(line, x, 1);
+            if (isprint(x>>16))
+       	      fprintf(codefp, ",'%c'", x>>16);
+            else
+              fprintf(codefp, ",'\\%03o'", x>>16);    /* stt 20.02.96 */
+     	    }
+   	  else {
+     	    s_prstel(line, x, 1);
+     	    fprintf(codefp, ",%s", line);
+     	    }
+#if 0
+	        ret_dec(x);        /* Digitstring einlagern */
+	        goto main_m;
+#endif
+    	  }
+  	fprintf(codefp, " )");
+  	REL_HEAP;
+	break;
+	}
+      case C_TVECTOR: ;
+      case C_VECTOR: ;
+      case C_MATRIX: {
+        nrows = R_MVT((*desc),nrows,class);
+        ncols = R_MVT((*desc),ncols,class);
+  	size = ncols * nrows;
+  	RES_HEAP;
+	switch(R_DESC((*desc), type)) {
+	  case TY_INTEGER: type="TY_INTEGER"; break;
+	  case TY_REAL: type="TY_REAL"; break;
+	  case TY_BOOL: type="TY_BOOL"; break;
+	  case TY_STRING: type="TY_STRING"; break;
+          case TY_UNDEF: type="TY_UNDEF"; break;
+	  }
+        switch(class) {
+          case C_MATRIX  : 
+	    fprintf(codefp,"_mat(0x%08x,%s,%d,%d", (int)desc, type, nrows, ncols); break;
+          case C_VECTOR  : 
+	    fprintf(codefp,"_vect(0x%08x,%s,%d,%d", (int)desc, type, nrows, ncols); break;
+          case C_TVECTOR :
+	    fprintf(codefp,"_tvect(0x%08x,%s,%d,%d", (int)desc, type, nrows, ncols); break;
+          }
+  	for (i = 0; i < size; i++) {
+	  switch(R_DESC(*desc,type)) {
+    	    case TY_INTEGER:
+      	      fprintf(codefp, ", %d", (int)R_MVT((*desc),ptdv, class)[i]);
+	      break;
+   	    case TY_REAL:
+	      fprintf(codefp,", %s",
+	          convrstr(((double *)R_MVT((*desc),ptdv,class))[i]));
+	      break;
+   	    case TY_BOOL:
+	      fprintf(codefp, ", %s", R_MVT((*desc),ptdv, class)[i] ? "true" : "false");
+	      break;
+   	    case TY_STRING:
+	      fprintf(codefp, ",\n");
+	      printelements(codefp, (PTR_DESCRIPTOR)R_MVT((*desc),ptdv, class)[i], level+1);
+	      break;
+   	    default:
+     	      s_prstel(line, R_MVT((*desc),ptdv, class)[i], 1);
+     	      fprintf(codefp, ", %s", line);
+#if 0
+		  ret_dec(x);        /* Digitstring einlagern */
+		  goto main_m;
+#endif
+    	      }
+	  }
+  	fprintf(codefp, " )");
+  	REL_HEAP;
+	break;
+	}
+      case C_CONSTANT:
+        if ((R_DESC((*desc), type) == TY_VAR)
+            && (R_DESC((*R_VAR((*desc), ptnd)), class) == C_EXPRESSION)
+            && (R_DESC((*R_VAR((*desc), ptnd)), type) == TY_NAME)) {
+          p = R_VAR((*desc), ptnd);
+          fprintf(codefp, "_name( 0x%08x,%d,\"", (int)desc, R_NAME(*p, ptn)[0]);
+          for(i = 1; i <= R_NAME(*p, ptn)[0]; i++)
+            fprintf(codefp, "%c", (R_NAME(*p, ptn)[i])>>16);
+          fprintf(codefp, "\" )");
+          }
+        else
+          POST_MORTEM("illegal name descriptor in output");
+      }
+    if ((R_DESC(*desc,class) != C_FUNC) && (level == 0))
+      fprintf(codefp, ";\n");
+    return 0;
+    }
+  else {
+    return 0; /* kein Pointer, also weder Matrix noch Vektor */
+    }
+} /* printelements */
+@
+
+
+1.20
+log
+@added: '#if STORE'
+changed: format of _import
+@
+text
+@d66 1
+d68 1
+@
+
+
+1.19
+log
+@output names of statically imported modules _import(name)
+@
+text
+@d37 1
+d46 1
+d69 1
+d73 1
+a73 1
+        fprintf(codefp, "\t");
+d75 1
+a75 1
+        fprintf(codefp, "_import(%s)",m->name);
+d79 1
+@
+
+
+1.18
+log
+@moved local_convr to rconvir.c
+@
+text
+@d37 10
+d64 1
+d66 10
+a76 1
+  if T_POINTER(desc) {
+@
+
+
+1.17
+log
+@include ctype for isprint()
+@
+text
+@d7 1
+d35 1
+a35 1
+static char *local_convr();
+d65 1
+a65 1
+              (int)desc, local_convr(R_SCALAR((*desc),valr)));
+d146 1
+a146 1
+	          local_convr(((double *)R_MVT((*desc),ptdv,class))[i]));
+a188 69
+
+/*----------------------------------------------------------------------------
+ * convr -- legt fuer den Realparameter den es erhaelt eine entsprechende
+ *          Stackelementdarstellung auf den E-Stack.
+ * called by -- printelements
+ * calls     -- keine;
+ * globals   -- _trunc <r>;
+ *----------------------------------------------------------------------------
+ */
+static char *local_convr(realval)
+double realval;
+{
+  static char hilf[20];
+/*register int   index = 9;
+  register int   exp  = 13;                      RS 30/10/92 */ 
+  register int   i;
+  BOOLEAN  positive = TRUE;
+  double save_realval;
+  extern int _trunc;
+
+  if (realval < 0) {
+    positive = FALSE;
+    realval = -realval;
+  }
+  if (_trunc > 0) {
+    save_realval = realval;
+    for (i = 0; i < _trunc; i++)
+      realval *= 10.0;
+    if (realval > (double) ((int) 0x7fffffff)) {
+      realval = save_realval;
+      goto exp_darstellung;
+    }
+    else realval = (double) ((int)realval); /* truncation */
+    for ( ; i > 0; i--)
+      realval /= 10.0;
+  }  /* Ende von _trunc > 0 */
+  if (realval == 0.0) {
+    return("0.0");
+  }
+exp_darstellung:
+  if ((realval >= 1e8) || (realval <= 1e-5)) {
+    /* Exponentialdarstellung */
+    sprintf(hilf,"%.8e",positive?realval:-realval);
+    /* im Hilfstring hat man nun die Realzahl in folgendem Format:
+     *                      1 1 1 1 1
+     * |0 1 2 3 4 5 6 7 8 9 0 1 2 3 4|
+     * |z . z z z z z z z z e + z z  |
+     * ===============================
+     */
+    hilf[0]=(positive ? ' ' : '-');
+    return(hilf);
+  }
+  else {
+    /* Darstellung ohne Exponenten */
+    register int index;
+    sprintf(hilf,"%f",positive?realval:-realval);
+    index = strlen(hilf);
+    /* im Hilfstring hat man nun die Realzahl in folgendem Format:
+     * |0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6|
+     * |? ? ? ? ? ? ? z . z z z z z z z z|
+     * ===============================
+     */
+
+    /* hintere Nullen entfernen */
+    while (hilf[--index] == '0')
+      hilf[index] = '\0';
+    return(hilf);
+  }
+}
+@
+
+
+1.16
+log
+@Output of nonprintable characters in octal representation.
+@
+text
+@d6 1
+@
+
+
+1.15
+log
+@filepointers are set to NULL after closing
+@
+text
+@d97 4
+a100 1
+     	    fprintf(codefp, ",'%c'", x>>16);
+@
+
+
+1.14
+log
+@return value supplied
+@
+text
+@d26 2
+a27 1
+#define POST_MORTEM(mes)      if (codefp) { fclose(codefp); post_mortem(mes); } else post_mortem(mes)
+@
+
+
+1.13
+log
+@local variable removed
+@
+text
+@d40 1
+a40 1
+void printelements(codefp, desc, level)
+d177 1
+a177 1
+    return;
+d180 1
+a180 1
+    return; /* kein Pointer, also weder Matrix noch Vektor */
+@
+
+
+1.12
+log
+@tvect dim changed
+empty vect/tvect/mat fixed
+@
+text
+@d48 1
+a48 1
+  char line[64], * sep, * type = 0;
+@
+
+
+1.11
+log
+@output of boll & real matrix fixed
+@
+text
+@d114 2
+a115 8
+        if (class == C_TVECTOR) {
+          ncols = R_MVT((*desc),nrows,class);
+          nrows = R_MVT((*desc),ncols,class);
+          }
+        else {
+          nrows = R_MVT((*desc),nrows,class);
+          ncols = R_MVT((*desc),ncols,class);
+          }
+d123 1
+d127 1
+a127 1
+	    fprintf(codefp,"_mat(0x%08x,%s,%d,%d, ", (int)desc, type, nrows, ncols); break;
+d129 1
+a129 1
+	    fprintf(codefp,"_vect(0x%08x,%s,%d,%d, ", (int)desc, type, nrows, ncols); break;
+d131 1
+a131 1
+	    fprintf(codefp,"_tvect(0x%08x,%s,%d,%d, ", (int)desc, type, nrows, ncols); break;
+a133 2
+  	  sep=(i == size-1 ? "" : ", ");
+    	  x = R_MVT((*desc),ptdv, class)[i];
+d136 1
+a136 1
+      	      fprintf(codefp, "%d%s", (int)R_MVT((*desc),ptdv, class)[i], sep);
+d139 2
+a140 2
+	      fprintf(codefp,"%s%s",
+	          local_convr(((double *)R_MVT((*desc),ptdv,class))[i]), sep);
+d143 1
+a143 1
+	      fprintf(codefp, "%s%s", R_MVT((*desc),ptdv, class)[i] ? "true" : "false", sep);
+d146 2
+a147 2
+     	      s_prstel(line, R_MVT((*desc),ptdv, class)[i], 1);
+     	      fprintf(codefp, "'%c'%s", R_MVT((*desc),ptdv, class)[i]>>16, sep);
+d151 1
+a151 1
+     	      fprintf(codefp, "%s%s", line, sep);
+@
+
+
+1.10
+log
+@ST_EXPR -> ST_NAME used
+@
+text
+@d132 1
+a132 1
+	    fprintf(codefp,"_mat(0x%08x,%s,%d,%d,", (int)desc, type, nrows, ncols); break;
+d134 1
+a134 1
+	    fprintf(codefp,"_vect(0x%08x,%s,%d,%d,", (int)desc, type, nrows, ncols); break;
+d136 1
+a136 1
+	    fprintf(codefp,"_tvect(0x%08x,%s,%d,%d,", (int)desc, type, nrows, ncols); break;
+d146 2
+a147 2
+	      fprintf(codefp,"_real(%0x08x, %s)%s",
+	          (int)desc, local_convr(((double *)R_MVT((*desc),ptdv,class))[i]), sep);
+d150 1
+a150 4
+      	      if (R_MVT((*desc),ptdv, class)[i] == SA_FALSE)
+	        fprintf(codefp, "false%s", sep);
+      	      else
+                fprintf(codefp, "true%s", sep);
+@
+
+
+1.9
+log
+@free variables
+@
+text
+@d177 3
+a179 3
+          fprintf(codefp, "_name( 0x%08x,%d,\"", (int)desc, R_EXPR(*p, pte)[0]);
+          for(i = 1; i <= R_EXPR(*p, pte)[0]; i++)
+            fprintf(codefp, "%c", (R_EXPR(*p, pte)[i])>>16);
+@
+
+
+1.8
+log
+@removed some warnings...
+@
+text
+@d49 1
+d60 5
+a64 2
+	fprintf(codefp, "_real(0x%08x, %s)",
+            (int)desc, local_convr(R_SCALAR((*desc),valr)));
+d172 12
+@
+
+
+1.7
+log
+@nil list printable
+@
+text
+@d142 1
+a142 1
+	      fprintf(codefp,"_real(0x08x, %s)%s",
+@
+
+
+1.6
+log
+@printing reals and booleans
+@
+text
+@d64 18
+a81 21
+  	if ((size = R_LIST((*desc),dim))) {
+  	  RES_HEAP;
+  	  if (R_DESC((*desc), type) == TY_UNDEF)
+    	    fprintf(codefp, "_list(0x%08x,%d,", (int)desc, size);
+  	  else
+    	    fprintf(codefp, "_str(0x%08x,%d, ", (int)desc, size);
+  	  for ( i = 0; i < size; i++) {
+  	    sep=(i == size-1 ? "" : ", ");
+    	    x = R_LIST((*desc),ptdv)[i];
+    	    if T_INT(x) {
+      	      x = VAL_INT(x);
+      	      fprintf(codefp, "int(%d)%s", (int) x, sep);
+    	      }
+   	    else if T_POINTER(x) {
+	      fprintf(codefp, "\t\\\n");
+	      printelements(codefp, (PTR_DESCRIPTOR)x, level+1);
+	      fprintf(codefp, "%s", sep);
+	      if ((i < size-1) && !(T_POINTER(R_LIST((*desc),ptdv)[i+1]))) {
+	        fprintf(codefp, "\t\\\n\t ");
+                for(j = 0; j < level; j++) fprintf(codefp, "  ");
+	        }
+d83 2
+a84 1
+   	    else if T_BOOLEAN(x) {
+d86 1
+a86 1
+	      fprintf(codefp, "bool(false)%s", sep);
+d88 1
+a88 1
+              fprintf(codefp, "bool(true)%s", sep);
+d90 8
+a97 8
+   	    else if T_STR(x) {
+     	      s_prstel(line, x, 1);
+     	      fprintf(codefp, "'%c'%s", x>>16, sep);
+     	      }
+   	    else {
+     	      s_prstel(line, x, 1);
+     	      fprintf(codefp, "%s%s", line, sep);
+     	      }
+d99 2
+a100 2
+		  ret_dec(x);        /* Digitstring einlagern */
+		  goto main_m;
+d102 4
+a105 7
+    	    }
+  	  fprintf(codefp, " )");
+  	  REL_HEAP;
+	  break;
+	  }
+	else
+	  return;
+d189 1
+a189 1
+  char hilf[20];
+@
+
+
+1.5
+log
+@generate codefile in non-DEBUG-version
+@
+text
+@d59 2
+a60 1
+	fprintf(codefp, "_real(%s)", local_convr(R_SCALAR((*desc),valr)));
+d88 1
+a88 1
+	      fprintf(codefp, "false%s", sep);
+d90 1
+a90 1
+              fprintf(codefp, "true%s", sep);
+d147 2
+a148 2
+	      fprintf(codefp,"_real(%s)%s",
+	          local_convr(((double *)R_MVT((*desc),ptdv,class))[i]), sep);
+@
+
+
+1.4
+log
+@!DEBUG fixed
+@
+text
+@d66 1
+a66 1
+    	    fprintf(codefp, "_list( %d, ", size);
+d68 1
+a68 1
+    	    fprintf(codefp, "_str( %d, ", size);
+d132 1
+a132 1
+	    fprintf(codefp,"_mat( %s, %d, %d, ", type, nrows, ncols); break;
+d134 1
+a134 1
+	    fprintf(codefp,"_vect( %s, %d, %d, ", type, nrows, ncols); break;
+d136 1
+a136 1
+	    fprintf(codefp,"_tvect( %s, %d, %d, ", type, nrows, ncols); break;
+@
+
+
+1.3
+log
+@changes in codefile output
+@
+text
+@a39 1
+#if DEBUG
+d48 1
+a48 1
+  char line[64], * sep, * type;
+a249 333
+
+
+
+#if 0
+/*---------------------------------------------------------------------------*/
+/*                               defines                                     */
+/*---------------------------------------------------------------------------*/
+#define TEST(desc)  if ((desc) == NULL) POST_MORTEM("ret-dec: Heap out of space");
+
+/* ist Zahl ganzzahlig ? */
+#define T_INT_DIG(x)  ((int) (R_DIGIT((*(x)),Exp)+1) >= (int) R_DIGIT((*(x)),ndigit))
+   /* zweimal nach int gecastet von RS 04/11/92 */ 
+
+/* die letzte 10er Ziffer */
+#define LAST_DIG(x) (((R_DIGIT((*(x)),Exp)+1) == R_DIGIT((*(x)),ndigit)) ? \
+                     ((R_DIGIT((*(x)),ptdv))[0] % 10) : 0)
+
+/*****************************************************************************/
+/*                               ret_dec                                     */
+/*---------------------------------------------------------------------------*/
+/* Funktion :  Eine Zahl hinter einem Digit-Deskriptor wird als digitstring  */
+/*             auf den E-Stack gelegt. Ueberfluessige Nachkommastellen werden*/
+/*             abgeschnitten. Falls die interne Zahlenbasis ungleich 10000   */
+/*             ist, so werden fuer diese Aufgabe die Digitroutinen benoetigt.*/
+/*             Dadurch wird diese Routine fuer grosse Zahlen langsam.        */
+/*                                                                           */
+/* Paramter : desc - ein Digitdeskriptor                                     */
+/*                                                                           */
+/* Globale Variablen :                                                       */
+/*****************************************************************************/
+static void ret_dec(desc)
+PTR_DESCRIPTOR desc;
+{
+  PTR_DESCRIPTOR hilf_desc,hilf_desc2;
+  int exp,sign;
+#if DEBUG
+  extern int debconf;
+#endif
+
+/*------------------*/
+  if (BASE != 10000)
+/*------------------*/
+  {
+    int save_prec = _prec;                     /* save reduma div-precision   */
+    int save_prec_mult = _prec_mult;           /* save reduma mult-precision  */
+
+
+    START_MODUL("ret_dec");
+
+    _prec_mult = -1;                    /* set standard reduma mult-precision */
+
+    /* Hilfsvariable intitialisieren */
+    L_DIGIT((*_work),sign) = PLUS_SIGN;
+    L_DIGIT((*_work),ndigit) = 1;
+    if (BASE == 10)
+    {
+      L_DIGIT((*_work),Exp)  = 1;
+      L_DIGIT((*_work),ptdv)[0] = 1;
+    }
+    else
+    {
+      L_DIGIT((*_work),Exp)  = 0;
+      L_DIGIT((*_work),ptdv)[0] = 10;
+    }
+
+    _prec = 0;  /* Division wird gleich mit Truncation verbunden. */
+    sign = R_DIGIT((*desc),sign);
+    exp = 0;
+
+    while (! T_INT_DIG(desc)) /* keine ganze Zahl */
+    /* trunc bestimmt die Zahl der Nachkommastellen, falls trunc gleich -1  */
+    /* ist so sollen alle Nachkommastellen ausgegeben werden.               */
+      if ((exp < _trunc) || (_trunc == -1))
+      {
+        exp++;
+        TEST(hilf_desc = digit_mul(desc,_work));
+        DEC_REFCNT(desc);
+        desc = hilf_desc;
+      }
+      else
+      {
+        /* Rest abschneiden */
+        TEST(hilf_desc = digit_trunc(desc));
+        DEC_REFCNT(desc);
+        desc = hilf_desc;
+      }
+
+    while ((exp > 0) && (LAST_DIG(desc) == 0)) /* normieren */
+    /* beispielsweise soll kein 12.2000 ausgegeben werden.  */
+    {
+      exp--;
+      TEST(hilf_desc = digit_div(desc,_work));
+      DEC_REFCNT(desc);
+      TEST(hilf_desc2 = digit_trunc(hilf_desc));     /* trunc ist leider nicht */
+      DEC_REFCNT(hilf_desc);                         /* garantiert */
+      desc = hilf_desc2;
+    }
+
+    if (exp == 0)         /* die Behandlung der Stellen einer ganzen Zahl */
+      PUSHSTACK(S_e,DECPT);        /* erfolgt erst spaeter.               */
+    else  /* Behandlung der Nachkommastellen: */
+    {
+      int n;
+      /* letzte Ziffer auf den Stack legen */
+      n = LAST_DIG(desc);
+      PUSHSTACK(S_e,SWITCH(DIGSTACK(n)));
+
+      /* restliche Nachkommastellen auf den Stack legen */
+      for( ; ; )
+      {
+        exp--;
+        TEST(hilf_desc = digit_div(desc,_work));
+        DEC_REFCNT(desc);
+        TEST(hilf_desc2 = digit_trunc(hilf_desc));
+        DEC_REFCNT(hilf_desc);
+        desc = hilf_desc2;
+        if (exp == 0) break;
+        n = LAST_DIG(desc);
+        PUSHSTACK(S_e,DIGSTACK(n));
+      }
+
+      /* den Dezimalpunkt auf den Stack legen */
+      PUSHSTACK(S_e,SWITCH(DECPT));
+    } /* Ende der Behandlung der Nachkommastellen */
+
+    /* Behandlung der Stellen vor dem Komma */
+    do
+    {
+      int n;
+      n = LAST_DIG(desc);
+      PUSHSTACK(S_e,DIGSTACK(n));
+
+      TEST(hilf_desc = digit_div(desc,_work));
+      DEC_REFCNT(desc);
+      desc = hilf_desc;
+    }
+    while (!digit_eq(desc,_dig0));
+
+    /* zuletzt das Vorzeichen */
+    PUSHSTACK(S_e, (sign ? SET_ARITY(MINUS,1) : SET_ARITY(PLUS,1)));
+    DEC_REFCNT(desc);
+    _prec = save_prec;                  /* reset saved reduma div-precision  */
+    _prec_mult = save_prec_mult;        /* reset saved reduma mult-precision */
+
+    END_MODUL("ret_dec");
+    return;
+  }
+
+/*-------- BASE == 10000 ---*/
+  else
+/*--------------------------*/
+  {
+    int ndigit, count, countmax, i, j, k ,rest;
+    int correct = 0;
+    int zeiger = 0;
+    int *data,digit;
+    START_MODUL("ret_dec");
+    exp = R_DIGIT((*desc),Exp);
+    ndigit = R_DIGIT((*desc),ndigit);
+    data = (int*) R_DIGIT((*desc),ptdv);
+    countmax = ndigit - 1;
+                                    /* falls truncation standardmaessig auf  */
+    if (_trunc == -1) {             /* -1 gesetzt ist sollen alle Nachkomma- */
+      if (exp < 0)                  /* stellen ausgegeben werden             */
+        j = ((exp + 1) * 4) + (ndigit * 4) + (((-exp) - 1) * 4);
+      else
+        j = ((exp + 1) * 4) + ((ndigit - (exp + 1)) * 4);
+    }
+    else
+      j = (exp + 1) * 4 + _trunc;   /* ansonsten erfolgt die Ausgabe der     */
+                                    /* Nachkommastellen in Abhaenigkeit von  */
+                                    /* vom globalen REDUMA Parameter trunc   */
+    if (j <= 0)
+    {
+       PUSHSTACK(S_e,DECPT);
+       PUSHSTACK(S_e,DIGSTACK(0));
+       PUSHSTACK(S_e, (R_DIGIT((*desc),sign) ? SET_ARITY(MINUS,1) : SET_ARITY(PLUS,1)));
+       DEC_REFCNT(desc);
+       END_MODUL("ret_dec");
+       return;
+    }
+    k = j / 4 + 1;
+    rest = j % 4;
+    if (rest == 0)
+    {
+       rest = 4;
+       k--;
+    }
+    if (ndigit >= k)
+       count = ndigit - k;
+    else
+    {
+       count = 0;
+       rest = 4;
+    }
+#if DEBUG
+    if (debconf)
+    {
+       printf("**********   ret_dec   **********\n\n");
+       printf("exp: %d, ndigit: %d, countmax: %d, count: %d\n",exp,ndigit,countmax,count);
+       printf("j: %d, k: %d, rest: %d\n",j,k,rest);
+    }
+#endif
+
+_nochmal:
+    if (countmax - count > exp  &&  countmax >= count)
+    {
+#if DEBUG
+       if (debconf)
+          printf("Wert: %d,  count: %d\n",data[count],count);
+#endif
+       digit = data[count];
+       PUSHSTACK(S_hilf,  DIGSTACK(digit/1000));
+       digit %= 1000;
+       PUSHSTACK(S_hilf, DIGSTACK(digit/100));
+       digit %= 100;
+       PUSHSTACK(S_hilf, DIGSTACK(digit/10));
+       digit %= 10;
+       PUSHSTACK(S_hilf, DIGSTACK(digit));
+
+       i = 4;
+       while (i > rest)
+       {
+          PPOPSTACK(S_hilf);
+          i--;
+       }
+       while ( i >= 1  &&  DIGVAL(READSTACK(S_hilf)) == 0)
+       {
+          PPOPSTACK(S_hilf);
+          i--;
+       }
+       if (i == 0)
+       {
+          count++;
+          rest = 4;
+          correct++;
+          goto _nochmal;
+       }
+       zeiger = 1;
+       if (i > 0)
+          WRITESTACK(S_hilf,SWITCH(READSTACK(S_hilf)));
+       for ( ; i>=1; i--)
+       {
+          PUSHSTACK(S_e,POPSTACK(S_hilf));
+       }
+
+
+       count++;
+
+       while ((countmax - count) > exp)
+       {
+#if DEBUG
+       if (debconf)
+          printf("Wert: %d,  count: %d\n",data[count],count);
+#endif
+          if (countmax >= count)
+          {
+             digit = data[count];
+             for (i=1; i<=4; i++)
+             {
+                PUSHSTACK(S_e,DIGSTACK(digit % 10));
+                digit /= 10;
+             }
+             count++;
+          }
+          else
+          {
+             for (i=1; i<=4; i++)
+                 PUSHSTACK(S_e,DIGSTACK(0));
+             count++;
+          }
+       }
+    }
+
+    if (count == countmax + 1)
+    {
+       if (zeiger)
+          PUSHSTACK(S_e,SWITCH(DECPT));
+       else
+          PUSHSTACK(S_e,DECPT);
+       PUSHSTACK(S_e,DIGSTACK(0));
+       PUSHSTACK(S_e, (R_DIGIT((*desc),sign) ? SET_ARITY(MINUS,1) : SET_ARITY(PLUS,1)));
+       DEC_REFCNT(desc);
+       END_MODUL("ret_dec");
+       return;
+    }
+    else
+    {
+/*    if (count > correct)         */
+      if (zeiger)
+         PUSHSTACK(S_e,SWITCH(DECPT));
+      else
+         PUSHSTACK(S_e,DECPT);
+    }
+
+                                        /* Nachkommastellen abgeschlossen */
+    while (exp >= ndigit)
+    {
+       for (i=1; i <= 4; i++)
+          PUSHSTACK(S_e,DIGSTACK(0));
+       exp-- ;
+    }
+
+    while (count <= countmax)
+    {
+#if DEBUG
+       if (debconf)
+          printf("Wert: %d,  count: %d\n",data[count],count);
+#endif
+       digit = data[count];
+       for (i = 1; i <= 4; i++)
+       {
+          PUSHSTACK(S_e,DIGSTACK(digit%10));
+          digit /= 10;
+       }
+       count++;
+    }
+    while (DIGVAL(READSTACK(S_e)) == 0)
+    {
+       PPOPSTACK(S_e);
+    }
+    if T_DECPT(READSTACK(S_e))   /* die Zahl selbst eine Null war */
+      PUSHSTACK(S_e,DIGSTACK(0));
+
+    PUSHSTACK(S_e, (R_DIGIT((*desc),sign) ? SET_ARITY(MINUS,1) : SET_ARITY(PLUS,1)));
+    DEC_REFCNT(desc);
+    END_MODUL("ret_dec");
+  }
+}
+#endif /* 0 */
+
+#endif /* DEBUG */
+
+@
+
+
+1.2
+log
+@warning fix (gcc 2.5.6)
+@
+text
+@d20 2
+d32 1
+a32 2
+char *local_convr();
+static void local_ret_list();
+d41 1
+a41 1
+void printelements(codefp, desc)
+d44 1
+d47 4
+a50 1
+  int nrows, ncols, size, row, col, i;
+d52 1
+d55 6
+a60 20
+
+    if (class == C_LIST) {
+      local_ret_list(codefp, desc);
+      return;
+    }
+
+    if (class == C_TVECTOR) {
+      ncols = R_MVT((*desc),nrows,class);
+      nrows = R_MVT((*desc),ncols,class);
+    }
+    else {
+      nrows = R_MVT((*desc),nrows,class);        /* class C_MATRIX und C_VECTOR */
+      ncols = R_MVT((*desc),ncols,class);
+    }
+
+    size = ncols * nrows;
+    if (size == 0) {
+      switch(class) {
+      case C_MATRIX  : 
+	fprintf(codefp,"\t empty matrix\n");
+d62 38
+a99 27
+      case C_VECTOR  : 
+	fprintf(codefp,"\t empty vector\n");
+	break;
+      case C_TVECTOR :
+	fprintf(codefp,"\t empty transposed vector\n");
+	break;
+      }
+    return;
+    }
+    fprintf(codefp, "\t size %d X %d\n", ncols, nrows);
+    switch (R_DESC(*desc,type)) {
+    case TY_INTEGER:
+      for ( i=0, row = nrows; --row >= 0;) {
+	fprintf(codefp,"\t <");
+	for (col = ncols; --col >= 0; )
+	  fprintf(codefp," %d",R_MVT((*desc),ptdv,class)[i++]);
+	fprintf(codefp," >\n");
+		}
+    break;
+    case TY_REAL:
+      for ( i=0, row = nrows; --row >= 0; ) {
+	fprintf(codefp,"\t <");
+	for (col = ncols; --col >= 0; i++) /* Double auf den Stack legen: */
+	  fprintf(codefp," %s", local_convr(((double *)R_MVT((*desc),ptdv,class))[i]));
+        fprintf(codefp," >\n");
+      }
+      break;
+d101 10
+a110 7
+      /* muss noch gemacht werden mah 190194 */
+    case TY_DIGIT:
+      for ( row = nrows; --row >= 0; ) {
+	for (col = ncols; --col >= 0; ) {
+	  element = (PTR_DESCRIPTOR)R_MVT((*desc),ptdv,class1)[--i];
+	  INC_REFCNT(element);
+	  ret_dec(element);
+d112 60
+a171 23
+	PUSHSTACK(S_e,SET_ARITY(LIST,ncols));
+      }
+      type = DECIMAL;
+      break;
+
+      /* der kram kommt nicht durch den compiler mah 190194*/
+    case TY_BOOL:
+      for ( row = nrows; --row >= 0; ) {
+	for (col = ncols; --col >= 0; )
+	  if (R_MVT((*desc),ptdv,class1)[--i] == FALSE)
+	    PUSHSTACK(S_e,SA_FALSE);
+	  else
+	    PUSHSTACK(S_e,SA_TRUE);
+	PUSHSTACK(S_e,SET_ARITY(LIST,ncols));
+      }
+      type = BOOL;
+      break;
+    case TY_STRING:
+      for ( row = nrows; --row >= 0; ) {
+	for (col = ncols; --col >= 0; ) {
+	  i--;
+	  INC_REFCNT((PTR_DESCRIPTOR)R_MVT((*desc),ptdv,class1)[i]);
+	  ret_list((R_MVT((*desc),ptdv,class1)[i]));
+a172 1
+	PUSHSTACK(S_e,SET_ARITY(LIST,ncols));
+d174 3
+a176 24
+      type = CHAR;
+      break;
+    case TY_MATRIX:
+      for ( row = nrows; --row >= 0; ) {
+	for (col = ncols; --col >= 0; ) {
+	  element = (PTR_DESCRIPTOR)R_MVT((*desc),ptdv,class1)[--i];
+	  INC_REFCNT(element);
+	  printelements(element,class1);            /* recursive function call */
+	}
+	PUSHSTACK(S_e,SET_ARITY(LIST,ncols));
+      }
+      type = TMATRIX;
+      break;
+#endif /* 0 */
+    default: switch(class) {
+    case C_MATRIX  : 
+      POST_MORTEM("ret_mvt: unknown matrix - type");
+      break;
+    case C_VECTOR  :
+      POST_MORTEM("ret_mvt: unknown vector - type");
+      break;
+    case C_TVECTOR :
+      POST_MORTEM("ret_mvt: unknown tvector - type");
+      break;
+a177 7
+    } /* switch */
+
+
+
+
+
+  }
+d180 1
+a180 1
+  }
+d191 1
+a191 1
+char *local_convr(realval)
+a251 114
+  /*-----------------------------------------------------------------------------
+   * ret_list -- erhaelt einen Descriptor, der ein Listendesriptor sein
+   *             sein sollte als Paramter. Der hinter diesem Descriptor
+   *             liegende Baum wird in das codefile ausgegeben
+   * globals -- S_e           <w>
+   *-----------------------------------------------------------------------------
+   */
+void local_ret_list(codefp, pdesc)
+     FILE *codefp;
+     STACKELEM pdesc;
+{
+  register PTR_DESCRIPTOR desc = (PTR_DESCRIPTOR) pdesc;
+  /* PTR_DESCRIPTOR ptdd;                       RS 30/10/92 */ 
+  register STACKELEM x;
+  register int i,dim;
+  DESC_CLASS class1;
+
+  dim = R_LIST((*desc),dim);
+  
+  if (dim == 0) {
+    if (desc == _nil)
+      fprintf(codefp, "\t empty list\n");
+    else
+      fprintf(codefp, "\t empty string\n");
+    return;
+  }
+  
+
+  RES_HEAP;
+
+  fprintf(codefp, "\t <");
+  for ( i = 0; i < dim; i++)
+  {
+    x = R_LIST((*desc),ptdv)[i];
+    if T_INT(x) {
+      x = VAL_INT(x);
+      fprintf(codefp, " %d",(int) x);
+    }
+    if T_POINTER(x) {
+      STACKELEM y;
+      int i;
+
+      if (((R_DESC( (* ((PTR_DESCRIPTOR)x) ),class)) == C_CONSTANT) &&
+	  ((R_DESC((*((PTR_DESCRIPTOR)x)),type)) == TY_VAR)) {
+	x = (STACKELEM)R_VAR((*((PTR_DESCRIPTOR)x)),ptnd);
+      }
+      switch(class1 = R_DESC( (* ((PTR_DESCRIPTOR)x) ),class))
+	{
+	case C_EXPRESSION:           /* z.Z. nur Namenspointer */
+	  switch (R_DESC( (* ((PTR_DESCRIPTOR)x) ),type))
+	    {
+	    case TY_NAME:
+	      {
+		fprintf(codefp," ");
+		for (i = 1; i <= R_NAME((*((PTR_DESCRIPTOR)x)),ptn)[0]; i++) {
+		  y = R_NAME((*((PTR_DESCRIPTOR)x)),ptn)[i];
+		  fprintf(codefp, "%c",(char) (y>>16));
+		}
+		continue;
+	      }
+	    case TY_FNAME:
+	      {
+		fprintf(codefp," ");
+		for ( i = 1; i <= R_FNAME((*((PTR_DESCRIPTOR)x)),ptn)[0]; i++) {
+		  y = R_FNAME((*((PTR_DESCRIPTOR)x)),ptn)[i];                                                 
+		  fprintf(codefp, "%c",(char) (y>>16));
+		}
+		continue;
+	      }
+	    default:      POST_MORTEM("local_ret_list:Unexpected descriptortype");
+	    }
+	  break;
+	case C_SCALAR:     
+	  fprintf(codefp," %s",local_convr(R_SCALAR((*((PTR_DESCRIPTOR)x)),valr)));
+	  /* hier nur reals, ints sind keine pointer */
+	  break;
+	case C_DIGIT :     POST_MORTEM("local_ret_list: digit encountered");
+#if 0
+	  ret_dec(x);        /* Digitstring einlagern */
+	  goto main_m;
+#endif
+	case C_MATRIX :                       /* Matrix  bzw.      */
+	case C_VECTOR :                       /* Vektor  bzw.      */
+	case C_TVECTOR:
+	  fprintf(codefp, "\n");
+	  printelements(codefp, x); /* TVektor einlagern */
+	  break;
+	case C_LIST:/*        POST_MORTEM("local_ret_list: keine geschachtelten listen"); */
+	  local_ret_list(codefp, (STACKELEM) x);
+	  break;
+	default:           POST_MORTEM("local_ret_list: Unexpected descriptorclass");
+	}
+    } /* Ende von T_POINTER */
+      
+
+      /*    PPUSHSTACK(S_e,(x = R_LIST((*desc),ptdv)[--i])); */
+  }
+  fprintf(codefp, "\n\t >\n");
+  REL_HEAP;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+d281 1
+a281 1
+void ret_dec(desc)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d17 4
+a23 2
+static FILE *codefp = 0;
+       FILE *fopen();
+d44 2
+a45 3
+  DESC_CLASS class, class1;
+  PTR_DESCRIPTOR element;
+  int nrows, ncols, size, row, col, i, type;
+d97 1
+d110 1
+a110 1
+#if 0
+d148 1
+a148 1
+      post_mortem("ret_mvt: unknown matrix - type");
+d151 1
+a151 1
+      post_mortem("ret_mvt: unknown vector - type");
+d154 1
+a154 1
+      post_mortem("ret_mvt: unknown tvector - type");
+a209 2
+    register int   index = 9;
+    register int   exp  = 13;
+d223 1
+a223 1
+    sprintf(hilf,"%lf",positive?realval:-realval);
+d238 1
+a238 1
+ /*-----------------------------------------------------------------------------
+d241 1
+a241 1
+   *             liegende Baum wird auf den E-Stack gelegt.
+d307 1
+a307 1
+	    default:      post_mortem("local_ret_list:Unexpected descriptortype");
+d314 1
+a314 1
+	case C_DIGIT :     post_mortem("local_ret_list: digit encountered");
+d325 1
+a325 1
+	case C_LIST:/*        post_mortem("local_ret_list: keine geschachtelten listen"); */
+d328 1
+a328 1
+	default:           post_mortem("local_ret_list: Unexpected descriptorclass");
+d358 1
+a358 1
+#define TEST(desc)  if ((desc) == NULL) post_mortem("ret-dec: Heap out of space");
+@

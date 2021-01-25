@@ -1,0 +1,13 @@
+#define MK_MENU_BUTTON(panel,text,id)						\
+	(void)xv_create( /* Attach menu to panel */				\
+	 panel, /* Parent */							\
+	 PANEL_BUTTON, /* Type */						\
+	 PANEL_LABEL_STRING,text, /* Button text */				\
+	 PANEL_ITEM_MENU,MainMenu[id].menu, /* Register menu */			\
+	 NULL /* End of list */							\
+	); 									\
+        MainMenu[id].title=text;                                                \
+	MainMenu[id].hasdismiss=0;						\
+        if (pin_proc==NULL)							\
+         pin_proc=(void (*))xv_get(MainMenu[id].menu,MENU_PIN_PROC);		\
+	xv_set(MainMenu[id].menu,MENU_PIN_PROC,MakePinMenu,NULL)

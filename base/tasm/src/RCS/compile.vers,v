@@ -1,0 +1,217 @@
+head	1.13;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.13
+date	95.12.05.13.55.54;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.04.20.15.30.05;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.04.18.11.31.51;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.04.10.08.45.43;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.29.14.43.47;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.20.15.58.02;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.16.08.18.48;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.14.09.56.26;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.02.09.56.21;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.01.15.56.38;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.29.12.53.06;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.23.15.24.37;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.10.00.10;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.13
+log
+@*** empty log message ***
+@
+text
+@1.0
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.991q
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+1.103d
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+1.003d
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.003c
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.002G
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.002A
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.002y
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.002j
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.001U
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.001Q
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.001g
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+0.1a
+@

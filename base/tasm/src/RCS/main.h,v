@@ -1,0 +1,146 @@
+head	1.8;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.8
+date	95.07.11.10.00.37;	author um;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.06.09.14.00.16;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.02.10.17.17.46;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.02.02.12.18.45;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.28.12.53.53;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.25.17.30.11;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.25.07.39.21;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.8
+log
+@tcorrect inserted
+@
+text
+@#include <stdio.h>
+#include "mytypes.h"
+
+extern int yyparse(), georg(int), tis(), ris(), compile(), correct_t_frame();
+void out_tree(PROGRAM *);
+
+extern int verbose, lineno, optimize;
+extern char * infile, * outfile;
+extern FILE * yyin, * yyout;
+extern PROGRAM * program_start;
+
+extern char * program;
+extern char * version, * vgeorg, * vtis, * vris, * vcompile;
+@
+
+
+1.7
+log
+@georg take parameter
+@
+text
+@d4 1
+a4 1
+extern int yyparse(), georg(int), tis(), ris(), compile();
+@
+
+
+1.6
+log
+@additional external variables
+@
+text
+@d4 1
+a4 1
+extern int yyparse(), georg(), tis(), ris(), compile();
+@
+
+
+1.5
+log
+@optimize option added
+@
+text
+@d11 3
+@
+
+
+1.4
+log
+@asm_mode integrated
+@
+text
+@d7 1
+@
+
+
+1.3
+log
+@mode flags made global
+@
+text
+@a3 3
+#define GEORG_GENJUMP 1
+#define GEORG_GENRTF  2
+
+a4 1
+extern int dogeorg, dotis,  doris, dotasm;
+a8 1
+extern int verbose;
+@
+
+
+1.2
+log
+@GEORG defines
+@
+text
+@d8 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 3
+@

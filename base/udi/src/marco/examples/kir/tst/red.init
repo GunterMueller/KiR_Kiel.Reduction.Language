@@ -1,0 +1,65 @@
+redcount        10000
+div_precision   5
+mult_precision  -1
+truncation      5
+heapdes         2000
+heapsize        1000000
+qstacksize      300000
+mstacksize      300000
+istacksize      300000
+formated        0
+base            10000
+beta_count      0
+debug_info      0
+add_par1        0
+add_par2        0
+last_date       890404
+RED 2.3 Function- Version
+Input/Output-Lib is ""
+Prettyprint-Lib is ""
+Document-Lib is ""
+Protocoll-Lib is ""
+Portable/Ascii-Lib is ""
+Reduction-Lib is ""
+Preprocessed-Lib is ""
+
+Input/Output-Extension is ".ed"
+Prettyprint-Extension is ".pp"
+Document-Extension is ".doc"
+Protocoll-Extension is ".prt"
+Portable/Ascii-Extension is ".asc"
+Reduction-Extension is ".red"
+Preprocessed-Extension is ".pre"
+
+Small : 0
+Dmode : -1
+Width : 130
+abbreviate def : 0
+abbreviate only inner def : 0
+show goal : 0
+show fct-list : 0
+vertical display : 0
+lineoriented cursor mode : 0
+
+key definitions :
+ 0 :       UP : 1b 5b 41 --
+ 1 :     DOWN : 1b 5b 42 --
+ 2 :    RIGHT : 1b 5b 43 --
+ 3 :     LEFT : 1b 5b 44 --
+ 4 :     HOME : e --
+ 5 :       F1 : --
+ 6 :       F2 : 1b 4f 50 --
+ 7 :       F3 : 1b 4f 51 --
+ 8 :       F4 : 1b 4f 52 --
+ 9 :       F5 : 1b 4f 53 --
+10 :       F6 : --
+11 :       F7 : --
+12 :       F8 : --
+13 : SHIFT_F1 : --
+14 : SHIFT_F2 : --
+15 : SHIFT_F3 : --
+16 : SHIFT_F4 : --
+17 : SHIFT_F5 : --
+18 : SHIFT_F6 : --
+19 : SHIFT_F7 : --
+20 : SHIFT_F8 : --

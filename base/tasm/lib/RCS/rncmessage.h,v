@@ -1,0 +1,137 @@
+head	1.5;
+access;
+symbols
+	nCUBE~:1.5;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	94.09.13.10.07.29;	author rs;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.09.13.09.57.30;	author rs;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.09.09.09.39.56;	author dmk;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.10.27.12.51.23;	author ach;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@ANSI-version mit mess und verteilungs-Routinen
+@
+
+
+1.5
+log
+@EOL bugfix
+@
+text
+@/***************************************************************/
+/*                                                             */
+/* rncmessage.h --- header file for the nCube message routines */
+/*                                                             */
+/* ach 26/01/93                                                */
+/* ----------------------------------------------------------- */
+/* dmk 13.07.94   - MT_PROC_CNT zu MESSAGE_TYPE hinzugefuegt   */
+/* ----------------------------------------------------------- */
+/*                                                             */
+/***************************************************************/
+
+#ifndef _rncmessage_h_included
+#define _rncmessage_h_included
+
+/* there's something quite wrong here !!!!! */
+
+#if D_NN_SCHED
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY, MT_CLOSE_MEASURE, MT_OPEN_MEASURE, MT_SEND_MEASURE, MT_REMOTE_MEASURE, MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE, MT_STAT_REQ, MT_STAT_SEND} MESSAGE_TYPE;
+#else
+#if D_MESS
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY, MT_CLOSE_MEASURE, MT_OPEN_MEASURE, MT_SEND_MEASURE, MT_REMOTE_MEASURE, MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE} MESSAGE_TYPE;
+#else
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY,MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE, MT_PROC_CNT} MESSAGE_TYPE;
+#endif
+#endif
+
+typedef enum {CM_ONCE, CM_CONTINUOUSLY} CHECK_MODE;
+
+#define END_MARKER      0x42424242
+#define PM_DESC_MARKER  0x26000001         /* for sending of pattern match code */
+
+#endif
+
+
+
+
+
+
+@
+
+
+1.4
+log
+@D_MESS inserted (from version 1.2)
+@
+text
+@d21 1
+a21 3
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE
+_READY, MT_CLOSE_MEASURE, MT_OPEN_MEASURE, MT_SEND_MEASURE, MT_REMOTE_MEASURE, MT_POST_MORTE
+M, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE} MESSAGE_TYPE;
+@
+
+
+1.3
+log
+@Neue Message-Typen fuer NN-Scheduling.
+@
+text
+@d15 2
+d20 5
+d26 1
+@
+
+
+1.2
+log
+@MT_TERMINATE implemented
+@
+text
+@d6 3
+d15 2
+a16 2
+#if D_MESS
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY, MT_CLOSE_MEASURE, MT_OPEN_MEASURE, MT_SEND_MEASURE, MT_REMOTE_MEASURE, MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE} MESSAGE_TYPE;
+d18 1
+a18 1
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY,MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED, MT_TERMINATE} MESSAGE_TYPE;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d13 1
+a13 1
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY, MT_CLOSE_MEASURE, MT_OPEN_MEASURE, MT_SEND_MEASURE, MT_REMOTE_MEASURE, MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED} MESSAGE_TYPE;
+d15 1
+a15 1
+typedef enum {MT_NEW_GRAPH=100, MT_NEW_PROCESS, MT_RESULT, MT_END_RESULT, MT_PARAM, MT_NCUBE_READY,MT_POST_MORTEM, MT_ABORT, MT_NCUBE_FAILED} MESSAGE_TYPE;
+@

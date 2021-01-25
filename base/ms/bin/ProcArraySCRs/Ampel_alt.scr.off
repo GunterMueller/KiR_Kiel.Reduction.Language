@@ -1,0 +1,180 @@
+DEFS:
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+	static int processes[MAX_PROCESSORS];
+	static struct {
+		int count, doSleep;
+	} delay[MAX_PROCESSORS][MAX_PROCESSES];
+
+	static int i, j, k, arrowVisible;
+	static short rememberFromProcessor, rememberFromProcess,
+	             rememberToProcessor, rememberToProcess;
+
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            temp[1000];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+	void clearArrow()
+	{
+		/* Erase arrow and fill destination slot with ready color */
+
+		if(arrowVisible) {
+			CREATION_ARROW(rememberFromProcessor,
+			               rememberFromProcess,
+			               rememberToProcessor,
+			               rememberToProcess);
+			arrowVisible = 0;
+		}
+
+		return;
+	}
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		for(j=0; j<MAX_PROCESSES; ++j) {
+			pids[i][j] = -1;
+			delay[i][j].count = 
+			delay[i][j].doSleep = 0;
+		}
+		processes[i] = -1;
+		numProcesses[i] = 0;
+	}
+
+	/* Colors for "Ready", "Active", "Suspendes" and "Terminated" */
+	SET_COLORS(LIGHT_YELLOW, GREEN, LIGHT_RED, WHITE);
+	SET_METER(OFF);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "%s (%s) -- %s reduction steps",
+	        rememberFile, rememberTime, rememberSteps);
+	SET_TITLE(temp);
+
+	SET_STYLE(TEXT);
+
+	arrowVisible = 0;
+
+	NEXT_FRAME();
+	break;
+
+SEND_BEGIN:
+	if(!strcmp(S_TYPE, "MT_NEW_PROCESS")) {
+		++delay[PROCESSOR][pid(PROCESSOR, PROCESS)].count;
+	}
+	break;
+
+PROC_CREATE:
+	clearArrow();
+
+	processes[PROCESSOR] = PC_PID;
+
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PC_PID) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PC_PID;
+	}
+
+	break;
+
+RECEIVE_END:
+	/*            PROCESSOR: processor with new process */
+	/* processes[PROCESSOR]: the new process on this processor */
+	/*          R_FROM_PROC: initiating processor */
+	/*           R_FROM_PID: initiating process on this processor */
+
+	clearArrow();
+
+	if(!strcmp(R_TYPE, "MT_NEW_PROCESS")) {
+		/* Fill slot and draw arrow... */
+		rememberFromProcessor = R_FROM_PROC;
+		rememberFromProcess = pid(R_FROM_PROC, R_FROM_PID);
+		rememberToProcessor = PROCESSOR;
+		rememberToProcess = pid(PROCESSOR, processes[PROCESSOR]);
+		FILL_SLOT(rememberToProcessor, rememberToProcess,
+		          rememberFromProcessor, rememberFromProcess,
+		          READY);
+		CREATION_ARROW(rememberFromProcessor, rememberFromProcess,
+		               rememberToProcessor, rememberToProcess);
+		arrowVisible = 1;
+		NEXT_FRAME_BUT_CONTINUE();
+	}
+	break;
+
+CONTINUE:
+	/* Is there any communication initiated by R_FROM_PROC left? */
+	if(!--delay[R_FROM_PROC][pid(R_FROM_PROC, R_FROM_PID)].count) {
+		if(delay[R_FROM_PROC]
+		        [pid(R_FROM_PROC, R_FROM_PID)].doSleep) {
+			delay[R_FROM_PROC]
+			     [pid(R_FROM_PROC, R_FROM_PID)].doSleep = 0;
+			/* No --> let it sleep */
+			clearArrow();
+			FILL_SLOT(R_FROM_PROC, pid(R_FROM_PROC, R_FROM_PID),
+			          NOCARE, NOCARE, SUSPENDED);
+			NEXT_FRAME();
+		}
+	}
+	break;
+
+PROC_RUN:
+	clearArrow();
+	FILL_SLOT(PROCESSOR, pid(PROCESSOR, PR_PID),
+	          NOCARE, NOCARE, ACTIVE);
+	NEXT_FRAME();
+	break;
+
+PROC_SLEEP:
+	/* Is there any communication initiated by this process? */
+	if(delay[PROCESSOR][pid(PROCESSOR, PS_PID)].count) {
+		/* Yes --> Delay and draw half slot */
+		delay[PROCESSOR][pid(PROCESSOR, PS_PID)].doSleep = 1;
+
+		clearArrow();
+		FILL_SLOT(PROCESSOR, pid(PROCESSOR, PS_PID),
+		          NOCARE, NOCARE, HALF_SUSPENDED);
+		NEXT_FRAME();
+	} else {
+		/* No --> Draw */
+		clearArrow();
+		FILL_SLOT(PROCESSOR, pid(PROCESSOR, PS_PID),
+		          NOCARE, NOCARE, SUSPENDED);
+		NEXT_FRAME();
+	}
+	break;
+
+PROC_WAKEUP:
+	clearArrow();
+	FILL_SLOT(PROCESSOR, pid(PROCESSOR, PW_PID),
+	          NOCARE, NOCARE, READY);
+	NEXT_FRAME();
+	break;
+
+PROC_TERMINATE:
+	/* Is there any communication initiated by this process? */
+
+	clearArrow();
+	FILL_SLOT(PROCESSOR, pid(PROCESSOR, PT_PID),
+	          NOCARE, NOCARE, TERMINATED);
+	NEXT_FRAME();
+
+	break;
+
+END:
+	clearArrow();
+	NEXT_FRAME();
+	break;

@@ -1,0 +1,185 @@
+head	1.11;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.11
+date	96.04.04.12.57.54;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	96.04.04.12.55.37;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.04.19.14.47.44;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.04.13.15.35.37;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.03.03.17.53.20;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.01.26.08.31.55;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.02.13.56.34;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.01.10.57.09;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.25.17.32.05;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.10.15.05;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.10.00.10;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@0.904a
+@
+
+
+1.10
+log
+@removes dead labels
+@
+text
+@d1 1
+a1 1
+0.901a
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.900a
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.1000a
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.999c
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.999b
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.999a
+@
+
+
+1.4
+log
+@press release
+@
+text
+@d1 1
+a1 1
+0.004a
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.002a
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.001c
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+0.1a
+@

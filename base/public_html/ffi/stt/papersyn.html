@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>Die Papersyntax von KiR</title>
+</head>
+
+<body>
+
+<h1>Die Papersyntax von KiR</h1>
+
+<hr>
+
+Der Editor wurde um eine Option und ein Kommando erweitert. Diese dienen dem
+Zweck, KiR-Programme in einer Form auszugeben, die näher an den allgemeinen
+Konventionen ist (sog. Papersyntax). <p>
+
+Das neue Kommando heißt 'paper' und gibt analog zu 'pp' den aktuellen
+Cursorausdruck in Papersyntax (siehe unten) aus. <p>
+
+Die neue Startoption heißt '-P', die analog zu '-p' dazu dient, die
+angegebenen Programme im Batchverfahren in Papersyntax auszugeben. <p>
+
+Das sonstige Verhalten des Editors ist unverändert. <p>
+<hr>
+
+<h2>Die Papersyntax</h2>
+
+Die Papersyntax unterscheidet sich in folgenden Punkten von der
+normalen (Editor-)Syntax:
+<ul>
+<li> Schlüsselworte und primitive Funktionen werden groß geschrieben.
+<li> Variablen/Konstruktoren werden klein geschrieben.
+<li> Kommas zur Trennung von Listenelementen, Parametern etc. wurden entfernt.
+<li> Infix- wurde in Präfixnotation umgewandelt.
+<li> Es gibt nur noch eine Schreibweise (func arg1 .. argn) für Applikationen:
+<pre>
+primf(arg1, .. , argn)          -&gt; (primf arg1 .. argn)
+func [ arg1, .. , argn ]        -&gt; (func arg1 .. argn)
+(arg1 func arg2)                -&gt; (func arg2 arg1)
+ap func to [ arg1, .. , argn ]  -&gt; (func arg1 .. argn)
+</pre>
+<li> eckige Klammern um Parameterlisten von Funktionsdefinitionen entfallen.
+<li> Statt 'def ... in ...' wird 'LETREC ... IN ...' geschrieben.
+<li> Statt 'sub ... in ...' wird 'LAMBDA ... IN ...' geschrieben.
+</ul>
+<p>
+<h2>Beispiel:</h2>
+<h3>Editorsyntax:</h3>
+<pre>
+def 
+   F [ X, Y ] = if ( 1 gt 0 )
+                then &lt; X, X, Y, Y &gt;
+                else sub [ X, Y, Z ]
+                     in Y,
+   Apply [ FL, X, Y ] = ap ( 1 | FL )
+                        to [ X, Y ]
+in lselect( 2 , Apply [ &lt; F, G &gt;, Y, X ] )
+</pre>
+
+<h4>Paper-Syntax:</h4>
+<pre>
+LETREC 
+      f x y = IF ( GT 0 1 )
+              THEN &lt; x x y y &gt;
+              ELSE LAMBDA x y z 
+                   IN y
+      apply fl x y = ( ( | fl 1 ) x y )
+IN ( LSELECT 2 ( apply &lt; f g &gt; y x ) )
+</pre>
+
+<hr>
+<address>
+<a href="mailto:stt@informatik.uni-kiel.de">
+    mailto:stt@informatik.uni-kiel.de</a>
+</address>
+
+</body>
+</html>

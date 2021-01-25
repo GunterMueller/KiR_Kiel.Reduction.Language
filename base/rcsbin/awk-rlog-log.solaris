@@ -1,0 +1,9 @@
+#!/opt/gnu/bin/gawk -f
+
+BEGIN			{ msg=0 }
+/^Working file: /	{ printf "* %s ",$3 }
+/^----------------------------$/	{ next }
+/^revision / 		{ printf "%s ",$2; next}
+/^date: / 		{ printf "%s %s %s\n",$5,$2,$3; msg=1; next}
+/^=============================================================================$/ { msg=0; next }
+	 		{if(msg) print}

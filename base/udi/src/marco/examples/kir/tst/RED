@@ -1,0 +1,8 @@
+if ( 5 gt 1 )
+ then ( 5 * ap def
+                   Fac [ N ] = if ( N gt 1 )
+                               then ( N * Fac [ ( N - 1 ) ] )
+                               else 1
+               in Fac
+ to [ ( 5 - 1 ) ] )
+ else 1

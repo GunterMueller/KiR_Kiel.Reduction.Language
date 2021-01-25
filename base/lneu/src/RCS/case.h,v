@@ -1,0 +1,32 @@
+head	1.1;
+access;
+symbols
+	lneu2:1.1
+	lneu1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	92.10.29.15.01.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version by Leick/Strack
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#define OFFSETS        5
+#define VEKTORLAENGE   0
+#define STELLIGKEIT    1
+#define NAMELIST       2
+#define OPAT           3
+#define CODELAENGE     4  
+@

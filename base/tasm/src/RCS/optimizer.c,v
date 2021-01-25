@@ -1,0 +1,2956 @@
+head	1.23;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.23
+date	96.04.19.09.41.06;	author cr;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	96.03.12.17.01.22;	author stt;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.08.29.11.18.47;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.08.14.12.21.26;	author sf;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.08.14.07.02.06;	author sf;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.08.02.14.48.45;	author sf;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.08.02.09.48.07;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.07.26.14.34.04;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.06.22.12.06.13;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.06.15.14.56.09;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.06.07.11.35.21;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.05.11.12.54.16;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.05.04.13.27.40;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.05.03.13.27.35;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.04.26.14.09.56;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.04.21.12.29.35;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.04.21.11.31.41;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.04.17.14.56.25;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.04.17.11.38.14;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.04.10.08.48.51;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.04.10.07.46.05;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.03.06.15.48.18;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.02.02.14.42.58;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial revision
+@
+
+
+1.23
+log
+@ prepare for separate compilation
+step II: use modulfile as prefix for program-specific global variables
+in tasm-generated code (funcdesctable,funcclostable,data_table,
+number_of_descs,ptc_table,number_of_data,stat_funcdesctable)
+@
+text
+@/***********************************************************************/
+/* Optimizes syntaxtree built by tasm2c.y. Call from compile.c.        */
+/***********************************************************************/
+
+#include <stdarg.h>
+#include <varargs.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "dbug.h"
+#include "mytypes.h"
+#include "buildtree.h"
+#include "comp_support.h"
+#include "error.h"
+#include "c_output.h"
+
+extern char *modulfile;
+extern char *opt_primf_tab[];
+extern char *get_str_space(char *);
+extern int optimize;
+int inline_label = 0;
+extern char *strrepl(char *, char *, int);
+extern int find_substr(char *, char *);
+#define OPT_BOOL 1
+
+extern PROGRAM *program_start;
+extern char *primf_tab[];
+
+
+ORDER *getnextcond(ORDER *o)
+{
+  ORDER *erg = NULL;
+  int fertig = 0;
+  
+  DBUG_ENTER("getnextcond");
+  while ((NULL != o) && (0 == fertig))
+  {
+    switch (GETORDERENTRY(o, command))
+    {
+    case label: break;
+    case jcond:
+    case jfalse:
+    case jtrue:
+    case jcond2:
+    case jfalse2: 
+    case jtrue2: 
+    { 
+      if (tp_bool == GETORDERENTRY(o, types))
+      {
+        erg = o; 
+        fertig = 1; 
+      }
+      else 
+      {
+        erg = NULL; 
+        fertig = 1;
+      }
+      break;
+    }        
+    case delta1:
+    case delta2:
+    case delta3:
+    case delta4:
+    case beta: 
+    case gammabeta: { erg = NULL; fertig = 1; break;}
+    default:
+      ;
+    }
+    o = GETNEXTORDER(o);
+  }
+  DBUG_RETURN(erg);
+}
+/***********************************************************/ 
+/* searches for the last real order (no hash, no C-code)   */              
+/***********************************************************/ 
+ORDER *find_last_order(ORDER *o)
+{
+  ORDER *h;
+  h = GETPREVORDER(o);
+  while (NULL != h)
+    switch(GETORDERENTRY(h, command))
+    {
+      case hashargs:
+      case hashtildeargs:
+      case hashrestype:
+      case hashsetref:
+      case freea:
+      case code_ok:     h = GETPREVORDER(h); break;
+      default: return(h);
+    }
+  return((ORDER *)NULL);
+}
+
+ORDER *find_free(ORDER *o, ORDER *bound)
+{
+  ORDER *h;
+  h = GETPREVORDER(o);
+  while ((NULL != h) && (h != bound))
+    switch(GETORDERENTRY(h, command))
+    {
+      case hashargs:
+      case hashtildeargs:
+      case hashrestype:
+      case hashsetref: h = GETPREVORDER(h); break;
+      case freet:
+      case freea: return(h);
+      default: return((ORDER *)NULL);
+    }
+  return((ORDER *)NULL);
+}
+
+ORDER *search_label(char *s, ORDER *o)
+{
+  DBUG_ENTER("search_label");
+  while (NULL != o)
+  {
+    if (label == GETORDERENTRY(o, command))
+      if (!strcmp(s, GETORDERARGS(o,label))) DBUG_RETURN(o);
+    o = GETNEXTORDER(o);
+  }
+  DBUG_RETURN((ORDER *)NULL);
+}
+/***********************************************************/ 
+/* delivers a string representing the argument type        */              
+/***********************************************************/ 
+char *get_arg_types(ORDER *o, int field)
+{
+  static char s[20];
+  DBUG_ENTER("get_arg_types");
+  if (GETTYPE(field, GETORDERENTRY(o, types)) & EXT_MASK)
+  switch(GETTYPE(field, GETORDERENTRY(o, types)) & EXT_MASK)
+  {
+    case tp_string:
+      strcpy(s, "s");
+      break;
+    case tp_clos:
+      strcpy(s, "c");
+      break;
+    case tp_func:
+      strcpy(s, "f");
+      break;
+    case tp_list:
+      strcpy(s, "l");
+      break;
+    case tp_vect:
+      strcpy(s, "v");
+      switch(GETTYPE(field, GETORDERENTRY(o, types)) & PRIM_MASK)
+      {
+        case tp_int:
+          strcat(s, "i"); 
+          break;
+        case tp_bool:
+          strcat(s, "b"); 
+          break;
+        case tp_real:
+          strcat(s, "r"); 
+          break;
+        case tp_empty:
+          strcat(s, "e"); 
+          break;
+        default:
+          yyfail("unknown primitiv result type in get_arg_types");
+          break;
+      }
+      break;
+    case tp_tvect:
+      strcpy(s, "t");
+      switch(GETTYPE(field, GETORDERENTRY(o, types)) & PRIM_MASK)
+      {
+        case tp_int:
+          strcat(s, "i"); 
+          break;
+        case tp_bool:
+          strcat(s, "b"); 
+          break;
+        case tp_real:
+          strcat(s, "r"); 
+          break;
+        case tp_empty:
+          strcat(s, "e"); 
+          break;
+        default:
+          yyfail("unknown primitiv result type in get_arg_types");
+          break;
+      }
+      break;
+    case tp_matrix:
+      strcpy(s, "m");
+      switch(GETTYPE(field, GETORDERENTRY(o, types)) & PRIM_MASK)
+      {
+        case tp_int:
+          strcat(s, "i"); 
+          break;
+        case tp_bool:
+          strcat(s, "b"); 
+          break;
+        case tp_real:
+          strcat(s, "r"); 
+          break;
+        case tp_empty:
+          strcat(s, "e"); 
+          break;
+        default:
+          yyfail("unknown primitiv result type in get_arg_types");
+          break;
+      }
+      break;
+    default:
+      yyfail("unknown extended result type in get_arg_types");
+      break;      
+  }
+  else
+  switch(GETTYPE(field, GETORDERENTRY(o, types)))
+  {
+    case tp_int:
+      strcpy(s, "i");
+      break;
+    case tp_real:
+      strcpy(s, "r");
+      break;
+    case tp_digit:
+      strcpy(s, "d");
+      break;
+    case tp_bool:
+      strcpy(s, "b");
+      break;
+    case tp_char:
+      strcpy(s, "c");
+      break;
+    case tp_var:
+      strcpy(s, "var");
+      break;
+    default:
+      yyfail("unknown primitive result type in get_arg_types");
+      break;      
+  }
+  DBUG_RETURN(s);
+}
+
+int isnt_atom(ORDER *h)
+{
+  int result = 0;
+  DBUG_ENTER("isnt_atom");
+  if (GETORDERARGS(h, argtp[0]) & EXT_MASK)
+    result = 1;
+  else 
+    switch(GETORDERARGS(h, argtp[0]) & PRIM_MASK)
+    {
+      case tp_int:
+      case tp_bool: break;
+      default: result = 1;
+    }
+  DBUG_RETURN(result);
+}
+int is_it_a_structure_result(PRIMF p)
+{
+  int erg = 0;
+  DBUG_ENTER("is_it_a_structure_result");
+  switch(p)
+  {
+    case p_sprintf:
+    case p_transpose:
+    case p_ln:
+    case p_exp:
+    case p_reverse:
+    case p_cut:
+    case p_vcut:
+    case p_mcut:
+    case p_lcut:
+    case p_transform:
+    case p_rotate:
+    case p_lrotate:
+    case p_vrotate:
+    case p_mrotate:
+    case p_select:
+    case p_vselect:
+    case p_lselect:
+    case p_mselect:
+    case p_substr:
+    case p_replace:
+    case p_lreplace:
+    case p_vreplace:
+    case p_mreplace:
+    case p_repstr:
+    case p_mre_c:
+    case p_mre_r: 
+    case p_unite: 
+    case p_vunite: 
+    case p_munite: 
+    case p_lunite:
+    case p_to_vect: 
+    case p_to_tvect: 
+    case p_to_mat: 
+    case p_to_scal: 
+    case p_to_list: 
+    case p_to_field: erg =1; break;
+    
+    default:;
+  }
+  DBUG_RETURN(erg);
+}
+/***********************************************************/ 
+/* delivers a string representing the result type          */              
+/***********************************************************/ 
+char *get_res_fmt(ORDER *h)
+{
+  static char erg[80];
+  DBUG_ENTER("get_res_fmt");
+  if (GETORDERARGS(h, argtp[0]) & EXT_MASK)
+  switch(GETORDERARGS(h, argtp[0]) & EXT_MASK)
+  {
+    case tp_list:
+      strcpy(erg, "MkList(%s, %s)");
+      break;
+    case tp_vect:
+      strcpy(erg, "MkVect(%s, %s)");
+      break;
+    case tp_tvect:
+      strcpy(erg, "MkTVect(%s, %s)");
+      break;
+    case tp_matrix:
+      strcpy(erg, "MkMatrix(%s, %s)");
+      break;
+    case tp_string:
+      strcpy(erg, "MkString(%s, %s)");
+      break;
+    default:
+      yyfail("unknown extended result type in get_res_fmt");
+  }
+  else if (GETORDERARGS(h, argtp[0]) & PRIM_MASK)
+  switch(GETORDERARGS(h, argtp[0]))
+  {
+    case tp_int:
+      strcpy(erg, "MkInt(%s, %s)");
+      break;
+    case tp_real:
+      strcpy(erg, "MkReal(%s, %s)");
+      break;
+    case tp_digit:
+      strcpy(erg, "MkDigit(%s, %s)");
+      break;
+    case tp_bool:
+      strcpy(erg, "MkBool(%s, %s)");
+      break;
+    case tp_char:
+      strcpy(erg, "MkChar(%s, %s)");
+      break;
+    case tp_var:
+      strcpy(erg, "MkVar(%s, %s)");
+      break;
+    default:
+      yyfail("unknown primitive result type in get_res_fmt");
+  }        
+DBUG_RETURN(erg);
+}
+
+/************************************************************/
+/* optimizes typed delta calls                              */
+/************************************************************/
+void optimize_delta(FUNCTION *f)
+{
+  ORDER *o, *h, *h1, *h2, *next, *new, *bound;
+        /* bound is the first order which is not examined while searching for a freea */
+  char  *res_fmt, very_temp[1024], tmpstr[1024], 
+       v[1024], u[1024], t[1024], s[1024], resstr[1024], *fmt;
+       char *MkElem = "MkElem(%s, %s)";
+  int n, i, kill_a, kill_w, dont_opt,tv_to_kill, needless_w, opti, delta;
+      /* i =      #moveaw to hold where to peek on a, 
+         kill_a = #entries to removed from a after action,
+         kill_w = #entries to removed from w after action,
+         dont_opt = 1 if userdefined function call or mklist found 
+         tv_to_kill = #of temporary results to kill 
+         needless_w = # of no longer needed w entries  
+         opti = 0 if only atom types used */
+  
+  DBUG_ENTER("optimize_delta");
+  o = GETFIRSTORDER(f);
+  while (NULL != o)
+  {
+    next = NULL;
+    h = o;
+    i = 0;
+    kill_a = 0;
+    kill_w = 0;
+    dont_opt = 0;
+    tv_to_kill = 0;
+    opti = 0;
+    delta = 0;
+    switch(GETORDERENTRY(o, command))
+    {
+    case jtrue:
+    case jtrue2:
+    case jfalse:
+    case jfalse2:
+    case jcond:
+    case jcond2:
+      if (tp_bool == GETTYPE(0, GETORDERENTRY(o, types)))
+      {
+        h = find_last_order(o);
+        tv_to_kill = GETORDERARGS(h, k);   
+        if (label == GETORDERENTRY(h, command))
+          h = find_last_order(h);
+          if (0 == doris)
+          {
+            switch(GETORDERENTRY(h, command))
+            {
+              case stack_op:
+                sprintf(s, "(%s)", GETORDERENTRY(h, code));
+                kill_a += GETORDERARGS(h, n);
+                kill_w += GETORDERARGS(h, m);
+                tv_to_kill += GETORDERARGS(h, k);
+                opti += GETORDERENTRY(h, opti);
+                delete_order(h);
+                break;
+              case pushaw:
+                sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+                delete_order(h);
+                break;
+              case pushtw:
+                sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+                delete_order(h);
+                break;
+              case moveaw:
+                sprintf(s, "peek(a, %d)", i + kill_a);
+                i++;
+                delete_order(h);
+                break;
+              case movetw:
+                sprintf(s, "top(t)");
+                delete_order(h);
+                break;
+              case pushcw_b:
+                sprintf(s, "%d", GETORDERARGS(h, n));
+                delete_order(h);
+                break;
+              default:
+                sprintf(s, "top(w)");
+                kill_w++;
+                break;
+            }
+          }
+          else         /* ris used */
+            sprintf(s, "pop(w)");
+        strcpy(t, GETORDERARGS(o, label)); /* remove the tailing ":" */
+        if (-1 != find_substr(t, ":"))
+          strrepl(&t[find_substr(t, ":")], " ", 1);
+        if ((jtrue == GETORDERENTRY(o, command)) || (jtrue2 == GETORDERENTRY(o, command)))
+          sprintf(very_temp, "if (SA_TRUE == (%s)) goto %s;", s, t);
+        else
+          sprintf(very_temp, "if (SA_FALSE == (%s)) goto %s;", s, t);
+        if (0 != kill_w)
+        {
+          sprintf(t, "\nfreew(%d);\n", kill_w);
+          strcat(very_temp, t);
+        }
+        if (0 != kill_a)
+        {
+          sprintf(t, "\nfreea(%d);\n", kill_a);
+          strcat(very_temp, t);
+        }
+        new = new_order(code_ok, very_temp);
+        SETORDERARGS(new, k) = tv_to_kill;
+        SETORDERENTRY(new, opti) = opti;
+        insert_order_list(new, o);
+        SETORDERARGS(search_label(GETORDERARGS(o, label), o), l) = kill_a;
+        SETORDERARGS(search_label(GETORDERARGS(o, label), o), m) = kill_w;
+        SETORDERARGS(search_label(GETORDERARGS(o, label), o), k) = tv_to_kill;
+        SETORDERARGS(search_label(GETORDERARGS(o, label), o), k) = opti;
+        delete_order(o);
+        h = new;
+      }
+      break;
+    case delta1:
+      if (tp_none != GETTYPE(0, GETORDERENTRY(o, types)) &&
+          (tp_none != GETORDERARGS(GETPREVORDER(o), argtp[0])))   /* i.e. type inferred */
+      {
+        h = find_last_order(o);
+        bound = GETPREVORDER(h);
+        needless_w = 0;
+        if (0 == doris)
+        {
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(s, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;   
+              opti += GETORDERENTRY(h, opti);   
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case pushtw:
+              sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case moveaw:
+              sprintf(s, "peek(a, %d)", i + kill_a);
+              i++;
+              delete_order(h);
+              break;
+            case movetw:
+              sprintf(s, "top(t)");
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(s, "%d", GETORDERARGS(h, n));
+              delete_order(h);  
+              break;
+            case pushw_p:
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(s, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(s, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              delete_order(h);
+              break;
+           default:
+              sprintf(s, "top(w)");
+              kill_w++;
+              break;
+          }
+      }
+      else                     /* ris used */
+        sprintf(s, "top(w)");
+      fmt = opt_primf_tab[GETPRF(GETORDERARGS(o, primf))];
+      sprintf(resstr, fmt, s);
+      strcpy(very_temp, get_arg_types(o, 0)); 
+      strcat(very_temp, "_");
+      strcat(very_temp, resstr);
+      if (0 == is_it_a_structure_result(GETPRF(GETORDERARGS(o, primf))))
+        res_fmt = get_res_fmt(GETPREVORDER(o));
+      else
+        res_fmt = MkElem;
+      tv_to_kill++;
+      sprintf(tmpstr, res_fmt, very_temp, "#####");
+      if (0 == doris)
+        new = new_order(stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr); 
+      else
+        new = new_order(ris_stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+      SETORDERENTRY(new, opti) = opti + isnt_atom(GETPREVORDER(o));
+      insert_order_list(new, o);
+      delete_order(o);  
+      h = find_free(new, bound);
+      if (NULL != h)
+      {
+        h2 = new_order(freea, GETORDERARGS(h, n));
+        insert_order_list(h2, GETNEXTORDER(new));
+        delete_order(h);
+      }
+      h = new; 
+      
+      }
+      break;
+    case delta2:
+      if ((tp_none != GETTYPE(0, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(1, GETORDERENTRY(o, types))) &&
+           (tp_none != GETORDERARGS(GETPREVORDER(o), argtp[0])))  /* i.e. types inferred */
+      {
+        h = find_last_order(o);
+        needless_w = 0;
+        if (0 == doris)
+        {
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(s, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;   
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw:
+              sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw:
+              sprintf(s, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw:
+              sprintf(s, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(s, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(s, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(s, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+           default:
+              sprintf(s, "top(w)");
+              kill_w++;
+              h1 = find_last_order(h);
+              break;
+          } /* switch */
+          h = h1;
+          bound = GETPREVORDER(h);
+          if (1 == dont_opt)
+          {
+            sprintf(t, "peek(w, 1)");
+            kill_w++;
+          }
+          else
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(t, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(t, "peek(a, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(t, "peek(t, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(t, "peek(a, %d)", i + kill_a);
+              i++;
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(t, "top(t)");
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(t, "%d", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case pushw_p:
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(t, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(t, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              delete_order(h);
+              break;
+            default:
+              sprintf(t, "peek(w, %d)", kill_w);  /* war 1 - needless_w */
+              kill_w++;
+              break;
+          } /* switch */
+
+        } /* if (0 == doris) */
+        else                         /* ris used */
+        {
+          sprintf(s, "top(w)");
+          sprintf(t, "peek(w, 1)");
+          kill_w += 2;
+        }
+        fmt = opt_primf_tab[GETPRF(GETORDERARGS(o, primf))];
+        sprintf(resstr, fmt, s, t);
+        strcpy(very_temp, get_arg_types(o, 0));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 1));
+        strcat(very_temp, "_");
+        strcat(very_temp, resstr);
+        if (0 == is_it_a_structure_result(GETPRF(GETORDERARGS(o, primf))))
+          res_fmt = get_res_fmt(GETPREVORDER(o));
+        else
+          res_fmt = MkElem;
+        tv_to_kill++;
+        sprintf(tmpstr, res_fmt, very_temp, "#####");
+        if (0 == doris)
+          new = new_order(stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        else
+          new = new_order(ris_stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        SETORDERENTRY(new, opti) = opti + isnt_atom(GETPREVORDER(o));
+        insert_order_list(new, o);
+        delete_order(o);
+        h = find_free(new, bound);
+        if (NULL != h)
+        {
+          h2 = new_order(freea, GETORDERARGS(h, n));
+          insert_order_list(h2, GETNEXTORDER(new));
+          delete_order(h);
+        }
+        h = new;
+      } /* if types inferred */
+      break;
+    case delta3:
+      if ((tp_none != GETTYPE(0, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(1, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(2, GETORDERENTRY(o, types))) &&
+           (tp_none != GETORDERARGS(GETPREVORDER(o), argtp[0])))  /* i.e. types inferred */
+      {
+        h = find_last_order(o);
+        needless_w = 0;
+        if (0 == doris)
+        {
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(s, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw:
+              sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw:
+              sprintf(s, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw:
+              sprintf(s, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(s, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(s, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(s, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              sprintf(s, "top(w)");
+              kill_w++;
+              h1 = find_last_order(h);
+              break;
+          } /* switch */
+          h = h1;
+          if (1 == dont_opt)
+          {
+            kill_w++;
+            sprintf(t, "peek(w, 1)");
+          }
+          else            
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(t, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(t, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(t, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(t, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(t, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(t, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(t, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(t, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              sprintf(t, "peek(w, %d)", kill_w); 
+              kill_w++;
+              h1 = find_last_order(h);
+              break;
+          } /* switch */
+          h = h1;
+          bound = GETPREVORDER(h);
+          if (1 == dont_opt)
+            sprintf(t, "peek(w, 2)");
+          else             
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(u, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(u, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(u, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(u, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(u, "top(t)");
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(u, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(u, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(u, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              delete_order(h);
+              break;
+            default:
+              sprintf(u, "peek(w, %d)", kill_w);    
+              kill_w++;
+              break;
+          } /* switch */
+
+        } /* if (0 == doris) */
+        else                         /* ris used */
+        {
+          sprintf(s, "top(w)");
+          sprintf(t, "peek(w, 1)");
+          sprintf(u, "peek(w, 2)");
+          kill_w += 3;
+        }
+        fmt = opt_primf_tab[GETPRF(GETORDERARGS(o, primf))];
+        sprintf(resstr, fmt, s, t, u);
+        strcpy(very_temp, get_arg_types(o, 0));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 1));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 2));
+        strcat(very_temp, "_");
+        strcat(very_temp, resstr);
+        tv_to_kill++;
+        if (0 == is_it_a_structure_result(GETPRF(GETORDERARGS(o, primf))))
+          res_fmt = get_res_fmt(GETPREVORDER(o));
+        else
+          res_fmt = MkElem;
+        sprintf(tmpstr, res_fmt, very_temp, "#####");
+        if (0 == doris)
+          new = new_order(stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        else
+          new = new_order(ris_stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        SETORDERENTRY(new, opti) = opti + isnt_atom(GETPREVORDER(o));
+        insert_order_list(new, o);
+        delete_order(o);
+        h = find_free(new, bound);
+        if (NULL != h)
+        {
+          h2 = new_order(freea, GETORDERARGS(h, n));
+          insert_order_list(h2, GETNEXTORDER(new));
+          delete_order(h);
+        }
+        h = new;
+      } /* if types inferred */
+      break;
+    case delta4:
+      if ((tp_none != GETTYPE(0, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(1, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(2, GETORDERENTRY(o, types))) &&
+           (tp_none != GETTYPE(3, GETORDERENTRY(o, types))) &&
+           (tp_none != GETORDERARGS(GETPREVORDER(o), argtp[0]))) /* i.e. types inferred */
+      {
+        h = find_last_order(o);
+        needless_w = 0;
+        if (0 == doris)
+        {
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(s, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;   
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw:
+              sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw:
+              sprintf(s, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw:
+              sprintf(s, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(s, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(s, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(s, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              sprintf(s, "top(w)");
+              h1 = find_last_order(h);
+              kill_w++;
+              break;
+          } /* switch */
+          h = h1;
+          if (1 == dont_opt)
+          {
+            kill_w++;
+            sprintf(t, "peek(w, 1)");
+          }
+          else            
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(t, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(t, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(t, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(t, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(t, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(t, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(t, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(t, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              sprintf(t, "peek(w, %d)", kill_w);    
+              h1 = find_last_order(h);
+              break;
+          } /* switch */
+          h = h1;
+          if (1 == dont_opt)
+          {
+            kill_w++;
+            sprintf(t, "peek(w, 2)");
+          }
+          else            
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(u, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(u, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(u, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(u, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(u, "top(t)");
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(u, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(u, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(u, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              h1 = find_last_order(h);
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              sprintf(u, "peek(w, %d)", kill_w);    
+              kill_w++;
+              break;
+          } /* switch */
+          h = h1;
+          bound = GETPREVORDER(h);
+          if (1 == dont_opt)
+          {
+            kill_w++;
+            sprintf(t, "peek(w, 3)");
+          }
+          else            
+          switch(GETORDERENTRY(h, command))
+          {
+            case stack_op:
+              sprintf(v, "(##### = (int)(%s))", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill = tv_to_kill + GETORDERARGS(h, k) + 1;
+              opti += GETORDERENTRY(h, opti);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(v, "peek(a, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushtw: 
+              sprintf(v, "peek(t, %d)", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case moveaw: 
+              sprintf(v, "peek(a, %d)", i + kill_a);
+              needless_w++;
+              i++;
+              delete_order(h);
+              break;
+            case movetw: 
+              sprintf(v, "top(t)");
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushcw_i:
+            case pushcw_b:
+              sprintf(v, "%d", GETORDERARGS(h, n));
+              needless_w++;
+              delete_order(h);
+              break;
+            case pushw_p:
+              needless_w++;
+              n = search_funcdesc((int)GETORDERARGS(h, desc)); 
+              if (-1 != n)
+                sprintf(v, "(T_PTD)%sfuncclostable[%d]", modulfile, n);
+              else
+              {
+                n = searchdata((int)GETORDERARGS(h, desc));
+                if (-1 != n)
+                  sprintf(v, "(T_PTD)%sdata_table[%d]", modulfile, n);
+                else 
+                {
+                  if (stdout != yyout)
+                  {
+                    fclose(yyout);
+                    remove(outfile);
+                    yyfail("0x%08x unrecognized pointer\n%s removed",
+                           (int)GETORDERARGS(h, desc), outfile);
+                  }
+                yyfail("0x%08x unrecognized pointer",
+                       (int)GETORDERARGS(h, desc));
+                }
+              }
+              delete_order(h);
+              break;
+            case beta:
+            case Gamma:
+            case tail:
+            case gammabeta:
+            case Case:
+            case delta1:
+            case delta2:
+            case delta3:
+            case delta4:
+            case mklist:
+            case mkilist:
+              dont_opt = 1;
+            default:
+              kill_w++;
+              sprintf(v, "peek(w, %d)", kill_w);    
+              break;
+          } /* switch */
+        } /* if (0 == doris) */
+        else                         /* ris used */
+        {
+          sprintf(s, "top(w)");
+          sprintf(t, "peek(w, 1)");
+          sprintf(u, "peek(w, 2)");
+          sprintf(v, "peek(w, 3)");
+          kill_w += 4;
+        }
+        fmt = opt_primf_tab[GETPRF(GETORDERARGS(o, primf))];
+        sprintf(resstr, fmt, s, t, u, v);
+        strcpy(very_temp, get_arg_types(o, 0));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 1));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 2));
+        strcat(very_temp, "x");
+        strcat(very_temp, get_arg_types(o, 3));
+        strcat(very_temp, "_");
+        strcat(very_temp, resstr);
+        if (0 == is_it_a_structure_result(GETPRF(GETORDERARGS(o, primf))))
+          res_fmt = get_res_fmt(GETPREVORDER(o));
+        else
+          res_fmt = MkElem;
+        tv_to_kill++;
+        sprintf(tmpstr, res_fmt, very_temp, "#####");
+        if (0 == doris)
+          new = new_order(stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        else
+          new = new_order(ris_stack_op, kill_a + i, kill_w, tv_to_kill, tmpstr);
+        SETORDERENTRY(new, opti) = opti + isnt_atom(GETPREVORDER(o));
+        insert_order_list(new, o);
+        delete_order(o);
+        h = find_free(new, bound);
+        if (NULL != h)
+        {
+          h2 = new_order(freea, GETORDERARGS(h, n));
+          insert_order_list(h2, GETNEXTORDER(new));
+          delete_order(h);
+        }
+        h = new;
+      } /* if types inferred */
+      break;
+    default:
+    }
+      ;
+  o = GETNEXTORDER(h);
+  }
+  
+  DBUG_VOID_RETURN;
+}
+
+/************************************************************/
+/* checks whether a function can be inlined into another    */
+/************************************************************/
+
+int am_i_insertable(FUNCTION *f)
+{
+  ORDER *help = GETFIRSTORDER(f);
+  int erg = 1;
+   
+  DBUG_ENTER("am_i_insertable");
+ 
+  if (NULL == GETFUNCINLINE(f))
+    erg = 0;
+  else
+  {
+    while (NULL != help)
+    {
+      switch(GETORDERENTRY(help, command))
+      {
+        case gammacase:
+        case tail:
+        case apply:  erg = 0; break;
+        default:;
+      }
+      help = GETNEXTORDER(help);
+    }
+  }
+  DBUG_RETURN(erg);
+}
+
+void reset_inlined_flags(void)
+{
+  FUNCTION *f = GETFIRSTFUNCTION(program_start);
+  DBUG_ENTER("reset_inlined_flags");
+  while (NULL != f)
+  {
+    SETFUNCINLINE(f) = 1;
+    f= GETNEXTFUNCTION(f);
+  }
+  DBUG_VOID_RETURN;
+}
+
+void del_order(ORDER *o)
+{
+  ORDER *p, *n;
+  DBUG_ENTER("del_order");
+  p = GETPREVORDER(o);
+  n = GETNEXTORDER(o);
+  if (NULL != p)
+    SETNEXTORDER(p) = n;
+  if (NULL != n)
+    SETPREVORDER(n) = p;
+  if (NULL!=o->code) free(o->code);
+  free(o);
+  DBUG_VOID_RETURN;
+}
+
+void inline_function(FUNCTION *inline_me, ORDER *inline_before_me, int ret_lab)
+{
+  ORDER *dup, *help, *xhelp;
+  DBUG_ENTER("inline_function");
+  dup = dup_func(GETFIRSTORDER(inline_me), 0);
+  SETFUNCINLINE(inline_me) = GETFUNCINLINE(inline_me) - 1;
+  help = dup;
+  while (NULL != dup)
+  {
+    xhelp = (ORDER *)NULL;
+    switch(GETORDERENTRY(dup, command))
+    {
+      case code_ok:
+        xhelp = GETNEXTORDER(dup);
+        del_order(dup);
+        break;
+      case rtc_i: 
+        SETORDERENTRY(dup, command) = i_rtc_i;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtc_b: 
+        SETORDERENTRY(dup, command) = i_rtc_b;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtc_pf: 
+        SETORDERENTRY(dup, command) = i_rtc_pf;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtm:
+        SETORDERENTRY(dup, command) = i_rtm;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtp:
+        SETORDERENTRY(dup, command) = i_rtp;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtt:
+        SETORDERENTRY(dup, command) = i_rtt;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      case rtf:
+        SETORDERENTRY(dup, command) = i_rtf;
+        SETORDERARGS(dup, m) = ret_lab;
+        break;
+      default:;
+    }
+    if (NULL == xhelp) dup = GETNEXTORDER(dup);
+    else dup = xhelp;
+  }
+  switch(GETORDERENTRY(inline_before_me, command))
+  {
+    case Case:
+      dup = new_order(stflip, 0); break; /* do not switch any stack */
+    case beta:
+      dup = new_order(stflip, 1); break;  /* switch only A and W */
+    case tail:                            /* switch only A and W and switch tailflag */
+      yyfail("TAIL not really implemented in inline_function !!!");
+      break; 
+    case Gamma:
+    case gammacase:
+      dup = new_order(stflip, 2); break; /* switch only R and T */
+    case gammabeta: 
+      dup = new_order(stflip, 3); break; /* switch A and W and R and T */
+    default:
+      yyfail("inline error");
+  }
+       
+  SETNEXTORDER(dup) =  help;
+  SETPREVORDER(help) = dup;
+  insert_order_list(dup, inline_before_me);
+  
+  DBUG_VOID_RETURN;
+}
+
+void insert_functions(FUNCTION *f)
+{
+  char *act_func=GETNAME(f), s[120]="";
+  ORDER *help, *nhelp;
+
+  help=GETFIRSTORDER(f);
+  while (code_ok == GETORDERENTRY(help, command)) help=GETNEXTORDER(help);
+  while (NULL!=help)
+  {
+    switch (GETORDERENTRY(help, command))
+    {
+      case beta:
+        if ((optimize > 0) && (am_i_insertable(find_function(GETORDERARGS(help, label))))
+                               && (strcmp(act_func,GETORDERARGS(help, label))))
+        {
+          ORDER *ohelp = GETPREVORDER(help);
+          sprintf(s,"I%d", inline_label);
+          nhelp=new_order(label, s);
+          insert_order_list(nhelp,GETNEXTORDER(help));
+          inline_function(find_function(GETORDERARGS(help, label)), help, inline_label++);
+          delete_order(help);
+          help = ohelp;
+        }
+        break;
+      case gammabeta:
+        if ((optimize > 0) && (am_i_insertable(find_function(GETORDERARGS(help, label))))
+                           && (strcmp(act_func, GETORDERARGS(help, label))))
+        {
+          ORDER *ohelp = GETPREVORDER(help);
+          sprintf(s,"I%d", inline_label);
+          nhelp=new_order(label, s);
+          insert_order_list(nhelp,GETNEXTORDER(help));
+          inline_function(find_function(GETORDERARGS(help, label)), help, inline_label++);
+          delete_order(help);
+          help = ohelp;
+        }
+        break;
+      default:;
+    }
+    help = GETNEXTORDER(help);
+  }
+}
+
+@
+
+
+1.22
+log
+@case p_sprintf added.
+@
+text
+@d17 1
+d517 1
+a517 1
+                sprintf(s, "(T_PTD)funcclostable[%d]", n);
+d522 1
+a522 1
+                  sprintf(s, "(T_PTD)data_table[%d]", n);
+d630 1
+a630 1
+                sprintf(s, "(T_PTD)funcclostable[%d]", n);
+d635 1
+a635 1
+                  sprintf(s, "(T_PTD)data_table[%d]", n);
+d713 1
+a713 1
+                sprintf(t, "(T_PTD)funcclostable[%d]", n);
+d718 1
+a718 1
+                  sprintf(t, "(T_PTD)data_table[%d]", n);
+d834 1
+a834 1
+                sprintf(s, "(T_PTD)funcclostable[%d]", n);
+d839 1
+a839 1
+                  sprintf(s, "(T_PTD)data_table[%d]", n);
+d928 1
+a928 1
+                sprintf(t, "(T_PTD)funcclostable[%d]", n);
+d933 1
+a933 1
+                  sprintf(t, "(T_PTD)data_table[%d]", n);
+d1014 1
+a1014 1
+                sprintf(u, "(T_PTD)funcclostable[%d]", n);
+d1019 1
+a1019 1
+                  sprintf(u, "(T_PTD)data_table[%d]", n);
+d1139 1
+a1139 1
+                sprintf(s, "(T_PTD)funcclostable[%d]", n);
+d1144 1
+a1144 1
+                  sprintf(s, "(T_PTD)data_table[%d]", n);
+d1233 1
+a1233 1
+                sprintf(t, "(T_PTD)funcclostable[%d]", n);
+d1238 1
+a1238 1
+                  sprintf(t, "(T_PTD)data_table[%d]", n);
+d1326 1
+a1326 1
+                sprintf(u, "(T_PTD)funcclostable[%d]", n);
+d1331 1
+a1331 1
+                  sprintf(u, "(T_PTD)data_table[%d]", n);
+d1414 1
+a1414 1
+                sprintf(v, "(T_PTD)funcclostable[%d]", n);
+d1419 1
+a1419 1
+                  sprintf(v, "(T_PTD)data_table[%d]", n);
+@
+
+
+1.21
+log
+@bug fix in jcond
+@
+text
+@d260 1
+@
+
+
+1.20
+log
+@bug fixed in optimization of conditionals
+@
+text
+@d435 1
+a435 1
+                sprintf(s, "pop(w)");
+@
+
+
+1.19
+log
+@JTRUE
+@
+text
+@d401 1
+a401 1
+          switch(GETORDERENTRY(h, command))
+d403 36
+a438 33
+            case stack_op:
+              sprintf(s, "(%s)", GETORDERENTRY(h, code));
+              kill_a += GETORDERARGS(h, n);
+              kill_w += GETORDERARGS(h, m);
+              tv_to_kill += GETORDERARGS(h, k);
+              opti += GETORDERENTRY(h, opti);
+              delete_order(h);
+              break;
+            case pushaw:
+              sprintf(s, "peek(a, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case pushtw:
+              sprintf(s, "peek(t, %d)", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            case moveaw:
+              sprintf(s, "peek(a, %d)", i + kill_a);
+              i++;
+              delete_order(h);
+              break;
+            case movetw:
+              sprintf(s, "top(t)");
+              delete_order(h);
+              break;
+            case pushcw_b:
+              sprintf(s, "%d", GETORDERARGS(h, n));
+              delete_order(h);
+              break;
+            default:
+              sprintf(s, "pop(w)");
+              kill_w++;
+              break;
+d440 2
+d449 10
+d463 4
+a466 4
+        if (0 != tv_to_kill)
+          SETORDERARGS(search_label(GETORDERARGS(o, label), o), k) = tv_to_kill;
+        if (0 != opti)
+          SETORDERARGS(search_label(GETORDERARGS(o, label), o), k) = opti;
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d389 4
+d440 4
+a443 1
+        sprintf(very_temp, "if (SA_FALSE == (%s)) goto %s;", s, t);
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d369 1
+a369 1
+         dont_opt = 1 if userdefined function call found 
+d637 2
+d841 2
+d935 2
+d1146 2
+d1240 2
+d1333 2
+d1416 6
+@
+
+
+1.16
+log
+@type empty
+@
+text
+@a23 3
+/***************************************************************/
+/* optimization patterns                                       */
+/***************************************************************/
+a24 97
+#define MAXPRFOPT 28 /* number of table entries */
+struct optimize { PRIMF pf;
+                  long type;
+                  char *s;
+                } optitab[]={
+/************************************************************/
+/* Grundrechenarten auf integers */
+/************************************************************/
+   {p_neg, tp_none | tp_none | tp_none | tp_int, 
+      "mkint(NEG_INT(top(w)));"},
+   {p_plus, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_int, 
+      "mkint(ADD_INT(top(w), peek(w,1)))"},
+   {p_minus, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_int, 
+      "mkint(SUB_INT(top(w), peek(w,1)))"},
+   {p_mult, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_int, 
+      "mkint(MUL_INT(top(w), peek(w,1)))"},
+   {p_div, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkint(DIV_INT(top(w), peek(w,1)))"},
+/************************************************************/
+/* Comparison on integers */
+/************************************************************/
+   {p_lt, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(LT_INT(top(w), peek(w,1)))"},
+   {p_le, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(LE_INT(top(w), peek(w,1)))"},
+   {p_gt, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(GT_INT(top(w), peek(w,1)))"},
+   {p_ge, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(GE_INT(top(w), peek(w,1)))"},
+   {p_ne, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(NE_INT(top(w), peek(w,1)))"},
+   {p_eq, tp_none << 24 | tp_none  << 16 | tp_int << 8 | tp_int,
+      "mkbool(EQ_INT(top(w), peek(w,1)))"},
+/************************************************************/
+/* trigonometry on integers */
+/************************************************************/
+   {p_sin, tp_none << 24 | tp_none << 16 | tp_none << 8 | tp_int, 
+      "repl(0,w,mkreal(sin(VAL_INT(top(w)))));"},
+   {p_cos, tp_none << 24 | tp_none << 16 | tp_none << 8 | tp_int, 
+      "repl(0,w,mkreal(cos(VAL_INT(top(w)))));"},
+/************************************************************/
+/* Grundrechenarten auf reals */
+/************************************************************/
+   {p_neg, tp_none | tp_none | tp_none | tp_real, 
+      "(int)mkreal(-R_SCALAR(DESC(top(w)), valr))"},
+   {p_plus, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) + \
+R_SCALAR(DESC(peek(w,1)), valr))"},
+   {p_minus, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) - \
+R_SCALAR(DESC(peek(w,1)), valr))"},
+   {p_mult, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) * \
+R_SCALAR(DESC(peek(w,1)), valr))"},
+   {p_div, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) / \
+R_SCALAR(DESC(peek(w,1)), valr))"},
+/************************************************************/
+/* Grundrechenarten auf reals und integers */
+/************************************************************/
+   {p_plus, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) + \
+VAL_INT(peek(w,1)))"},
+   {p_minus, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) - \
+VAL_INT(peek(w,1)))"},
+   {p_mult, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) * \
+VAL_INT(peek(w,1)))"},
+   {p_div, tp_none << 24 | tp_none << 16 | tp_int << 8 | tp_real, 
+      "(int)mkreal(R_SCALAR(DESC(top(w)), valr) / \
+VAL_INT(peek(w,1)))"},
+/************************************************************/
+/* Grundrechenarten auf integers und reals */
+/************************************************************/
+   {p_plus, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_int, 
+      "(int)mkreal(VAL_INT(top(w)) + R_SCALAR(DESC(peek(w,1)), \
+valr))"},
+   {p_minus, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_int, 
+      "(int)mkreal(VAL_INT(top(w)) - R_SCALAR(DESC(peek(w,1)), \
+valr))"},
+   {p_mult, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_int, 
+      "(int)mkreal(VAL_INT(top(w)) * R_SCALAR(DESC(peek(w,1)), \
+valr))"},
+   {p_div, tp_none << 24 | tp_none << 16 | tp_real << 8 | tp_int, 
+      "(int)mkreal(VAL_INT(top(w)) / R_SCALAR(DESC(peek(w,1)), \
+valr))"},
+/* trigonometry on reals */
+   {p_sin, tp_none << 24 | tp_none << 16 | tp_none << 8 | tp_real, 
+      "(int)mkreal(sin(R_SCALAR(DESC(top(w)), valr)))"},
+   {p_cos, tp_none << 24 | tp_none << 16 | tp_none << 8| tp_real, 
+      "(int)mkreal(cos(R_SCALAR(DESC(top(w)), valr)))"}
+   };
+/***************************************************************/
+/* optimization patterns  end                                  */
+/***************************************************************/
+
+a27 13
+/************************************************************/
+/* searches for a pr.func and delivers a string             */
+/************************************************************/
+char *find_primf(PRIMF pf, int types)
+{
+  int i;
+  
+  DBUG_ENTER("find_primf");  
+  for(i=0; i<MAXPRFOPT; i++)
+    if ((optitab[i].pf== pf) && (optitab[i].type == types)) break;
+  if (MAXPRFOPT == i) DBUG_RETURN((char *)NULL);
+  DBUG_RETURN(optitab[i].s);
+}
+d104 1
+@
+
+
+1.15
+log
+@no more "nr_"* macros to be build
+@
+text
+@d269 3
+d290 3
+d310 3
+@
+
+
+1.14
+log
+@checking subtypes of mvt
+@
+text
+@a628 2
+      if (0 != doris)
+        strcat(very_temp, "nr_");
+a829 2
+        if (0 != doris)
+          strcat(very_temp, "nr_");
+a1129 2
+        if (0 != doris)
+          strcat(very_temp, "nr_");
+a1531 2
+        if (0 != doris)
+          strcat(very_temp, "nr_");
+@
+
+
+1.13
+log
+@new command: rtc_pf
+@
+text
+@d244 9
+d258 15
+d276 15
+d294 15
+a308 9
+      break;
+    case tp_string:
+      strcpy(s, "s");
+      break;
+    case tp_clos:
+      strcpy(s, "c");
+      break;
+    case tp_func:
+      strcpy(s, "f");
+d420 1
+a420 1
+      strcpy(erg, "MkTvect(%s, %s)");
+@
+
+
+1.12
+log
+@minor change
+@
+text
+@d1609 4
+@
+
+
+1.11
+log
+@bugfix in counting of temp. vars.
+@
+text
+@d259 6
+d585 1
+a585 1
+        strcat(very_temp, "ref_");
+d788 1
+a788 1
+          strcat(very_temp, "ref_");
+d1090 1
+a1090 1
+          strcat(very_temp, "ref_");
+d1494 1
+a1494 1
+          strcat(very_temp, "ref_");
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d313 2
+d507 1
+d516 1
+a516 1
+              tv_to_kill = GETORDERARGS(h, k);   
+d550 1
+a550 1
+                  sprintf(s, "(T_PTD)data_table[%d];", n);
+d823 1
+a823 1
+              tv_to_kill = GETORDERARGS(h, k);
+d1126 1
+a1126 1
+              tv_to_kill = GETORDERARGS(h, k);   
+@
+
+
+1.9
+log
+@bug fix
+@
+text
+@d306 39
+d346 4
+d361 1
+a361 1
+      strcpy(erg, "mklist(%s, %s)");
+d364 1
+a364 1
+      strcpy(erg, "mkvect(%s, %s)");
+d367 1
+a367 1
+      strcpy(erg, "mktvect(%s, %s)");
+d370 1
+a370 1
+      strcpy(erg, "mkmatrix(%s, %s)");
+d373 1
+a373 1
+      strcpy(erg, "mkstring(%s, %s)");
+d382 1
+a382 1
+      strcpy(erg, "mkint(%s, %s)");
+d385 1
+a385 1
+      strcpy(erg, "mkreal(%s, %s)");
+d388 1
+a388 1
+      strcpy(erg, "mkdigit(%s, %s)");
+d391 1
+a391 1
+      strcpy(erg, "mkbool(%s, %s)");
+d394 1
+a394 1
+      strcpy(erg, "mkchar(%s, %s)");
+d397 1
+a397 1
+      strcpy(erg, "mkvar(%s, %s)");
+d414 1
+d578 4
+a581 1
+      res_fmt = get_res_fmt(GETPREVORDER(o));
+d781 4
+a784 1
+        res_fmt = get_res_fmt(GETPREVORDER(o));
+d1084 4
+a1087 1
+        res_fmt = get_res_fmt(GETPREVORDER(o));
+d1487 4
+a1490 1
+        res_fmt = get_res_fmt(GETPREVORDER(o));
+@
+
+
+1.8
+log
+@freea handling corrected
+@
+text
+@d223 11
+d291 16
+d318 1
+a318 1
+      strcpy(erg, "mklist(%s)");
+d321 1
+a321 1
+      strcpy(erg, "mkvect(%s)");
+d324 1
+a324 1
+      strcpy(erg, "mktvect(%s)");
+d327 1
+a327 1
+      strcpy(erg, "mkmatrix(%s)");
+d330 1
+a330 1
+      strcpy(erg, "mkstring(%s)");
+d339 1
+a339 1
+      strcpy(erg, "mkint(%s)");
+d342 1
+a342 1
+      strcpy(erg, "mkreal(%s)");
+d345 1
+a345 1
+      strcpy(erg, "mkdigit(%s)");
+d348 1
+a348 1
+      strcpy(erg, "mkbool(%s)");
+d351 1
+a351 1
+      strcpy(erg, "mkchar(%s)");
+d354 1
+a354 1
+      strcpy(erg, "mkvar(%s)");
+d369 3
+a371 3
+  char  *res_fmt, very_temp[240], tmpstr[240], 
+       v[120], u[120], t[120], s[120], resstr[240], *fmt;
+  int n, i, kill_a, kill_w, dont_opt,tv_to_kill, needless_w;
+d377 2
+a378 1
+         needless_w = # of no longer needed w entries  */
+d391 2
+d396 1
+d409 2
+d440 2
+a441 1
+        strrepl(&t[find_substr(t, ":")], " ", 1);
+d444 2
+d447 4
+d466 1
+a466 1
+              sprintf(s, "##### = (%s)", GETORDERENTRY(h, code));
+d470 1
+d519 1
+a519 1
+            default:
+d535 2
+a536 1
+      sprintf(tmpstr, res_fmt, very_temp);
+d541 1
+d567 1
+a567 1
+              sprintf(s, "##### = (%s)", GETORDERENTRY(h, code));
+d570 2
+a571 1
+              tv_to_kill = GETORDERARGS(h, k);   
+d637 4
+d642 1
+a642 1
+            default:
+d659 1
+a659 1
+              sprintf(t, "##### = (%s)", GETORDERENTRY(h, code));
+d663 1
+d713 1
+a713 1
+              sprintf(t, "peek(w, %d)", 1 - needless_w); 
+d735 2
+a736 1
+        sprintf(tmpstr, res_fmt, very_temp);
+d741 1
+d767 1
+a767 1
+              sprintf(s, "##### = (%s)", GETORDERENTRY(h, code));
+d771 1
+d838 4
+d859 1
+a859 1
+              sprintf(t, "##### = (%s)", GETORDERENTRY(h, code));
+d863 1
+d930 4
+d936 1
+a936 1
+              sprintf(t, "peek(w, %d)", 1 - needless_w); 
+d949 1
+a949 1
+              sprintf(u, "##### = (%s)", GETORDERENTRY(h, code));
+d953 1
+d1009 1
+a1009 1
+              sprintf(u, "peek(w, %d)", 2 - needless_w);    
+d1033 1
+d1035 1
+a1035 1
+        sprintf(tmpstr, res_fmt, very_temp);
+d1040 1
+d1067 1
+a1067 1
+              sprintf(s, "##### = (%s)", GETORDERENTRY(h, code));
+d1071 1
+d1138 4
+d1159 1
+a1159 1
+              sprintf(t, "##### = (%s)", GETORDERENTRY(h, code));
+d1163 1
+d1230 4
+d1236 1
+a1236 1
+              sprintf(t, "peek(w, %d)", 1 - needless_w);    
+d1250 1
+a1250 1
+              sprintf(u, "##### = (%s)", GETORDERENTRY(h, code));
+d1254 1
+d1321 4
+d1327 1
+a1327 1
+              sprintf(u, "peek(w, %d)", 2 - needless_w);    
+d1342 1
+a1342 1
+              sprintf(v, "##### = (%s)", GETORDERENTRY(h, code));
+d1346 1
+d1409 1
+a1409 1
+              sprintf(v, "peek(w, %d)", 3 - needless_w);    
+d1435 2
+a1436 1
+        sprintf(tmpstr, res_fmt, very_temp);
+d1441 1
+@
+
+
+1.7
+log
+@optimizing delta calls
+@
+text
+@d206 1
+a206 1
+ORDER *find_free(ORDER *o)
+d210 1
+a210 1
+  while (NULL != h)
+d340 2
+a341 1
+  ORDER *o, *h, *h1, *h2, *next, *new;
+d420 1
+d501 1
+a501 1
+      h = find_free(new);
+d601 1
+d693 1
+a693 1
+        h = find_free(new);
+d881 1
+d979 1
+a979 1
+        h = find_free(new);
+d1253 1
+d1362 1
+a1362 1
+        h = find_free(new);
+@
+
+
+1.6
+log
+@first level optimizing
+@
+text
+@d21 2
+a22 1
+
+d199 1
+d206 17
+d340 1
+a340 1
+  ORDER *o, *h, *h1, *next, *new;
+d342 8
+a349 2
+       v[40], u[40], t[40], s[40], resstr[240], *fmt;
+  int n;
+d356 6
+a361 1
+    h = o;    
+d364 50
+d415 2
+a416 2
+      h = find_last_order(o);
+      if (tp_none != GETTYPE(0, GETORDERENTRY(o, types)))   /* i.e. type inferred */
+d418 1
+d424 4
+a427 1
+              sprintf(s, "(%s)",  GETORDERENTRY(h, code));
+d439 2
+a440 1
+              sprintf(s, "pop(a)");
+d444 1
+a444 1
+              sprintf(s, "pop(t)");
+d478 1
+d488 2
+d494 1
+a494 1
+        new = new_order(stack_op, tmpstr); 
+d496 1
+a496 1
+        new = new_order(ris_stack_op, tmpstr);
+d499 7
+d507 1
+a510 1
+      h = find_last_order(o);
+d512 2
+a513 1
+           (tp_none != GETTYPE(1, GETORDERENTRY(o, types))))   /* i.e. types inferred */
+d515 2
+d522 4
+a525 1
+              sprintf(s, "(%s)",  GETORDERENTRY(h, code));
+d531 1
+d541 3
+a543 1
+              sprintf(s, "pop(a)");
+d548 2
+a549 1
+              sprintf(s, "pop(t)");
+d556 1
+d561 1
+d586 6
+d594 1
+d599 6
+d608 4
+a611 1
+              sprintf(t, "(%s)",  GETORDERENTRY(h, code));
+d623 2
+a624 1
+              sprintf(t, "pop(a)");
+d628 1
+a628 1
+              sprintf(t, "pop(t)");
+d661 2
+a662 1
+              sprintf(t, "peek(w, 1)");    
+d671 1
+d679 2
+d685 1
+a685 1
+          new = new_order(stack_op, tmpstr);
+d687 1
+a687 1
+          new = new_order(ris_stack_op, tmpstr);
+d690 7
+a700 1
+      h = find_last_order(o);
+d703 2
+a704 1
+           (tp_none != GETTYPE(2, GETORDERENTRY(o, types))))   /* i.e. types inferred */
+d706 2
+d713 4
+a716 1
+              sprintf(s, "(%s)",  GETORDERENTRY(h, code));
+d722 1
+d728 1
+d733 3
+a735 1
+              sprintf(s, "pop(a)");
+d740 2
+a741 1
+              sprintf(s, "pop(t)");
+d748 1
+d753 1
+d778 6
+d786 1
+d791 6
+d800 4
+a803 1
+              sprintf(t, "(%s)",  GETORDERENTRY(h, code));
+d809 1
+d815 1
+d820 3
+a822 1
+              sprintf(t, "pop(a)");
+d827 2
+a828 1
+              sprintf(t, "pop(t)");
+d835 1
+d840 1
+d865 6
+d872 2
+a873 1
+              sprintf(t, "peek(w, 1)");    
+d878 3
+d884 4
+a887 1
+              sprintf(u, "(%s)",  GETORDERENTRY(h, code));
+d892 1
+d897 1
+d901 3
+a903 1
+              sprintf(u, "pop(a)");
+d907 2
+a908 1
+              sprintf(u, "pop(t)");
+d914 1
+d918 1
+d943 2
+a944 1
+              sprintf(u, "peek(w, 2)");    
+d954 1
+d964 2
+d970 1
+a970 1
+          new = new_order(stack_op, tmpstr);
+d972 1
+a972 1
+          new = new_order(ris_stack_op, tmpstr);
+d975 7
+a985 1
+      h = find_last_order(o);
+d989 2
+a990 1
+           (tp_none != GETTYPE(3, GETORDERENTRY(o, types))))   /* i.e. types inferred */
+d992 2
+d999 4
+a1002 1
+              sprintf(s, "(%s)",  GETORDERENTRY(h, code));
+d1008 1
+d1014 1
+d1019 3
+a1021 1
+              sprintf(s, "pop(a)");
+d1026 2
+a1027 1
+              sprintf(s, "pop(t)");
+d1034 1
+d1039 1
+d1064 6
+d1073 1
+d1077 6
+d1086 4
+a1089 1
+              sprintf(t, "(%s)",  GETORDERENTRY(h, code));
+d1095 1
+d1101 1
+d1106 3
+a1108 1
+              sprintf(t, "pop(a)");
+d1113 2
+a1114 1
+              sprintf(t, "pop(t)");
+d1121 1
+d1126 1
+d1151 6
+d1158 1
+a1158 1
+              sprintf(t, "peek(w, 1)");    
+d1163 6
+d1172 4
+a1175 1
+              sprintf(u, "(%s)",  GETORDERENTRY(h, code));
+d1181 1
+d1187 1
+d1192 3
+a1194 1
+              sprintf(u, "pop(a)");
+d1199 2
+a1200 1
+              sprintf(u, "pop(t)");
+d1207 1
+d1212 1
+d1237 6
+d1244 2
+a1245 1
+              sprintf(u, "peek(w, 2)");    
+d1249 6
+d1258 4
+a1261 1
+              sprintf(v, "(%s)",  GETORDERENTRY(h, code));
+d1266 1
+d1271 1
+d1275 3
+a1277 1
+              sprintf(v, "pop(a)");
+d1281 2
+a1282 1
+              sprintf(v, "pop(t)");
+d1288 1
+d1292 1
+d1316 6
+d1323 2
+a1324 1
+              sprintf(v, "peek(w, 3)");    
+d1334 1
+d1346 2
+d1352 1
+a1352 1
+          new = new_order(stack_op, tmpstr);
+d1354 1
+a1354 1
+          new = new_order(ris_stack_op, tmpstr);
+d1357 7
+d1437 1
+a1437 1
+  dup = dup_func(GETFIRSTORDER(inline_me));
+@
+
+
+1.5
+log
+@delta1 optimizing
+@
+text
+@d184 3
+a186 5
+ 
+
+/************************************************************/
+/* optimizes typed delta calls                              */
+/************************************************************/
+d204 3
+d261 3
+d315 4
+d321 4
+a324 2
+  ORDER *o, *h, *next, *new;
+  char *opt_str, *res_fmt, very_temp[240], tmpstr[240], s[40], resstr[240], *fmt;
+a363 1
+            case pushw_p:
+d367 24
+d405 4
+a408 1
+      new = new_order(stack_op, tmpstr); 
+d415 3
+a417 5
+    {
+      opt_str = find_primf(GETPRF(GETORDERARGS(o, primf)), 
+                           GETORDERENTRY(o, types));
+      DBUG_PRINT("OPT", ("opt_str = %s", opt_str));
+      if (NULL != opt_str)
+d419 124
+a542 1
+        switch (GETPRF(GETORDERARGS(o, primf)))
+d544 28
+a571 10
+        case p_or:
+        case p_and:
+        case p_xor:
+        case p_eq:
+        case p_ne:
+        case p_lt:
+        case p_le:
+        case p_gt:
+        case p_ge: next = getnextcond(GETNEXTORDER(o));
+        default:
+d573 65
+a637 1
+          if (NULL == next)
+d639 55
+a693 38
+            switch(GETORDERENTRY(o, types))
+            {
+            case tp_int<<8 | tp_int:
+            {
+              sprintf(tmpstr, "repl(1, w, %s); drop(w, 1);", opt_str);
+              SETORDERENTRY(o, code) = get_str_space(tmpstr);
+              strcpy(GETORDERENTRY(o, code), tmpstr);
+              SETORDERENTRY(o, command) = code_ok;
+              SETORDERENTRY(o, opti) = OPT_BOOL;
+              break;
+            }
+            case tp_real<<8 | tp_int:
+            {
+              sprintf(tmpstr, "t=%s; drop(w, 1);decw(0);drop(w,1);push(t);", 
+                      opt_str);
+              SETORDERENTRY(o, code) = get_str_space(tmpstr);
+              strcpy(GETORDERENTRY(o, code), tmpstr);
+              SETORDERENTRY(o, command) = code_ok;
+              SETORDERENTRY(o, opti) = OPT_BOOL;
+              break;
+            }
+            case tp_int<<8 | tp_real:
+            {
+              sprintf(tmpstr, "repl(1,w,%s); decw(0);drop(w,1);", opt_str);
+              SETORDERENTRY(o, code) = get_str_space(tmpstr);
+              strcpy(GETORDERENTRY(o, code), tmpstr);
+              SETORDERENTRY(o, command) = code_ok;
+              SETORDERENTRY(o, opti) = OPT_BOOL;
+              break;
+            }
+            case tp_real<<8 | tp_real:
+            {
+              sprintf(tmpstr, "t=%s; decw(0);decw(1);drop(w,2); push(t);", 
+                      opt_str);
+              SETORDERENTRY(o, code) = get_str_space(tmpstr);
+              strcpy(GETORDERENTRY(o, code), tmpstr);
+              SETORDERENTRY(o, command) = code_ok;
+              SETORDERENTRY(o, opti) = OPT_BOOL;
+a694 1
+            }
+d696 6
+a701 4
+              ;
+            }              
+          }
+          else
+d703 60
+a762 9
+            sprintf(tmpstr, "if (SA_FALSE == %s) {drop(w,2);goto %s;}\n\
+else drop(w,2);",
+                    opt_str, GETORDERARGS(next,label));
+            SETORDERENTRY(o, code) = get_str_space(tmpstr);
+            strcpy(GETORDERENTRY(o, code), tmpstr);
+            SETORDERENTRY(o, command) = code_ok;
+            delete_order(next);
+          }
+          
+d764 19
+a782 5
+    }
+    }
+    break;
+    }
+    case delta3:
+d785 5
+a789 5
+    {
+      opt_str = find_primf(GETPRF(GETORDERARGS(o, primf)), 
+                          GETORDERENTRY(o, types));
+      DBUG_PRINT("OPT", ("opt_str = %s", opt_str));
+      if (NULL != opt_str)
+d791 277
+a1067 4
+        SETORDERENTRY(o, code) = get_str_space(opt_str);
+        strcpy(GETORDERENTRY(o, code), opt_str);
+        SETORDERENTRY(o, command) = code_ok;
+      }
+d1069 1
+a1070 1
+    default:
+a1071 2
+  }
+  
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d17 1
+a21 1
+
+d184 2
+a185 1
+  
+d189 122
+a310 1
+  
+d313 2
+a314 2
+  ORDER *o, *h, *next;
+  char *opt_str, tmpstr[240];
+d325 52
+a514 10
+FUNCTION *find_function(char *s)
+{
+  FUNCTION *fun = GETFIRSTFUNCTION(program_start);
+
+  DBUG_ENTER("find_function");
+  while ((NULL!=fun) && (0!=strcmp(s,GETNAME(fun))))
+    fun=GETNEXTFUNCTION(fun);
+  DBUG_RETURN(fun);
+}
+
+d654 1
+@
+
+
+1.3
+log
+@rudimentary function inlining
+@
+text
+@d451 1
+a451 1
+  ORDER *help, *nhelp, *ohelp, *insert_here;
+@
+
+
+1.2
+log
+@only a try
+@
+text
+@d19 1
+d21 1
+d309 180
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d18 1
+d20 1
+d25 1
+a25 2
+
+#define MAXPRFOPT 11 /* number of table entries */
+d30 3
+d34 1
+a34 1
+      "repl(0,w,mkint(NEG_INT(top(w))));"},
+d36 1
+a36 1
+      "repl(1,w,mkint(ADD_INT(top(w), peek(w,1))));drop(w,1);"},
+d38 1
+a38 1
+      "repl(1,w,mkint(SUB_INT(top(w), peek(w,1))));drop(w,1);"},
+d40 1
+a40 1
+      "repl(1,w,mkint(MUL_INT(top(w), peek(w,1))));drop(w,1);"},
+d42 4
+a45 1
+      "repl(1,w,mkint(DIV_INT(top(w), peek(w,1))));drop(w,1);"},
+d47 1
+a47 1
+      "repl(1,w,mkint(LT_INT(top(w), peek(w,1))));drop(w,1);"},
+d49 1
+a49 1
+      "repl(1,w,mkint(LE_INT(top(w), peek(w,1))));drop(w,1);"},
+d51 1
+a51 1
+      "repl(1,w,mkint(GT_INT(top(w), peek(w,1))));drop(w,1);"},
+d53 1
+a53 1
+      "repl(1,w,mkint(GE_INT(top(w), peek(w,1))));drop(w,1);"},
+d55 1
+a55 1
+      "repl(1,w,mkint(NE_INT(top(w), peek(w,1))));drop(w,1);"},
+d57 60
+a116 1
+      "repl(1,w,mkint(EQ_INT(top(w), peek(w,1))));drop(w,1);"}
+d138 45
+d189 2
+a190 2
+  ORDER *o, *h;
+  char *opt_str;
+d196 1
+d201 1
+d203 81
+d285 1
+d301 3
+a303 2
+    }
+    o = GETNEXTORDER(h);
+a305 1
+    
+@

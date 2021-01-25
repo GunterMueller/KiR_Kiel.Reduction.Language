@@ -1,0 +1,11 @@
+#!/bin/sh
+
+rm -f lib/libmarco.o
+rm -f lib/marco-main.o
+rm -f lib/editor.o
+rm -f lib/libkir.o
+
+rm -f bin/marco
+rm -f bin/sxred
+rm -f bin/kir
+rm -f bin/Xred

@@ -1,0 +1,59 @@
+#!/bin/sh
+#
+# newdirs
+#
+# creates new directories for an RCS-project.
+# Has to be started in a project's root directory!
+#
+
+err () {
+	echo "`basename $0`: $@" 1>&2
+	}
+
+acknowledge () {
+                echo "`basename $0`: $@" 1>&2
+                if [ `line` = y ]
+                then return 0
+                else return 1
+                fi
+                }
+
+include () {
+	  mkdir -p $@/RCS
+	  touch $@/RCS-files
+	  rcs -i -q -t-"" $@/RCS-files
+	  ci -q -u $@/RCS-files
+	  co -q -l RCS-directories
+	  echo $@ >>RCS-directories
+	  ci -q -u -m"$@ inserted." RCS-directories
+            }
+
+mke () {
+        if [ -f $@ ]
+        then
+          err "file $@ exists"
+        else
+          if [ -d $@ ]
+          then 
+            if acknowledge "directory $@ exists; include anyway ?"
+            then
+              include $@
+            else
+              err "$@ skipped"
+            fi
+          else
+            include $@
+          fi
+        fi
+  }
+
+if [ -f RCS/RCS-directories,v ]
+then
+  while [ $# != 0 ]
+  do
+    mke $1
+    shift 1
+  done
+else
+  err "no RCS-directories in ."
+fi

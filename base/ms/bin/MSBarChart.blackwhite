@@ -1,0 +1,24 @@
+msBarChart*background: #ffffff
+msBarChart*foreground: #000000
+
+msBarChart*msFilePanelLabelPath.borderWidth: 0
+msBarChart*msFilePanelLabelName.borderWidth: 0
+msBarChart*msScriptPanelLabelPath.borderWidth: 0
+msBarChart*msScriptPanelLabelName.borderWidth: 0
+msBarChart*msBarChartDisplayLabelTitle.borderWidth: 0
+msBarChart*msProgressLabel.borderWidth: 0
+msBarChart*msBarChartZoomLabelX.borderWidth: 0
+msBarChart*msBarChartZoomLabelY.borderWidth: 0
+msBarChart*msCursorPanelLabelX.borderWidth: 0
+msBarChart*msCursorPanelLabelY.borderWidth: 0
+msBarChart*msPositionPanelLabelLine.borderWidth: 0
+msBarChart*msPositionPanelLabelFrame.borderWidth: 0
+msBarChart*msPositionPanelLabelTime.borderWidth: 0
+msBarChart*msSpeedPanelLabelDelay.borderWidth: 0
+msBarChart*msSpeedPanelLabelRate.borderWidth: 0
+msBarChart*myRequesterSelectLabelMask.borderWidth: 0
+msBarChart*myRequesterSelectLabelPath.borderWidth: 0
+msBarChart*myRequesterSelectLabelFile.borderWidth: 0
+msBarChart*msRequesterTitle1.borderWidth: 0
+msBarChart*msRequesterTitle2.borderWidth: 0
+msBarChart*msRequesterTitle3.borderWidth: 0

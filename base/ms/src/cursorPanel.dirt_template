@@ -1,0 +1,84 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "positionPanel"
+%%ID  Created by tb on Thu Jul 29 09:15:19 1993
+%%%
+%T positionPanel
+%F
+%%%
+%N msCursorPanelBox
+%c ukcLayoutWidgetClass
+%p positionPanel
+%m true
+%o false
+%s x : 48
+%s y : 30
+%s width : 112
+%s height : 68
+%s borderWidth : 1
+%r background : #888888
+%f
+%%%
+%N  msCursorPanelLabelX
+%c  ukcLabelWidgetClass
+%p  positionPanel.msCursorPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 9
+%s  width : 20
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : X:
+%r  justify : right
+%r  borderColor : #888888
+%f
+%%%
+%N  msCursorPanelLabelY
+%c  ukcLabelWidgetClass
+%p  positionPanel.msCursorPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 37
+%s  width : 20
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Y:
+%r  justify : right
+%r  barColour : #000000
+%r  borderColor : #888888
+%f
+%%%
+%N  msCursorPanelShowX
+%c  ukcLabelWidgetClass
+%p  positionPanel.msCursorPanelBox
+%m  true
+%o  false
+%s  x : 25
+%s  y : 9
+%s  width : 80
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%f
+%%%
+%N  msCursorPanelShowY
+%c  ukcLabelWidgetClass
+%p  positionPanel.msCursorPanelBox
+%m  true
+%o  false
+%s  x : 25
+%s  y : 37
+%s  width : 80
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%f

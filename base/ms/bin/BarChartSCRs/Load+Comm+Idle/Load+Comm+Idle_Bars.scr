@@ -1,0 +1,42 @@
+DEFS:
+	static int i, numProcessors;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            rememberDimension[100], temp[1000];
+
+BEGIN:
+	SET_MODE(BAR_CHART);
+
+	HEADER_DIMENSION(rememberDimension);
+	numProcessors = (1 << atoi(rememberDimension));
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "Load-Balance -- %s -- %s reduction steps",
+	        rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	SET_NAME("Idle");
+	SET_X_LABEL("Processor");
+	SET_Y_LABEL("%");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+
+	for(i=0; i<=numProcessors; ++i) {
+		sprintf(temp, "%d", i);
+		CREATE_BAR(temp, i+1);
+		/*CREATE_BAR("");*/
+	}
+
+	NEXT_FRAME();
+
+	for(i=0; i<numProcessors; ++i) {
+		SET_HEIGHT(i+1, 100.0);
+	}
+	SET_HEIGHT(numProcessors+1, 0.0);
+
+	break;
+
+END:
+	NEXT_FRAME();
+	break;

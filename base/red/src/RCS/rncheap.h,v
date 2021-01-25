@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@ANSI-version mit mess und verteilungs-Routinen
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*******************************************************/
+/*                                                     */
+/* rncheap.h - include file for the nCube heap manager */
+/*                                                     */
+/*******************************************************/
+
+
+#define GET_CODE_START()  heap_code_start
+#define SET_CODE_START(data) heap_code_start = (INSTR *)(data)
+
+#define IS_STATIC(addr)             (((addr) <= static_heap_upper_border) && ((addr) >= static_heap_lower_border))
+#define STATIC_OFFSET(addr)         (static_heap_upper_border - (addr))
+#define REAL_STATIC_ADDRESS(offset) (static_heap_upper_border - (offset)) 
+#define SET_STATIC_BORDER(addr)     (static_heap_upper_border = (addr))
+@

@@ -1,0 +1,80 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	94.03.13.20.24.51;	author udi;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.11.23.13.57.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.2
+log
+@Fehler in der load red-File Fkt behoben
+@
+text
+@/*                                        cglobals.h */
+/* (C) Copyright by Christian-Albrechts-University of Kiel 1993		*/
+
+/* fuer "meinen" editor	*/
+struct Fedstate {
+  STACK E_,A_,M_,M1_,M2_,B_,U_,U2_,U3_,V_,S_,S1_,S2_,S3_,R_,R1_,R2_,EADR_,AADR_;
+  int dmode_,rc_,rca_,news_;
+  int status_;
+  char editfil_[FN_ANZ][LENLIB],
+       editlib_[FN_ANZ][LENFIL],
+       editext_[FN_ANZ][LENEXT];
+};
+
+typedef struct Fedstate * P_FedState;
+
+#ifdef EDITSTATE                    /* vorsicht !     */
+P_FedState p_fedstate;
+P_EditState p_editstate;
+#else
+extern P_FedState p_fedstate;
+extern P_EditState p_editstate;
+#endif
+
+#define ST_RAW	0x01	/* im raw-mode		*/
+#define ST_TERM	0x02	/* termcaps gelesen	*/
+#define ST_EDP	0x04	/* editparms gelesen	*/
+#define ST_REDP	0x08	/* redparms gelesen	*/
+#define ST_EDIT	0x10	/* environment-variablen gelesen	*/
+
+#define EDSTATUS(status,typ)	((((P_FedState)((status)->edit_))->status_) & (typ))
+#define SETSTATUS(status,typ)	((P_FedState)((status)->edit_))->status_ |= (typ)
+
+extern int XUDI_up,XUDI_down; /* NEW UDI 12.8.93 for new cursor movement */
+
+#ifdef X_UDI
+extern int XUDI_up,XUDI_down,XUDI_left,XUDI_right,XUDI_home,XUDI_return;
+#endif
+
+/* end of       cglobals.h */
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+a6 1
+  STACK E_,A_,M_,M1_,M2_,B_,U_,U2_,V_,S_,S1_,S2_,S3_,R_,R1_,R2_,EADR_,AADR_;
+@

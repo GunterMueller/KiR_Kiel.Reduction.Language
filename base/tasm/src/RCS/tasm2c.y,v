@@ -1,0 +1,4340 @@
+head	1.86;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.86
+date	97.02.18.14.46.39;	author stt;	state Exp;
+branches;
+next	1.85;
+
+1.85
+date	96.05.09.12.41.00;	author stt;	state Exp;
+branches;
+next	1.84;
+
+1.84
+date	96.05.08.16.51.58;	author cr;	state Exp;
+branches;
+next	1.83;
+
+1.83
+date	96.04.11.13.07.16;	author cr;	state Exp;
+branches;
+next	1.82;
+
+1.82
+date	96.04.04.10.27.26;	author sf;	state Exp;
+branches;
+next	1.81;
+
+1.81
+date	96.02.29.16.02.05;	author stt;	state Exp;
+branches;
+next	1.80;
+
+1.80
+date	96.02.23.15.25.48;	author stt;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	96.02.23.14.10.32;	author rs;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	96.02.15.16.52.23;	author cr;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	96.02.13.15.39.08;	author stt;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	96.02.05.13.17.04;	author sf;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	96.02.05.12.21.02;	author sf;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	95.08.14.12.21.55;	author sf;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	95.08.02.09.48.28;	author sf;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	95.07.11.14.43.12;	author sf;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	95.07.11.10.56.33;	author sf;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	95.07.10.15.54.29;	author sf;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	95.07.07.08.21.20;	author car;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	95.07.04.14.41.48;	author sf;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	95.06.07.11.35.21;	author sf;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	95.06.07.07.50.18;	author um;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	95.06.02.12.00.15;	author sf;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	95.06.01.11.54.12;	author sf;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	95.05.31.12.57.54;	author sf;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	95.05.19.08.14.42;	author sf;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	95.05.18.11.58.02;	author sf;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.05.16.12.44.34;	author sf;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.05.12.11.52.54;	author sf;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.05.12.10.10.48;	author car;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.05.12.09.39.44;	author sf;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.05.03.12.40.02;	author sf;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.04.21.08.30.35;	author car;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.04.20.09.58.53;	author car;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.04.19.14.44.37;	author car;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.04.13.15.32.51;	author car;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.04.12.13.30.07;	author sf;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.04.12.06.51.37;	author sf;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.04.06.16.10.10;	author car;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.04.06.11.19.16;	author sf;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.04.05.15.48.59;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.04.05.09.52.21;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.04.03.13.26.01;	author sf;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.03.27.14.49.33;	author sf;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.03.27.09.02.14;	author car;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.03.23.14.08.56;	author car;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.03.22.17.48.27;	author cr;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.03.22.15.38.21;	author car;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.03.14.12.31.54;	author car;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.03.13.12.12.27;	author sf;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.03.13.10.10.17;	author sf;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.03.09.15.20.36;	author sf;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.03.08.13.16.41;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.03.06.09.46.58;	author um;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.03.03.17.51.47;	author car;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.02.14.09.53.40;	author car;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.02.14.08.16.36;	author car;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.02.13.16.28.27;	author car;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.02.10.16.46.30;	author car;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.02.03.10.09.11;	author car;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.02.03.07.41.06;	author car;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.02.01.14.09.56;	author car;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.01.31.12.29.56;	author car;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.01.30.15.54.36;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.01.12.10.40.17;	author sf;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.01.06.11.03.12;	author sf;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.01.05.15.21.14;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.01.02.14.02.41;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	94.12.08.13.04.45;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.12.08.09.32.28;	author car;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.12.02.13.23.27;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.12.01.12.41.33;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.12.01.10.58.09;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.11.30.08.24.52;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.11.29.11.03.34;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.11.28.12.53.53;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.11.25.17.29.18;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.11.25.14.25.09;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.11.24.14.48.34;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.11.24.09.29.15;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.24.08.15.02;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.23.15.53.44;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.23.07.35.18;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.22.10.50.37;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.21.16.15.07;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.86
+log
+@item ia_fscanf replaced by item ia_fredirect
+@
+text
+@%{
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <malloc.h>
+#include <memory.h>
+#include "mytypes.h"
+#include "support.h"
+#include "buildtree.h"
+#include "error.h"
+
+extern FILE *yyin, 
+            *yyout;
+
+int yylex();
+void yyunput();
+
+FUNCTION * first_function = NULL;
+PROGRAM * program_start;
+FUNCTION ** pfuns;
+FUNDESC ** pdescs;
+DATANODE ** pdata;
+int * iptr;
+double * rptr;
+
+char act_func[20]="";
+char order_str[128]="";
+unsigned int label_count = 1;
+int i, j, outfunc;
+
+#define DISTSTACKSIZE 16
+int diststacktop;
+struct { int tag;
+ORDER * order; }
+diststack[DISTSTACKSIZE];
+
+%}
+
+%union {
+         int intv;
+         double realv;
+         int * data;
+         char * func_lab;
+         FUNDESC *fundesc;
+         FUNCTION *function;
+         ORDER *order_list;
+         TP_TYPES * typelist;
+         int types;
+         struct {
+           PRIMF prf;
+           int   types;
+           } primf;
+         char *helpstring;
+       }
+
+%type  <order_list> stmt_list stmt param_stmt asis_stmt base_stmt hash_stmt dist_cmd
+                    func_end start_desc distcom
+%type  <order_list> func_call data string
+%type  <function>  func_list func
+%type  <primf> prf1 prf2 prf3 prf4 interact
+%type  <intv>  elem inter_type selem 
+%type  <typelist> onetype types
+%type  <data> list slist 
+%token <intv> INTV HEX_NUM SELEM
+%token <realv> REALV 
+%token <func_lab> FUNC_LABEL COND_LABEL GOAL_LABEL JCOND_LABEL CONT_LABEL
+%token <func_lab> CASE_LABEL FAIL_LABEL UND_LABEL BT_LABEL INLOOP_LABEL
+%token <func_lab> DISTARG_LABEL DISTEND_LABEL
+%token <helpstring> CLIST
+
+%token D_REAL, D_VECT, D_TVECT, D_MAT D_LIST D_STRING D_NAME
+%token INT REAL BOOL DIGIT CHAR STRING NONE TY_BO TY_RE TY_INT TY_UN
+%token SEMICOLON COLON PTD TRUE_Y FALSE_Y
+%token LBRACKET RBRACKET C_LBRACK C_RBRACK LBRACK RBRACK LQUOTE RQUOTE
+%token FUN_DESC D_FUNC D_COMB D_CONDI D_CASE
+%token RTT RTF RTC RTP RTM EXIT END MOVEAW MOVEAR MOVETW MOVETR PUSHAW0 TAIL
+%token SNAP APPLY FREE1R FREER FREEA FREE1A FREESWT FREET FREEW PUSHAW PUSHTW 
+%token PUSHAR PUSHTR PUSHCW
+%token FREE1SWT PUSHAW0 PUSHTW0 PUSHAR0 PUSHTR0 PUSHRET PUSHAUX
+%token MKDCLOS MKICLOS MKCCLOS MKSCLOS MKBCLOS MKGSCLOS MKGACLOS MKLIST MKILIST
+%token PUSHW PUSHR
+%token JUMP MKAP
+%token DELTA1 DELTA2 DELTA3 DELTA4 INTACT BETA BETA0UPDATE GAMMA GAMMABETA
+%token INCA INCR INCT INCW TINCA TINCR TINCT TINCW
+%token DECA DECR DECT DECW TDECA TDECR TDECT TDECW 
+%token KILLA KILLR KILLT KILLW TKILLA TKILLR TKILLT TKILLW 
+%token ADVANCE ATEND ATSTART BACKUP BIND BINDS BINDSUBL CASE DEREFERENCE
+%token DROP ENDLIST ENDSUBL FETCH GAMMACASE INITBT
+%token MKAFRAME MKBTFRAME MKCASE MKWFRAME NESTLIST PICK RESTOREBT RESTOREPTR
+%token RMBTFRAME RMWFRAME SAVEBT SAVEPTR STARTSUBL TGUARD
+%token MKFRAME MKSLOT INTER
+%token PUSHH COUNT DIST DISTB DISTEND WAIT POPH MSDISTEND MSNODIST
+%token HASHARGS HASHTILDEARGS HASHRESTYPE HASHSETREF HASHLOCATION HASHUPDATE
+
+%token <types> MATCHARB MATCHARBS
+%token <types> MATCHBOOL MATCHC MATCHFALSE MATCHIN MATCHINT MATCHLIST
+%token <types> MATCHNIL MATCHNILS MATCHPRIM MATCHSTR MATCHTRUE
+
+%token <primf> JFALSE JTRUE JCOND JFALSE2 JTRUE2 JCOND2
+%token <primf> ABS NEG NOT EXP LN SIN COS TAN FLOOR CEIL FRAC TRUNC VC_PLUS
+%token <primf> VC_MINUS VC_MULT VC_DIV VC_MIN VC_MAX
+%token <primf> LDIM VDIM MDIM CLASS TYPE EMPTY
+%token <primf> TRANSPOSE REVERSE TO_LIST TO_SCAL TO_VECT TO_TVECT TO_MAT
+%token <primf> PLUS MINUS MULT QUOT DIV MOD IP MAX MIN AND OR XOR EQ NE
+%token <primf> C_PLUS C_MINUS C_MULT C_DIV C_MAX C_MIN
+%token <primf> F_EQ F_NE GE GT LE LT LSELECT LCUT LROTATE LUNITE LREPLACE
+%token <primf> VSELECT VCUT VROTATE VUNITE MSELECT MCUT MROTATE MUNITE
+%token <primf> MRE_R MRE_C MREPLACE VREPLACE
+%token <primf> LTRANSFORM REPSTR TRANSFORM
+%token <primf> SPRINTF SSCANF TO_CHAR TO_ORD  /* stt, 09.05.96 */
+/* cr 22/03/95, kir(ff), START */
+%token <primf> FSELECT UPDATE TEST DELETE SLOTS
+/* cr 22/03/95, kir(ff), END */
+%token DONE GET PUT IMPLICIT EXPLICIT KEEPIMPL
+
+%token <primf> IA_FOPEN IA_FCLOSE IA_FGETC IA_FPUTC IA_UNGETC IA_FGETS
+%token <primf> IA_READ IA_FPUTS IA_FPRINTF IA_FREDIRECT IA_FSEEK IA_FTELL
+%token <primf> IA_EXIT IA_EOF IA_BIND IA_UNIT IA_FINFO IA_STATUS
+%token <primf> IA_REMOVE IA_RENAME IA_COPY IA_MKDIR IA_RMDIR IA_CHDIR
+%token <primf> IA_GETWD IA_DIR IA_GET IA_PUT
+
+%start asm_prog
+
+%%
+
+
+asm_prog:     { program_start=conc_desc_fun(NULL, NULL, NULL);
+                pfuns=&program_start->function;
+                pdescs=&program_start->desc;
+                pdata=&program_start->data;
+                diststacktop = -1;
+              }
+             func_list
+              { *pfuns=$2; }
+           ;
+
+func_list:    func_list func
+               {
+               if ($1 && $2)
+                 $$=conc_function($1, $2);
+               else
+                 $$=($1 ? $1 : $2);
+               }
+           | func
+               {
+                 $$=$1;
+               }
+           ;
+
+func:        FUNC_LABEL COLON { outfunc = 0; } stmt_list func_end
+               {
+                 $$=new_function($1, conc_order($4, $5));
+                 free($1);
+               }
+           | GOAL_LABEL COLON { outfunc = 0; } stmt_list func_end
+               {
+                 $$=new_function("goal", conc_order($4, $5));
+                 free($1);
+               }
+           | JCOND_LABEL COLON { outfunc = 1; } stmt_list func_end
+               {
+                 char * labelv;
+                 /* generate label jcond_<adr> => func_<adr> */
+                 if ((labelv = (char *)malloc(strlen($1))) == NULL)
+                   yyfail("memory allocation failure");
+                 strcpy(labelv, "func"); strcpy(&labelv[4], &($1[5]));
+                 $$=new_function(labelv, conc_order(conc_order(new_order(label, LABjcond, $1), $4), $5));
+                 free($1); free(labelv);
+               }
+           | CASE_LABEL COLON { outfunc = 0; } stmt_list func_end
+               {
+                 $$=new_function($1, conc_order($4, $5));
+                 free($1);
+               }
+           | start_desc { $$=NULL; }
+           | data { $$ = NULL; }
+           ;
+
+func_end:    END LBRACKET RBRACKET SEMICOLON
+                {
+                  $$=new_order(end);
+                }
+           ;
+
+stmt_list:   stmt_list stmt
+                {
+                  if ($1 && $2)
+                    $$=conc_order($1, $2);
+                  else
+                    $$=($1 ? $1 : $2);
+                }
+           | stmt
+                {
+                  $$=$1;
+                }
+           ;
+
+stmt:        param_stmt { $$=$1;}
+           | asis_stmt  { $$=$1;}
+           | base_stmt  { $$=$1;}
+           | dist_cmd   { $$=$1;}
+           | func_call  { $$=$1;}
+           | data       { $$=NULL;}
+           | hash_stmt  { $$=$1;}
+           | start_desc { $$=NULL;}
+           | COND_LABEL COLON { $$=new_order(label, LABcond, $1); free($1);}
+           | JCOND_LABEL COLON { $$=new_order(label, LABjcond, $1); free($1);}
+           | CONT_LABEL COLON { $$=new_order(label, LABcont, $1); free($1);}
+           | FAIL_LABEL COLON { asm_mode |= ASM_TILDE; 
+                                $$=new_order(label, LABfail, $1); free($1);}
+           | UND_LABEL COLON { asm_mode |= ASM_TILDE; 
+                               $$=new_order(label, LABundecided, $1); free($1);}
+           | BT_LABEL COLON { asm_mode |= ASM_TILDE; 
+                              $$=new_order(label, LABbt, $1); free($1);}
+           | INLOOP_LABEL COLON { asm_mode |= ASM_DIST; 
+                                  $$=new_order(label, LABinloop, $1); free($1);}
+           | DISTARG_LABEL COLON { asm_mode |= ASM_DIST; 
+                                  $$=new_order(label, LABdistarg, $1); free($1);}
+           | DISTEND_LABEL COLON { asm_mode |= ASM_DIST; 
+                                  $$=new_order(label, LABdistend, $1); free($1);}
+           ;
+
+start_desc: FUN_DESC LBRACKET HEX_NUM ',' D_FUNC ',' D_COMB ',' INTV ',' INTV ','
+             HEX_NUM ',' FUNC_LABEL RBRACKET SEMICOLON
+               {
+               *pdescs=conc_desc(new_desc(DT_COMBINATOR, $3, $9, $11, $13, $15), NULL);
+               pdescs=&((*pdescs)->next);
+               free($15);
+               $$=NULL;
+               } 
+           | FUN_DESC LBRACKET HEX_NUM ',' D_FUNC ',' D_CASE ',' INTV ',' INTV ','
+             HEX_NUM ',' CASE_LABEL RBRACKET SEMICOLON
+               {
+               asm_mode |= ASM_TILDE; 
+               *pdescs=conc_desc(new_desc(DT_CASE, $3, $9, $11, $13, $15), NULL);
+               pdescs=&((*pdescs)->next);
+               free($15);
+               $$=NULL;
+               }
+           | FUN_DESC LBRACKET HEX_NUM ',' D_FUNC ',' D_CONDI ',' INTV ',' INTV ','
+             HEX_NUM ',' JCOND_LABEL RBRACKET SEMICOLON
+               {
+               char * labelv;
+               if ((labelv = (char *)malloc(strlen($15))) == NULL)
+                 yyfail("memory allocation failure");
+               if (outfunc) {
+                 /* generate label jcond_<adr> => func_<adr> */
+                 strcpy(labelv, "func"); strcpy(&labelv[4], &($15[5]));
+                 *pdescs=conc_desc(new_desc(DT_COMBINATOR, 
+                                   (int)$3+1, $9>>2, $11-1, $13, labelv), NULL);
+                 pdescs=&((*pdescs)->next);
+                 }
+               *pdescs=conc_desc(new_desc(DT_CONDITIONAL, 
+                                 (int)$3, $9, $11, $13, $15), NULL);
+               pdescs=&((*pdescs)->next);
+               free($15); free(labelv);
+               $$=NULL;
+               }
+           ;
+
+data:         D_REAL LBRACKET HEX_NUM ',' REALV RBRACKET SEMICOLON
+               { *pdata = conc_data(new_data(d_real, $3, $5), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_LIST LBRACKET HEX_NUM ',' INTV ',' list RBRACKET SEMICOLON
+               { int * p;
+                 if ($5 != $7[0])
+                   yyerror("element count mismatch, %d elements supplied", $7[0]);
+                 p = (int *)malloc($7[0]*sizeof(void *));
+                 memcpy(p, &$7[1], $7[0]*sizeof(void *));
+                 free((void *)$7);
+                 *pdata = conc_data(new_data(d_list, $3, $5, p), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_LIST LBRACKET HEX_NUM ',' INTV RBRACKET SEMICOLON
+               { 
+                 if ($5)
+                   yyerror("no data supplied");
+                 *pdata = conc_data(new_data(d_list, $3, $5, NULL), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | string SEMICOLON
+               { $$ = NULL; }
+           | D_NAME LBRACKET HEX_NUM ',' INTV ',' CLIST RBRACKET SEMICOLON
+               { *pdata = conc_data(new_data(d_name, $3, $5, $7), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_VECT LBRACKET HEX_NUM ',' TY_BO ',' INTV ',' INTV
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_vect, $3, $7, $9, iptr, d_bool), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_VECT LBRACKET HEX_NUM ',' TY_RE ',' INTV ',' INTV
+               { rptr = malloc( $7 * $9 * sizeof(double));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); rptr[i] = yylval.realv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_vect, $3, $7, $9, rptr, d_real), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_VECT LBRACKET HEX_NUM ',' TY_INT ',' INTV ',' INTV
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_vect, $3, $7, $9, iptr, d_int), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_TVECT LBRACKET HEX_NUM ',' TY_UN ',' INTV ',' INTV RBRACKET SEMICOLON
+               { *pdata = conc_data(new_data(d_tvect, $3, $7, $9, NULL, d_undef), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_VECT LBRACKET HEX_NUM ',' TY_UN ',' INTV ',' INTV RBRACKET SEMICOLON
+               { *pdata = conc_data(new_data(d_vect, $3, $7, $9, NULL, d_undef), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_MAT LBRACKET HEX_NUM ',' TY_UN ',' INTV ',' INTV RBRACKET SEMICOLON
+               { *pdata = conc_data(new_data(d_mat, $3, $7, $9, NULL, d_undef), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           
+           | D_TVECT LBRACKET HEX_NUM ',' TY_BO ',' INTV ',' INTV
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_tvect, $3, $7, $9, iptr, d_bool), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_TVECT LBRACKET HEX_NUM ',' TY_RE ',' INTV ',' INTV
+               { rptr = malloc( $7 * $9 * sizeof(double));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); rptr[i] = yylval.realv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_tvect, $3, $7, $9, rptr, d_real), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_TVECT LBRACKET HEX_NUM ',' TY_INT ',' INTV ',' INTV
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_tvect, $3, $7, $9, iptr, d_int), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_MAT LBRACKET HEX_NUM ',' TY_BO ',' INTV ',' INTV
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_mat, $3, $7, $9, iptr, d_bool), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_MAT LBRACKET HEX_NUM ',' TY_RE ',' INTV ',' INTV
+               { rptr = malloc( $7 * $9 * sizeof(double));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); rptr[i] = yylval.realv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_mat, $3, $7, $9, rptr, d_real), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           | D_MAT LBRACKET HEX_NUM ',' TY_INT ',' INTV ',' INTV  
+               { iptr = malloc( $7 * $9 * sizeof(int));
+                 for (i  = 0; i < $7 * $9; i++)
+                 {yylex(); yylex(); iptr[i] = yylval.intv;}
+               }
+             RBRACKET SEMICOLON
+               {
+                 *pdata = conc_data(new_data(d_mat, $3, $7, $9, iptr, d_int), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = NULL;
+               }
+           ;
+
+list:        list ',' elem
+               { $$ = (int *)malloc((2+$1[0])*sizeof(void *));
+                 memcpy($$, $1, ($1[0]+1)*sizeof(void *));
+                 $$[0]++;
+                 $$[$$[0]] = $3;
+                 free((void *)$1);
+               }
+           | elem
+               { $$ = (int *)malloc(2*sizeof(void *));
+                 $$[0] = 1;
+                 $$[1] = $1;
+               }
+       ;
+
+elem:        INT LBRACKET INTV RBRACKET
+               { $$ = MKINT($3);
+               }
+           | BOOL LBRACKET TRUE_Y RBRACKET
+               { $$ = MKBOOL(TRUE);
+               }
+           | BOOL LBRACKET FALSE_Y RBRACKET
+               { $$ = MKBOOL(FALSE);
+               }
+           | PTD LBRACKET HEX_NUM RBRACKET
+               { $$ = (int)MKPTR($3);
+               }
+           | D_REAL LBRACKET HEX_NUM ',' REALV RBRACKET
+               { *pdata = conc_data(new_data(d_real, $3, $5), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (int)MKPTR($3);
+               }
+           | D_LIST LBRACKET HEX_NUM ',' INTV ',' list RBRACKET
+               { int * p;
+                 p = (int *)malloc($7[0]*sizeof(void *));
+                 memcpy(p, &$7[1], $7[0]*sizeof(void *));
+                 free((void *)$7);
+                 *pdata = conc_data(new_data(d_list, $3, $5, p), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (int)MKPTR($3);
+               }
+           | D_NAME LBRACKET HEX_NUM ',' INTV ',' CLIST RBRACKET
+               { *pdata = conc_data(new_data(d_name, $3, $5, $7), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (int)MKPTR($3);
+               }
+           | D_LIST LBRACKET HEX_NUM ',' INTV RBRACKET
+               { *pdata = conc_data(new_data(d_list, $3, $5, NULL), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (int)MKPTR($3);
+               }
+           | string
+               { $$ = (int)MKPTR($1); }
+           | prf1
+               { $$ = MKPRF($1.prf); }
+           | prf2
+               { $$ = MKPRF($1.prf); }
+           | prf3
+               { $$ = MKPRF($1.prf); }
+           | prf4
+               { $$ = MKPRF($1.prf); }
+           | interact
+               { $$ = MKIA($1.prf); }
+           ;
+
+string:      D_STRING LBRACKET HEX_NUM ',' INTV ',' slist RBRACKET
+               { int *p;
+                 if ($5 != $7[0])
+                   yyerror("element count mismatch, %d elements supplied", $7[0]);
+                 p = (int *)malloc($7[0]*sizeof(void *));
+                 memcpy(p, &$7[1], $7[0]*sizeof(void *));
+                 free((void *)$7);
+                 *pdata = conc_data(new_data(d_string, $3, $5, p), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (ORDER *)$3;
+               }
+           | D_STRING LBRACKET HEX_NUM ',' INTV RBRACKET
+               { 
+                 if ($5)
+                   yyerror("no data supplied");
+                 *pdata = conc_data(new_data(d_string, $3, $5, NULL), NULL);
+                 pdata = &((* pdata)->next);
+                 $$ = (ORDER *)$3;
+               }
+               ;
+
+slist:        slist ',' selem
+               { $$ = (int *)malloc((2+$1[0])*sizeof(void *));
+                 memcpy($$, $1, ($1[0]+1)*sizeof(void *));
+                 $$[0]++;
+                 $$[$$[0]] = $3;
+                 free((void *)$1);
+               }
+           | selem
+               { $$ = (int *)malloc(2*sizeof(void *));
+                 $$[0] = 1;
+                 $$[1] = $1;
+               }
+       ;
+
+selem:       SELEM { $$=MKCHAR($1); }
+           | PTD LBRACKET HEX_NUM RBRACKET { $$ = (int)MKPTR($3); }
+           | string { $$=(int)MKPTR($1); }
+           ;
+
+hash_stmt:   HASHARGS types
+               { void * p = malloc($2[0]*sizeof(TP_TYPES));
+                 memcpy(p, &$2[1], $2[0]*sizeof(TP_TYPES));
+                 $$=new_order(hashargs,  $2[0], p);
+                 free($2); }
+           | HASHTILDEARGS types
+               { void * p = malloc($2[0]*sizeof(TP_TYPES));
+                 memcpy(p, &$2[1], $2[0]*sizeof(TP_TYPES));
+                 $$=new_order(hashtildeargs, $2[0], p);
+                 free($2); }
+           | HASHRESTYPE onetype
+               { void * p = malloc($2[0]*sizeof(TP_TYPES));
+                 memcpy(p, &$2[1], $2[0]*sizeof(TP_TYPES));
+                 $$=new_order(hashrestype, $2[0], p);
+                 free($2); }
+           | HASHSETREF IMPLICIT
+               { $$=new_order(hashsetref, SREFimplicit); }
+           | HASHSETREF EXPLICIT
+               { $$=new_order(hashsetref, SREFexplicit); }
+           | HASHSETREF KEEPIMPL
+               { $$=new_order(hashsetref, SREFkeepimpl); }
+           | HASHLOCATION HEX_NUM distcom SEMICOLON
+               { if (++diststacktop == DISTSTACKSIZE)
+                   yyfail("internal stack overflow");
+                 diststack[diststacktop].tag = $2;
+                 diststack[diststacktop].order = $3;
+                 $$=$3; }
+           | HASHUPDATE HEX_NUM distcom SEMICOLON
+               { if ($2 == diststack[diststacktop].tag) {
+                   if (diststacktop < 0)
+                     yyfail("internal stack underflow");
+                   insert_order_list($3, diststack[diststacktop].order);
+                   delete_order(diststack[diststacktop].order);
+                   diststacktop--;
+                   }
+                 else
+                   yywarn("internal stack messed up");
+                 $$=NULL;
+               }
+           ;
+
+distcom:     DIST LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV RBRACKET
+               { if (ISASM_TILDE())
+                   yywarn("dist requires another argument");
+                 asm_mode |= ASM_DIST; $$ = new_order(dist, $3, $5, $7, $9, 0, 0);
+               }
+           | DISTB LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV RBRACKET
+               { if (ISASM_TILDE())
+                   yywarn("distb requires another argument");
+                 asm_mode |= ASM_DIST; $$ = new_order(distb, $3, $5, $7, $9, 0, 0);
+               }
+           | DIST LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV ',' INTV ',' INTV RBRACKET
+               { asm_mode |= ASM_TILDE | ASM_DIST;
+                 $$ = new_order(dist, $3, $5, $7, $9, $11, $13);
+                }
+           | DISTB LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV ',' INTV ',' INTV RBRACKET
+               { asm_mode |= ASM_TILDE | ASM_DIST;
+                 $$ = new_order(distb, $3, $5, $7, $9, $11, $13);
+               }
+
+/* Dies sind parameterlose Befehle */
+asis_stmt:   RTT LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE;
+                  $$=new_order(rtt);
+                }
+           | RTF LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtf); }
+           | RTM LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtm); }
+           | EXIT LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(ext); }
+           | MOVEAW LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(moveaw); }
+           | MOVEAR LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(movear); }
+           | MOVETW LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(movetw); }
+           | MOVETR LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(movetr); }
+           | PUSHAW0 LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(pushaw, 0); }
+           | PUSHTR0 LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushtr, 0); }
+           | PUSHAR0 LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushar, 0); }
+           | PUSHTW0 LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushtw, 0); }
+           | FREE1A LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(freea, 1); }
+           | FREE1R LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(freer, 1); }
+           | FREE1SWT LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(freeswt, 1); }
+           | PUSHAUX LBRACKET RBRACKET SEMICOLON
+                { $$ = new_order(pushaux); }
+           ;
+
+
+base_stmt:    PUSHCW LBRACKET INT LBRACKET INTV RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(pushcw_i, MKINT($5)); }
+           | PUSHCW LBRACKET BOOL LBRACKET FALSE_Y RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(pushcw_b, MKBOOL(FALSE)); }
+           | PUSHCW LBRACKET BOOL LBRACKET TRUE_Y RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(pushcw_b, MKBOOL(TRUE)); }
+           | PUSHCW LBRACKET prf1 RBRACKET SEMICOLON
+                { $$ = new_order(pushcw_pf, MKPRF($3.prf), $3.types, 1); }
+           | PUSHCW LBRACKET prf2 RBRACKET SEMICOLON
+                { $$ = new_order(pushcw_pf, MKPRF($3.prf), $3.types, 2); }
+           | PUSHCW LBRACKET prf3 RBRACKET SEMICOLON
+                { $$ = new_order(pushcw_pf, MKPRF($3.prf), $3.types, 3); }
+           | PUSHCW LBRACKET prf4 RBRACKET SEMICOLON
+                { $$ = new_order(pushcw_pf, MKPRF($3.prf), $3.types, 4); }
+           | PUSHCW LBRACKET interact RBRACKET SEMICOLON
+                { $$ = new_order(pushcw_pf, MKIA($3.prf), $3.types,
+                                                 get_ia_arity($3.prf) ); }
+           | PUSHAW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(pushaw, $3); }
+           | PUSHTW LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushtw, $3); }
+           | PUSHAR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushar, $3); }
+           | PUSHTR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushtr, $3); }
+           | FREESWT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(freeswt, $3); }
+           | FREEA LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(freea, $3); }
+           | FREER LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(freer, $3); }
+           | FREET LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(freet, $3); }
+           | FREEW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(freew, $3); }
+           | APPLY LBRACKET INTV RBRACKET SEMICOLON
+                { uses_apply = TRUE; $$=new_order(apply, $3); }
+           | MKAP LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(mkap, $3); }
+           | MKLIST LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(mklist, $3); }
+           | MKILIST LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(mkilist, $3); }
+           | MKDCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(mkdclos, $3, $5); }
+           | MKICLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(mkiclos, $3, $5); }
+           | MKCCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { if (ISASM_TILDE())
+                    yywarn("mkcclos requires third argument");
+                  $$=new_order(mkcclos, $3, $5, 0);
+                }
+           | MKBCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { if (ISASM_TILDE())
+                    yywarn("mkbclos requires third argument");
+                  $$=new_order(mkbclos, $3, $5, 0);
+                }
+           | MKSCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mksclos, $3, $5, $7); }
+           | MKCCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkcclos, $3, $5, $7); }
+           | MKBCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkbclos, $3, $5, $7); }
+           | MKGACLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkgaclos, $3, $5, $7); }
+           | MKGSCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkgsclos, $3, $5, $7); }
+           | RTC LBRACKET INT LBRACKET INTV RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtc_i, MKINT($5)); }
+           | RTC LBRACKET BOOL LBRACKET FALSE_Y RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtc_b, MKBOOL(FALSE)); }
+           | RTC LBRACKET BOOL LBRACKET TRUE_Y RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtc_b, MKBOOL(TRUE)); }
+           | RTC LBRACKET prf1 RBRACKET SEMICOLON
+                { $$=new_order(rtc_pf, MKPRF($3.prf)); } 
+           | RTC LBRACKET prf2 RBRACKET SEMICOLON
+                { $$=new_order(rtc_pf, MKPRF($3.prf)); } 
+           | RTC LBRACKET prf3 RBRACKET SEMICOLON
+                { $$=new_order(rtc_pf, MKPRF($3.prf)); } 
+           | RTC LBRACKET prf4 RBRACKET SEMICOLON
+                { $$=new_order(rtc_pf, MKPRF($3.prf)); }
+           | RTC LBRACKET interact RBRACKET SEMICOLON
+                { $$=new_order(rtc_pf, MKIA($3.prf)); }
+           | RTP LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(rtp, MKPTR($5)); }
+           | INCA LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(inca, $3, $5); }
+           | INCR LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(incr, $3, $5); }
+           | INCT LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(inct, $3, $5); }
+           | INCW LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(incw, $3, $5); }
+           | TINCA LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tinca, $3, $5); }
+           | TINCR LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tincr, $3, $5); }
+           | TINCT LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tinct, $3, $5); }
+           | TINCW LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tincw, $3, $5); }
+           | DECA LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(deca, $3); }
+           | DECR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(decr, $3); }
+           | DECT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(dect, $3); }
+           | DECW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(decw, $3); }
+           | TDECA LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(tdeca, $3); }
+           | TDECR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tdecr, $3); }
+           | TDECT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tdect, $3); }
+           | TDECW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(tdecw, $3); }
+           | KILLA LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(killa, $3); }
+           | KILLR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(killr, $3); }
+           | KILLT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(killt, $3); }
+           | KILLW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(killw, $3); }
+           | TKILLA LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(tkilla, $3); }
+           | TKILLR LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tkillr, $3); }
+           | TKILLT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(tkillt, $3); }
+           | TKILLW LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(tkillw, $3); }
+           /* PM-instructions */
+           | ADVANCE LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(advance, $3); }
+           | ATEND LBRACKET INTV ',' FAIL_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(atend, $3, $5); free($5); }
+           | ATSTART LBRACKET INTV ',' FAIL_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(atstart, $3, $5); free($5); }
+           | ATSTART LBRACKET INTV ',' CONT_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(atstart, $3, $5); free($5); }
+           | BACKUP LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(advance, -$3); }
+           | BIND LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(bind, $3); }
+           | BINDS LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(binds, $3); }
+           | BINDSUBL LBRACKET INTV ',' INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(bindsubl, $3, $5, $7, $9); }
+           | CASE LBRACKET CASE_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(Case, LABcase, $3); free($3); }
+           | GAMMACASE LBRACKET CASE_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(gammacase, LABcase, $3); free($3); }
+           | DEREFERENCE LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(dereference); }
+           | DROP LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(drop); }
+           | ENDLIST LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(endlist); }
+           | ENDSUBL LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(endsubl, $3); }
+           | FETCH LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(fetch); }
+           | INITBT LBRACKET INTV ',' INTV ',' INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(initbt, $3, $5, $7, $9, $11); }
+           | MATCHARB LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matcharb, $3, $5, $7, $1); free($5); free($7); }
+           | MATCHARBS LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matcharbs, $3, $5, $7, $1); free($5); free($7); }
+           | MATCHBOOL LBRACKET BOOL LBRACKET FALSE_Y RBRACKET ','
+                 FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchbool, MKBOOL(FALSE), $8, $10, $1); 
+                  free($8); free($10); }
+           | MATCHBOOL LBRACKET BOOL LBRACKET TRUE_Y RBRACKET ','
+                 FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchbool, MKBOOL(TRUE), $8, $10, $1); 
+                  free($8); free($10); }
+           | MATCHC LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; yyerror("MATCHC not implemented"); }
+           | MATCHFALSE LBRACKET FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchbool, MKBOOL(FALSE), $3, $5, $1); free($3); free($5); }
+           | MATCHIN LBRACKET PTD LBRACKET HEX_NUM RBRACKET ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchin, MKPTR($5), $8, $10, $1); free($8); free($10); }
+           | MATCHIN LBRACKET PTD LBRACKET HEX_NUM RBRACKET ',' FAIL_LABEL ',' FAIL_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchin, MKPTR($5), $8, $10, $1); free($8); free($10); }
+           | MATCHINT LBRACKET INT LBRACKET INTV RBRACKET ','
+                 FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchint, MKINT($5), $8, $10, $1); free($8); free($10); }
+           | MATCHLIST LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchlist, $3, $5, $7, $1); free($5); free($7); }
+           | MATCHNIL LBRACKET FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchlist, 0, $3, $5, $1); free($3); free($5); }
+           | MATCHNILS LBRACKET FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchstr, 0, $3, $5, $1); free($3); free($5); }
+           | MATCHPRIM LBRACKET SELEM ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchprim, MKCHAR($3), $5, $7, $1); free($5); free($7); }
+           | MATCHPRIM LBRACKET prf1 ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+           | MATCHPRIM LBRACKET prf2 ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+           | MATCHPRIM LBRACKET prf3 ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+           | MATCHPRIM LBRACKET prf4 ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+           | MATCHPRIM LBRACKET interact ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE;
+                  $$=new_order(matchprim, MKIA($3.prf), $5, $7, $1); free($5); free($7); }
+           | MATCHSTR LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchstr, $3, $5, $7, $1); free($5); free($7); }
+           | MATCHTRUE LBRACKET FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; 
+                  $$=new_order(matchbool, MKBOOL(TRUE), $3, $5, $1); free($3); free($5); }
+           | MKAFRAME LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkaframe, $3); }
+           | MKBTFRAME LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(mkbtframe, $3); }
+           | MKCASE LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(mkcase, MKPTR($5)); }
+           | MKWFRAME LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(mkwframe, $3); }
+           | NESTLIST LBRACKET RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(nestlist); }
+           | PICK LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(pick, $3); }
+           | RESTOREBT LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(restorebt, $3); }
+           | RESTOREPTR LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(restoreptr, $3); }
+           | RMBTFRAME LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(rmbtframe, $3); }
+           | RMWFRAME LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(rmwframe, $3); }
+           | SAVEBT LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(savebt, $3); }
+           | SAVEPTR LBRACKET INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(saveptr, $3); }
+           | STARTSUBL LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; $$=new_order(startsubl, $3, $5); }
+           | TGUARD LBRACKET FAIL_LABEL ',' PTD LBRACKET HEX_NUM RBRACKET ','
+                 INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+               { asm_mode |= ASM_TILDE; 
+                 $$=new_order(tguard, $3, MKPTR($7), $10, $12, $14); free($3); }
+           | MKFRAME LBRACKET INTV RBRACKET SEMICOLON
+               { $$=new_order(mkframe, $3); }
+           | MKSLOT LBRACKET RBRACKET SEMICOLON
+               { $$=new_order(mkslot); }
+           | INTER LBRACKET inter_type RBRACKET SEMICOLON
+               { $$=new_order(Inter, $3); }
+           | INTACT LBRACKET interact RBRACKET SEMICOLON
+               { $$=new_order(intact, MKIA($3.prf), $3.types); }
+           ;
+
+param_stmt:  PUSHW LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON
+                { $$=new_order(pushw_p, MKPTR($5)); }
+           | PUSHR LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(pushr_p, MKPTR($5)); }
+           ;
+
+func_call:   PUSHRET LBRACKET CONT_LABEL RBRACKET SEMICOLON
+                { $$= new_order(pushret, LABcont, $3); free($3); }
+           | JUMP LBRACKET CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jump, LABcont, $3); free($3); }
+           | JUMP LBRACKET BT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jump, LABbt, $3); free($3); }
+           | JUMP LBRACKET INLOOP_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jump, LABinloop, $3); free($3); }
+           | JFALSE LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jfalse, LABcond, $3, $1.types); free($3); }
+           | JTRUE LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jtrue, LABcond, $3, $1.types); free($3); }
+           | JCOND LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jcond, LABcond, $3, $1.types); free($3); }
+           | JFALSE2 LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jfalse2, LABcond, LABcont, $3, $5, $1.types);
+                  free($3); free($5); }
+           | JTRUE2 LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jtrue2, LABcond, LABcont, $3, $5, $1.types);
+                  free($3); free($5); }
+           | JCOND2 LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jcond2, LABcond, LABcont, $3, $5, $1.types);
+                  free($3); free($5); }
+           | prf1 LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(delta1, MKPRF($1.prf), $1.types); }
+           | prf2 LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(delta2, MKPRF($1.prf), $1.types); }
+           | prf3 LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(delta3, MKPRF($1.prf), $1.types); }
+           | prf4 LBRACKET RBRACKET SEMICOLON
+                { $$=new_order(delta4, MKPRF($1.prf), $1.types); }
+           | DELTA1 LBRACKET prf1 RBRACKET SEMICOLON
+                { $$=new_order(delta1, MKPRF($3.prf), $3.types); }
+           | DELTA2 LBRACKET prf2 RBRACKET SEMICOLON
+                { $$=new_order(delta2, MKPRF($3.prf), $3.types); }
+           | DELTA3 LBRACKET prf3 RBRACKET SEMICOLON
+                { $$=new_order(delta3, MKPRF($3.prf), $3.types); }
+           | DELTA4 LBRACKET prf4 RBRACKET SEMICOLON
+                { $$=new_order(delta4, MKPRF($3.prf), $3.types); }
+           | BETA LBRACKET FUNC_LABEL RBRACKET SEMICOLON
+                { $$=new_order(beta, LABfunc, $3); free($3); }
+           | BETA0UPDATE LBRACKET FUNC_LABEL RBRACKET SEMICOLON
+                { $$=NULL; }
+           | GAMMA LBRACKET FUNC_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(Gamma, LABfunc, $3); free($3); }
+           | GAMMABETA LBRACKET FUNC_LABEL RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(gammabeta, LABfunc, $3); free($3); }
+           | TAIL LBRACKET FUNC_LABEL RBRACKET SEMICOLON
+                { $$=new_order(tail, LABfunc, $3); free($3); }
+           ;
+
+dist_cmd:    PUSHH LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(pushh, $3); }
+           | COUNT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(count, $3); }
+           | DISTEND LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(distend); }
+           | WAIT LBRACKET INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(wait, $3); }
+           | POPH LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(poph); }
+           | MSDISTEND LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(msdistend); }
+           | MSNODIST LBRACKET RBRACKET SEMICOLON
+                { asm_mode |= ASM_DIST; $$=new_order(msnodist); }
+           | distcom SEMICOLON
+                { asm_mode |= ASM_DIST; $$=$1; }
+           ;
+/* einstellige primitive Funktionen */
+
+prf1:        ABS        { $$.prf=p_abs; $$.types=$1.types;}
+           | NEG        { $$.prf=p_neg; $$.types=$1.types; }
+           | NOT        { $$.prf=p_not; $$.types=$1.types; }
+           | EXP        { $$.prf=p_exp; $$.types=$1.types; }
+           | LN         { $$.prf=p_ln; $$.types=$1.types; }
+           | SIN        { $$.prf=p_sin; $$.types=$1.types; }
+           | COS        { $$.prf=p_cos; $$.types=$1.types; }
+           | TAN        { $$.prf=p_tan; $$.types=$1.types; }
+           | FLOOR      { $$.prf=p_floor; $$.types=$1.types; }
+           | CEIL       { $$.prf=p_ceil; $$.types=$1.types; }
+           | FRAC       { $$.prf=p_frac; $$.types=$1.types; }
+           | TRUNC      { $$.prf=p_trunc; $$.types=$1.types; }
+           | VC_PLUS    { $$.prf=p_vc_plus; $$.types=$1.types; }
+           | VC_MINUS   { $$.prf=p_vc_minus; $$.types=$1.types; }
+           | VC_MULT    { $$.prf=p_vc_mult; $$.types=$1.types; }
+           | VC_DIV     { $$.prf=p_vc_div; $$.types=$1.types; }
+           | VC_MIN     { $$.prf=p_vc_min; $$.types=$1.types; }
+           | VC_MAX     { $$.prf=p_vc_max; $$.types=$1.types; }
+           | LDIM       { $$.prf=p_ldim; $$.types=$1.types; }
+           | VDIM       { $$.prf=p_vdim; $$.types=$1.types; }
+           | CLASS      { $$.prf=p_class; $$.types=$1.types; }
+           | TYPE       { $$.prf=p_type; $$.types=$1.types; }
+           | EMPTY      { $$.prf=p_empty; $$.types=$1.types; }
+           | TRANSPOSE  { $$.prf=p_transpose; $$.types=$1.types; }
+           | REVERSE    { $$.prf=p_reverse; $$.types=$1.types; }
+           | TO_LIST    { $$.prf=p_to_list; $$.types=$1.types; }
+           | TO_SCAL    { $$.prf=p_to_scal; $$.types=$1.types; }
+           | TO_VECT    { $$.prf=p_to_vect; $$.types=$1.types; }
+           | TO_TVECT   { $$.prf=p_to_tvect; $$.types=$1.types; }
+           | TO_MAT     { $$.prf=p_to_mat; $$.types=$1.types; }
+           | TRANSFORM  { $$.prf=p_transform; $$.types=$1.types; }
+           | SLOTS      { $$.prf=p_f_slots; $$.types=$1.types; }
+           | TO_CHAR    { $$.prf=p_to_char; $$.types=$1.types; }
+           | TO_ORD     { $$.prf=p_to_ord; $$.types=$1.types; }
+           ;
+
+/* zweistellige primitive Funktionen */
+
+prf2:        PLUS    { $$.prf=p_plus; $$.types=$1.types; }
+           | MINUS   { $$.prf=p_minus; $$.types=$1.types; }
+           | MULT    { $$.prf=p_mult; $$.types=$1.types; }
+           | DIV     { $$.prf=p_div; $$.types=$1.types; }
+           | QUOT    { $$.prf=p_quot; $$.types=$1.types; }
+           | MOD     { $$.prf=p_mod; $$.types=$1.types; }
+           | IP      { $$.prf=p_ip; $$.types=$1.types; }
+           | MAX     { $$.prf=p_max; $$.types=$1.types; }
+           | MIN     { $$.prf=p_min; $$.types=$1.types; }
+           | AND     { $$.prf=p_and; $$.types=$1.types; }
+           | OR      { $$.prf=p_or; $$.types=$1.types; }
+           | XOR     { $$.prf=p_xor; $$.types=$1.types; }
+           | EQ      { $$.prf=p_eq; $$.types=$1.types; }
+           | NE      { $$.prf=p_ne; $$.types=$1.types; }
+           | F_EQ    { $$.prf=p_f_eq; $$.types=$1.types; }
+           | F_NE    { $$.prf=p_f_ne; $$.types=$1.types; }
+           | GE      { $$.prf=p_ge; $$.types=$1.types; }
+           | GT      { $$.prf=p_gt; $$.types=$1.types; }
+           | LE      { $$.prf=p_le; $$.types=$1.types; }
+           | LT      { $$.prf=p_lt; $$.types=$1.types; }
+           | LSELECT { $$.prf=p_lselect; $$.types=$1.types; }
+           | LCUT    { $$.prf=p_lcut; $$.types=$1.types; }
+           | LROTATE { $$.prf=p_lrotate; $$.types=$1.types; }
+           | LUNITE  { $$.prf=p_lunite; $$.types=$1.types; }
+           | VSELECT { $$.prf=p_vselect; $$.types=$1.types; }
+           | VCUT    { $$.prf=p_vcut; $$.types=$1.types; }
+           | VROTATE { $$.prf=p_vrotate; $$.types=$1.types; }
+           | VUNITE  { $$.prf=p_vunite; $$.types=$1.types; }
+           | C_PLUS  { $$.prf=p_c_plus; $$.types=$1.types; }
+           | C_MINUS { $$.prf=p_c_minus; $$.types=$1.types; }
+           | C_MULT  { $$.prf=p_c_mult; $$.types=$1.types; }
+           | C_DIV   { $$.prf=p_c_div; $$.types=$1.types; }
+           | C_MAX   { $$.prf=p_c_max; $$.types=$1.types; }
+           | C_MIN   { $$.prf=p_c_min; $$.types=$1.types; }
+           | MDIM    { $$.prf=p_mdim; $$.types=$1.types; }
+/* cr 22/03/95, kir(ff), START */
+           | FSELECT { $$.prf=p_f_select; $$.types=$1.types; }
+           | TEST    { $$.prf=p_f_test; $$.types=$1.types; }
+           | DELETE  { $$.prf=p_f_delete; $$.types=$1.types; }
+/* cr 22/03/95, kir(ff), END */
+           | SPRINTF { $$.prf=p_sprintf; $$.types=$1.types; }
+           | SSCANF  { $$.prf=p_sscanf; $$.types=$1.types; }
+           ;
+
+/* dreistellige primitive Funktionen */
+
+prf3:        LREPLACE     { $$.prf=p_lreplace; $$.types=$1.types; }
+           | VREPLACE     { $$.prf=p_vreplace; $$.types=$1.types; }
+           | MSELECT      { $$.prf=p_mselect; $$.types=$1.types; }
+           | MCUT         { $$.prf=p_mcut; $$.types=$1.types; }
+           | MROTATE      { $$.prf=p_mrotate; $$.types=$1.types; }
+           | MUNITE       { $$.prf=p_munite; $$.types=$1.types; }
+           | MRE_R        { $$.prf=p_mre_r; $$.types=$1.types; }
+           | MRE_C        { $$.prf=p_mre_c; $$.types=$1.types; }
+           | LTRANSFORM   { $$.prf=p_ltransform; $$.types=$1.types; }
+/* cr 22/03/95, kir(ff), START */
+           | UPDATE       { $$.prf=p_f_update; $$.types=$1.types; }
+/* cr 22/03/95, kir(ff), END */
+           ;
+
+/* vierstellige primitive Funktionen */
+
+prf4:        MREPLACE    { $$.prf=p_mreplace; $$.types=$1.types; }
+           | REPSTR      { $$.prf=p_repstr; $$.types=$1.types; }
+           ;
+
+/* stt, 13.02.96 */
+interact:  IA_FOPEN   {$$.prf=ia_fopen;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FCLOSE  {$$.prf=ia_fclose;  $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FGETC   {$$.prf=ia_fgetc;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FPUTC   {$$.prf=ia_fputc;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_UNGETC  {$$.prf=ia_ungetc;  $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FGETS   {$$.prf=ia_fgets;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_READ    {$$.prf=ia_read;    $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FPUTS   {$$.prf=ia_fputs;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FPRINTF {$$.prf=ia_fprintf; $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FREDIRECT {$$.prf=ia_fredirect; $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FSEEK   {$$.prf=ia_fseek;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FTELL   {$$.prf=ia_ftell;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_EXIT    {$$.prf=ia_exit;    $$.types=$1.types; uses_apply=TRUE;}
+         | IA_EOF     {$$.prf=ia_eof;     $$.types=$1.types; uses_apply=TRUE;}
+         | IA_BIND    {$$.prf=ia_bind;    $$.types=$1.types; uses_apply=TRUE;}
+         | IA_UNIT    {$$.prf=ia_unit;    $$.types=$1.types; uses_apply=TRUE;}
+         | IA_FINFO   {$$.prf=ia_finfo;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_STATUS  {$$.prf=ia_status;  $$.types=$1.types; uses_apply=TRUE;}
+         | IA_REMOVE  {$$.prf=ia_remove;  $$.types=$1.types; uses_apply=TRUE;}
+         | IA_RENAME  {$$.prf=ia_rename;  $$.types=$1.types; uses_apply=TRUE;}
+         | IA_COPY    {$$.prf=ia_copy;    $$.types=$1.types; uses_apply=TRUE;}
+         | IA_MKDIR   {$$.prf=ia_mkdir;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_RMDIR   {$$.prf=ia_rmdir;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_CHDIR   {$$.prf=ia_chdir;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_GETWD   {$$.prf=ia_getwd;   $$.types=$1.types; uses_apply=TRUE;}
+         | IA_DIR     {$$.prf=ia_dir;     $$.types=$1.types; uses_apply=TRUE;}
+         | IA_GET     {$$.prf=ia_get;     $$.types=$1.types; uses_apply=TRUE;}
+         | IA_PUT     {$$.prf=ia_put;     $$.types=$1.types; uses_apply=TRUE;}
+         ;
+
+
+inter_type:  DONE        { $$=INdone; }
+           | GET         { $$=INget; }
+           | PUT         { $$=INput; }
+           ;
+
+types:       onetype types { $$ = (TP_TYPES *)malloc(($2[0]+2)*sizeof(TP_TYPES));
+                           $$[0] = $2[0]+1; $$[1] = $1[1];
+                           memcpy(&$$[2], &$2[1], $2[0]*sizeof(TP_TYPES));
+                           free($1); free($2); }
+           | onetype     { $$ = $1; }
+           ;
+
+onetype:     INT         { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_int); }
+           | REAL        { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_real); }
+           | BOOL        { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_bool); }
+           | CHAR        { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_char); }
+           | DIGIT       { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_digit); }
+           | LQUOTE onetype RQUOTE
+                         { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           if (($2[1] != tp_char) && $2[1] != tp_none)
+                             yywarn("illegal nested string type");
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_string, $2[1] & PRIM_MASK);
+                           free($2); }
+           | NONE        { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_none); }
+           | LBRACK onetype RBRACK
+                         { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_list, $2[1] & PRIM_MASK);
+                           free($2); }
+           | C_LBRACK onetype C_RBRACK
+                          { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                          $$[0] = 1; $$[1] = MAKETYPE(tp_vect, $2[1] & PRIM_MASK);
+                          free($2); }
+           | C_LBRACK COLON onetype COLON C_RBRACK 
+                          { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                          $$[0] = 1; $$[1] = MAKETYPE(tp_matrix, $3[1] & PRIM_MASK);
+                          free($3); }
+           | C_RBRACK onetype C_LBRACK
+                          { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                          $$[0] = 1; $$[1] = MAKETYPE(tp_tvect, $2[1] & PRIM_MASK);
+                          free($2); }
+           ;
+%%
+@
+
+
+1.85
+log
+@addendum ord, char, sprintf, sscanf
+@
+text
+@d117 1
+a117 1
+%token <primf> IA_READ IA_FPUTS IA_FPRINTF IA_FSCANF IA_FSEEK IA_FTELL
+d1071 1
+a1071 1
+         | IA_FSCANF  {$$.prf=ia_fscanf;  $$.types=$1.types; uses_apply=TRUE;}
+@
+
+
+1.84
+log
+@new interactions: IA_GET, IA_PUT
+@
+text
+@d110 1
+d987 1
+a987 1
+           | TRANSFORM   { $$.prf=p_transform; $$.types=$1.types; }
+d989 2
+d1035 2
+@
+
+
+1.83
+log
+@ignore UPDATE instruction for tasm (cf. CAF_UPDATE in rear.c rinter.c)
+@
+text
+@d119 1
+a119 1
+%token <primf> IA_GETWD IA_DIR
+d1083 2
+@
+
+
+1.82
+log
+@atstart now not only available with FAIL_LABEL but also with CONT_LABEL
+@
+text
+@d83 1
+a83 1
+%token DELTA1 DELTA2 DELTA3 DELTA4 INTACT BETA GAMMA GAMMABETA
+d927 2
+@
+
+
+1.81
+log
+@uses_apply=TRUE for programs with interactions.
+@
+text
+@d750 2
+@
+
+
+1.80
+log
+@intact and delta closures don't have tilde args.
+@
+text
+@d1053 27
+a1079 27
+interact:    IA_FOPEN       { $$.prf=ia_fopen;   $$.types=$1.types; }
+           | IA_FCLOSE      { $$.prf=ia_fclose;  $$.types=$1.types; }
+           | IA_FGETC       { $$.prf=ia_fgetc;   $$.types=$1.types; }
+           | IA_FPUTC       { $$.prf=ia_fputc;   $$.types=$1.types; }
+           | IA_UNGETC      { $$.prf=ia_ungetc;  $$.types=$1.types; }
+           | IA_FGETS       { $$.prf=ia_fgets;   $$.types=$1.types; }
+           | IA_READ        { $$.prf=ia_read;    $$.types=$1.types; }
+           | IA_FPUTS       { $$.prf=ia_fputs;   $$.types=$1.types; }
+           | IA_FPRINTF     { $$.prf=ia_fprintf; $$.types=$1.types; }
+           | IA_FSCANF      { $$.prf=ia_fscanf;  $$.types=$1.types; }
+           | IA_FSEEK       { $$.prf=ia_fseek;   $$.types=$1.types; }
+           | IA_FTELL       { $$.prf=ia_ftell;   $$.types=$1.types; }
+           | IA_EXIT        { $$.prf=ia_exit;    $$.types=$1.types; }
+           | IA_EOF         { $$.prf=ia_eof;     $$.types=$1.types; }
+           | IA_BIND        { $$.prf=ia_bind;    $$.types=$1.types; }
+           | IA_UNIT        { $$.prf=ia_unit;    $$.types=$1.types; }
+           | IA_FINFO       { $$.prf=ia_finfo;   $$.types=$1.types; }
+           | IA_STATUS      { $$.prf=ia_status;  $$.types=$1.types; }
+           | IA_REMOVE      { $$.prf=ia_remove;  $$.types=$1.types; }
+           | IA_RENAME      { $$.prf=ia_rename;  $$.types=$1.types; }
+           | IA_COPY        { $$.prf=ia_copy;    $$.types=$1.types; }
+           | IA_MKDIR       { $$.prf=ia_mkdir;   $$.types=$1.types; }
+           | IA_RMDIR       { $$.prf=ia_rmdir;   $$.types=$1.types; }
+           | IA_CHDIR       { $$.prf=ia_chdir;   $$.types=$1.types; }
+           | IA_GETWD       { $$.prf=ia_getwd;   $$.types=$1.types; }
+           | IA_DIR         { $$.prf=ia_dir;     $$.types=$1.types; }
+           ;
+@
+
+
+1.79
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@d656 1
+a656 4
+                { if (ISASM_TILDE())
+                    yywarn("mkiclos requires third argument");
+                  $$=new_order(mkiclos, $3, $5, 0);
+                }
+a668 2
+           | MKICLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON
+                { asm_mode |= ASM_TILDE; $$=new_order(mkiclos, $3, $5, $7); }
+@
+
+
+1.78
+log
+@added FR_DELETE, FR_SLOTS
+@
+text
+@d92 1
+a92 1
+%token PUSHH DIST DISTB DISTEND WAIT POPH
+d940 2
+d948 4
+@
+
+
+1.77
+log
+@Tokens and rules for interactions added.
+@
+text
+@d111 1
+a111 1
+%token <primf> FSELECT UPDATE TEST
+d982 1
+d1025 1
+@
+
+
+1.76
+log
+@*** empty log message ***
+@
+text
+@d8 1
+d60 1
+a60 1
+%type  <primf> prf1 prf2 prf3 prf4
+d80 1
+a80 1
+%token MKDCLOS MKCCLOS MKSCLOS MKBCLOS MKGSCLOS MKGACLOS MKLIST MKILIST
+d83 1
+a83 1
+%token DELTA1 DELTA2 DELTA3 DELTA4 BETA GAMMA GAMMABETA
+d114 7
+d122 1
+d468 2
+d624 3
+d655 5
+d672 2
+d696 2
+d834 3
+d879 2
+d1048 30
+@
+
+
+1.75
+log
+@distb in tildecase with six arguments
+@
+text
+@d545 1
+a545 1
+                 asm_mode |= ASM_DIST; $$ = new_order(dist, $3, $5, $7, $9, 0);
+d550 1
+a550 1
+                 asm_mode |= ASM_DIST; $$ = new_order(distb, $3, $5, $7, $9, 0);
+@
+
+
+1.74
+log
+@checks whether apply is used
+@
+text
+@d552 1
+a552 1
+           | DIST LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV ',' INTV RBRACKET
+d554 1
+a554 1
+                 $$ = new_order(dist, $3, $5, $7, $9, $11);
+d556 1
+a556 1
+           | DISTB LBRACKET DISTARG_LABEL ',' DISTEND_LABEL ',' INTV ',' INTV ',' INTV RBRACKET
+d558 1
+a558 1
+                 $$ = new_order(distb, $3, $5, $7, $9, $11);
+@
+
+
+1.73
+log
+@FREER, FREE1R
+@
+text
+@d632 1
+a632 1
+                { $$=new_order(apply, $3); }
+@
+
+
+1.72
+log
+@mdim -> mdimension
+@
+text
+@d76 2
+a77 1
+%token SNAP APPLY FREEA FREE1A FREESWT FREET FREEW PUSHAW PUSHTW PUSHAR PUSHTR PUSHCW
+d590 2
+d625 2
+@
+
+
+1.71
+log
+@mdim got two parameters
+@
+text
+@d987 1
+a987 1
+           | MDIM       { $$.prf=p_mdim; $$.types=$1.types; }
+@
+
+
+1.70
+log
+@transform
+@
+text
+@a937 1
+           | MDIM       { $$.prf=p_mdim; $$.types=$1.types; }
+d987 1
+@
+
+
+1.69
+log
+@DIST implemented
+@
+text
+@d107 1
+a107 1
+%token <primf> LTRANSFORM REPSTR
+d949 1
+@
+
+
+1.68
+log
+@to_list implemented
+@
+text
+@d30 6
+d55 2
+a56 2
+%type  <order_list> stmt_list stmt param_stmt asis_stmt base_stmt hash_stmt
+                    func_end start_desc
+d67 1
+d90 2
+a91 1
+%token HASHARGS HASHTILDEARGS HASHRESTYPE HASHSETREF
+d106 1
+a106 1
+%token <primf> MRE_R MRE_C MREPLACE
+d120 1
+d190 1
+d204 1
+a204 1
+           | INLOOP_LABEL COLON { asm_mode |= ASM_TILDE; 
+d206 4
+d498 1
+d521 18
+d540 20
+a560 1
+
+d905 11
+d996 1
+@
+
+
+1.67
+log
+@new command: rtc_pf
+@
+text
+@d93 1
+a93 1
+%token <primf> TRANSPOSE REVERSE TO_SCAL TO_VECT TO_TVECT TO_MAT
+d881 1
+@
+
+
+1.66
+log
+@vect, tvect & matrix implemented
+@
+text
+@d610 8
+@
+
+
+1.65
+log
+@empty mat/vect/tvect
+@
+text
+@d66 1
+a66 1
+%token LBRACKET RBRACKET LBRACK RBRACK LQUOTE RQUOTE
+d976 12
+@
+
+
+1.64
+log
+@teppfuhler
+@
+text
+@d64 1
+a64 1
+%token INT REAL BOOL DIGIT CHAR STRING NONE TY_BO TY_RE TY_INT
+d300 16
+@
+
+
+1.63
+log
+@mat, vect, tvect implemented
+@
+text
+@d318 1
+a318 1
+                 *pdata = conc_data(new_data(d_vect, $3, $7, $9, rptr, d_real), NULL);
+d329 1
+a329 1
+                 *pdata = conc_data(new_data(d_vect, $3, $7, $9, iptr, d_int), NULL);
+@
+
+
+1.62
+log
+@endsubl with one parameter
+@
+text
+@d22 2
+d28 1
+a28 1
+int i, outfunc;
+d54 1
+a54 1
+%type  <intv>  elem inter_type selem
+d56 1
+a56 1
+%type  <data> list slist
+d58 1
+a58 1
+%token <realv> REALV
+d64 1
+a64 1
+%token INT REAL BOOL DIGIT CHAR STRING NONE
+d188 8
+a195 4
+           | FAIL_LABEL COLON { $$=new_order(label, LABfail, $1); free($1);}
+           | UND_LABEL COLON { $$=new_order(label, LABundecided, $1); free($1);}
+           | BT_LABEL COLON { $$=new_order(label, LABbt, $1); free($1);}
+           | INLOOP_LABEL COLON { $$=new_order(label, LABinloop, $1); free($1);}
+d209 1
+d267 99
+d599 1
+a599 1
+                { $$=new_order(incr, $3, $5); }
+d601 1
+a601 1
+                { $$=new_order(inct, $3, $5); }
+d607 1
+a607 1
+                { $$=new_order(tincr, $3, $5); }
+d609 1
+a609 1
+                { $$=new_order(tinct, $3, $5); }
+d615 1
+a615 1
+                { $$=new_order(decr, $3); }
+d617 1
+a617 1
+                { $$=new_order(dect, $3); }
+d623 1
+a623 1
+                { $$=new_order(tdecr, $3); }
+d625 1
+a625 1
+                { $$=new_order(tdect, $3); }
+d631 1
+a631 1
+                { $$=new_order(killr, $3); }
+d633 1
+a633 1
+                { $$=new_order(killt, $3); }
+d639 1
+a639 1
+                { $$=new_order(tkillr, $3); }
+d641 1
+a641 1
+                { $$=new_order(tkillt, $3); }
+d646 1
+a646 1
+                { $$=new_order(advance, $3); }
+d648 1
+a648 1
+                { $$=new_order(atend, $3, $5); free($5); }
+d650 1
+a650 1
+                { $$=new_order(atstart, $3, $5); free($5); }
+d652 1
+a652 1
+                { $$=new_order(advance, -$3); }
+d654 1
+a654 1
+                { $$=new_order(bind, $3); }
+d656 1
+a656 1
+                { $$=new_order(binds, $3); }
+d658 1
+a658 1
+                { $$=new_order(bindsubl, $3, $5, $7, $9); }
+d660 1
+a660 1
+                { $$=new_order(Case, LABcase, $3); free($3); }
+d664 1
+a664 1
+                { $$=new_order(dereference); }
+d666 1
+a666 1
+                { $$=new_order(drop); }
+d668 1
+a668 1
+                { $$=new_order(endlist); }
+d670 1
+a670 1
+                { $$=new_order(endsubl, $3); }
+d672 1
+a672 1
+                { $$=new_order(fetch); }
+d674 1
+a674 1
+               { $$=new_order(initbt, $3, $5, $7, $9, $11); }
+d676 2
+a677 1
+                { $$=new_order(matcharb, $3, $5, $7, $1); free($5); free($7); }
+d679 2
+a680 1
+                { $$=new_order(matcharbs, $3, $5, $7, $1); free($5); free($7); }
+d683 3
+a685 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $8, $10, $1); free($8); free($10); }
+d688 3
+a690 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $8, $10, $1); free($8); free($10); }
+d692 1
+a692 1
+                { yyerror("MATCHC not implemented"); }
+d694 2
+a695 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $3, $5, $1); free($3); free($5); }
+d697 2
+a698 1
+                { $$=new_order(matchin, MKPTR($5), $8, $10, $1); free($8); free($10); }
+d700 2
+a701 1
+                { $$=new_order(matchin, MKPTR($5), $8, $10, $1); free($8); free($10); }
+d704 2
+a705 1
+                { $$=new_order(matchint, MKINT($5), $8, $10, $1); free($8); free($10); }
+d707 2
+a708 1
+                { $$=new_order(matchlist, $3, $5, $7, $1); free($5); free($7); }
+d710 2
+a711 1
+                { $$=new_order(matchlist, 0, $3, $5, $1); free($3); free($5); }
+d713 2
+a714 1
+                { $$=new_order(matchstr, 0, $3, $5, $1); free($3); free($5); }
+d716 2
+a717 1
+                { $$=new_order(matchprim, MKCHAR($3), $5, $7, $1); free($5); free($7); }
+d719 2
+a720 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+d722 2
+a723 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+d725 2
+a726 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+d728 2
+a729 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); free($5); free($7); }
+d731 2
+a732 1
+                { $$=new_order(matchstr, $3, $5, $7, $1); free($5); free($7); }
+d734 2
+a735 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $3, $5, $1); free($3); free($5); }
+d737 1
+a737 1
+                { $$=new_order(mkaframe, $3); }
+d739 1
+a739 1
+               { $$=new_order(mkbtframe, $3); }
+d741 1
+a741 1
+               { $$=new_order(mkcase, MKPTR($5)); }
+d743 1
+a743 1
+               { $$=new_order(mkwframe, $3); }
+d745 1
+a745 1
+               { $$=new_order(nestlist); }
+d747 1
+a747 1
+               { $$=new_order(pick, $3); }
+d749 1
+a749 1
+               { $$=new_order(restorebt, $3); }
+d751 1
+a751 1
+               { $$=new_order(restoreptr, $3); }
+d753 1
+a753 1
+               { $$=new_order(rmbtframe, $3); }
+d755 1
+a755 1
+               { $$=new_order(rmwframe, $3); }
+d757 1
+a757 1
+               { $$=new_order(savebt, $3); }
+d759 1
+a759 1
+               { $$=new_order(saveptr, $3); }
+d761 1
+a761 1
+               { $$=new_order(startsubl, $3, $5); }
+d764 2
+a765 1
+               { $$=new_order(tguard, $3, MKPTR($7), $10, $12, $14); free($3); }
+@
+
+
+1.61
+log
+@freevar in list
+@
+text
+@d564 1
+a564 1
+                { $$=new_order(endsubl); }
+@
+
+
+1.60
+log
+@matchin now possible with two fail_labels instead of one and an undecided label
+@
+text
+@d302 5
+@
+
+
+1.59
+log
+@primfunc : NOT
+@
+text
+@d580 2
+@
+
+
+1.58
+log
+@MATCHIN fixed
+@
+text
+@d69 1
+a69 1
+%token MKDCLOS MKCCLOS MKBCLOS MKGSCLOS MKGACLOS MKLIST MKILIST
+d88 1
+a88 1
+%token <primf> ABS NEG EXP LN SIN COS TAN FLOOR CEIL FRAC TRUNC VC_PLUS
+d467 2
+d699 1
+@
+
+
+1.57
+log
+@mkilist
+@
+text
+@d576 2
+a577 2
+           | MATCHIN LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(matchin, $3, $5, $7, $1); free($5); free($7); }
+d606 1
+a606 1
+               { $$=new_order(mkcase, $5); }
+d629 1
+a629 1
+               { $$=new_order(tguard, $3, $7, $10, $12, $14); free($3); }
+@
+
+
+1.56
+log
+@primitive function implemented: quot
+@
+text
+@d69 1
+a69 1
+%token MKDCLOS MKCCLOS MKBCLOS MKGSCLOS MKGACLOS MKLIST
+d453 2
+@
+
+
+1.55
+log
+@setref identifiers
+@
+text
+@d92 1
+a92 1
+%token <primf> PLUS MINUS MULT DIV MOD IP MAX MIN AND OR XOR EQ NE
+d730 1
+@
+
+
+1.54
+log
+@free of no longer used labels
+@
+text
+@d101 1
+a101 1
+%token DONE GET PUT IMPLICIT EXPLICIT
+d374 1
+a374 1
+               { $$=new_order(hashsetref, REF_IMPLICIT); }
+d376 3
+a378 1
+               { $$=new_order(hashsetref, REF_EXPLICIT); }
+@
+
+
+1.53
+log
+@improved label management
+@
+text
+@d34 1
+a34 1
+         char func_lab[20];
+d131 1
+d136 1
+d140 1
+a140 1
+                 char labelv[20];
+d142 2
+d146 1
+d151 1
+d183 7
+a189 7
+           | COND_LABEL COLON { $$=new_order(label, LABcond, $1);}
+           | JCOND_LABEL COLON { $$=new_order(label, LABjcond, $1);}
+           | CONT_LABEL COLON { $$=new_order(label, LABcont, $1);}
+           | FAIL_LABEL COLON { $$=new_order(label, LABfail, $1);}
+           | UND_LABEL COLON { $$=new_order(label, LABundecided, $1);}
+           | BT_LABEL COLON { $$=new_order(label, LABbt, $1);}
+           | INLOOP_LABEL COLON { $$=new_order(label, LABinloop, $1);}
+d197 1
+d205 1
+d211 3
+a213 1
+               char labelv[20];
+d224 1
+d531 1
+a531 1
+                { $$=new_order(atend, $3, $5); }
+d533 1
+a533 1
+                { $$=new_order(atstart, $3, $5); }
+d543 1
+a543 1
+                { $$=new_order(Case, LABcase, $3); }
+d545 1
+a545 1
+                { asm_mode |= ASM_TILDE; $$=new_order(gammacase, LABcase, $3); }
+d559 1
+a559 1
+                { $$=new_order(matcharb, $3, $5, $7, $1); }
+d561 1
+a561 1
+                { $$=new_order(matcharbs, $3, $5, $7, $1); }
+d564 1
+a564 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $8, $10, $1); }
+d567 1
+a567 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $8, $10, $1); }
+d571 1
+a571 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $3, $5, $1); }
+d573 1
+a573 1
+                { $$=new_order(matchin, $3, $5, $7, $1); }
+d576 1
+a576 1
+                { $$=new_order(matchint, MKINT($5), $8, $10, $1); }
+d578 1
+a578 1
+                { $$=new_order(matchlist, $3, $5, $7, $1); }
+d580 1
+a580 1
+                { $$=new_order(matchlist, 0, $3, $5, $1); }
+d582 1
+a582 1
+                { $$=new_order(matchstr, 0, $3, $5, $1); }
+d584 1
+a584 1
+                { $$=new_order(matchprim, MKCHAR($3), $5, $7, $1); }
+d586 1
+a586 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); }
+d588 1
+a588 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); }
+d590 1
+a590 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); }
+d592 1
+a592 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7, $1); }
+d594 1
+a594 1
+                { $$=new_order(matchstr, $3, $5, $7, $1); }
+d596 1
+a596 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $3, $5, $1); }
+d625 1
+a625 1
+               { $$=new_order(tguard, $3, $7, $10, $12, $14); }
+d641 1
+a641 1
+                { $$= new_order(pushret, LABcont, $3); }
+d643 1
+a643 1
+                { $$=new_order(jump, LABcont, $3); }
+d645 1
+a645 1
+                { $$=new_order(jump, LABbt, $3); }
+d647 1
+a647 1
+                { $$=new_order(jump, LABinloop, $3); }
+d649 1
+a649 1
+                { $$=new_order(jfalse, LABcond, $3, $1.types); }
+d651 1
+a651 1
+                { $$=new_order(jtrue, LABcond, $3, $1.types); }
+d653 1
+a653 1
+                { $$=new_order(jcond, LABcond, $3, $1.types); }
+d655 2
+a656 1
+                { $$=new_order(jfalse2, LABcond, LABcont, $3, $5, $1.types); }
+d658 2
+a659 1
+                { $$=new_order(jtrue2, LABcond, LABcont, $3, $5, $1.types); }
+d661 2
+a662 1
+                { $$=new_order(jcond2, LABcond, LABcont, $3, $5, $1.types); }
+d680 1
+a680 1
+                { $$=new_order(beta, LABfunc, $3); }
+d682 1
+a682 1
+                { asm_mode |= ASM_TILDE; $$=new_order(Gamma, LABfunc, $3); }
+d684 1
+a684 1
+                { asm_mode |= ASM_TILDE; $$=new_order(gammabeta, LABfunc, $3); }
+d686 1
+a686 1
+                { $$=new_order(tail, LABfunc, $3); }
+@
+
+
+1.52
+log
+@label ID integration
+@
+text
+@d638 1
+a638 1
+                { $$=new_order(jfalse, $3, $1.types); }
+d640 1
+a640 1
+                { $$=new_order(jtrue, $3, $1.types); }
+d642 1
+a642 1
+                { $$=new_order(jcond, $3, $1.types); }
+d644 1
+a644 1
+                { $$=new_order(jfalse2, $3, $5, $1.types); }
+d646 1
+a646 1
+                { $$=new_order(jtrue2, $3, $5, $1.types); }
+d648 1
+a648 1
+                { $$=new_order(jcond2, $3, $5, $1.types); }
+@
+
+
+1.51
+log
+@*** empty log message ***
+@
+text
+@d141 1
+a141 1
+                 $$=new_function(labelv, conc_order(conc_order(new_order(label, $1), $4), $5));
+d177 7
+a183 7
+           | COND_LABEL COLON { $$=new_order(label, $1);}
+           | JCOND_LABEL COLON { $$=new_order(label, $1);}
+           | CONT_LABEL COLON { $$=new_order(label, $1);}
+           | FAIL_LABEL COLON { $$=new_order(label, $1);}
+           | UND_LABEL COLON { $$=new_order(label, $1);}
+           | BT_LABEL COLON { $$=new_order(label, $1);}
+           | INLOOP_LABEL COLON { $$=new_order(label, $1);}
+d532 1
+a532 1
+                { $$=new_order(Case, $3); }
+d534 1
+a534 1
+                { asm_mode |= ASM_TILDE; $$=new_order(gammacase, $3); }
+d630 1
+a630 1
+                { $$= new_order(pushret, $3); }
+d632 1
+a632 1
+                { $$=new_order(jump, $3); }
+d634 1
+a634 1
+                { $$=new_order(jump, $3); }
+d636 1
+a636 1
+                { $$=new_order(jump, $3); }
+d666 1
+a666 1
+                { $$=new_order(beta, $3); }
+d668 1
+a668 1
+                { asm_mode |= ASM_TILDE; $$=new_order(Gamma, $3); }
+d670 1
+a670 1
+                { asm_mode |= ASM_TILDE; $$=new_order(gammabeta, $3); }
+d672 1
+a672 1
+                { $$=new_order(tail, $3); }
+@
+
+
+1.50
+log
+@try to optimize via parser
+@
+text
+@a8 1
+#include "optimizer.h"
+d48 1
+a48 1
+                    func_end start_desc opt_stmt_list opt_stmt
+a60 1
+%token OPT_TOKEN COMP_TOKEN
+d102 1
+a102 1
+%start decide
+a104 89
+decide:      OPT_TOKEN opt_func_list
+           | COMP_TOKEN asm_prog
+           | asm_prog
+           ;
+
+opt_func_list:
+             opt_func_list opt_func
+           | opt_func
+           ;
+
+opt_func:    FUNC_LABEL COLON opt_stmt_list func_end
+               {
+                 overwrite_func($1, conc_order($3, $4));
+               }
+           | GOAL_LABEL COLON opt_stmt_list func_end
+               {
+                 overwrite_func("goal", conc_order($3, $4));
+               }
+           | CASE_LABEL COLON opt_stmt_list func_end
+               {
+                 overwrite_func($1, conc_order($3, $4));
+               }
+           | JCOND_LABEL COLON opt_stmt_list func_end
+               {
+                 char labelv[20];
+                 /* generate label jcond_<adr> => func_<adr> */
+                 strcpy(labelv, "func"); strcpy(&labelv[4], &($1[5]));
+                 overwrite_func(labelv, conc_order(new_order(label, $1), conc_order($3, $4)));
+               }
+           ;
+
+opt_stmt_list:
+             opt_stmt_list opt_stmt
+                {
+                  if ($1 && $2)
+                    $$=conc_order($1, $2);
+                  else
+                    $$=($1 ? $1 : $2);
+                }
+           | opt_stmt
+                {
+                  $$=$1;
+                }
+           ;
+
+opt_stmt:    param_stmt { $$=$1;}
+           | asis_stmt  { $$=$1;}
+           | base_stmt  { $$=$1;}
+           | func_call  { $$=$1;}
+           | hash_stmt  { $$=$1;}
+           | COND_LABEL COLON { $$=new_order(label, $1);}
+           | JCOND_LABEL COLON { $$=new_order(label, $1);}
+           | CONT_LABEL COLON { $$=new_order(label, $1);}
+           | FAIL_LABEL COLON { $$=new_order(label, $1);}
+           | UND_LABEL COLON { $$=new_order(label, $1);}
+           | BT_LABEL COLON { $$=new_order(label, $1);}
+           | INLOOP_LABEL COLON { $$=new_order(label, $1);}
+           ;
+
+on_stack_op: PUSHAW0 LBRACKET RBRACKET SEMICOLON
+               { new_order(pios, "peek(a, 0)");}
+           | PUSHTW0 LBRACKET RBRACKET SEMICOLON
+               { new_order(pios, "peek(t, 0)");}
+           | PUSHAW LBRACKET INTV RBRACKET SEMICOLON
+               { char h[80];
+                 sprintf(h, "peek(a, %d)", $3);
+                 $$ = new_order(pios, h);}
+           | PUSHTW LBRACKET INTV RBRACKET SEMICOLON
+               { char h[80];
+                 sprintf(h, "peek(t, %d)", $3);
+                 $$ = new_order(pios, h);}
+           | MOVEAW LBRACKET RBRACKET SEMICOLON
+               { $$ = new_order(pios, "pop(w)");}
+           | MOVETW LBRACKET RBRACKET SEMICOLON
+               { $$ = new_order(pios, "pop(t)");}
+           | PUSHCW LBRACKET INT LBRACKET INTV RBRACKET RBRACKET SEMICOLON
+               { char h[80];
+                 sprintf(h, "%d", MKINT($5));
+                 $$=new_order(pios, h); }
+           | PUSHCW LBRACKET BOOL LBRACKET FALSE_Y RBRACKET RBRACKET SEMICOLON
+               { char h[80];
+                 sprintf(h, "%d", MKBOOL(FALSE));
+                 $$=new_order(pios, h); }
+           | PUSHCW LBRACKET BOOL LBRACKET TRUE_Y RBRACKET RBRACKET SEMICOLON
+               { char h[80];
+                 sprintf(h, "%d", MKBOOL(TRUE));
+                 $$=new_order(pios, h); }
+           
+           ;
+@
+
+
+1.49
+log
+@hashsetref
+@
+text
+@d9 1
+d49 1
+a49 1
+                    func_end start_desc
+d62 1
+d104 1
+a104 1
+%start asm_prog
+d107 89
+@
+
+
+1.48
+log
+@strins in lists
+@
+text
+@d59 1
+a59 1
+%token <helpstring> HASH HASHARGS HASHTILDEARGS HASHRESTYPE CLIST
+d81 1
+d101 1
+a101 1
+%token DONE GET PUT
+d362 4
+a365 1
+           | HASH { yyerror("illegal compiler directive"); }
+@
+
+
+1.47
+log
+@mkgsclos
+@
+text
+@d295 2
+@
+
+
+1.46
+log
+@bug fix in PUSHAUX
+@
+text
+@d69 1
+a69 1
+%token MKDCLOS MKCCLOS MKBCLOS MKGACLOS MKLIST
+d452 2
+@
+
+
+1.45
+log
+@reading "inloop_xxx"
+@
+text
+@d393 1
+a393 1
+           | PUSHAUX SEMICOLON
+@
+
+
+1.44
+log
+@matchprim improved by reading single letters as pattern
+@
+text
+@d58 1
+a58 1
+%token <func_lab> CASE_LABEL FAIL_LABEL UND_LABEL BT_LABEL
+d182 1
+d626 2
+@
+
+
+1.43
+log
+@strings type reorganized
+@
+text
+@d563 2
+@
+
+
+1.42
+log
+@type PM instructions
+@
+text
+@d62 1
+a62 1
+%token INT REAL BOOL DIGIT STRING NONE
+d64 1
+a64 1
+%token LBRACKET RBRACKET LBRACK RBRACK
+d775 2
+d779 6
+a784 2
+           | STRING      { $$ = (TP_TYPES *)malloc(2*sizeof(TP_TYPES));
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_none, tp_string); }
+@
+
+
+1.41
+log
+@added FSELECT,UPDATE,TEST
+@
+text
+@d39 1
+d77 2
+a78 4
+%token DROP ENDLIST ENDSUBL FETCH GAMMACASE INITBT MATCHARB MATCHARBS
+%token MATCHBOOL MATCHC MATCHFALSE MATCHIN MATCHINT MATCHLIST
+%token MATCHNIL MATCHNILS MATCHPRIM MATCHLIST MATCHSTR MATCHTRUE MKAFRAME
+%token MKBTFRAME MKCASE MKWFRAME NESTLIST PICK RESTOREBT RESTOREPTR
+d82 4
+d539 1
+a539 1
+                { $$=new_order(matcharb, $3, $5, $7); }
+d541 1
+a541 1
+                { $$=new_order(matcharbs, $3, $5, $7); }
+d544 1
+a544 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $8, $10); }
+d547 1
+a547 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $8, $10); }
+d551 1
+a551 1
+                { $$=new_order(matchbool, MKBOOL(FALSE), $3, $5); }
+d553 1
+a553 1
+                { $$=new_order(matchin, $3, $5, $7); }
+d556 1
+a556 1
+                { $$=new_order(matchint, MKINT($5), $8, $10); }
+d558 1
+a558 1
+                { $$=new_order(matchlist, $3, $5, $7); }
+d560 1
+a560 1
+                { $$=new_order(matchlist, 0, $3, $5); }
+d562 1
+a562 1
+                { $$=new_order(matchstr, 0, $3, $5); }
+d564 1
+a564 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7); }
+d566 1
+a566 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7); }
+d568 1
+a568 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7); }
+d570 1
+a570 1
+                { $$=new_order(matchprim, MKPRF($3.prf), $5, $7); }
+d572 1
+a572 1
+                { $$=new_order(matchstr, $3, $5, $7); }
+d574 1
+a574 1
+                { $$=new_order(matchbool, MKBOOL(TRUE), $3, $5); }
+@
+
+
+1.40
+log
+@strings & free variables
+@
+text
+@d94 3
+d727 4
+d743 3
+@
+
+
+1.39
+log
+@BT label
+@
+text
+@d48 1
+a48 1
+%type  <order_list> func_call data
+d51 1
+a51 1
+%type  <intv>  elem inter_type
+d53 2
+a54 2
+%type  <data> list
+%token <intv> INTV HEX_NUM
+d58 1
+a58 1
+%token <helpstring> HASH HASHARGS HASHTILDEARGS HASHRESTYPE
+d60 1
+a60 1
+%token D_REAL, D_VECT, D_TVECT, D_MAT D_LIST
+d218 1
+a218 1
+                   yywarn("element count mismatch, %d elements supplied", $7[0]);
+a225 1
+
+d228 2
+d234 7
+d297 39
+@
+
+
+1.38
+log
+@bug fixed in PICK
+@
+text
+@d51 1
+a51 1
+%type  <intv>  elem
+d57 1
+a57 1
+%token <func_lab> CASE_LABEL FAIL_LABEL UND_LABEL
+d81 1
+d94 1
+d175 1
+d551 6
+d569 2
+d697 5
+d707 1
+d725 1
+@
+
+
+1.37
+log
+@bug fixed in MATCHPRIM
+@
+text
+@d530 1
+a530 1
+               { $$=new_order(pick); }
+@
+
+
+1.36
+log
+@bug fix in atend and atstart
+Is FAIL_LABEL the correct pattern ?
+@
+text
+@d507 8
+a514 2
+           | MATCHPRIM LBRACKET INTV ',' FAIL_LABEL ',' UND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(matchprim, $3, $5, $7); }
+@
+
+
+1.35
+log
+@mkap implemented
+@
+text
+@d454 4
+a457 4
+           | ATEND LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(atend, $3); }
+           | ATSTART LBRACKET INTV RBRACKET SEMICOLON
+                { $$=new_order(atstart, $3); }
+@
+
+
+1.34
+log
+@bug fix (JCOND_LABEL)
+@
+text
+@d70 1
+a70 1
+%token JUMP
+d373 2
+@
+
+
+1.33
+log
+@PM added
+@
+text
+@d190 1
+a190 1
+             HEX_NUM ',' COND_LABEL RBRACKET SEMICOLON
+@
+
+
+1.32
+log
+@typed conditional jump
+@
+text
+@d57 1
+d64 1
+a64 1
+%token FUN_DESC COMB FUNC CONDI
+d75 7
+d134 4
+d171 2
+d175 1
+a175 1
+start_desc:  FUN_DESC LBRACKET HEX_NUM ',' FUNC ',' COMB ',' INTV ',' INTV ','
+d181 7
+d189 2
+a190 2
+           | FUN_DESC LBRACKET HEX_NUM ',' FUNC ',' CONDI ',' INTV ',' INTV ','
+             HEX_NUM ',' JCOND_LABEL RBRACKET SEMICOLON
+a250 1
+               printf("here%d\n\n", $$);
+d435 1
+a435 1
+           | KILLR LBRACKET INTV SEMICOLON
+d437 1
+a437 1
+           | KILLT LBRACKET INTV SEMICOLON
+d439 1
+a439 1
+           | KILLW LBRACKET INTV SEMICOLON
+d441 1
+a441 1
+           | TKILLA LBRACKET INTV SEMICOLON
+d443 1
+a443 1
+           | TKILLR LBRACKET INTV SEMICOLON
+d445 1
+a445 1
+           | TKILLT LBRACKET INTV SEMICOLON
+d447 1
+a447 1
+           | TKILLW LBRACKET INTV SEMICOLON
+d449 91
+@
+
+
+1.31
+log
+@hashstring removed
+@
+text
+@d69 1
+a69 1
+%token JUMP JFALSE JTRUE JCOND JFALSE2 JTRUE2 JCOND2
+d74 1
+d442 1
+a442 1
+                { $$=new_order(jfalse, $3); }
+d444 1
+a444 1
+                { $$=new_order(jtrue, $3); }
+d446 1
+a446 1
+                { $$=new_order(jcond, $3); }
+d448 1
+a448 1
+                { $$=new_order(jfalse2, $3, $5); }
+d450 1
+a450 1
+                { $$=new_order(jtrue2, $3, $5); }
+d452 1
+a452 1
+                { $$=new_order(jcond2, $3, $5); }
+@
+
+
+1.30
+log
+@scan/parse of type annotations
+@
+text
+@d269 1
+a269 1
+                 $$=new_order(hashargs, "Blumenkohl", $2[0], p);
+d274 1
+a274 1
+                 $$=new_order(hashtildeargs, "Fruchteis", $2[0], p);
+d279 1
+a279 1
+                 $$=new_order(hashrestype, "Salatruehrei", $2[0], p);
+@
+
+
+1.29
+log
+@hash instruction splitted
+@
+text
+@d257 1
+a257 1
+               { $$ =  MKPRF($1.prf); }
+d259 1
+a259 1
+               { $$ =  MKPRF($1.prf); }
+d261 1
+a261 1
+               { $$ =  MKPRF($1.prf); }
+d263 1
+a263 1
+               { $$ =  MKPRF($1.prf); }
+d266 1
+a266 1
+hash_stmt:  HASHARGS types
+d268 2
+a269 2
+                 memcpy(p, &$2[1], $2[0]);
+                 $$=new_order(hashargs, $1, $2[0], p);
+d271 1
+a271 1
+            HASHTILDEARGS types
+d273 2
+a274 2
+                 memcpy(p, &$2[1], $2[0]);
+                 $$=new_order(hashargs, $1, $2[0], p);
+d276 1
+a276 1
+            HASHRESTYPE onetype
+d278 2
+a279 2
+                 memcpy(p, &$2[1], $2[0]);
+                 $$=new_order(hashargs, $1, $2[0], p);
+d281 1
+a281 1
+            HASH { yyerror("illegal compiler derective"); }
+d567 2
+a568 2
+                           $$[0] = $2[0]+2; $$[1] = $1[1];
+                           memcpy(&$$[2], &$2[1], $2[0]);
+d586 1
+a586 1
+                           $$[0] = 1; $$[1] = MAKETYPE(tp_list, $2[1] & EXT_MASK);
+@
+
+
+1.28
+log
+@bug fix
+@
+text
+@d38 1
+d51 2
+a52 1
+%type  <intv>  elem onetype types
+d266 15
+a280 3
+hash_stmt:  HASHARGS types      { $$=new_order(hashargs, $1, 0, NULL);}
+            HASHTILDEARGS types { $$=new_order(hashtildeargs, $1, 0, NULL);}
+            HASHRESTYPE onetype { $$=new_order(hashrestype, $1, 0, NULL);}
+d566 18
+a583 9
+types:       onetype types
+           | onetype
+
+onetype:     INT         { $$ = MAKETYPE(tp_none, tp_int); }
+           | REAL        { $$ = MAKETYPE(tp_none, tp_real); }
+           | BOOL        { $$ = MAKETYPE(tp_none, tp_bool); }
+           | DIGIT       { $$ = MAKETYPE(tp_none, tp_digit); }
+           | STRING      { $$ = MAKETYPE(tp_none, tp_string); }
+           | NONE        { $$ = MAKETYPE(tp_none, tp_none); }
+d585 3
+a587 1
+               { $$ = MAKETYPE(tp_list, $2 & EXT_MASK) }
+@
+
+
+1.27
+log
+@hash instruction extended
+@
+text
+@d50 1
+a50 1
+%type  <intv>  elem
+d58 3
+a60 2
+%token INT REAL BOOL SEMICOLON COLON PTD TRUE_Y FALSE_Y
+%token LBRACKET RBRACKET
+a81 1
+
+d264 3
+a266 3
+hash_stmt:  HASHARGS TYPES      { $$=new_order(hashargs, $1, 0, NULL);}
+            HASHTILDEARGS TYPES { $$=new_order(hashtildeargs, $1, 0, NULL);}
+            HASHRESTYPE ONETYPE { $$=new_order(hashrestype, $1, 0, NULL);}
+d555 1
+a555 1
+onetype      INT         { $$ = MAKETYPE(tp_none, tp_int); }
+d562 1
+a562 1
+               { $$=MAKETYPE(tp_list, $2 & EXT_MASK) }
+@
+
+
+1.26
+log
+@*dec* made unary
+@
+text
+@d55 1
+a55 1
+%token <helpstring> HASH
+d250 1
+a250 2
+               { 
+                 *pdata = conc_data(new_data(d_list, $3, $5, NULL), NULL);
+d255 1
+a255 3
+               {
+                 $$ =  MKPRF($1.prf);
+               }
+d257 1
+a257 3
+               {
+                 $$ =  MKPRF($1.prf);
+               }
+d259 1
+a259 3
+               {
+                 $$ =  MKPRF($1.prf);
+               }
+d261 1
+a261 3
+               {
+                 $$ =  MKPRF($1.prf);
+               }
+d264 4
+a267 1
+hash_stmt:  HASH { $$=new_order(hash, $1);}
+d552 11
+@
+
+
+1.25
+log
+@kill's pushaux freew
+@
+text
+@d388 17
+a404 17
+           | DECA LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(deca, $3, $5); }
+           | DECR LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(decr, $3, $5); }
+           | DECT LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(dect, $3, $5); }
+           | DECW LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(decw, $3, $5); }
+           | TDECA LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tdeca, $3, $5); }
+           | TDECR LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tdecr, $3, $5); }
+           | TDECT LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tdect, $3, $5); }
+           | TDECW LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+                { $$=new_order(tdecw, $3, $5); }
+           | KILLA LBRACKET INTV ',' INTV RBRACKET SEMICOLON
+@
+
+
+1.24
+log
+@all integers, ptr's, booleans and prf's tagged
+@
+text
+@d62 2
+a63 2
+%token SNAP APPLY FREEA FREE1A FREESWT FREET PUSHAW PUSHTW PUSHAR PUSHTR PUSHCW
+%token FREE1SWT PUSHAW0 PUSHTW0 PUSHAR0 PUSHTR0 PUSHRET
+d70 1
+d307 2
+d340 2
+d404 16
+@
+
+
+1.23
+log
+@empty lists in lists now available
+@
+text
+@d310 1
+a310 1
+                { $$=new_order(pushcw_i, $5); }
+d312 1
+a312 1
+                { $$=new_order(pushcw_b, FALSE); }
+d314 1
+a314 1
+                { $$=new_order(pushcw_b, TRUE); }
+d316 1
+a316 1
+                { $$ = new_order(pushcw_pf, $3.prf, $3.types, 1); }
+d318 1
+a318 1
+                { $$ = new_order(pushcw_pf, $3.prf, $3.types, 2); }
+d320 1
+a320 1
+                { $$ = new_order(pushcw_pf, $3.prf, $3.types, 3); }
+d322 1
+a322 1
+                { $$ = new_order(pushcw_pf, $3.prf, $3.types, 4); }
+d360 1
+a360 1
+                { $$=new_order(rtc_i, $5); }
+d362 1
+a362 1
+                { $$=new_order(rtc_b, FALSE); }
+d364 1
+a364 1
+                { $$=new_order(rtc_b, TRUE); }
+d366 1
+a366 1
+                { $$=new_order(rtp, $5); }
+d402 1
+a402 1
+                { $$=new_order(pushw_p, $5); }
+d404 1
+a404 1
+                { asm_mode |= ASM_TILDE; $$=new_order(pushr_p, $5); }
+d424 1
+a424 1
+                { $$=new_order(delta1, $1.prf, $1.types); }
+d426 1
+a426 1
+                { $$=new_order(delta2, $1.prf, $1.types); }
+d428 1
+a428 1
+                { $$=new_order(delta3, $1.prf, $1.types); }
+d430 1
+a430 1
+                { $$=new_order(delta4, $1.prf, $1.types); }
+d432 1
+a432 1
+                { $$=new_order(delta1, $3.prf, $3.types); }
+d434 1
+a434 1
+                { $$=new_order(delta2, $3.prf, $3.types); }
+d436 1
+a436 1
+                { $$=new_order(delta3, $3.prf, $3.types); }
+d438 1
+a438 1
+                { $$=new_order(delta4, $3.prf, $3.types); }
+@
+
+
+1.22
+log
+@primitive functions in lists may now be parsed correctly
+@
+text
+@d248 6
+@
+
+
+1.21
+log
+@reads empty lists
+@
+text
+@d248 16
+@
+
+
+1.20
+log
+@list arity check
+@
+text
+@d198 7
+@
+
+
+1.19
+log
+@ref-counting instructions added to grammar
+link orders->function descriptor established
+@
+text
+@d189 2
+@
+
+
+1.18
+log
+@minor corrections
+@
+text
+@d68 2
+d336 32
+@
+
+
+1.17
+log
+@types reimplemented
+@
+text
+@d283 1
+a283 1
+                { $$ = new_order(pushcw_pf, $3, 1); }
+d285 1
+a285 1
+                { $$ = new_order(pushcw_pf, $3, 2); }
+d287 1
+a287 1
+                { $$ = new_order(pushcw_pf, $3, 3); }
+d289 1
+a289 1
+                { $$ = new_order(pushcw_pf, $3, 4); }
+d358 1
+a358 1
+           | prf1 RBRACKET SEMICOLON
+d360 1
+a360 1
+           | prf2 SEMICOLON
+d362 1
+a362 1
+           | prf3 SEMICOLON
+d364 1
+a364 1
+           | prf4 SEMICOLON
+@
+
+
+1.16
+log
+@plus_ii -> add_ii, just to make it compilable
+@
+text
+@d11 1
+a11 1
+extern FILE *yyin,
+d27 1
+a27 1
+      
+d38 4
+a41 1
+         PRIMF primf;
+d61 1
+a61 1
+%token RTT RTF RTC RTP RTM EXIT END MOVEAW MOVEAR MOVETW MOVETR PUSHAW0 TAIL 
+d66 1
+a66 3
+%token JUMP JFALSE JTRUE JCOND JFALSE_B JTRUE_B JCOND_B
+%token JFALSE2 JTRUE2 JCOND2 JFALSE2_B JTRUE2_B JCOND2_B
+%token LE_II EQ_II NE_II MULT_II PLUS_II MINUS_II
+d69 1
+a69 1
+%token <primf> VC_MINUS VC_MULT VC_DIV VC_MIN VC_MAX 
+d72 1
+a72 1
+%token <primf> PLUS MINUS MULT DIV MOD IP MAX MIN AND OR XOR EQ NE 
+d83 1
+a83 1
+asm_prog:     { program_start=conc_desc_fun(NULL,NULL,NULL);
+d90 1
+a90 1
+           ;  
+d92 1
+a92 1
+func_list:    func_list func 
+d95 1
+a95 1
+                 $$=conc_function($1,$2);
+d98 2
+a99 2
+               }      
+           | func 
+d102 1
+a102 1
+               }  
+d105 1
+a105 1
+func:        FUNC_LABEL COLON { outfunc = 0; } stmt_list func_end 
+d107 1
+a107 1
+                 $$=new_function($1, conc_order($4,$5));
+d109 1
+a109 1
+           | GOAL_LABEL COLON { outfunc = 0; } stmt_list func_end 
+d111 1
+a111 1
+                 $$=new_function("goal", conc_order($4,$5));
+d124 1
+a124 1
+func_end:    END LBRACKET RBRACKET SEMICOLON 
+d129 2
+a130 2
+       
+stmt_list:   stmt_list stmt 
+d133 1
+a133 1
+                    $$=conc_order($1,$2);
+d137 1
+a137 1
+           | stmt 
+d143 10
+a152 10
+stmt:        param_stmt {$$=$1;}
+           | asis_stmt  {$$=$1;}
+           | base_stmt  {$$=$1;}
+           | func_call  {$$=$1;}
+           | data       {$$=NULL;}
+           | hash_stmt  {$$=$1;}
+           | start_desc {$$=NULL;}
+           | COND_LABEL COLON {$$=new_order(label, $1);}
+           | JCOND_LABEL COLON {$$=new_order(label, $1);}
+           | CONT_LABEL COLON {$$=new_order(label, $1);}
+d173 1
+a173 1
+               *pdescs=conc_desc(new_desc(DT_CONDITIONAL,
+d239 2
+a240 2
+hash_stmt:  HASH {$$=new_order(hash, $1);}
+           ;                             
+d244 1
+a244 2
+                {
+                  asm_mode |= ASM_TILDE;
+d248 1
+a248 3
+                {
+                  $$=new_order(rtf);
+                }
+d250 1
+a250 3
+                {
+                  $$=new_order(rtm);
+                }
+d252 1
+a252 3
+                {
+                  $$=new_order(ext);
+                }
+d254 5
+a258 13
+                {
+                  $$=new_order(moveaw);
+                }                            
+           | MOVEAR LBRACKET RBRACKET SEMICOLON            
+                {                            
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(movear);
+                }                            
+           | MOVETW LBRACKET RBRACKET SEMICOLON            
+                {                            
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(movetw);
+                }
+d260 13
+a272 56
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(movetr);
+                }                            
+           | PUSHAW0 LBRACKET RBRACKET SEMICOLON       
+                {                            
+                  $$=new_order(pushaw, 0);
+                }                            
+           | PUSHTR0 LBRACKET RBRACKET SEMICOLON       
+                {                            
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushtr, 0);
+                }                            
+           | PUSHAR0 LBRACKET RBRACKET SEMICOLON       
+                {                            
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushar, 0);
+                }                            
+           | PUSHTW0 LBRACKET RBRACKET SEMICOLON       
+                {                            
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushtw, 0);
+                }                            
+           | FREE1A LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(freea, 1);
+                }
+           | FREE1SWT LBRACKET RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(freeswt, 1);
+                }
+           | LE_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(le_ii);
+                }
+           | EQ_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(eq_ii);
+                }
+           | NE_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(ne_ii);
+                }
+           | PLUS_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(add_ii);
+                }
+           | MINUS_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(minus_ii);
+                }
+           | MULT_II LBRACKET RBRACKET SEMICOLON        
+                {                            
+                  $$=new_order(mult_ii);
+                }
+d277 1
+a277 3
+                {
+                  $$=new_order(pushcw_i,$5);
+                }
+d279 1
+a279 3
+                {
+                  $$=new_order(pushcw_b,FALSE);
+                }
+d281 1
+a281 3
+                {
+                  $$=new_order(pushcw_b,TRUE);
+                }
+d283 1
+a283 3
+                {
+                   $$ = new_order(pushcw_pf, $3, 1);
+                }
+d285 1
+a285 3
+                {
+                   $$ = new_order(pushcw_pf, $3, 2);
+                }
+d287 1
+a287 3
+                {
+                   $$ = new_order(pushcw_pf, $3, 3);
+                }
+d289 23
+a311 52
+                {
+                   $$ = new_order(pushcw_pf, $3, 4);
+                }
+
+           | PUSHAW LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(pushaw,$3);
+                }
+           | PUSHTW LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushtw,$3);
+                }
+           | PUSHAR LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushar,$3);
+                }
+           | PUSHTR LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushtr,$3);
+                }
+           | FREESWT LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(freeswt,$3);
+                }
+           | FREEA LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(freea,$3);
+                }
+           | FREET LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(freet,$3);
+                }
+           | APPLY LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(apply,$3);
+                }
+           | MKLIST LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(mklist,$3);
+                }
+           | MKDCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(mkdclos,$3,$5);
+                }
+           | MKCCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  if (ISASM_TILDE())
+d313 1
+a313 1
+                  $$=new_order(mkcclos,$3,$5,0);
+d315 2
+a316 3
+           | MKBCLOS LBRACKET INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  if (ISASM_TILDE())
+d318 1
+a318 11
+                  $$=new_order(mkbclos,$3,$5,0);
+                }
+           | MKCCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(mkcclos,$3,$5,$7);
+                }
+           | MKBCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(mkbclos,$3,$5,$7);
+d320 6
+a325 5
+           | MKGACLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(mkgaclos,$3,$5, $7);
+                }
+d327 1
+a327 3
+                {
+                  $$=new_order(rtc_i,$5);
+                }           
+d329 1
+a329 3
+                {
+                  $$=new_order(rtc_b,FALSE);
+                }           
+d331 1
+a331 3
+                {
+                  $$=new_order(rtc_b,TRUE);
+                }           
+d333 1
+a333 3
+                {
+                  $$=new_order(rtp,$5);
+                }
+d336 4
+a339 9
+param_stmt:  PUSHW LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON 
+                {
+                  $$=new_order(pushw_p, $5);
+                }
+           | PUSHR LBRACKET PTD LBRACKET HEX_NUM RBRACKET RBRACKET SEMICOLON  
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(pushr_p, $5);
+                }
+d343 1
+a343 1
+                { $$= new_order(pushret,$3); }
+d345 1
+a345 1
+                { $$=new_order(jump,$3); }
+d347 1
+a347 1
+                { $$=new_order(jfalse,$3); }
+d349 1
+a349 1
+                { $$=new_order(jtrue,$3); }
+d351 1
+a351 1
+                { $$=new_order(jcond,$3); }
+d353 1
+a353 1
+                { $$=new_order(jfalse2,$3,$5); }
+d355 1
+a355 1
+                { $$=new_order(jtrue2,$3,$5); }
+d357 9
+a365 13
+                { $$=new_order(jcond2,$3,$5); }
+           | JFALSE_B LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jfalse_b,$3); }
+           | JTRUE_B LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jtrue_b,$3); }
+           | JCOND_B LBRACKET COND_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jcond_b,$3); }
+           | JFALSE2_B LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jfalse2_b,$3,$5); }
+           | JTRUE2_B LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jtrue2_b,$3,$5); }
+           | JCOND2_B LBRACKET COND_LABEL ',' CONT_LABEL RBRACKET SEMICOLON
+                { $$=new_order(jcond2_b,$3,$5); }
+d367 1
+a367 1
+                { $$=new_order(delta1,$3); }
+d369 1
+a369 1
+                { $$=new_order(delta2,$3); }
+d371 1
+a371 1
+                { $$=new_order(delta3,$3); }
+d373 3
+a375 3
+                { $$=new_order(delta4,$3); }
+           | BETA LBRACKET FUNC_LABEL RBRACKET SEMICOLON 
+                { $$=new_order(beta,$3); }
+d377 1
+a377 3
+                { asm_mode |= ASM_TILDE;
+                  $$=new_order(Gamma,$3);
+                }
+d379 1
+a379 3
+                { asm_mode |= ASM_TILDE;
+                  $$=new_order(gammabeta,$3);
+                }
+d381 83
+a463 1
+                { $$=new_order(tail,$3); }
+d466 1
+a466 1
+/* einstellige primitive Funktionen */             
+d468 2
+a469 84
+prf1:        ABS        {$$=p_abs;}
+           | NEG        {$$=p_neg;}
+           | EXP        {$$=p_exp;}
+           | LN         {$$=p_ln;}
+           | SIN        {$$=p_sin;}
+           | COS        {$$=p_cos;}
+           | TAN        {$$=p_tan;}
+           | FLOOR      {$$=p_floor;}
+           | CEIL       {$$=p_ceil;}
+           | FRAC       {$$=p_frac;}
+           | TRUNC      {$$=p_trunc;}
+           | VC_PLUS    {$$=p_vc_plus;}
+           | VC_MINUS   {$$=p_vc_minus;}
+           | VC_MULT    {$$=p_vc_mult;}
+           | VC_DIV     {$$=p_vc_div;}
+           | VC_MIN     {$$=p_vc_min;}
+           | VC_MAX     {$$=p_vc_max;}
+           | LDIM       {$$=p_ldim;}
+           | VDIM       {$$=p_vdim;}
+           | MDIM       {$$=p_mdim;}
+           | CLASS      {$$=p_class;}
+           | TYPE       {$$=p_type;}
+           | EMPTY      {$$=p_empty;}
+           | TRANSPOSE  {$$=p_transpose;}
+           | REVERSE    {$$=p_reverse;}
+           | TO_SCAL    {$$=p_to_scal;}
+           | TO_VECT    {$$=p_to_vect;}
+           | TO_TVECT   {$$=p_to_tvect;}
+           | TO_MAT     {$$=p_to_mat;}
+           ;
+           
+/* zweistellige primitive Funktionen */ 
+
+prf2:        PLUS    {$$=p_plus;} 
+           | MINUS   {$$=p_minus;} 
+           | MULT    {$$=p_mult;} 
+           | DIV     {$$=p_div;} 
+           | MOD     {$$=p_mod;} 
+           | IP      {$$=p_ip;} 
+           | MAX     {$$=p_max;} 
+           | MIN     {$$=p_min;} 
+           | AND     {$$=p_and;}
+           | OR      {$$=p_or;}
+           | XOR     {$$=p_xor;}
+           | EQ      {$$=p_eq;}
+           | NE      {$$=p_ne;}
+           | F_EQ    {$$=p_f_eq;}
+           | F_NE    {$$=p_f_ne;}
+           | GE      {$$=p_ge;}
+           | GT      {$$=p_gt;}
+           | LE      {$$=p_le;}
+           | LT      {$$=p_lt;}
+           | LSELECT {$$=p_lselect;}
+           | LCUT    {$$=p_lcut;}
+           | LROTATE {$$=p_lrotate;}
+           | LUNITE  {$$=p_lunite;}
+           | VSELECT {$$=p_vselect;}
+           | VCUT    {$$=p_vcut;}
+           | VROTATE {$$=p_vrotate;}
+           | VUNITE  {$$=p_vunite;}
+           | C_PLUS  {$$=p_c_plus;} 
+           | C_MINUS {$$=p_c_minus;} 
+           | C_MULT  {$$=p_c_mult;} 
+           | C_DIV   {$$=p_c_div;} 
+           | C_MAX   {$$=p_c_max;} 
+           | C_MIN   {$$=p_c_min;} 
+           ;
+       
+/* dreistellige primitive Funktionen */ 
+    
+prf3:        LREPLACE     {$$=p_lreplace;}
+           | MSELECT      {$$=p_mselect;}
+           | MCUT         {$$=p_mcut;}
+           | MROTATE      {$$=p_mrotate;}
+           | MUNITE       {$$=p_munite;}
+           | MRE_R        {$$=p_mre_r;}
+           | MRE_C        {$$=p_mre_c;}
+           | LTRANSFORM   {$$=p_ltransform;}
+           ;
+       
+/* vierstellige primitive Funktionen */ 
+    
+prf4:        MREPLACE    {$$=p_mreplace;}
+           | REPSTR      {$$=p_repstr;}
+@
+
+
+1.15
+log
+@redundancies removed
+@
+text
+@d320 1
+a320 1
+                  $$=new_order(plus_ii);
+@
+
+
+1.14
+log
+@mkdclos corrected, jump implemented
+@
+text
+@a331 22
+/* only to kill reduce/reduce conflicts in 
+   PUSHCW LBRACKET prfx RBRACKET SEMICOLON
+/*
+pf_onto_w:    prf1 RBRACKET SEMICOLON
+                {
+                   $$ = new_order(pushcw_pf, $1, 1);
+                }
+            | prf2 RBRACKET SEMICOLON
+                {
+                   $$ = new_order(pushcw_pf, $1, 2);
+                }
+            | prf3 RBRACKET SEMICOLON
+                {
+                   $$ = new_order(pushcw_pf, $1, 3);
+                }
+            | prf4 RBRACKET SEMICOLON
+                {
+                   $$ = new_order(pushcw_pf, $1, 4);
+                }
+            ;
+/* Dies sind parametrisierte Befehle, denen einfach ein Basistyp folgt,
+   ggfs. auch eine primitive Funktion */
+@
+
+
+1.13
+log
+@mkdclos
+@
+text
+@d63 1
+a63 1
+%token JFALSE JTRUE JCOND JFALSE_B JTRUE_B JCOND_B
+a426 2
+                  if (ISASM_TILDE())
+                    yywarn("mkdclos requires third argument");
+a428 5
+           | MKDCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+                {
+                  asm_mode |= ASM_TILDE;
+                  $$=new_order(mkdclos,$3,$5,$7);
+                }
+d487 2
+@
+
+
+1.12
+log
+@pushcw(primfunc) added
+reduce/reduce conflicts removed
+@
+text
+@d425 1
+a425 1
+           | MKDCLOS LBRACKET INTV RBRACKET SEMICOLON 
+d427 8
+a434 1
+                  $$=new_order(mkdclos,$3);
+@
+
+
+1.11
+log
+@asm_mode integrated
+@
+text
+@d332 22
+a353 1
+/* Dies sind parametrisierte Befehle, denen einfach ein Basistyp folgt */
+d367 17
+d605 1
+a605 5
+prf3:        C_PLUS       {$$=p_c_plus;}
+           | C_MINUS      {$$=p_c_minus;}
+           | C_MULT       {$$=p_c_mult;}
+           | C_DIV        {$$=p_c_div;}
+           | LREPLACE     {$$=p_lreplace;}
+@
+
+
+1.10
+log
+@conditional instructions completed
+@
+text
+@d9 1
+a13 1
+extern int yyerror();
+d26 1
+a26 2
+int i;
+
+d58 1
+a58 1
+%token RTT RTF RTC EXIT END MOVEAW MOVEAR MOVETW MOVETR PUSHAW0 TAIL 
+d61 1
+a61 1
+%token MKDCLOS MKBCLOS MKGACLOS MKLIST RTP
+d104 1
+a104 1
+func:        FUNC_LABEL COLON stmt_list func_end 
+d106 1
+a106 1
+                 $$=new_function($1, conc_order($3,$4));
+d108 1
+a108 1
+           | GOAL_LABEL COLON stmt_list func_end 
+d110 1
+a110 1
+                 $$=new_function("goal", conc_order($3,$4));
+d112 1
+a112 1
+           | JCOND_LABEL COLON stmt_list func_end
+d117 1
+a117 1
+                 $$=new_function(labelv, conc_order(conc_order(new_order(label, $1), $3), $4));
+a160 1
+
+d165 9
+a173 6
+               /* generate label jcond_<adr> => func_<adr> */
+               strcpy(labelv, "func"); strcpy(&labelv[4], &($15[5]));
+               *pdescs=conc_desc(new_desc(DT_COMBINATOR, $3, $9>>2, $11, $13, labelv), NULL);
+               pdescs=&((*pdescs)->next);
+               $15[4] = 'd';
+               *pdescs=conc_desc(new_desc(DT_CONDITIONAL, (int)$3+1, $9, $11, $13, $15), NULL);
+d244 1
+d251 4
+d265 1
+d270 1
+d275 1
+d284 1
+d289 1
+d294 1
+d303 1
+d352 1
+d357 1
+d362 1
+d367 1
+d376 1
+a378 4
+           | SNAP LBRACKET INTV RBRACKET SEMICOLON 
+                {
+                  $$=new_order(snap,$3);
+                }
+d387 1
+a387 1
+           | MKDCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+d389 1
+a389 1
+                  $$=new_order(mkdclos,$3, $5, $7);
+d391 17
+d410 1
+d415 1
+d442 1
+d484 3
+a486 1
+                { $$=new_order(Gamma,$3); }
+d488 3
+a490 1
+                { $$=new_order(gammabeta,$3); }
+@
+
+
+1.9
+log
+@conditionals outside of functions
+@
+text
+@d35 1
+a35 1
+         char func_lab[80];
+d63 3
+a65 1
+%token PUSHW PUSHR JFALSE JTRUE JFALSE_B
+d414 1
+a414 3
+                {
+                  $$= new_order(pushret,$3);
+                }
+d416 11
+a426 3
+                {
+                  $$=new_order(jfalse,$3);
+                }
+d428 11
+a438 7
+                {
+                  $$=new_order(jfalse_b,$3);
+                }
+           | JTRUE LBRACKET COND_LABEL RBRACKET SEMICOLON
+                {
+                  $$=new_order(jtrue,$3);
+                }
+d440 1
+a440 3
+                {
+                  $$=new_order(delta1,$3);
+                }
+d442 1
+a442 3
+                {
+                  $$=new_order(delta2,$3);
+                }
+d444 1
+a444 3
+                {
+                  $$=new_order(delta3,$3);
+                 }
+d446 1
+a446 3
+                {
+                  $$=new_order(delta4,$3);
+                }
+d448 1
+a448 3
+                {
+                  $$=new_order(beta,$3);
+                }
+d450 1
+a450 3
+                {
+                  $$=new_order(Gamma,$3);
+                }
+d452 1
+a452 3
+                {
+                  $$=new_order(gammabeta,$3);
+                }
+d454 1
+a454 3
+                {
+                  $$=new_order(tail,$3);
+                }
+@
+
+
+1.8
+log
+@pushret and conditinal labels
+@
+text
+@d109 1
+a109 1
+                 $$=new_function("goal", $3);
+d111 7
+d156 3
+a158 3
+                 *pdescs=conc_desc(new_desc(DT_COMBINATOR, $3, $9, $11, $13, $15), NULL);
+                 pdescs=&((*pdescs)->next);
+                 $$=NULL;
+d164 9
+a172 3
+                 *pdescs=conc_desc(new_desc(DT_CONDITIONAL, $3, $9, $11, $13, $15), NULL);
+                 pdescs=&((*pdescs)->next);
+                 $$=NULL;
+d319 1
+a319 1
+base_stmt:    PUSHCW LBRACKET INT LBRACKET INTV RBRACKET RBRACKET SEMICOLON                  
+@
+
+
+1.7
+log
+@data types (list + real) complete
+@
+text
+@d52 1
+a52 1
+%token <func_lab> FUNC_LABEL COND_LABEL GOAL_LABEL ULICOND_LABEL
+d58 1
+a58 1
+%token FUN_DESC COMB FUNC CONDI COND_LABEL
+d142 2
+a143 1
+           | ULICOND_LABEL {$$=new_order(label, $1);}
+d155 1
+a155 1
+             HEX_NUM ',' COND_LABEL RBRACKET SEMICOLON
+d398 5
+a402 1
+func_call:   JFALSE LBRACKET COND_LABEL RBRACKET SEMICOLON
+@
+
+
+1.6
+log
+@minor corrections
+@
+text
+@d163 1
+a163 2
+               {
+                 *pdata = conc_data(new_data(d_real, $3, $5), NULL);
+d168 1
+a168 2
+               {
+                 int * p;
+d202 5
+a206 3
+           |  D_REAL LBRACKET HEX_NUM ',' REALV RBRACKET SEMICOLON
+               {
+                 $$ = (int)MKPTR(*pdata = conc_data(new_data(d_real, $3, $5), NULL));
+d208 1
+d210 6
+a215 3
+           | D_LIST LBRACKET HEX_NUM ',' INTV ',' list RBRACKET SEMICOLON
+               {
+                 $$ = (int)MKPTR(*pdata = conc_data(new_data(d_list, $3, $5, $7), NULL));
+d217 1
+@
+
+
+1.5
+log
+@data structure list implemented
+@
+text
+@a181 3
+{ int i;
+for(i=0;i<=$1[0];i++) printf("%d,",$1[i]);
+printf("\n");}
+a185 3
+{ int i;
+for(i=0;i<=$$[0];i++) printf("%d:",$$[i]);
+printf("\n");}
+d250 1
+a250 1
+                  $$=new_order(pushaw0);
+d254 1
+a254 1
+                  $$=new_order(pushtr0);
+d258 1
+a258 1
+                  $$=new_order(pushar0);
+d262 1
+a262 1
+                  $$=new_order(pushtw0);
+d266 1
+a266 1
+                  $$=new_order(free1a);
+d270 1
+a270 1
+                  $$=new_order(free1swt);
+d362 1
+a362 1
+                  $$=new_order(mkgclos,$3,$5, $7);
+d368 1
+a368 1
+           | RTC LBRACKET FALSE_Y RBRACKET SEMICOLON
+d372 1
+a372 1
+           | RTC LBRACKET TRUE_Y RBRACKET SEMICOLON
+a375 6
+           | RTC LBRACKET REAL LBRACKET HEX_NUM ',' REALV RBRACKET RBRACKET SEMICOLON
+                {
+                  $$=new_order(rtp, (void *)pdata);
+                  * pdata = conc_data(new_data(d_real, $5, $7), NULL);
+                  pdata = &((* pdata)->next);
+                }           
+a380 3
+       
+/* Dies sind parametrisierte Befehle, mit komplexeren Parametern */
+/* muss noch dran geschraubt werden, Parameter werden noch nicht uebergeben */
+d386 1
+a386 1
+           | PUSHR LBRACKET PTD RBRACKET HEX_NUM LBRACKET RBRACKET SEMICOLON  
+a390 2
+
+/* Dies sind parametrisierte Funktionsaufrufe, mit komplexeren Parametern */
+@
+
+
+1.4
+log
+@mkgclos -> mkgaclos
+@
+text
+@d5 2
+d34 1
+d48 2
+d55 1
+a55 1
+%token D_REAL, D_VECT, D_TVECT, D_MAT D_LIST TY_INTEGER TY_REAL TY_UNDEF  
+d57 2
+a58 2
+%token LBRACK RBRACK LBRACKET RBRACKET
+%token FUN_DESC FUNC_ADR COMB FUNC CONDI CFUNC TYCOMB TYCONDI COND_LABEL
+d65 1
+a65 1
+%token DELTA1 DELTA2 DELTA3 DELTA4 BETA GAMMA GAMMABETA JTAIL
+a100 1
+           |   {$$=NULL;}
+d162 7
+a168 4
+/* Dies sind Daten, die mit ausgegeben wurden, z.B. Matrix, Liste, ... 
+*/
+
+data:         D_REAL LBRACKET REALV RBRACKET SEMICOLON
+d170 5
+a174 1
+                 *pdata = conc_data(new_data(d_real, (void *)pdata, $3), NULL);
+d176 1
+a176 1
+                 $$ = NULL
+a177 2
+
+           | D_MAT data_type INTV ',' INTV ',' mat_list SEMICOLON
+d180 18
+a197 7
+data_type:   TY_INTEGER
+           | TY_REAL
+           | TY_UNDEF
+           ;
+         
+list_list:   list_list list_elem
+           | list_elem
+d200 20
+a219 5
+mat_list :
+           ;
+       
+list_elem:   INT LBRACKET INTV RBRACKET
+           | REAL LBRACKET REALV RBRACKET
+a221 1
+
+d310 1
+a310 1
+           | PUSHCW LBRACKET BOOL LBRACKET FALSE_Y RBRACKET RBRACKET SEMICOLON                  
+a313 8
+           | PUSHCW LBRACKET TRUE_Y RBRACKET SEMICOLON                  
+                {
+                  $$=new_order(pushcw_b,TRUE);
+                }
+           | PUSHCW LBRACKET FALSE_Y RBRACKET SEMICOLON                  
+                {
+                  $$=new_order(pushcw_b,FALSE);
+                }
+a317 6
+           | PUSHCW LBRACKET REAL LBRACKET REALV RBRACKET RBRACKET SEMICOLON
+                {
+                  $$=new_order(pushw_p, (void *)pdata);
+                  * pdata = conc_data(new_data(d_real, (void *)pdata, $5), NULL);
+                  pdata = &((* pdata)->next);
+                }
+d382 1
+a382 1
+           | RTC LBRACKET REAL LBRACKET REALV RBRACKET RBRACKET SEMICOLON
+d385 1
+a385 1
+                  * pdata = conc_data(new_data(d_real, (void *)pdata, $5), NULL);
+a400 5
+           | PUSHW LBRACKET PTD LBRACKET HEX_NUM RBRACKET ','
+               LBRACK class ',' type RBRACK RBRACKET SEMICOLON 
+                {
+                  $$=new_order(pushw_p, $5);
+                }
+a404 12
+           | PUSHR LBRACKET PTD LBRACKET HEX_NUM RBRACKET ','
+               LBRACK class ',' type RBRACK RBRACKET SEMICOLON 
+                {
+                  $$=new_order(pushr_p, $5);
+                }
+           ;
+
+class:       CFUNC
+           ;
+
+type:        TYCOMB
+           | TYCONDI
+@
+
+
+1.3
+log
+@hex numbers handled as integers
+@
+text
+@d57 1
+a57 1
+%token MKDCLOS MKBCLOS MKGCLOS MKLIST RTP
+d346 1
+a346 1
+           | MKGCLOS LBRACKET INTV ',' INTV ',' INTV RBRACKET SEMICOLON 
+@
+
+
+1.2
+log
+@reals implemented
+@
+text
+@a31 1
+         char hexnum[12];
+d45 1
+a45 1
+%token <intv> INTV
+a46 1
+%token <hexnum> HEX_NUM
+d294 1
+a294 1
+                  $$=new_order(pushcw_r, (void *)pdata);
+a394 1
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d52 1
+a52 1
+%token MAT LIST TY_INTEGER TY_REAL TY_UNDEF  
+d109 2
+a110 1
+           | start_desc {$$=NULL;}
+d163 6
+a168 1
+data:        LIST INTV list_list RBRACKET SEMICOLON 
+d170 1
+a170 1
+           | MAT data_type INTV ',' INTV ',' mat_list
+@

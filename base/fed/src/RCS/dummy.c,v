@@ -1,0 +1,36 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	93.11.23.13.57.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "cparm.h"
+/* (C) Copyright by Christian-Albrechts-University of Kiel 1993		*/
+#include "cestack.h"
+
+reduce ( stack, top, p_parms)
+STACKELEM      *stack;
+int            *top;
+PTR_UEBERGABE  p_parms;
+{
+ return(1);
+}
+
+@

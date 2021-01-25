@@ -1,0 +1,92 @@
+DEFS:
+	static double size, timeFactor, previousTime;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+		    rememberFactor[100], temp[1000];
+
+	#define RATE 1			     /* Plot only each RATE-th point */
+
+	static int rateCounter;
+	static int flag[MAX_PROCESSORS], i;
+
+
+	void addXY(x, y)
+	double x, y;
+	{
+		if(++rateCounter >= RATE) {
+			rateCounter = 0;
+			previousTime = x;
+			ADD_XY(x, y);
+			NEXT_FRAME();
+		}
+
+		return;
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		flag[i] = 0;
+	}
+	size = 0;
+
+	SET_MODE(XY_PLOT);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "Descriptors -- %s -- %s reduction steps",
+		rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	timeFactor = atof(rememberFactor);
+
+	SET_NAME("Descriptors");
+	SET_X_LABEL("Time");
+	SET_Y_LABEL("# of allocated Descriptors");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+	SET_STYLE(STEPS);
+	SET_MARKER(SOLID);
+
+	NEXT_FRAME();
+
+	rateCounter = 0;
+
+	break;
+
+PROC_RUN:
+	if(PROCESSOR == 0) {
+		flag[PROCESSOR] = 2;
+	}
+	break;
+
+RECEIVE_BEGIN:
+	if(flag[PROCESSOR] != 2) {
+		if(!flag[PROCESSOR]) {
+			flag[PROCESSOR] = 1;
+		} else {
+			flag[PROCESSOR] = 2;
+		}
+	}
+	break;
+
+DESC_ALLOC:
+	if(flag[PROCESSOR] == 2) {
+		addXY(((double)TIME)/timeFactor, ++size);
+	}
+	break;
+
+DESC_FREE:
+	if(flag[PROCESSOR] == 2) {
+		addXY(((double)TIME)/timeFactor, --size);
+	}
+	break;
+
+END:
+	/* Force last point to be drawn... */
+	rateCounter = RATE;
+	addXY(previousTime, size);
+
+	NEXT_FRAME();
+	break;

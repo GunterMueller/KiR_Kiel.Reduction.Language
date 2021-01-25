@@ -1,0 +1,6 @@
+msProcTree*UKCCommand.background: #bbbbbb
+msProcTree*clip.background: #ffffff
+msProcTree*horizontal.background: #bbbbbb
+msProcTree*vertical.background: #bbbbbb
+
+msProcTree.buttonColor: #00c000

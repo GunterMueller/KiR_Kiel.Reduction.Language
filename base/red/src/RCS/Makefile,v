@@ -1,0 +1,287 @@
+head	1.5;
+access;
+symbols
+	continuation_based_interactions:1.3
+	pre_interactions:1.3
+	red1:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.5
+date	2001.03.09.15.26.28;	author base;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	2001.03.09.15.00.34;	author base;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.09.01.12.31.35;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.12.16.12.48.48;	author rs;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.5
+log
+@Makefile simplified
+@
+text
+@CC = cc
+RM = rm -rf
+
+EDO = /home/base/fed/editor.o.obj/editor.o
+LIBS = -ltermcap -lm
+
+OFILES = $(addprefix ../$(PRODUCT).o/,$(FILES:.c=.o))
+
+.DEFAULT: ../$(PRODUCT)
+
+../$(PRODUCT): ../$(PRODUCT).o $(OFILES)
+	$(CC) $(CFLAGS) -o $@@ $(OFILES) $(EDO) $(LIBS)
+
+../$(PRODUCT).o:
+	mkdir $@@
+
+../$(PRODUCT).o/%.o: %.c
+	$(CC) $(CFLAGS) -c $*.c -o $@@
+@
+
+
+1.4
+log
+@reorganized Makefile
+@
+text
+@d7 1
+a7 1
+OFILES = $(addprefix $(OFILE_DIR)/,$(FILES:.c=.o))
+d9 3
+a11 1
+$(PRODUCT): $(OFILE_DIR) $(OFILES)
+d14 1
+a14 1
+$(OFILE_DIR):
+d17 1
+a17 1
+$(OFILE_DIR)/%.o: %.c
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 2
+EDO = /home/majestix/base/fed.o/editor.o
+
+d4 1
+a4 24
+BC_FILES = ldel-expr.c lr-ret.c rdig-mul.c rpos.c rstswi.c lfun-def.c \
+	lr-stor.c rdig-sub.c rr1eapos.c rsubfunc.c lnr1pre.c lte-frev.c \
+	rdig-v1.c rr1pr.c rtrav.c lnrecfunc.c rdig-v2.c rrecfunc.c \
+	rval-int.c lpa-sub.c rclose.c rhinout.c rred-eq.c rwhen-pre.c \
+	lr-args.c rcomp.c rlog-mvt.c rst-match.c lr-close.c rdig-add.c \
+	rpartrec.c rstpre.c lr-num.c rdig-div.c rpartsub.c rstpro.c lr-prot.c \
+	rdig-mod.c rpatvar.c rsts-dec.c
+PC_FILES = dumpheap.c rlogfunc.c rreduct.c rstate.c ram.c rea-cre.c \
+	rlstruct.c rret-dec.c rvalfunc.c rea-ret.c rretrieve.c rvalir.c \
+	reac.c rnf.c rruntime.c rconvert.c rear.c rscavenge.c setup.c \
+	rconvir.c rheap.c rquery.c rst-dec.c rdesc.c rreduce.c rstack.c
+
+C_FILES = $(BC_FILES) $(PC_FILES)
+
+I_FILES = rinter.c rdummies.c
+D_FILES = r-debug.c rbreak.c rprint.c
+L_FILES = rbibfunc.c rmstruct.c rvstruct.c
+S_FILES = rbibfunc.small.c rmstruct.small.c rvstruct.small.c
+
+BH_FILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h
+PH_FILES = dumpheap.h rinter.h rprimf.h rstdinc.h traps.h rdigit.h rlmvt.h \
+	rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h tags.h
+H_FILES = $(BH_FILES) $(PH_FILES)
+
+d7 1
+a7 9
+# select CFLAGS for Sun or Apollo
+FLAGS  = -c -DUNIX=1 -DODDSEX=0 -DPI_RED_PLUS=1 -DRED_TO_NF=1 $(CFLAGS)
+#FLAGS  = -DUNIX=1 -DAPOLLO=1 -DSYS5=1 DODDSEX=0 -DPI_RED_PLUS=1 -DRED_TO_NF=1 $(CFLAGS)
+LFLAGS  = -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=0 -DSCAV_DEBUG=0 $(FLAGS)
+SFLAGS  = -DDEBUG=0 -DDBUG_OFF -DSCAVENGE=1 -DSCAV_DEBUG=0 $(FLAGS)
+DLFLAGS = -DDEBUG=1 -DSCAVENGE=0 -DSCAV_DEBUG=0 $(FLAGS)
+DSFLAGS = -DDEBUG=1 -DSCAVENGE=1 -DSCAV_DEBUG=1 $(FLAGS)
+
+VPATH = $(OFILE_DIR)
+d9 2
+a10 42
+.c.o:
+	$(CC) $(CFLAGS) -c $*.c -o $(OFILE_DIR)/$*.o
+
+l:
+	@@echo "making lred ..."
+	@@$(MAKE) depend "OFILE_DIR = ../l.o" \
+	    "FILES = $(C_FILES) $(L_FILES) $(I_FILES)" "CFLAGS = $(LFLAGS) -O"
+	@@$(MAKE) lred "OFILE_DIR = ../l.o" "FILES = $(C_FILES) $(L_FILES) $(I_FILES)" \
+	    "LDFILES = $(C_FILES) $(L_FILES)" "PRODUCT = lred" "LDFLAGS = $(LDFLAGS) -O"
+s:
+	@@echo "making sred ..."
+	@@$(MAKE) depend "OFILE_DIR = ../s.o" \
+	    "FILES = $(C_FILES) $(S_FILES) $(I_FILES)" "CFLAGS = $(SFLAGS) -O"
+	@@$(MAKE) sred "OFILE_DIR = ../s.o" "FILES = $(C_FILES) $(S_FILES) $(I_FILES)" \
+	    "LDFILES = $(C_FILES) $(S_FILES)" "PRODUCT = sred" "LDFLAGS = $(LDFLAGS) -O"
+dl:
+	@@echo "making dlred ..."
+	@@$(MAKE) depend "OFILE_DIR = ../dl.o" \
+	    "FILES = $(C_FILES) $(L_FILES) $(D_FILES) $(I_FILES)" \
+	    "CFLAGS = $(DLFLAGS) -g"
+	@@$(MAKE) dlred "OFILE_DIR = ../dl.o" \
+	    "FILES = $(C_FILES) $(L_FILES) $(D_FILES) $(I_FILES)" \
+	    "LDFILES = $(C_FILES) $(L_FILES) $(D_FILES)" \
+	    "PRODUCT = dlred" "LDFLAGS = $(LDFLAGS) -g"
+ds:
+	@@echo "making dsred ..."
+	@@$(MAKE) depend "OFILE_DIR = ../ds.o" \
+	    "FILES = $(C_FILES) $(S_FILES) $(D_FILES) $(I_FILES)" \
+	    "CFLAGS = $(DSFLAGS) -g"
+	@@$(MAKE) dsred "OFILE_DIR = ../ds.o" \
+	    "FILES = $(C_FILES) $(S_FILES) $(D_FILES) $(I_FILES)" \
+	    "LDFILES = $(C_FILES) $(S_FILES) $(D_FILES)" \
+	    "PRODUCT = dsred" "LDFLAGS = $(LDFLAGS) -g"
+
+all: l s dl ds
+
+dependencies:
+	makedepend -- $(DLFLAGS) -- $(C_FILES) $(L_FILES) $(S_FILES)
+
+clean:
+	$(RM) lred sred dlred dsred lred.o sred.o dlred.o dsred.o
+	$(RM) ../l.o ../s.o ../dl.o ../ds.o
+d15 2
+a16 6
+depend: $(OFILE_DIR) $(FILES:.c=.o)
+
+$(PRODUCT): $(FILES:.c=.o)
+	$(CC) $(LDFLAGS) -o $(PRODUCT) $(FILES:.c=.o) $(EDO) $(LIBS)
+	$(LD) -r -o $(PRODUCT).o $(LDFILES:.c=.o)
+
+@
+
+
+1.2
+log
+@ANSI-Version
+@
+text
+@a1 6
+# gcc :
+CC = gcc
+#INC = /usr/local/lib/ 
+# acc : 
+#CC = acc
+#INC = /usr/lang/SC1.0/ansi_include
+d14 1
+a14 1
+	reac.c rnf.c rruntime.c rconvert.c rear.c setup.c \
+d22 1
+a22 1
+S_FILES = rbibfunc.small.c rmstruct.small.c rvstruct.small.c rscavenge.c
+d42 1
+a42 9
+# gcc mit -O:
+	$(CC) $(CFLAGS) -O -ansi -Wall -Dsparc $*.c -o $(OFILE_DIR)/$*.o
+# gcc ohne -O:
+#	$(CC) $(CFLAGS) -ansi -Wall -Dsparc -c $*.c -o $(OFILE_DIR)/$*.o -I$(INC)
+# acc mit -O:
+#	$(CC) $(CFLAGS) -Dsparc -O -c $*.c -o $(OFILE_DIR)/$*.o -I$(INC) -vc -Xc
+# acc ohne -O:
+#	$(CC) $(CFLAGS) -Dsparc -c $*.c -o $(OFILE_DIR)/$*.o -I$(INC) -vc -Xc
+# bei acc und DEBUG -O abschalten
+d47 1
+a47 1
+	    "FILES = $(C_FILES) $(L_FILES) $(I_FILES)" "CFLAGS = $(LFLAGS)"
+d49 1
+a49 1
+	    "LDFILES = $(C_FILES) $(L_FILES)" "PRODUCT = lred" "LDFLAGS = $(LDFLAGS)"
+d53 1
+a53 1
+	    "FILES = $(C_FILES) $(S_FILES) $(I_FILES)" "CFLAGS = $(SFLAGS)"
+d55 1
+a55 1
+	    "LDFILES = $(C_FILES) $(S_FILES)" "PRODUCT = sred" "LDFLAGS = $(LDFLAGS)"
+a85 1
+	chmod 770 $@@
+a91 14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 6
+d20 1
+a20 1
+	reac.c rnf.c rruntime.c rconvert.c rear.c rscavenge.c setup.c \
+d28 1
+a28 1
+S_FILES = rbibfunc.small.c rmstruct.small.c rvstruct.small.c
+d38 4
+a41 4
+FLAGS  = -c -DPI_RED_PLUS=1 -DRED_TO_NF=1 $(CFLAGS)
+#FLAGS  = -DAPOLLO=1 -DSYS5=1 -DPI_RED_PLUS=1 -DRED_TO_NF=1 $(CFLAGS)
+LFLAGS  = -DDEBUG=0 -DSCAVENGE=0 -DSCAV_DEBUG=0 $(FLAGS)
+SFLAGS  = -DDEBUG=0 -DSCAVENGE=1 -DSCAV_DEBUG=0 $(FLAGS)
+d48 9
+a56 1
+	$(CC) $(CFLAGS) -c $*.c -o $(OFILE_DIR)/$*.o
+d61 1
+a61 1
+	    "FILES = $(C_FILES) $(L_FILES) $(I_FILES)" "CFLAGS = $(LFLAGS) -O"
+d63 1
+a63 1
+	    "LDFILES = $(C_FILES) $(L_FILES)" "PRODUCT = lred" "LDFLAGS = $(LDFLAGS) -O"
+d67 1
+a67 1
+	    "FILES = $(C_FILES) $(S_FILES) $(I_FILES)" "CFLAGS = $(SFLAGS) -O"
+d69 1
+a69 1
+	    "LDFILES = $(C_FILES) $(S_FILES)" "PRODUCT = sred" "LDFLAGS = $(LDFLAGS) -O"
+d100 1
+d106 15
+a120 1
+	$(LD) -r -o $(PRODUCT).o $(FILES:.c=.o)
+@

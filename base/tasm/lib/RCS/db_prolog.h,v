@@ -1,0 +1,1627 @@
+head	1.21;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.21
+date	95.07.06.11.43.20;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.06.29.12.02.22;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.06.28.09.57.45;	author sf;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.06.21.09.42.31;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.06.20.10.10.51;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.06.20.08.47.45;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.06.14.07.58.02;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.06.13.09.14.37;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.05.25.12.02.35;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.05.23.08.16.57;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.05.22.06.47.48;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.05.17.15.17.45;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.05.16.12.41.47;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.05.11.13.28.48;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.03.29.16.25.39;	author cr;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.03.22.17.56.27;	author cr;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.03.06.16.55.47;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.03.06.15.41.33;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.02.02.14.29.29;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.01.06.16.50.21;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.01.04.13.14.11;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.21
+log
+@DEBUG Flag
+@
+text
+@/********************************************************************/
+/* RETURNADDRESS on returnstack coded as follows:                   */
+/* BIT 0 :  tail-flag  (switch a and w if not set)                  */    
+/* BIT 1 :  func-label-flag (following address is a funktion if set)*/
+/********************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <math.h>
+#include "dbug.h"
+#include "rstdinc.h"
+#include "rheapty.h"
+#include "rstackty.h"
+#include "roptasm.h"
+#include "rmkclos.h"
+#include "rapply.h"
+#include "rstelem.h"
+
+#if !DEBUG
+#define DBUG_OFF 1
+#else
+#define NO_STACK_REG 1
+#endif
+
+void DescDump();
+void end_modul();
+STACKELEM readstack();
+void test_inc_refcnt();
+void test_dec_refcnt();
+void start_modul();
+
+typedef int (* FUNPTR)(void);
+
+#define reduce_red_cnt() red_cnt--
+#define MkInt(x, v)    (x)
+#define MkBool(x, v)   (x)
+#define MkElem(x, v)   (x)
+#define MkVect(x, v)   (x)
+#define MkTVect(x, v)  (x)
+#define MkMatrix(x, v) (x)
+#define MkReal(x,v)    (({MAKEDESC((PTR_DESCRIPTOR)v, 1, C_SCALAR, TY_REAL);}), \
+                       L_SCALAR(*(PTR_DESCRIPTOR)v, valr) = (x),  \
+                       (PTR_DESCRIPTOR)v)
+#define MAKE_CHAR(x)  (((x) << 16) | 0x0000001c)
+#define GET_CHAR(x)   ((x & 0x00FF0000) >> 16)
+#define IS_VAR_OR_CLOS_DESC(x)  ( (x)==C_EXPRESSION || (x)==C_CONSTANT)
+#define DESC(x)        (* (PTR_DESCRIPTOR) x)
+#define FUNCTIONRETURN 2
+#define TAIL_FLAG      1
+#define TRUE           1
+#define FALSE          0
+#define end()          ; 
+#define BITSTOKILLMASK (0xfffffffc) /* see comment on top of file */
+#define kill_bits(f)   ((f) & BITSTOKILLMASK) /* deletes bits 0 'n' 1 */
+/* special debug instructions */
+#define sprintw(n)     DBUG_PRINT("SPRINT", ("st_w[%d] = 0x%x", n, st_w[-(n)]));
+#define sprinta(n)     DBUG_PRINT("SPRINT", ("st_a[%d] = 0x%x", n, st_a[-(n)]));
+#define sprintr(n)     DBUG_PRINT("SPRINT", ("st_r[%d] = 0x%x", n, st_r[-(n)]));
+#define sprintt(n)     DBUG_PRINT("SPRINT", ("st_t[%d] = 0x%x", n, st_t[-(n)]));
+/*********** REFCOUNTING **********************/
+#define SET_REFCNT_EXPL() ;
+#define SET_REFCNT_IMPL() ;
+#define nr_pushaw(n)   *++st_w = st_a[-(n)]
+#define nr_pushtw(n)   *++st_w = st_t[-(n)]
+#define nr_pushar(n)   *++st_r = st_a[-(n)]
+#define nr_pushtr(n)   *++st_r = st_t[-(n)]
+#define nr_push_p(x)   push((int)x)
+#define nr_pushr_p(x)  push_r((int)x)
+#define nr_freea(n)    drop(a, n)
+#define nr_freeswt(n)  drop(t, n); stflip(t,r)
+
+#define decw(n)        DEC_REFCNT((T_PTD)st_w[-(n)])
+#define deca(n)        DEC_REFCNT((T_PTD)st_a[-(n)])
+#define decr(n)        DEC_REFCNT((T_PTD)st_r[-(n)])
+#define dect(n)        DEC_REFCNT((T_PTD)st_t[-(n)])
+#define tdecw(n)       T_DEC_REFCNT((T_PTD)st_w[-(n)])
+#define tdeca(n)       T_DEC_REFCNT((T_PTD)st_a[-(n)])
+#define tdecr(n)       T_DEC_REFCNT((T_PTD)st_r[-(n)])
+#define tdect(n)       T_DEC_REFCNT((T_PTD)st_t[-(n)])
+
+#define incw(n)     INC_REFCNT((T_PTD)st_w[-(n)])
+#define inca(n)     INC_REFCNT((T_PTD)st_a[-(n)])
+#define incr(n)     INC_REFCNT((T_PTD)st_r[-(n)])
+#define inct(n)     INC_REFCNT((T_PTD)st_t[-(n)])
+#define tincw(n)    T_INC_REFCNT((T_PTD)st_w[-(n)])
+#define tinca(n)    T_INC_REFCNT((T_PTD)st_a[-(n)])
+#define tincr(n)    T_INC_REFCNT((T_PTD)st_r[-(n)])
+#define tinct(n)    T_INC_REFCNT((T_PTD)st_t[-(n)])
+
+#define killw(n)     (* dealloc_tab[R_DESC(((T_PTD)st_w[-(n)]),class)])((T_PTD)st_w[-(n)])
+#define killa(n)     (* dealloc_tab[R_DESC(((T_PTD)st_a[-(n)]),class)])((T_PTD)st_a[-(n)])
+#define killr(n)     (* dealloc_tab[R_DESC(((T_PTD)st_r[-(n)]),class)])((T_PTD)st_r[-(n)])
+#define killt(n)     (* dealloc_tab[R_DESC(((T_PTD)st_t[-(n)]),class)])((T_PTD)st_t[-(n)])
+#define tkillw(n)       if T_POINTER(st_w[-(n)]) \
+                     (* dealloc_tab[R_DESC(((T_PTD)st_w[-(n)]),class)])((T_PTD)st_w[-(n)])
+#define tkilla(n)       if T_POINTER(st_a[-(n)]) \
+                     (* dealloc_tab[R_DESC(((T_PTD)st_a[-(n)]),class)])((T_PTD)st_a[-(n)])
+#define tkillr(n)       if T_POINTER(st_r[-(n)]) \
+                     (* dealloc_tab[R_DESC(((T_PTD)st_r[-(n)]),class)])((T_PTD)st_r[-(n)])
+#define tkillt(n)       if T_POINTER(st_t[-(n)]) \
+                     (* dealloc_tab[R_DESC(((T_PTD)st_t[-(n)]),class)])((T_PTD)st_t[-(n)])
+
+/********END REFCOUNTING **********************/
+
+#define mkap(n)        f_mkap(n)
+/* cr 22/03/95, kir(ff), START */
+#define mkframe(n)      if (0 == initdata_frame(n, &st_w[1-n]))       \
+                       {                                                 \
+                         fprintf(stderr, "FATAL ERROR in mkframe(%d).\n", n);  \
+                         exit(1);             \
+                       }                      \
+                       drop(w, n);                               \
+                       push((int)_desc)
+#define mkslot()        if (0 == initdata_slot(2, &st_w[1-2]))       \
+                       {                                                 \
+                         fprintf(stderr, "FATAL ERROR in mkslot().\n");  \
+                         exit(1);             \
+                       }                      \
+                       drop(w, 2);                               \
+                       push((int)_desc)
+#define inter(type)    { int n=(type==TY_PUT? 3 : (type==TY_GET? 2 : 0)); \
+                         if (0 == initdata_inter(type, n, &st_w[1-n]))       \
+                         {                                                 \
+                           fprintf(stderr, "FATAL ERROR in mkinter(%d).\n", type);  \
+                           exit(1);             \
+                         }                      \
+                         drop(w, n);                               \
+                         push((int)_desc);      \
+                       }
+/* cr 22/03/95, kir(ff), END */
+#define mklist(n)      if (0 == initdata_list(n, &st_w[1-n]))       \
+                       {                                                 \
+                         fprintf(stderr, "FATAL ERROR in mklist(%d).\n", n);  \
+                         exit(1);             \
+                       }                      \
+                       drop(w, n);                               \
+                       push((int)_desc)
+#define mkilist(n)     if (0 == initdata_i_list(n, &st_w[1-n]))       \
+                       {                                                 \
+                         fprintf(stderr, "FATAL ERROR in mkilist(%d).\n", n);  \
+                         exit(1);             \
+                       }                      \
+                       drop(w, n);                               \
+                       push((int)_desc)
+/* here n is arity, l the label and f the function to return to */
+#define ap(n,l,f)      push_r(l); \
+                       push_r(((int)f | FUNCTIONRETURN)); \
+                       push_r(n);          \
+                       DBUG_RETURN((int)&f_apply)
+/* here r is the label to return to */
+#define betanear(r)    push_r(r); \
+                       stflip(a,w);  \
+                       goto L0 
+/* here r is the label to return to, f the func to return to, t the called func */
+#define betafar(r,f,t) push_r(r);    /* label to return to */           \
+                       push_r(((int)f | FUNCTIONRETURN)); /*func to return to*/\
+                       push_r(0);               \
+                       stflip(a,w);  \
+                       DBUG_RETURN((int)(t)) /* func to call */
+/* here r is the label to return to */
+#define gammabetanear(r)    push_r(r); \
+                            stflip(a,w);  \
+                            goto L0 
+/* here b is the label to return to, f the func to return to, z the called func */
+#define gammabetafar(b,f,z) stflip(a,w);  \
+                            stflip(t,r);  \
+                            push_r(b);    \
+                            push_r(((int)f | FUNCTIONRETURN)); \
+                            /*func to return to*/   \
+                            push_r(0);               \
+                            DBUG_RETURN((int)(z)) /* func to call */
+#define top(s)         (*st_##s)
+#define drop(s,n)      (st_##s-=n)
+#define peek(s,n)      (st_##s[-(n)])
+#define stflip(s,t)    st_h=st_##s;             \
+                       st_##s=st_##t;           \
+                       st_##t=st_h
+#define repl(n,s,x)    st_##s[-n]=(x)         
+#define pushaux()      *++st_w = (int)_desc
+#define push(x)        *++st_w = (x)
+#define t_push(x)      push((int)x); T_INC_REFCNT((T_PTD)top(w)) 
+#define push_p(x)      INC_REFCNT(x); push((int)x)
+#define push_a(x)      (*++st_a = (x))
+#define push_r(x)      (*++st_r = (x))
+#define push_t(x)      (*++st_t = (x))
+#define pushr_p(x)     INC_REFCNT(x); push_r((int)x)
+#define pop(s)         (*st_##s--)
+#define pop_p(s)       DEC_REFCNT((T_PTD)top(s)); pop(s)
+
+#define pushaw(n)      *++st_w = st_a[-(n)]; T_INC_REFCNT((T_PTD)st_a[-(n)])
+#define pushar(n)      *++st_r = st_a[-(n)]; T_INC_REFCNT((T_PTD)st_a[-(n)])
+#define pushtw(n)      *++st_w = st_t[-(n)]; T_INC_REFCNT((T_PTD)st_t[-(n)])
+#define pushtr(n)      *++st_r = st_t[-(n)]; T_INC_REFCNT((T_PTD)st_t[-(n)])
+
+#define movetr()       (*++st_r = *st_t--)
+#define movear()       (*++st_r = *st_a--)
+#define movetw()       (*++st_w = *st_t--)
+#define moveaw()       (*++st_w = *st_a--)
+#define freew(n)       drop(w, n)
+#define freea(n)       {int i;for(i=0;i<n;i++) T_DEC_REFCNT((T_PTD)st_a[-i]);}; drop(a, n)
+#define freerfw(n)     {int i;for(i=0;i<n;i++) T_DEC_REFCNT((T_PTD)st_w[-i]);}; drop(w, n)
+#define freeswt(n)     {int i;for(i=0;i<n;i++) T_DEC_REFCNT((T_PTD)st_t[-i]);};   \
+                       drop(t, n); stflip(t,r)
+#define push_label(l)  push_r((l))
+#define push_tail(t)   push_r((t))
+#define flip_tail()    top(r) = top(r) ^ TAIL_FLAG
+#define jfalse(l,i)    if (!(T_BOOLEAN(top(w))))       \
+                       {                        \
+                          f_condfail(1, i);        \
+                          rtf();               \
+                       }                        \
+                       if (IS_FALSE(pop(w))) goto l
+#define jcond(l,i)     if (!(T_BOOLEAN(top(w))))       \
+                       {                        \
+                          f_condfail(1, i);        \
+                          rtf();               \
+                       }                        \
+                       if (IS_FALSE(pop(w))) goto l
+#define mksclos(a,b,c) dyn_mkbclos(a);  \
+                       L_CLOS(DESC(top(w)), ftype) = TY_CASE
+#define mkcclos(i,j)   pop(w);  \
+                       f_mkcclos(i,j)
+/* in jcond2: l:ELSE-label, c:CONTINUATION-label, i:index of cond in table */
+#define jcond2(l,c,i)  if (!(T_BOOLEAN(top(w))))       \
+                       {                        \
+                          f_condfail(1, i);        \
+                          goto c;               \
+                       }                        \
+                       if (IS_FALSE(pop(w))) goto l
+#define tailnear()     flip_tail();       \
+                       stflip(a, w);       \
+                       goto L0
+#define tailfar(f,b)   stflip(a, w);       \
+                       if (0 == (top(r) & FUNCTIONRETURN))  \
+                       { push_r((int)b | FUNCTIONRETURN);  \
+                         if (0 != (peek(r,1) & TAIL_FLAG)) flip_tail();} \
+                       flip_tail();       \
+                       push_r(0);       \
+                       DBUG_RETURN((int)(f))
+/* following i_rtx-instructions are used if a function was inlined into another */
+#define i_rtc(x, l)    stflip(a, w);        \
+                       push((int)(x));      \
+                       goto I##l
+#define i_rtp(x, l)    stflip(a, w);        \
+                       INC_REFCNT((T_PTD)(x)); \
+                       push((int)(x));      \
+                       goto I##l
+#define i_rtm(l)       stflip(a, w);        \
+                       goto I##l
+#define i_rtf(l)       stflip(a, w);        \
+                       moveaw();            \
+                       goto I##l
+#define rtc(x)         switch(top(r) & 3)       \
+                       {                        \
+                         case 0:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            stflip(a, w);       \
+                            push((int)x);          \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 1:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            push((int)x);          \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 2:                \
+                         {                      \
+                           int adr;             \
+                           stflip(a, w);        \
+                           push((int)x);          \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                      \
+                         case 3:                \
+                         {                      \
+                           int adr;             \
+                           push((int)x);          \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                     \
+                       }
+#define rtp(x)         switch(top(r) & 3)       \
+                       {                        \
+                         case 0:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            stflip(a,w);       \
+                            INC_REFCNT(x); push((int)x);          \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 1:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            INC_REFCNT(x); push((int)x);          \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 2:                \
+                         {                      \
+                           int adr;             \
+                           stflip(a,w);        \
+                           INC_REFCNT(x); push((int)x);          \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                      \
+                         case 3:                \
+                         {                      \
+                           int adr;             \
+                           INC_REFCNT(x); push((int)x);          \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                     \
+                       }
+#define rtm()          switch(top(r) & 3)       \
+                       {                        \
+                         case 0:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            stflip(a,w);       \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 1:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            moveaw();          \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 2:                \
+                         {                      \
+                           int adr;             \
+                           stflip(a,w);        \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                      \
+                         case 3:                \
+                         {                      \
+                           int adr;             \
+                           moveaw();          \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                     \
+                       }
+
+                       
+#define rtf()          switch(top(r) & 3)       \
+                       {                        \
+                         case 0:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            stflip(a, w);       \
+                            moveaw();           \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 1:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 2:                \
+                         {                      \
+                           int adr;             \
+                           stflip(a, w);        \
+                           moveaw();            \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                      \
+                         case 3:                \
+                         {                      \
+                           int adr;             \
+                           adr = kill_bits(pop(r)); \
+                           DBUG_RETURN(adr); \
+                         }                     \
+                       }
+#define ext()          push_r(0);DBUG_RETURN(interactions())
+
+/************************************************************/
+/* PATTERN MATCH MACROS */
+/************************************************************/
+/* here r is the label to return to, f the func to return to, t the called func */
+#define Case(r,f,t)    push_r(r);    /* label to return to */           \
+                       push_r(((int)f | FUNCTIONRETURN)); /*func to return to*/\
+                       flip_tail();  \
+                       push_r(0);               \
+                       DBUG_RETURN((int)(t)) /* func to call */
+#define gammacase(ret, f, target)    \
+                       stflip(r, t);    \
+                       push_r(ret);    /* label to return to */           \
+                       push_r(((int)f | FUNCTIONRETURN)); /*func to return to*/\
+                       flip_tail();  \
+                       push_r(0);               \
+                       DBUG_RETURN((int)(target)) /* func to call */
+#define mkcase(d)      f_mkcase(-1, (d))
+#define atend(n,label) if (peek(r, n) < peek(w, 1)) goto label
+#define atstart(n,label) if (peek(r, n) > peek(w, 1)) goto label
+#define fetch()        if ((T_PTD)(int)*(PTR_HEAPELEM)top(w) && T_POINTER((int)*(PTR_HEAPELEM)top(w))) \
+                         INC_REFCNT((T_PTD)*(PTR_HEAPELEM)top(w));       \
+                       repl(0, w, (int)*(PTR_HEAPELEM)top(w))
+#define mkwframe(n)    st_w += (n);      \
+                       push(peek(w, (n)+1))
+#define mkaframe(n)    { int i; for (i = 0; i < n; i++) push_a(1);}  
+#define matchprim(n, label1, label2, failed_when)            \
+                       if(n != top(w))            \
+                       {             \
+                         if (T_POINTER(top(w) & ~F_EDIT))   \
+                           if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)(top(w) & ~F_EDIT),class))) { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                       goto label1;       \
+                       }
+#define matchint(n, label1, label2, failed_when)            \
+                       if(n != top(w))            \
+                       {                          \
+                         if (T_POINTER(top(w)))   \
+                           if  (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w),class)))  \
+                           { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                           goto label1;             \
+                       }
+#define matchbool(n, label1, label2, failed_when)            \
+                       if(n != top(w))            \
+                       {                          \
+                         if (T_POINTER(top(w)))   \
+                           if  (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w),class)))  \
+                             { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                           goto label1;             \
+                       }
+#define matchlist(n, label1, label2, failed_when)           \
+                       if (T_POINTER(top(w)))   \
+                       {                                                  \
+                         if (R_DESC(*(T_PTD)top(w), class) != C_LIST ||    \
+                            (R_DESC(*(T_PTD)top(w), type) != TY_UNDEF) ||    \
+                            (R_LIST(*(T_PTD)top(w), dim) != n))          \
+                            {       \
+                              if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w), class))) \
+                                { push_t(failed_when); push_t(KLAA); goto label2;}    \
+                              else goto label1;                 \
+                            }               \
+                       }              \
+                       else goto label1
+#define matcharb_0(n, label1, label2, failed_when)           \
+                       if (T_POINTER(top(w)))   \
+                       {                                                  \
+                         if (!(R_DESC(*(T_PTD)top(w), class) == C_LIST &&    \
+                            (R_DESC(*(T_PTD)top(w), type) == TY_UNDEF)))          \
+                            {       \
+                              if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w), class))) \
+                            { push_t(failed_when); push_t(KLAA); goto label2;}      \
+                              else goto label1;                 \
+                            }               \
+                       }              \
+                       else goto label1
+#define matcharb(n, label1, label2, failed_when)           \
+                       if (T_POINTER(top(w)))   \
+                       {                                                  \
+                         if (!(R_DESC(*(T_PTD)top(w), class) == C_LIST &&    \
+                            (R_DESC(*(T_PTD)top(w), type) == TY_UNDEF) &&    \
+                            (R_LIST(*(T_PTD)top(w), dim) >= n)))          \
+                            {       \
+                              if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w), class))) \
+                            { push_t(failed_when); push_t(KLAA); goto label2;}      \
+                              else goto label1;                 \
+                            }               \
+                       }              \
+                       else goto label1
+#define matchstr(n, label1, label2, failed_when)              \
+                       if (T_POINTER(top(w)))   \
+                       {                                                  \
+                         if (R_DESC(*(T_PTD)top(w), class) != C_LIST ||    \
+                            (R_DESC(*(T_PTD)top(w), type) != TY_STRING) ||    \
+                            (R_LIST(*(T_PTD)top(w), dim) != n))          \
+                            {       \
+                              if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w), class))) \
+                               { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                              else goto label1;                             \
+                            }            \
+                       }              \
+                       else goto label1
+#define matcharbs(n, label1, label2, failed_when)           \
+                       if (T_POINTER(top(w)))   \
+                       {                                                  \
+                         if (R_DESC(*(T_PTD)top(w), class) != C_LIST ||    \
+                            (R_DESC(*(T_PTD)top(w), type) != TY_STRING) ||    \
+                            (R_LIST(*(T_PTD)top(w), dim) < n))          \
+                            {       \
+                              if (IS_VAR_OR_CLOS_DESC(R_DESC(*(T_PTD)top(w), class))) \
+                                { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                              else goto label1;                 \
+                            }               \
+                       }              \
+                       else goto label1
+#define matchin(arg, label1, label2, failed_when)   \
+                       if (T_POINTER(top(w)) &&   \
+                          ((R_DESC(*(T_PTD)top(w), type) == TY_EXPR) ||        \
+                           (R_DESC(*(T_PTD)top(w), type) == TY_NAME))) \
+                           { push_t(failed_when); push_t(KLAA); goto label2;}           \
+                       if (T_LETTER(top(w)))             \
+                       {                 \
+                         int i;                \
+                         for (i = 0; i < R_LIST(*(T_PTD)arg, dim); i++)   \
+                           if ((top(w) & F_VALUE) ==     \
+                             ((R_LIST(*(T_PTD)arg,ptdv))[i] & F_VALUE)) \
+                             break;     \
+                             if (R_LIST(*(T_PTD)arg,dim) == i)   goto label1;     \
+                        }                                  \
+                        else goto label1
+#define saveptr(n)     repl((n), w, peek(w, 1))
+#define nestlist()     if (0 != R_LIST(*(T_PTD)top(w), dim))      \
+                       {                                        \
+                         repl(1, w, (int) R_LIST(*(T_PTD)top(w), ptdv));     \
+                       }        \
+                       else     \
+                         repl(1, w, (int)_nil)
+                       
+#define dereference()  repl(0, w, *((PTR_HEAPELEM)peek(w, 1)))
+#define bind(n)        if (T_POINTER(peek(a, (n))))     \
+                         DEC_REFCNT((T_PTD)peek(a, (n)));     \
+                       if (T_POINTER(top(w)))     \
+                         INC_REFCNT((T_PTD)top(w));     \
+                       repl(n, a, top(w))
+#define advance(n)     repl(1, w, (int)((PTR_HEAPELEM)peek(w, 1) + n) )
+#define restoreptr(n)  repl(1, w, peek(w, n))
+/* address is the index of the actual when in funcdesctable */
+#define tguard(label, address, wsize, rsize, psize)    \
+                       if (IS_TRUE(top(w))) pop(w);                 \
+                       else               \
+                         if (IS_FALSE(top(w))) { pop(w); goto label;} \
+                       else                                         \
+                       {                                            \
+                         int i, arg;            \
+                         arg = pop(w);       \
+                         for(i = wsize; i > 0; i--)         \
+                         {        \
+                           pop(w);          \
+                         }        \
+                         for(i = rsize; i > 0; i--)         \
+                         {        \
+                           pop(r);          \
+                         }        \
+                         push_r(SET_VALUE(DOLLAR, psize));    \
+                         push(arg);                \
+                         guard_undecided(address);      \
+                         rtf();    \
+                       }
+/* ad is the index of the actual when in funcdesctable */
+#define guard_undecided(ad) f_guard_undecided(ad)
+#define rmwframe(n)   { int i; for (i = 0; i < n; i++) { \
+                        drop(w, 1);  }}
+#define startsubl(n, m) repl(n, r, top(w));         \
+                      repl(m, r, peek(w, 1))
+#define pick(n)       repl(0, w, peek(w, n))
+#define initbt(n, i1, i2, i3, i4)     \
+                      repl(i1, r, peek(w, 1)); \
+                      repl(i2, r, peek(w, 1)); \
+                      repl(i3, r, top(w));     \
+                      repl(i4, r, (int)((PTR_HEAPELEM)R_LIST(*(T_PTD)top(w), ptdv)     \
+                                  + R_LIST(*(T_PTD)top(w), dim) - n))
+#define restorebt(n)  repl(1, w, peek(r, n))
+#define savebt(n)     repl((n), r, peek(w, 1))
+#define rmbtframe(n)  { int i; for (i = 0; i < n; i++) { \
+                      drop(r, 1);  }}
+#define endsubl(n)    repl(n, r, peek(w, 1))
+#define endlist()     repl(1, w, (int)(R_LIST(*(T_PTD)top(w), ptdv) + \
+                         R_LIST(*(T_PTD)top(w), dim)))
+#define binds(n)      if (T_POINTER(peek(a, n))) DEC_REFCNT((PTR_DESCRIPTOR)peek(a, n)); \
+                      if (T_POINTER(top(w))) INC_REFCNT((PTR_DESCRIPTOR)top(w));    \
+                      MAKEDESC(_desc, 1, C_LIST, TY_STRING);           \
+                      L_LIST(*_desc, ptdd) = 0;                         \
+                      GET_HEAP(1, A_LIST(*(T_PTD)_desc, ptdv));      \
+                      L_LIST(*(T_PTD)_desc, dim) = 1;              \
+                      RES_HEAP;            \
+                      L_LIST(*(T_PTD)_desc, ptdv)[0] = top(w);           \
+                      REL_HEAP;               \
+                      repl(n, a, (int)_desc)
+#define bindsubl(n, m, l, k)  \
+                      { T_PTD ptdesc;     \
+                        int f, h;         \
+                        f = (PTR_HEAPELEM)peek(r,m) - R_LIST(*(T_PTD)peek(r,n), ptdv);   \
+                        h = (PTR_HEAPELEM)peek(r,l) - R_LIST(*(T_PTD)peek(r,n),ptdv) - 1; \
+                        if (h < f)              \
+                        {             \
+                          if (R_DESC(*(T_PTD)peek(r, n), type) == TY_STRING)       \
+                          {             \
+                            repl(k, a,  (int)_nilstring);        \
+                            INC_REFCNT(_nilstring);      \
+                          }             \
+                          else      \
+                          {         \
+                            repl(k, a, (int)_nil);      \
+                            INC_REFCNT(_nil);   \
+                          }        \
+                        }       \
+                        else    \
+                          repl(k, a, gen_ind(f, h, (T_PTD)peek(r, n)));    \
+                      }
+#define mkbtframe(n)  { int i; for (i = 0; i < n; i++) push_r(1);}  
+                          
+/************************************************************/
+/* PATTERN MATCH MACROS WITHOUT REFERENCE COUNTING */
+/************************************************************/
+
+#define nr_fetch()      repl(0, w, (int)*(PTR_HEAPELEM)top(w))
+
+#define nr_bind(n)     repl(n, a, top(w))
+
+#define nr_binds(n)   MAKEDESC(_desc, 1, C_LIST, TY_STRING);           \
+                      L_LIST(*_desc, ptdd) = 0;                         \
+                      GET_HEAP(1, A_LIST(*(T_PTD)_desc, ptdv));      \
+                      L_LIST(*(T_PTD)_desc, dim) = 1;              \
+                      RES_HEAP;            \
+                      L_LIST(*(T_PTD)_desc, ptdv)[0] = top(w);           \
+                      REL_HEAP;               \
+                      repl(n, a, (int)_desc)
+
+#define nr_bindsubl(n, m, l, k)  \
+                      { T_PTD ptdesc;     \
+                        int f, h;         \
+                        f = (PTR_HEAPELEM)peek(r,m) - R_LIST(*(T_PTD)peek(r,n), ptdv);   \
+                        h = (PTR_HEAPELEM)peek(r,l) - R_LIST(*(T_PTD)peek(r,n),ptdv) - 1; \
+                        if (h < f)              \
+                        {             \
+                          if (R_DESC(*(T_PTD)peek(r, n), type) == TY_STRING)       \
+                          {             \
+                            repl(k, a,  (int)_nilstring);        \
+                            INC_REFCNT(_nilstring);      \
+                          }             \
+                          else      \
+                          {         \
+                            repl(k, a, (int)_nil);      \
+                            INC_REFCNT(_nil);   \
+                          }        \
+                        }       \
+                        else    \
+                          repl(k, a, gen_ind(f, h, (T_PTD)peek(r, n)));    \
+                      }
+                        
+/************************************************************/
+/* END OF PATTERN MATCH MACROS */
+/************************************************************/
+
+#include "tprimf.h"
+
+#ifndef PROLOG_EXTERN
+
+int call_func;
+/* KiROutput : Output form for to retranslate (into file tasm2kir); 
+   AsciiOutput : readable Output (stdout) 
+*/
+int KiROutput = 0, AsciiOutput = 1;
+/* sizes for InitHeapManagement(), used in c_main.c */
+char ri_tasmoutfile[120] = "__default";
+
+int *_st_a;
+int *_st_w;
+int *_st_t;
+int *_st_r;
+extern PTR_DESCRIPTOR _desc;
+extern FCTPTR dealloc_tab[];
+extern int _base;
+void initdata();
+
+#ifdef __sparc__ 
+#ifndef NO_STACK_REG
+  register int *st_h asm ("g5");
+  register int *st_w asm ("g7");
+  register int *st_a asm ("g6");
+#else
+  int *st_h;
+  int *st_w;
+  int *st_a;
+#endif
+#else
+  int *st_h;
+  int *st_w;
+  int *st_a;
+#endif
+
+int *st_t;
+int *st_r;
+int lab; 
+int tail_flag = 0;
+#else
+extern int call_func;
+/* KiROutput : Output form for to retranslate (into file tasm2kir);
+   AsciiOutput : readable Output (stdout)
+*/
+extern int KiROutput, AsciiOutput;
+/* sizes for InitHeapManagement(), used in c_main.c */
+extern char ri_tasmoutfile[120];
+extern int *_st_a;
+extern int *_st_w;
+extern int *_st_t;
+extern int *_st_r;
+extern PTR_DESCRIPTOR _desc;
+extern FCTPTR dealloc_tab[];
+extern int _base;
+void initdata();
+
+#ifdef __sparc__
+#ifndef NO_STACK_REG
+  register int *st_h asm ("g5");
+  register int *st_w asm ("g7");
+  register int *st_a asm ("g6");
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+extern int *st_t;
+extern int *st_r;
+extern int lab;
+extern int tail_flag;
+
+#endif  /* PROLOG_EXTERN */
+
+@
+
+
+1.20
+log
+@new instruction sprint[awrt] for DBUG purposes
+@
+text
+@d20 6
+@
+
+
+1.19
+log
+@some prototypes for debug mode
+@
+text
+@d50 5
+@
+
+
+1.18
+log
+@INC_REFCNT for nr_bindsubl
+@
+text
+@d20 6
+@
+
+
+1.17
+log
+@DBUG_RETURN(expr) -> DBUG_RETURN(var)
+@
+text
+@d606 1
+d611 1
+@
+
+
+1.16
+log
+@two more DBUG_RETURNS
+@
+text
+@d65 8
+a72 8
+#define incw(n, m)     {int i; for(i=m; i>0; i--) INC_REFCNT((T_PTD)st_w[-(n)]);}
+#define inca(n, m)     {int i; for(i=m; i>0; i--) INC_REFCNT((T_PTD)st_a[-(n)]);}
+#define incr(n, m)     {int i; for(i=m; i>0; i--) INC_REFCNT((T_PTD)st_r[-(n)]);}
+#define inct(n, m)     {int i; for(i=m; i>0; i--) INC_REFCNT((T_PTD)st_t[-(n)]);}
+#define tincw(n, m)    {int i; for(i=m; i>0; i--) T_INC_REFCNT((T_PTD)st_w[-(n)]);}
+#define tinca(n, m)    {int i; for(i=m; i>0; i--) T_INC_REFCNT((T_PTD)st_a[-(n)]);}
+#define tincr(n, m)    {int i; for(i=m; i>0; i--) T_INC_REFCNT((T_PTD)st_r[-(n)]);}
+#define tinct(n, m)    {int i; for(i=m; i>0; i--) T_INC_REFCNT((T_PTD)st_t[-(n)]);}
+d254 1
+d257 2
+a258 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d262 1
+d264 2
+a265 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d285 1
+d288 2
+a289 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d293 1
+d295 2
+a296 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d315 1
+d317 2
+a318 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d322 1
+d324 2
+a325 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d346 1
+d349 2
+a350 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+d354 3
+a356 1
+                           DBUG_RETURN(kill_bits(pop(r))); \
+@
+
+
+1.15
+log
+@MkVect, MkTVect, MkMatrix
+@
+text
+@d353 1
+a353 1
+                       return((int)(t)) /* func to call */
+d360 1
+a360 1
+                       return((int)(target)) /* func to call */
+@
+
+
+1.14
+log
+@update
+@
+text
+@d27 3
+@
+
+
+1.13
+log
+@update
+@
+text
+@d560 36
+@
+
+
+1.12
+log
+@update
+@
+text
+@d530 1
+@
+
+
+1.11
+log
+@update
+@
+text
+@d200 2
+a201 1
+#define mksclos(a,b,c) f_mksclos(a,b,c)
+@
+
+
+1.10
+log
+@update
+@
+text
+@d340 1
+d347 1
+a348 1
+                       flip_tail();  \
+d364 1
+a364 2
+                       push(peek(w, (n)+1));  \
+                       if (top(w)) T_INC_REFCNT((PTR_DESCRIPTOR)top(w))
+d461 5
+a465 4
+                         for (i = R_LIST(*(T_PTD)arg, dim); i > 0; i--)   \
+                           if ((top(w) & F_VALUE) !=     \
+                             (*((PTR_HEAPELEM)R_LIST(*(T_PTD)arg,ptdv))++ & F_VALUE)) \
+                                goto label1;     \
+d468 2
+a469 5
+#define saveptr(n)     if (peek(w, n)) T_DEC_REFCNT((T_PTD)peek(w, n)); \
+                       if (peek(w, 1)) T_INC_REFCNT((T_PTD)peek(w, 1)); \
+                       repl((n), w, peek(w, 1))
+#define nestlist()     if (peek(w, 1)) T_DEC_REFCNT((T_PTD)peek(w, 1)); \
+                       if (0 != R_LIST(*(T_PTD)top(w), dim))      \
+d474 3
+a476 5
+                         repl(1, w, (int)_nil);   \
+                       if (peek(w, 1)) T_INC_REFCNT((T_PTD)peek(w, 1))
+#define dereference()  if (top(w)) T_DEC_REFCNT((T_PTD)top(w)); \
+                       repl(0, w, *((PTR_HEAPELEM)peek(w, 1))); \
+                       T_INC_REFCNT((T_PTD)top(w))
+d483 1
+a483 2
+#define restoreptr(n)  repl(1, w, peek(w, n)); \
+                       if (peek(w, 1)) T_INC_REFCNT((PTR_DESCRIPTOR)peek(w, 1))
+a494 1
+                           if (top(w)) T_DEC_REFCNT((PTR_DESCRIPTOR)top(w));      \
+a498 1
+                           if (top(r)) T_DEC_REFCNT((PTR_DESCRIPTOR)top(r));     \
+a508 1
+                        if (top(w)) T_DEC_REFCNT((PTR_DESCRIPTOR)top(w));\
+d510 1
+a510 2
+#define startsubl(n, m)     \
+                      repl(n, r, top(w));         \
+d512 1
+a512 3
+#define pick(n)       T_DEC_REFCNT((PTR_DESCRIPTOR)top(w));  \
+                      repl(0, w, peek(w, n));      \
+                      T_INC_REFCNT((PTR_DESCRIPTOR)top(w))
+d514 3
+a516 3
+                      repl(i1, r, peek(w, 1)); T_INC_REFCNT((PTR_DESCRIPTOR)peek(w, 1)); \
+                      repl(i2, r, peek(w, 1));  T_INC_REFCNT((PTR_DESCRIPTOR)peek(w, 1)); \
+                      repl(i3, r, top(w));  T_INC_REFCNT((PTR_DESCRIPTOR)top(w));   \
+d518 3
+a520 7
+                                  + R_LIST(*(T_PTD)top(w), dim) - n));      \
+                      T_INC_REFCNT((PTR_DESCRIPTOR)peek(r, i4))
+#define restorebt(n)  repl(1, w, peek(r, n));   \
+                      T_INC_REFCNT((PTR_DESCRIPTOR)peek(r, n))
+#define savebt(n)     if (peek(r, n)) T_DEC_REFCNT((T_PTD)peek(r, n)); \
+                      repl((n), r, peek(w, 1));    \
+                      T_INC_REFCNT((PTR_DESCRIPTOR)peek(r, n)) 
+a521 1
+                      if (top(w)) T_DEC_REFCNT((PTR_DESCRIPTOR)top(r)); \
+d525 1
+a525 2
+                         R_LIST(*(T_PTD)top(w), dim)));        \
+                      T_INC_REFCNT((PTR_DESCRIPTOR)top(w))
+@
+
+
+1.9
+log
+@update
+@
+text
+@d30 1
+a30 1
+#define MAKE_CHAR(x)  (((x) << 16) | 0x0000ab1c)
+d468 1
+a468 1
+                       if (peek(w, 1)) T_DEC_REFCNT((T_PTD)peek(w, 1)); \
+d470 3
+a472 1
+#define nestlist()     if (R_LIST(*(T_PTD)top(w), dim))      \
+d474 1
+d476 5
+a480 2
+                         repl(1, w, (int)_nil)
+#define dereference()  repl(0, w, *((PTR_HEAPELEM)peek(w, 1)))
+d521 2
+a522 1
+#define pick(n)       repl(0, w, peek(w, n));      \
+d533 2
+a534 1
+#define savebt(n)     repl((n), r, peek(w, 1));    \
+@
+
+
+1.8
+log
+@updated
+@
+text
+@d119 7
+d200 1
+d402 12
+d417 3
+a419 3
+                         if (R_DESC(*(T_PTD)top(w), class) != C_LIST ||    \
+                            (R_DESC(*(T_PTD)top(w), type) != TY_UNDEF) ||    \
+                            (R_LIST(*(T_PTD)top(w), dim) < n))          \
+d535 2
+a536 2
+#define binds(n)      if(T_POINTER(peek(a, n))) DEC_REFCNT((T_PTD)peek(a, n));   \
+                      if (T_POINTER(top(w)) INC_REFCNT((T_PTD)top(w));    \
+d538 1
+a538 1
+                      GET_HEAP(1, A_LIST(*(T_PTD)_desdc, dim), ptdv);      \
+d541 1
+a541 1
+                      *(L_LIST(*(T_PTD)_desc, ptdv)) = (PTR_HEAPELEM)top(w);           \
+@
+
+
+1.7
+log
+@if PROLOG_EXTERN is defined, prefix all variable declarations with extern
+ext() now returns to apply (with address of interactions()
+@
+text
+@d9 2
+a12 1
+#include "rstelem.h"
+d18 1
+d20 1
+a21 5
+#define mkint(x)       (x)
+#define mkbool(x)      (x)
+#define mkreal(x)       (({MAKEDESC(_desc, 1, C_SCALAR, TY_REAL);}), \
+                        L_SCALAR(*_desc, valr) = (x),  \
+                        _desc)
+d23 11
+a33 2
+#define DESC(x)  (* (PTR_DESCRIPTOR) x)
+#define C_INC_REFCNT(id)         (++((id)->u.cmb.ref_count))
+d36 2
+a37 2
+#define TRUE 1
+#define FALSE 0
+d41 46
+a86 1
+#define decw(n)        DEC_REFCNT((T_PTD)st_w[-(n)]);
+d123 1
+a123 1
+                       DBUG_RETURN((int)&f_apply);  
+d152 5
+a156 3
+#define repl(n,s,x)    (st_##s[-n]=(x))         
+#define push(x)        (*++st_w = (x))
+#define push_p(x)      C_INC_REFCNT(x); push((int)x)
+d160 1
+a160 1
+#define pushr_p(x)     C_INC_REFCNT(x); push_r((int)x)
+d164 4
+a167 6
+#define pushaw(n)      *++st_w = st_a[-(n)]; chk_ptrup(st_a[-(n)])
+#define pushar(n)      *++st_r = st_a[-(n)]; chk_ptrup(st_a[-(n)])
+#define pushtw(n)      *++st_w = st_t[-(n)]; chk_ptrup(st_t[-(n)])
+#define pushtr(n)      *++st_r = st_t[-(n)]; chk_ptrup(st_t[-(n)])
+#define chk_ptrup(x)   if (T_POINTER(x)) C_INC_REFCNT((T_PTD)(x))
+#define chk_ptrdown(x) if (T_POINTER(x)) DEC_REFCNT((T_PTD)(x))
+d173 5
+a177 3
+#define freea(n)       {int i;for(i=0;i<n;i++) chk_ptrdown(st_a[-i]);}; drop(a, n) 
+#define freeswt(n)     {int i;for(i=0;i<n;i++) chk_ptrdown(st_t[-i]);};drop(t, n); stflip(t,r)
+#define free1a()       drop(a, 1)
+d183 1
+a183 1
+                          mkcclos(1, i);        \
+d189 1
+a189 1
+                          mkcclos(1, i);        \
+a192 1
+/* in jcond2: l:ELSE-label, c:CONTINUATION-label, i:index of cond in table */
+d195 1
+d198 1
+a198 1
+                          mkcclos(1, i);        \
+d212 13
+a224 4
+/*
+#define rtc(x)         push(x);          \
+                       rtf()
+*/
+a251 4
+/*
+#define rtp(x)         push((int)x);          \
+                       rtf()
+*/
+d257 2
+a258 2
+                            stflip(a, w);       \
+                            C_INC_REFCNT(x); push((int)x);          \
+d264 1
+a264 1
+                            C_INC_REFCNT(x); push((int)x);          \
+d269 2
+a270 2
+                           stflip(a, w);        \
+                           C_INC_REFCNT(x); push((int)x);          \
+d275 1
+a275 1
+                           C_INC_REFCNT(x); push((int)x);          \
+a278 4
+/*
+#define rtm()          moveaw();          \
+                       rtf()
+*/
+d284 1
+a284 1
+                            stflip(a, w);       \
+d295 1
+a295 1
+                           stflip(a, w);        \
+a305 1
+                       
+d331 220
+d552 1
+a552 21
+                         
+/*
+#define rtf()          tail_flag=pop(r);        \
+                       lab=pop(r);              \
+                       if (tail_flag == 3)      \
+                       {                        \
+                         stflip(a, w);          \
+                         moveaw();              \
+                         goto LabSwitch;        \
+                       }                        \
+                       if (tail_flag == 1)      \
+                       {                        \
+                         stflip(a, w);          \
+                         moveaw();              \
+                         return((int)lab);      \
+                       }                        \
+                       if (tail_flag == 2)      \
+                         goto LabSwitch;        \
+                       return((int)lab)  
+*/
+#define ext()          push_r(0);return(interactions())
+d554 1
+a554 1
+#ifdef PROLOG_EXTERN
+d556 3
+a558 3
+extern int call_func;
+/* KiROutput : Output form for to retranslate (into file tasm2kir);
+   AsciiOutput : readable Output (stdout)
+d560 8
+a567 6
+extern int KiROutput, AsciiOutput;
+   
+extern int _st_a[];
+extern int _st_w[];
+extern int _st_t[];
+extern int _st_r[];
+a570 1
+
+d573 10
+a582 4
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+register int *st_h asm ("g5");
+register int *st_w asm ("g7");
+register int *st_a asm ("g6");
+d584 3
+a586 3
+extern int *st_h;
+extern int *st_w;
+extern int *st_a;
+a587 4
+extern int *st_t = _st_t;
+extern int *st_r = _st_r;
+extern int lab; 
+extern int tail_flag;
+d589 6
+a594 5
+
+#else /* PROLOG_EXTERN */
+
+
+int call_func;
+d598 7
+a604 6
+int KiROutput = 0, AsciiOutput = 1;
+   
+int _st_a[20000];
+int _st_w[20000];
+int _st_t[10000];
+int _st_r[10000];
+a607 1
+
+d610 10
+a619 4
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+register int *st_h asm ("g5");
+register int *st_w asm ("g7");
+register int *st_a asm ("g6");
+d621 3
+a623 3
+int *st_h;
+int *st_w;
+int *st_a;
+d625 4
+a628 5
+int *st_t = _st_t;
+int *st_r = _st_r;
+int lab; 
+int tail_flag = 0;
+
+d630 1
+a630 1
+#endif /* PROLOG_EXTERN */
+@
+
+
+1.6
+log
+@added mkframe,mkslot,inter
+@
+text
+@a17 6
+int call_func;
+/* KiROutput : Output form for to retranslate (into file tasm2kir);
+   AsciiOutput : readable Output (stdout)
+*/
+int KiROutput = 0, AsciiOutput = 1;
+   
+d298 19
+a316 1
+#define ext()          t_output(pop(w));fprintf(stdout,"\n");exit(0)
+d318 24
+d366 2
+@
+
+
+1.5
+log
+@prepared for separated modules
+@
+text
+@d41 25
+@
+
+
+1.4
+log
+@some new macros
+@
+text
+@a22 2
+/* sizes for InitHeapManagement(), used in c_main.c */
+char ri_tasmoutfile[120] = "__default";
+a24 2
+
+#define reduce_red_cnt() red_cnt--
+d32 1
+d35 2
+a36 2
+#define TRUE           1
+#define FALSE          0
+d83 1
+a83 1
+#define push_p(x)      INC_REFCNT(x); push((int)x)
+d87 1
+a87 1
+#define pushr_p(x)     INC_REFCNT(x); push_r((int)x)
+d95 1
+a95 1
+#define chk_ptrup(x)   if (T_POINTER(x)) INC_REFCNT((T_PTD)(x))
+d110 1
+a110 1
+                          f_condfail(1, i);        \
+d116 1
+a116 1
+                          f_condfail(1, i);        \
+d125 1
+a125 1
+                          f_condfail(1, i);        \
+d139 4
+d170 4
+d180 1
+a180 1
+                            INC_REFCNT(x); push((int)x);          \
+d186 1
+a186 1
+                            INC_REFCNT(x); push((int)x);          \
+d192 1
+a192 1
+                           INC_REFCNT(x); push((int)x);          \
+d197 1
+a197 1
+                           INC_REFCNT(x); push((int)x);          \
+d201 4
+d260 19
+d288 1
+d291 5
+d299 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d19 8
+d28 1
+a28 1
+typedef int (* FUNPTR)(void);
+d30 4
+a35 2
+#define HEAPSIZE (16384*1024*sizeof(T_HEAPELEM))
+#define C_INC_REFCNT(id)         (++((id)->u.cmb.ref_count))
+d38 2
+a39 2
+#define TRUE 1
+#define FALSE 0
+d43 1
+d86 1
+a86 1
+#define push_p(x)      C_INC_REFCNT(x); push((int)x)
+d90 1
+a90 1
+#define pushr_p(x)     C_INC_REFCNT(x); push_r((int)x)
+d98 1
+a98 1
+#define chk_ptrup(x)   if (T_POINTER(x)) C_INC_REFCNT((T_PTD)(x))
+d113 1
+a113 1
+                          mkcclos(1, i);        \
+d119 1
+a119 1
+                          mkcclos(1, i);        \
+d128 1
+a128 1
+                          mkcclos(1, i);        \
+a141 4
+/*
+#define rtc(x)         push(x);          \
+                       rtf()
+*/
+a168 4
+/*
+#define rtp(x)         push((int)x);          \
+                       rtf()
+*/
+d175 1
+a175 1
+                            C_INC_REFCNT(x); push((int)x);          \
+d181 1
+a181 1
+                            C_INC_REFCNT(x); push((int)x);          \
+d187 1
+a187 1
+                           C_INC_REFCNT(x); push((int)x);          \
+d192 1
+a192 1
+                           C_INC_REFCNT(x); push((int)x);          \
+a195 4
+/*
+#define rtm()          moveaw();          \
+                       rtf()
+*/
+d251 1
+a251 20
+/*
+#define rtf()          tail_flag=pop(r);        \
+                       lab=pop(r);              \
+                       if (tail_flag == 3)      \
+                       {                        \
+                         stflip(a, w);          \
+                         moveaw();              \
+                         goto LabSwitch;        \
+                       }                        \
+                       if (tail_flag == 1)      \
+                       {                        \
+                         stflip(a, w);          \
+                         moveaw();              \
+                         return((int)lab);      \
+                       }                        \
+                       if (tail_flag == 2)      \
+                         goto LabSwitch;        \
+                       return((int)lab)  
+*/
+#define ext()          lo(pop(w));fprintf(stdout,"\n");exit(0)
+a259 1
+
+a261 5
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+register int *st_h asm ("g5");
+register int *st_w asm ("g7");
+register int *st_a asm ("g6");
+#else
+a264 1
+#endif
+@
+
+
+1.2
+log
+@mklist inserted
+@
+text
+@a9 1
+#include "funcprot.h"
+d21 2
+d24 2
+a25 1
+#define HEAPSIZE (8*1024*sizeof(T_HEAPELEM))
+d27 1
+a30 1
+#define delta2()       ;
+d68 1
+a68 3
+#define drop(s,n)      { int i;                               \
+                         for (i = 0; i < n ; i++){            \
+                         chk_ptrdown(st_##s[0]); st_##s--;}} 
+d75 2
+a76 2
+#define push_p(x)      INC_REFCNT(x); push((int)x)
+#define pusha(x)       (*++st_a = (x))
+d79 1
+a79 1
+#define pushr_p(x)     INC_REFCNT(x); push_r((int)x)
+d87 2
+a88 2
+#define chk_ptrup(x)   if (T_POINTER(x)) INC_REFCNT((T_PTD)(x))
+#define chk_ptrdown(x) /*if (T_POINTER(x)) DEC_REFCNT((T_PTD)(x))*/
+d94 2
+a95 2
+#define freea(n)       drop(a, n)
+#define freeswt(n)     drop(t, n); stflip(t,r)
+d99 13
+a111 3
+#define flip_tail()    top(r) = top(r) ^ 1
+#define jfalse(l)      if (IS_FALSE(pop(w))) goto l
+#define jcond(l)       if (IS_FALSE(pop(w))) goto l
+d117 1
+a117 1
+                          f_mkcclos(1, i);        \
+d124 5
+a128 2
+#define tailfar(f)     flip_tail();       \
+                       stflip(a, w);       \
+d131 1
+d134 29
+d165 29
+d196 28
+d271 4
+a274 23
+#define ext()          if (T_INT(top(w)))                               \
+                         printf("result = %d\n",VAL_INT(pop(w)));       \
+                       else                                             \
+                       if (T_BOOLEAN(top(w)))                           \
+                         {                                              \
+                         if (T_SA_FALSE(top(w)))                        \
+                           printf("result = false\n");                  \
+                         else if (T_SA_TRUE(top(w)))                    \
+                           printf("result = true\n");                   \
+                           else printf("Error in boolean result !\n");  \
+                         }                                              \
+                       else                                             \
+                         if (T_POINTER(top(w)))                         \
+                           if (R_DESC(DESC(top(w)),class) == C_SCALAR)  \
+                             if (R_DESC(DESC(top(w)),type) == TY_REAL)  \
+                               printf("result = %f (real)\n", R_SCALAR(DESC(top(w)),valr)) ; \
+                             else                                       \
+                               printf("Error in result %d !\n",top(w)); \
+                       pop(w);                                          \
+                       exit(0)
+ 
+int _st_a[10000];
+int _st_w[10000];
+a295 5
+
+
+
+
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d22 1
+d31 7
+d66 3
+a68 1
+#define drop(s,n)      (st_##s-=n)
+d83 6
+a88 5
+#define pushaw(n)      *++st_w = st_a[-(n)]; chk_ptr(st_a[-(n)])
+#define pushar(n)      *++st_r = st_a[-(n)]; chk_ptr(st_a[-(n)])
+#define pushtw(n)      *++st_w = st_t[-(n)]; chk_ptr(st_t[-(n)])
+#define pushtr(n)      *++st_r = st_t[-(n)]; chk_ptr(st_t[-(n)])
+#define chk_ptr(x)     if (T_POINTER(x)) INC_REFCNT((T_PTD)(x))
+d94 3
+a96 3
+#define freea(n)       (st_a-=n)
+#define freeswt(n)     st_t-=n; stflip(t,r)
+#define free1a()       (--st_a)
+d99 1
+a99 1
+#define flip_tail()    repl(0, r,top(r) ^ 1)
+d120 2
+d171 1
+a171 1
+#define ext()          if (top(w) & 1)                                    \
+d173 17
+a189 13
+                       else                                               \
+                       if (top(w) & 4)                                    \
+                       {                                                  \
+                         switch(top(w) & 255L)                            \
+                         {                                                \
+                           case 20:{printf("result = true\n");break;}     \
+                           case 4:{printf("result = false\n");break;}     \
+                           default:printf("Error in boolean result !\n"); \
+                         }                                                \
+                       }                                                  \
+                       else                                               \
+                         printf("Error in result %d !\n",top(w));                \
+                       pop(w);                                            \
+a210 2
+st_w = _st_w;
+st_a = _st_a;
+@

@@ -1,0 +1,6 @@
+msProcArray*UKCCommand.background: #bbbbbb
+msProcArray*clip.background: #ffffff
+msProcArray*horizontal.background: #bbbbbb
+msProcArray*vertical.background: #bbbbbb
+
+msProcArray.buttonColor: #00c000

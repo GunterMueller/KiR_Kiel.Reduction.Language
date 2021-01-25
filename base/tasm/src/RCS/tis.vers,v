@@ -1,0 +1,969 @@
+head	1.60;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.60
+date	96.01.18.10.44.08;	author um;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.08.15.07.32.41;	author um;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.08.02.10.09.07;	author um;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.07.10.07.38.38;	author um;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.07.04.09.34.02;	author um;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.06.30.08.33.40;	author um;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.06.07.07.50.18;	author um;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.05.29.12.01.49;	author um;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.05.24.10.15.58;	author um;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.05.23.11.54.34;	author um;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.05.17.12.12.29;	author um;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.05.15.10.17.21;	author um;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.05.12.07.10.38;	author um;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.05.08.08.47.06;	author um;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.04.28.07.38.43;	author um;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.04.21.08.36.59;	author um;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.04.20.12.14.17;	author um;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.04.20.10.07.43;	author um;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.04.18.06.42.08;	author um;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.04.13.09.38.13;	author um;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.04.12.07.51.15;	author um;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.04.11.09.36.19;	author um;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.04.11.08.19.35;	author um;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.04.05.10.14.12;	author um;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.03.28.09.10.33;	author um;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.03.28.08.33.25;	author um;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.03.27.11.30.25;	author um;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.03.27.08.44.09;	author um;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.03.22.10.41.48;	author um;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.03.20.09.17.15;	author um;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.03.15.08.24.50;	author um;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.03.13.10.59.42;	author um;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.03.07.13.41.16;	author um;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.03.07.07.57.34;	author um;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.03.06.09.51.03;	author um;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.02.14.08.07.49;	author um;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.02.07.08.54.02;	author um;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.02.02.13.21.44;	author um;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.01.30.15.09.40;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.01.26.09.57.19;	author um;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.01.18.07.50.52;	author um;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.01.16.07.25.00;	author um;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.01.05.08.37.07;	author um;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.12.28.09.14.30;	author um;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.12.23.08.46.51;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.12.22.11.15.49;	author um;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.12.22.08.23.29;	author um;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.12.19.16.03.05;	author um;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.16.08.03.34;	author um;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.15.14.18.14;	author um;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.15.09.37.57;	author um;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.09.09.42.10;	author um;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.08.15.27.21;	author um;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.06.09.48.48;	author um;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.24.09.55.41;	author um;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.23.07.23.29;	author um;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.22.10.21.11;	author um;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.21.15.59.47;	author um;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.21.11.02.36;	author um;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.08.01;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.60
+log
+@missing rtt fixed
+@
+text
+@0.025l
+@
+
+
+1.59
+log
+@dereference Problem fixed
+@
+text
+@d1 1
+a1 1
+0.024Y
+@
+
+
+1.58
+log
+@list bug fixed
+@
+text
+@d1 1
+a1 1
+0.024Q
+@
+
+
+1.57
+log
+@dist*, wait, pushh & poph implemented
+@
+text
+@d1 1
+a1 1
+0.024N
+@
+
+
+1.56
+log
+@! some primitiv functions changed !
+@
+text
+@d1 1
+a1 1
+0.024G
+@
+
+
+1.55
+log
+@PM backtrack bug fixed
+@
+text
+@d1 1
+a1 1
+0.024y
+@
+
+
+1.54
+log
+@vect, tvect & matrix implemented
+@
+text
+@d1 1
+a1 1
+0.024f
+@
+
+
+1.53
+log
+@infinit loop removed
+@
+text
+@d1 1
+a1 1
+0.023T
+@
+
+
+1.52
+log
+@bug in fkochside sample removed
+@
+text
+@d1 1
+a1 1
+0.023z
+@
+
+
+1.51
+log
+@bug with recursiv functions with changing parameters removed
+@
+text
+@d1 1
+a1 1
+0.023t
+@
+
+
+1.50
+log
+@mklist problem fixed
+@
+text
+@d1 1
+a1 1
+0.021J
+@
+
+
+1.49
+log
+@mklist with functions and/or closures bugfixed
+@
+text
+@d1 1
+a1 1
+0.021i
+@
+
+
+1.48
+log
+@some primitiv functions fixed & jcond bug removed
+@
+text
+@d1 1
+a1 1
+0.020H
+@
+
+
+1.47
+log
+@lselect und lreplace bug removed
+@
+text
+@d1 1
+a1 1
+0.020A
+@
+
+
+1.46
+log
+@tildeargs removed from functioncache
+@
+text
+@d1 1
+a1 1
+0.020r
+@
+
+
+1.45
+log
+@fundesc address made unique
+@
+text
+@d1 1
+a1 1
+0.019N
+@
+
+
+1.44
+log
+@option -dx handling implemented
+@
+text
+@d1 1
+a1 1
+0.019H
+@
+
+
+1.43
+log
+@function duplication - first part
+@
+text
+@d1 1
+a1 1
+0.019E
+@
+
+
+1.42
+log
+@silly bug in primitive functions removed
+@
+text
+@d1 1
+a1 1
+0.019w
+@
+
+
+1.41
+log
+@STACKS & ORDER changed to global
+@
+text
+@d1 1
+a1 1
+0.019u
+@
+
+
+1.40
+log
+@lselect on empty list changed
+@
+text
+@d1 1
+a1 1
+0.019b
+@
+
+
+1.39
+log
+@minor bugs removed
+@
+text
+@d1 1
+a1 1
+0.018T
+@
+
+
+1.38
+log
+@primitive functions bugfixed
+@
+text
+@d1 1
+a1 1
+0.018Q
+@
+
+
+1.37
+log
+@all primitive functions implemented
+@
+text
+@d1 1
+a1 1
+0.018l
+@
+
+
+1.36
+log
+@Gamma implemented
+@
+text
+@d1 1
+a1 1
+0.017P
+@
+
+
+1.35
+log
+@PM implemented
+@
+text
+@d1 1
+a1 1
+0.017J
+@
+
+
+1.34
+log
+@strings inserted
+@
+text
+@d1 1
+a1 1
+0.017p
+@
+
+
+1.33
+log
+@PM partly implemented
+@
+text
+@d1 1
+a1 1
+0.017o
+@
+
+
+1.32
+log
+@jcond changed, now using branch
+@
+text
+@d1 1
+a1 1
+0.015R
+@
+
+
+1.31
+log
+@minor bug in gammabeta removed
+@
+text
+@d1 1
+a1 1
+0.015m
+@
+
+
+1.30
+log
+@lists bugfixed, implementation of PM started
+@
+text
+@d1 1
+a1 1
+0.014O
+@
+
+
+1.29
+log
+@lists on their way
+@
+text
+@d1 1
+a1 1
+0.014m
+@
+
+
+1.28
+log
+@compare on lists and closures implemented
+@
+text
+@d1 1
+a1 1
+0.013Z
+@
+
+
+1.27
+log
+@dependencies added to apply
+@
+text
+@d1 1
+a1 1
+0.013W
+@
+
+
+1.26
+log
+@problems with depending recursiv functions removed
+@
+text
+@d1 1
+a1 1
+0.013S
+@
+
+
+1.25
+log
+@hashstring removed
+@
+text
+@d1 1
+a1 1
+0.012O
+@
+
+
+1.24
+log
+@lists have changed, primitiv apply bugfixed
+@
+text
+@d1 1
+a1 1
+0.012x
+@
+
+
+1.23
+log
+@lists have been changed, hash -> hashargs ...
+@
+text
+@d1 1
+a1 1
+0.012l
+@
+
+
+1.22
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.012e
+@
+
+
+1.21
+log
+@some types modified
+@
+text
+@d1 1
+a1 1
+0.011L
+@
+
+
+1.20
+log
+@list and descriptor concept changed
+@
+text
+@d1 1
+a1 1
+0.011D
+@
+
+
+1.19
+log
+@first try with lists
+@
+text
+@d1 1
+a1 1
+0.011k
+@
+
+
+1.18
+log
+@tiny bug in mkcclos removed
+@
+text
+@d1 1
+a1 1
+0.010B
+@
+
+
+1.17
+log
+@new macros inserted
+@
+text
+@d1 1
+a1 1
+0.010y
+@
+
+
+1.16
+log
+@mkclos bug removed
+@
+text
+@d1 1
+a1 1
+0.009V
+@
+
+
+1.15
+log
+@now using macros
+@
+text
+@d1 1
+a1 1
+0.009O
+@
+
+
+1.14
+log
+@jcond2, rtm, mkcclos implemented
+@
+text
+@d1 1
+a1 1
+0.009m
+@
+
+
+1.13
+log
+@gammabeta corrected
+@
+text
+@d1 1
+a1 1
+0.008H
+@
+
+
+1.12
+log
+@indefi. jcond recognition inserted, minor bug removed
+@
+text
+@d1 1
+a1 1
+0.007R
+@
+
+
+1.11
+log
+@bugs removed and concept changed
+@
+text
+@d1 1
+a1 1
+0.007O
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.007B
+@
+
+
+1.9
+log
+@minor change
+@
+text
+@d1 1
+a1 1
+0.005v
+@
+
+
+1.8
+log
+@first changes for type conflicts
+@
+text
+@d1 1
+a1 1
+0.005t
+@
+
+
+1.7
+log
+@types changed
+@
+text
+@d1 1
+a1 1
+0.004L
+@
+
+
+1.6
+log
+@minor bugs removed
+@
+text
+@d1 1
+a1 1
+0.004t
+@
+
+
+1.5
+log
+@never ending recursion bugfixed
+@
+text
+@d1 1
+a1 1
+0.003T
+@
+
+
+1.4
+log
+@apply works with recursion
+@
+text
+@d1 1
+a1 1
+0.003M
+@
+
+
+1.3
+log
+@apply to not recursiv func added
+@
+text
+@d1 1
+a1 1
+0.003r
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+0.3c
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+0.3a
+@

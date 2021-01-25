@@ -1,0 +1,68 @@
+README fuer die Aenderungen an der Reduktionsmaschine fuer das LETPAR-Konstrukt
+-------------------------------------------------------------------------------
+
+Letzte Aenderung: RS 14.6.1993
+
+Editor
+++++++
+
+Folgende Informationen wurden freundlicherweise vom Editor-Freak ca zur Verfuegung
+gestellt:
+
+Der editor verwendet jetzt:
+
+#define LETPAR          0x0000000aL     /* editor         */
+
+und uebersetzt das nach:
+
+#define AP_LETPAR       0x00020c08L /* neu:fuer LETPAR  */
+                               ^
+also '0x0c' im editfield.
+
+
+Allgemein
++++++++++
+
+- C-Code fuer die Verteilungsgeschichten ist immer mit #if D_DIST #endif geklammert
+
+- C-Code, der nur auf dem Verteilten System (= nCUBE) laeuft, ist mit #if nCUBE #endif
+  geklammert
+
+- neue ASM-Befehle:
+
+  PUSHH    n          :  Zaehler n wird auf den Hilfstack gepush't,
+                         n ist die Anzahl der Ausdruecke im LETPAR-Konstrukt
+
+  DIST     n m o p    :  Verteilung anstossen, n ist die Codeadresse des zu berechnenden 
+                         Ausdruckes, m die Codeadresse fuer die weitere Berechnung, o
+                         gibt an, wieviele Elemente des Argument-Stackes verschickt werden 
+                         muessen und p gibt an, wieviele Elemente auf dem Argument-Stack
+                         bei Nicht-Verteilung freigegeben werden muesssen
+ 
+  DISTEND             :  Beendigung einer verteilten Berechnung
+ 
+  WAIT     n          :  Synchronisation, n Ausdruecke wurde nicht verteilt
+
+  POPH                :  Zaehler vom Hilfstack entfernen
+
+  DISTB    n m o p    : analog zu DIST, o allerdings eine Bitmaske fuer die Elemente des
+                        Argument-Stacks
+
+- Neuer Eintrag im red.setup:
+  
+   NoDistNr : 1
+
+  neue Variable: d_nodistnr
+  Sie gibt die Anzahl der in einem Letpar-Konstrukt nicht zu verteilenden Ausdruecke
+  an (im Konstrukt von oben gezaehlt). Die Variable hat lediglich auf die 
+  ASM-Codegenerierung Einfluss (ear-Compiler).
+
+Compiler
+++++++++
+
+- Der Stack S_pm muss leider benutzt werden, da die sonstigen (Hilfs-)Stacks durch
+  diverse SIZEOFSTACK-for-Schleifen konkret durchgezaehlt werden. Somit kann da wohl 
+  nichts mehr zwischendurch abgelegt werden
+
+- Der neue DAP-Konstruktor ist fuer die Pre- und Postprozessing Phase transparent.
+  Er wird analog zum AP-Konstruktor behandelt (hoffentlich... :-) ).

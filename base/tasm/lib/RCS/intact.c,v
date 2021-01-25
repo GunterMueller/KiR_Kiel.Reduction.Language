@@ -1,0 +1,587 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	96.02.20.15.01.18;	author stt;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	96.02.20.14.50.57;	author stt;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	96.02.16.15.50.04;	author stt;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	96.02.13.17.23.31;	author stt;	state Exp;
+branches;
+next	;
+
+
+desc
+@Interaction Interpreter
+@
+
+
+1.4
+log
+@print PWD removed.
+@
+text
+@/*
+ * --- intact.c ---------------------------------- stt --- 13.02.96 ----
+ *
+ * This file contains some global variables like intact_tab, environment
+ * etc., some help functions for descriptor and kir file handle handling
+ * and, most important, the interaction interpreter routine intact_inter().
+ * The routines of the interactions are defined in the file riafunc.c.
+ *
+ * How does the interaction interpreter work:
+ * It is called after the 'normal' interpreter (inter()) has finished. This
+ * happens in the function reduce(). The result of inter() lie on the stack A.
+ * The interaction interpreter examines the result whether it is some kind of
+ * interaction. If not, the reduction continues with the post processing. If
+ * yes, the interaction is performed and the new result is checked again, until
+ * it is no longer an interaction. If the result is executable, i.e. it is some
+ * kind of kir function, than inter() is called again, else the reduction
+ * continues with the post processing.
+ */
+
+
+#define PROLOG_EXTERN
+#include "prolog.h"
+
+/* ------------------------------------------------------------------------
+ * Returns an expression which is build from the first argument and the
+ * bind constructors which are left on the bind stack.
+ * Example:
+ *  BIND_STACK: bind(x1,y1) bind(x2,y2)
+ *  recover(expr, 2) -> bind(bind(expr,y2),y1)
+ */
+PTR_DESCRIPTOR recover(PTR_DESCRIPTOR expr, int binds_on_stack)
+{
+  STACKELEM      *args;
+  short          not_bind = 0;
+  PTR_DESCRIPTOR ptdesc2, ptdesc1 = expr;
+
+  DBUG_ENTER("recover");
+
+  while (binds_on_stack > 0)
+  {
+    ptdesc2 = ptdesc1;
+    ptdesc1 = (PTR_DESCRIPTOR) pop(r);
+    binds_on_stack--;
+
+    if (T_POINTER(ptdesc1) &&
+        (R_DESC(*ptdesc1,class) == C_INTACT) &&
+        (R_DESC(*ptdesc1,type) == TY_INTACT) )
+    {
+      args   = (STACKELEM *) R_INTACT(*ptdesc1,args);
+      if (T_IA_BIND((STACKELEM) args[0]))
+      {
+        if (R_DESC(*ptdesc1,ref_count) > 1)
+        {
+          /* Decrement ref_count, make new bind with ptdesc2 and arg[2] */
+          DEC_REFCNT(ptdesc1);
+          MAKEDESC(ptdesc1, 1, C_INTACT, TY_INTACT);
+          L_INTACT(*ptdesc1,dim)  = 3;
+          GET_HEAP(4, A_INTACT(*ptdesc1,args));
+          RES_HEAP;
+          R_INTACT(*ptdesc1,args)[0] = IA_BIND;
+          R_INTACT(*ptdesc1,args)[1] = (STACKELEM) ptdesc2;
+          /* insert the y of the original bind(x,y) */
+          R_INTACT(*ptdesc1,args)[2] = args[2];
+          REL_HEAP;
+          if (T_POINTER(args[2]))
+            INC_REFCNT(((PTR_DESCRIPTOR) args[2]));
+        }
+        else
+        {
+          /* replace 1. bind-arg with ptdesc2 */
+          if (T_POINTER(args[1]))
+           DEC_REFCNT(((PTR_DESCRIPTOR) args[1]));
+          RES_HEAP;
+          args[1] = (STACKELEM) ptdesc2;
+          REL_HEAP;
+        }
+      }
+      else
+        not_bind = 1;
+    }
+    else
+      not_bind = 1;
+
+    if (not_bind)
+      controlled_exit("rintact: Item on bindstack is not a bind().");
+  }
+
+  DBUG_RETURN(ptdesc1);
+}
+
+
+
+/***************************************************************************
+ *  intact_inter -- The interaction interpreter.
+ ***************************************************************************/
+
+/* If there is an interaction lying on the a-stack (as the result of inter()),
+ * the interaction interpreter will perform it until the result is no longer an
+ * interaction. After that, inter() will be called again.
+ * The continuation based version (14.09.95) now is completely replaced by the
+ * monadic style version (20.12.95).
+ *
+ * At this time, there are three special interactions: bind, unit and exit.
+ * bind combines two interactions (or expressions) and dictates a computation
+ *  order on interaction. First the interactions in the first argument must be
+ *  reduced, and if their result is an unit, the second argument will be
+ *  applied to the unit argument.
+ * unit enclose the result of a normal interaction (typical) or any other
+ *  expression. The only way to accessing the argument of a unit is to use the
+ *  unit as the first argument of a bind.
+ * exit terminates the program execution (the whole reduma) immediately.
+ * The other interactions (if implemented) are performed by calling their
+ *  function. Their result will be enclosed by a unit construct.
+ *
+ * How does the monadic style version work:
+ * As mentioned above, to execute several interactions you have to combine
+ * them with bind. The reduction of a bind goes like this:
+ * If the 1.argument of the bind is an interaction (other than unit), push
+ * the bind constructor on the bind stack and reduce the argument. When it is
+ * reduced to a unit, then pop the bind from the stack and apply the 2.argument
+ * to the unit. So, the stack is used to implement a recursive descent into the
+ * left subtree of a bind.
+ * If, in some state of reduction, the (sub)expression is not reducible,
+ * neither by  inter() nor by intact_inter(), and there are bind's on the bind
+ * stack left, you have to recover the hole expression, i.e. take the bind's
+ * from the stack and re-combinate them.
+ * For further details see the comments below and the master thesis of Stephan
+ * Timm, 1996.
+ */
+int intact_tasm(void)
+{
+  static int binds_on_stack = 0;        /* Number of binds on the bind stack */
+  
+  PTR_DESCRIPTOR desc, ptdesc;           /* pointers to descriptors          */
+  STACKELEM      *args, intact;          /* pointers to heap elements        */
+  FCTPTR         fctptr;                 /* pointer to interaction functions */
+  int dim;                          /* dimension of descriptors              */
+  int status = 0;                   /* return value of interaction functions */
+  int ret = 0;                      /* address of asm code segment to be     */
+                                    /* interpreted by inter().               */
+                                     
+  
+  DBUG_ENTER("intact_tasm");
+  
+  pop(r);  /* Label from Return-Stack. Be here only for consitstent usage. */
+
+  if (virtual_wd == NULL)                 /* If not yet initiated do it now. */
+  {
+    if ((virtual_wd = (char *) getcwd(NULL,264)) == NULL)
+      controlled_exit("intact: getcwd fails.");
+    dim = strlen(virtual_wd);
+    if (virtual_wd[dim-1] != '/')   /* virtual_wd always has to end with a / */
+    {
+      virtual_wd[dim] = '/';
+      virtual_wd[dim+1] = '\0';
+    }
+  }
+  
+  desc = (PTR_DESCRIPTOR) top(w);           /* Get result of inter() */
+  
+  /*
+   * Repeat the loop as long as desc is an interaction (new values are assigned
+   * to desc in the loop). 0-ary interactions are simple stack elements while
+   * n-ary, n>0, interactions are stored as interaction descriptors.
+   * After leaving the loop, there are two possibilities:
+   * 1. ret == 0
+   *   The result isn't reducible any more. Do not call inter() again.
+   * 2. ret != 0
+   *   The result is an application which is to be reduced by inter(). ret is
+   *   the address of a asm code sequence to be executed. 
+   */
+  while ( ( ( T_POINTER(desc)   /* Is it an interaction? */
+              &&
+              (R_DESC(*desc,class) == C_INTACT)
+              &&
+              (R_DESC(*desc,type) == TY_INTACT)
+            )
+            ||
+            T_IA_GETWD((STACKELEM) desc)
+          )
+          &&
+          !_issubexpr     /* and not a subexpression selected in the editor? */
+       /* &&
+          (_redcnt > 0) */                /* Are there Reduction steps left? */
+        )
+  {                              /* (Reduce interactions on top level only.) */
+    ret = 0;
+    
+    if T_IA_GETWD((STACKELEM) desc)
+    {
+      status = (int) red_getwd();
+      if (status == SYNERR)
+      {
+        /*
+         * The arguments are syntactical wrong. No reduction will be made,
+         * interrupt loop.
+         */
+        repl(0, w, (int)desc);
+        desc = (PTR_DESCRIPTOR) NULL;
+      }
+      else
+      {
+        /*
+         * Interaction was performed, display result.
+         */
+        MAKERETURNVAL(status, _desc);
+
+        /* Make unit descriptor */
+        MAKEDESC(ptdesc, 1, C_INTACT, TY_INTACT);
+        L_INTACT(*ptdesc,dim)  = 2;
+        GET_HEAP(3, A_INTACT(*ptdesc,args));
+        RES_HEAP;
+        R_INTACT(*ptdesc,args)[0] = IA_UNIT;
+        R_INTACT(*ptdesc,args)[1] = (T_HEAPELEM) _desc;
+        REL_HEAP;
+        _desc = NULL;
+
+        repl(0, w, (int)ptdesc);
+        _redcnt -= 1;
+        desc = ptdesc;      /* desc is unit -> repeat loop */
+      }
+    }
+    else
+    {
+      args   = (STACKELEM *) R_INTACT(*desc,args);
+      intact = (STACKELEM) args[0];                   /* type of interaction */
+  
+      if (FUNC_INDEX(intact) >= INTACT_TAB_SIZE)
+        controlled_exit("rintact: interaction has wrong index");
+        
+      /*
+       * The interactions bind, unit and exit are special and therefore be
+       * treated in special cases.
+       */
+      if (T_IA_BIND(intact))
+      {
+        /*
+         * The first argument of a bind will be remembered in ptdesc.
+         * By decreasing the reference count of the bind (later) the refcnt of
+         * of ptdesc get wrong. Therefore the bind being pushed on the stack
+         * gets a NULL-Pointer as its 1.argument. (hack)
+         */
+        ptdesc = (PTR_DESCRIPTOR) args[1];      /* ptdesc = x from bind(x,y) */
+        args[1] = (STACKELEM) NULL;
+        push_r((STACKELEM) desc);
+        binds_on_stack++;
+        desc = ptdesc;
+        repl(0, w, (int)desc);
+      }
+      else if (T_IA_UNIT(intact))
+      {
+        if (binds_on_stack > 0)
+        {
+          /*
+           * At this point, I have made the following assumption:
+           * The first time intact_inter() is called the bind stack (S_m) is
+           * empty.
+           * If inter() is (re)called, the stack is returned in the same state
+           * as it was before the call (even if there are bind's on it).
+           * -> If inter() uses the stack, it recovers the original state before
+           *    exiting.
+           * If I leave intact_inter for the last time, the stack is empty
+           * again.
+           * So, if the stack is not empty, the item on the stack had to be a
+           * bind constructor which I have put on the stack earlier.
+           * In this case I have to pop and 'execute' it, i.e. the 2.argument
+           * of the bind (the continuation) has to be applied to the argument
+           * of the unit ( R_INTACT(*desc,args)[1] ). This corresponds to one
+           * ascending step in the recursive reduction.
+           */
+           
+          short not_bind = 0;        /* There had to be a bind on the stack. */
+  
+          ptdesc = (PTR_DESCRIPTOR) pop(r);
+          binds_on_stack--;
+          if (T_POINTER(ptdesc) &&
+              (R_DESC(*ptdesc,class) == C_INTACT) &&
+              (R_DESC(*ptdesc,type) == TY_INTACT) )
+          {
+            args   = (STACKELEM *) R_INTACT(*ptdesc,args);
+            if (T_IA_BIND((STACKELEM) args[0]))
+            {
+              PTR_DESCRIPTOR cont = (PTR_DESCRIPTOR) args[2];
+              repl(0, w, R_INTACT(*desc,args)[1]);
+              push((int)cont);
+              
+              /* Update r-stack */
+              push_label(0);
+              push_r(((int)(&intact_tasm) | FUNCTIONRETURN));
+              push_r(1);
+              ret = (int)&f_apply;
+
+              /*
+               * Doing some reference counting. (hard job)
+               * The bind and the unit constructors are no longer needed, but
+               * their arguments are. Therefor increment the refcnt of the
+               * unit argument and the 2.argument of the bind (cont) and
+               * decrement the refcnt of bind and unit.
+               */
+              T_INC_REFCNT(cont);
+              DEC_REFCNT(ptdesc);                        /* bind constructor */
+              T_INC_REFCNT((PTR_DESCRIPTOR) R_INTACT(*desc,args)[1]);
+              DEC_REFCNT(desc);                          /* unit constructor */
+              _redcnt -= 1;                    /* decrease reduction counter */
+            }
+            else
+              not_bind = 1;
+          }
+          else
+            not_bind = 1;
+  
+          if (not_bind)
+            controlled_exit("rintact.c: Item on bindStack is not a bind().");
+        }
+        else
+        {
+          repl(0, w, (int)desc); /* unit(...) is the result of the reduction.*/
+        }
+        desc = (PTR_DESCRIPTOR) NULL;   /* Interrupt the loop in every case. */
+      }
+      else if (T_IA_EXIT(intact))
+      {
+        /*
+         * The distributed version of kir may get into difficulties if this
+         * exit was executed in a son process.
+         */
+        if (T_INT(args[1]))
+          exit((long int) args[1] / 2);
+        else
+          exit(1);
+      }
+      else if ((fctptr = intact_tab[FUNC_INDEX(intact)].fkt) != NULL)
+      {
+        /*
+         * desc is a primitive interaction. Call interaction function an
+         * return unit( Status{Value} ).
+         */
+         
+        /*
+         * dim is equal to arity of interaction + 1 (the interaction)
+         */
+        dim    = R_INTACT(*desc,dim);
+  
+        switch (dim - 1)
+        {
+          case 1:  status = (int) ((*fctptr)(args[1]));  break;
+          case 2:  status = (int) ((*fctptr)(args[1],args[2]));  break;
+          case 3:  status = (int) ((*fctptr)(args[1],args[2],args[3]));  break;
+          default: controlled_exit("rintact: interaction has wrong dimension");
+        }
+        
+        if (status == SYNERR)
+        {
+          /*
+           * The arguments are syntactical wrong. No reduction will be made,
+           * interrupt loop.
+           */
+          repl(0, w, (int)desc);
+          desc = (PTR_DESCRIPTOR) NULL;
+        }
+        else 
+        {
+          /*
+           * Reduce interaction, display result.
+           */
+          DEC_REFCNT(desc);
+          MAKERETURNVAL(status, _desc);
+      
+          /* Make unit descriptor */
+          MAKEDESC(ptdesc, 1, C_INTACT, TY_INTACT);
+          L_INTACT(*ptdesc,dim)  = 2;
+          GET_HEAP(3, A_INTACT(*ptdesc,args));
+          RES_HEAP;
+          R_INTACT(*ptdesc,args)[0] = IA_UNIT;
+          R_INTACT(*ptdesc,args)[1] = (T_HEAPELEM) _desc;
+          REL_HEAP;
+          _desc = NULL;
+      
+          repl(0, w, (int)ptdesc);
+          _redcnt -= 1;
+          desc = ptdesc;                     /* desc is unit -> repeat loop */
+        }
+      }
+      else
+      {
+        /*
+         * desc is a primitive, but not yet implemented interaction. No further
+         * reduction can be made, the loop will be interrupted.
+         */
+        repl(0, w, (int)desc);
+        desc = (PTR_DESCRIPTOR) NULL;
+      }
+    }
+  } /* while (desc is interaction) */
+
+  if ( ret == NULL && binds_on_stack > 0 )
+  {
+    /*
+     * The reduction is finished, any bind's left on the bind stack must be
+     * recovered to get back the hole expression.
+     */
+    _desc = recover((PTR_DESCRIPTOR) pop(w), binds_on_stack);
+    binds_on_stack = 0;
+    push((int)_desc);
+    _desc = NULL;
+  }
+  
+  DBUG_RETURN(ret);
+}
+
+@
+
+
+1.3
+log
+@minor changes
+@
+text
+@a158 3
+  if (1 == AsciiOutput)
+    printf("PWD = %s\n", virtual_wd);
+
+@
+
+
+1.2
+log
+@intact.c is compilable now and no longer included from a.out.c
+@
+text
+@d255 1
+a255 1
+        if (0) /* (binds_on_stack > 0) */
+d293 2
+a294 2
+              push_label(0);
+              ret = (int)&f_apply | FUNCTIONRETURN;
+d303 1
+a303 2
+              if (T_POINTER(cont))
+                INC_REFCNT(cont);
+d305 1
+a305 2
+              if (T_POINTER((PTR_DESCRIPTOR) R_INTACT(*desc,args)[1]))
+                INC_REFCNT((PTR_DESCRIPTOR) R_INTACT(*desc,args)[1]);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a3 3
+ * CAUTION: This file will not be compiled by its own, but will be
+ *          included by a.out.c, the file which will be created by tasm.
+ *
+d21 72
+d144 2
+d150 1
+a150 1
+      post_mortem("rintact: getcwd fails.");
+d162 1
+a162 3
+#if 0
+
+  desc = (PTR_DESCRIPTOR) READSTACK(S_a);           /* Get result of inter() */
+d186 2
+a187 2
+          &&
+          (_redcnt > 0)                   /* Are there Reduction steps left? */
+d201 1
+a201 1
+        WRITESTACK(S_a, desc);
+d221 1
+a221 1
+        WRITESTACK(S_a, ptdesc);
+d232 1
+a232 1
+        post_mortem("rintact: interaction has wrong index");
+d248 1
+a248 1
+        PUSHSTACK(BIND_STACK, (STACKELEM) desc);
+d251 1
+a251 1
+        WRITESTACK(S_a, desc);
+d255 1
+a255 1
+        if (binds_on_stack > 0)
+d277 1
+a277 1
+          ptdesc = (PTR_DESCRIPTOR) POPSTACK(BIND_STACK);
+d287 2
+a288 1
+              WRITESTACK(S_a,R_INTACT(*desc,args)[1]);     /* save unit arg. */
+d290 6
+a295 13
+              if (T_POINTER(cont) &&
+                  (R_DESC(*cont,class) == C_FUNC) &&
+                  (R_DESC(*cont,type ) == TY_COMB) &&
+                  (R_COMB(*cont,nargs) == 1) )
+              {
+                beta_code[1] = (INSTR) R_COMB(*cont,ptc);
+                ret = (int) beta_code;
+              }
+              else
+              {
+                PUSHSTACK(S_a,cont);
+                ret = (int) apply_code;
+              }
+d318 1
+a318 2
+            post_mortem("rintact.c: Item on Stack " BIND_STACK_STRING
+                        " is not a bind().");
+d322 1
+a322 1
+          WRITESTACK(S_a, desc); /* unit(...) is the result of the reduction.*/
+d337 1
+a337 1
+      else if ((fctptr = intact_tab[FUNC_INDEX(intact)].fkt) != red_dummy)
+d354 1
+a354 1
+          default: post_mortem("rintact.c: interaction has wrong dimension");
+d363 1
+a363 1
+          WRITESTACK(S_a, desc);
+d384 1
+a384 1
+          WRITESTACK(S_a, ptdesc);
+d395 1
+a395 1
+        WRITESTACK(S_a, desc);
+d401 1
+a401 1
+  if ( ret == 0 && binds_on_stack > 0 )
+d407 1
+a407 1
+    RECOVEREXPRESSION(_desc, (PTR_DESCRIPTOR) READSTACK(S_a), binds_on_stack);
+d409 1
+a409 1
+    WRITESTACK(S_a,_desc);
+d413 1
+a413 5
+  /* return(ret); */
+
+#endif
+
+  DBUG_RETURN(0);
+@

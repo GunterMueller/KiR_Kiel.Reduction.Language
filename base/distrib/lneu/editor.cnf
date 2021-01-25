@@ -1,0 +1,9 @@
+editor:
+
+CFLAGS = -O
+RFLAGS = -DKEDIT=0 -DM_PATT=1 -DTRACE=0 -DClausR=1 -DB_DEBUG=0
++ cfiles.c cmain.c cscred.c cgetexp.c \
+  cmatch.c cscroll.c ctransl1.c ccommand.c cgetstr.c cmatrix.c csearch.c \
+  cdispl.c cglobals.c cnewscr.c cstacks.c initredp.c cedit.c \
+  chelp.c cpexp.c csubst.c cetab.c cinput.c credclr.c ctermio.c \
+  cfdispl.c ciotab.c cscanexp.c

@@ -1,0 +1,25 @@
+HINWEISE ZUR IMPLEMENTATION DES CHECKFRAME-ASM-BEFEHLS
+------------------------------------------------------
+
+letzte Aenderung: Sommer '93  RS: dieses README erstellt.
+                                  keine lauffaehige Implementation von CHECKFRAME
+                                  vorhanden, es fehlen (nur) noch die entsprechenden
+                                  Stackfunktionen (s.u.) und eine Konsistenzueberpruefung
+                                  im Interpreter (s.u.)
+
+                  08.11.1993  RS: kosmetische Aenderungen
+                  
+
+ANFORDERUNGEN:
+--------------
+
+ - fuer den A und I-Stack keine Segmentgrenzen-Checks (ausser fuer POP)
+
+ - Bibliotheksfunktion, die checkt, ob noch n Eintraege in diesem Segment frei sind, 
+   ansonsten alloziere neues Segment, und kopiere ggf. m Elemente des alten Segmentes mit
+
+ - Bibliotheksfunktion, die n Stackelemente in das tiefste moegliche Segment zusammenpackt
+
+ - kein UPDATE auf Funktionsargumente (immer komplettes Abraeumen von Segmenten)
+
+ - in der DEBUG-Version immer checks

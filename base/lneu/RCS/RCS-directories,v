@@ -1,0 +1,43 @@
+head	1.2;
+access;
+symbols
+	lneu2:1.1
+	lneu1:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.2
+date	2001.03.09.14.58.29;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.10.27.08.31.15;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@Dieses File wird zum lokalen Einrichten des
+lneu-Projektes benoetigt.
+@
+
+
+1.2
+log
+@empty line removed
+@
+text
+@src
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a1 1
+
+@

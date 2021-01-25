@@ -1,0 +1,17 @@
+CONTENTS
+--------
+
+lneu          classic graph reducer                         SunOS 4.x binary
+lred          first compiling version                       Solaris 2.5 binary
+tred          advanced compiling version                    Solaris 2.5 binary
+
+dlred         debug version of lred                         Solaris 2.5 binary
+dtred         debug version of tred                         Solaris 2.5 binary
+
+ditred        distributed version (host)                    SunOS 4.x binary
+nctred        distributed version (nCUBE)                   nCUBE binary
+mditred       measure version (host)                        SunOS 4.x binary
+mnctred       (no heap & no stack) measure version (nCUBE)  nCUBE binary
+
+If you are missing your favourite version of the reduction machine, please send 
+your request to base@informatik.uni-kiel.de.

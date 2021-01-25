@@ -1,0 +1,95 @@
+head	1.2;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	95.07.11.10.10.20;	author um;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.07.11.10.02.31;	author um;	state Exp;
+branches;
+next	;
+
+
+desc
+@tcorrect init
+@
+
+
+1.2
+log
+@warning inserted
+@
+text
+@#include <malloc.h>
+#include <string.h>
+#include "dbug.h"
+#include "error.h"
+#include "main.h"
+#include "tcorrect.h"
+#include "buildtree.h"
+
+int correct_t_frame()
+{
+int count=0;
+ORDER *ord;
+FUNDESC *des;
+FUNCTION *func;
+
+DBUG_ENTER("correct_t_frame");
+func=GETFIRSTFUNCTION(program_start);
+while (NULL!=func)
+  {
+  des=func->desc;
+  ord=func->order;
+  while (end!=GETORDERENTRY(ord,command))
+    {
+    switch (GETORDERENTRY(ord,command))
+      {
+      case pushtr:
+      case pushtw:
+	{
+	if (GETDESCENTRY(des,nfv)<=GETORDERARGS(ord,n))
+	  {
+	  count++;
+	  yywarn("tilde-frame of %s changed!",des->label);
+	  SETDESCENTRY(des,nfv)=GETORDERARGS(ord,n)+1;
+	  }
+	break;
+	}
+      case tail:
+      case beta:
+      case Case:
+	{
+	if ((0!=GETDESCENTRY(find_function(GETORDERARGS(ord,label))->desc,nfv)) &&
+	    (GETDESCENTRY(find_function(GETORDERARGS(ord,label))->desc,nfv)!=
+	    GETDESCENTRY(des,nfv)))
+	  yyfail("wrong tilde-frame-size for %s !",GETORDERARGS(ord,label));
+	break;
+	}
+      default:
+	break;
+      }
+    ord=GETNEXTORDER(ord);
+    }
+  func=func->next;
+  }
+DBUG_RETURN(count);
+}@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d32 1
+d44 1
+a44 1
+	  yyfail("wrong tilde-frame-size for %s !\n",GETORDERARGS(ord,label));
+@

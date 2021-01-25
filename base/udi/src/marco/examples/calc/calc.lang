@@ -1,0 +1,39 @@
+%PROJECT [MAKEFILE,NAME=calc]
+
+%SCANNER
+
+%PRIMFUNCTIONS [EXTENDER=PF]
+PLUS  = +
+MINUS = -
+MULT  = *
+DIV   = /
+
+%IDENTIFIERS [EXTENDER=ID]
+NUMBER = #REGEXPR #IDENTIFIER "~"?[0-9]+("."[0-9]+)?
+
+%DELIMITERS
+BRA   = (
+KET   = )
+
+%PARSER
+
+%SYNTAXRULES [EXPRESSIONSYMBOL=expr]
+
+expr :
+ atomic_expr -{ COPY; }-
+ | "(" expr expr expr ")" 
+   -{ create_expr_3(EDIT_DUMMY,$2,$3,$4); }-
+   -[ $1 \< \n $2 $3 $4 \> $5 ]-
+;
+
+atomic_expr :
+ NUMBER_ID  -{ create_number(EDIT_DUMMY,$1); }- -[ $1 ]-
+ | function -{ COPY; }-
+;
+
+function :
+ "+"   -{ create_primfunc(EDIT_DUMMY,RED_IPF_PLUS); }- -[ $1 ]-
+ | "-" -{ create_primfunc(EDIT_DUMMY,RED_IPF_MINUS); }- -[ $1 ]-
+ | "*" -{ create_primfunc(EDIT_DUMMY,RED_IPF_MULT); }- -[ $1 ]-
+ | "/" -{ create_primfunc(EDIT_DUMMY,RED_IPF_DIV); }- -[ $1 ]-
+;

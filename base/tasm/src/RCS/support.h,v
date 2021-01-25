@@ -1,0 +1,33 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	96.02.13.16.40.06;	author stt;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef SUPPORT_H
+#define SUPPORT_H
+
+#ifndef _MYTYPES
+#include "mytypes.h"
+#endif
+
+extern int get_ia_arity(IACTION iaction);
+
+#endif /* SUPPORT_H */
+@

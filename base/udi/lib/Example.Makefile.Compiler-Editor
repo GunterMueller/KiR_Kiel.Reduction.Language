@@ -1,0 +1,57 @@
+###################################################################################
+##
+## Example Makefile for a new reduction compiler using existing libraries
+## Adjust it for you purposes
+##
+###################################################################################
+## Author : Ulrich Diedrichsen
+## Copy   : University of Kiel (germany) 1993
+###################################################################################
+
+CC			= gcc
+
+COMPILER_NAME		= kir
+SYNTAX_EDITORNAME	= lred
+
+###################################################################################
+#
+# Some pathes needed for makefile (Please adjust them)
+#
+###################################################################################
+
+# Base dir for compiler libraries
+BASE_LIB_DIR		= /home/gutemine/udi/dipl/lib
+
+# Path and name for the used reduction unit
+RED_OBJ			= /home/batman/base/lred.o
+
+# Path and name for the syntaxedior frontend
+SYNTAX_EDITOR_OBJ	= $(BASE_LIB_DIR)/editor.o
+
+# Compiler generator libraries
+COGEN-LIB		= $(BASE_LIB_DIR)/libmarco.o
+COGEN-MAIN		= $(BASE_LIB_DIR)/marco-main.o
+
+# Name of language depend library
+LANGLIBNAME    		= $(BASE_LIB_DIR)/libkir.o
+
+# Uncomment next line for debug features
+#FFDBUGLIB      	= /home/gutemine/udi/dipl/src/dbug/dbug.o
+
+RED_SYSLIBS		= -lm
+EDITOR_SYSLIBS		= -ltermcap
+
+###################################################################################
+# Goals
+###################################################################################
+
+all : $(COMPILER_NAME) $(SYNTAX_EDITORNAME)
+
+$(COMPILER_NAME) : $(COGEN-MAIN) $(COGEN-LIB) $(LANGLIBNAME) $(RED_OBJ)
+	$(CC) -o $(COMPILER_NAME) $(COGEN-MAIN) $(COGEN-LIB) $(LANGLIBNAME) $(RED_OBJ) $(RED_SYSLIBS)
+
+$(SYNTAX_EDITORNAME) : $(SYNTAX_EDITOR_OBJ) $(RED_OBJ)
+	$(CC) -o $(SYNTAX_EDITORNAME) $(SYNTAX_EDITOR_OBJ) $(RED_OBJ) $(RED_SYSLIBS) $(EDITOR_SYSLIBS)
+
+clean ::
+	rm -f $(COMPILER_NAME) $(SYNTAX_EDITORNAME)

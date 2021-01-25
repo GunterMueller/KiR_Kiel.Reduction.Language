@@ -1,0 +1,325 @@
+head	1.10;
+access;
+symbols
+	continuation_based_interactions:1.5
+	pre_interactions:1.5
+	nCUBE~:1.4
+	red2:1.2
+	red1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.10
+date	2001.07.02.14.53.11;	author base;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	97.02.17.16.07.21;	author stt;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.12.11.18.25.10;	author cr;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.11.27.09.28.48;	author stt;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.11.15.16.43.56;	author stt;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.05.22.09.16.19;	author rs;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.06.15.11.11.06;	author mah;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.12.09.08.29.16;	author mah;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.10
+log
+@compiler warnings eliminated
+@
+text
+@/*
+ * $Log: rextern.h,v $
+ * Revision 1.9  1997/02/17 16:07:21  stt
+ * new ptr_instream, ptr_outstream
+ *
+ * Revision 1.8  1995/12/11  18:25:10  cr
+ * support for empty frames: NILSTRUCT
+ *
+ * Revision 1.7  1995/11/27  09:28:48  stt
+ * declaration of *ptr_start_dir
+ *
+ * Revision 1.6  1995/11/15  16:43:56  stt
+ * declaration of external _issubexpr
+ *
+ * Revision 1.5  1995/05/22  09:16:19  rs
+ * changed nCUBE to D_SLAVE
+ *
+ * Revision 1.4  1994/06/15  11:11:06  mah
+ * CloseGoal added
+ *
+ * Revision 1.3  1993/12/09  08:29:16  mah
+ * S_tilde added
+ *
+ * Revision 1.2  1993/09/01  12:37:17  base
+ * ANSI-version mit mess und verteilungs-Routinen
+ *
+ * Revision 1.1  1992/11/04  18:12:30  base
+ * Initial revision
+ */
+
+
+
+
+/****************************************************************************/
+/* rextern.h                                                                */
+/*  In dieser Datei stehen alle Variablen und Funktionen als extern         */
+/*  deklariert, welche durch die meisten Module gebraucht werden.           */
+/*  (D.h wenn sie nur in ein oder zwei Dateien benoetigt werden, sollten    */
+/*   sie hier nicht stehen.                                                 */
+/*                                                                          */
+/****************************************************************************/
+
+#ifndef STACKMANAGER
+#ifndef HEAPMANAGER       /* der Heapmanager kennt keine Stacks ! */
+#if D_SLAVE
+extern DStackDesc D_S_H,D_S_A,D_S_I,D_S_R;
+#else
+extern StackDesc S_e,S_a,S_m,S_m1,S_v,S_hilf,S_i;
+       /* der V-Stack wird nur in der Preprocessing Phase verwendet */
+#if WITHTILDE
+extern StackDesc S_tilde; /* mah 190993 */
+extern int CloseGoal;     /* method of closing lrecs */
+#endif /* WITHTILDE */
+
+#endif /* D_SLAVE */
+#endif /* HEAPMANAGER */
+#endif /* STACKMANAGER */
+
+
+
+#if DEBUG
+
+  extern void start_modul();       /* breakpoint:c */
+  extern void   end_modul();       /* breakpoint:c */
+
+#ifndef STACKMANAGER
+  /* Im Stackmanager sind diese Rountinen natuerlich nicht extern */
+#ifndef HEAPMANAGER
+  extern STACKELEM readstack();       /* stack:c */
+  extern void writestack();           /* stack:c */
+  extern unsigned short read_arity(); /* stack:c */
+  extern void write_arity();          /* stack:c */
+  extern STACKELEM popstack();        /* stack:c */
+  extern void pushstack();            /* stack:c */
+  extern int sizeofstack();           /* stack:c */
+#endif /* HEAPMANAGER  */
+#endif /* STACKMANAGER */
+#endif /* DEBUG        */
+
+#ifndef RUNTIME
+  extern int post_mortem();            /* runtime:c */
+#endif /* RUNTIME      */
+
+
+#ifndef HEAPMANAGER
+/* ---------------  permanent descriptors in heap  ---------------*/
+extern PTR_DESCRIPTOR _nilmat;    /* <r> , pointer to permanent desc.   */
+                                  /*       for empty matrix             */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _nilvect;   /* <r> , pointer to permanent desc.   */
+                                  /*       for empty vector             */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _niltvect;  /* <r> , pointer to permanent desc.   */
+                                  /*       for empty transposed vector  */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _nil;       /* <r> , pointer to permanent desc.   */
+                                  /*       for empty list               */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _nilstring; /* <r> , pointer to permanent desc.   */
+                                  /*       for empty string             */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _nilstruct; /* <r> , pointer to permanent desc.   */
+                                  /*       for empty frame              */
+                                  /* <i>|<r>,<r>,<r>                    */
+extern PTR_DESCRIPTOR _dig0;      /*   <i>|<r>,<r>,<r>                  */
+extern PTR_DESCRIPTOR _dig1;      /*   <i>|<r>,<r>,<r>                  */
+extern PTR_DESCRIPTOR _work;      /*   <i>|<w>,<w>,<w>                  */
+extern PTR_DESCRIPTOR _digPI;     /* descriptor for number 'PI'         */
+                                  /* (PI with relative error RGPI       */
+extern PTR_DESCRIPTOR _digLN2;    /* descriptor for number LN2          */
+extern PTR_DESCRIPTOR _digRG;     /* relative error descriptor          */
+#endif /* HEAPMANAGER */
+
+
+#ifndef HEAPMANAGER
+/* da DEC_REFCNT im nicht Debugfall ein Makro ist, erfolgt ein Tabellensprung
+ * in jeder Procedur, die dieses Makro verwenden. Deshalb muessen die
+ * deallocroutinen ueberall bekannt sein.
+ */
+extern int dealloc_sc();   /* alle in heap:c */
+extern int dealloc_di();
+extern int dealloc_li();
+extern int dealloc_mvt();
+extern int dealloc_ex();
+extern int dealloc_co();
+extern FCTPTR dealloc_tab[]; /* in heap:c definiert */
+#endif /* HEAPMANAGER */
+
+extern short idcnt;              /* counter-variable for indirect descriptors */
+
+extern short stdesccnt;          /* counter-variable for the                  */
+                                 /* number of "standard-descriptors"          */
+
+extern int      _prec10;         /* REDUMA-divisionprecision with base 10     */
+                                 /* (parameter from EDITOR)                   */
+                                 /* used in rbibfunc.c to eval.               */
+                                 /* sin(x), ... , ln(x)                       */
+extern int      _prec10_mult;    /* REDUMA-multiplicationprecision with       */
+                                 /* base 10 (parameter from EDITOR)           */
+
+extern int      _issubexpr;      /* stt The expr. to be reduced is a subexpr. */
+extern char     *_ptr_start_dir; /* stt Pointer to a string which contains    */
+                                 /*     inital directory.                     */
+extern char     *_ptr_instream;  /* stt 17.02.97    Source and target files   */
+extern char     *_ptr_outstream; /*     for interactions stdIO                */
+
+@
+
+
+1.9
+log
+@new ptr_instream, ptr_outstream
+@
+text
+@d1 5
+a5 1
+/* $Log: rextern.h,v $
+d29 1
+a29 1
+ * */
+d81 1
+a81 1
+  extern post_mortem();            /* runtime:c */
+@
+
+
+1.8
+log
+@support for empty frames: NILSTRUCT
+@
+text
+@d2 3
+d140 2
+@
+
+
+1.7
+log
+@declaration of *ptr_start_dir
+@
+text
+@d2 3
+d94 3
+@
+
+
+1.6
+log
+@declaration of external _issubexpr
+@
+text
+@d2 3
+d129 2
+@
+
+
+1.5
+log
+@changed nCUBE to D_SLAVE
+@
+text
+@d2 3
+d125 1
+@
+
+
+1.4
+log
+@CloseGoal added
+@
+text
+@d2 3
+d29 1
+a29 1
+#if nCUBE
+d39 1
+a39 1
+#endif /* nCUBE */
+@
+
+
+1.3
+log
+@S_tilde added
+@
+text
+@d2 3
+d33 1
+@
+
+
+1.2
+log
+@ANSI-version mit mess und verteilungs-Routinen
+@
+text
+@d2 3
+d28 4
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+a4 1
+/* $Log$ */
+d20 3
+d25 1
+@

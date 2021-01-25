@@ -1,0 +1,3349 @@
+head	1.28;
+access;
+symbols
+	continuation_based_interactions:1.25
+	pre_interactions:1.22
+	nCUBE~:1.21
+	red2:1.3
+	red1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.28
+date	97.06.06.09.13.11;	author rs;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	96.03.29.14.35.23;	author rs;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	96.02.29.16.32.56;	author rs;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.10.11.15.17.58;	author stt;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.10.11.13.56.49;	author stt;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.09.12.14.30.03;	author stt;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.05.22.09.23.25;	author rs;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.03.28.14.24.49;	author cr;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.03.23.13.23.12;	author cr;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.03.22.18.55.41;	author cr;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.03.15.16.25.55;	author cr;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.03.15.15.58.24;	author cr;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.03.09.14.38.18;	author cr;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.11.25.12.40.53;	author car;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.07.20.15.04.55;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.06.22.07.49.51;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.06.22.07.14.13;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.06.20.06.03.43;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.05.04.07.01.59;	author ach;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.03.29.17.26.43;	author mah;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.03.08.18.53.11;	author mah;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.03.08.13.13.00;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.02.04.12.44.31;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.01.20.08.27.32;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.01.18.08.39.55;	author mah;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.12.16.12.49.58;	author rs;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.28
+log
+@some more (complete) modifications concerning speculative evaluation
+(don't say you have missed my talk ? ;-)
+@
+text
+@/* $Log: rheapty.h,v $
+ * Revision 1.27  1996/03/29  14:35:23  rs
+ * some work on the famous MAH-tilde-BUG
+ *
+ * Revision 1.26  1996/02/29  16:32:56  rs
+ * one comment added ;-)
+ *
+ * Revision 1.25  1995/10/11  15:17:58  stt
+ * In L_ATOMTYPE class check corrected.
+ *
+ * Revision 1.24  1995/10/11  13:56:49  stt
+ * In R_ATOMTYPE unit member corrected.
+ *
+ * Revision 1.23  1995/09/12  14:30:03  stt
+ * interactions supported
+ *
+ * Revision 1.22  1995/05/22  09:23:25  rs
+ * changed nCUBE to D_SLAVE
+ *
+ * Revision 1.21  1995/03/28  14:24:49  cr
+ * redefined C_FRAME,C_INTER for use with dealloc_tab
+ *
+ * Revision 1.20  1995/03/23  13:23:12  cr
+ * minor change in ST_SLOT corrected
+ *
+ * Revision 1.19  1995/03/22  18:55:41  cr
+ * minor change in ST_SLOT
+ *
+ * Revision 1.18  1995/03/15  16:25:55  cr
+ * minor corrections
+ *
+ * Revision 1.17  1995/03/15  15:58:24  cr
+ * minor corrections
+ *
+ * Revision 1.16  1995/03/09  14:38:18  cr
+ * Added descriptors for interactions, frames and slots
+ *
+ * Revision 1.15  1994/11/25  12:40:53  car
+ * ST_COMB becomes first component of union
+ *
+ * Revision 1.14  1994/07/20  15:04:55  car
+ * combtype changed
+ *
+ * Revision 1.13  1994/06/22  07:49:51  car
+ * ST_COMPTYPE modified
+ *
+ * Revision 1.12  1994/06/22  07:14:13  car
+ * *** empty log message ***
+ *
+ * Revision 1.11  1994/06/20  06:03:43  car
+ * first extension for optimizer
+ *
+ * Revision 1.10  1994/05/04  07:01:59  ach
+ * first beta release of distributed tilde-version
+ *
+ * Revision 1.9  1994/03/29  17:26:43  mah
+ * NOMATBODY added
+ *
+ * Revision 1.8  1994/03/08  18:53:11  mah
+ * tilde pattern match added
+ *
+ * Revision 1.7  1994/03/08  13:13:00  car
+ * support remote descriptors
+ *
+ * Revision 1.6  1994/02/04  12:44:31  car
+ * changes in codefile output
+ *
+ * Revision 1.5  1994/01/20  08:27:32  car
+ * corrections for rextcode.c
+ *
+ * Revision 1.4  1994/01/18  08:39:55  mah
+ * tilde version
+ * .,
+ *
+ * Revision 1.3  1993/09/01  12:37:17  base
+ * ANSI-version mit mess und verteilungs-Routinen
+ *
+ * Revision 1.2  1992/12/16  12:49:58  rs
+ * ANSI-Version
+ *
+ * Revision 1.1  1992/11/04  18:12:30  base
+ * Initial revision
+ * */
+
+/*****************************************************************************/
+/* rheapty.h                                                                 */
+/*               In dieser Datei stehen die Definitionen der Heaptypen       */
+/*               und Heapstrukturen, sowie die Zugriffsmakros des Heaps.     */
+/* ------------------------------------------------------------------------- */
+/*   Ein Deskriptor hat eine Groesse von 16 Byte :                           */
+/*   =============================================                           */
+/*     Deskriptormaske :                                                     */
+/*     -----------------                                                     */
+/*       1 Byte fuer die Typdefinition der Deskriptor - Klassen              */
+/*              (typedef char DESC_CLASS;)                                   */
+/*       1 Byte fuer die Typdefinition der Deskriptor - Typen                */
+/*              (typedef char DESC_TYPE;)                                    */
+/*       2 Byte fuer die Typdefinition des Deskriptor - Refcount             */
+/*              (typedef unsigned short COUNT;)                              */
+/*                                                                           */
+/*     Spezifikation der unterschiedlichen DESCriptor_CLASS Definitionen :   */
+/*     -------------------------------------------------------------------   */
+/*       12 Byte fuer die Typdefinition der Strukturen der                   */
+/*               unterschiedlichen DESCriptor CLASS Definitionen             */
+/*                                                                           */
+/*       Alle Strukturen wurden auf 12 Byte aufgefuellt.                     */
+/*       Platz fuer eine Edit-Information wurde in Listen-,                  */
+/*       Conditional- und Funktionsstrukturen integriert.                    */
+/*                                                                           */
+/*  MC-68000 :                                                               */
+/*       char  8 Bit  |  short 16 Bit  |   int  32 Bit   |   double 64 Bit   */
+/*                                                                           */
+/*       PTR_HEAPELEM  ist als Typ von int definiert.                        */
+/*                                                                           */
+/*****************************************************************************/
+
+#ifndef RHEAPTY_H
+#define RHEAPTY_H
+
+#if MEASURE
+#define MEAS_CALL(x) measure(x),
+#else
+#define MEAS_CALL(x)
+#endif  /* MEASURE */
+
+typedef unsigned char DESC_CLASS;     /* enum in 1 byte    */
+
+/* the following comments apply to GRAPH only (the reduma is not affected): */
+/* Die letzten beiden bit von class geben die Deskriptorlaenge an. */
+/* Wenn Bit 7,6 = 0,0  -> normale      Deskriptorlaenge,           */
+/* Wenn Bit 7,6 = 0,1  -> doppelte     Deskriptorlaenge,           */
+/* Wenn Bit 7,6 = 1,0  -> dreifache    Deskriptorlaenge,           */
+/* Wenn Bit 7,6 = 1,1  -> undefinierte Deskriptorlaenge.           */
+/* D.h., die Deskriptorlaenge berechnet sich folgendermassen :     */
+/*     l = (R_DESC(*p),class)>>6) + 1                              */
+/* Dies wird in der Funktion compheap benutzt !                    */
+
+#define C_SCALAR          '\1'
+#define C_DIGIT           '\2'
+#define C_LIST            '\3'
+#define C_MATRIX          '\4'
+/* dg *//* neue klasse fuer die compilierte version */
+#define C_FUNC            '\5'
+#define C_EXPRESSION      '\6'
+#define C_CONSTANT        '\7'  /* free variable desc*/
+#define C_VECTOR          '\10'
+#define C_TVECTOR         '\11'
+/* Temporaer fuer Heap-swap-Routine */
+#define C_SWAPHEAP        '\12'
+#define C_MATCHING        '\13'
+#define C_PATTERN         '\14'
+/* dg 02.05.91 cons-listen */
+#define C_CONS            '\15'
+
+/* descriptor class for type-infer mechanism */
+#define C_ATOMTYPE        '\16'
+#define C_COMPTYPE        '\17'
+#define C_LINKNODE        '\20'
+
+/* ach 04/03/93, used for messages */
+#define C_SENT            '\52'
+
+/* folgende 6 Classes sind GRAPH-Classes */
+#define C_PROCESS         '\100'
+#define C_STREAM          '\101'
+#define C_GFIELD          '\102'
+#define C_MERGE_FIELD     '\103'
+#define C_SEMAPHORE       '\104'
+#define C_MERGE_STREAM    '\105'
+#define C_EDIT            '\106'
+
+/* cr 09/03/95, kir(ff), START */
+#define C_FRAME           '\21'
+#define C_INTER           '\22'
+/* cr 09/03/95, kir(ff), END */
+
+/* interaction descriptor class  stt */
+#define C_INTACT          '\23'
+
+typedef unsigned char DESC_TYPE;      /* enum in 1 byte     */
+
+/* Descriptor ist in der Freiliste    */
+#define TY_FREE              '\0'
+#define TY_UNDEF             '\1'
+#define TY_INTEGER           '\2'
+#define TY_REAL              '\3'
+#define TY_BOOL              '\5'
+#define TY_STRING            '\6'
+#define TY_DIGIT             '\7'
+#define TY_REC              '\11'
+#define TY_SUB              '\12'
+#define TY_COND             '\13'
+#define TY_EXPR             '\15'
+#define TY_VAR              '\16'
+#define TY_NAME             '\17'
+/* mah 111093 */
+#define TY_FNAME            '\20'
+#define TY_MATRIX           '\21'
+
+/* for matrix with more than two dimensions  */
+#define TY_SWITCH           '\22'  /* BAR */
+#define TY_MATCH            '\23'
+#define TY_NOMAT            '\25'
+#define TY_LREC             '\26'  /* letrec   *//* CS */
+#define TY_LREC_IND         '\27'  /* letrec   *//* CS */
+#define TY_LREC_ARGS        '\31'  /* letrec   *//* CS */
+/* dg *//* neue typen fuer die compilierte version */
+#define TY_COMB             '\32'
+#define TY_CLOS             '\33'
+#define TY_CONDI            '\34'
+#define TY_CASE             '\35'
+#define TY_WHEN             '\36'
+#define TY_GUARD            '\37'
+#define TY_BODY             '\40'
+#define TY_PRIM             '\41'
+
+/* uh */ /* Neue Typen fuer ZF-Expressions */
+#define TY_ZF               '\42'
+#define TY_ZFCODE           '\43' /* Code-Descriptor */
+
+/* uh */ /* Neue Typen fuer Pattern Matching */
+#define TY_LIST             '\44'
+#define TY_AS               '\45'
+#define TY_DOTDOTDOT        '\46'
+#define TY_LASTDOTDOTDOT    '\47'
+#define TY_DOTPLUS          '\50'
+#define TY_LASTDOTPLUS      '\51'
+#define TY_DOTSTAR          '\52'
+#define TY_LASTDOTSTAR      '\53'
+
+#define TY_SELECTION        '\54'
+#define TY_CLAUSE           '\55'
+/* dg 02.05.91 cons-listen */
+#define TY_CONS             '\56'
+
+/* mah 281093 tilde-stack */
+#if WITHTILDE
+#define TY_SNSUB             '\57' 
+/* mah 090394 nomat body closure type */
+#define TY_NOMATBODY         '\61'
+#endif /* WITHTILDE */
+
+/* special list/matrix type for remote structures */
+#define TY_REMOTE            '\60'
+
+/* constructor types for type inference mechanism */
+#define TY_VECT              '\70'
+#define TY_TVECT             '\71'
+#define TY_MAT               '\72'
+#define TY_FUNC              '\73'
+#define TY_PROD              '\74'
+#define TY_SUM               '\75'
+
+/* interaction type     stt */
+#define TY_INTACT            '\76'
+
+/* cr 09/03/95, kir(ff), START */
+#define TY_FRAME             '\100'
+#define TY_SLOT              '\101'
+#define TY_GET               '\102'
+#define TY_PUT               '\103'
+#define TY_DONE              '\104'
+/* cr 09/03/95, kir(ff), END */
+
+typedef unsigned short COUNT;         /*  Refcount  2 byte */
+
+/* working-definitions */
+typedef int                 T_HEAPELEM ;
+typedef int                 *PTR_HEAPELEM ;
+typedef struct T_descriptor *T_PTD;
+typedef int                 INSTR; /* dg */
+
+/* Berechnung der heapsize fuer newheap */
+#define HEAPSIZEOF(x) ((sizeof(x) + sizeof(T_HEAPELEM) - 1)/sizeof(T_HEAPELEM))
+
+typedef struct T_hblock {
+          struct T_hblock *next;  /* ptr to next block        */
+          T_HEAPELEM      **ref;  /* blk is ref'ed by ...     */
+        }                T_HBLOCK;
+
+/************************************************************************/
+/*                        A C H T U N G !                               */
+/*  Die Strukturkomponente 'special' wird in einigen der folgenden      */
+/*  Definitionen fuer zwei unterschiedliche Zwecke verwendet:           */
+/*     1) Bei Benutzung in einem "direkten" Deskriptor:                 */
+/*          als "edit"-Feld                                             */
+/*     2) Bei Benutzung in einem "indirekten" Deskriptor                */
+/*        (wird nur bei Listen verwendet):                              */
+/*          als "offset"-Feld.                                          */
+/*  Dadurch wird ein einheitlicher Zugriff auf dieses Feld durch die    */
+/*  L-,R- und A-Macros gewaehrleistet.                                  */
+/*                                                                      */
+/************************************************************************/
+
+#if  ODDSEX    
+#define HEADER   \
+    DESC_TYPE   type; \
+    DESC_CLASS class; \
+    COUNT  ref_count
+#else    
+#define HEADER   \
+    COUNT ref_count;  \
+    DESC_CLASS class; \
+    DESC_TYPE type
+#endif    
+
+typedef struct {
+ HEADER;
+ int vali;
+ double valr;
+}  ST_SCALAR;
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT      ndigit;
+    COUNT        sign;
+#else 
+    COUNT        sign;
+    COUNT      ndigit;
+#endif
+    int           Exp;  /* wegen include der Standardbibliothek <"math.h">  */
+    PTR_HEAPELEM ptdv;  /* in rbibfunc.c  und L_ exp = R_ exp Markozuweisung*/
+} ST_DIGIT;
+
+typedef struct {            /* SJ-ID  Typdefinition fuer direkte   */
+    HEADER;
+#if  ODDSEX
+    COUNT          dim;
+    COUNT          special; /*        und indirekte Listenstruktur */
+#else 
+    COUNT          special; /*        und indirekte Listenstruktur */
+    COUNT          dim;
+#endif
+    T_PTD          ptdd;
+    PTR_HEAPELEM   ptdv;
+} ST_LIST;
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT       ncols;
+    COUNT       nrows;
+#else 
+    COUNT       nrows;
+    COUNT       ncols;
+#endif
+    T_PTD        ptdd;
+    PTR_HEAPELEM ptdv;
+} ST_MVT;              /* matrix / vector / transposed vector */
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    char freespace[2];
+    COUNT       special;       /* SJ-ID */
+#else 
+    COUNT       special;       /* SJ-ID */
+    char freespace[2];
+#endif
+    PTR_HEAPELEM  ptte;
+    PTR_HEAPELEM  ptee;
+} ST_COND;
+
+typedef struct {
+    HEADER;
+    char freespace[8];
+    PTR_HEAPELEM  pte;
+} ST_EXPR;
+
+typedef struct {
+    HEADER;
+    char freespace[4];
+    int        nlabar;
+    T_PTD        ptnd;   /* Pointer auf Namensdescriptor */
+} ST_VAR;
+
+typedef struct {
+    HEADER;
+    char freespace[8];
+    PTR_HEAPELEM  ptn;   /* Heapadresse des Namenstrings */
+} ST_NAME;
+
+typedef struct {
+    HEADER;
+    char freespace[8];
+    PTR_HEAPELEM  ptn;   /* Heapadresse des Namenstrings */
+} ST_FNAME;
+
+typedef struct {         /* Tilde Sub */ 
+    HEADER;
+#if  ODDSEX
+    COUNT           nargs;
+    COUNT         special;
+#else 
+    COUNT         special;
+    COUNT           nargs;
+#endif
+    PTR_HEAPELEM namelist; /* dummy: immer ~0 ~1 ... */ 
+    PTR_HEAPELEM      pte;
+} ST_SNSUB;
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT           nargs;
+    COUNT         special;          /* SJ-ID */
+#else 
+    COUNT         special;          /* SJ-ID */
+    COUNT           nargs;
+#endif
+    PTR_HEAPELEM namelist;
+    PTR_HEAPELEM      pte;
+} ST_FUNC;
+
+#define ZF_START     1
+#define ZF_FILTER    2
+#define ZF_GENERATOR 3
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT           nargs;
+    COUNT         special;          /* SJ-ID */
+#else 
+    COUNT         special;          /* SJ-ID */
+    COUNT           nargs;
+#endif
+    PTR_HEAPELEM namelist;
+    PTR_HEAPELEM      pte;
+} ST_ZF;
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT           nargs;
+    COUNT         zfbound;          /* SJ-ID */
+#else 
+    COUNT         zfbound;          /* SJ-ID */
+    COUNT           nargs;
+#endif
+    T_PTD             ptd;          /* Zeiger in Graph (Descriptor) */
+    PTR_HEAPELEM varnames;          /* Zeiger auf gebundene Variablen */
+} ST_ZFCODE;
+
+/************ Neue Patternmatching Descriptoren UH 4.4.91 ******************/ 
+
+typedef struct {
+    HEADER;
+    char freespace[4];
+    T_PTD             next;         /* Zeiger auf naechsten CLAUSE-Descriptor */
+    PTR_HEAPELEM      sons;         /* Zeiger auf Pattern-Guard-Body-Triple   */
+                                    /* und den alten MATCH-Deskriptor wegen   */
+                                    /* der zum "online"-Postprocessing ;-)    */
+                                    /* noetigen Angaben wie Stelligkeiten etc.*/
+} ST_CLAUSE;
+
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT         nclauses;         /* Anzahl der Klauseln (incl OTHERWISE, excl END) */  
+    char freespace[2];
+#else 
+    char freespace[2];
+    COUNT         nclauses;         /* Anzahl der Klauseln (incl OTHERWISE, excl END) */  
+#endif
+    T_PTD          clauses;         /* Zeiger auf ersten CLAUSE-Descriptor */
+    T_PTD        otherwise;         /* Zeiger auf OTHERWISE Expr oder NIL */
+} ST_SELECTION;
+
+typedef struct {                    /*         0 */
+    HEADER;                         /* +4      4 */
+    int              following;     /* +4      8 */
+    T_PTD            pattern;       /* +4     12 */
+    T_PTD            variable;      /* +4     16 */
+} ST_PATTERN;
+
+#if WITHTILDE
+
+typedef struct {                 /* BAR  Patternmatch */
+  HEADER;
+  int             casetype;
+  COUNT              nwhen;
+  COUNT           anz_args;     
+  PTR_HEAPELEM        ptse;
+}               ST_SWITCH;
+
+#else
+
+typedef struct {                 /* BAR  Patternmatch */
+    HEADER;
+#if  ODDSEX
+    COUNT          case_type;
+    COUNT           special;
+#else 
+    COUNT           special;
+    COUNT          case_type;
+#endif
+    int                nwhen;
+    PTR_HEAPELEM       ptse;
+} ST_SWITCH;
+
+#endif /* WITHTILDE */
+
+typedef struct {                /* BAR  Patternmatch */
+    HEADER;
+    PTR_HEAPELEM     code;
+    PTR_HEAPELEM     guard;
+    PTR_HEAPELEM     body;
+} ST_MATCH;
+
+#if WITHTILDE
+
+typedef struct {              /*BAR  Patternmatch*/
+    HEADER;
+    PTR_HEAPELEM  guard_body; /* guard, body, and argument */
+    COUNT         act_nomat;  /*act_nom steht auf 0, falls es sich*/
+                              /*um otherwise Ausdruck handelt*/
+    COUNT            reason;
+    T_PTD     ptsdes;
+}               ST_NOMAT;
+
+#else
+
+typedef struct {              /*BAR  Patternmatch*/
+    HEADER;
+    PTR_HEAPELEM  guard_body; /*act_nom steht auf 0, falls es sich*/
+    int           act_nomat;  /*um otherwise Ausdruck handelt*/
+    T_PTD     ptsdes;
+} ST_NOMAT;
+
+#endif /* WITHTILDE */
+
+#if !WITHTILDE
+
+typedef struct {                                                       /* CS */
+    HEADER;
+    int            nfuncs;                                             /* CS */
+    PTR_HEAPELEM namelist;                                             /* CS */
+    PTR_HEAPELEM     ptdv;                                             /* CS */
+} ST_LREC;                                                             /* CS */
+
+#else /* WITHTILDE */
+
+typedef struct {                                                 
+    HEADER;
+#if  ODDSEX
+    COUNT         nfuncs;    /* number of functions */
+    COUNT         ntilde;   /* number of tilde arguments of this def block */
+#else
+    COUNT         ntilde;    
+    COUNT         nfuncs;   
+#endif
+    PTR_HEAPELEM namelist;                                        
+    PTR_HEAPELEM     ptdv;                                          
+} ST_LREC;    
+
+#endif /* WITHTILDE */
+
+typedef struct {                                                       /* CS */
+    HEADER;
+    int             index;                                             /* CS */
+    T_PTD            ptdd;                                             /* CS */
+    T_PTD            ptf ;                  /* Verweis auf func_def */ /* CS */
+} ST_LREC_IND;                                                         /* CS */
+
+typedef struct {                                                       /* CS */
+    HEADER;
+    int             nargs;                                             /* CS */
+    T_PTD            ptdd;                                             /* CS */
+    PTR_HEAPELEM     ptdv;                                             /* CS */
+} ST_LREC_ARGS;                                            /* CS */
+
+typedef struct {                                           /* AE */
+    HEADER;
+   T_PTD       rueck;                                      /* AE */
+   char        freespace[4];                               /* AE */
+   T_PTD       vor;                                        /* AE */
+} ST_FREE;
+
+typedef struct {
+    HEADER;
+    long         heaplen;
+    PTR_HEAPELEM heapdef;
+    char         freespace[4];
+ } ST_SWAP_HEAP;
+/* dg */ typedef struct {             /*    --- combinator ---    */
+/* dg */     HEADER;
+#if  ODDSEX
+/* dg */     COUNT         nargs;     /* anzahl der parameter     */
+/* dg */     COUNT         args;      /* analogie zu closures     */
+#else 
+/* dg */     COUNT         args;      /* analogie zu closures     */
+/* dg */     COUNT         nargs;     /* anzahl der parameter     */
+#endif
+/* dg */     INSTR        *ptc;       /* zeiger auf codesequenz   */
+/* dg */     T_PTD         ptd;       /* zeiger auf letrecdescr.  */
+/* dg */ } ST_COMB;
+
+#if WITHTILDE
+ typedef struct {             /*     --- closure ---      */
+     HEADER;
+#if  ODDSEX
+     COUNT         nargs;     /* benoetigte argumente     */
+     COUNT         args;      /* vorhandene argumente     */
+#else 
+     COUNT         args;      /* vorhandene argumente     */
+     COUNT         nargs;     /* benoetigte argumente     */
+#endif
+     PTR_HEAPELEM  pta;       /* argumentvektor           */
+#if  ODDSEX
+     COUNT         nfv;       /* freie Variablen          */
+     COUNT         ftype;     /* fkt.typ COMB,PRIM,COND   */
+#else
+     COUNT         ftype;     /* fkt.typ COMB,PRIM,COND   */
+     COUNT         nfv;       /* freie Variablen          */
+#endif /* ODDSEX */
+ } ST_CLOS;
+#else
+/* dg */ typedef struct {             /*     --- closure ---      */
+/* dg */     HEADER;
+#if  ODDSEX
+/* dg */     COUNT         nargs;     /* benoetigte argumente     */
+/* dg */     COUNT         args;      /* vorhandene argumente     */
+#else 
+/* dg */     COUNT         args;      /* vorhandene argumente     */
+/* dg */     COUNT         nargs;     /* benoetigte argumente     */
+#endif
+/* dg */     PTR_HEAPELEM  pta;       /* argumentvektor           */
+/* dg */     int           ftype;     /* fkt.typ COMB,PRIM,COND   */
+/* dg */ } ST_CLOS;
+#endif /* WITHTILDE */
+
+/* mah 141093: lneu-closure-definitionen */
+/*          bis jetzt noch nicht benutzt */
+/* nicht vergessen HEADER noch einzufuegen */
+#if 0
+typedef struct {
+    COUNT          ndargs; /* wie nargs */
+    COUNT             nfv; /* # of free variables */
+    PTR_HEAPELEM      pta; /* wie oben nur ohne Funktionspointer */
+    T_PTD            ptfd; /* Funtionspointer */
+}               ST_CLOS;
+
+typedef struct {
+    char     freespace[2];
+    COUNT          ndargs;
+    int          primfunc;
+    PTR_HEAPELEM      pta;
+}               ST_P_CLOS;
+#endif
+/* dg */
+/* dg */ typedef struct {             /*    --- conditional ---   */
+/* dg */     HEADER;
+#if  ODDSEX
+/* dg */     COUNT         nargs;     /* benoetigte argumente     */
+/* dg */     COUNT         args;      /* flag ob arg freigeb od nicht */
+#else 
+/* dg */     COUNT         args;      /* flag ob arg freigeb od nicht */
+/* dg */     COUNT         nargs;     /* benoetigte argumente     */
+#endif
+/* dg */     INSTR        *ptc;       /* zeiger auf code          */
+/* dg */     T_PTD         ptd;       /* zeiger auf cond-descr    */
+/* dg */ } ST_CONDI;
+/* dg */
+/* dg */ typedef struct {             /*    --- case       ---    */
+/* dg */     HEADER;
+#if  ODDSEX
+/* dg */     COUNT         nargs;     /* anzahl der parameter     */
+/* dg */     COUNT         args;      /* analogie zu closures     */
+#else 
+/* dg */     COUNT         args;      /* analogie zu closures     */
+/* dg */     COUNT         nargs;     /* anzahl der parameter     */
+#endif
+/* dg */     INSTR        *ptc;       /* zeiger auf codesequenz   */
+/* dg */     T_PTD         ptd;       /* zeiger auf casedescr.    */
+/* dg */ } ST_CASE;
+/* dg */
+/* dg */ typedef struct {             /*     --- universal ---   */
+/* dg */     HEADER;
+#if  ODDSEX
+/* dg */     COUNT         nargs;     /* 16 bit                  */
+/* dg */     COUNT         args;      /* 16 bit                  */
+#else 
+/* dg */     COUNT         args;      /* 16 bit                  */
+/* dg */     COUNT         nargs;     /* 16 bit                  */
+#endif
+/* dg */     INSTR        *ptc;       /* 32 bit                  */
+/* dg */     T_PTD         ptd;       /* 32 bit                  */
+/* dg */ } ST_UNIV;
+
+/* dg */ /* 02.05.91 cons-listen */
+/* dg */ typedef struct {
+/* dg */     HEADER;
+/* dg */     T_PTD              hd;          /* head */
+/* dg */     T_PTD              tl;          /*  tail */
+/* dg */     char     freespace[4];
+/* dg */ } ST_CONS;
+
+/* type inference system car 9.06.94 */
+
+/* atomic type, type field of header contains the type */
+/* possible types are TY_INTEGER/TY_REAL/TY_BOOL/TY_STRING/TY_DIGIT (car) */
+typedef struct {
+	HEADER;
+        int             value;
+	char		freespace[8];
+	} ST_ATOMTYPE;
+
+/* structured type, may be TY_VECT/TY_TVECT/TY_MAT/TY_FUNC/TY_PROD/TY_SUM (car) */
+typedef struct {
+	HEADER;
+	COUNT		cnt;
+	COUNT		nargs; /* args left */
+        COUNT           fkt;
+	char		freespace[2];
+	PTR_HEAPELEM	ptypes;
+	} ST_COMPTYPE;
+
+/* atomic type, type field of header contains the type (car) */
+typedef struct {
+	HEADER;
+	COUNT		refcnt;
+	char		freespace[6];
+	T_PTD		ptype;
+	} ST_LINKNODE;
+
+/* cr 09/03/95, kir(ff), START */
+/* Interaction (C_INTER), may be TY_GET, TY_PUT, TY_DONE */
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT          dim;
+    char           freespace[6];
+#else 
+    char           freespace[6];
+    COUNT          dim;
+#endif
+    PTR_HEAPELEM    args;
+    } ST_INTER;
+
+/* Slot (Name,Value) of Frame */
+typedef struct {
+    HEADER;
+    char            freespace[4];
+    T_PTD           name;
+    T_HEAPELEM      value;
+    } ST_SLOT;
+
+/* Frame, with list of Slots */
+typedef struct {
+    HEADER;
+#if  ODDSEX
+    COUNT          dim;
+    char           freespace[6];
+#else 
+    char           freespace[6];
+    COUNT          dim;
+#endif
+    PTR_HEAPELEM    slots;
+    } ST_FRAME;
+/* cr 09/03/95, kir(ff), END */
+
+/* descriptor for interactions     stt */
+typedef struct {
+    HEADER;
+    char           freespace[6];
+    COUNT          dim;
+    PTR_HEAPELEM   args;
+} ST_INTACT;         
+
+
+typedef struct T_descriptor {
+/*  struct T_descriptor  *heap_chain;                                 */
+/*  Der Heapchainverweis wird, falls der Descriptor frei ist, auf die */
+/*  letzten vier Byte des Descriptors gelegt.   (siehe rheap.c)       */
+
+    union { /* die moeglichen Deskriptoren: */
+/* dg */             ST_COMB       cmb;     /* combinator, code  */
+            ST_SCALAR     sc;
+            ST_DIGIT      di;
+            ST_LIST       li;
+            ST_MVT        mvt; /* matrix / vector / transposed vector */
+            ST_VAR        va;  /* die Expressiondescriptoren: */
+            ST_COND       co;
+            ST_EXPR       ex;
+            ST_FUNC       fu;
+            ST_NAME       na;
+	    ST_FNAME      fn;
+	    ST_SNSUB      sn;  /* sub~ */
+            ST_SWITCH     sw;  /* BAR  Patternmatch */
+            ST_MATCH      ma;  /* BAR  Patternmatch */
+            ST_NOMAT      no;  /* BAR  Patternmatch */
+            ST_LREC       lr;                              /* CS */
+            ST_LREC_IND   ri;                              /* CS */
+            ST_LREC_ARGS  la;                              /* CS */
+            ST_SWAP_HEAP  sh;
+/* dg */             ST_CLOS       cls;     /* closure */
+/* dg */             ST_CONDI      cnd;     /* conditional, code */
+/* dg */             ST_CASE       cse;     /* case */
+/* dg */             ST_UNIV       uni;     /* universal */
+/* dg */             ST_CONS       cns;     /* universal */
+/* uh */             ST_ZF         zf;      /* ZF-Expressions */
+/* uh */             ST_ZFCODE     zfcode;  /* ZF-Codedescriptor */
+/* uh */             ST_SELECTION  sel;     /* Pattern */
+/* uh */             ST_CLAUSE     clause;  /* Pattern */
+/* uh */             ST_PATTERN    pat;     /* Pattern */
+	    ST_ATOMTYPE   at;
+	    ST_COMPTYPE   ct;
+	    ST_LINKNODE   ln;
+/* cr 09/03/95, kir(ff), START */
+        ST_INTER      inter;   /* Interaction */
+        ST_FRAME      frame;   /* Frame */
+        ST_SLOT       slot;    /* Slot */
+/* cr 09/03/95, kir(ff), END */
+            ST_INTACT     ia; /* interaction */
+            ST_FREE       fr; /* Freier Descriptor */
+    }      u;
+} *PTR_DESCRIPTOR, T_DESCRIPTOR;
+
+/*---------------------------------------------------------------------------
+ * allgemeine Makros
+ *--------------------------------------------------------------------------
+ */
+
+#if    SCAVENGE
+
+#define INC_REFCNT(p)          while(0)
+#define DEC_REFCNT(p)          while(0)
+#define DEC_REFCNT_SCALAR(p)   while(0)
+#define T_INC_REFCNT(p)        while(0)
+#define T_DEC_REFCNT(p)        while(0)
+
+/* vorsichtshalber die heaproutinen umdefinieren */
+#define newdesc                get_desc
+#define newheap                get_heap2
+#define newbuff                get_buff
+
+#define GET_DESC(p)            p  = (T_PTD)get_desc()
+#define GET_HEAP(n,p)          *((int *)(p)) = (int)get_heap(n)
+#define NEWDESC(p)             GET_DESC(p)
+#define MAKEDESC(p,ref,cl,ty)  (GET_DESC(p)), DESC_MASK(p,ref,cl,ty)
+/* kruecke, um zuweisungen an integer-variablen zu erm"oglichen */ 
+#define MAKE_DESC(p,ref,cl,ty) (p = (int)get_desc()), DESC_MASK(p,ref,cl,ty)
+
+#else /* !SCAVENGE */
+
+#if DEBUG
+#define INC_REFCNT(id)         test_inc_refcnt(id,__FILE__,0)
+#define DEC_REFCNT(id)         test_dec_refcnt(id,__FILE__,0)
+#define DEC_REFCNT_SCALAR(id)  DEC_REFCNT(id)
+#else
+
+
+#define INC_REFCNT(id)         (++((id)->u.sc.ref_count))
+
+
+/*********** HIER KLEINE AENDERUNG  **********/
+#define DEC_REFCNT(id)         if (--((id)->u.sc.ref_count) != 0) ; else \
+                                 (*dealloc_tab[(id)->u.sc.class])(id)
+/* #define DEC_REFCNT(id)         if (--((id)->u.sc.ref_count) == 0) \
+                                 (*dealloc_tab[(id)->u.sc.class])(id); else
+    das war das alte RS 8.12.1992 */
+#if (D_SLAVE && D_MESS && D_MHEAP)
+#define DEC_REFCNT_SCALAR(id)  DEC_REFCNT(id)
+/* old: do {if (--((id)->u.sc.ref_count) == 0) \
+        (*d_m_freedesc)(id) ;} while(0)  used only in rvalfunc.c */
+#else
+#define DEC_REFCNT_SCALAR(id)  DEC_REFCNT(id)
+/* old: do {if (--((id)->u.sc.ref_count) == 0) \
+        freedesc(id) ;} while(0)  used only in rvalfunc.c */
+#endif
+#endif /* DEBUG    auskommentiert RS 30.11.1992 */
+
+#define T_INC_REFCNT(p)        do {if (T_POINTER(p)) { INC_REFCNT(p); }} while(0)
+#define T_DEC_REFCNT(p)        do {if (T_POINTER(p)) { DEC_REFCNT(p); }} while(0)
+#if (D_SLAVE && D_MESS && D_MHEAP)
+#define GET_DESC(p)            do {if ((p = (T_PTD)(*d_m_newdesc)()) == 0) \
+                                 post_mortem("heap overflow (newdesc)");} while(0)
+#else
+#define GET_DESC(p)            do {if ((p = (T_PTD)newdesc()) == 0) \
+                                 post_mortem("heap overflow (newdesc)");} while(0)
+#endif
+#if (D_SLAVE && D_MESS && D_MHEAP)
+#define GET_HEAP(n,p)          do {if (((*d_m_newheap)(n,p)) == 0) \
+                                 post_mortem("heap overflow (newheap)");} \
+                               while(0)
+#else
+#define GET_HEAP(n,p)          do {if ((newheap(n,p)) == 0) \
+                                 post_mortem("heap overflow (newheap)");} \
+                               while(0)
+#endif
+#define NEWDESC(p)             GET_DESC(p)
+#if (D_SLAVE && D_MESS && D_MHEAP)
+#define MAKEDESC(p,ref,cl,ty)  if ((p = (T_PTD)(*d_m_newdesc)()) == 0) \
+                                 post_mortem("heap overflow (newdesc)"); \
+                               else DESC_MASK(p,ref,cl,ty)
+#else
+#define MAKEDESC(p,ref,cl,ty)  if ((p = (T_PTD)newdesc()) == 0) \
+                                 post_mortem("heap overflow (newdesc)"); \
+                               else DESC_MASK(p,ref,cl,ty)
+#endif
+/*uh 17.6.91 */
+/* Der PCS C-Compiler mag keine Type Casts auf der linken Seite von Zuweisungen! */
+/* Aus diesem Grund muss im Makro MAKEDESC auf der rechten Seite ein CAST */
+/* angebracht werden. Das Makro MAKE_DESC erledigt dies. */
+
+#if (D_SLAVE && D_MESS && D_MHEAP)
+#define MAKE_DESC(p,ref,cl,ty) if ((p = (int)(*d_m_newdesc)()) == 0) \
+                                 post_mortem("heap overflow (newdesc)"); \
+                               else DESC_MASK(p,ref,cl,ty)
+#else
+#define MAKE_DESC(p,ref,cl,ty) if ((p = (int)newdesc()) == 0) \
+                                 post_mortem("heap overflow (newdesc)"); \
+                               else DESC_MASK(p,ref,cl,ty)
+#endif
+
+#endif /* SCAVENGE    auskommentiert RS 30.11.1992 */
+
+#if DEBUG
+#define INC_IDCNT              inc_idcnt() /* increment indirect descriptor counter */
+#define DEC_IDCNT              dec_idcnt() /* decrement indirect descriptor counter */
+#else
+#define INC_IDCNT              idcnt++;    /* increment indirect descriptor counter */
+#define DEC_IDCNT              idcnt--;    /* decrement indirect descriptor counter */
+#endif /* DEBUG   auskommentiert RS 30.11.1992 */
+
+
+/*********************************************************************/
+/*                                                                   */
+/*                 P R A E F I X  -  M A K R O S                     */
+/*                                                                   */
+/*********************************************************************/
+/*  SJ-ID                                                            */
+/*         p = Pointer auf entsprechenden Deskriptor                 */
+/*         x = gewuenschte Komponente                                */
+/*         L = sollte auf der linken Seite einer Zuweisung stehen    */
+/*             Zugriffe haben zuweisenden Charakter                  */
+/*         R = sollte auf der rechten Seite einer Zuweisung stehen   */
+/*             im wesentlichen lesende Zugriffe                      */
+/*         A = Adresse des Deskriptors                               */
+/*********************************************************************/
+
+/* #if DEBUG && !SCAVENGE */
+#if DEBUG
+
+/*********************************************************************/
+/* Descriptor Level                                                  */
+/*********************************************************************/
+
+/*  Die Or- und Shift-operationen aller DESC_MASK Makros werden zur    */
+/*  Compilezeit durchgefuehrt, da die Argumente des Makros fast immer  */
+/*  Konstanten sein werden.                                            */
+
+#define LI_DESC_MASK(p,ref,cl,ty) \
+  MEAS_CALL(MS_DESCREF)          \
+  (*(int*) (p)) = (((ref) <<16) | ((int)(cl) << 8) | (int)(ty)),   \
+  (*(((int*)(p))+1) = 0),         \
+  (*(((int*)(p))+2) = 0)
+/* Benutzung : Nur fuer Initialisierungen von Listen-Deskriptoren      */
+/* Das Makro initialisiert                    -------------------      */
+/*              das erste Wort  (refcount / class / type)              */
+/*              das zweite Wort (special / dim) und                    */
+/*              das dritte Wort (ptdd) des Listen-Deskriptors.         */
+
+#define MVT_DESC_MASK(p,ref,cl,ty) \
+  MEAS_CALL(MS_DESCREF)           \
+  (*(int*) (p)) = (((ref) <<16) | ((int)(cl) << 8) | (int)(ty)),   \
+  (*(((int*)(p))+2) = 0)
+/* Benutzung : Nur fuer Initialisierungen von                          */
+/*             Matrizen-, Vektor- und TVektor-Deskriptoren             */
+/*             --------   ------      --------------------             */
+/* Intialisierung des ersten und dritten Wortes der Deskriptoren       */
+
+#define DESC_MASK(p,ref,cl,ty) \
+  MEAS_CALL(MS_DESCREF)       \
+  (*(int*) (p)) = (((ref) <<16) | ((int)(cl) << 8) | (int)(ty)),   \
+  (*(((int*)(p))+1) = 0)
+/* Benutzung : Initialisierungen aller sonstigen Deskriptoren          */
+/* Das Makro DESC_MASK initialisiert                                   */
+/*           das erste Wort (refcount / class / type)  und             */
+/*           das zweite Worte des Deskriptors.                         */
+
+/* DIRTY TRICK use first word of scalar desc .... */
+#define L_DESC(p,x) MEAS_CALL(MS_DESCREF)(p).u.sc.x
+#define R_DESC(p,x) (MEAS_CALL(MS_DESCREF)(p).u.sc.x)
+
+/*********************************************************************/
+/* Scalar Descriptor  - SCALAR                                       */
+/*********************************************************************/
+
+#define L_SCALAR(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != C_SCALAR    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_SCALAR"), 0)\
+   : (MEAS_CALL(MS_DESCREF) 0)), (p).u.sc.x
+
+#define R_SCALAR(p,x) \
+ (( (p).u.sc.class   != C_SCALAR    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_SCALAR"), \
+   (p).u.sc.x) /* TB, 3.11.1992 */ \
+   : (MEAS_CALL(MS_DESCREF) \
+  (p).u.sc.x))
+
+#define A_SCALAR(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.sc.x)
+
+/*********************************************************************/
+/* Digit Descriptor   - DIGIT                                        */
+/*********************************************************************/
+
+#define L_DIGIT(p,x)  /* TB, 3.11.1992 */\
+  (( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != C_DIGIT     ) ? \
+  ( DescDump(stdout,&(p),0), \
+   post_mortem("inconsistent descriptor entries L_DIGIT"), 0) \
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.di.x
+
+#define R_DIGIT(p,x) \
+ (( (p).u.sc.type    != TY_DIGIT   || \
+    (p).u.sc.class   != C_DIGIT     ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_DIGIT"), \
+   (p).u.di.x)  /* TB, 3.11.1992 */\
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.di.x))
+
+#define A_DIGIT(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.di.x)
+
+/*********************************************************************/
+/* List Descriptor    - LIST                                         */
+/*********************************************************************/
+
+#define L_LIST(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != C_LIST    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_LIST"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.li.x
+
+#define R_LIST(p,x) \
+ (((((p).u.sc.type   != TY_UNDEF) && \
+   ((p).u.sc.type    != TY_STRING))|| \
+   ((p).u.sc.class   != C_LIST)   ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_LIST"), \
+   (p).u.li.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.li.x))
+
+#define A_LIST(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.li.x)
+
+/*********************************************************************/
+/* Matrix / Vektor / TVector  Descriptor  ----- MVT                  */
+/*********************************************************************/
+
+#define L_MVT(p,x,class1) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != (DESC_CLASS)class1      ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_MVT"), 0)\
+   : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.mvt.x
+
+#define R_MVT(p,x,class1) \
+ (( (p).u.sc.class   != (DESC_CLASS)class1      ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_MVT"), \
+   (p).u.mvt.x) /* TB, 3.11.1992 */ \
+   : (MEAS_CALL(MS_DESCREF) \
+  (p).u.mvt.x))
+
+#define A_MVT(p,x,class1) \
+ (( (p).u.sc.class   != (DESC_CLASS)class1      ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries A_MVT"), \
+   &(p).u.mvt.x) /* TB, 3.11.1992 */ \
+   : (MEAS_CALL(MS_DESCREF) \
+      &(p).u.mvt.x)), &(p).u.mvt.x
+
+/*********************************************************************/
+/* Expression Descriptor - EXPR                                      */
+/*********************************************************************/
+
+#define L_EXPR(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_EXPR    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_EXPR"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.ex.x
+
+#define R_EXPR(p,x) \
+ (( (p).u.sc.type    != TY_EXPR  || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_EXPR"), \
+   (p).u.ex.x) /* TB, 3.11. 1992 */\
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.ex.x))
+
+#define A_EXPR(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.ex.x)
+
+/*********************************************************************/
+/* Function Descriptor   - FUNC                                      */
+/*********************************************************************/
+
+#if WITHTILDE
+#define L_FUNC(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (((p).u.sc.type != TY_SUB) && \
+    ((p).u.sc.type != TY_SNSUB) && \
+    ((p).u.sc.type != TY_REC) && \
+    ((p).u.sc.type != TY_ZF)) || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_FUNC"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.fu.x
+
+#define R_FUNC(p,x) \
+ (( (((p).u.sc.type != TY_SUB) && \
+     ((p).u.sc.type != TY_SNSUB) && \
+     ((p).u.sc.type != TY_REC) && \
+     ((p).u.sc.type != TY_ZF)) || \
+      (p).u.sc.class   != C_EXPRESSION ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_FUNC"), \
+   (p).u.fu.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.fu.x))
+
+#define A_FUNC(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.fu.x)
+#else /* !WITHTILDE */
+#define L_FUNC(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (((p).u.sc.type != TY_SUB) && \
+    ((p).u.sc.type != TY_REC) && \
+    ((p).u.sc.type != TY_ZF)) || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_FUNC"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.fu.x
+
+#define R_FUNC(p,x) \
+ (( (((p).u.sc.type != TY_SUB) && \
+     ((p).u.sc.type != TY_REC) && \
+     ((p).u.sc.type != TY_ZF)) || \
+      (p).u.sc.class   != C_EXPRESSION ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_FUNC"), \
+   (p).u.fu.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.fu.x))
+
+#define A_FUNC(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.fu.x)
+
+#endif /* WITHTILDE */
+
+#define L_ZF L_FUNC
+#define R_ZF R_FUNC
+#define A_ZF A_FUNC
+
+/***************************************************************************/
+/*                 List Comprehension Code-Descriptoren                    */
+/***************************************************************************/
+
+#define L_ZFCODE(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type != TY_ZFCODE   || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_FUNC"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.zfcode.x
+
+#define R_ZFCODE(p,x) \
+ (( (p).u.sc.type != TY_ZFCODE  || \
+    (p).u.sc.class   != C_EXPRESSION ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_FUNC"), \
+   (p).u.zfcode.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.zfcode.x))
+
+#define A_ZFCODE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.zfcode.x)
+
+/*********************************************************************/
+/* PATTERN MATCHING DESCRIPTORN                                   UH */
+/*********************************************************************/
+
+#define L_SELECTION(p,x)/* TB, 3.11.1992 */ \
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_MATCHING || \
+    (p).u.sc.type   != TY_SELECTION ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_SELECTION"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.sel.x
+
+#define R_SELECTION(p,x) \
+  ( ( (p).u.sc.class   != C_MATCHING || \
+      (p).u.sc.type   != TY_SELECTION ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_SELECTION"), \
+     (p).u.sel.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.sel.x ))
+
+#define A_SELECTION(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.sel.x )
+
+#define L_CLAUSE(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_MATCHING || \
+    (p).u.sc.type    != TY_CLAUSE ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_CLAUSE"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.clause.x
+
+#define R_CLAUSE(p,x) \
+  ( ( (p).u.sc.class   != C_MATCHING || \
+      (p).u.sc.type    != TY_CLAUSE ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_CLAUSE"), \
+     (p).u.clause.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.clause.x ))
+
+#define A_CLAUSE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.clause.x )
+
+#define L_PATTERN(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_PATTERN ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_PATTERN"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.pat.x
+
+#define R_PATTERN(p,x) \
+  ( ( (p).u.sc.class   != C_PATTERN ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_PATTERN"), \
+     (p).u.pat.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.pat.x ))
+
+#define A_PATTERN(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.pat.x )
+
+/*********************************************************************/
+/* Conditional Descriptor - COND                                     */
+/*********************************************************************/
+
+#define L_COND(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_COND || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_COND"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.co.x
+
+#define R_COND(p,x) \
+ (( (p).u.sc.type    != TY_COND || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_COND"), \
+   (p).u.co.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.co.x))
+
+#define A_COND(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.co.x)
+
+/*********************************************************************/
+/* Variable Descriptor - VAR                                         */
+/*********************************************************************/
+
+#define L_VAR(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_VAR     || \
+    (p).u.sc.class   != C_CONSTANT   )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_VAR"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.va.x
+
+#define R_VAR(p,x) \
+  (( (p).u.sc.type    != TY_VAR     || \
+    (p).u.sc.class   != C_CONSTANT   )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_VAR"), \
+   (p).u.va.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.va.x))
+
+#define A_VAR(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.va.x)
+
+/*********************************************************************/
+/* Name Descriptor - NAME                                            */
+/*********************************************************************/
+
+#define L_NAME(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_NAME    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_NAME"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.na.x
+
+#define R_NAME(p,x) \
+ (( (p).u.sc.type    != TY_NAME    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_NAME"), \
+   (p).u.na.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.na.x))
+
+#define A_NAME(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.na.x)
+
+/*********************************************************************/
+/* Funktionname Descriptor FNAME                                     */
+/*********************************************************************/
+
+
+#define L_FNAME(p,x)  \
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_FNAME    ||  \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&p,0) ,      \
+  post_mortem("inconsistent descriptor entries L_FNAME"))       \
+  : (MEAS_CALL(MS_DESCREF) 0)),  \
+  (p).u.fn.x
+
+#define R_FNAME(p,x)  \
+ (( (p).u.sc.type    != TY_FNAME    ||  \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+  post_mortem("inconsistent descriptor entries R_FNAME"), \
+   (p).u.fn.x) \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.fn.x))
+
+#define A_FNAME(p,x)       \
+  ( MEAS_CALL(MS_DESCREF)  \
+  &(p).u.fn.x)
+
+
+/*********************************************************************/
+/* Switch Descriptor - SWITCH                             BAR        */
+/*********************************************************************/
+
+#define L_SWITCH(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_SWITCH    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_SWITCH"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.sw.x
+
+#define R_SWITCH(p,x) \
+ (( (p).u.sc.type    != TY_SWITCH    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_SWITCH"), \
+   (p).u.sw.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.sw.x))
+
+#define A_SWITCH(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.sw.x)
+
+/*********************************************************************/
+/* Match Descriptor - MATCH                               BAR        */
+/*********************************************************************/
+
+#define L_MATCH(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_MATCH    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_MATCH"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.ma.x
+
+#define R_MATCH(p,x) \
+ (( (p).u.sc.type    != TY_MATCH    || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_MATCH"), \
+   (p).u.ma.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.ma.x))
+
+#define A_MATCH(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.ma.x)
+
+/*********************************************************************/
+/* Nomat(ch) Descriptor - NOMAT                           BAR        */
+/*********************************************************************/
+
+#define L_NOMAT(p,x)/* TB, 3.11.1992 */ \
+  (( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.type    != TY_NOMAT     || \
+    (p).u.sc.class   != C_EXPRESSION   )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_NOMAT"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),   (p).u.no.x
+
+#define R_NOMAT(p,x) \
+ (( (p).u.sc.type    != TY_NOMAT     || \
+    (p).u.sc.class   != C_EXPRESSION   )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_NOMAT"), \
+   (p).u.no.x) /* TB, 4.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.no.x))
+
+#define A_NOMAT(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.no.x)
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC                            */ /* CS */
+/*********************************************************************/
+
+#define L_LREC(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    ((p).u.sc.type != TY_LREC)   || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries _LREC"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.lr.x
+
+#define R_LREC(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  (p).u.lr.x)
+
+#define A_LREC(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.lr.x)
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC_IND                         *//* CS */
+/*********************************************************************/
+
+#define L_LREC_IND(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    ((p).u.sc.type != TY_LREC_IND)   || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries _LREC_IND"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.ri.x
+
+#define R_LREC_IND(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  (p).u.ri.x)
+
+#define A_LREC_IND(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.ri.x)
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC_ARGS                        *//* CS */
+/*********************************************************************/
+
+#define L_LREC_ARGS(p,x)/* TB, 3.11.1992 */ \
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    ((p).u.sc.type != TY_LREC_ARGS)   || \
+    (p).u.sc.class   != C_EXPRESSION )? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries _LREC_ARGS"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.la.x
+
+#define R_LREC_ARGS(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  (p).u.la.x)
+
+#define A_LREC_ARGS(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.la.x)
+
+/********************************************************************/
+/* Freizellen Descriptor FREE                               *//* AE */
+/********************************************************************/
+
+#define L_FREE(p,x) /* TB, 3.11.1992 */\
+  ((!(isdesc(&(p))))  ? \
+  ( DescDump (stdout,(PTR_DESCRIPTOR) &(p),0) , \
+  post_mortem("not a pointer to descriptor L_FREE") ,0) \
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.fr.x
+
+#define R_FREE(p,x) \
+  (MEAS_CALL(MS_DESCREF) \
+  (p).u.fr.x)
+
+#define A_FREE(p,x) \
+  &(p).u.fr.x
+
+/********************************************************************/
+/* swap descriptor                                          *//* AE */
+/********************************************************************/
+
+#define L_SWAPHEAP(p,x) /* TB, 3.11.1992 */\
+  (((p).u.sc.ref_count >65000 || \
+   (p).u.sc.ref_count == 0   || \
+   ((p).u.sc.class != C_SWAPHEAP )) ? \
+   (DescDump (stdout,&(p),0) , \
+    post_mortem("inconsistent descriptor entries L_SWAPHEAP"), 0)\
+   :(MEAS_CALL(MS_DESCREF) 0)), (p).u.sh.x
+
+#define R_SWAPHEAP(p,x) \
+  (MEAS_CALL(MS_DESCREF) \
+   (p).u.sh.x)
+
+#define A_SWAPHEAP(p,x) \
+  (MEAS_CALL(MS_DESCREF) \
+  &(p).u.sh.x)
+
+/*********************************************************************/
+/* Combinator   Descriptor - COMB                               * dg */
+/*********************************************************************/
+
+#define L_COMB(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_FUNC   || \
+    (p).u.sc.type    != TY_COMB   ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_COMB"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.cmb.x
+
+#define R_COMB(p,x) \
+  ( ( (p).u.sc.class   != C_FUNC  || \
+      (p).u.sc.type    != TY_COMB  ) \
+  ? ( DescDump(stdout,&(p),0), \
+    post_mortem("inconsistent descriptor entries R_COMB"), \
+    (p).u.cmb.x) /* TB, 3.11.1992 */ \
+  : ( MEAS_CALL(MS_DESCREF) \
+    (p).u.cmb.x ))
+
+#define A_COMB(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.cmb.x )
+
+/*********************************************************************/
+/* Closure      Descriptor - CLOS   (dg)                       * dg */
+/*********************************************************************/
+
+#define L_CLOS(p,x)/* TB, 3.11.1992 */ \
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_FUNC   || \
+    (p).u.sc.type    != TY_CLOS   ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_CLOS"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.cls.x
+
+#define R_CLOS(p,x) \
+  ( ( (p).u.sc.class   != C_FUNC  || \
+      (p).u.sc.type    != TY_CLOS  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_CLOS"), \
+     (p).u.cls.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.cls.x ) )
+
+#define A_CLOS(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.cls.x )
+
+/*********************************************************************/
+/* Conditional  Descriptor - CONDI   (dg)                       * dg */
+/*********************************************************************/
+
+#define L_CONDI(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_FUNC   || \
+    (p).u.sc.type    != TY_CONDI  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_CONDI"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.cnd.x
+
+#define R_CONDI(p,x) \
+  ( ( (p).u.sc.class   != C_FUNC  || \
+      (p).u.sc.type    != TY_CONDI ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_CONDI"), \
+     (p).u.cnd.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.cnd.x ))
+
+#define A_CONDI(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.cnd.x )
+
+/*********************************************************************/
+/* Case  Descriptor - CASE    (dg)                              * dg */
+/*********************************************************************/
+
+#define L_CASE(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000   || \
+    (p).u.sc.ref_count == 0      || \
+    (p).u.sc.class   != C_FUNC   )  \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_CASE"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.cse.x
+
+#define R_CASE(p,x) \
+  ( ( (p).u.sc.class   != C_FUNC  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_CASE"), \
+     (p).u.cse.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.cse.x ))
+
+#define A_CASE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.cse.x )
+
+/*********************************************************************/
+/* Universeller Descriptor - UNIV    (dg)                       * dg */
+/*********************************************************************/
+
+#define L_UNIV(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000 || \
+    (p).u.sc.ref_count == 0 ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_UNIV"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)),  (p).u.uni.x
+
+#define R_UNIV(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    (p).u.uni.x )
+
+#define A_UNIV(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.uni.x)
+
+/*********************************************************************/
+/* Cons         Descriptor - CONS    (dg)                       * dg */
+/*********************************************************************/
+
+#define L_CONS(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000 || \
+    (p).u.sc.ref_count == 0 ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_CONS"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.cns.x
+
+#define R_CONS(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    (p).u.cns.x )
+
+#define A_CONS(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.cns.x)
+
+/***********************************************************/
+/* AtomType     Descriptor - ATOMTYPE                * car */
+/***********************************************************/
+
+#define L_ATOMTYPE(p,x) /* TB, 3.11.1992 */\
+  ( ( ( (p).u.at.ref_count > 65000 || \
+    (p).u.at.ref_count == 0 ) || \
+    (p).u.at.class   != C_ATOMTYPE ) /* stt, 11.10.95 */ \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_ATOMTYPE"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.at.x
+
+#define R_ATOMTYPE(p,x) \
+  ( ( (p).u.at.class   != C_ATOMTYPE  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_ATOMTYPE"), \
+     (p).u.at.x) /* TB, 3.11.1992 *//* stt, 11.10.95 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.at.x ))
+
+#define A_ATOMTYPE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.at.x)
+
+/***********************************************************/
+/* CombType     Descriptor - COMPTYPE                * car */
+/***********************************************************/
+
+#define L_COMPTYPE(p,x) /* TB, 3.11.1992 */\
+  ( ( ( (p).u.ct.ref_count > 65000 || \
+    (p).u.ct.ref_count == 0 ) || \
+    (p).u.ct.class   != C_COMPTYPE ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_COMPTYPE"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.ct.x
+
+#define R_COMPTYPE(p,x) \
+  ( ( (p).u.ct.class   != C_COMPTYPE  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_COMPTYPE"), \
+     (p).u.ct.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.ct.x ))
+
+#define A_COMPTYPE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.ct.x)
+
+/***********************************************************/
+/* LinkNode     Descriptor - LINKNODE                * car */
+/***********************************************************/
+
+#define L_LINKNODE(p,x) /* TB, 3.11.1992 */\
+  ( ( ( (p).u.ln.ref_count > 65000 || \
+    (p).u.ln.ref_count == 0 ) || \
+    (p).u.ln.class   != C_LINKNODE ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries L_LINKNODE"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.ln.x
+
+#define R_LINKNODE(p,x) \
+  ( ( (p).u.ln.class   != C_LINKNODE  ) \
+  ? ( DescDump(stdout,&(p),0), \
+     post_mortem("inconsistent descriptor entries R_LINKNODE"), \
+     (p).u.ln.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+    (p).u.ln.x ))
+
+#define A_LINKNODE(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+    &(p).u.ln.x)
+
+/* cr 09/03/95, kir(ff), START */
+/*********************************************************************/
+/* Interaction Descriptor    - INTER                                 */
+/*********************************************************************/
+
+#define L_INTER(p,x) \
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != C_INTER    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_INTER"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.inter.x
+
+#define R_INTER(p,x) \
+ (((((p).u.sc.type   != TY_GET) && \
+   ((p).u.sc.type    != TY_PUT) && \
+   ((p).u.sc.type    != TY_DONE))|| \
+   ((p).u.sc.class   != C_INTER)   ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_INTER"), \
+   (p).u.inter.x) \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.inter.x))
+
+#define A_INTER(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.inter.x)
+
+/*********************************************************************/
+/* Slot Descriptor    - SLOT                                         */
+/*********************************************************************/
+
+#define L_SLOT(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.type   != TY_SLOT     || \
+    (p).u.sc.class   != C_FRAME    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_SLOT"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.slot.x
+
+#define R_SLOT(p,x) \
+ (( ((p).u.sc.type    != TY_SLOT)|| \
+   ((p).u.sc.class   != C_FRAME)   ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_SLOT"), \
+   (p).u.slot.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.slot.x))
+
+#define A_SLOT(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.slot.x)
+
+
+/*********************************************************************/
+/* Frame Descriptor    - SLOT                                        */
+/*********************************************************************/
+
+#define L_FRAME(p,x) /* TB, 3.11.1992 */\
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.type   != TY_FRAME     || \
+    (p).u.sc.class   != C_FRAME    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_FRAME"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.frame.x
+
+#define R_FRAME(p,x) \
+ ((((p).u.sc.type   != TY_FRAME) || \
+   ((p).u.sc.class   != C_FRAME)   ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_FRAME"), \
+   (p).u.frame.x) /* TB, 3.11.1992 */ \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.frame.x))
+
+#define A_FRAME(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.frame.x)
+
+/* cr 09/03/95, kir(ff), END */
+
+
+/*********************************************************************/
+/* Interaction Descriptor    - INTACT                 stt  11.09.95  */
+/*********************************************************************/
+
+#define L_INTACT(p,x) \
+  ( ( (p).u.sc.ref_count > 65000     || \
+    (p).u.sc.ref_count ==  0       || \
+    (p).u.sc.class   != C_INTACT    ) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries L_INTACT"), 0)\
+  : (MEAS_CALL(MS_DESCREF) 0)), (p).u.ia.x
+
+#define R_INTACT(p,x) \
+ (((p).u.sc.class   != C_INTACT) ? \
+  ( DescDump(stdout,&(p),0) , \
+   post_mortem("inconsistent descriptor entries R_INTACT"), \
+   (p).u.ia.x) \
+  : (MEAS_CALL(MS_DESCREF) \
+  (p).u.ia.x))
+
+#define A_INTACT(p,x) \
+  ( MEAS_CALL(MS_DESCREF) \
+  &(p).u.ia.x)
+
+
+
+      /* end DEBUG      */
+#else
+      /* start NO-DEBUG */
+
+/*********************************************************************/
+/* Descriptor Level                                                  */
+/*********************************************************************/
+
+/*  Die Or- und Shift-operationen aller DESC_MASK Makros werden zur        */
+/*  Compilezeit durchgefuehrt, da die Argumente des Makros fast immer      */
+/*  Konstanten sein werden.                                                */
+
+#define LI_DESC_MASK(p,ref,cl,ty)             \
+  (*(int*) (p)) = ((ref) <<16) | ((int)(cl) << 8) | (int)(ty) , \
+  (*(((int*)(p))+1) = 0),                       \
+  (*(((int*)(p))+2) = 0)
+/* Benutzung : Nur fuer Initialisierungen von Listen-Deskriptoren          */
+/* Das Makro initialisiert                    -------------------          */
+/*              das erste Wort  (refcount / class / type)                  */
+/*              das zweite Wort (special / dim) und                        */
+/*              das dritte Wort (ptdd) des Listen-Deskriptors.             */
+
+#define MVT_DESC_MASK(p,ref,cl,ty)            \
+  (*(int*) (p)) = ((ref) <<16) | ((int)(cl) << 8) | (int)(ty) , \
+  (*(((int*)(p))+2) = 0)
+/* Benutzung : Nur fuer Initialisierungen von                              */
+/*             Matrizen-, Vektor- und TVektor-Deskriptoren                 */
+/*             --------   ------      --------------------                 */
+/* Intialisierung des ersten und dritten Wortes der Deskriptoren           */
+
+#define DESC_MASK(p,ref,cl,ty)                \
+  (*(int*) (p)) = ((ref) <<16) | ((int)(cl) << 8) | (int)(ty) , \
+  (*(((int*)(p))+1) = 0)
+/* Benutzung : Initialisierungen aller sonstigen Deskriptoren              */
+/* Das Makro DESC_MASK initialisiert                                       */
+/*           das erste Wort (refcount / class / type)  und                 */
+/*           das zweite Worte des Deskriptors.                             */
+
+/* DIRTY TRICK use first word of scalar desc .... */
+#define L_DESC(p,x) (p).u.sc.x
+#define R_DESC(p,x) (p).u.sc.x
+
+/*********************************************************************/
+/* Scalar Descriptor  - SCALAR                                       */
+/*********************************************************************/
+
+#define L_SCALAR(p,x) (p).u.sc.x
+#define R_SCALAR(p,x) (p).u.sc.x
+#define A_SCALAR(p,x) &(p).u.sc.x
+
+/*********************************************************************/
+/* Digit Descriptor  - DIGIT                                        */
+/*********************************************************************/
+
+#define L_DIGIT(p,x) (p).u.di.x
+#define R_DIGIT(p,x) (p).u.di.x
+#define A_DIGIT(p,x) &(p).u.di.x
+
+/*********************************************************************/
+/* List Descriptor                                                   */
+/*********************************************************************/
+
+#define L_LIST(p,x) (p).u.li.x
+#define R_LIST(p,x) (p).u.li.x
+#define A_LIST(p,x) &(p).u.li.x
+
+/*********************************************************************/
+/* Matrix / Vektor / TVector  Descriptor  ----- MVT                  */
+/*********************************************************************/
+
+#define L_MVT(p,x,class1) (p).u.mvt.x
+#define R_MVT(p,x,class1) (p).u.mvt.x
+#define A_MVT(p,x,class1) &(p).u.mvt.x
+
+/*********************************************************************/
+/* Expression Descriptor - EXPR                                      */
+/*********************************************************************/
+
+#define L_EXPR(p,x) (p).u.ex.x
+#define R_EXPR(p,x) (p).u.ex.x
+#define A_EXPR(p,x) &(p).u.ex.x
+
+/*********************************************************************/
+/* Function Descriptor - FUNC                                        */
+/*********************************************************************/
+
+#define L_FUNC(p,x) (p).u.fu.x
+#define R_FUNC(p,x) (p).u.fu.x
+#define A_FUNC(p,x) &(p).u.fu.x
+
+/*********************************************************************/
+/* ZF-Descriptor - ZF                                                */
+/*********************************************************************/
+
+#define L_ZF(p,x) (p).u.fu.x
+#define R_ZF(p,x) (p).u.fu.x
+#define A_ZF(p,x) &(p).u.fu.x
+#define L_ZFCODE(p,x) (p).u.zfcode.x
+#define R_ZFCODE(p,x) (p).u.zfcode.x
+#define A_ZFCODE(p,x) &(p).u.zfcode.x
+
+/*********************************************************************/
+/* PATTERN MATCHING DESCRIPTORN                                   UH */
+/*********************************************************************/
+
+#define L_SELECTION(p,x) (p).u.sel.x
+#define R_SELECTION(p,x) (p).u.sel.x
+#define A_SELECTION(p,x) &(p).u.sel.x
+
+#define L_CLAUSE(p,x) (p).u.clause.x
+#define R_CLAUSE(p,x) (p).u.clause.x
+#define A_CLAUSE(p,x) &(p).u.clause.x
+
+#define L_PATTERN(p,x) (p).u.pat.x
+#define R_PATTERN(p,x) (p).u.pat.x
+#define A_PATTERN(p,x) &(p).u.pat.x
+
+
+
+/*********************************************************************/
+/* Conditional Descriptor - COND                                     */
+/*********************************************************************/
+
+#define L_COND(p,x) (p).u.co.x
+#define R_COND(p,x) (p).u.co.x
+#define A_COND(p,x) &(p).u.co.x
+
+/*********************************************************************/
+/* Variable Descriptor - VAR                                         */
+/*********************************************************************/
+
+#define L_VAR(p,x) (p).u.va.x
+#define R_VAR(p,x) (p).u.va.x
+#define A_VAR(p,x) &(p).u.va.x
+
+/*********************************************************************/
+/* Funktionname Descriptor FNAME                                     */
+/*********************************************************************/
+
+#define L_FNAME(p,x) (p).u.fn.x
+#define R_FNAME(p,x) (p).u.fn.x
+#define A_FNAME(p,x) &(p).u.fn.x
+
+/*********************************************************************/
+/* Name Descriptor - NAME                                            */
+/*********************************************************************/
+
+#define L_NAME(p,x) (p).u.na.x
+#define R_NAME(p,x) (p).u.na.x
+#define A_NAME(p,x) &(p).u.na.x
+
+/*********************************************************************/
+/* Switch Descriptor - SWITCH                             BAR        */
+/*********************************************************************/
+
+#define L_SWITCH(p,x) (p).u.sw.x
+#define R_SWITCH(p,x) (p).u.sw.x
+#define A_SWITCH(p,x) &(p).u.sw.x
+
+/*********************************************************************/
+/* Match Descriptor - MATCH                               BAR        */
+/*********************************************************************/
+
+#define L_MATCH(p,x) (p).u.ma.x
+#define R_MATCH(p,x) (p).u.ma.x
+#define A_MATCH(p,x) &(p).u.ma.x
+
+/*********************************************************************/
+/* Nomat(ch) Descriptor - NOMAT                           BAR        */
+/*********************************************************************/
+
+#define L_NOMAT(p,x) (p).u.no.x
+#define R_NOMAT(p,x) (p).u.no.x
+#define A_NOMAT(p,x) &(p).u.no.x
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC                             *//* CS */
+/*********************************************************************/
+
+#define L_LREC(p,x) (p).u.lr.x
+#define R_LREC(p,x) (p).u.lr.x
+#define A_LREC(p,x) &(p).u.lr.x
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC_IND                         *//* CS */
+/*********************************************************************/
+
+#define L_LREC_IND(p,x) (p).u.ri.x
+#define R_LREC_IND(p,x) (p).u.ri.x
+#define A_LREC_IND(p,x) &(p).u.ri.x
+
+/*********************************************************************/
+/* Expression Descriptor - LETREC_ARGS                        *//* CS */
+/*********************************************************************/
+
+#define L_LREC_ARGS(p,x) (p).u.la.x
+#define R_LREC_ARGS(p,x) (p).u.la.x
+#define A_LREC_ARGS(p,x) &(p).u.la.x
+
+/********************************************************************/
+/* Freizellen Descriptor FREE                               *//* AE */
+/********************************************************************/
+
+#define L_FREE(p,x) (p).u.fr.x
+#define R_FREE(p,x) (p).u.fr.x
+#define A_FREE(p,x) &(p).u.fr.x
+
+/********************************************************************/
+/* swap descriptor                                          *//* AE */
+/********************************************************************/
+
+#define L_SWAPHEAP(p,x) (p).u.sh.x
+#define R_SWAPHEAP(p,x) (p).u.sh.x
+#define A_SWAPHEAP(p,x) &(p).u.sh.x
+
+/***********************************************************/
+/* Combinator   Descriptor - COMB   (dg)              * dg */
+/***********************************************************/
+
+#define L_COMB(p,x) (p).u.cmb.x
+#define R_COMB(p,x) (p).u.cmb.x
+#define A_COMB(p,x) &(p).u.cmb.x
+
+/***********************************************************/
+/* Closure      Descriptor - CLOS   (dg)              * dg */
+/***********************************************************/
+
+#define L_CLOS(p,x) (p).u.cls.x
+#define R_CLOS(p,x) (p).u.cls.x
+#define A_CLOS(p,x) &(p).u.cls.x
+
+/***********************************************************/
+/* Conditional  Descriptor - CONDI   (dg)             * dg */
+/***********************************************************/
+
+#define L_CONDI(p,x) (p).u.cnd.x
+#define R_CONDI(p,x) (p).u.cnd.x
+#define A_CONDI(p,x) &(p).u.cnd.x
+
+/***********************************************************/
+/* Case  Descriptor - CASE   (dg)                     * dg */
+/***********************************************************/
+
+#define L_CASE(p,x) (p).u.cse.x
+#define R_CASE(p,x) (p).u.cse.x
+#define A_CASE(p,x) &(p).u.cse.x
+
+/***********************************************************/
+/* Universeller Descriptor - UNIV    (dg)             * dg */
+/***********************************************************/
+
+#define L_UNIV(p,x) (p).u.uni.x
+#define R_UNIV(p,x) (p).u.uni.x
+#define A_UNIV(p,x) &(p).u.uni.x
+
+/***********************************************************/
+/* Cons         Descriptor - CONS    (dg)             * dg */
+/***********************************************************/
+
+#define L_CONS(p,x) (p).u.cns.x
+#define R_CONS(p,x) (p).u.cns.x
+#define A_CONS(p,x) &(p).u.cns.x
+
+/***********************************************************/
+/* AtomType     Descriptor - ATOMTYPE                * car */
+/***********************************************************/
+
+#define L_ATOMTYPE(p,x) (p).u.at.x
+#define R_ATOMTYPE(p,x) (p).u.at.x
+#define A_ATOMTYPE(p,x) &(p).u.at.x
+
+/***********************************************************/
+/* CombType     Descriptor - COMPTYPE                * car */
+/***********************************************************/
+
+#define L_COMPTYPE(p,x) (p).u.ct.x
+#define R_COMPTYPE(p,x) (p).u.ct.x
+#define A_COMPTYPE(p,x) &(p).u.ct.x
+
+/***********************************************************/
+/* LinkNode     Descriptor - LINKNODE                * car */
+/***********************************************************/
+
+#define L_LINKNODE(p,x) (p).u.ln.x
+#define R_LINKNODE(p,x) (p).u.ln.x
+#define A_LINKNODE(p,x) &(p).u.ln.x
+
+/* cr 09/03/95, kir(ff), START */
+/*********************************************************************/
+/* Interaction Descriptor - INTER                                    */
+/*********************************************************************/
+
+#define L_INTER(p,x) (p).u.inter.x
+#define R_INTER(p,x) (p).u.inter.x
+#define A_INTER(p,x) &(p).u.inter.x
+
+/*********************************************************************/
+/* Slot Descriptor - SLOT                                           */
+/*********************************************************************/
+
+#define L_SLOT(p,x) (p).u.slot.x
+#define R_SLOT(p,x) (p).u.slot.x
+#define A_SLOT(p,x) &(p).u.slot.x
+
+
+/*********************************************************************/
+/* Frame Descriptor - FRAME                                          */
+/*********************************************************************/
+
+#define L_FRAME(p,x) (p).u.frame.x
+#define R_FRAME(p,x) (p).u.frame.x
+#define A_FRAME(p,x) &(p).u.frame.x
+
+/* cr 09/03/95, kir(ff), END */
+
+/*********************************************************************/
+/* Interaction Descriptor - INTACT                   stt 11.09.95    */
+/*********************************************************************/
+
+#define L_INTACT(p,x) (p).u.ia.x
+#define R_INTACT(p,x) (p).u.ia.x
+#define A_INTACT(p,x) &(p).u.ia.x
+
+
+#endif     /* DEBUG  , NODEBUG  */
+
+#endif /* RHEAPTY_H */
+@
+
+
+1.27
+log
+@some work on the famous MAH-tilde-BUG
+@
+text
+@d2 3
+d852 2
+d855 2
+@
+
+
+1.26
+log
+@one comment added ;-)
+@
+text
+@d2 3
+d530 2
+d538 17
+@
+
+
+1.25
+log
+@In L_ATOMTYPE class check corrected.
+@
+text
+@d2 3
+d446 3
+@
+
+
+1.24
+log
+@In R_ATOMTYPE unit member corrected.
+@
+text
+@d2 3
+d1672 1
+a1672 1
+    (p).u.at.class   != C_FUNC ) \
+@
+
+
+1.23
+log
+@interactions supported
+@
+text
+@d2 3
+d1678 1
+a1678 1
+     (p).u.cse.x) /* TB, 3.11.1992 */ \
+@
+
+
+1.22
+log
+@changed nCUBE to D_SLAVE
+@
+text
+@d2 3
+d162 2
+d239 3
+d726 9
+d778 1
+d1815 26
+d2155 8
+@
+
+
+1.21
+log
+@redefined C_FRAME,C_INTER for use with dealloc_tab
+@
+text
+@d2 3
+d804 1
+a804 1
+#if (nCUBE && D_MESS && D_MHEAP)
+d817 1
+a817 1
+#if (nCUBE && D_MESS && D_MHEAP)
+d824 1
+a824 1
+#if (nCUBE && D_MESS && D_MHEAP)
+d834 1
+a834 1
+#if (nCUBE && D_MESS && D_MHEAP)
+d848 1
+a848 1
+#if (nCUBE && D_MESS && D_MHEAP)
+@
+
+
+1.20
+log
+@minor change in ST_SLOT corrected
+@
+text
+@d2 3
+d152 2
+a153 2
+#define C_FRAME           '\110'
+#define C_INTER           '\111'
+@
+
+
+1.19
+log
+@minor change in ST_SLOT
+@
+text
+@d2 3
+d694 1
+a694 1
+    PTR_DESCRIPTOR  name;
+@
+
+
+1.18
+log
+@minor corrections
+@
+text
+@d2 3
+d691 2
+a692 2
+    T_HEAPELEM    name;
+    T_HEAPELEM    value;
+@
+
+
+1.17
+log
+@minor corrections
+@
+text
+@d2 3
+d134 2
+a135 2
+#define C_PROCESS         '\200'
+#define C_STREAM          '\201'
+d140 1
+a140 1
+#define C_EDIT            '\206'
+d143 2
+a144 2
+#define C_FRAME           '\210'
+#define C_INTER           '\211'
+@
+
+
+1.16
+log
+@Added descriptors for interactions, frames and slots
+@
+text
+@d2 3
+d140 2
+a141 2
+#define C_FRAME           '\300'
+#define C_INTER           '\301'
+d220 5
+a224 5
+#define TY_FRAME             '\300'
+#define TY_SLOT              '\301'
+#define TY_GET               '\302'
+#define TY_PUT               '\303'
+#define TY_DONE              '\304'
+d685 2
+a686 2
+    PTR_HEAPELEM    name;
+    PTR_HEAPELEM    value;
+@
+
+
+1.15
+log
+@ST_COMB becomes first component of union
+@
+text
+@d2 3
+d136 6
+d216 8
+d664 36
+d738 5
+d1695 76
+d1772 7
+d2065 29
+@
+
+
+1.14
+log
+@combtype changed
+@
+text
+@d2 3
+d653 1
+a671 1
+/* dg */             ST_COMB       cmb;     /* combinator, code  */
+@
+
+
+1.13
+log
+@ST_COMPTYPE modified
+@
+text
+@d2 3
+d630 3
+a632 2
+	COUNT		nargs;
+	char		freespace[4];
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d2 3
+d627 2
+a628 2
+	char		freespace[2];
+        T_PTD           pfunc;
+@
+
+
+1.11
+log
+@first extension for optimizer
+@
+text
+@d2 3
+d624 2
+a625 1
+	char		freespace[6];
+@
+
+
+1.10
+log
+@first beta release of distributed tilde-version
+@
+text
+@d2 3
+d104 5
+d187 8
+d607 17
+d625 7
+d668 3
+d1551 72
+d1887 23
+@
+
+
+1.9
+log
+@NOMATBODY added
+@
+text
+@d2 3
+d503 1
+a503 1
+     COUNT         nfv        /* freie Variablen          */
+@
+
+
+1.8
+log
+@tilde pattern match added
+@
+text
+@d2 3
+d169 2
+@
+
+
+1.7
+log
+@support remote descriptors
+@
+text
+@d2 3
+d380 12
+d405 2
+d414 13
+d433 2
+@
+
+
+1.6
+log
+@changes in codefile output
+@
+text
+@d2 3
+d164 3
+@
+
+
+1.5
+log
+@corrections for rextcode.c
+@
+text
+@d2 3
+d477 1
+a477 1
+#endif WITHTILDE
+@
+
+
+1.4
+log
+@tilde version
+.,
+@
+text
+@d2 4
+a114 1
+#if WITHTILDE
+a115 1
+#endif /* WITHTILDE */
+a277 1
+#if WITHTILDE
+a295 1
+#endif /* WITHTILDE */
+a558 1
+#if WITHTILDE
+a560 1
+#endif /* WITHTILDE */
+a1111 1
+#if WITHTILDE
+a1139 1
+#endif /* WITHTILDE */
+@
+
+
+1.3
+log
+@ANSI-version mit mess und verteilungs-Routinen
+@
+text
+@d2 3
+d110 4
+d115 1
+d152 5
+d276 21
+d309 1
+d441 21
+a461 1
+/* dg */
+d474 20
+d559 4
+d881 29
+d936 2
+d1114 1
+d1116 30
+d1598 8
+@
+
+
+1.2
+log
+@ANSI-Version
+@
+text
+@d2 3
+d41 3
+d79 3
+d194 2
+d197 2
+d200 1
+d207 4
+d213 1
+d220 4
+d226 1
+d233 2
+d236 2
+d239 1
+d265 2
+d268 2
+d271 1
+d280 4
+d286 1
+d293 4
+d299 1
+d315 2
+d318 2
+d321 1
+d335 4
+d341 1
+d396 4
+d402 1
+d409 4
+d415 1
+d422 2
+d425 2
+d428 1
+d435 4
+d441 1
+d448 4
+d454 1
+d513 5
+a517 5
+#define INC_REFCNT(p)
+#define DEC_REFCNT(p)
+#define DEC_REFCNT_SCALAR(p)
+#define T_INC_REFCNT(p)
+#define T_DEC_REFCNT(p)
+d545 9
+a553 2
+#define DEC_REFCNT_SCALAR(id)  if (--((id)->u.sc.ref_count) == 0) \
+                                 freedesc(id); else /* used only in rvalfunc.c */
+d556 21
+a576 3
+#define T_INC_REFCNT(p)        if (T_POINTER(p)) { INC_REFCNT(p); } else
+#define T_DEC_REFCNT(p)        if (T_POINTER(p)) { DEC_REFCNT(p); } else
+#define GET_DESC(p)            if ((p = (T_PTD)newdesc()) == 0) \
+d578 2
+a579 5
+                               else
+#define GET_HEAP(n,p)          if ((newheap(n,p)) == 0) \
+                                 post_mortem("heap overflow (newheap)"); \
+                               else
+#define NEWDESC(p)             GET_DESC(p)
+d583 1
+d589 5
+d597 1
+d751 1
+a751 1
+    (p).u.sc.class   != class1      ) ? \
+d757 1
+a757 1
+ (( (p).u.sc.class   != class1      ) ? \
+d765 1
+a765 1
+ (( (p).u.sc.class   != class1      ) ? \
+d1581 1
+a1581 2
+/* end of RHEAPTY.H */
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 4
+a4 1
+/* $Log$ */
+d39 1
+a39 1
+#define MEAS_CALL(x) measure(x)
+d41 1
+a41 1
+#define MEAS_CALL(x) 0
+d460 4
+a463 1
+#define DEC_REFCNT(id)         if (--((id)->u.sc.ref_count) == 0) \
+d465 1
+d468 1
+a468 1
+#endif DEBUG
+d491 1
+a491 1
+#endif SCAVENGE
+d499 1
+a499 1
+#endif DEBUG
+d529 1
+a529 1
+  MEAS_CALL(MS_DESCREF),          \
+d540 1
+a540 1
+  MEAS_CALL(MS_DESCREF),           \
+d549 1
+a549 1
+  MEAS_CALL(MS_DESCREF),       \
+d558 2
+a559 2
+#define L_DESC(p,x) MEAS_CALL(MS_DESCREF),(p).u.sc.x
+#define R_DESC(p,x) (MEAS_CALL(MS_DESCREF),(p).u.sc.x)
+d565 2
+a566 2
+#define L_SCALAR(p,x) \
+  ( (p).u.sc.ref_count > 65000     || \
+d570 2
+a571 3
+  post_mortem("inconsistent descriptor entries L_SCALAR") ) \
+   : MEAS_CALL(MS_DESCREF), \
+  (p).u.sc.x
+d576 4
+a579 3
+  post_mortem("inconsistent descriptor entries R_SCALAR") ) \
+   : MEAS_CALL(MS_DESCREF), \
+  (p).u.sc.x)
+d582 1
+a582 1
+  ( MEAS_CALL(MS_DESCREF), \
+d586 1
+a586 1
+/* Digit Descriptor   - DIGIT                                       */
+d589 2
+a590 2
+#define L_DIGIT(p,x) \
+  ( (p).u.sc.ref_count > 65000     || \
+d593 3
+a595 4
+  ( DescDump(stdout,&(p),0) , \
+  post_mortem("inconsistent descriptor entries L_DIGIT") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.di.x
+d601 4
+a604 3
+  post_mortem("inconsistent descriptor entries R_DIGIT") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.di.x)
+d607 1
+a607 1
+  ( MEAS_CALL(MS_DESCREF), \
+d614 2
+a615 2
+#define L_LIST(p,x) \
+  ( (p).u.sc.ref_count > 65000     || \
+d619 2
+a620 3
+  post_mortem("inconsistent descriptor entries L_LIST") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.li.x
+d627 4
+a630 3
+  post_mortem("inconsistent descriptor entries R_LIST") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.li.x)
+d633 1
+a633 1
+  ( MEAS_CALL(MS_DESCREF), \
+d640 2
+a641 2
+#define L_MVT(p,x,class1) \
+  ( (p).u.sc.ref_count > 65000     || \
+d645 2
+a646 3
+  post_mortem("inconsistent descriptor entries L_MVT") ) \
+   : MEAS_CALL(MS_DESCREF), \
+  (p).u.mvt.x
+d651 4
+a654 3
+  post_mortem("inconsistent descriptor entries R_MVT") ) \
+   : MEAS_CALL(MS_DESCREF), \
+  (p).u.mvt.x)
+d659 4
+a662 3
+  post_mortem("inconsistent descriptor entries A_MVT") ) \
+   : MEAS_CALL(MS_DESCREF), \
+ &(p).u.mvt.x)
+d668 2
+a669 2
+#define L_EXPR(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d674 2
+a675 3
+  post_mortem("inconsistent descriptor entries L_EXPR")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.ex.x
+d681 4
+a684 3
+  post_mortem("inconsistent descriptor entries R_EXPR")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.ex.x)
+d687 1
+a687 1
+  ( MEAS_CALL(MS_DESCREF), \
+d694 2
+a695 2
+#define L_FUNC(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d702 2
+a703 3
+  post_mortem("inconsistent descriptor entries L_FUNC")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.fu.x
+d711 4
+a714 3
+  post_mortem("inconsistent descriptor entries R_FUNC")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.fu.x)
+d717 1
+a717 1
+  ( MEAS_CALL(MS_DESCREF), \
+d728 2
+a729 2
+#define L_ZFCODE(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d734 2
+a735 3
+  post_mortem("inconsistent descriptor entries L_FUNC")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.zfcode.x
+d741 4
+a744 3
+  post_mortem("inconsistent descriptor entries R_FUNC")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.zfcode.x)
+d747 1
+a747 1
+  ( MEAS_CALL(MS_DESCREF), \
+d754 2
+a755 2
+#define L_SELECTION(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d760 2
+a761 3
+    post_mortem("inconsistent descriptor entries L_SELECTION")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.sel.x
+d767 4
+a770 3
+    post_mortem("inconsistent descriptor entries R_SELECTION")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.sel.x )
+d773 1
+a773 1
+  ( MEAS_CALL(MS_DESCREF), \
+d776 2
+a777 2
+#define L_CLAUSE(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d782 2
+a783 3
+    post_mortem("inconsistent descriptor entries L_CLAUSE")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.clause.x
+d789 4
+a792 3
+    post_mortem("inconsistent descriptor entries R_CLAUSE")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.clause.x )
+d795 1
+a795 1
+  ( MEAS_CALL(MS_DESCREF), \
+d798 2
+a799 2
+#define L_PATTERN(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d803 2
+a804 3
+    post_mortem("inconsistent descriptor entries L_PATTERN")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.pat.x
+d809 4
+a812 3
+    post_mortem("inconsistent descriptor entries R_PATTERN")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.pat.x )
+d815 1
+a815 1
+  ( MEAS_CALL(MS_DESCREF), \
+d822 2
+a823 2
+#define L_COND(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d828 2
+a829 3
+  post_mortem("inconsistent descriptor entries L_COND")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.co.x
+d835 4
+a838 3
+  post_mortem("inconsistent descriptor entries R_COND")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.co.x)
+d841 1
+a841 1
+  ( MEAS_CALL(MS_DESCREF), \
+d848 2
+a849 2
+#define L_VAR(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d854 2
+a855 3
+  post_mortem("inconsistent descriptor entries L_VAR") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.va.x
+d861 4
+a864 3
+  post_mortem("inconsistent descriptor entries R_VAR") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.va.x)
+d867 1
+a867 1
+  ( MEAS_CALL(MS_DESCREF), \
+d874 2
+a875 2
+#define L_NAME(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d880 2
+a881 3
+  post_mortem("inconsistent descriptor entries L_NAME")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.na.x
+d887 4
+a890 3
+  post_mortem("inconsistent descriptor entries R_NAME")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.na.x)
+d893 1
+a893 1
+  ( MEAS_CALL(MS_DESCREF), \
+d900 2
+a901 2
+#define L_SWITCH(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d906 2
+a907 3
+  post_mortem("inconsistent descriptor entries L_SWITCH")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.sw.x
+d913 4
+a916 3
+  post_mortem("inconsistent descriptor entries R_SWITCH")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.sw.x)
+d919 1
+a919 1
+  ( MEAS_CALL(MS_DESCREF), \
+d926 2
+a927 2
+#define L_MATCH(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d932 2
+a933 3
+  post_mortem("inconsistent descriptor entries L_MATCH")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.ma.x
+d939 4
+a942 3
+  post_mortem("inconsistent descriptor entries R_MATCH")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.ma.x)
+d945 1
+a945 1
+  ( MEAS_CALL(MS_DESCREF), \
+d952 2
+a953 2
+#define L_NOMAT(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d958 2
+a959 3
+  post_mortem("inconsistent descriptor entries L_NOMAT") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.no.x
+d965 4
+a968 3
+  post_mortem("inconsistent descriptor entries R_NOMAT") ) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.no.x)
+d971 1
+a971 1
+  ( MEAS_CALL(MS_DESCREF), \
+d978 2
+a979 2
+#define L_LREC(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d984 2
+a985 3
+  post_mortem("inconsistent descriptor entries _LREC")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.lr.x
+d988 1
+a988 1
+  ( MEAS_CALL(MS_DESCREF), \
+d992 1
+a992 1
+  ( MEAS_CALL(MS_DESCREF), \
+d999 2
+a1000 2
+#define L_LREC_IND(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1005 2
+a1006 3
+  post_mortem("inconsistent descriptor entries _LREC_IND")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.ri.x
+d1009 1
+a1009 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1013 1
+a1013 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1020 2
+a1021 2
+#define L_LREC_ARGS(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1026 2
+a1027 3
+  post_mortem("inconsistent descriptor entries _LREC_ARGS")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.la.x
+d1030 1
+a1030 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1034 1
+a1034 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1041 2
+a1042 2
+#define L_FREE(p,x) \
+  (!(isdesc(&(p))))  ? \
+d1044 2
+a1045 3
+  post_mortem("not a pointer to descriptor L_FREE")) \
+  : MEAS_CALL(MS_DESCREF), \
+  (p).u.fr.x
+d1048 1
+a1048 1
+  (MEAS_CALL(MS_DESCREF), \
+d1058 2
+a1059 2
+#define L_SWAPHEAP(p,x) \
+  ((p).u.sc.ref_count >65000 || \
+d1063 2
+a1064 3
+   post_mortem("inconsistent descriptor entries L_SWAPHEAP")) \
+   :MEAS_CALL(MS_DESCREF), \
+   (p).u.sh.x
+d1067 1
+a1067 1
+  (MEAS_CALL(MS_DESCREF), \
+d1071 1
+a1071 1
+  (MEAS_CALL(MS_DESCREF), \
+d1075 1
+a1075 1
+/* Combinator   Descriptor - COMB                              /* dg */
+d1078 2
+a1079 2
+#define L_COMB(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1084 2
+a1085 3
+    post_mortem("inconsistent descriptor entries L_COMB")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cmb.x
+d1091 4
+a1094 3
+    post_mortem("inconsistent descriptor entries R_COMB")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cmb.x )
+d1097 1
+a1097 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1101 1
+a1101 1
+/* Closure      Descriptor - CLOS   (dg)                      /* dg */
+d1104 2
+a1105 2
+#define L_CLOS(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1110 2
+a1111 3
+    post_mortem("inconsistent descriptor entries L_CLOS")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cls.x
+d1117 4
+a1120 3
+    post_mortem("inconsistent descriptor entries R_CLOS")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cls.x )
+d1123 1
+a1123 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1127 1
+a1127 1
+/* Conditional  Descriptor - CONDI   (dg)                      /* dg */
+d1130 2
+a1131 2
+#define L_CONDI(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1136 2
+a1137 3
+    post_mortem("inconsistent descriptor entries L_CONDI")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cnd.x
+d1143 4
+a1146 3
+    post_mortem("inconsistent descriptor entries R_CONDI")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cnd.x )
+d1149 1
+a1149 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1153 1
+a1153 1
+/* Case  Descriptor - CASE    (dg)                             /* dg */
+d1156 2
+a1157 2
+#define L_CASE(p,x) \
+  ( (p).u.sc.ref_count > 65000   || \
+d1161 2
+a1162 3
+    post_mortem("inconsistent descriptor entries L_CASE")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cse.x
+d1167 4
+a1170 3
+    post_mortem("inconsistent descriptor entries R_CASE")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cse.x )
+d1173 1
+a1173 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1177 1
+a1177 1
+/* Universeller Descriptor - UNIV    (dg)                      /* dg */
+d1180 2
+a1181 2
+#define L_UNIV(p,x) \
+  ( (p).u.sc.ref_count > 65000 || \
+d1184 2
+a1185 3
+    post_mortem("inconsistent descriptor entries L_UNIV")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.uni.x
+d1188 1
+a1188 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1192 1
+a1192 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1196 1
+a1196 1
+/* Cons         Descriptor - CONS    (dg)                      /* dg */
+d1199 2
+a1200 2
+#define L_CONS(p,x) \
+  ( (p).u.sc.ref_count > 65000 || \
+d1203 2
+a1204 3
+    post_mortem("inconsistent descriptor entries L_CONS")) \
+  : MEAS_CALL(MS_DESCREF), \
+    (p).u.cns.x
+d1207 1
+a1207 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1211 1
+a1211 1
+  ( MEAS_CALL(MS_DESCREF), \
+d1423 1
+a1423 1
+/* Combinator   Descriptor - COMB   (dg)             /* dg */
+d1431 1
+a1431 1
+/* Closure      Descriptor - CLOS   (dg)             /* dg */
+d1439 1
+a1439 1
+/* Conditional  Descriptor - CONDI   (dg)            /* dg */
+d1447 1
+a1447 1
+/* Case  Descriptor - CASE   (dg)                    /* dg */
+d1455 1
+a1455 1
+/* Universeller Descriptor - UNIV    (dg)            /* dg */
+d1463 1
+a1463 1
+/* Cons         Descriptor - CONS    (dg)            /* dg */
+@

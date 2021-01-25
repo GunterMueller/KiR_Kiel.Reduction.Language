@@ -1,0 +1,391 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	95.03.06.15.46.20;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.02.02.11.48.18;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.01.25.10.13.14;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.01.06.16.51.15;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.01.04.13.16.29;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@Initial revision
+@
+
+
+1.5
+log
+@output for reduma and screen
+@
+text
+@#include <stdio.h>
+#include <stdlib.h>
+#include "dbug.h"
+#include "rstdinc.h"
+#include "rstelem.h"
+#include "rheapty.h"
+#include "rstackty.h"
+#include "mytypes.h"
+
+/*******************************************************************************/
+/*                                                                             */
+/* Encoding of the Output sending back to reduma                               */
+/*                                                                             */
+/* output : signal data                                                        */
+/*                                                                             */
+/* with                                                                        */
+/*                                                                             */
+/* data   : length_of_list output*                                             */
+/*        : tagged_integer | tagged_boolean                                    */
+/*        : value_of_real                                                      */
+/*                                                                             */
+/* signal : ri_int | ri_real | ri_list | ri_func                               */
+/*        | ri_mat | ri_vect | ri_tvect | ri_cons | ri_prim                    */
+/*                                                                             */
+/*                                                                             */
+/*******************************************************************************/
+
+typedef enum {
+                ri_bool = 0, ri_int = 1, ri_real = 2, ri_list = 3, ri_clos = 4, 
+                ri_mat = 5, ri_vect = 6, ri_tvect = 7, ri_cons = 8, ri_prim = 9,
+                ri_comb = 10, ri_cond = 11
+              } RED_INPUT;
+/*******************************************************************************/
+
+int newdesc(), post_mortem(), newheap();
+void lo(int), OutputOfTasm2KiR(int);
+
+FILE *tasm2kir  = stdout;
+extern int AsciiOutput, KiROutput, withtilde, number_of_descs;
+extern char ri_tasmoutfile[120];
+extern T_DESCRIPTOR funcdesctable[];
+#define DESC(x)  (* (PTR_DESCRIPTOR) x)
+
+#ifdef h__sparc__
+  register int *st_h asm ("g5");
+  register int *st_w asm ("g7");
+  register int *st_a asm ("g6");
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+
+extern PTR_DESCRIPTOR _desc;
+
+
+int initdata_list (int dim, int *args)
+{
+  int i;
+  PTR_HEAPELEM pth; /* pointer to heapelement */
+  DBUG_ENTER("initdata_list");
+  
+  MAKEDESC(_desc, 1, C_LIST, TY_UNDEF);
+  L_LIST((*_desc), dim) = dim;
+  GET_HEAP(dim, A_LIST((*_desc), ptdv));
+  RES_HEAP;
+  pth = R_LIST(*_desc,ptdv);
+  for (i = 0; i < dim; i++) 
+    pth[i] = args[i]; 
+  L_LIST((*_desc), ptdd) = NULL;
+  L_LIST((*_desc), special) = NULL;
+  REL_HEAP;
+  DBUG_RETURN((int)_desc);
+}
+
+int initdata_scalar(double value)
+{
+  DBUG_ENTER("initdata_scalar");
+  
+  MAKEDESC(_desc,1,C_SCALAR, TY_REAL);
+  L_SCALAR(*_desc, valr) = value;
+  DBUG_RETURN((int)_desc);
+}  
+
+
+/*************************************************************/
+/* gets a stack element and prints it out                    */
+/* now only lists, reals, booleans and integers              */
+/*************************************************************/
+void lo(int lw)
+{
+int i;
+
+  if (T_INT(lw))  
+    printf("%d",VAL_INT(lw));       
+  else if (T_BOOLEAN(lw))                           
+  {                                              
+    if (T_SA_FALSE(lw))                        
+      printf("false");                  
+    else if (T_SA_TRUE(lw))                    
+      printf("true");                   
+    else printf("Error in boolean result !\n");  
+  }                                              
+  else if (T_POINTER(lw)) 
+  {                        
+    if ((R_DESC(DESC(lw),class)==C_SCALAR) && (R_DESC(DESC(lw),type)==TY_REAL))
+      printf("%f", R_SCALAR(DESC(lw),valr)) ; 
+    if (R_DESC(DESC(lw),class) == C_LIST)  
+  {
+    if (0 != ((T_PTD)lw)->u.li.dim)
+    {
+      printf("< ");        
+      for(i=0; i+1<((T_PTD)lw)->u.li.dim; i++)
+      {
+        lo(((T_PTD)lw)->u.li.ptdv[i]);
+        printf(", ");
+      }
+      lo(((T_PTD)lw)->u.li.ptdv[i]);
+      printf(" >");
+    }
+    else printf("<>");
+  }
+  }
+  
+  else                                       
+    printf("Something not a list, integer or real in result %d !\n",lw); 
+}
+
+/*************************************************************/
+
+void t_output(int lw)
+{
+  if (1 == AsciiOutput) lo(lw);
+  if (1 == KiROutput)
+  {
+    if (strcmp(ri_tasmoutfile, "__default"))
+    if (NULL == (tasm2kir = fopen(ri_tasmoutfile, "w")))
+    {
+      fprintf(stderr, " Couldn't open djskfh !\n");
+      exit(1);
+    }
+    OutputOfTasm2KiR(lw);
+    fclose(tasm2kir);
+  }
+}
+
+int AreYouInfuncdesctable(const int me)
+{
+  int i;
+  for (i = 0; i < number_of_descs; i++)
+    if (me == (int)&funcdesctable[i]) return(TRUE);
+  return(FALSE);
+}
+/*******************************************************************************/
+/* "unreadable" output to file tasm2kir to send result back to reduma          */
+/*******************************************************************************/
+void OutputOfTasm2KiR(int lw)
+{
+  int i, dim;
+  PTR_HEAPELEM pth;
+
+  if (T_INT(lw))
+    fprintf(tasm2kir, " %d %d", ri_int, lw);
+  else if (T_BOOLEAN(lw))
+    fprintf(tasm2kir, " %d %d", ri_bool, lw);
+  else if (T_FUNC(lw) && (!AreYouInfuncdesctable(lw)))
+    fprintf(tasm2kir, " %d %d", ri_prim, lw);
+  else if ((R_DESC(DESC(lw),class) == C_SCALAR) && (R_DESC(DESC(lw),type)==TY_REAL))
+    fprintf(tasm2kir, " %d %f", ri_real, R_SCALAR(DESC(lw), valr));
+  else if (C_LIST == R_DESC(DESC(lw),class))
+  {
+    dim = R_LIST(DESC(lw), dim);
+    fprintf(tasm2kir, " %d %d", ri_list, dim);
+    pth = R_LIST(DESC(lw), ptdv);
+    for (i = 0; i < dim; i++) OutputOfTasm2KiR(pth[i]);
+  }
+  else if (C_FUNC == R_DESC(DESC(lw), class))
+  {
+    int arity; /* used args */
+    int arg;   /* needed args */
+    int nfv;   /* # free vars if withtilde */
+    int graph_adr; /* where to find to @@-graph */
+  
+    if (TY_COMB == R_DESC(DESC(lw), type))
+    {
+      arity = R_COMB(DESC(lw), nargs);
+      arg = R_COMB(DESC(lw), args);
+      graph_adr = (int) R_COMB(DESC(lw), ptd);
+      fprintf(tasm2kir, " %d %d %d %d", ri_comb, arity, arg, graph_adr);
+    }
+    if (TY_CONDI == R_DESC(DESC(lw), type))
+    {
+      arity = R_CONDI(DESC(lw), nargs);
+      arg = R_CONDI(DESC(lw), args);
+      graph_adr = (int) R_CONDI(DESC(lw), ptd);
+      fprintf(tasm2kir, " %d %d %d %d", ri_cond, arity, arg, graph_adr);
+    }
+    else if (TY_CLOS == R_DESC(DESC(lw), type))
+    {
+
+      if (TY_PRIM == R_CLOS(DESC(lw), ftype))
+      {
+        pth = R_CLOS(DESC(lw), pta);
+        arity = R_CLOS(DESC(lw), args); 
+        arg = R_CLOS(DESC(lw), nargs);
+        fprintf(tasm2kir," %d %d %d %d %d", ri_clos, ri_prim, *pth++, arity, arg);
+        for (i = 0; i < arity; i++) OutputOfTasm2KiR(pth[i]);
+      }
+      else if (TY_COMB == R_CLOS(DESC(lw), ftype))
+      {
+        if (withtilde)
+          nfv = R_CLOS(DESC(lw), nfv);
+        else
+          nfv = 0;
+  
+        arity = R_CLOS(DESC(lw), args);
+        arg = R_CLOS(DESC(lw), nargs);
+        fprintf(tasm2kir," %d %d %d %d %d", ri_clos, ri_comb, arity, arg, nfv);
+        pth = R_CLOS(DESC(lw), pta);
+        for (i = 0; i < arity + nfv + 1; i++) OutputOfTasm2KiR(pth[i]);
+      }
+      else if (TY_CONDI == R_CLOS(DESC(lw), ftype))
+      {
+        if (withtilde)
+          nfv = (R_CLOS(DESC(lw), nfv));
+        else
+          nfv = 0;
+        arity = R_CLOS(DESC(lw), args);
+        arg = R_CLOS(DESC(lw), nargs);
+        fprintf(tasm2kir," %d %d %d %d %d", ri_clos, ri_cond, arity, arg, nfv);
+        pth = R_CLOS(DESC(lw), pta);
+        for (i = 0; i < arity + nfv + 1; i++) OutputOfTasm2KiR(pth[i]);
+      }
+    }
+  } 
+}
+
+
+@
+
+
+1.4
+log
+@stack pointer in register (if sparc)
+@
+text
+@d9 26
+d36 1
+d38 4
+d44 1
+a44 1
+#ifdef __sparc__
+d92 1
+a92 1
+int i,j;
+d94 3
+a96 3
+if (T_INT(lw))  
+  printf("%d",VAL_INT(lw));       
+else if (T_BOOLEAN(lw))                           
+d104 5
+a108 7
+else if (T_POINTER(lw)) 
+{                        
+  if ((R_DESC(DESC(lw),class)==C_SCALAR) && (R_DESC(DESC(lw),type)==TY_REAL))
+    printf("%f", R_SCALAR(DESC(lw),valr)) ; 
+  if (R_DESC(DESC(lw),class) == C_LIST)  
+{
+  if (0 != ((T_PTD)lw)->u.li.dim)
+d110 1
+a110 2
+    printf("< ");        
+    for(i=0; i+1<((T_PTD)lw)->u.li.dim; i++)
+d112 6
+d119 1
+a119 1
+      printf(", ");
+d121 2
+a122 2
+    lo(((T_PTD)lw)->u.li.ptdv[i]);
+    printf(" >");
+d124 3
+a126 1
+  else printf("<>");
+d128 17
+d147 6
+a152 2
+else                                       
+  printf("Something not a list, integer or real in result %d !\n",lw); 
+d154 7
+d162 38
+d201 36
+a236 1
+
+@
+
+
+1.3
+log
+@minor changes
+@
+text
+@d9 1
+d13 1
+a13 1
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+d39 2
+d53 49
+@
+
+
+1.2
+log
+@initializes reals and lists
+@
+text
+@a23 2
+PTR_HEAPELEM pth; /* pointer to heapelement */
+T_PTD ptdesc;     /* pointer to descriptor */
+d28 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d27 1
+a27 1
+int initdata_list (int dim)
+d29 2
+a30 1
+  int i, arg1;
+a33 1
+  L_LIST((*_desc), special) = LIST;        /* Edit-Feld */
+d36 3
+a38 2
+  for (i = dim; --i >= 0;) 
+    L_LIST(*_desc, ptdv)[i] = TAG_INT(R_MVT(DESC(arg1), ptdv,class1)[i]);
+d40 1
+a40 1
+  return((int)_desc);
+d45 2
+d49 1
+a49 1
+  return((int)_desc);
+@

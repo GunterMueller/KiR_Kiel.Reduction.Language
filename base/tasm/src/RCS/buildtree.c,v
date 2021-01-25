@@ -1,0 +1,1969 @@
+head	1.57;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.57
+date	96.02.23.15.25.48;	author stt;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	96.02.23.14.10.32;	author rs;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	96.02.13.15.52.25;	author stt;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	96.02.05.13.16.12;	author sf;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.08.02.09.48.56;	author sf;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.07.07.08.21.20;	author car;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.06.07.11.35.21;	author sf;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.05.31.13.22.35;	author sf;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.05.31.12.58.25;	author sf;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.05.19.08.14.42;	author sf;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.05.12.11.54.21;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.05.12.09.39.44;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.04.20.09.56.51;	author car;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.04.19.16.57.49;	author car;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.04.19.16.50.08;	author car;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.04.19.12.29.39;	author car;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.04.19.12.26.20;	author sf;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.04.17.14.02.28;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.04.17.11.37.22;	author sf;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.04.13.15.32.51;	author car;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.04.13.07.20.53;	author um;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.04.12.13.31.33;	author sf;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.04.11.09.17.03;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.04.10.07.42.11;	author sf;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.04.05.15.20.59;	author sf;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.03.24.11.01.31;	author car;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.03.23.14.08.56;	author car;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.03.22.15.38.21;	author car;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.03.22.08.47.08;	author car;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.03.14.12.32.20;	author car;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.03.13.10.11.19;	author sf;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.03.10.16.12.23;	author sf;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.03.08.13.16.41;	author sf;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.03.03.17.51.47;	author car;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.02.14.09.53.40;	author car;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.02.14.08.07.49;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.02.03.07.41.06;	author car;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.02.01.14.09.56;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.01.31.12.29.56;	author car;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.01.31.07.43.25;	author car;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.01.30.15.49.06;	author car;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.01.06.08.47.27;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.01.06.07.46.50;	author um;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.12.08.13.04.45;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.08.09.31.08;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.06.07.48.33;	author um;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.11.29.11.01.42;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.11.28.12.53.53;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.11.28.11.25.58;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.11.28.07.55.35;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.25.07.39.21;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.24.10.22.03;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.23.15.53.44;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.22.10.50.37;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.09.28.53;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.57
+log
+@intact and delta closures don't have tilde args.
+@
+text
+@/***********************************************************************/
+/* Builds syntaxtree for ASM~-program, used by tasm2c.y.               */
+/***********************************************************************/
+/* Last change: 17.10.94                                               */
+/***********************************************************************/
+
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <malloc.h>
+#include "dbug.h"
+#include "mytypes.h"
+#include "buildtree.h"
+#include "main.h"
+#include "tiny.h"
+#include "error.h"
+
+/***********************************************************************/
+/* Frees allocated memory of an order.                                 */
+/***********************************************************************/
+
+static void free_order(ORDER *d)
+{
+  DBUG_ENTER("free_order");
+  if (NULL!=d->code) free(d->code);
+  if (GETORDERARGS(d, label)) free(GETORDERARGS(d, label));
+  if (GETORDERARGS(d, ret)) free(GETORDERARGS(d, ret));
+  free(d);
+  DBUG_VOID_RETURN;
+}
+
+/***********************************************************************/
+/* Deletes a given order. (uses free_order())                          */
+/***********************************************************************/
+
+void delete_order(ORDER *d)
+{
+  ORDER *p, *n;
+  FUNCTION *f;
+  
+  DBUG_ENTER("delete_order");
+  p=d->prev;
+  n=d->next;
+  if (NULL==p)
+  {
+    f=program_start->function;
+    while (NULL!=f)
+    {
+      if (f->order==d)
+        break;
+      f=f->next;
+    }
+    f->order=n;
+    f->order->prev=NULL;
+  }
+  else
+  {
+    if (NULL!=n)
+      n->prev=p;
+    p->next=n;
+  }
+  free_order(d);
+  DBUG_VOID_RETURN;
+}
+
+/***********************************************************************/
+/* searches a function handle by name                                  */
+/***********************************************************************/
+
+FUNCTION *find_function(char *s)
+{
+  FUNCTION *fun = GETFIRSTFUNCTION(program_start);
+
+  DBUG_ENTER("find_function");
+  while ((NULL!=fun) && (0!=strcmp(s,GETNAME(fun))))
+    fun=GETNEXTFUNCTION(fun);
+  DBUG_RETURN(fun);
+}
+
+/***********************************************************************/
+/* Deletes a whole order list and puts another instead of the killed   */
+/* one into the tree                                                   */
+/***********************************************************************/
+void overwrite_func(char *overwrite_me, ORDER *new_order_list)
+{
+  FUNCTION *fun = GETFIRSTFUNCTION(program_start);
+  ORDER *ord, *help;
+  
+  DBUG_ENTER("overwrite_func");
+  while ((NULL!=fun) && (0!=strcmp(overwrite_me, GETNAME(fun))))
+    fun=GETNEXTFUNCTION(fun);
+  ord = GETFIRSTORDER(fun);  
+  while (NULL != ord)
+  {
+    help = GETNEXTORDER(ord);
+    delete_order(ord);
+    ord = help;
+  }
+  SETFIRSTORDER(fun) = new_order_list;
+
+  DBUG_VOID_RETURN;
+}
+/***********************************************************************/
+/* Builds a new structure for an ASM~-date    in the parsetree and     */
+/* returns pointer to that structure.                                  */
+/***********************************************************************/
+/* The ellipse takes the different types of the data                   */
+/* like real, mat, vect, string, list, ...                             */
+/***********************************************************************/
+
+DATANODE *new_data(DATATAG whatami, int adr, ...)
+{
+  va_list ap;
+  DATANODE *help;
+
+  DBUG_ENTER("new_data");
+  help=(DATANODE *)malloc(sizeof(DATANODE));
+  if (NULL==help)
+    yyfail("couldn't allocate memory");
+  help->next=NULL;
+  help->tag=whatami;
+  help->address = adr;
+  va_start(ap, adr);
+  switch (whatami)
+  {
+  case d_real:
+    help->u.x=va_arg(ap, double);
+    break;
+  case d_list:
+  case d_string:
+    help->u.v.size = va_arg(ap, int);
+    help->u.v.data = va_arg(ap, int *);
+    break;
+  case d_name:
+    help->u.v.size = va_arg(ap, int);
+    help->u.v.data = (int *)va_arg(ap, char *);
+    break;
+  case d_mat:
+  case d_vect:
+  case d_tvect:
+    help->u.w.rows = va_arg(ap, int);    
+    help->u.w.cols = va_arg(ap, int);
+    help->u.w.m.idata = va_arg(ap, int *);
+    help->u.w.tag = va_arg(ap, DATATAG); 
+    break;
+  default:
+    yyfail("internal error: illegal datatype request");
+    ;
+  } /* SWITCH */
+  
+  DBUG_RETURN(help);  
+}
+
+/***********************************************************************/
+/* Concatenates an ASM~-data to an existing datalist and               */
+/* returns pointer to that list.                                       */
+/***********************************************************************/
+      
+DATANODE * conc_data(DATANODE *list, DATANODE *data)
+{
+  DATANODE * help;
+  
+  DBUG_ENTER("conc_data");
+  help=list;
+  while (NULL!=help->next) 
+    help=help->next;
+  help->next=data;
+  DBUG_RETURN(list);
+}  
+
+/***********************************************************************/
+/* Builds a new structure for an ASM~-command in the parsetree and     */
+/* returns pointer to that structure.                                  */
+/***********************************************************************/
+/* The ellipse takes the different parameters of the different ASM~-   */
+/* commands like integers, booleans, pointers, names.                  */
+/***********************************************************************/
+
+ORDER *new_order(COMMAND add_me, ...)
+{
+  va_list ap;
+  char * s;
+  ORDER *help;
+
+  DBUG_ENTER("new_order");
+  
+  help=(ORDER *)malloc(sizeof(ORDER));
+  if (NULL==help)
+    yyfail("couldn't allocate memory");
+  help->command=add_me;
+  help->opti=FALSE;
+  help->typestouched=0;
+  help->next=NULL;
+  help->prev=NULL;
+  help->code=NULL;
+  help->branch=0;
+  help->args.n=0;
+  help->args.m=0;
+  help->args.k=0;
+  help->args.l=0;
+  help->args.j=0;
+  help->args.x=0;
+  help->args.label=NULL;
+  help->args.ret=NULL;
+  help->args.hash_str=NULL;
+  help->args.argtp=NULL;
+  help->args.desc=NULL;
+  help->args.primf=-1;
+  help->types=NOTYPE;
+  
+  va_start(ap, add_me);
+  switch(add_me)
+  {
+/* Commands without any arguments are not treated */
+/* Commands with only one integer argument */
+  case pushcw_i:
+  case pushaw:
+  case pushtw:
+  case pushar:
+  case pushtr:
+  case pushh:
+  case count:
+  case freeswt:
+  case freea:
+  case freer:
+  case freet:
+  case freew:
+  case snap:
+  case apply:
+  case rtc_i:
+  case mklist:  
+  case mkilist:  
+  case mkap:  
+/* Commands with only one bool argument, treated as integer */
+  case pushcw_b:
+  case rtc_b:
+  case rtc_pf:
+  case stflip:
+  case wait:
+  {
+    help->args.n=va_arg(ap, int);
+    break;
+  }
+/* Commands with only one pointer argument */
+  case pushw_p:
+  case pushr_p:
+  case rtp:
+  {
+    help->args.desc = (void *)va_arg(ap, int);
+    break;
+  }
+/* Commands with two integer arguments */
+  case pushcw_pf:
+  {
+    help->args.n=va_arg(ap, PRIMF);  /* primfunc */
+    help->types=va_arg(ap, int);     /* types */
+    help->args.m=va_arg(ap, int);    /* arity */
+    break;
+  }
+  case mkdclos: 
+  case mkiclos: 
+  {
+    help->args.n=va_arg(ap, int);
+    help->args.m=va_arg(ap, int);
+    break;
+  }
+/* Commands with three integer arguments */
+  case mkgaclos:
+  case mkgsclos:
+  case mkbclos:
+  case mksclos:
+  case mkcclos:
+  {
+    help->args.n=va_arg(ap, int);
+    help->args.m=va_arg(ap, int);
+    if (ISASM_TILDE())
+      help->args.k=va_arg(ap, int);
+    break;
+  }
+    
+/* Commands with a label as an argument */
+  case jfalse:
+  case jtrue:
+  case jcond:
+  {
+    SETORDERARGS(help, n)=va_arg(ap, labeltype);
+    s = va_arg(ap, char *);
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    help->types = va_arg(ap, int);
+    break;
+  }
+  case pushret:
+  case jump:
+  case beta:
+  case Gamma:
+  case gammabeta:
+  case tail:
+  {
+    SETORDERARGS(help, n)=va_arg(ap, labeltype);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    break;
+  }
+  case jfalse2:
+  case jtrue2:
+  case jcond2:
+  {
+    SETORDERARGS(help, n)=va_arg(ap, labeltype);
+    SETORDERARGS(help, m)=va_arg(ap, labeltype);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, ret), s);
+    help->types = va_arg(ap, int);
+    break;
+  }
+  case hashargs:
+  case hashtildeargs:
+  case hashrestype:
+  {
+    help->args.n=va_arg(ap, int);               /* no of args */
+    help->args.argtp=va_arg(ap, TP_TYPES *);     /* args */
+    break;
+  }
+  case hashsetref:
+  {
+    help->args.n=va_arg(ap, int);               /* new mode */
+    break;
+  }
+
+/* Commands with a primitive function as an argument */    
+  case delta1:
+  case delta2:
+  case delta3:
+  case delta4:
+  case intact:
+  {
+    help->args.primf=va_arg(ap, PRIMF);
+    help->types=va_arg(ap, int);
+    break;
+  }
+  case label:
+  {
+    SETORDERARGS(help, n)=va_arg(ap, int);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    break;
+  }
+  case stack_op:
+  case ris_stack_op:
+  {
+    int n = va_arg(ap, int);
+    int m = va_arg(ap, int);
+    int k = va_arg(ap, int);
+    char *s=va_arg(ap, char *);
+    
+    SETORDERARGS(help, n) = n;   /* # of a entries to kill */
+    SETORDERARGS(help, m) = m;   /* # of w entries to kill */
+    SETORDERARGS(help, k) = k;   /* # of vars to kill */
+    help->code=(char *)malloc(strlen(s)+1);
+    if (NULL==help->code) 
+      yyfail("couldn't allocate memory");
+    strcpy(help->code,s);
+    break;
+  }
+  case code_ok:
+  {
+    char *s=va_arg(ap, char *);
+    
+    help->code=(char *)malloc(strlen(s)+1);
+    if (NULL==help->code)
+      yyfail("couldn't allocate memory");
+    strcpy(help->code,s);
+    break;
+  }
+  case movear:
+  case moveaw:
+  case movetr:
+  case movetw:
+  case pushaux:
+  case uses_aux_var:
+  case rtf:
+  case rtm:
+  case rtt:
+  case ext:
+  case end:
+  case poph:
+  case distend:
+  case msdistend:
+  case msnodist:
+    break;
+  case inca:
+  case incw:
+  case incr:
+  case inct:
+  case tinca:
+  case tincw:
+  case tincr:
+  case tinct:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    break;
+  case deca:
+  case decr:
+  case dect:
+  case decw:
+  case tdeca:
+  case tdecw:
+  case tdecr:
+  case tdect:
+  case killa:
+  case killr:
+  case killt:
+  case killw:
+  case tkilla:
+  case tkillw:
+  case tkillr:
+  case tkillt:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    break;
+  /* instructions for ASm-PM */
+  case gammacase:
+  case Case:
+    SETORDERARGS(help, n)=va_arg(ap, labeltype);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    break;
+  case dereference:
+  case drop:
+  case endlist:
+  case fetch:
+  case nestlist:
+    break;
+  case advance:
+  case bind:
+  case binds:
+  case endsubl:
+  case mkaframe:
+  case mkbtframe:
+  case mkwframe:
+  case pick:
+  case restorebt:
+  case restoreptr:
+  case rmbtframe:
+  case rmwframe:
+  case savebt:
+  case saveptr:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    break;
+  case atend:
+  case atstart:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    break;
+  case bindsubl:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    SETORDERARGS(help, k) = va_arg(ap, int);
+    SETORDERARGS(help, l) = va_arg(ap, int);
+    break;
+  case initbt:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    SETORDERARGS(help, k) = va_arg(ap, int);
+    SETORDERARGS(help, l) = va_arg(ap, int);
+    SETORDERARGS(help, j) = va_arg(ap, int);
+    break;
+  case matcharb:
+  case matcharbs:
+  case matchbool:
+  case matchin:
+  case matchint:
+  case matchlist:
+  case matchstr:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, ret), s);
+    SETORDERENTRY(help, types) = va_arg(ap, int);
+    break;
+  case matchprim:
+    help->args.n=va_arg(ap, PRIMF);  /* primfunc */
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, ret), s);
+    break;
+  case mkcase:
+    SETORDERARGS(help, desc) = (void *)va_arg(ap, int);
+    break;
+  case startsubl:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    break;
+  case tguard:
+    s = va_arg(ap, char *); 
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s)+1)) == NULL)
+      yyfail("memory allocation failure");
+    strcpy(SETORDERARGS(help, label), s);
+    SETORDERARGS(help, desc) = (void *)va_arg(ap, int);
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    SETORDERARGS(help, l) = va_arg(ap, int);
+    break;
+  /* ASM-FF */
+  case mkframe:
+  case Inter:
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    break;
+  case mkslot:
+    break;
+  case dist:
+  case distb:
+    SETORDERARGS(help, label) = va_arg(ap, char *);
+    SETORDERARGS(help, ret) = va_arg(ap, char *);
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    SETORDERARGS(help, k) = va_arg(ap, int);
+    SETORDERARGS(help, l) = va_arg(ap, int);
+    break;
+  default:
+    yyfail("internal error: unknown order received");
+    break;    
+}
+
+  va_end(ap);
+  DBUG_RETURN(help);
+}
+
+
+
+/***********************************************************************/
+/* Includes an ASM~-command into an existing commandlist and           */
+/* returns pointer to that list.                                       */
+/***********************************************************************/
+      
+void insert_order_list(ORDER *insert_me, ORDER *before_me)
+{
+  ORDER *help;
+  FUNCTION *fhelp;
+  
+  DBUG_ENTER("insert_order_list");
+  help=insert_me;
+  if (NULL==before_me->prev)
+  {
+    while (NULL!=help->next) help=help->next;
+    help->next=before_me;
+    before_me->prev=help;
+    fhelp=program_start->function;
+    while (NULL!=fhelp)
+    {
+      if (fhelp->order==before_me)
+        break;
+      fhelp=fhelp->next;
+    }
+    fhelp->order=insert_me;
+  }
+  else
+  {
+    before_me->prev->next=insert_me;
+    insert_me->prev=before_me->prev;
+    while (NULL!=insert_me->next) insert_me=insert_me->next;
+    insert_me->next=before_me;
+    before_me->prev=insert_me;  
+  }
+  DBUG_VOID_RETURN;
+}  
+
+/***********************************************************************/
+/* Concatenates an ASM~-command to an existing commandlist and         */
+/* returns pointer to that list.                                       */
+/***********************************************************************/
+      
+ORDER *conc_order(ORDER *list, ORDER *order)
+{
+  ORDER *help;
+  
+  DBUG_ENTER("conc_order");
+  help=list;
+  
+  while (NULL!=help->next) 
+    help=help->next;
+  order->prev=help;
+  help->next=order;
+  DBUG_RETURN(list);
+}  
+
+/***********************************************************************/
+/* Builds a new structure for an ASM~-function in the parsetree and    */
+/* returns pointer to that structure.                                  */
+/***********************************************************************/
+
+FUNCTION *new_function(const char *name, ORDER *order)
+{
+  FUNCTION *help;
+  
+  DBUG_ENTER("new_function");
+  help=(FUNCTION *)malloc(sizeof(FUNCTION));
+  if (NULL==help)
+    yyfail("couldn't allocate memory");
+  help->next=NULL;
+  help->inlined = 1;
+  if ((help->name = (char *)malloc(strlen(name)+1)) == NULL)
+    yyfail("memory allocation failure");
+  strcpy(help->name,name);
+  if (strcmp(name, "goal") == 0)
+    help->desc = program_start->desc;
+  else
+    if ((help->desc = find_desc(program_start->desc, help->name)) == NULL)
+      yyerror("illegal function identifier '%s'", name);
+  help->order=order;
+  DBUG_RETURN(help);
+}
+
+/***********************************************************************/
+/* Includes an ASM~-function into an existing commandlist and          */
+/* returns pointer to that list.                                       */
+/***********************************************************************/
+
+FUNCTION *conc_function(FUNCTION *list, FUNCTION *add_me)
+{
+  FUNCTION *help;
+  
+  DBUG_ENTER("conc_function");
+  help=list;
+    while (NULL!=help->next) help=help->next;
+  help->next=add_me;
+  DBUG_RETURN(list);
+}
+
+/***********************************************************************/
+/* Builds a new structure for an ASM~-functiondescriptor in the and    */
+/* parsetree returns pointer to that structure.                        */
+/***********************************************************************/
+
+FUNDESC *new_desc(DESCTAG tag, int adr, int n, int m, int graph_adr, const char *label)
+{
+  FUNDESC *help;
+  
+  DBUG_ENTER("new_desc");
+  help=(FUNDESC *)malloc(sizeof(FUNDESC));
+  if (NULL==help)
+    yyfail("couldn't allocate memory");
+  help->next=NULL;
+  help->tag=tag;
+  help->address = adr;
+  help->nfv=n;
+  help->nv=m;
+  help->graph = graph_adr;
+  if ((SETDESCENTRY(help, label) = (char *)malloc(strlen(label)+1)) == NULL)
+    yyfail("memory allocation failure");
+  strcpy(SETDESCENTRY(help, label), label);
+  DBUG_RETURN(help);
+}
+
+/***********************************************************************/
+/* Includes an ASM~-descriptor into an existing descriptorlist and     */
+/* returns pointer to that list.                                       */
+/***********************************************************************/
+      
+FUNDESC *conc_desc(FUNDESC *list, FUNDESC *desc)
+{
+  FUNDESC *help;
+
+  DBUG_ENTER("conc_desc");
+  help=list;
+  while (NULL!=help->next) help=help->next;
+  help->next=desc;
+  DBUG_RETURN(list);
+}  
+
+/***********************************************************************/
+/* Concatenates functiondescriptorlist and functionlist and            */
+/* returns pointer to that resulting structure.                        */
+/***********************************************************************/
+
+PROGRAM *conc_desc_fun(FUNDESC *desc, DATANODE * data, FUNCTION *func)
+{
+  PROGRAM *help;
+  
+  DBUG_ENTER("conc_desc_fun");
+  help=(PROGRAM *)malloc(sizeof(PROGRAM));
+  if (NULL==help)
+    yyfail("couldn't allocate memory");
+  help->function=func;
+  help->data=data;
+  help->desc=desc;
+  DBUG_RETURN(help);
+}
+@
+
+
+1.56
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@a260 1
+/* Commands with three integer arguments */
+d263 6
+@
+
+
+1.55
+log
+@cases mkiclos and intact added.
+@
+text
+@d223 1
+d395 2
+@
+
+
+1.54
+log
+@distb has 6 arguments
+@
+text
+@d262 1
+d339 1
+@
+
+
+1.53
+log
+@freer
+@
+text
+@d534 1
+@
+
+
+1.52
+log
+@DIST implemented
+@
+text
+@d225 1
+@
+
+
+1.51
+log
+@new command: rtc_pf
+@
+text
+@d222 1
+d238 1
+d389 2
+d526 8
+d537 1
+a537 1
+}    
+@
+
+
+1.50
+log
+@*** empty log message ***
+@
+text
+@d235 1
+@
+
+
+1.49
+log
+@mat, vect, tvect implemented
+@
+text
+@d140 2
+@
+
+
+1.48
+log
+@endsubl with one parameter
+@
+text
+@d139 6
+@
+
+
+1.47
+log
+@mksclos
+@
+text
+@a419 1
+  case endsubl:
+d426 1
+@
+
+
+1.46
+log
+@mkilist
+@
+text
+@d253 1
+@
+
+
+1.45
+log
+@label handling improved
+@
+text
+@d222 1
+@
+
+
+1.44
+log
+@label length adapted
+@
+text
+@d27 2
+d593 2
+@
+
+
+1.43
+log
+@label now char *
+@
+text
+@d266 1
+a266 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d281 1
+a281 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d293 1
+a293 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d297 1
+a297 1
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s))) == NULL)
+d331 1
+a331 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d409 1
+a409 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d439 1
+a439 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d465 1
+a465 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d469 1
+a469 1
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s))) == NULL)
+d477 1
+a477 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d481 1
+a481 1
+    if ((SETORDERARGS(help, ret) = (char *)malloc(strlen(s))) == NULL)
+d494 1
+a494 1
+    if ((SETORDERARGS(help, label) = (char *)malloc(strlen(s))) == NULL)
+d636 1
+a636 1
+  if ((SETDESCENTRY(help, label) = (char *)malloc(strlen(label))) == NULL)
+@
+
+
+1.42
+log
+@jcond label handling corrected
+@
+text
+@d11 1
+d173 1
+d194 2
+a195 2
+  help->args.label[0]='\0';
+  help->args.ret[0]='\0';
+d265 4
+a268 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d280 4
+a283 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d292 8
+a299 2
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+    strcpy(SETORDERARGS(help, ret), va_arg(ap, char *));
+d330 4
+a333 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d408 4
+a411 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d438 4
+a441 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d464 8
+a471 2
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+    strcpy(SETORDERARGS(help, ret), va_arg(ap, char *));
+d476 8
+a483 2
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+    strcpy(SETORDERARGS(help, ret), va_arg(ap, char *));
+d493 4
+a496 1
+    strcpy(SETORDERARGS(help, label), va_arg(ap, char *));
+d636 3
+a638 1
+  strcpy(help->label,label);
+@
+
+
+1.41
+log
+@extended optimizer node (done by car)
+@
+text
+@d262 1
+@
+
+
+1.40
+log
+@new command: ris_stack_op
+@
+text
+@d320 15
+@
+
+
+1.39
+log
+@find_function implemented
+@
+text
+@d319 1
+@
+
+
+1.38
+log
+@label ID integration
+@
+text
+@d67 1
+a67 1
+/*
+d77 1
+a77 1
+*/
+@
+
+
+1.37
+log
+@find_function removed (/* */)
+@
+text
+@a270 1
+  case gammacase:
+d273 1
+d281 2
+d314 1
+d371 1
+d373 1
+@
+
+
+1.36
+log
+@bug fix
+@
+text
+@d67 1
+a67 1
+
+d77 1
+a77 1
+
+@
+
+
+1.35
+log
+@*** empty log message ***
+@
+text
+@d52 1
+a52 1
+    p=NULL;
+d63 38
+a100 1
+    
+d315 1
+@
+
+
+1.34
+log
+@new hash
+@
+text
+@d251 1
+a251 1
+  case hashsetref:
+d253 2
+a254 1
+    help->args.n=va_arg(ap, int);               /* new mode */
+d257 1
+a257 1
+  case hashrestype:
+d259 1
+a259 2
+    help->args.n=va_arg(ap, int);               /* no of args */
+    help->args.argtp=va_arg(ap, TP_TYPES *);     /* args */
+@
+
+
+1.33
+log
+@in new_order: case uses_aux_var added
+@
+text
+@d185 1
+d209 1
+d251 5
+a257 1
+/*    help->args.hash_str=va_arg(ap, char *); */    /* hash string */
+d492 1
+@
+
+
+1.32
+log
+@additional parameter removed (beta like instr)
+@
+text
+@d287 1
+@
+
+
+1.31
+log
+@type PM instructions
+@
+text
+@a218 2
+  case pushret:
+  case jump:
+d222 7
+a235 1
+    help->types = va_arg(ap, int);
+@
+
+
+1.30
+log
+@strings & free variables
+@
+text
+@d372 1
+@
+
+
+1.29
+log
+@STRINGS
+@
+text
+@d95 4
+@
+
+
+1.28
+log
+@interaction invented
+@
+text
+@d91 1
+d144 1
+@
+
+
+1.27
+log
+@bug fixed in MATCHPRIM
+@
+text
+@d386 7
+@
+
+
+1.26
+log
+@correction of parameters with atend/atstart
+@
+text
+@a361 1
+  case matchprim:
+d364 5
+@
+
+
+1.25
+log
+@mkap implemented
+@
+text
+@d221 1
+a323 2
+  case atend:
+  case atstart:
+d337 5
+@
+
+
+1.24
+log
+@build nodes for PM
+@
+text
+@d175 1
+@
+
+
+1.23
+log
+@typed conditional jump
+@
+text
+@d146 2
+d222 1
+a222 1
+    strcpy(help->args.label,va_arg(ap, char *));
+d230 2
+a231 2
+    strcpy(help->args.label,va_arg(ap, char *));
+    strcpy(help->args.ret,va_arg(ap, char *));
+d257 1
+a257 1
+    strcpy(help->args.label,va_arg(ap, char *));
+d309 67
+@
+
+
+1.22
+log
+@hashstring removed
+@
+text
+@d221 1
+d230 1
+@
+
+
+1.21
+log
+@hash instruction extended
+@
+text
+@d235 1
+a235 1
+    help->args.hash_str=va_arg(ap, char *);     /* hash string */
+@
+
+
+1.20
+log
+@*dec* made unary
+@
+text
+@d231 3
+a233 1
+  case hash:
+@
+
+
+1.19
+log
+@kill's pushaux freew
+@
+text
+@d283 3
+a293 3
+    SETORDERARGS(help, n) = va_arg(ap, int);
+    SETORDERARGS(help, m) = va_arg(ap, int);
+    break;
+@
+
+
+1.18
+log
+@pushaux inserted
+@
+text
+@d168 1
+d293 10
+@
+
+
+1.17
+log
+@inserted decw deca
+@
+text
+@d267 1
+@
+
+
+1.16
+log
+@tp_notset removed, typestouched inserted in ORDER
+@
+text
+@d281 1
+d284 1
+@
+
+
+1.15
+log
+@hashtypes added
+@
+text
+@d139 1
+d153 1
+a153 1
+  help->types=TYPES2LONG(tp_notset,tp_notset,tp_notset,tp_notset);
+@
+
+
+1.14
+log
+@link between orders and function descriptors
+@
+text
+@d149 1
+d231 3
+a233 1
+    help->args.hash_str=va_arg(ap, char *);
+@
+
+
+1.13
+log
+@minor corrections
+@
+text
+@d13 1
+d15 1
+d269 17
+d358 1
+a358 1
+FUNCTION *new_function(char *name, ORDER *order)
+d368 5
+d398 1
+a398 1
+FUNDESC *new_desc(DESCTAG tag, int adr, int n, int m, int graph_adr, char *label)
+@
+
+
+1.12
+log
+@types reimplemented
+@
+text
+@d186 3
+a188 2
+    help->args.n=va_arg(ap, int);  /* primfunc */
+    help->args.m=va_arg(ap, int);  /* arity */
+@
+
+
+1.11
+log
+@types inserted in ORDER struct
+@
+text
+@a208 3
+  case jfalse_b:
+  case jtrue_b:
+  case jcond_b:
+a219 3
+  case jfalse2_b:
+  case jtrue2_b:
+  case jcond2_b:
+d238 1
+@
+
+
+1.10
+log
+@pushcw_pf added (pushes a primfunc)
+@
+text
+@d149 1
+@
+
+
+1.9
+log
+@asm_mode integrated
+@
+text
+@d182 7
+@
+
+
+1.8
+log
+@mkcclos
+@
+text
+@d186 1
+a186 1
+  case mkbclos:
+d190 2
+a191 1
+    help->args.k=va_arg(ap, int);
+@
+
+
+1.7
+log
+@conditional instructions extended
+@
+text
+@d182 1
+a182 1
+/* Commands with three integer argument */
+d185 1
+@
+
+
+1.6
+log
+@default case converted to error, pushret
+@
+text
+@d195 1
+d197 2
+d200 2
+a201 1
+  case jtrue:
+d208 11
+@
+
+
+1.5
+log
+@out_func removed
+@
+text
+@d194 1
+d236 10
+a245 1
+    
+@
+
+
+1.4
+log
+@data structure list implemented
+@
+text
+@d184 1
+a184 1
+  case mkgclos:
+d236 3
+a238 1
+  default: break;    
+a257 1
+  DBUG_PRINT("ORDER", ("Hallo, ich inserte !"));  
+a293 1
+  DBUG_PRINT("ORDER", ("Hallo, ich concateniere !"));  
+a370 1
+  DBUG_PRINT("FUNDESC", ("Hallo, ich concateniere !"));  
+a392 1
+  DBUG_PRINT("FUNDESC", ("Hallo, ich concateniere !"));  
+a394 192
+  
+
+/**************/
+/* NOT IN USE */
+/**************/
+
+void out_func(ORDER *out)
+{
+  ORDER *help;
+
+printf ("ICH BIN DA !!!\n");
+  help=out;
+  while (NULL!=help)
+  {
+    switch(help->command)
+    {
+    case pushcw_i: 
+    {
+      fprintf(stdout,"pushcw(%s);\n",help->code);
+      break;
+    }
+      case pushaw:
+    {
+      fprintf(stdout,"pushaw(%s);\n",help->code);
+      break;
+    }
+      case pushaw0:
+    {
+      fprintf(stdout,"pushaw0();\n");
+      break;
+    }
+
+      case pushtw:
+    {
+      fprintf(stdout,"pushtw(%s);\n",help->code);
+      break;
+    }
+      case pushtw0:
+    {
+      fprintf(stdout,"pushtw0();\n");
+      break;
+    }
+      case pushar:
+    {
+      fprintf(stdout,"pushar(%s);\n",help->code);
+      break;
+    }
+      case pushtr:
+    {
+      fprintf(stdout,"pushtr(%s);\n",help->code);
+      break;
+    }
+      case moveaw:
+    {
+      fprintf(stdout,"moveaw();\n");
+      break;
+    }
+      case delta1:
+    {
+      fprintf(stdout,"delta1(%s);\n",help->code);
+      break;
+    }
+      case delta2:
+    {
+      fprintf(stdout,"delta2(%s);\n",help->code);
+      break;
+    }
+      case delta3:
+    {
+      fprintf(stdout,"delta3(%s);\n",help->code);
+      break;
+    }
+      case delta4:
+    {
+      fprintf(stdout,"delta4(%s);\n",help->code);
+      break;
+    }
+      case freeswt:
+    {
+      fprintf(stdout,"freeswt(%s);\n",help->code);
+      break;
+    }
+      case free1a:
+    {
+      fprintf(stdout,"free1a();\n");
+      break;
+    }
+      case freea:
+    {
+      fprintf(stdout,"freea(%s);\n",help->code);
+      break;
+    }
+      case freet:
+    {
+      fprintf(stdout,"freet(%s);\n",help->code);
+      break;
+    }
+      case snap:
+    {
+      fprintf(stdout,"snap(%s);\n",help->code);
+      break;
+    }
+      case apply:
+    {
+      fprintf(stdout,"apply(%s);\n",help->code);
+      break;
+    }
+      case rtf:
+    {
+      fprintf(stdout,"rtc();\n");
+      break;
+    }
+      case rtc_i:
+    {
+      fprintf(stdout,"rtc(int(%s));\n",help->code);
+      break;
+    }
+      case mkdclos: 
+    {
+      fprintf(stdout,"mkdclos(%s);\n",help->code);
+      break;
+    }
+/* Commands with only one bool argument, treated as integer */
+      case pushcw_b:
+    {
+      fprintf(stdout,"pushcw(bool(%s));\n",help->code);
+      break;
+    }
+      case rtc_b:
+    {
+      fprintf(stdout,"rtc(bool(%s));\n",help->code);
+      break;
+    }
+      case mkgclos:
+    {
+      fprintf(stdout,"mkgclos(%s);\n",help->code);
+      break;
+    }
+      case mkbclos:
+    {
+      fprintf(stdout,"mkbclos(%s);\n",help->code);
+      break;
+    }
+      case jfalse:
+    {
+      fprintf(stdout,"jfalse(%s);\n",help->code);
+      break;
+    }
+      case jtrue:
+    {
+      fprintf(stdout,"jtrue(%s);\n",help->code);
+      break;
+    }
+      case beta:
+    {
+      fprintf(stdout,"beta(%s);\n",help->code);
+      break;
+    }
+      case Gamma:
+    {
+      fprintf(stdout,"gamma(%s);\n",help->code);
+      break;
+    }
+      case gammabeta:
+    {
+      fprintf(stdout,"gammabeta(%s);\n",help->code);
+      break;
+    }
+      case tail:
+    {
+      fprintf(stdout,"tail(%s);\n",help->code);
+      break;
+    }
+      case label:
+    {
+      fprintf(stdout,"%s:\n",help->code);
+      break;
+    }
+      case ext:
+    {
+      fprintf(stdout,"exit();\n");
+      break;
+    }
+    default:
+    {fprintf(stdout,"xdefault\n");break;}
+      
+    }
+  help=help->next;
+  }
+}
+
+
+@
+
+
+1.3
+log
+@reals
+@
+text
+@d70 1
+a70 1
+DATANODE *new_data(DATATAG whatami, void * adr, ...)
+a85 1
+  {
+d88 4
+a91 1
+  }
+d93 1
+@
+
+
+1.2
+log
+@minor changes
+@
+text
+@d176 1
+a176 3
+    char *shelp=va_arg(ap, char *);
+    
+    sscanf(shelp,"0x%x",(int *)&(help->args.desc));
+a189 7
+/* Commands with only one double argument */
+  case rtc_r:
+  {
+    help->args.x=va_arg(ap, double);
+    break;
+  }
+
+d340 1
+a340 1
+FUNDESC *new_desc(DESCTAG tag, char *adr, int n, int m, char *graph_adr, char *label)
+a342 1
+
+d350 1
+a350 1
+  sscanf(adr,"0x%x",&(help->address));
+d353 1
+a353 1
+  sscanf(graph_adr, "0x%x",&(help->graph));
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d80 2
+a81 2
+  help->data=whatami;
+  help->adress = adr;
+d360 1
+a360 1
+  sscanf(adr,"0x%x",&(help->adress));
+@

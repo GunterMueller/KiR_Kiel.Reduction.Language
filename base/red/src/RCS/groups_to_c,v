@@ -1,0 +1,30 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1
+	red2:1.1;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	93.11.02.13.44.17;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#! /bin/sh
+d_gen_defines GROUPS >d_mess_groups.h
+d_gen_names GROUPS >d_mess_names.h
+@

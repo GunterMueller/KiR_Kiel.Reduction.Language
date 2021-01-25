@@ -1,0 +1,256 @@
+<html>
+<head>
+<title>KiR IO Example Page</title>
+</head>
+<body>
+
+<H1>KiR IO Example Programs</H1>
+
+Here are some example programs that demonstrates the usage of interactions. Each
+entry has the shape: <p>
+download-link : description
+<pre>
+ ASCII program code
+</pre>
+
+<p>
+<hr>
+
+<a href="ed_samples/cat.ed">cat.ed</a> : Prints a file (red.setup) to the
+screen. Demonstrates the usage of a filehandle. <p>
+
+<pre>
+def 
+  File [   ] = 'red.setup`,
+  Test [ F, G ] = case 
+                  when OK{Val} guard true do F [ Val ],
+                  when NE{Msg} guard true do G [ Msg ]
+                  end,
+  Break [ Msg ] = unit( NE{Msg} ),
+  Seqa [ A, B ] = bind( A , sub [ Omit ]
+                            in B ),
+  Bindo [ A, B ] = bind( A , Test [ B, Break ] ),
+  Copyline [ H ] = Bindo [ fgets( H ), sub [ Line ]
+                                       in fputs( 'STDOUT` , ( Line ++ '\012` ) ) ],
+  Cat [ H ] = Bindo [ Copyline [ H ], sub [ Omit ]
+                                      in Cat [ H ] ]
+in Bindo [ fopen( File , 'r` ), sub [ Handle ]
+                                in Seqa [ Cat [ Handle ], fclose( Handle ) ] ]
+</pre>
+
+<hr>
+
+<a href="ed_samples/dir.ed">dir.ed</a> : Asks for a directory name and displays
+the directories contens. <p>
+
+<pre>
+def 
+  Test [ F ] = case 
+               when OK{Val} guard true do F [ Val ],
+               when NE{Msg} guard true do unit( NE{Msg} )
+               end,
+  Getdir [   ] = bind( fputs( 'STDOUT` , 'Which Directory? ` ) , sub [ X ]
+                                                                 in fgets( 'STDIN` ) )
+in bind( Getdir , Test [ dir ] )
+</pre>
+
+
+<hr>
+
+<a href="ed_samples/eof.ed">eof.ed</a> : Does the same like cat.ed, but reads
+one character after the other, until the end of file is reached. <p>
+
+<pre>
+def 
+  File [   ] = 'red.setup`,
+  Doit [ Handle ] = def 
+                      Test [   ] = case 
+                                   when OK{X} guard ( X eq true ) do fclose( Handle ),
+                                   when OK{X} guard ( X eq false ) do bind( Io , sub [ X ]
+                                                                                 in Loop ),
+                                   when NE{Msg} guard true do unit( NE{Msg} )
+                                   end,
+                      Io [   ] = bind( fgetc( Handle ) , sub [ X ]
+                                                         in fputc( 'STDOUT` , ( 2 | X ) ) ),
+                      Loop [   ] = bind( eof( Handle ) , Test )
+                    in Loop
+in bind( fopen( File , 'r` ) , case 
+                               when NE{X} guard true do NE{X},
+                               when OK{X} guard true do Doit [ X ]
+                               end )
+
+</pre>
+
+<hr>
+
+<a href="ed_samples/rose.ed">rose.ed</a> : Display parts of a file
+(<a href="ed_samples/Rose.txt">Rose.txt</a>) several times. Demonstrates the
+usage of the random access interactions ftell and fseek. <p>
+
+<pre>
+def 
+  File [   ] = 'ed/Rose.txt`,
+  Test [ F ] = case 
+               when OK{X} guard true do F [ X ],
+               when NE{Msg} guard true do unit( NE{Msg} )
+               end,
+  Seqo [ A, B ] = bind( A , Test [ sub [ Omit ]
+                                   in B ] ),
+  Poesie [ Handle ] = def 
+                        Loop [ N ] = if ( N gt 0 )
+                                     then Seqo [ Seqo [ Zurueck, Zitat [ 14 ] ], Loop [ ( N - 1 ) ] ]
+                                     else fputs( 'STDOUT` , '...\012` ),
+                        Zitat [ N ] = bind( read( Handle , N ) , Test [ fputs [ 'STDOUT` ] ] ),
+                        Zurueck [   ] = fseek( Handle , ~15 , 'SEEK_CUR` )
+                      in Seqo [ Zitat [ 19 ], Loop [ 3 ] ]
+in bind( fopen( File , 'r` ) , case 
+                               when OK{Handle} guard true do bind( Poesie [ Handle ] , sub [ Omit ]
+                                                                                       in fclose( Handle ) ),
+                               when NE{Msg} guard true do unit( NE{Msg} )
+                               end )
+
+</pre>
+
+<hr>
+
+<a href="ed_samples/INTER.ed">INTER.ed</a> : This is a library of some usefull,
+extended I/O functions. It is implemented as a
+<a href="../implementation.html"><em>frame</em></a>.
+The next example (ggt.ed) shows the usage of this library. <p>
+
+<pre>
+def 
+  Test [ Ok, Ne ] = case 
+                    when OK{X} guard true do Ok [ X ],
+                    when NE{Msg} guard true do Ne [ Msg ]
+                    end,
+  Break [ Msg ] = unit( NE{Msg} ),
+  Bindt [ A, B, C ] = bind( A , Test [ B, C ] ),
+  Bindo [ A, B ] = bind( A , Test [ B, Break ] ),
+  Seqt [ A, B, C ] = bind( A , Test [ sub [ Omit ]
+                                      in B, sub [ Omit ]
+                                            in C ] ),
+  Seqo [ A, B ] = bind( A , Test [ sub [ Omit ]
+                                   in B, Break ] ),
+  Seqa [ A, B ] = bind( A , sub [ Omit ]
+                            in B ),
+  Mapi [ IA, L ] = if ( L eq <> )
+                   then unit( OK{'Mapi`} )
+                   else bind( IA [ lselect( 1 , L ) ] , sub [ Erg ]
+                                                        in Mapi [ IA, lcut( 1 , L ) ] ),
+  Putlines [ L, Handle ] = Mapi [ sub [ Line ]
+                                  in fputs( Handle , ( Line ++ '\012` ) ), L ],
+  Getlines [ Handle ] = def 
+                          Loop [ L ] = Bindt [ fgets( Handle ), sub [ Line ]
+                                                                in Loop [ ( L ++ < Line > ) ], sub [ X ]
+                                                                                               in unit( L ) ]
+                        in Loop [ <> ],
+  Onfile [ Name, Mode, Prog ] = Bindo [ fopen( Name , Mode ), sub [ Handle ]
+                                                              in bind( Prog [ Handle ] , sub [ Erg ]
+                                                                                         in bind( fclose( Handle ) , sub [ Omit ]
+                                                                                                                     in unit( Erg ) ) ) ]
+in struct 
+   entry 'comment` : 'utilities for monadic i/o`,
+   entry 'author` : 'stt 20.9.96, abgekupfert from INTER, cr 06.12.95`,
+   entry 'Test` : /* 'test result, continue with success or failure continuation` */
+                  Test,
+   entry 'Break` : /* 'standard failure continuation` */
+                   Break,
+   entry 'Bindt` : /* 'execute A, test result, continue with success (B) or failure continuation (C)` */
+                   Bindt,
+   entry 'Bindo` : /* 'like Bindt, failure continuation is always Break` */
+                   Bindo,
+   entry 'Seqt` : /* 'like Bindt, but ignores the result from A` */
+                  Bindt,
+   entry 'Seqo` : /* 'like Bindo, but ignores the result from A` */
+                  Seqo,
+   entry 'Seqa` : /* 'like an ordenary bind, but ignores the result of A` */
+                  Seqa,
+   entry 'Onfile` : /* 'Onfile[file mode prog] opens file with mode, applies prog to the filehandle and finaly closes file` */
+                    Onfile,
+   entry 'Getfile` : /* 'get list of lines from file` */
+                     sub [ Name ]
+                     in Onfile [ Name, 'r`, Getlines ],
+   entry 'Putfile` : /* 'write list of lines into file` */
+                     sub [ Name, L ]
+                     in Onfile [ Name, 'w`, Putlines [ L ] ],
+   entry 'Appfile` : /* 'append list of lines to file` */
+                     sub [ Name, L ]
+                     in Onfile [ Name, 'a`, Putlines [ L ] ],
+   entry 'Ontty` : /* 'supply terminal i/o streams for program` */
+                   sub [ Tty, Prog ]
+                   in Onfile [ Tty, 'r`, sub [ Readhndl ]
+                                         in Onfile [ Tty, 'w`, Prog [ Readhndl ] ] ],
+   entry 'Mapi` : /* 'map interaction on list` */
+                  Mapi,
+   entry 'Request` : /* 'write message and get line from input` */
+                     sub [ Msg, Input, Output ]
+                     in Seqo [ fputs( Output , Msg ), fgets( Input ) ],
+   entry 'Isdir` : /* 'returns true, if argument is a directory` */
+                   sub [ Name ]
+                   in Bindo [ status( Name ), sub [ Erg ]
+                                              in unit( OK{( ( 1 | ( 1 | Erg ) ) eq 'd` )} ) ]
+   end
+
+</pre>
+
+<hr>
+
+<a href="ed_samples/ggt.ed">ggt.ed</a> : Computes the greatest common divisor of
+a list of integers. Imports some funtions from the library INTER.ed and displays
+the requester for the list and the result in a different shell. Be sure to
+insert the name of a free shell (i.e. '/dev/ttyp3') in the last line of this
+program and start a 'sleep xxx' command in that shell. <p>
+
+<pre>
+def 
+  &from $INTER 
+   import [ Bindo, Seqa, Mapi, Request, Ontty ],
+  Modulo [ X, Y ] = if ( X le Y )
+                    then X
+                    else Modulo [ ( X - Y ), Y ],
+  Gcd [ X, Y ] = if ( X eq Y )
+                 then X
+                 else if ( X gt Y )
+                      then Gcd [ Y, Modulo [ X, Y ] ]
+                      else Gcd [ X, Modulo [ Y, X ] ],
+  Gcdl [   ] = /* 'argument is a list of numbers` */
+               case 
+               when <> guard true do 0,
+               when < X > guard true do X,
+               when < X, as ... Rest > guard true do Gcd [ X, Gcdl [ Rest ] ]
+               end,
+  Getnums [ I, O ] = let Message = 'Berechnung des ggT. Bitte geben sie eine Liste von Zahlen ein:\012`
+                     in Bindo [ Request [ Message, I, O ], sub [ Str ]
+                                                           in unit( OK{Mklist [ Str ]} ) ],
+  Mklist [ Str ] = def 
+                     Mkl [ L, Str ] = if ( Str eq '` )
+                                      then L
+                                      else let N = sscanf( 'd` , Str )
+                                           in Mkl [ ( L ++ < N > ), Skipnum [ Str ] ],
+                     Skipnum [ Str ] = if ( Str eq '` )
+                                       then '`
+                                       else let C = ( 1 | Str )
+                                            in if ( ( C ge '0` ) and ( C le '9` ) )
+                                               then Skipnum [ lcut( 1 , Str ) ]
+                                               else Skip [ lcut( 1 , Str ) ],
+                     Skip [ Str ] = if ( Str eq '` )
+                                    then '`
+                                    else let N = ( 1 | Str )
+                                         in if ( ( N ge '0` ) and ( N le '9` ) )
+                                            then Str
+                                            else Skip [ lcut( 1 , Str ) ]
+                   in Mkl [ <>, Skip [ Str ] ],
+  PrintErg [ Out, L, Erg ] = Seqa [ fputs( Out , 'Der groesste gemeinsame Teiler von < ` ),
+                                    Seqa [ Mapi [ sub [ N ]
+                                                  in fputs( Out , ( sprintf( 'd` , N ) ++ ' ` ) ), L ],
+                                           Seqa [ fputs( Out , ( ( '> ist ` ++ sprintf( 'd` , Erg ) ) ++ '.\012` ) ),
+                                                  unit( OK{'done`} ) ] ] ],
+  DoGCD [ I, O ] = Bindo [ Getnums [ I, O ], sub [ L ]
+                                             in PrintErg [ O, L, Gcdl [ L ] ] ]
+in Ontty [ '/dev/ttyp1`, DoGCD ]
+
+</pre>
+
+</body>
+</html>

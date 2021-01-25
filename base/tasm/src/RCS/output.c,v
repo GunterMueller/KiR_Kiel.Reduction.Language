@@ -1,0 +1,3124 @@
+head	1.75;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.75
+date	96.02.29.09.37.30;	author um;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	96.02.28.08.19.33;	author um;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	96.02.23.15.25.48;	author stt;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	96.02.23.14.10.32;	author rs;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	96.02.16.13.22.56;	author cr;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	96.02.16.09.26.25;	author car;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	96.02.15.16.52.23;	author cr;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	96.02.13.16.05.27;	author stt;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	96.02.06.07.19.24;	author sf;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	96.01.16.19.50.38;	author car;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	95.08.02.08.20.43;	author um;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	95.07.07.08.21.20;	author car;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	95.07.04.11.45.06;	author sf;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	95.06.19.09.45.27;	author car;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	95.06.07.11.28.57;	author um;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.06.02.12.00.15;	author sf;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.06.02.11.09.16;	author sf;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.05.31.13.22.55;	author sf;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.05.17.15.16.32;	author cr;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.05.15.05.54.43;	author um;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.04.21.08.30.35;	author car;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.04.19.15.13.19;	author um;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.04.11.11.43.22;	author um;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.04.10.13.50.29;	author sf;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.04.06.16.10.10;	author car;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.04.05.16.01.51;	author sf;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.03.28.12.28.36;	author um;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.03.27.07.49.19;	author um;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.03.24.08.44.41;	author car;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.03.23.15.08.11;	author car;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.03.23.14.08.56;	author car;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.03.22.15.38.21;	author car;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.03.14.12.33.08;	author car;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.03.07.11.05.09;	author car;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.03.03.17.51.47;	author car;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.02.21.12.46.56;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.02.15.14.13.49;	author car;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.02.14.07.47.53;	author um;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.02.13.16.28.27;	author car;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.02.10.17.18.27;	author car;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.02.08.11.02.06;	author um;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.02.03.07.41.06;	author car;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.02.01.14.09.56;	author car;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.01.31.12.29.56;	author car;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.01.31.08.04.35;	author car;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.01.31.07.43.25;	author car;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.01.30.15.54.36;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.01.11.14.40.37;	author um;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.01.05.09.48.52;	author sf;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	94.12.19.15.20.11;	author car;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	94.12.19.13.38.39;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.12.19.10.29.01;	author um;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	94.12.16.08.23.07;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	94.12.08.13.04.45;	author car;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	94.12.08.09.32.28;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	94.12.06.09.48.48;	author um;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	94.12.02.09.53.44;	author um;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.11.30.08.24.52;	author car;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.11.29.11.51.52;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.11.28.12.54.27;	author car;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.11.28.11.25.38;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.11.25.17.29.18;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.11.25.14.50.50;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.11.25.14.29.01;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.11.25.08.09.41;	author um;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.11.25.07.39.21;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.11.24.10.23.34;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.11.24.09.29.15;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.24.09.22.04;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.23.15.14.38;	author um;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.23.15.08.13;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.22.10.50.37;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.09.28.53;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.07.51.39;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.75
+log
+@*** empty log message ***
+@
+text
+@#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "mytypes.h"
+#include "buildtree.h"
+#include "loctypes.h"
+#include "main.h"
+#include "tiny.h"
+#include "dbug.h"
+#include "error.h"
+
+extern char *primf_tab[];
+extern char *intact_tab[];
+extern int optimize; /* from main.c */
+int goaladdr;
+
+/************************************************************************/
+/* Returns string of primitiv function name				*/
+/* (used by out_order_list)						*/
+/************************************************************************/
+static char *out_primf(PRIMF n)
+  {
+  static char s[20];
+  int i;
+
+  DBUG_ENTER("out_primf");
+  strcpy(s, primf_tab[n]);
+  if (!strcmp(s,"FR_UPDATE"))
+    DBUG_RETURN("fupdate");
+  if (!strcmp(s,"FR_SELECT"))
+    DBUG_RETURN("fselect");
+  if (!strcmp(s,"FR_DELETE"))
+    DBUG_RETURN("fdelete");
+  if (!strcmp(s,"FR_SLOTS"))
+    DBUG_RETURN("fslots");
+  if (!strcmp(s,"FR_TEST"))
+    DBUG_RETURN("ftest");
+  if (!strcmp(s,"D_GREAT"))
+    DBUG_RETURN("gt");
+  if (!strcmp(s,"D_LEQ"))
+    DBUG_RETURN("le");
+  if (!strcmp(s,"D_LESS"))
+    DBUG_RETURN("lt");
+  if (!strcmp(s,"M_TRUNCATE"))
+    DBUG_RETURN("trunc");
+  if (!strcmp(s,"LDIMENSION"))
+    DBUG_RETURN("ldim");
+  if (!strcmp(s, "UNI") || !strcmp(&s[1], "UNI"))
+      strcat(s,"TE");
+  if ('_'== s[1] && (('D' == s[0]) || ('M' == s[0]))) {
+    for (i=2; i<=strlen(s); i++)
+      s[i] = tolower(s[i]);
+    DBUG_RETURN(&s[2]);
+    }
+  else
+    for (i=0; i<=strlen(s); i++)
+      s[i] = tolower(s[i]);
+  DBUG_RETURN(s);
+  }
+
+/************************************************************************/
+/* Returns string of interaction name                                   */
+/* (used by out_order_list)                                             */
+/************************************************************************/
+static char *out_ia(IACTION n)
+  {
+  static char s[20];
+  int i;
+
+  DBUG_ENTER("out_ia");
+  strcpy(s, intact_tab[n]);
+  for (i=0; i<=strlen(s); i++)
+    s[i] = tolower(s[i]);
+  DBUG_RETURN(s);
+  }
+
+
+static char * prselem(int x)
+  {
+  static char s[4];
+  DBUG_ENTER("prselem");
+  if (ISPRF(x))
+    DBUG_RETURN(out_primf((PRIMF)GETPRF(x)));
+  else if (ISIA(x))
+    DBUG_RETURN(out_ia((IACTION)GETIA(x)));
+  else if (ISCHAR(x))
+    sprintf(s, "'%c'", (char)GETCHAR(x));
+  else
+    yyfail("unknown stack element in output");
+  DBUG_RETURN(s);
+  }
+
+/* returns the ascii form of interaction types
+ */
+static char * out_intertype(INTERT n)
+  {
+  DBUG_ENTER("out_intertype");
+  switch(n) {
+    case INdone: DBUG_RETURN("done");
+    case INget:  DBUG_RETURN("get");
+    case INput:  DBUG_RETURN("put");
+    default: yyfail("illegal interaction type received");
+    }
+  DBUG_RETURN((char *)0);
+  }
+
+/************************************************************************/
+/* Prints out ready-made functionsdescriptors. 				*/
+/************************************************************************/
+
+void out_functable(CODE *f)
+{
+DBUG_ENTER("out_functable");
+while (NULL!=f)
+  {
+  fprintf(yyout,"%s\n",f->code);
+  f=f->next;
+  }
+DBUG_VOID_RETURN;
+}
+
+
+/***********************************************************************/
+/* Prints out the syntaxtree using out_order_list()                    */
+/* (to control the parsing).                                           */
+/***********************************************************************/
+
+void out_tree(PROGRAM * out_me)
+{
+void out_desc_list(FUNDESC *);
+void out_data_list(DATANODE *);
+void out_order_list(ORDER *);
+
+FUNCTION *fhelp;
+ORDER *ohelp; 
+
+DBUG_ENTER("out_tree");
+goaladdr=atox(searchfor_(GETDESCENTRY(GETFIRSTDESC(program_start), label)));
+fprintf(yyout, "/* code processed by %s version %s */\n", program, version);
+if (0 == optimize)
+{
+  out_desc_list(out_me->desc);
+  out_data_list(out_me->data);
+}
+fhelp=out_me->function;
+while (NULL!=fhelp)
+  {
+  if (strncmp(fhelp->name,"goal",4)==0)
+    fprintf(yyout,"start_%x:\n",goaladdr);
+  else
+    fprintf(yyout,"%s:\n", fhelp->name);
+  ohelp=fhelp->order;
+  out_order_list(ohelp);
+  fhelp=fhelp->next;
+  }
+DBUG_VOID_RETURN;
+}
+
+/***********************************************************************/
+/* Prints out a list of descriptors of functions                       */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+
+void out_desc_list(FUNDESC * desc)
+{
+FUNDESC *help;
+
+DBUG_ENTER("out_desc_list");
+help=desc;
+while (NULL!=help)
+  {
+  fprintf(yyout, "\t_desc(");
+  fprintf(yyout, "0x%08x,FUNC,", help->address);
+  switch (help->tag)
+    {
+    case DT_COMBINATOR:
+      fprintf(yyout, "COMB,");
+      break;
+    case DT_CONDITIONAL:
+      fprintf(yyout, "CONDI,");
+      break;
+    case DT_CASE:
+      fprintf(yyout, "CASE,");
+      break;
+    case DT_PRIMITIV:
+      fprintf(yyout, "PRIM,");
+      break;
+    }
+  fprintf(yyout, "%d,%d,",help->nfv, help->nv);
+  fprintf(yyout, "0x%08x,", help->graph);
+  fprintf(yyout, "%s);\n", help->label);
+  help=help->next;
+  }
+DBUG_VOID_RETURN;
+} 
+
+
+/***********************************************************************/
+/* Prints out a list of data descriptors                               */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+
+void out_data_list(DATANODE * desc)
+  {
+  int i, x, copied = 0;
+  char text[10];
+  DATANODE *help;
+
+  DBUG_ENTER("out_data_list");
+  help=desc;
+  while (NULL!=help)
+    {
+    fprintf(yyout, "\t");
+    switch (help->tag)
+      {
+      case d_mat:
+        if (!copied) strcpy(text, "_mat");
+        copied = 1;
+      case d_tvect:
+        if (!copied) strcpy(text, "_tvect");
+        copied = 1;
+      case d_vect:
+        if (!copied) strcpy(text, "_vect");
+        copied = 1;
+        switch(GETDATAENTRY(help, u.w.tag))
+        {
+          case d_bool:
+            fprintf(yyout, "%s(0x%08x, TY_BOOL, %d, %d", text, GETDATAENTRY(help,address),
+                                GETDATAENTRY(help, u.w.rows),
+                                GETDATAENTRY(help, u.w.cols));
+            for(i = 0; i < GETDATAENTRY(help, u.w.rows)*GETDATAENTRY(help, u.w.cols); i++)
+              fprintf(yyout, ", %s", 
+                        GETDATAENTRY(help, u.w.m.idata)[i] ? "true" : "false");
+            fprintf(yyout, ");\n");
+          break;
+          case d_int:
+            fprintf(yyout, "%s(0x%08x, TY_INTEGER, %d, %d", text, 
+                                GETDATAENTRY(help,address),
+                                GETDATAENTRY(help, u.w.rows),
+                                GETDATAENTRY(help, u.w.cols));
+            for(i = 0; i < GETDATAENTRY(help, u.w.rows)*GETDATAENTRY(help, u.w.cols); i++)
+              fprintf(yyout, ", %d", GETDATAENTRY(help, u.w.m.idata)[i]);
+            fprintf(yyout, ");\n");
+            break;
+          case d_real:
+            fprintf(yyout, "%s(0x%08x, TY_REAL, %d, %d", text, GETDATAENTRY(help,address),
+                                GETDATAENTRY(help, u.w.rows),
+                                GETDATAENTRY(help, u.w.cols));
+            for(i = 0; i < GETDATAENTRY(help, u.w.rows)*GETDATAENTRY(help, u.w.cols); i++)
+              fprintf(yyout, ", %+.15g", GETDATAENTRY(help, u.w.m.rdata)[i]);
+            fprintf(yyout, ");\n");
+            break;
+          case d_undef:
+            fprintf(yyout, "%s(0x%08x, TY_UNDEF, %d, %d", text, 
+                                GETDATAENTRY(help,address),
+                                GETDATAENTRY(help, u.w.rows),
+                                GETDATAENTRY(help, u.w.cols));
+            for(i = 0; i < GETDATAENTRY(help, u.w.rows)*GETDATAENTRY(help, u.w.cols); i++)
+              fprintf(yyout, ", %d", GETDATAENTRY(help, u.w.m.idata)[i]);
+            fprintf(yyout, ");\n");
+            break;
+          default:
+            fprintf(yyout, "<unknown mat/vect/tvect type>\n");
+        }
+        copied = 0;
+        break;
+      case d_real:
+        fprintf(yyout, "_real(0x%08x,%+.15g);\n", (int)help->address, help->u.x);
+        break;
+      case d_list:
+        fprintf(yyout, "_list(0x%08x,%d", (int)help->address, help->u.v.size);
+        for(i = 0; i < help->u.v.size; i++) {
+          x = help->u.v.data[i];
+          if (ISINT(x))
+            fprintf(yyout, ",int(%d)", GETINT(x));
+          else if (ISBOOL(x))
+            fprintf(yyout, ",bool(%s)", (GETBOOL(x) ? "true" : "false"));
+          else if (ISPRF(x))
+            fprintf(yyout, ",%s",out_primf(GETPRF(x)));
+          else if (ISIA(x))
+            fprintf(yyout, ",%s",out_ia(GETIA(x)));
+          else if (ISPTR(x))
+            fprintf(yyout, ",ptd(0x%08x)", GETPTR(x));
+          else 
+            yyfail("internal error: illegal list elementi %d", x);
+          }
+        fprintf(yyout, ");\n");
+        break;
+      case d_string:
+        fprintf(yyout, "_str(0x%08x,%d", (int)help->address, help->u.v.size);
+        for(i = 0; i < help->u.v.size; i++) {
+          x = help->u.v.data[i];
+          if (ISCHAR(x))
+            fprintf(yyout, ",'%c'", GETCHAR(x));
+          else if (ISPTR(x))
+            fprintf(yyout, ",ptd(0x%08x)", GETPTR(x));
+          else 
+            yyfail("internal error: illegal string elementi %d", x);
+          }
+        fprintf(yyout, ");\n");
+        break;
+      case d_name:
+        fprintf(yyout, "_name(0x%08x,%d,\"%s\" );\n",
+            (int)help->address, help->u.v.size, (char *)help->u.v.data);
+        break;
+      default:
+        fprintf(yyout, "<unknown>\n");
+      }
+    help=help->next;
+    }
+  DBUG_VOID_RETURN;
+  } 
+
+
+
+/***********************************************************************/
+/* Prints out a list of ASM~-commands (i.e. a whole function)          */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+
+void out_order_list(ORDER *out)
+{
+ORDER *help;
+
+DBUG_ENTER("out_order_list");
+help=out;
+while (NULL!=help)
+  {
+  switch(help->command)
+    {
+    case pushcw_pf:
+      if (ISIA(help->args.n))
+        fprintf(yyout,"\tpushc_w(%s);\n",out_ia(GETIA(help->args.n)));
+      else
+        fprintf(yyout,"\tpushc_w(%s);\n",out_primf(GETPRF(help->args.n)));
+      break;
+    case pushcw_i: 
+      fprintf(yyout,"\tpushc_w(int(%d));\n",GETINT(help->args.n));
+      break;
+    case pushcw_b:
+      fprintf(yyout,"\tpushc_w(bool(%s));\n",(MKBOOL(0)==help->args.n) ? "false" : "true");
+      break;
+    case pushaw:
+      fprintf(yyout,"\tpush_aw(%d);\n",help->args.n);
+      break;
+    case pushr_p:
+      fprintf(yyout,"\tpush_r(ptd(0x%08x));\n",GETPTR((unsigned int)help->args.desc));
+      break;
+    case pushtw:
+      fprintf(yyout,"\tpush_tw(%d);\n",help->args.n);
+      break;
+    case pushar:
+      fprintf(yyout,"\tpush_ar(%d);\n",help->args.n);
+      break;
+    case pushtr:
+      fprintf(yyout,"\tpush_tr(%d);\n",help->args.n);
+      break;
+    case pushw_p:
+      fprintf(yyout,"\tpush_w(ptd(0x%08x));\n",GETPTR((unsigned int)help->args.desc));
+      break;
+    case pushret:
+      fprintf(yyout,"\tpushret(%s);\n",help->args.label);
+      break;
+    case movear:
+      fprintf(yyout,"\tmove_ar();\n");
+      break;
+    case moveaw:
+      fprintf(yyout,"\tmove_aw();\n");
+      break;
+    case movetr:
+      fprintf(yyout,"\tmove_tr();\n");
+      break;
+    case movetw:
+      fprintf(yyout,"\tmove_tw();\n");
+      break;
+    case pushaux:
+      fprintf(yyout,"\tpushaux();\n");
+      break;
+    case delta1:
+      if (help->types == NOTYPE)
+        fprintf(yyout,"\tdelta1(%s);\n",out_primf(GETPRF(help->args.primf)));
+      else
+        fprintf(yyout,"\t%s.%s();\n",out_primf(GETPRF(help->args.primf)),
+                                      short_type_names(GETTYPE(0, help->types)));
+      break;
+    case delta2:
+      if (help->types == NOTYPE)
+        fprintf(yyout,"\tdelta2(%s);\n",out_primf(GETPRF(help->args.primf)));
+      else
+        fprintf(yyout,"\t%s.%s%s();\n",out_primf(GETPRF(help->args.primf)),
+                                       short_type_names(GETTYPE(0, help->types)),
+                                       short_type_names(GETTYPE(1, help->types)));
+      break;
+    case delta3:
+      if (help->types == NOTYPE)
+        fprintf(yyout,"\tdelta3(%s);\n",out_primf(GETPRF(help->args.primf)));
+      else
+        fprintf(yyout,"\t%s.%s%s%s();\n",out_primf(GETPRF(help->args.primf)),
+                                         short_type_names(GETTYPE(0, help->types)),
+                                         short_type_names(GETTYPE(1, help->types)),
+                                         short_type_names(GETTYPE(2, help->types)));
+      break;
+    case delta4:
+      if (help->types == NOTYPE)
+        fprintf(yyout,"\tdelta4(%s);\n",out_primf(GETPRF(help->args.primf)));
+      else
+        fprintf(yyout,"\t%s.%s%s%s%s();\n",out_primf(GETPRF(help->args.primf)),
+                                           short_type_names(GETTYPE(0, help->types)),
+                                           short_type_names(GETTYPE(1, help->types)),
+                                           short_type_names(GETTYPE(2, help->types)),
+                                           short_type_names(GETTYPE(3, help->types)));
+      break;
+    case intact:
+      fprintf(yyout,"\tintact(%s);\n",out_ia(GETIA(help->args.primf)));
+      break;
+    case freeswt:
+      fprintf(yyout,"\tfreesw_t(%d);\n",help->args.n);
+      break;
+    case freer:
+      fprintf(yyout,"\tfree_r(%d);\n",help->args.n);
+      break;
+    case freea:
+      fprintf(yyout,"\tfree_a(%d);\n",help->args.n);
+      break;
+    case freet:
+      fprintf(yyout,"\tfree_t(%d);\n",help->args.n);
+      break;
+    case freew:
+      fprintf(yyout,"\tfree_w(%d);\n",help->args.n);
+      break;
+    case mkilist:
+      fprintf(yyout,"\tmkilist(%d);\n",help->args.n);
+      break;
+    case mklist:
+      fprintf(yyout,"\tmklist(%d);\n",help->args.n);
+      break;
+    case mkap:
+      fprintf(yyout,"\tmkap(%d);\n",help->args.n);
+      break;
+    case apply:
+      fprintf(yyout,"\tapply(%d);\n",help->args.n);
+      break;
+    case rtf:
+      fprintf(yyout,"\trtf();\n");
+      break;
+    case rtm:
+      fprintf(yyout,"\trtm();\n");
+      break;
+    case rtc_i:
+      fprintf(yyout,"\trtc(int(%d));\n",GETINT(help->args.n));
+      break;
+    case rtc_b:
+      fprintf(yyout,"\trtc(bool(%s));\n",(4==help->args.n) ? "false" : "true");
+      break;
+    case rtc_pf:
+      if (ISIA(help->args.n))
+        fprintf(yyout,"\trtc(%s);\n",out_ia(GETIA(help->args.n)));
+      else
+        fprintf(yyout,"\trtc(%s);\n",out_primf(GETPRF(help->args.n)));
+      break;
+    case rtp:
+      fprintf(yyout,"\trtp(ptd(0x%08x));\n", GETPTR((int)help->args.desc));
+      break;
+    case rtt:
+      fprintf(yyout,"\trtt();\n");
+      break;
+    case mkdclos: 
+      fprintf(yyout,"\tmkdclos(%d,%d);\n",help->args.n, help->args.m);
+      break;
+    case mkgaclos:
+      fprintf(yyout,"\tmkgaclos(%d,%d,%d);\n",help->args.n, \
+              help->args.m,help->args.k);
+      break;
+    case mksclos:
+      fprintf(yyout,"\tmksclos(%d,%d,%d);\n",help->args.n, \
+              help->args.m,help->args.k);
+      break;
+    case mkgsclos:
+      fprintf(yyout,"\tmkgsclos(%d,%d,%d);\n",help->args.n, \
+              help->args.m,help->args.k);
+      break;
+    case mkbclos:
+      if (ISASM_TILDE())
+        fprintf(yyout,"\tmkbclos(%d,%d,%d);\n",help->args.n, \
+                help->args.m,help->args.k);
+      else
+        fprintf(yyout,"\tmkbclos(%d,%d);\n",help->args.n, help->args.m);
+      break;
+    case mkcclos:
+      if (ISASM_TILDE())
+        fprintf(yyout,"\tmkcclos(%d,%d,%d);\n",help->args.n, \
+                help->args.m,help->args.k);
+      else
+        fprintf(yyout,"\tmkcclos(%d,%d);\n",help->args.n, help->args.m);
+      break;
+    case mkiclos:
+      fprintf(yyout,"\tmkiclos(%d,%d);\n",help->args.n, help->args.m);
+      break;
+    case jump:
+      fprintf(yyout,"\tjump(%s);\n",help->args.label);
+      break;
+    case jfalse:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjfalse_b(%s);\n",help->args.label);
+      else  
+	fprintf(yyout,"\tjfalse(%s);\n",help->args.label);
+      break;
+    case jtrue:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjtrue_b(%s);\n",help->args.label);
+      else
+	fprintf(yyout,"\tjtrue(%s);\n",help->args.label);
+      break;
+    case jcond:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjcond_b(%s);\n",help->args.label);
+      else
+	fprintf(yyout,"\tjcond(%s);\n",help->args.label);
+      break;
+    case jfalse2:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjfalse2_b(%s,%s);\n",help->args.label,help->args.ret);
+      else
+	fprintf(yyout,"\tjfalse2(%s,%s);\n",help->args.label,help->args.ret);
+      break;
+    case jtrue2:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjtrue2_b(%s,%s);\n",help->args.label,help->args.ret);
+      else
+	fprintf(yyout,"\tjtrue2(%s,%s);\n",help->args.label,help->args.ret);
+      break;
+    case jcond2:
+      if (tp_bool==help->types)
+	fprintf(yyout,"\tjcond2_b(%s,%s);\n",help->args.label,help->args.ret);
+      else
+	fprintf(yyout,"\tjcond2(%s,%s);\n",help->args.label,help->args.ret);
+      break;
+    case beta:
+      fprintf(yyout,"\tbeta(%s);\n",help->args.label);
+      break;
+    case Gamma:
+      fprintf(yyout,"\tgamma(%s);\n",help->args.label);
+      break;
+    case gammabeta:
+      fprintf(yyout,"\tgammabeta(%s);\n",help->args.label);
+      break;
+    case tail:
+      fprintf(yyout,"\ttail(%s);\n",help->args.label);
+      break;
+    case Case:
+      fprintf(yyout,"\tcase(%s);\n",help->args.label);
+      break;
+    case gammacase:
+      fprintf(yyout,"\tgammacase(%s);\n",help->args.label);
+      break;
+    case label:
+      fprintf(yyout,"%s:\n",help->args.label);
+      break;
+    case ext:
+      fprintf(yyout,"\text();\n");
+      break;
+    case end:
+      fprintf(yyout,"\tend();\n");
+      break;
+    case code_ok:
+      fprintf(yyout,"*\t%s\n", help->code);
+      break;
+    case hashargs:
+      fprintf(yyout, "\t#args "); print_types(help->args.argtp, help->args.n);
+      fprintf(yyout, "\n");
+      break;
+    case hashtildeargs:
+      fprintf(yyout, "\t#tildeargs "); print_types(help->args.argtp, help->args.n);
+      fprintf(yyout, "\n");
+      break;
+    case hashrestype:
+      fprintf(yyout, "\t#restype "); print_types(help->args.argtp, help->args.n);
+      fprintf(yyout, "\n");
+      break;
+    case hashsetref:
+      fprintf(yyout, "\t#setref ");
+      switch(GETORDERARGS(help, n)) {
+        case SREFimplicit: fprintf(yyout, "implicit\n"); break;
+        case SREFexplicit: fprintf(yyout, "explicit\n"); break;
+        case SREFkeepimpl: fprintf(yyout, "keepimplicit\n"); break;
+        default: fprintf(yyout, "?\n");
+        }
+      break;
+    case inca:
+      fprintf(yyout, "\tinca(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case incr:
+      fprintf(yyout, "\tincr(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case inct:
+      fprintf(yyout, "\tinct(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case incw:
+      fprintf(yyout, "\tincw(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case tinca:
+      fprintf(yyout, "\ttinca(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case tincr:
+      fprintf(yyout, "\ttincr(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case tinct:
+      fprintf(yyout, "\ttinct(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case tincw:
+      fprintf(yyout, "\ttincw(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case deca:
+      fprintf(yyout, "\tdeca(%d);\n", GETORDERARGS(help, n));
+      break;
+    case decr:
+      fprintf(yyout, "\tdecr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case dect:
+      fprintf(yyout, "\tdect(%d);\n", GETORDERARGS(help, n));
+      break;
+    case decw:
+      fprintf(yyout, "\tdecw(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tdeca:
+      fprintf(yyout, "\ttdeca(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tdecr:
+      fprintf(yyout, "\ttdecr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tdect:
+      fprintf(yyout, "\ttdect(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tdecw:
+      fprintf(yyout, "\ttdecw(%d);\n", GETORDERARGS(help, n));
+      break;
+    case killa:
+      fprintf(yyout, "\tkilla(%d);\n", GETORDERARGS(help, n));
+      break;
+    case killr:
+      fprintf(yyout, "\tkillr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case killt:
+      fprintf(yyout, "\tkillt(%d);\n", GETORDERARGS(help, n));
+      break;
+    case killw:
+      fprintf(yyout, "\tkillw(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tkilla:
+      fprintf(yyout, "\ttkilla(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tkillr:
+      fprintf(yyout, "\ttkillr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tkillt:
+      fprintf(yyout, "\ttkillt(%d);\n", GETORDERARGS(help, n));
+      break;
+    case tkillw:
+      fprintf(yyout, "\ttkillw(%d);\n", GETORDERARGS(help, n));
+      break;
+    /* PM instructions */
+    case advance:
+      fprintf(yyout, "\tadvance(%d);\n", GETORDERARGS(help, n));
+      break;
+    case atend:
+      fprintf(yyout, "\tatend(%d, %s);\n",
+          GETORDERARGS(help, n), GETORDERARGS(help, label));
+      break;
+    case atstart:
+      fprintf(yyout, "\tatstart(%d, %s);\n",
+          GETORDERARGS(help, n), GETORDERARGS(help, label));
+      break;
+    case bind:
+      fprintf(yyout, "\tbind(%d);\n", GETORDERARGS(help, n));
+      break;
+    case binds:
+      fprintf(yyout, "\tbinds(%d);\n", GETORDERARGS(help, n));
+      break;
+    case bindsubl:
+      fprintf(yyout, "\tbindsubl(%d,%d,%d,%d);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, m), GETORDERARGS(help, k), GETORDERARGS(help, l));
+      break;
+    case dereference:
+      fprintf(yyout, "\tdereference();\n");
+      break;
+    case drop:
+      fprintf(yyout, "\tdrop();\n");
+      break;
+    case endlist:
+      fprintf(yyout, "\tendlist();\n");
+      break;
+    case endsubl:
+      fprintf(yyout, "\tendsubl(%d);\n", GETORDERARGS(help, n));
+      break;
+    case fetch:
+      fprintf(yyout, "\tfetch();\n");
+      break;
+    case initbt:
+      fprintf(yyout, "\tinitbt(%d,%d,%d,%d,%d);\n",
+          GETORDERARGS(help, n), GETORDERARGS(help, m), GETORDERARGS(help, k),
+          GETORDERARGS(help, l), GETORDERARGS(help, j));
+      break;
+    case tguard:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\ttguard(%s,ptd(0x%08x),%d,%d,%d);\n",
+            GETORDERARGS(help, label),
+            (int)GETORDERARGS(help, desc),
+            GETORDERARGS(help, n),
+            GETORDERARGS(help, m),
+            GETORDERARGS(help, l));
+      else
+        fprintf(yyout, "\ttguard_%s(%s,ptd(0x%08x),%d,%d,%d);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, label),
+            (int)GETORDERARGS(help, desc),
+            GETORDERARGS(help, n),
+            GETORDERARGS(help, m),
+            GETORDERARGS(help, l));
+      break;
+    case matcharb:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatcharb(%d,%s,%s);\n", GETORDERARGS(help, n),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatcharb_%s(%d,%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matcharbs:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatcharbs(%d,%s,%s);\n", GETORDERARGS(help, n),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatcharbs_%s(%d,%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matchbool:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatch%s(%s,%s);\n",
+            (MKBOOL(0) == GETORDERARGS(help, n) ? "false" : "true"),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatch%s_%s(%s,%s);\n",
+            (MKBOOL(0) == GETORDERARGS(help, n) ? "false" : "true"),
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matchin:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatchin(ptd(0x%08x),%s,%s);\n",
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatchin_%s(ptd(0x%08x),%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matchint:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatchint(int(%d),%s,%s);\n", GETINT(GETORDERARGS(help, n)),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatchint_%s(int(%d),%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETINT(GETORDERARGS(help, n)), GETORDERARGS(help, label),
+            GETORDERARGS(help, ret));
+      break;
+    case matchlist:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatchlist(%d,%s,%s);\n", GETORDERARGS(help, n),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatchlist_%s(%d,%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matchprim:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatchprim(%s,%s,%s);\n", prselem(GETORDERARGS(help, n)),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatchprim_%s(%s,%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            prselem(GETORDERARGS(help, n)),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case matchstr:
+      if (help->types == NOTYPE)
+        fprintf(yyout, "\tmatchstr(%d,%s,%s);\n", GETORDERARGS(help, n),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      else
+        fprintf(yyout, "\tmatchstr_%s(%d,%s,%s);\n",
+            short_type_names(GETTYPE(0, help->types)),
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+      break;
+    case mkcase:
+      fprintf(yyout, "\tmkcase(ptd(0x%08x));\n", (int)GETORDERARGS(help, desc));
+      break;
+    case mkaframe:
+      fprintf(yyout, "\tmkaframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case mkbtframe:
+      fprintf(yyout, "\tmkbtframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case mkwframe:
+      fprintf(yyout, "\tmkwframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case nestlist:
+      fprintf(yyout, "\tnestlist();\n");
+      break;
+    case pick:
+      fprintf(yyout, "\tpick(%d);\n", GETORDERARGS(help, n));
+      break;
+    case restorebt:
+      fprintf(yyout, "\trestorebt(%d);\n", GETORDERARGS(help, n));
+      break;
+    case restoreptr:
+      fprintf(yyout, "\trestoreptr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case rmbtframe:
+      fprintf(yyout, "\trmbtframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case rmwframe:
+      fprintf(yyout, "\trmwframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case savebt:
+      fprintf(yyout, "\tsavebt(%d);\n", GETORDERARGS(help, n));
+      break;
+    case saveptr:
+      fprintf(yyout, "\tsaveptr(%d);\n", GETORDERARGS(help, n));
+      break;
+    case startsubl:
+      fprintf(yyout, "\tstartsubl(%d,%d);\n",
+          GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    /* ASM-FF */
+    case mkframe:
+      fprintf(yyout, "\tmkframe(%d);\n", GETORDERARGS(help, n));
+      break;
+    case mkslot:
+      fprintf(yyout, "\tmkslot();\n");
+      break;
+    case Inter:
+      fprintf(yyout, "\tinter(%s);\n", out_intertype(GETORDERARGS(help, n)));
+      break;
+    case pushh:
+      fprintf(yyout,"\tpushh(%d);\n", help->args.n);
+      break;
+    case count:
+      fprintf(yyout,"\tcount(%d);\n", help->args.n);
+      break;
+    case poph:
+      fprintf(yyout,"\tpoph();\n");
+      break;
+    case msdistend:
+      fprintf(yyout,"\tmsdistend();\n");
+      break;
+    case msnodist:
+      fprintf(yyout,"\tmsnodist();\n");
+      break;
+    case wait:
+      fprintf(yyout,"\twait(%d);\n", help->args.n);
+      break;
+    case dist:
+    case distb:
+      if (ISASM_TILDE())
+        fprintf(yyout,"\tdist%s(%s, %s, %d, %d, %d,%d);\n", 
+                help->command == dist ? "" : "b",
+                GETORDERARGS(help, label), GETORDERARGS(help, ret),
+                GETORDERARGS(help, n), GETORDERARGS(help, m), 
+                GETORDERARGS(help, k), GETORDERARGS(help, l));
+      else
+        fprintf(yyout,"\tdist%s(%s, %s, %d, %d);\n", help->command == dist ? "" : "b",
+          GETORDERARGS(help, label), GETORDERARGS(help, ret),
+          GETORDERARGS(help, n), GETORDERARGS(help, m));
+      break;
+    case distend:
+      fprintf(yyout,"\tdist_end(%d);\n", help->args.n);
+      break;
+    default:
+      fprintf(yyout,"<unknown>\n");
+      break;
+    }
+  help=help->next;
+  }
+DBUG_VOID_RETURN;
+}
+@
+
+
+1.74
+log
+@sign added to real output, fix for reimport
+@
+text
+@d252 1
+a252 1
+              fprintf(yyout, ", %+.16e", GETDATAENTRY(help, u.w.m.rdata)[i]);
+d270 1
+a270 1
+        fprintf(yyout, "_real(0x%08x,%+.16e);\n", (int)help->address, help->u.x);
+@
+
+
+1.73
+log
+@intact and delta closures don't have tilde args.
+@
+text
+@d252 1
+a252 1
+              fprintf(yyout, ", %.16e", GETDATAENTRY(help, u.w.m.rdata)[i]);
+d270 1
+a270 1
+        fprintf(yyout, "_real(0x%08x,%.16e);\n", (int)help->address, help->u.x);
+@
+
+
+1.72
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@d470 1
+a470 5
+      if (ISASM_TILDE())
+        fprintf(yyout,"\tmkdclos(%d,%d,%d);\n",help->args.n, \
+                help->args.m,help->args.k);
+      else
+        fprintf(yyout,"\tmkdclos(%d,%d);\n",help->args.n, help->args.m);
+d499 1
+a499 5
+      if (ISASM_TILDE())
+        fprintf(yyout,"\tmkiclos(%d,%d,%d);\n",help->args.n, \
+                help->args.m,help->args.k);
+      else
+        fprintf(yyout,"\tmkiclos(%d,%d);\n",help->args.n, help->args.m);
+@
+
+
+1.71
+log
+@update,delete,slots,test --> fupdate,fdelete,fslots,ftest
+@
+text
+@d859 3
+d864 6
+@
+
+
+1.70
+log
+@output format fixed, now %.16e
+@
+text
+@d31 1
+a31 1
+    DBUG_RETURN("update");
+d35 1
+a35 1
+    DBUG_RETURN("delete");
+d37 1
+a37 1
+    DBUG_RETURN("slots");
+d39 1
+a39 1
+  DBUG_RETURN("test");
+@
+
+
+1.69
+log
+@added FR_DELETE, FR_SLOTS
+@
+text
+@d252 1
+a252 1
+              fprintf(yyout, ", %f", GETDATAENTRY(help, u.w.m.rdata)[i]);
+d270 1
+a270 1
+        fprintf(yyout, "_real(0x%08x,%f);\n", (int)help->address, help->u.x);
+@
+
+
+1.68
+log
+@oout_ia(), cases for intact and mkiclos and handling
+of interactions in other cases added.
+@
+text
+@d34 4
+@
+
+
+1.67
+log
+@dist[b] in tildecase with 6 arguments
+@
+text
+@d15 1
+d59 17
+d82 2
+d276 1
+a276 1
+          else if (ISFUNC(x))
+d278 2
+d330 4
+a333 1
+      fprintf(yyout,"\tpushc_w(%s);\n",out_primf(GETPRF(help->args.n)));
+d411 3
+d454 4
+a457 1
+      fprintf(yyout,"\trtc(%s);\n",out_primf(GETPRF(help->args.n)));
+d497 7
+@
+
+
+1.66
+log
+@rtt was missing
+@
+text
+@d826 5
+a830 3
+        fprintf(yyout,"\tdist%s(%s, %s, %d, %d, %d);\n", help->command == dist ? "" : "b",
+          GETORDERARGS(help, label), GETORDERARGS(help, ret),
+          GETORDERARGS(help, n), GETORDERARGS(help, m), GETORDERARGS(help, k));
+@
+
+
+1.65
+log
+@freea implemented
+@
+text
+@d431 3
+@
+
+
+1.64
+log
+@DIST implemented
+@
+text
+@d389 3
+@
+
+
+1.63
+log
+@new separator for typ information: '.' instead of '_'
+@
+text
+@d808 23
+@
+
+
+1.62
+log
+@minor output format changes
+@
+text
+@d356 1
+a356 1
+        fprintf(yyout,"\t%s_%s();\n",out_primf(GETPRF(help->args.primf)),
+d363 1
+a363 1
+        fprintf(yyout,"\t%s_%s%s();\n",out_primf(GETPRF(help->args.primf)),
+d371 1
+a371 1
+        fprintf(yyout,"\t%s_%s%s%s();\n",out_primf(GETPRF(help->args.primf)),
+d380 1
+a380 1
+        fprintf(yyout,"\t%s_%s%s%s%s();\n",out_primf(GETPRF(help->args.primf)),
+@
+
+
+1.61
+log
+@rtc_pf inserted
+@
+text
+@d40 5
+a44 1
+  DBUG_RETURN("lt");
+d58 13
+d628 2
+a629 1
+      fprintf(yyout, "\tatend(%d);\n", GETORDERARGS(help, n));
+d632 2
+a633 1
+      fprintf(yyout, "\tatstart(%d);\n", GETORDERARGS(help, n));
+d713 2
+a714 2
+        fprintf(yyout, "\tmatchin(%d,%s,%s);\n", GETORDERARGS(help, n),
+            GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d716 1
+a716 1
+        fprintf(yyout, "\tmatchin_%s(%d,%s,%s);\n",
+d741 1
+a741 1
+        fprintf(yyout, "\tmatchprim(%d,%s,%s);\n", GETORDERARGS(help, n),
+d744 1
+a744 1
+        fprintf(yyout, "\tmatchprim_%s(%d,%s,%s);\n",
+d746 2
+a747 1
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+@
+
+
+1.60
+log
+@empty mat/vect/tvect
+@
+text
+@d405 3
+@
+
+
+1.59
+log
+@TY_INT -> TY_INTEGER
+@
+text
+@d214 9
+@
+
+
+1.58
+log
+@mat, vect, tvect implemented
+@
+text
+@d198 2
+a199 1
+            fprintf(yyout, "%s(0x%08x, TY_INT, %d, %d", text, GETDATAENTRY(help,address),
+@
+
+
+1.57
+log
+@corrections in out_primf: update, fselect, test
+@
+text
+@d166 2
+a167 1
+  int i, x;
+d177 41
+@
+
+
+1.56
+log
+@mksclos & mkilist inserted
+@
+text
+@d29 6
+@
+
+
+1.55
+log
+@setref identifiers
+@
+text
+@d323 3
+d359 4
+@
+
+
+1.54
+log
+@less changed to lt
+@
+text
+@d460 3
+a462 2
+        case REF_IMPLICIT: fprintf(yyout, "implicit\n"); break;
+        case REF_EXPLICIT: fprintf(yyout, "explicit\n"); break;
+@
+
+
+1.53
+log
+@leq -> le fixed
+@
+text
+@d33 2
+@
+
+
+1.52
+log
+@in out_order_list: demand for optimize flag (to prevent output of descs and data
+in intermediate file in case of optimizing)
+@
+text
+@d30 3
+a32 1
+      DBUG_RETURN("gt");
+@
+
+
+1.51
+log
+@hashsetref
+@
+text
+@d15 1
+a15 1
+
+d89 1
+d91 5
+a95 2
+out_desc_list(out_me->desc);
+out_data_list(out_me->data);
+a120 1
+goaladdr=atox(searchfor_(help->label));
+@
+
+
+1.50
+log
+@mkgsclos implemented
+@
+text
+@d450 8
+@
+
+
+1.49
+log
+@argtype of tguard implemented
+@
+text
+@d351 4
+@
+
+
+1.48
+log
+@case & gammacase inserted
+@
+text
+@d558 17
+a688 8
+      break;
+    case tguard:
+      fprintf(yyout, "\ttguard(%s,ptd(0x%08x),%d,%d,%d);\n",
+          GETORDERARGS(help, label),
+          (int)GETORDERARGS(help, desc),
+          GETORDERARGS(help, n),
+          GETORDERARGS(help, m),
+          GETORDERARGS(help, l));
+@
+
+
+1.47
+log
+@added arg to endsubl
+@
+text
+@d416 6
+a536 3
+      break;
+    case Case:
+      fprintf(yyout, "\tcase(%s);\n", GETORDERARGS(help, label));
+@
+
+
+1.46
+log
+@PM output style changed (matchint, matchbool)
+@
+text
+@d545 1
+a545 1
+      fprintf(yyout, "\tendsubl();\n");
+@
+
+
+1.45
+log
+@type PM instructions
+@
+text
+@d232 1
+a232 1
+      fprintf(yyout,"\tpushc_w(bool(%s));\n",(4==help->args.n) ? "false" : "true");
+d575 2
+a576 1
+        fprintf(yyout, "\tmatchbool(%d,%s,%s);\n", GETORDERARGS(help, n),
+d579 2
+a580 1
+        fprintf(yyout, "\tmatchbool_%s(%d,%s,%s);\n",
+d582 1
+a582 1
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d595 1
+a595 1
+        fprintf(yyout, "\tmatchint(%d,%s,%s);\n", GETORDERARGS(help, n),
+d598 1
+a598 1
+        fprintf(yyout, "\tmatchint_%s(%d,%s,%s);\n",
+d600 2
+a601 1
+            GETORDERARGS(help, n), GETORDERARGS(help, label), GETORDERARGS(help, ret));
+@
+
+
+1.44
+log
+@strings & free variables
+@
+text
+@d556 7
+a562 2
+      fprintf(yyout, "\tmatcharb(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d565 7
+a571 2
+      fprintf(yyout, "\tmatcharbs(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d574 7
+a580 2
+      fprintf(yyout, "\tmatchbool(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d583 7
+a589 2
+      fprintf(yyout, "\tmatchin(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d592 7
+a598 2
+      fprintf(yyout, "\tmatchint(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d601 7
+a607 2
+      fprintf(yyout, "\tmatchlist(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d610 7
+a616 2
+      fprintf(yyout, "\tmatchprim(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+d619 7
+a625 2
+      fprintf(yyout, "\tmatchstr(%d,%s,%s);\n", GETORDERARGS(help, n),
+          GETORDERARGS(help, label), GETORDERARGS(help, ret));
+@
+
+
+1.43
+log
+@interactions invented
+@
+text
+@d183 17
+@
+
+
+1.42
+log
+@typo fix
+@
+text
+@d44 14
+d617 10
+@
+
+
+1.41
+log
+@PM added
+@
+text
+@d557 1
+a557 1
+      fprintf(yyout, "\tmkcase(ptd(0x%08x);\n", (int)GETORDERARGS(help, desc));
+@
+
+
+1.40
+log
+@teppfuhler fixed
+@
+text
+@d116 3
+d480 123
+@
+
+
+1.39
+log
+@free_swt -> freesw_t
+@
+text
+@d234 1
+a234 1
+      fprintf(yyout,"\tpuahaux();\n");
+@
+
+
+1.38
+log
+@print_types moved to tiny.c
+@
+text
+@d271 1
+a271 1
+      fprintf(yyout,"\tfree_swt(%d);\n",help->args.n);
+@
+
+
+1.37
+log
+@convert type annotations into string
+@
+text
+@a17 29
+/*
+ * displays n elements form array of TP_TYPES
+ */
+void print_types(TP_TYPES * types, int n)
+  {
+  int i;
+
+  DBUG_ENTER("print_types");
+  for (i = 0; i < n; i++)
+    {
+    switch (types[i] & EXT_MASK)
+      {
+      case tp_none:
+        fprintf(yyout, "%s",prim_type_names[types[i]]);
+        break;
+      case tp_list:
+        fprintf(yyout, "[%s]",
+            prim_type_names[types[i] & PRIM_MASK]);
+        break;
+      default:
+        yyfail("%s","illegal type");
+      }
+    if (i+1 < n)
+      fprintf(yyout, " ");
+  }
+DBUG_VOID_RETURN;
+}
+
+
+@
+
+
+1.36
+log
+@comment in output added
+@
+text
+@d18 29
+d424 3
+d428 3
+d432 2
+a433 1
+      fprintf(yyout,"\t%s\n", help->args.hash_str);
+@
+
+
+1.35
+log
+@jcond_b implemented
+@
+text
+@d75 1
+@
+
+
+1.34
+log
+@hash instruction extended
+@
+text
+@d334 4
+a337 1
+      fprintf(yyout,"\tjfalse(%s);\n",help->args.label);
+d340 4
+a343 1
+      fprintf(yyout,"\tjtrue(%s);\n",help->args.label);
+d346 4
+a349 1
+      fprintf(yyout,"\tjcond(%s);\n",help->args.label);
+d352 4
+a355 1
+      fprintf(yyout,"\tjfalse2(%s,%s);\n",help->args.label,help->args.ret);
+d358 4
+a361 1
+      fprintf(yyout,"\tjtrue2(%s,%s);\n",help->args.label,help->args.ret);
+d364 4
+a367 1
+      fprintf(yyout,"\tjcond2(%s,%s);\n",help->args.label,help->args.ret);
+@
+
+
+1.33
+log
+@*dec* made unary
+@
+text
+@d375 3
+a377 1
+    case hash:
+@
+
+
+1.32
+log
+@kill's pushaux freew
+@
+text
+@d403 1
+a403 1
+      fprintf(yyout, "\tdeca(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d406 1
+a406 1
+      fprintf(yyout, "\tdecr(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d409 1
+a409 1
+      fprintf(yyout, "\tdect(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d412 1
+a412 1
+      fprintf(yyout, "\tdecw(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d415 1
+a415 1
+      fprintf(yyout, "\ttdeca(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d418 1
+a418 1
+      fprintf(yyout, "\ttdecr(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d421 1
+a421 1
+      fprintf(yyout, "\ttdect(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d424 1
+a424 1
+      fprintf(yyout, "\ttdecw(%d,%d);\n", GETORDERARGS(help, n), GETORDERARGS(help, m));
+@
+
+
+1.31
+log
+@bug fix
+@
+text
+@d278 3
+d425 24
+@
+
+
+1.30
+log
+@pushaux inserted
+@
+text
+@d232 1
+a232 1
+    case pushvar:
+@
+
+
+1.29
+log
+@all integers, ptr's, booleans and prf's tagged
+@
+text
+@d220 3
+d226 8
+a233 2
+    case movear:
+      fprintf(yyout,"\tmove_ar();\n");
+@
+
+
+1.28
+log
+@primfuncs in lists enabled
+@
+text
+@d191 1
+a191 1
+      fprintf(yyout,"\tpushc_w(%s);\n",out_primf(help->args.n));
+d194 1
+a194 1
+      fprintf(yyout,"\tpushc_w(int(%d));\n",help->args.n);
+d197 1
+a197 1
+      fprintf(yyout,"\tpushc_w(bool(%s));\n",(0==help->args.n) ? "false" : "true");
+d203 1
+a203 1
+      fprintf(yyout,"\tpush_r(ptd(0x%08x));\n",(unsigned int)help->args.desc);
+d215 1
+a215 1
+      fprintf(yyout,"\tpush_w(ptd(0x%08x));\n",(unsigned int)help->args.desc);
+d228 1
+a228 1
+        fprintf(yyout,"\tdelta1(%s);\n",out_primf(help->args.primf));
+d230 1
+a230 1
+        fprintf(yyout,"\t%s_%s();\n",out_primf(help->args.primf),
+d235 1
+a235 1
+        fprintf(yyout,"\tdelta2(%s);\n",out_primf(help->args.primf));
+d237 1
+a237 1
+        fprintf(yyout,"\t%s_%s%s();\n",out_primf(help->args.primf),
+d243 1
+a243 1
+        fprintf(yyout,"\tdelta3(%s);\n",out_primf(help->args.primf));
+d245 1
+a245 1
+        fprintf(yyout,"\t%s_%s%s%s();\n",out_primf(help->args.primf),
+d252 1
+a252 1
+        fprintf(yyout,"\tdelta4(%s);\n",out_primf(help->args.primf));
+d254 1
+a254 1
+        fprintf(yyout,"\t%s_%s%s%s%s();\n",out_primf(help->args.primf),
+d285 1
+a285 1
+      fprintf(yyout,"\trtc(int(%d));\n",help->args.n);
+d288 1
+a288 1
+      fprintf(yyout,"\trtc(bool(%s));\n",(0==help->args.n) ? "false" : "true");
+d291 1
+a291 1
+      fprintf(yyout,"\trtp(ptd(0x%08x));\n", (int)help->args.desc);
+@
+
+
+1.27
+log
+@bug in output of lunite, munite, vunite, unite and gt fixed
+@
+text
+@d156 2
+d160 1
+a160 1
+          else
+@
+
+
+1.26
+log
+@ref-counting instructions
+@
+text
+@d29 4
+@
+
+
+1.25
+log
+@prototype for tolower removed
+@
+text
+@d7 1
+d359 48
+@
+
+
+1.24
+log
+@mkgclos -> mkgaclos
+@
+text
+@a12 2
+extern char tolower(char);
+
+@
+
+
+1.23
+log
+@*** empty log message ***
+@
+text
+@d295 2
+a296 2
+    case mkgclos:
+      fprintf(yyout,"\tmkgclos(%d,%d,%d);\n",help->args.n, \
+@
+
+
+1.22
+log
+@apply_c & apply_f removed
+@
+text
+@d301 1
+a301 1
+        fprintf(yyout,"\tmkcclos(%d,%d,%d);\n",help->args.n, \
+d304 1
+a304 1
+        fprintf(yyout,"\tmkcclos(%d,%d);\n",help->args.n, help->args.m);
+d308 1
+a308 1
+        fprintf(yyout,"\tmkbclos(%d,%d,%d);\n",help->args.n, \
+d311 1
+a311 1
+        fprintf(yyout,"\tmkbclos(%d,%d);\n",help->args.n, help->args.m);
+@
+
+
+1.21
+log
+@output of push(prf)
+@
+text
+@a272 6
+    case apply_f:
+      fprintf(yyout,"\tapply_f(%d);\n",help->args.n);
+      break;
+    case apply_c:
+      fprintf(yyout,"\tapply_c(%d);\n",help->args.n);
+      break;
+@
+
+
+1.20
+log
+@types reimplemented
+@
+text
+@a23 5
+{
+char *sprim;
+  
+DBUG_ENTER("out_primf");
+switch (n)
+d25 9
+a33 4
+  case p_abs:
+    {
+    sprim="abs";
+    break;
+d35 4
+a38 350
+  case p_neg:
+    {
+    sprim="neg";
+    break;
+    }
+  case p_exp:
+    {
+    sprim="exp";
+    break;
+    }
+  case p_ln:
+    {
+    sprim="ln";
+    break;
+    }
+  case p_sin:
+    {
+    sprim="sin";
+    break;
+    }
+  case p_cos:
+    {
+    sprim="cos";
+    break;
+    }
+  case p_tan:
+    {
+    sprim="tan";
+    break;
+    }
+  case p_floor:
+    {
+    sprim="???";
+    break;
+    }
+  case p_ceil:
+    {
+    sprim="???";
+    break;
+    }
+  case p_frac:
+    {
+    sprim="???";
+    break;
+    }
+  case p_trunc:
+    {
+    sprim="trunc";
+    break;
+    }
+  case p_vc_plus:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vc_minus:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vc_mult:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vc_div:
+    {
+    sprim="???";
+    break;
+    }
+  case p_ldim:
+    {
+    sprim="ldim";
+    break;
+    }
+  case p_vdim:
+    {
+    sprim="vdim";
+    break;
+    }
+  case p_mdim:
+    {
+    sprim="???";
+    break;
+    }
+  case p_class:
+    {
+    sprim="???";
+    break;
+    }
+  case p_type:
+    {
+    sprim="???";
+    break;
+    }
+  case p_empty:
+    {
+    sprim="empty";
+    break;
+    }
+  case p_transpose:
+    {
+    sprim="transpose";
+    break;
+    }
+  case p_reverse:
+    {
+    sprim="reverse";
+    break;
+    }
+  case p_to_scal:
+    {
+    sprim="???";
+    break;
+    }
+  case p_to_vect:
+    {
+    sprim="???";
+    break;
+    }
+  case p_to_tvect:
+    {
+    sprim="???";
+    break;
+    }
+  case p_to_mat:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vc_min:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vc_max:
+    {
+    sprim="???";
+    break;
+    }
+  case p_plus:
+    {
+    sprim="plus";
+    break;
+    }
+  case p_minus:
+    {
+    sprim="minus";
+    break;
+    }
+  case p_mult:
+    {
+    sprim="mult";
+    break;
+    }
+  case p_div:
+    {
+    sprim="div";
+    break;
+    }
+  case p_mod:
+    {
+    sprim="mod";
+    break;
+    }
+  case p_ip:
+    {
+    sprim="???";
+    break;
+    }
+  case p_max:
+    {
+    sprim="???";
+    break;
+    }
+  case p_min: 
+    {
+    sprim="???";
+    break;
+    }
+  case p_and:
+    {
+    sprim="and";
+    break;
+    }
+  case p_or:
+    {
+    sprim="or";
+    break;
+    }
+  case p_xor:
+    {
+    sprim="xor";
+    break;
+    }
+  case p_eq:
+    {
+    sprim="eq";
+    break;
+    }
+  case p_ne:
+    {
+    sprim="neq";
+    break;
+    }
+  case p_f_eq:
+    {
+    sprim="???";
+    break;
+    }
+  case p_f_ne:
+    {
+    sprim="???";
+    break;
+    }
+  case p_ge:
+    {
+    sprim="ge";
+    break;
+    }
+  case p_gt:
+    {
+    sprim="gt";
+    break;
+    }
+  case p_le:
+    {
+    sprim="le";
+    break;
+    }
+  case p_lt:
+    {
+    sprim="lt";
+    break;
+    }
+  case p_lselect:
+    {
+    sprim="lselect";
+    break;
+    }
+  case p_lcut:
+    {
+    sprim="lcut";
+    break;
+    }
+  case p_lrotate:
+    {
+    sprim="lrotate";
+    break;
+    }
+  case p_lunite:
+    {
+    sprim="lunite";
+    break;
+    }
+  case p_vselect:   
+    {
+    sprim="???";
+    break;
+    }
+  case p_vcut:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vrotate:
+    {
+    sprim="???";
+    break;
+    }
+  case p_vunite:
+    {
+    sprim="???";
+    break;
+    }
+  case p_c_plus:
+    {
+    sprim="???";
+    break;
+    }
+  case p_c_minus:
+    {
+    sprim="???";
+    break;
+    }
+  case p_c_mult:
+    {
+    sprim="???";
+    break;
+    }
+  case p_c_div:
+    {
+    sprim="???";
+    break;
+    }
+  case p_lreplace:
+    {
+    sprim="lreplace";
+    break;
+    }
+  case p_mselect:
+    {
+    sprim="???";
+    break;
+    }
+  case p_mcut:
+    {
+    sprim="???";
+    break;
+    }
+  case p_mrotate:
+    {
+    sprim="???";
+    break;
+    }
+  case p_munite: 
+    {
+    sprim="???";
+    break;
+    }
+  case p_mre_r:
+    {
+    sprim="???";
+    break;
+    }
+  case p_mre_c:
+    {
+    sprim="???";
+    break;
+    }
+  case p_ltransform:
+    {
+    sprim="???";
+    break;
+    }
+  case p_mreplace:
+    {
+    sprim="???";
+    break;
+    }
+  case p_repstr:
+    {
+    sprim="???";
+    break;
+    }
+  default:
+    {
+    sprim="<unknown>";
+    break;
+    }
+a39 2
+DBUG_RETURN(sprim);
+}
+d186 1
+a186 17
+    {
+      char s[20];
+      int i;
+
+      strcpy(s, primf_tab[help->args.n]);
+      if ('_'== s[1] && (('D' == s[0]) || ('M' == s[0])))
+      {
+        for (i=2; i<=strlen(s); i++)
+        s[i] = tolower(s[i]);
+      fprintf(yyout,"\tpushc_w(%s);\n",&s[2]);
+      }
+      else
+      {
+        for (i=0; i<=strlen(s); i++)
+          s[i] = tolower(s[i]);
+      fprintf(yyout,"\tpushc_w(%s);\n",s);
+      }
+a187 1
+    }
+@
+
+
+1.19
+log
+@types changed
+@
+text
+@d587 5
+a591 1
+      fprintf(yyout,"\tdelta1(%s);\n",out_primf(help->args.primf));
+d594 6
+a599 37
+      fprintf(yyout,"\tdelta2(%s);\n",out_primf(help->args.primf));
+      break;
+    case le:
+      fprintf(yyout,"\tle_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case lt:
+      fprintf(yyout,"\tlt_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case ge:
+      fprintf(yyout,"\tge_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case gt:
+      fprintf(yyout,"\tgt_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case eq:
+      fprintf(yyout,"\teq_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case ne:
+      fprintf(yyout,"\tne_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case add:
+      fprintf(yyout,"\tadd_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case minus:
+      fprintf(yyout,"\tminus_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+      break;
+    case mult:
+      fprintf(yyout,"\tmult_%s%s()\n",short_type_names(help->types & 0xff),
+	      short_type_names((help->types >> 8) & 0xff));
+d602 7
+a608 1
+      fprintf(yyout,"\tdelta3(%s);\n",out_primf(help->args.primf));
+d611 8
+a618 1
+      fprintf(yyout,"\tdelta4(%s);\n",out_primf(help->args.primf));
+a703 18
+      break;
+    case jfalse_b:
+      fprintf(yyout,"\tjfalse_b(%s);\n",help->args.label);
+      break;
+    case jtrue_b:
+      fprintf(yyout,"\tjtrue_b(%s);\n",help->args.label);
+      break;
+    case jcond_b:
+      fprintf(yyout,"\tjcond_b(%s);\n",help->args.label);
+      break;
+    case jfalse2_b:
+      fprintf(yyout,"\tjfalse2_b(%s,%s);\n",help->args.label,help->args.ret);
+      break;
+    case jtrue2_b:
+      fprintf(yyout,"\tjtrue2_b(%s,%s);\n",help->args.label,help->args.ret);
+      break;
+    case jcond2_b:
+      fprintf(yyout,"\tjcond2_b(%s,%s);\n",help->args.label,help->args.ret);
+@
+
+
+1.18
+log
+@plus_ii -> add_ii
+@
+text
+@d592 35
+a626 26
+    case le_ii:
+      fprintf(yyout,"\tle_ii();\n");
+      break;
+    case lt_ii:
+      fprintf(yyout,"\tlt_ii();\n");
+      break;
+    case ge_ii:
+      fprintf(yyout,"\tge_ii();\n");
+      break;
+    case gt_ii:
+      fprintf(yyout,"\tgt_ii();\n");
+      break;
+    case eq_ii:
+      fprintf(yyout,"\teq_ii();\n");
+      break;
+    case ne_ii:
+      fprintf(yyout,"\tne_ii();\n");
+      break;
+    case add_ii:
+      fprintf(yyout,"\tadd_ii();\n");
+      break;
+    case minus_ii:
+      fprintf(yyout,"\tminus_ii();\n");
+      break;
+    case mult_ii:
+      fprintf(yyout,"\tmult_ii();\n");
+@
+
+
+1.17
+log
+@mkdclos
+@
+text
+@d610 2
+a611 2
+    case plus_ii:
+      fprintf(yyout,"\tplus_ii();\n");
+@
+
+
+1.16
+log
+@added pushcw_pf in out_order_list
+@
+text
+@d665 5
+a669 1
+      fprintf(yyout,"\tmkdclos(%d);\n",help->args.n);
+a670 1
+      /* Commands with only one bool argument, treated as integer */
+@
+
+
+1.15
+log
+@asm_mode integrated
+@
+text
+@d5 1
+d13 4
+d533 20
+@
+
+
+1.14
+log
+@mkcclos
+@
+text
+@d627 3
+d640 1
+a640 2
+      fprintf(yyout,"\tmkdclos(%d, %d, %d);\n",help->args.n, \
+              help->args.m,help->args.k);
+d644 1
+a644 5
+      fprintf(yyout,"\tmkgclos(%d, %d, %d);\n",help->args.n, \
+              help->args.m,help->args.k);
+      break;
+    case mkbclos:
+      fprintf(yyout,"\tmkcclos(%d, %d, %d);\n",help->args.n, \
+d648 12
+a659 2
+      fprintf(yyout,"\tmkbclos(%d, %d, %d);\n",help->args.n, \
+              help->args.m,help->args.k);
+@
+
+
+1.13
+log
+@conditional instructions completed
+@
+text
+@d646 4
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@a528 1
+      {
+a530 1
+      }
+a531 1
+      {
+a533 1
+      }
+a534 1
+      {
+a536 1
+      }
+a537 1
+      {
+a539 1
+      }
+a540 1
+      {
+a542 1
+      }
+a543 1
+      {
+a545 1
+      }
+a546 1
+      {
+a548 1
+      }
+a549 1
+      {
+a551 1
+      }
+a552 1
+      {
+a554 1
+      }
+a555 1
+      {
+a557 1
+      }
+a558 1
+      {
+a560 1
+      }
+a561 1
+      {
+a563 1
+      }
+a564 1
+      {
+a566 1
+      }
+a567 1
+      {
+a569 1
+      }
+a570 1
+      {
+a572 1
+      }
+a573 1
+      {
+a575 1
+      }
+a576 1
+      {
+a578 1
+      }      
+a579 1
+      {
+a581 1
+      }
+a582 1
+      {
+a584 1
+      }
+a585 1
+      {
+a587 1
+      }
+a588 1
+      {
+a590 1
+      }
+a591 1
+      {
+a593 1
+      }
+a594 1
+      {
+a596 1
+      }
+a597 1
+      {
+a599 1
+      }
+a600 1
+      {
+a602 1
+      }
+a603 1
+      {
+a605 1
+      }
+a606 1
+      {
+a608 1
+      }
+a609 1
+      {
+a611 1
+      }
+a612 1
+      {
+a614 1
+      }
+a615 1
+      {
+a617 1
+      }
+a618 1
+      {
+a620 1
+      }
+a621 1
+      {
+a623 1
+      }
+a624 1
+      {
+a626 1
+      }
+a627 1
+      {
+a629 1
+      }
+a630 1
+      {
+a632 1
+      }
+a633 1
+      {
+a635 1
+      }
+a636 1
+      {
+a639 1
+      }
+a641 1
+      {
+a644 1
+      }
+a645 1
+      {
+a648 1
+      }
+a649 1
+      {
+a651 1
+      }
+a652 1
+      {
+d655 15
+a669 1
+      }
+a670 1
+      {
+d673 14
+a686 4
+      }
+    case jtrue:
+      {
+      fprintf(yyout,"\tjtrue(%s);\n",help->args.label);
+a687 1
+      }
+a688 1
+      {
+a690 1
+      }
+a691 1
+      {
+a693 1
+      }
+a694 1
+      {
+a696 1
+      }
+a697 1
+      {
+a699 1
+      }
+a700 1
+      {
+a702 1
+      }
+a703 1
+      {
+a705 1
+      }
+a706 1
+      {
+a708 1
+      }
+a709 1
+      {
+a711 1
+      }
+a712 1
+      {
+a714 1
+      }
+a715 1
+      {
+a717 1
+      }      
+@
+
+
+1.11
+log
+@minor chnages
+@
+text
+@d535 1
+a535 1
+      fprintf(yyout,"\tpushcw(bool(%s));\n",(0==help->args.n) ? "false" : "true");
+@
+
+
+1.10
+log
+@primfuncs added
+@
+text
+@d446 1
+a446 1
+  fprintf(yyout, "0x%08x,FUNC,",atox(searchfor_(help->label)));
+d663 1
+a663 1
+    case snap:
+d665 1
+a665 1
+      fprintf(yyout,"\tsnap(%d);\n",help->args.n);
+d668 5
+d727 5
+d774 1
+a774 1
+      fprintf(yyout,"\text();\n\tend();\n");
+@
+
+
+1.9
+log
+@pushret
+@
+text
+@d598 15
+@
+
+
+1.8
+log
+@fixed arity orders removed
+@
+text
+@d568 5
+@
+
+
+1.7
+log
+@another error in pushw format
+@
+text
+@a542 10
+    case pushaw0:
+      {
+      fprintf(yyout,"\tpush_aw0();\n");
+      break;
+      }
+    case pushtw0:
+      {
+      fprintf(yyout,"\tpush_tw0();\n");
+      break;
+      }
+a557 5
+    case pushar0:
+      {
+      fprintf(yyout,"\tpush_ar0();\n");
+      break;
+      }
+a632 5
+    case free1a:
+      {
+      fprintf(yyout,"\tfree1_a();\n");
+      break;
+      }
+a640 5
+      break;
+      }
+    case free1swt:
+      {
+      fprintf(yyout,"\tfree1sw_t();\n");
+@
+
+
+1.6
+log
+@push[rw]_p and rtp output corrected
+@
+text
+@d486 1
+a486 1
+        fprintf(yyout, "_real(0x%08x, %f);\n", (int)help->address, help->u.x);
+d489 1
+a489 1
+        fprintf(yyout, "_list(0x%08x, %d", (int)help->address, help->u.v.size);
+d580 1
+a580 1
+      fprintf(yyout,"\tpushw(ptd(0x%08x));\n",(unsigned int)help->args.desc);
+@
+
+
+1.5
+log
+@pushar0 & push_r(ptd()) added
+@
+text
+@d555 1
+a555 1
+      fprintf(yyout,"\tpush_r(ptd(0x%x8));\n",(unsigned int)help->args.desc);
+d580 1
+a580 1
+      fprintf(yyout,"\tpushw(ptd(0x%x8));\n",(unsigned int)help->args.desc);
+d705 1
+a705 1
+      fprintf(yyout,"\trtc(ptd(0x%08x));\n", (int)help->args.desc);
+@
+
+
+1.4
+log
+@data output expanded (lists)
+@
+text
+@d553 5
+d566 5
+@
+
+
+1.3
+log
+@reals
+@
+text
+@d10 1
+d18 1
+a18 1
+char *out_primf(PRIMF n)
+d474 3
+a476 2
+{
+DATANODE *help;
+d478 29
+a506 12
+DBUG_ENTER("out_data_list");
+help=desc;
+while (NULL!=help)
+  {
+  fprintf(yyout, "\t");
+  switch (help->tag)
+    {
+    case d_real:
+      fprintf(yyout, "_real(0x%08x, %f);\n", (int)help->address, help->u.x);
+      break;
+    default:
+      fprintf(yyout, "<unknown>\n");
+d508 2
+a509 4
+  help=help->next;
+  }
+DBUG_VOID_RETURN;
+} 
+d666 10
+@
+
+
+1.2
+log
+@data list
+@
+text
+@d666 1
+a666 1
+    case rtc_r:
+d668 1
+a668 1
+      fprintf(yyout,"\trtp(ptd(0x%08x));\n",(int)help->args.desc);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d404 1
+a404 1
+void out_tree(PROGRAM *out_me)
+d406 3
+a408 2
+void out_order_list();
+void out_desc_list();
+d415 1
+d435 1
+a435 1
+void out_desc_list(FUNDESC *desc)
+d467 28
+d661 10
+a677 5
+    case rtc_b:
+      {
+      fprintf(yyout,"\trtc(bool(%d));\n",help->args.n);
+      break;
+      }
+@

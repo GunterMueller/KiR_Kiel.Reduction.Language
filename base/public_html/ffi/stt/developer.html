@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Developer Notes</title>
+</head>
+<body>
+
+<H1>Developer Notes</H1>
+
+<p><br>
+
+<H2>How to implement interactions in Pi-Red+.</H2>
+
+To implement an interaction, you need a stack element to represent the
+interaction, a C function which executes it and entries in several tables.
+There are three main parts: the editor, the reduction unit (reduma) and, if you
+wish, the compiling version of pi-red, tasm. <p>
+
+First, you have to find the smallest free index for your interaction, maybe a
+free entry in intact_tab[] (rintact.c) or size(intact_tab[]). The general
+appearance of a stack element in the editor is 0x80ii00j1, where ii is the index
+and j the arity of the interaction. In the reduma, the last digit isn't 1 but 8,
+i.e. 0x80ii00j8. <p>
+
+In the following, we use the interaction remove() as an example. It has index
+0x12 and arity 1. <p>
+
+<dl>
+<dt><b>The editor</b>
+<dd> Define the stack element in cencod.h: #define IA_REMOVE 0x80120011L <br>
+     In ciotab.c, add one entry to kwtb[] and interactions[]. <br>
+     kwtb[]: ,E_FUNC, IA_REMOVE, "remove", "", 0,5,0 | PREDEF <br> 
+     interactions[]: ,"remove"   ,IA_REMOVE  ,func_arity(IA_REMOVE)
+
+<dt><b>The reduma</b>
+<dd> <ul>
+     <li> Define the stack element in rstelem.h:
+     <pre>
+     #define P_IA_REMOVE     P_IFUNCCOMPL 
+     #define _IA_REMOVE      0x8012 
+     #define IA_REMOVE       SA_I(_IA_REMOVE,1) 
+     #define T_IA_REMOVE(x)  (((x) & P_IA_REMOVE) == IA_REMOVE)
+     </pre>
+     <li> In rintact.c, add one entry to intact_tab[]:
+          ,{red_remove, "ia_remove"} <br>
+     The entry must be the 19th in the table, i.e. its position must match the
+     index of the interaction plus 1 (index of remove is 18 (0x12) and the first
+     entry has index 0).
+     <li> Add a prototype of red_remove() in rintact.h.
+     <li> Add the definition of red_remove(), the C function which executes the
+          interaction, to riafunc.c.
+     </ul>
+
+<dt><b>Tasm</b>
+<dd> To recognize interactions in the ASM code, add <br>
+     ia_remove{OPTTYPES} {yylval.primf.types=str2type(yytext); return
+     IA_REMOVE;} <br>
+     to tasm2c.l and <br>
+     %token  IA_REMOVE <br>
+     and <br>
+     interact: IA_REMOVE {$$.prf=ia_remove; $$.types=$1.types; uses_apply=TRUE;}
+     <br> to tasm2c.y.<br>
+     In mytypes.h, add ia_remove to the enumeration IACTION.
+     In globals.h, insert "IA_REMOVE" to intact_tab[].
+     Again, the position of ia_remove must match the index of IA_REMOVE plus 1.
+     <br> In support.c, add 'case ia_remove:' to get_ia_arity().
+</dl>
+
+That's all, but I surely have forgotten something. :-)
+
+
+<p><br>
+
+<H2>Hints for further work.</H2>
+
+<dl>
+<dt> Support comand line arguments.
+<dd> Especially for programs that has been compiled by TASM (the compiling
+version of Pi-Red+), one can think of comand line arguments, which are provided
+to the program at start time and can be access by using some global, predefined
+variables. 
+<dt> Unify state messages for NE results.
+<dd> If a interaction is not executable, the result is NE{msg}, where msg is
+some sort of message string. This is very handsome for users (it is readable),
+but not so for computational evaluation. Therefore there should be some set of
+indexed, uniformly messages which are used by every interaction. For easier
+computational evaluation, the result should be changed to NE{num,msg}, where num
+is the index of the standard message msg.
+</dl>
+
+</body>
+</html>

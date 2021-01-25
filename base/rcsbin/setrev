@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+
+name=$1
+shift 1
+
+pwd=`pwd`
+
+for root in `fnrt $@ 2>/dev/null`
+do
+  echo "rcs -n$name: $root/RCS-directories"
+  rcs "-n$name:" $root/RCS-directories 2>/dev/null
+done
+
+for dir in `fndr $@`
+do
+  cd $dir
+  if [ ! -f RCS-files ]
+  then
+    checkout RCS-files
+  fi
+
+  files=`cat RCS-files`
+  echo "rcs -n$name: $dir/RCS-files"
+  cat RCS-files | awk '{ print "rcs -n'$name' '$dir/'" $1 }'
+  rcs -n$name: RCS-files $files 2>/dev/null
+  cd $pwd
+done

@@ -1,0 +1,163 @@
+workview*Geometry:		1149x872+0+0
+! --------- tgif --------------------------------------------------------
+Tgif*Geometry:			1149x872+0+0
+Tgif*IconGeometry:		+812+0
+
+! --------- mwm ---------------------------------------------------------
+
+Mwm*elmbiff.clientDecoration:	-all
+Mwm*background:	medium purple
+Mwm*perfmeter.clientDecoration:	-all
+Mwm*activeBackground:	medium orchid 
+Mwm*keyboardFocusPolicy:	pointer
+Mwm*resizeBorderWidth:	0
+Mwm*xclock.clientDecoration:	-all
+
+! --------- openwindows -------------------------------------------------
+olwm.Scrollbar.JumpCursor:	True
+olwm.FocusLenience:	true
+olwm.Beep:	always
+olwm.SetInput:	followmouse
+olwm.ScrollbarPlacement:	left
+olwm.PopupJumpCursor:	True
+olwm.WorkspaceColor:	DarkSeaGreen
+olwm.IconLocation:	bottom
+olwm.SelectDisplaysMenu:	True
+olwm.DragRightDistance:	100
+olwm.MultiClickTimeout:	4
+olwm.WindowColor:	#cccccc
+olwm.MinimalDecor:	xclock elmbiff nnbif
+
+! --------- bricons -----------------------------------------------------
+bricons.bitmapFilePath:	/usr/local/include/X11/bitmaps:/home/ramses/car
+bricons*no_of_cols:	16
+bricons*icon_file:	/home/ramses/car/.briconsrc
+bricons*help_file:	/home/ramses/car/man/man1/bricons.l
+bricons*borderColor:	yellow
+bricons*popup_layout*borderColor:	black
+bricons*box.background:	gray
+bricons*background:	#ffd28e
+
+! --------- xmessage ------------------------------------------------
+xmessage.form.message.horizDistance:	80
+xmessage.form.message.borderWidth:	0
+xmessage.form*borderColor:	grey
+xmessage.form*background:	lightgrey
+xmessage.form*font:	-adobe-new century schoolbook-bold-r-normal--34-240-100-100-p-193-iso8859-1
+xmessage.form*borderWidth:	8
+xmessage.form*foreground:	lightyellow
+xmessage*Geometry:	810x140+180+340
+
+! --------- xman ----------------------------------------------------
+Xman*manualBrowser.geometry:	569x754+2+94
+Xman*verticalList:	false
+Xman*topBox:	false
+Xman*iconName:	Xman
+Xman*iconX:	680
+Xman*iconY:	2
+Xman*iconic:	true
+
+! --------- xterm -------------------------------------------------------
+XTerm.reverseWrap:	True
+XTerm.utmpInhibit:	False
+XTerm.WaitForMap:	True
+XTerm*VT100.Translations:	#override \
+        ~Meta <Btn2Up>: insert-selection(CUT_BUFFER0) \n\
+        ~Shift        <KeyPress> F12:     set-scrollbar(toggle) \n\
+        ~Shift        <KeyPress> F27:     scroll-back(100,page) \n\
+        ~Shift        <KeyPress> R13:     scroll-forw(100,page) \n\
+        ~Shift ~Meta  <KeyPress> F29:     scroll-back(1,page) \n\
+        ~Shift ~Meta  <KeyPress> F35:     scroll-forw(1,page) \n\
+        ~Shift  Meta  <KeyPress> F29:     scroll-back(1,line) \n\
+        ~Shift  Meta  <KeyPress> F35:     scroll-forw(1,line) \n\
+        <Key> F1: string(":1") string(0x0d) \n\
+        <Key> SunXK_F37: string("sbs@informatik.uni-kiel.dbp.de") \n\
+        <KeyPress> Prior:     scroll-back(1,page) \n\
+        <KeyPress> Next:      scroll-forw(1,page) \n\
+        <KeyPress> Home:      scroll-back(100,page) \n\
+        <KeyPress> End:       scroll-forw(100,page) \n\
+        <KeyPress> F18:       insert-selection(CUT_BUFFER0) \n
+XTerm*ttyModes:	erase ^?
+XTerm*CharClass:	33:48,37:48,45-46:48,64:48
+XTerm*scrollBar:	False
+XTerm*saveLines:	200
+XTerm*pointerShape:	top_left_arrow
+XTerm*titeInhibit:	True
+
+!--------- Elm reader -------------------------------------------------
+elmbiff*fullPixmap:	/home/cheops/sbs/.Mailtool_glyph.map
+elmbiff*emptyPixmap:	/home/cheops/sbs/.Mailtool_non_glyph.map
+elmbiff*flip:	false
+
+!--------- News reader ------------------------------------------------
+nnbiff*fullPixmap:	news
+nnbiff*emptyPixmap:	nonews
+nnbiff*flip:	false
+nnbiff*Geometry:	64x64+976+2
+nnbiff*checkCommand:	/usr/local/bin/checknews -q
+nnbiff*onceOnly:	true
+nnbiff*volume:	10
+
+!--------- Xdvi ---------------------------------------------------------
+xdvi.paper:	a4
+xdvi*geometry:	845x879+0+-5
+xdvi*iconX:	600
+xdvi*iconY:	2
+
+! --------- ghistview -----------------------------------------------
+ghostview.geometry:	784x887+0+0
+ghostview.magstep:	-2
+
+!--------- DRD settings -------------------------------------------------
+! siehe .Xedfaults.DRD
+!--------- lisa settings ------------------------------------------------
+Stack_display.xpos:	1
+Stack_display.ypos:	130
+Stack_display.height:	50
+Stack_display.width:	61
+Stack_display.font:	fixed
+dbug_window.xpos:	380
+dbug_window.ypos:	130
+dbug_window.height:	25
+dbug_window.width:	100
+dbug_window.font:	fixed
+Graph_display.xpos:	380
+Graph_display.ypos:	490
+Graph_display.height:	25
+Graph_display.width:	100
+Graph_display.font:	fixed
+Help.xpos:	845
+Help.ypos:	400
+Help.height:	6
+Help.width:	36
+Help.font:	fixed
+Descriptor_display.xpos:	360
+Descriptor_display.ypos:	500
+Descriptor_display.height:	13
+Descriptor_display.width:	50
+Descriptor_display.font:	fixed
+test.xpos:	620
+test.ypos:	1
+test.height:	1
+test.width:	1
+test.font:	fixed
+Disk_Operation.xpos:	250
+Disk_Operation.ypos:	400
+Disk_Operation.height:	5
+Disk_Operation.width:	102
+Disk_Operation.font:	fixed
+Red_env_display.xpos:	420
+Red_env_display.ypos:	0
+Red_env_display.height:	11
+Red_env_display.width:	30
+Red_env_display.font:	fixed
+Memory-Usage.height:	5
+Memory-Usage.width:	24
+Memory-Usage.font:	fixed
+menu.font:	fixed
+requester.font:	fixed
+
+!-------------- Xpilot -----------------------------------------------
+xpilot*power            1
+xpilot*turnSpeed        1
+xpilot*altTurnSpeed     20

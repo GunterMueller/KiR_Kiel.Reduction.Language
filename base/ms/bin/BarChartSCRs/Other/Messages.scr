@@ -1,0 +1,99 @@
+DEFS:
+	static double startTime[MAX_PROCESSORS][MAX_PROCESSES][MAX_PROCESSORS],
+	              timeFactor;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            rememberFactor[100], temp[1000];
+	static int i, j;
+
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		for(j=0; j<MAX_PROCESSES; ++j) {
+			pids[i][j] = -1;
+		}
+		numProcesses[i] = 0;
+	}
+
+	SET_MODE(XY_PLOT);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "Messages -- %s -- %s reduction steps",
+	        rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	timeFactor = atof(rememberFactor);
+
+	SET_NAME("Messages");
+	SET_X_LABEL("Size of message / Byte");
+	SET_Y_LABEL("Time / s");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+	SET_STYLE(POINTS);
+
+	NEXT_FRAME();
+
+	break;
+
+SEND_BEGIN:
+	if(!strcmp(S_TYPE, "MT_NEW_PROCESS")) {
+		/* Is this pid in the table yet? */
+		if(pid(PROCESSOR, PROCESS) == -1) {
+			pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+		}
+		startTime[PROCESSOR][pid(PROCESSOR, PROCESS)]
+		         [S_TARGET_PROC] = TIME;
+	}
+	if(!strcmp(S_TYPE, "MT_RESULT")) {
+		/* Is this pid in the table yet? */
+		if(pid(S_TARGET_PROC, S_TARGET_PID) == -1) {
+			pids[S_TARGET_PROC]
+			    [numProcesses[S_TARGET_PROC]++] = S_TARGET_PID;
+		}
+		startTime[S_TARGET_PROC][pid(S_TARGET_PROC, S_TARGET_PID)]
+		         [PROCESSOR] = TIME;
+	}
+	break;
+
+RECEIVE_END:
+	if(!strcmp(R_TYPE, "MT_NEW_PROCESS")) {
+		ADD_XY((double)R_SIZE,
+		       (TIME - startTime[R_FROM_PROC]
+		                        [pid(R_FROM_PROC, R_FROM_PID)]
+		                        [PROCESSOR])
+		       /timeFactor);
+		NEXT_FRAME();
+	}
+	if(!strcmp(R_TYPE, "MT_RESULT")) {
+		ADD_XY((double)R_SIZE,
+		       (TIME - startTime[PROCESSOR]
+		                        [pid(PROCESSOR, R_FOR_PID)]
+		                        [R_FROM_PROC])
+		       /timeFactor);
+		NEXT_FRAME();
+	}
+	break;
+
+END:
+	NEXT_FRAME();
+	break;

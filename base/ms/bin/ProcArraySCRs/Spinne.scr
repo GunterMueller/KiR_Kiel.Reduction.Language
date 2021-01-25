@@ -1,0 +1,106 @@
+DEFS:
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+	static int sends[MAX_PROCESSORS],
+	           receives[MAX_PROCESSORS][MAX_PROCESSORS][MAX_PROCESSES];
+
+	static int i, j, k;
+	static short rememberFromProcessor, rememberFromProcess,
+	             rememberToProcessor, rememberToProcess;
+
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            temp[1000];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		for(j=0; j<MAX_PROCESSES; ++j) {
+			pids[i][j] = -1;
+			for(k=0; k<MAX_PROCESSORS; ++k) {
+				receives[i][k][j] = -1;
+			}
+		}
+		sends[i] = -1;
+		numProcesses[i] = 0;
+	}
+
+	SET_METER(OFF);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "%s (%s) -- %s reduction steps",
+	        rememberFile, rememberTime, rememberSteps);
+	SET_TITLE(temp);
+
+	SET_STYLE(TEXT);
+
+	NEXT_FRAME();
+	break;
+
+SEND_BEGIN:
+	if(!strcmp(S_TYPE, "MT_RESULT")) {
+		receives[PROCESSOR][S_TARGET_PROC]
+		        [pid(S_TARGET_PROC, S_TARGET_PID)] = PROCESS;
+
+		/* Is this pid in the table yet? */
+		if(pid(S_TARGET_PROC, S_TARGET_PID) == -1) {
+			pids[S_TARGET_PROC]
+			    [numProcesses[S_TARGET_PROC]++] = S_TARGET_PID;
+		}
+	}
+
+	break;
+
+PROC_CREATE:
+	sends[PROCESSOR] = PC_PID;
+
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PC_PID) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PC_PID;
+	}
+
+	break;
+
+RECEIVE_END:
+	if(!strcmp(R_TYPE, "MT_NEW_PROCESS")) {
+		rememberFromProcessor = R_FROM_PROC;
+		rememberFromProcess = pid(R_FROM_PROC, R_FROM_PID);
+		rememberToProcessor = PROCESSOR;
+		rememberToProcess = pid(PROCESSOR, sends[PROCESSOR]);
+		CREATION_ARROW(rememberFromProcessor, rememberFromProcess,
+		               rememberToProcessor, rememberToProcess);
+		NEXT_FRAME();
+	}
+	if(!strcmp(R_TYPE, "MT_RESULT")) {
+		rememberFromProcessor = PROCESSOR;
+		rememberFromProcess = pid(PROCESSOR, R_FOR_PID);
+		rememberToProcessor = R_FROM_PROC;
+		rememberToProcess = pid(R_FROM_PROC,
+		                        receives[R_FROM_PROC][PROCESSOR]
+		                                [pid(PROCESSOR, R_FOR_PID)]);
+
+		CREATION_ARROW(rememberFromProcessor, rememberFromProcess,
+		               rememberToProcessor, rememberToProcess);
+		NEXT_FRAME();
+	}
+	break;
+
+END:
+	NEXT_FRAME();
+	break;

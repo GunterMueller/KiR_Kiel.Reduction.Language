@@ -1,0 +1,34 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	94.11.21.08.26.29;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef VCOMPILE
+#  define "none"
+#endif /* VCOMPILE */
+
+char * vcompile = VCOMPILE;
+
+int compile()
+  {
+  return 0;
+  }
+@

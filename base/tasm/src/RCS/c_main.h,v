@@ -1,0 +1,163 @@
+head	1.7;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.7
+date	95.03.06.15.21.44;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.02.02.14.19.24;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.01.25.10.11.57;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.06.16.47.31;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.29.14.42.26;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.05.08.04.34;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.02.09.54.57;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@this is the main() in the resulting C-file
+@
+
+
+1.7
+log
+@with parameters for output and heap
+@
+text
+@int main(int argc, char * argv[])
+{
+  char c;
+  int ta_heapsize = 8192*2048, ta_no_of_desc = 10000;
+  extern int red_cnt;
+  extern char * optarg;
+  extern int optind, opterr;
+  extern int getopt(int, char **, char *);
+  extern char ri_tasmoutfile[120];
+
+  while((c = getopt(argc, argv, "a:A:h:d:R:")) != -1)
+    switch(c)
+    {
+      case 'a': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+      case 'A': AsciiOutput = 1; KiROutput = 0; strcpy(ri_tasmoutfile, optarg); break; 
+      case 'h': ta_heapsize = atoi(optarg); break;
+      case 'd': ta_no_of_desc = atoi(optarg); break;
+      case 'R': red_cnt = atoi(optarg); break;
+    }
+  _base = 10000;
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+  st_w = _st_w;
+  st_a = _st_a;
+  build_static_clos(number_of_descs);
+  initdata();
+  push_label(0);
+  apply(goal);
+  return (1);
+}
+
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+int main(void)
+d3 17
+d21 1
+a21 1
+  InitHeapManagement(8192*2048,10000);
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a6 2
+  _base = 10000;
+  InitHeapManagement(16384*2048,40000);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+  InitHeapManagement(8192*1024,3200);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+  InitHeapManagement(256*1024,100);
+d8 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d3 8
+a10 8
+        st_w = _st_w;
+        st_a = _st_a;
+        _base = 10000;
+        InitHeapManagement(256*1024,100);
+        build_static_clos(number_of_descs);
+        push_label(0);
+        apply(goal);
+        return (1);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 1
+a7 1
+        build_static_clos_pta(number_of_descs);
+@

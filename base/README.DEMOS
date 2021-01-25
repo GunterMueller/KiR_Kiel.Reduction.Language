@@ -1,0 +1,63 @@
+Sven-Bodo Scholz   initial version                               Kiel, den 22.11.93
+Sven-Bodo Scholz   updated (ii)(1)                               Kiel, den 11.06.96
+=====================================================================================
+
+Mostly, we need to give one of the following demos:
+
+- An introduction on the reduma system in general; this is ment to show up the
+  possibilities of stepwise executions, full beta reduction, untyped expressions
+  et. al. (1)
+
+- The distributed reduma pi-red-con in action; this is kind of existance-proof
+  and for some ad hoc speed measurements. (2)
+
+- An extended introduction on the distributed reduma; this one gives detailled
+  infos on how distribution is organized and how the system parameter settings
+  influence the runtime behavior. (3)
+
+In order to ease the preparation time for these kind of demos we try to 
+devellop a kind of standard for them.
+
+(i) UNDER WHICH ACCOUNT SHOULD THE DEMO BE MADE?
+
+  1) you should login as base on a machine of your choice; you need access 
+     on /home/batman and /home/majestix.
+
+(ii) WHICH PROGRAMM SHOULD I USE? WHERE SHOULD I START IT? WHERE ARE SOME EXAMPLES?
+
+  ad (1) change directory to kir/demo and start lneu (for better single-stepping!)
+         one possible thread of demonstration could be:
+         - starting with simple lambda-expressions exploiting
+            - beta-reduction
+            - name-clashes
+            - protect-keys this directly leads to the more sophisticated
+         - twice.ed  example;
+           tracing this examples shows up how protect-keys are introduced
+           and resolved;
+           using lselect[1] and a nested list as args, you can mention
+           that we are untyped.
+           this allows for a direct specification of th well known
+         - ycomb[123].ed example;
+           these versions of y-combinators show up the strategy of how
+           reductions are performed in KiR.
+         - numerals[012].ed example;
+           incremental versions of a primitive arithmetic in lambda-notation
+           for demonstration 
+         - pure.ed may be used as well; it includes list-funs and fac!
+         - symbnum.ed example demonstrates PM and user defined constructors.
+         - secd.ed example exploites how abstract machines can be visualizes nicely.
+         - gmaschine.ed example is a big one!8-)
+
+         Remarks: for some of the demos especially single-stepped ones and
+                  the secd-example it seems to be advantageous to have two 
+                  separate machines started so one can see to different
+                  versions of an expression simultaneously.
+
+  ad (2) rlogin majestix and then ????.....
+
+  ad (3) change directory to tbms and then start "start". Files etc.
+         you will find interactively.
+
+
+
+to be continued..

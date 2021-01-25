@@ -1,0 +1,381 @@
+BETAFUNCS	loctypes.h	/^#define BETAFUNCS(x)	(						\\$/
+BOOLEAN	dbug.c	94
+BaseName	dbug.c	/^LOCAL char *BaseName (pathname)$/
+CALC_EXT	mytypes.h	/^#define CALC_EXT(x)		((x)>>4)$/
+CLOSURE	loctypes.h	142
+CODE	mytypes.h	337
+COMMAND	mytypes.h	108
+C_CODE	mytypes.h	247
+CloseFile	dbug.c	/^LOCAL VOID CloseFile (fp)$/
+DATANODE	mytypes.h	281
+DATATAG	mytypes.h	234
+DBUG_ASSERT	dbug.h	/^#define DBUG_ASSERT(p,q)$/
+DBUG_ENTER	dbug.h	/^#define DBUG_ENTER(a1)$/
+DBUG_EXECUTE	dbug.h	/^#define DBUG_EXECUTE(keyword,a1)$/
+DBUG_LONGJMP	dbug.h	/^#define DBUG_LONGJMP(a1,a2) (_db_longjmp_ (), long/
+DBUG_LPRINT	dbug.h	/^#define DBUG_LPRINT(key1,key2,arglist) \\$/
+DBUG_ORDERS	tis.h	/^#define DBUG_ORDERS(str)	DBUG_PRINT("ORDERS",(str,/
+DBUG_POP	dbug.h	/^#define DBUG_POP() _db_pop_ ()$/
+DBUG_PRINT	dbug.h	/^#define DBUG_PRINT(keyword,arglist) \\$/
+DBUG_PRINTE	dbug.h	/^#define DBUG_PRINTE( keyword, arglist ) \\$/
+DBUG_PROCESS	dbug.h	/^#define DBUG_PROCESS(a1)$/
+DBUG_PUSH	dbug.h	/^#define DBUG_PUSH(a1)$/
+DBUG_RETURN	dbug.h	/^#define DBUG_RETURN(a1) do { DBUG_PRINT("RETURN", /
+DBUG_SETJMP	dbug.h	/^#define DBUG_SETJMP(a1) (_db_setjmp_ (), setjmp (a/
+DELTYPE	mytypes.h	/^#define DELTYPE(i, ty)          (ty & ~(TYPE_MASK</
+DEPEND	loctypes.h	168
+DESCTAG	mytypes.h	240
+DO_EXT	mytypes.h	/^#define DO_EXT(x)		((x)<<4)$/
+DbugExit	dbug.c	/^LOCAL VOID DbugExit (why)$/
+DbugMalloc	dbug.c	/^LOCAL char *DbugMalloc (size)$/
+Delay	dbug.c	/^Delay () $/
+DelayArg	dbug.c	/^LOCAL int DelayArg (value)$/
+DoPrefix	dbug.c	/^LOCAL void DoPrefix (_line_)$/
+DoTrace	dbug.c	/^LOCAL BOOLEAN DoTrace ()$/
+EXISTS	dbug.c	/^#  define EXISTS(pathname) (access (pathname, A_EX/
+FUNCTION	mytypes.h	308
+FUNDESC	mytypes.h	331
+FUNLIST	loctypes.h	190
+FUNTYPES	loctypes.h	181
+FreeList	dbug.c	/^LOCAL void FreeList (linkp)$/
+GETBOOL	mytypes.h	/^#define GETBOOL(x)      ((x)>>4)$/
+GETCHAR	mytypes.h	/^#define GETCHAR(x)      ((x)>>16)$/
+GETDATAENTRY	buildtree.h	/^#define GETDATAENTRY(d,x)    ((d)->x)$/
+GETDESC	buildtree.h	/^#define GETDESC(f)           ((f)->desc)$/
+GETDESCENTRY	buildtree.h	/^#define GETDESCENTRY(d,x)    ((d)->x)$/
+GETFIRSTDATA	buildtree.h	/^#define GETFIRSTDATA(p)      ((p)->data)$/
+GETFIRSTDESC	buildtree.h	/^#define GETFIRSTDESC(p)      ((p)->desc)$/
+GETFIRSTFUNCTION	buildtree.h	/^#define GETFIRSTFUNCTION(p)  ((p)->function)$/
+GETFIRSTORDER	buildtree.h	/^#define GETFIRSTORDER(f)     ((f)->order)$/
+GETFUNCINLINE	buildtree.h	/^#define GETFUNCINLINE(f)     ((f)->inlined)$/
+GETIA	mytypes.h	/^#define GETIA(x)        ((x)>>4)$/
+GETINT	mytypes.h	/^#define GETINT(x)       ((x)>>1)$/
+GETNAME	buildtree.h	/^#define GETNAME(f)           ((f)->name)$/
+GETNEXTDATA	buildtree.h	/^#define GETNEXTDATA(d)       ((d)->next)$/
+GETNEXTDESC	buildtree.h	/^#define GETNEXTDESC(d)       ((d)->next)$/
+GETNEXTFUNCTION	buildtree.h	/^#define GETNEXTFUNCTION(f)   ((f)->next)$/
+GETNEXTORDER	buildtree.h	/^#define GETNEXTORDER(o)      ((o)->next)$/
+GETORDERARGS	buildtree.h	/^#define GETORDERARGS(o,x)    ((o)->args.x)$/
+GETORDERENTRY	buildtree.h	/^#define GETORDERENTRY(o,x)   ((o)->x)$/
+GETPREVORDER	buildtree.h	/^#define GETPREVORDER(o)      ((o)->prev)$/
+GETPRF	mytypes.h	/^#define GETPRF(x)       (x >> 4)$/
+GETPTR	mytypes.h	/^#define GETPTR(x)       (x)$/
+GETSTACKENTRY	loctypes.h	/^#define GETSTACKENTRY(x,e)	((x)->e)$/
+GETSTELMDATA	loctypes.h	/^#define GETSTELMDATA(x,data)	((x)->dat.data)$/
+GETSTELMTYPE	loctypes.h	/^#define GETSTELMTYPE(x)		((x)->type)$/
+GETTOPELM	loctypes.h	/^#define GETTOPELM(x)		((x)->stack[GETTOPOFSTACK(x)/
+GETTOPOFSTACK	loctypes.h	/^#define GETTOPOFSTACK(x)	((x)->topofstack)$/
+GETTYPE	mytypes.h	/^#define GETTYPE(i, ty)          (((ty)>>(i*8)) & T/
+IACTION	mytypes.h	189
+INTERT	mytypes.h	196
+ISASM_DIST	mytypes.h	/^#define ISASM_DIST()    (asm_mode & ASM_DIST)$/
+ISASM_SK	mytypes.h	/^#define ISASM_SK()      (asm_mode == ASM_SK) $/
+ISASM_TILDE	mytypes.h	/^#define ISASM_TILDE()   (asm_mode & ASM_TILDE)$/
+ISBOOL	mytypes.h	/^#define ISBOOL(x)       (((x) & ALLTAGS) == BOOLTA/
+ISCHAR	mytypes.h	/^#define ISCHAR(x)       (((x) & ALLTAGS) == CHARTA/
+ISIA	mytypes.h	/^#define ISIA(x)         (((x) & ALLTAGS) == IATAG)/
+ISINT	mytypes.h	/^#define ISINT(x)        ((x) & 1)$/
+ISPRF	mytypes.h	/^#define ISPRF(x)        (((x) & ALLTAGS) == PRFTAG/
+ISPTR	mytypes.h	/^#define ISPTR(x)        (((x) & ALLTAGS) == 0)$/
+InList	dbug.c	/^LOCAL BOOLEAN InList (linkp, cp)$/
+Indent	dbug.c	/^LOCAL void  Indent (indent)$/
+JCONDS	loctypes.h	/^#define JCONDS(x)	( 						\\$/
+JCONDX	loctypes.h	/^#define JCONDX(x)	(						\\$/
+KNOWLEDGE	loctypes.h	91
+ListParse	dbug.c	/^LOCAL struct link *ListParse (ctlp)$/
+MAKETYPE	mytypes.h	/^#define MAKETYPE(ext, prim)     ((ext) | (prim))$/
+MATCHX	loctypes.h	/^#define MATCHX(x)	(						\\$/
+MERGETYPE	mytypes.h	/^#define MERGETYPE(ty1, ty2)     ((ty1) | (ty2))$/
+MKBOOL	mytypes.h	/^#define MKBOOL(x)       (((x)<<4) | BOOLTAG)$/
+MKCHAR	mytypes.h	/^#define MKCHAR(x)       (((x)<<16) | CHARTAG)$/
+MKIA	mytypes.h	/^#define MKIA(x)         (((x)<<4) | IATAG)$/
+MKINT	mytypes.h	/^#define MKINT(x)        (((x)<<1) | 1)$/
+MKPRF	mytypes.h	/^#define MKPRF(x)        ((x << 4) | PRFTAG)$/
+MKPTR	mytypes.h	/^#define MKPTR(x)        (x)$/
+Mmain	main.c	/^int main(int argc, char * argv[])$/
+ORDER	mytypes.h	320
+OUTNAME	c_output.c	81
+OpenFile	dbug.c	/^LOCAL VOID OpenFile (name)$/
+PARAMETERS	mytypes.h	300
+PRIMF	mytypes.h	179
+PRIMLIST	loctypes.h	127
+PROGRAM	mytypes.h	255
+PushState	dbug.c	/^LOCAL VOID PushState ()$/
+RETURNADR	loctypes.h	134
+SETDATAENTRY	buildtree.h	/^#define SETDATAENTRY(d,x)    GETDATAENTRY(d,x)$/
+SETDESC	buildtree.h	/^#define SETDESC(f)           GETDESC(f)$/
+SETDESCENTRY	buildtree.h	/^#define SETDESCENTRY(d,x)    GETDESCENTRY(d,x)$/
+SETFIRSTDATA	buildtree.h	/^#define SETFIRSTDATA(p)      GETFIRSTDATA(p)$/
+SETFIRSTDESC	buildtree.h	/^#define SETFIRSTDESC(p)      GETFIRSTDESC(p)$/
+SETFIRSTFUNCTION	buildtree.h	/^#define SETFIRSTFUNCTION(p)  GETFIRSTFUNCTION(p)$/
+SETFIRSTORDER	buildtree.h	/^#define SETFIRSTORDER(f)     GETFIRSTORDER(f)$/
+SETFUNCINLINE	buildtree.h	/^#define SETFUNCINLINE(f)     ((f)->inlined)$/
+SETNAME	buildtree.h	/^#define SETNAME(f)           GETNAME(f)$/
+SETNEXTDATA	buildtree.h	/^#define SETNEXTDATA(d)       GETNEXTDATA(d)$/
+SETNEXTDESC	buildtree.h	/^#define SETNEXTDESC(d)       GETNEXTDESC(d)$/
+SETNEXTFUNCTION	buildtree.h	/^#define SETNEXTFUNCTION(f)   GETNEXTFUNCTION(f)$/
+SETNEXTORDER	buildtree.h	/^#define SETNEXTORDER(o)      GETNEXTORDER(o)$/
+SETORDERARGS	buildtree.h	/^#define SETORDERARGS(o,x)    GETORDERARGS(o,x)$/
+SETORDERENTRY	buildtree.h	/^#define SETORDERENTRY(o,x)   GETORDERENTRY(o,x)$/
+SETPREVORDER	buildtree.h	/^#define SETPREVORDER(o)      GETPREVORDER(o)$/
+SETSTACKENTRY	loctypes.h	/^#define SETSTACKENTRY(x,e)	GETSTACKENTRY(x,e)$/
+SETSTELMDATA	loctypes.h	/^#define SETSTELMDATA(x,data)	GETSTELMDATA(x,data)$/
+SETSTELMTYPE	loctypes.h	/^#define SETSTELMTYPE(x) 	GETSTELMTYPE(x)$/
+SETTOPELM	loctypes.h	/^#define SETTOPELM(x)		GETTOPELM(x)$/
+SETTOPOFSTACK	loctypes.h	/^#define SETTOPOFSTACK(x)	GETTOPOFSTACK(x)$/
+SETTYPE	mytypes.h	/^#define SETTYPE(i, ty)          ((ty)<<(i*8))$/
+STACK	loctypes.h	162
+STELM	loctypes.h	155
+STREQ	dbug.c	/^#define STREQ(a,b) (strcmp(a,b) == 0)$/
+ST_NODE	heap.h	24
+ST_RELOC	heap.h	30
+SUBTYPE	loctypes.h	121
+StrDup	dbug.c	/^LOCAL char *StrDup (string)$/
+TAG_INT	c_output.c	/^#define TAG_INT(x)         (((x) * FAC_INT) + INT)/
+TP_TYPES	mytypes.h	228
+TRACING	dbug.c	/^#  define TRACING(pathname) (access (pathname, A_E/
+TYPES2LONG	mytypes.h	/^#define TYPES2LONG(w,x,y,z)	((w)+((x) << 8)+((y) </
+T_2INT	c_output.c	/^#define T_2INT(x,y)        (((x) & (y) & P_INT) ==/
+T_CONSTANT	c_output.c	/^#define T_CONSTANT(x)     (((x) & P_CONSTANT) == C/
+T_INT	c_output.c	/^#define T_INT(x)           (((x) & P_INT) == INT)$/
+WRITABLE	dbug.c	/^#  define WRITABLE(pathname) (access (pathname, A_/
+Writable	dbug.c	/^LOCAL BOOLEAN Writable (pathname)$/
+_db_doprnt_	dbug.c	/^VOID _db_doprnt_ (format, ARGLIST)$/
+_db_enter_	dbug.c	/^VOID _db_enter_ (_func_, _file_, _line_, _sfunc_, /
+_db_keyword_	dbug.c	/^BOOLEAN _db_keyword_ (keyword)$/
+_db_ldoprnt_	dbug.c	/^VOID _db_ldoprnt_ (format, ARGLIST)$/
+_db_longjmp_	dbug.c	/^EXPORT void _db_longjmp_ ()$/
+_db_lpargs_	dbug.c	/^VOID _db_lpargs_ (_line_, key1, key2)$/
+_db_pargs_	dbug.c	/^VOID _db_pargs_ (_line_, keyword)$/
+_db_pop_	dbug.c	/^VOID _db_pop_ ()$/
+_db_printf_	dbug.c	/^VOID _db_printf_ (_line_, keyword, format, ARGLIST/
+_db_push_	dbug.c	/^VOID _db_push_ (control)$/
+_db_return_	dbug.c	/^VOID _db_return_ (_line_, _sfunc_, _sfile_, _sleve/
+_db_setjmp_	dbug.c	/^EXPORT void _db_setjmp_ ()$/
+_newdesc	heap.h	/^#define _newdesc()	((desc *)(heap = (heapelem *)((/
+add_code_node	compile.c	/^void add_code_node(CODE *ftab, char *fmt, ...)$/
+am_i_insertable	optimizer.c	/^int am_i_insertable(FUNCTION *f)$/
+argstack	heap.c	/^heapelem * gcnewdesc(int n, argstack(W), argstack(/
+asis_stmt	tasm2c.y	/^asis_stmt:   RTT LBRACKET RBRACKET SEMICOLON$/
+astack	stack.h	/^#define astack(st)      stack ** base_ ## st, * me/
+atox	tasm2c.l	/^static int atox(const char * s)$/
+backupoldjcond	tiny.c	/^void backupoldjcond()$/
+base_stmt	tasm2c.y	/^base_stmt:    PUSHCW LBRACKET INT LBRACKET INTV RB/
+build_control	compile.c	/^void build_control(PROGRAM *p)$/
+build_functable	compile.c	/^void build_functable(FUNDESC *d, char *modulfile)$/
+build_functable_one_function	compile.c	/^void build_functable_one_function(FUNDESC *d, char/
+build_makefile	c_output.c	/^void build_makefile(void)$/
+c_build_func_prot	c_output.c	/^void c_build_func_prot(PROGRAM *p, char *modulfile/
+c_out_data	c_output.c	/^void c_out_data(void)$/
+c_out_desc_list	c_output.c	/^void c_out_desc_list(FUNDESC *desc)$/
+c_out_functable	c_output.c	/^void c_out_functable(CODE *f, int ShallICount)$/
+c_out_intertype	c_output.c	/^static char * c_out_intertype(INTERT n)$/
+c_out_order_list	c_output.c	/^void c_out_order_list(FUNCTION *func)$/
+c_out_tree	c_output.c	/^void c_out_tree(PROGRAM *out_me)$/
+calc_args_val	tiny.c	/^float calc_args_val(STELM *a,int n)$/
+call_makefile	c_output.c	/^void call_makefile(void)$/
+check_hash_args	tiny.c	/^long check_hash_args(ORDER *ord)$/
+check_int_real	tiny.c	/^static TP_TYPES check_int_real(const TP_TYPES tp0,/
+check_mat_bool	tiny.c	/^static TP_TYPES check_mat_bool(const TP_TYPES tp0,/
+check_mat_num	tiny.c	/^static TP_TYPES check_mat_num(const TP_TYPES tp0,c/
+check_tvect_bool	tiny.c	/^static TP_TYPES check_tvect_bool(const TP_TYPES tp/
+check_tvect_num	tiny.c	/^static TP_TYPES check_tvect_num(const TP_TYPES tp0/
+check_vect_bool	tiny.c	/^static TP_TYPES check_vect_bool(const TP_TYPES tp0/
+check_vect_num	tiny.c	/^static TP_TYPES check_vect_num(const TP_TYPES tp0,/
+clean_up	c_output.c	/^void clean_up(void)$/
+cleanstacks	ris.c	/^static void cleanstacks(ORDER * order, COMMAND cmd/
+clear_cache	tiny.c	/^void clear_cache(FUNTYPES *ft)$/
+cmpres	ris.c	/^static stack * cmpres(argstack(S))$/
+compile	compile.c	/^int compile(char *modulfile)$/
+compile_delta	comp_support.c	/^void compile_delta(FUNCTION *f)$/
+conc_data	buildtree.c	/^DATANODE * conc_data(DATANODE *list, DATANODE *dat/
+conc_desc	buildtree.c	/^FUNDESC *conc_desc(FUNDESC *list, FUNDESC *desc)$/
+conc_desc_fun	buildtree.c	/^PROGRAM *conc_desc_fun(FUNDESC *desc, DATANODE * d/
+conc_function	buildtree.c	/^FUNCTION *conc_function(FUNCTION *list, FUNCTION */
+conc_order	buildtree.c	/^ORDER *conc_order(ORDER *list, ORDER *order)$/
+convert_tail	comp_support.c	/^void convert_tail(FUNCTION *f)$/
+convtype	ris.c	/^static typeclass convtype(const TP_TYPES t)$/
+correct_t_frame	tcorrect.c	/^int correct_t_frame()$/
+count_command	comp_support.c	/^int count_command(FUNCTION *func) $/
+count_data	compile.c	/^int count_data(PROGRAM *p)$/
+data	tasm2c.y	/^data:         D_REAL LBRACKET HEX_NUM ',' REALV RB/
+del_order	optimizer.c	/^void del_order(ORDER *o)$/
+delete_order	buildtree.c	/^void delete_order(ORDER *d)$/
+desc	heap.h	38
+dist_cmd	tasm2c.y	/^dist_cmd:    PUSHH LBRACKET INTV RBRACKET SEMICOLO/
+distcom	tasm2c.y	/^distcom:     DIST LBRACKET DISTARG_LABEL ',' DISTE/
+doneid	ris.h	13
+drop	stack.h	/^#define drop(st, n)	((st_ ## st) -= n)$/
+dummy	tasm2c.l	/^void dummy()$/
+dump_data	error.c	/^void dump_data(char **array)$/
+dump_list_func	tiny.c	/^void dump_list_func(STELM *stelm)$/
+dup_func	comp_support.c	/^ORDER *dup_func(ORDER *dup_me,int flag)$/
+elem	tasm2c.y	/^elem:        INT LBRACKET INTV RBRACKET$/
+evacuate	heap.c	/^static desc * evacuate(desc * p)$/
+exe_func	tis.c	/^STELM *exe_func()$/
+exe_prim1	tiny.c	/^void exe_prim1(PRIMF primf)$/
+exe_prim2	tiny.c	/^void exe_prim2(PRIMF primf)$/
+exe_prim3	tiny.c	/^void exe_prim3(PRIMF primf)$/
+exe_prim4	tiny.c	/^void exe_prim4(PRIMF primf)$/
+execution	tis.c	/^void execution()$/
+explode_rtf	georg.c	/^void explode_rtf(ORDER * p)$/
+find_address	tiny.c	/^STELM *find_address(void *adr)$/
+find_desc	tiny.c	/^FUNDESC *find_desc(FUNDESC *des,char *label)$/
+find_free	optimizer.c	/^ORDER *find_free(ORDER *o, ORDER *bound)$/
+find_func	tiny.c	/^ORDER *find_func(FUNCTION *fun,char *s)$/
+find_function	buildtree.c	/^FUNCTION *find_function(char *s)$/
+find_label	tiny.c	/^ORDER *find_label(ORDER *ord, char *s)$/
+find_label_backwards	georg.c	/^static ORDER * find_label_backwards(ORDER * p, con/
+find_last_order	optimizer.c	/^ORDER *find_last_order(ORDER *o)$/
+find_substr	str_support.c	/^int find_substr(char *find_in_me, char *find_me)$/
+findcase	compile.c	/^char *findcase(int i)$/
+findfcall	tiny.c	/^STACK *findfcall(STELM *stelm)$/
+findfunc	compile.c	/^char *findfunc(int i)$/
+free_order	buildtree.c	/^static void free_order(ORDER *d)$/
+free_subtype	tiny.c	/^void free_subtype(STELM *stelm)$/
+freeframe	ris.h	/^#define freeframe(s, c) if (refmode != SREFisexpli/
+freeheap	heap.h	/^#define freeheap()      (free(heapbase), free(heap/
+freestack	stack.h	/^#define freestack(st)            free(mem_ ## st)$/
+func	tasm2c.y	/^func:        FUNC_LABEL COLON { outfunc = 0; } stm/
+func_call	tasm2c.y	/^func_call:   PUSHRET LBRACKET CONT_LABEL RBRACKET /
+func_end	tasm2c.y	/^func_end:    END LBRACKET RBRACKET SEMICOLON$/
+func_list	tasm2c.y	/^func_list:    func_list func$/
+georg	georg.c	/^int georg(int dogeorg)$/
+get_arg_types	optimizer.c	/^char *get_arg_types(ORDER *o, int field)$/
+get_ia_arity	support.c	/^int get_ia_arity(IACTION iaction)$/
+get_res_fmt	optimizer.c	/^char *get_res_fmt(ORDER *h)$/
+get_result	tiny.c	/^STELM *get_result(char *s, STACK *a, long n, STACK/
+get_str_space	str_support.c	/^char *get_str_space(char *s)$/
+getatomtype	tasm2c.l	/^static int getatomtype(char t)$/
+getfunc_ret	tiny.c	/^STELM *getfunc_ret()$/
+getnextcond	optimizer.c	/^ORDER *getnextcond(ORDER *o)$/
+getstack	stack.h	/^#define getstack(st)    (base_ ## st), (st_ ## st)/
+gimme_code	comp_support.c	/^char *gimme_code(ORDER *o)$/
+gotofail	tiny.c	/^STELM *gotofail()$/
+hash_stmt	tasm2c.y	/^hash_stmt:   HASHARGS types$/
+headerid	heap.h	12
+heapelem	heap.h	7
+if	c_output.c	/^  if (DIST)$/
+initheap	heap.c	/^heapelem * initheap(int heapsize)$/
+initnorisk	ris.c	/^void initnorisk()$/
+initstack	stack.h	/^#define initstack(st, stacksize) ( mem_ ## st = (s/
+inline_function	optimizer.c	/^void inline_function(FUNCTION *inline_me, ORDER *i/
+insert_args	tiny.c	/^void insert_args(STACK *w,long n,STACK *t,long nf,/
+insert_fred_fish	compile.c	/^void insert_fred_fish(FUNCTION *f)$/
+insert_function_header	compile.c	/^void insert_function_header(FUNCTION *f)$/
+insert_functions	optimizer.c	/^void insert_functions(FUNCTION *f)$/
+insert_functype	tiny.c	/^int insert_functype(char *name,STACK *a,long n,STA/
+insert_labels	comp_support.c	/^void insert_labels(FUNCTION *f)$/
+insert_labels_one_function	comp_support.c	/^void insert_labels_one_function(FUNCTION *f)$/
+insert_order_list	buildtree.c	/^void insert_order_list(ORDER *insert_me, ORDER *be/
+insert_redcnt_info	compile.c	/^void insert_redcnt_info(FUNCTION *f)$/
+insert_restype	tiny.c	/^void insert_restype(STELM *res, ORDER *o)$/
+insert_switchtable	comp_support.c	/^void insert_switchtable(FUNCTION *f, int i, ORDER /
+inter_type	tasm2c.y	/^inter_type:  DONE        { $$=INdone; }$/
+interact	tasm2c.y	/^interact:    IA_FOPEN       { $$.prf=ia_fopen;   $/
+is_it_a_structure_result	optimizer.c	/^int is_it_a_structure_result(PRIMF p)$/
+isempty	stack.h	/^#define isempty(st)	(top(st)==BOTTOM)$/
+isnt_atom	optimizer.c	/^int isnt_atom(ORDER *h)$/
+labeltype	mytypes.h	113
+list	tasm2c.y	/^list:        list ',' elem$/
+lnode	heap.h	/^#define lnode(p,x)	((p)->u.nd.x)$/
+long_type_names	tiny.c	/^const char *long_type_names(TP_TYPES type)$/
+lreloc	heap.h	/^#define lreloc(p,x)	((p)->u.rel.x)$/
+make_one_function	comp_support.c	/^void make_one_function(PROGRAM *p)$/
+mkdec	ris.c	/^static void mkdec(ORDER * cmd, desc * p, const sta/
+mkinc	ris.c	/^static void mkinc(ORDER * cmd, desc * p, const sta/
+ndesc	heap.h	/^#define ndesc(t, n, m)   (newdesc(), lnode((desc */
+new_data	buildtree.c	/^DATANODE *new_data(DATATAG whatami, int adr, ...)$/
+new_desc	buildtree.c	/^FUNDESC *new_desc(DESCTAG tag, int adr, int n, int/
+new_function	buildtree.c	/^FUNCTION *new_function(const char *name, ORDER *or/
+new_order	buildtree.c	/^ORDER *new_order(COMMAND add_me, ...)$/
+new_stelm	tiny.c	/^STELM *new_stelm(TP_TYPES tp,void *data)$/
+newdesc	heap.h	/^#define newdesc()	((desc *)((_newdesc(), heap < he/
+onetype	tasm2c.y	/^onetype:     INT         { $$ = (TP_TYPES *)malloc/
+optimize_delta	optimizer.c	/^void optimize_delta(FUNCTION *f)$/
+out_data_list	output.c	/^void out_data_list(DATANODE * desc)$/
+out_desc_list	output.c	/^void out_desc_list(FUNDESC * desc)$/
+out_functable	output.c	/^void out_functable(CODE *f)$/
+out_ia	output.c	/^static char *out_ia(IACTION n)$/
+out_intertype	output.c	/^static char * out_intertype(INTERT n)$/
+out_order_list	output.c	/^void out_order_list(ORDER *out)$/
+out_primf	output.c	/^static char *out_primf(PRIMF n)$/
+out_tree	output.c	/^void out_tree(PROGRAM * out_me)$/
+overwrite_func	buildtree.c	/^void overwrite_func(char *overwrite_me, ORDER *new/
+param_stmt	tasm2c.y	/^param_stmt:  PUSHW LBRACKET PTD LBRACKET HEX_NUM R/
+pdesc	heap.h	16
+peek	stack.h	/^#define peek(st, n)	(st_ ## st)[-(n)]$/
+pop	stack.h	/^#define pop(st)		(*(st_ ## st)--)$/
+prf1	tasm2c.y	/^prf1:        ABS        { $$.prf=p_abs; $$.types=$/
+prf2	tasm2c.y	/^prf2:        PLUS    { $$.prf=p_plus; $$.types=$1./
+prf3	tasm2c.y	/^prf3:        LREPLACE     { $$.prf=p_lreplace; $$./
+prf4	tasm2c.y	/^prf4:        MREPLACE    { $$.prf=p_mreplace; $$.t/
+print_types	tiny.c	/^void print_types(TP_TYPES * types, int n)$/
+prselem	output.c	/^static char * prselem(int x)$/
+push	stack.h	/^#define push(st,x)	((*++(st_ ## st) == BOTTOM ? (y/
+quitprimf	tiny.c	/^void quitprimf()$/
+reinitstack	stack.h	/^#define reinitstack(st, stsize)  ( *(base_ ## st) /
+reset_inlined_flags	optimizer.c	/^void reset_inlined_flags(void)$/
+restore_ret	tiny.c	/^void restore_ret(ORDER *old_ord)$/
+return_to_call	tiny.c	/^void return_to_call(STELM *stelm)$/
+ris	ris.c	/^int ris()$/
+rnode	heap.h	/^#define rnode(p,x)	lnode(p, x)$/
+rreloc	heap.h	/^#define rreloc(p,x)	lreloc(p, x)$/
+search_case	c_output.c	/^int search_case(ORDER *o)$/
+search_conddesc	c_output.c	/^int search_conddesc(char *label)$/
+search_condname	compile.c	/^int search_condname(char *find_me)$/
+search_desc	c_output.c	/^char *search_desc(int search_me)$/
+search_func	compile.c	/^FUNDESC *search_func(char *s)$/
+search_funcdesc	c_output.c	/^int search_funcdesc(int adr)$/
+search_funcname	compile.c	/^int search_funcname(char *find_me)$/
+search_label	optimizer.c	/^ORDER *search_label(char *s, ORDER *o)$/
+search_last_delta	comp_support.c	/^ORDER *search_last_delta(ORDER *o)$/
+search_ret	tiny.c	/^ORDER *search_ret(ORDER *ord)$/
+searchdata	c_output.c	/^int searchdata(int adr)$/
+searchfor_	tiny.c	/^char *searchfor_(char *search)$/
+searchforfuncname	tiny.c	/^char *searchforfuncname(char *search)$/
+searchftypes	tiny.c	/^FUNTYPES *searchftypes(FUNTYPES *ft, STELM *a, STE/
+searchfunlist	tiny.c	/^FUNLIST *searchfunlist(char *name)$/
+selem	tasm2c.y	/^selem:       SELEM { $$=MKCHAR($1); }$/
+set	stack.h	/^#define set(st, n, x)	(st_ ## st)[-(n)] = (x)$/
+set_depend	tiny.c	/^void set_depend(FUNDESC *des,STACK *w, STACK *t,ST/
+setrefmode	mytypes.h	116
+short_type_names	tiny.c	/^const char *short_type_names(TP_TYPES type)$/
+slist	tasm2c.y	/^slist:        slist ',' selem$/
+st_free	tiny.c	/^void st_free(STACK *st)$/
+st_make	tiny.c	/^STACK *st_make(STACK *st, long n)$/
+st_pop	tiny.c	/^STELM *st_pop(STACK *st)$/
+st_push	tiny.c	/^STACK *st_push(STACK *st, STELM *vt)$/
+st_read	tiny.c	/^STELM *st_read(STACK *st, long i)$/
+stack	stack.h	6
+stack_display	tiny.c	/^void stack_display()$/
+stackid	ris.h	4
+start_desc	tasm2c.y	/^start_desc: FUN_DESC LBRACKET HEX_NUM ',' D_FUNC '/
+stelm_cpy	tiny.c	/^void stelm_cpy(STELM *stelm1,STELM *stelm2,long n)/
+stelm_display	tiny.c	/^void stelm_display(STELM *stelm, long i)$/
+stelm_free	tiny.c	/^void stelm_free(STELM *stelm)$/
+stelmcmp	tiny.c	/^int stelmcmp(STELM *stelm1,STELM *stelm2,int n)$/
+stmt	tasm2c.y	/^stmt:        param_stmt { $$=$1;}$/
+stmt_list	tasm2c.y	/^stmt_list:   stmt_list stmt$/
+str2type	tasm2c.l	/^static int str2type(char * str)$/
+string	tasm2c.y	/^string:      D_STRING LBRACKET HEX_NUM ',' INTV ',/
+strrchr	dbug.c	/^LOCAL char *strrchr (s, c)$/
+strrepl	str_support.c	/^char *strrepl(char *rep_here, char *rep_me, int co/
+strtok	dbug.c	/^LOCAL char *strtok (s1, s2)$/
+subtype_cpy	tiny.c	/^SUBTYPE *subtype_cpy(SUBTYPE *st)$/
+subtypecmp	tiny.c	/^void subtypecmp(SUBTYPE *st1,SUBTYPE *st2)$/
+swapheaps	heap.c	/^heapelem * swapheaps(int heapsize)$/
+testguard	ris.c	/^static int testguard(ORDER * cmd)$/
+tis	tis.c	/^int tis()$/
+top	stack.h	/^#define top(st)		peek(st, 0)$/
+typeclass	heap.h	14
+types	tasm2c.y	/^types:       onetype types { $$ = (TP_TYPES *)mall/
+vargstack	stack.h	/^#define vargstack(st, ap) (base_ ## st) = va_arg(a/
+while	output.c	/^while (NULL!=fhelp)$/
+yy_flex_strcpy	tasm2c.l	/^static void yy_flex_strcpy( char * a, const char */
+yyerror	error.c	/^int yyerror(const char *fmt, ...)$/
+yyfail	error.c	/^int yyfail(const char *fmt, ...)$/
+yylex	tasm2c.l	/^%%$/
+yymessage	error.c	/^int yymessage(const char *fmt, ...)$/
+yyparse	tasm2c.y	/^%%$/
+yywarn	error.c	/^int yywarn(const char *fmt, ...)$/

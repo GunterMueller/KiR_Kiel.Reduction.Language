@@ -1,0 +1,90 @@
+.\" Copyright (c) 1992 by the University of Kiel.
+.\" All rights reserved.
+.\"
+.\"	@(#)mkfl.1	1.0 (University of Kiel) 1/11/92
+.\"
+.TH MKFL 1 "November 1, 1992"
+.UC
+.SH NAME
+mkfl \- generate actual file list
+.SH SYNOPSIS
+.B mkfl
+[
+.I dir ...
+]
+.SH DESCRIPTION
+.B mkfl
+generates a new
+.B RCS-files
+file in all specified directories or if
+.B RCS-directories
+exists in all directories belonging to the RCS-project.
+.LP
+All files in a processed directory that correspond to an
+RCS-file in the respective RCS-directory are included in
+the new
+.BR RCS-files .
+.LP
+After that the new
+.B RCS-files
+file is compared the previous one and the user is prompted
+to check in the generated
+.B RCS-files
+or not.
+.SH EXAMPLE
+In a directory within an RCS-project the user creates a new
+file
+.BR test .
+.LP
+To add this file to the RCS-project, one might use:
+.RS
+.sp.5
+.nf
+.B example% rcs \-i test
+.B example% ci \-u test
+.fi
+.RE
+.LP
+checks the new file
+.B test
+in, but does not delete it. Now an updated version of
+.B RCS-files can be obtained by:
+.RS
+.sp.5
+.nf
+.B example% mkfl
+rcsdiff ./RCS-files
+0a1
+> test
+mkfl: check in modified RCS-files? y
+RCS/RCS-files,v  <--  RCS-files
+new revision: 1.2; previous revision: 1.1
+enter log message, terminated with single '.' or end of file:
+.RI >>  "new revision including test"
+done
+.fi
+.RE
+.LP
+If the the generated
+.B RCS-file
+does not differ from the previous
+.B RCS-file
+the check in ist not offered.
+.SH FILES
+.TP 1i
+.B RCS-files
+contains the names of all files within a directory that is controlled
+by RCS
+.TP
+.B RCS-directories
+contains the names of all directories belonging to an RCS-project
+.SH ENVIRONMENT
+.TP 1i
+.B RCSROOT
+default directory if no command-line directories are given
+.SH SEE\ ALSO
+.BR rcs (1),
+.BR ci (1),
+.BR co (1),
+.BR setrev (1),
+.BR rcs-project (5)

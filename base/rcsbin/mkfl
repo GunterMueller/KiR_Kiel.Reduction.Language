@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Schreibt die Namen aller RCS-Working-Files
+# durch Zeilenende getrennt in die Datei RCS-files und
+# schreibt fuer RCS-Working-Files, die einem Branch zugehoeren, Eintraege
+# der Form <name> <branch> durch Zeilenende getrennt in die Datei RCS-branches.
+#
+# RCS-files und RCS-branches werden in das aktuelle Verzeichnis geschrieben.
+#
+
+pwd=`pwd`
+
+for dir in `fndr $@`
+do
+  cd $dir
+
+  rcs -l RCS-files 2>/dev/null
+  rm -f RCS-files
+
+  rlog -r * 2> /dev/null | gawk \
+  '/^Working file: / 	{ file=$3; print file>"RCS-files"; } \
+  /^revision /  		{ revision=$2; sub(/\.[0-9]*$/,"",revision); \
+			if(index(revision,".")) \
+			{ print revision;
+			  print file,"\t",revision>"RCS-branches"; }}'
+
+  touch RCS-files
+  echo "rcsdiff $dir/RCS-files"
+  if rcsdiff RCS-files 2>/dev/null
+  then
+    rcs -u RCS-files 2>/dev/null
+    chmod u-w RCS-files
+  else
+    echo -n "`basename $0`: check in modified RCS-files? "
+    if [ `line` = y ]
+    then
+      ci -u RCS-files
+    else
+      rcs -u RCS-files 2>/dev/null
+      chmod u-w RCS-files
+    fi
+  fi
+
+  cd $pwd
+done
+

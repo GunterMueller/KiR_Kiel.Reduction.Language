@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+#
+# usage="Usage: checkout file ...
+#
+
+exec make -s -f /home/base/rcsbin/GNUmakefile.checkout "$@"

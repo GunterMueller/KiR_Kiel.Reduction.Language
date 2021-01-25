@@ -1,0 +1,35 @@
+#!/bin/csh
+
+rm *.extra 
+if ($?MS_BLACKWHITE) then
+  ln -s MSMain.blackwhite MSMain.extra
+  ln -s MSBarChart.blackwhite MSBarChart.extra
+  ln -s MSProcArray.blackwhite MSProcArray.extra
+  ln -s MSHeapArray.blackwhite MSHeapArray.extra
+  ln -s MSProcTree.blackwhite MSProcTree.extra
+else
+  ln -s MSMain.color MSMain.extra
+  ln -s MSBarChart.color MSBarChart.extra
+  ln -s MSProcArray.color MSProcArray.extra
+  ln -s MSHeapArray.color MSHeapArray.extra
+  ln -s MSProcTree.color MSProcTree.extra
+endif
+
+#if ($?MS_DISPLAY) then
+#  set d=$MS_DISPLAY
+#else
+  set d=$DISPLAY
+#endif
+echo Using $d as display...
+
+xrdb -display $d $HOME/.Xdefaults
+xrdb -display $d -merge MSMain.extra
+xrdb -display $d -merge MSBarChart.extra
+xrdb -display $d -merge MSProcArray.extra
+xrdb -display $d -merge MSHeapArray.extra
+xrdb -display $d -merge MSProcTree.extra
+
+setenv XAPPLRESDIR .
+
+#msMain "-display $d" $*
+msMain $*

@@ -1,0 +1,96 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2001.05.23.16.10.35;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@reduma.cnf
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#This file is part of the reduma package. Copyright (C)
+#1988, 1989, 1992 University of Kiel. You may copy,
+#distribute, and modify it freely as long as you preserve this copyright
+#and permission notice.
+
+#---------------------------------#
+# Global compiler definition (CC) #
+#---------------------------------#
+#
+# gcc
+#
+#CC = gcc -ansi -Wall -Dsparc -D_ANSI_
+
+#-----------------------------------------#
+# Generell presettings (LIBS, INCS & EDO) #
+#-----------------------------------------#
+#
+# All definitions made here apply to all versions, but
+# can be overruled by local definitions in the Version definition part.
+# If EDO is not specified ../fed/editor.o will be made and linked !!
+#
+
+#EDO = /home/majestix/base/fed.o/editor.o
+LIBS = -ltermcap -lm
+
+#-------------------------#
+# Version definition part #
+#-------------------------#
+#
+# A version definition looks like:
+# <version-name>:
+# [+ <.c filenamelist>] # for files to be comp. & linked additionally.
+# [- <.c filenamelist>] # for std-files from STDCFILES not to be linked.
+# [<varname> = ...]     # for version specific settings (FLAGS, LIBS, EDO, etc.)
+#
+
+lneu:
+CFLAGS = -O
+RFLAGS = -DDEBUG=0 -DDBUG_OFF
+
+#----------------------------------------------------#
+# Standard-Version (STDFLAGS, STDCFILES & STDHFILES) #
+#----------------------------------------------------#
+
+STDFLAGS = -DLARGE=1 -DDREDUMA=1 -DEAGER=1 -DSTANDALONE=1 -DLETREC=0
+
+#
+# This block defines the files needed to build the standard version 
+# of the interpreting graph reducer lneu
+#
+
+STDCFILES = redclos.c reac.c rhinout.c rstpro.c rstpre.c rea-ret.c rdesc.c \
+	rheap.c nsubfunc.c casefunc.c nea-cre.c lrecfunc.c hfunc.c pm-ptfu.c \
+	rreduct.c rprint.c rstack.c rstate.c pmam.c pmdimli.c rvalir.c \
+	pmred-nomat.c pmredswi.c pmredeswi.c pmredwhen.c p-fail.c casepost.c \
+	condfunc.c close-cond.c postfunc.c rreduce.c rlstruct.c rquery.c \
+	rred-eq.c rruntime.c rtrav.c pm-debug.c pmpatvar.c red-nomat-when.c \
+	rst-dec.c rconvir.c rbreak.c dbug.c rear.neu.c rlogfunc.c rvalfunc.c \
+	pmst-slice.c preproc.c os-send.neu.c testf.c rdig-add.c rdig-div.c \
+	rdig-mod.c rdig-sub.c rdig-v1.c rdig-v2.c rvstruct.c rret-dec.c \
+	rval-int.c rsts-dec.c rlog-mvt.c rdig-mul.c rconvert.c rbibfunc.c \
+	rmstruct.c
+
+
+#
+# The first line of .h-files belongs to the so called base-version
+# which was a non-compiling system.
+#
+
+STDHFILES = rextern.h rmeasure.h rinstr.h rops.h rruntime.h cparm.h rmodulnr.h \
+	dumpheap.h rinter.h rprimf.h rstdinc.h traps.h rdigit.h rlmvt.h \
+        rscavenge.h rstelem.h rheapty.h rnf.h rstackty.h tags.h
+@

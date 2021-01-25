@@ -1,0 +1,2678 @@
+head	1.48;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.48
+date	96.04.11.13.27.29;	author cr;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	96.04.10.10.41.51;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	96.03.12.08.11.37;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	96.03.11.14.50.15;	author cr;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	96.02.20.14.45.34;	author stt;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	96.02.19.18.36.10;	author sf;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	96.02.13.16.36.56;	author sf;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	96.02.07.14.10.00;	author sf;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	96.02.07.12.31.03;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	96.02.07.11.30.05;	author sf;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	96.02.05.17.38.13;	author rs;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.08.10.13.23.10;	author sf;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.07.12.14.04.53;	author sf;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.07.12.13.22.09;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.07.12.13.15.33;	author sf;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.07.11.14.36.21;	author car;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.07.10.13.59.46;	author car;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.06.29.11.11.28;	author sf;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.06.29.09.17.54;	author sf;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.06.28.12.42.14;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.06.28.12.17.33;	author sf;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.06.28.09.59.09;	author sf;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.06.27.15.29.20;	author sf;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.06.27.11.42.00;	author sf;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.05.25.12.02.35;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.05.23.08.17.43;	author sf;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.05.18.13.50.37;	author sf;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.05.12.11.54.21;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.05.09.11.03.08;	author sf;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.04.05.15.57.08;	author sf;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.04.05.13.56.38;	author sf;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.04.03.13.21.10;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.03.31.12.03.43;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.03.24.09.08.08;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.03.15.08.27.56;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.03.10.16.15.04;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.03.08.13.17.06;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.03.07.16.17.26;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.03.06.16.55.47;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.03.06.15.49.42;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.02.02.11.47.08;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.01.02.12.23.21;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.29.14.45.14;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.22.13.45.40;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.21.16.37.11;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.20.09.19.22;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.19.16.06.03;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.16.08.16.32;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial revision
+@
+
+
+1.48
+log
+@prepare for separate compilation (again:-(
+step I: avoid use of program-specific global variables
+in tasm-generated code inside initdata.c and rmkclos.c
+(cf. compile.c c_output.c)
+@
+text
+@#define WITHTILDE 1
+#define PROLOG_EXTERN
+#include "prolog.h"
+
+#ifdef __sparc__
+#if (0==NO_STACK_REG)
+  register int *st_h asm ("g5");
+  register int *st_w asm ("g7");
+  register int *st_a asm ("g6");
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+
+extern int *st_t;
+extern int *st_r;
+extern int withtilde;
+extern T_DESCRIPTOR *newdesc();
+extern int newheap(int, T_HEAPELEM);
+extern FCTPTR dealloc_tab[];
+
+
+extern PTR_DESCRIPTOR _desc;
+
+PTR_HEAPELEM pth; /* pointer to heapelement */
+T_PTD ptdesc;     /* pointer to descriptor */
+
+
+/**********************************************************************/
+/* builds funcdesctable from stat_funcdesctable                       */
+/**********************************************************************/
+void build_dyn_funcdesctable(PTR_DESCRIPTOR *funcdesctable,T_DESCRIPTOR *desc_array, int n)
+{
+  int i;
+  DBUG_ENTER("build_dyn_funcdesctable");
+  for(i = 0; i< n; i++)
+  {
+    switch(R_DESC((desc_array[i]), type))
+    {
+      case TY_COMB:
+        MAKEDESC(ptdesc, 1, C_FUNC, TY_COMB);
+        L_COMB(*ptdesc, args) = R_COMB(desc_array[i], args);
+        L_COMB(*ptdesc, nargs) = R_COMB(desc_array[i], nargs);
+        L_COMB(*ptdesc, ptc) = R_COMB(desc_array[i], ptc);
+        L_COMB(*ptdesc, ptd) = R_COMB(desc_array[i], ptd);
+        break;
+      case TY_CASE:
+        MAKEDESC(ptdesc, 1, C_FUNC, TY_CASE);
+        L_CASE(*ptdesc, args) = R_CASE(desc_array[i], args);
+        L_CASE(*ptdesc, nargs) = R_CASE(desc_array[i], nargs);
+        L_CASE(*ptdesc, ptc) = R_CASE(desc_array[i], ptc);
+        L_CASE(*ptdesc, ptd) = R_CASE(desc_array[i], ptd);
+        break;
+      case TY_CONDI:
+        MAKEDESC(ptdesc, 1, C_FUNC, TY_CONDI);
+        L_CONDI(*ptdesc, args) = R_CONDI(desc_array[i], args);
+        L_CONDI(*ptdesc, nargs) = R_CONDI(desc_array[i], nargs);
+        L_CONDI(*ptdesc, ptc) = R_CONDI(desc_array[i], ptc);
+        L_CONDI(*ptdesc, ptd) = R_CONDI(desc_array[i], ptd);
+        break;
+      default: controlled_exit(" unknown descriptor class in build_dyn_funcdesctable");
+        break;
+    }
+    funcdesctable[i] = (PTR_DESCRIPTOR)ptdesc;
+  }
+  DBUG_VOID_RETURN;
+}
+
+/**********************************************************************/
+/* builds something irreducible like 'ap 5 to 7'                      */
+/* args : number actual parameters                                    */
+/**********************************************************************/
+void f_mkap(int args)
+{
+  DBUG_ENTER("f_mkap");
+
+  MAKEDESC(ptdesc, 1, C_EXPRESSION, TY_EXPR);
+  GET_HEAP(args + 3, (int)A_EXPR(*ptdesc, pte));
+  RES_HEAP;
+  pth = (PTR_HEAPELEM)R_EXPR(*ptdesc, pte);
+  *pth++ = (T_HEAPELEM)(args + 2);
+  *pth++ = (T_HEAPELEM)SET_ARITY(AP,(args + 1));
+  pth += args;
+  do
+  {
+    *pth-- = (T_HEAPELEM)pop(w);
+  } while (--args >= 0);
+  REL_HEAP;
+  push((int)ptdesc);
+  DBUG_VOID_RETURN;
+}
+/**********************************************************************/
+/* builds a Closure with a primfunc                                   */
+/* arity: arity of primfunc                                           */
+/* args : number actual parameters                                    */
+/* pfunc: which primfunc in reduma style (-1 if still on top of stack)*/
+/* refcnt_set: 1 if explicite ref.counting (i.e. don't pop arg from W)*/
+/*               (i.e. don't pop args from W and don't push result,   */
+/*                'cause it's in _desc)                               */
+/*            -1 pop args and push result                             */
+/*             0 pop args and don't push result (it's kept in _desc)  */
+/**********************************************************************/
+void f_mkdclos(int refcnt_set, int arity, int args, int pfunc)
+{
+  int arg, i;
+  int too_many_args;
+  
+  DBUG_ENTER("f_mkdclos");
+  
+  /* DIE GEWUENSCHTE PRIMFUNC vgl. rstelem.h ab Zeile 843 */
+  if (-1 != pfunc) push((int)pfunc);  /* Prim. Fkt. muss oben auf Stack W liegen */
+  too_many_args = args - arity;
+  if (too_many_args > 0)
+    arg = arity;
+  else
+    arg = args;
+  
+
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS); 
+/* 
+   _desc = pointer auf den erhaltenen Desc.
+   1    = Ref.counter fuer erhaltenes Elem.
+   C_FUNC = Klasse
+   TY_CLOS = Type des Desk.
+*/
+
+  GET_HEAP(arg + 1, (int)A_CLOS(*_desc, pta));
+/*
+   Heap-speicher fuer Stackauszug holen
+   Anzahl der benoetigten Elemente + 1
+   pta (Element in ST_CLOS) zuweisen
+*/
+
+  L_CLOS(*_desc, args) = arg;
+  L_CLOS(*_desc, nargs) = arity - arg;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = 0;
+  L_CLOS(*_desc, ftype) = TY_PRIM;
+
+  RES_HEAP;  /* Heap jetzt nur fuer mich */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+
+  /* ab jetzt keine gamma-closure, also Funktion auf W */
+  *pth++ = (T_HEAPELEM)pop(w); /* Funktion gepopt */
+
+  for (i = 0; i < arg; i++)
+  {
+    if (0 < refcnt_set)
+    {
+      *pth++ = (T_HEAPELEM)peek(w, i); /* Arg-Frame holen */
+    }
+    else
+    {
+      *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+    }
+  }
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  if (-1 == refcnt_set)
+    push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+  if (too_many_args > 0)
+  {
+    f_mkap(too_many_args);
+  }
+  
+  DBUG_VOID_RETURN;
+  
+}
+/**********************************************************************/
+/* builds a Closure with an interaction                               */
+/* The interactions lies on Top of W. f_mkiclos replaces it and the   */
+/* <args> actual parameters with the Closure descriptor. Make sure    */
+/* that args is less then the arity of the interaction.               */
+/* args : number actual parameters                                    */
+/**********************************************************************/
+void f_mkiclos(int args)
+{
+  int intact;
+
+  DBUG_ENTER("f_mkiclos");
+
+  intact = (int) top(w);
+
+  if (!T_IAFUNC(intact))
+    controlled_exit("f_mkiclos: There is no interaction on top of W.");
+
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  L_CLOS(*_desc, ftype) = TY_INTACT;
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = FUNC_ARITY((int)intact) - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = 0;
+  GET_HEAP(args + 1, (int)A_CLOS(*_desc, pta));
+
+  RES_HEAP;
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+  *pth++ = (T_HEAPELEM)pop(w);
+  while (args-- > 0)
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  REL_HEAP;
+
+  push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+  DBUG_VOID_RETURN;
+}
+/*************************************************************/
+/* searches for the CASE desc. for a known WHEN              */
+/*************************************************************/
+
+T_PTD search_father_case(T_PTD ptd,T_PTD *funcdesctable)
+{
+  int i = 0;
+  while (1)
+  {
+    if (TY_CASE == R_DESC(*(funcdesctable[i]), type))
+      if ((T_PTD)R_CASE(*funcdesctable[i], ptd) == ptd) 
+        return(funcdesctable[i]);
+    i++;
+  }
+  return(NULL);
+}
+
+/*************************************************************/
+/* builds an undecided closure if guard is undecided         */
+/* addr : number of case descriptor in funcdesctable         */
+/*************************************************************/
+void f_guard_undecided(int addr,PTR_DESCRIPTOR *funcdesctable)
+{
+  register T_PTD ptd, ptd2, my_desc;
+  int nfv, arity, hilf;
+  
+  DBUG_ENTER("f_guard_undecided");
+  
+  ptdesc = (funcdesctable[addr]);         /* WHEN desc */
+  ptd2 = search_father_case(R_CASE(*ptdesc, ptd),funcdesctable);  /* CASE desc */
+  nfv = R_CASE(*ptd2, args);
+  
+  MAKEDESC(ptd, 1, C_FUNC, TY_CLOS);
+  L_CLOS(*ptd, ftype) = TY_NOMATBODY;
+  L_CLOS(*ptd, nargs) = 0;
+  L_CLOS(*ptd, args) = VALUE(pop(r));
+  L_CLOS(*ptd, nfv) = nfv;
+  GET_HEAP(nfv + R_CLOS(*ptd, args) + 4, (int)A_CLOS(*ptd, pta));
+  /*             ^ # bound_var        */
+  /*************************************************/
+  pth = (PTR_HEAPELEM)R_CLOS(*ptd, pta);
+  pth[0] = (T_HEAPELEM)R_CASE(*ptd2, ptd);      /* ptr to SWITCH-expression */
+  pth[1] = VAL_INT((int)R_CASE(*ptdesc, ptc));    /* # of failed when */
+  pth[2] = pop(w);                  /* guard */
+  pth[3] = pop(w);                  /* match */
+  pth += 4;
+
+  hilf = R_CLOS(*ptd, args);
+  while (hilf-- > 0)
+    *pth++ = (T_HEAPELEM)pop(a);
+
+  hilf = nfv;
+  while (hilf > 0)
+  {
+    *pth++ = (T_HEAPELEM)peek(t, nfv - hilf);
+    T_INC_REFCNT((PTR_DESCRIPTOR)peek(t, nfv - hilf));
+    hilf--;
+  }
+
+  /**************************************** 
+   X_CLOS(ptd, pta) wie folgt :
+      ptsdes, #failed_when, pop(w)=guard, pop(w)=bound_match, bound_vars, free_vars
+      ^       ^ R_CASE(*ptdesc, ptc)                         ^ #top(r)   ^ #nfv
+      ^ R_CASE(MAIN*ptdesc, ptd)  ptr to SWITCH-expression
+  *****************************************/
+    /* now building a closure for the NOMATCH */
+    MAKEDESC(my_desc, 1, C_FUNC, TY_CLOS);
+    GET_HEAP(nfv+1, (int)A_CLOS(*my_desc,pta));
+    L_CLOS(*my_desc,args) = 0;
+    L_CLOS(*my_desc,nargs) = 0;
+    L_CLOS(*my_desc,nfv) = nfv;
+    L_CLOS(*my_desc,ftype) = TY_CASE;
+    RES_HEAP;
+    pth = (PTR_HEAPELEM)R_CLOS(*my_desc,pta);
+    *pth++ = (T_HEAPELEM)ptd;
+    {
+      int old_nfv = nfv;
+
+      while (nfv > 0)
+      {
+        *pth++ = (T_HEAPELEM)peek(t, old_nfv-nfv);
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(t, old_nfv-nfv));
+        nfv--;
+      }
+    }
+  push((int)my_desc);
+  
+  DBUG_VOID_RETURN;
+}
+/*************************************************************/
+/* builds a Closure with a CASE-construct                    */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+void f_mkcase(int args, int ufunc, PTR_DESCRIPTOR *funcdesctable)
+{
+  int arity, arg, nfv;
+  PTR_DESCRIPTOR my_desc;
+
+  DBUG_ENTER("f_mkcase");
+  if (T_KLAA(top(t)))    /* MATCH undecided */
+  {
+    pop(t);             /* KLAA */
+    ptdesc = (funcdesctable[pop(t)]);
+    MAKEDESC(_desc, 1, C_EXPRESSION, TY_NOMAT);
+    L_NOMAT(*_desc, act_nomat) = VAL_INT((int)R_CASE(*ptdesc, ptc)); 
+    ptdesc = search_father_case(R_CASE(*ptdesc, ptd),funcdesctable);
+    nfv = R_CASE(*ptdesc, args);
+    arity = R_CASE(*ptdesc, nargs);
+    L_NOMAT(*_desc, ptsdes) = R_CASE(*ptdesc, ptd);
+    GET_HEAP(4, (int)A_NOMAT(*_desc, guard_body));
+    L_NOMAT(*_desc, guard_body)[0] = 3;          /* length */
+    L_NOMAT(*_desc, guard_body)[1] = 0;          /* guard */
+    L_NOMAT(*_desc, guard_body)[2] = 0;          /*body */
+    L_NOMAT(*_desc, guard_body)[3] = pop(w);     /* argument */
+    L_NOMAT(*_desc, reason) = 2;                 /* match undecided */
+    /* now building a closure for the NOMATCH */
+    MAKEDESC(my_desc, 1, C_FUNC, TY_CLOS);
+    GET_HEAP(nfv+1, (int)A_CLOS(*my_desc,pta));
+    L_CLOS(*my_desc,args) = 0;
+    L_CLOS(*my_desc,nargs) = 0;
+    L_CLOS(*my_desc,nfv) = nfv;
+    L_CLOS(*my_desc,ftype) = TY_CASE;
+    RES_HEAP;
+    pth = (PTR_HEAPELEM)R_CLOS(*my_desc,pta);
+    *pth++ = (T_HEAPELEM)_desc;
+    {
+      int old_nfv = nfv;
+      
+      while (nfv > 0) 
+      {
+        *pth++ = (T_HEAPELEM)peek(t, old_nfv-nfv);
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(t, old_nfv-nfv));
+        nfv--;
+      }  
+    }
+    REL_HEAP;
+    _desc = my_desc;
+  }
+  else
+  {
+    ptdesc = (funcdesctable[ufunc]);
+    if (T_INT((int)R_CASE(*ptdesc, ptc)))
+      ptdesc = search_father_case(R_CASE(*ptdesc, ptd),funcdesctable);
+    if (-1 == args) args = R_CASE(*ptdesc, nargs);
+    INC_REFCNT(ptdesc);
+    push((int)ptdesc);
+    arg = R_CASE(*ptdesc, nargs); /* number needed parameters */
+    if (withtilde)
+      nfv = R_CASE(*ptdesc, args);
+    else
+      nfv = 0;
+    _desc=NULL;
+    MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+    GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+    L_CLOS(*_desc, args) = args;
+    L_CLOS(*_desc, nargs) = arg - args;
+    if (withtilde)
+      L_CLOS(*_desc, nfv) = nfv;
+    L_CLOS(*_desc, ftype) = TY_CASE;
+    
+    RES_HEAP;  /* Heap jetzt nur fuer mich */
+
+    pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+
+    /* ab jetzt keine gamma-closure, also Funktion auf W */
+    *pth++ = (T_HEAPELEM)pop(w); /* Funktion gepopt */
+    while (args-- > 0)
+    {
+      *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+    }
+    {
+      int old_nfv = nfv;
+      while (nfv > 0)
+      {
+        *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+        nfv--;
+      }
+    }  
+    REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  }  
+  push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+}
+
+
+/*************************************************************/
+/* builds a switch/case closure with free vars               */
+/* arity: number actual parameters                           */
+/* args : number needel parameters                           */
+/* nfv  : number of free variables                           */
+/*************************************************************/
+
+void f_mksclos(int arity, int args, int nfv)
+{
+  DBUG_ENTER("f_mksclos");
+  
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + args + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = arity;
+  L_CLOS(*_desc, nargs) = args - arity;
+  L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CASE;
+  
+  RES_HEAP;  /* Heap jetzt nur fuer mich */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+
+  /* ab jetzt keine gamma-closure, also Funktion auf W */
+  *pth++ = (T_HEAPELEM)pop(w); /* Funktion gepopt */
+  while (arity-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  {
+    int old_nfv = nfv;
+    while (nfv > 0)
+    {
+      *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+      T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+      nfv--;
+    }
+  }  
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+  
+}
+
+/*************************************************************/
+/* builds a Closure with a userdefined Function              */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkbclos_init(int args, T_PTD ufunc)
+{
+  int arg, nfv, help;
+  
+  DBUG_ENTER("f_mkbclos_init");
+  
+  INC_REFCNT(ufunc);
+  help = (int)ufunc;
+  arg = R_COMB(*ufunc, nargs); /* number needed parameters */
+  nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_COMB;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)help; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+  
+/*************************************************************/
+/* builds a Closure with a userdefined Function              */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkbclos(int args, T_PTD ufunc)
+{
+  int arg, nfv, help;
+  
+  DBUG_ENTER("f_mkbclos");
+  
+  INC_REFCNT(ufunc);
+  help = (int)ufunc;
+  arg = R_COMB(*ufunc, nargs); /* number needed parameters */
+  if (withtilde)
+    nfv = R_COMB(*ufunc, args);
+  else
+    nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_COMB;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)help; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  {
+    int old_nfv = nfv;
+    while (nfv > 0)
+    {
+      *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+      T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+      nfv--;
+    }
+  }  
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+/*************************************************************/
+/* builds a Closure with a conditional while Initialisation  */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkcondclos_init(int args, T_PTD ufunc)
+{
+  int arg, nfv;
+  
+  DBUG_ENTER("f_mkcondclos_init");
+  
+  INC_REFCNT(ufunc);
+  arg = R_CONDI(*ufunc, nargs); /* number needed parameters */
+  nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CONDI;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)ufunc; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+/*************************************************************/
+/* builds a Closure with a conditional while Initialisation  */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkcondclos(int args, T_PTD ufunc)
+{
+  int arg, nfv;
+  
+  DBUG_ENTER("f_mkcondclos");
+  
+  INC_REFCNT(ufunc);
+  arg = R_CONDI(*ufunc, nargs); /* number needed parameters */
+  if (withtilde)
+    nfv = R_CONDI(*ufunc, args);
+  else
+    nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CONDI;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)ufunc; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  {
+    int old_nfv = nfv;
+    while (nfv > 0)
+    {
+      *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+      T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+      nfv--;
+    }
+  }  
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+
+/*************************************************************/
+/* builds a Closure with a CASE while Initialisation         */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkcaseclos_init(int args, T_PTD ufunc)
+{
+  int arg, nfv;
+  
+  DBUG_ENTER("f_mkcaseclos_init");
+  
+  INC_REFCNT(ufunc);
+  arg = R_CASE(*ufunc, nargs); /* number needed parameters */
+  nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CASE;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)ufunc; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+/*************************************************************/
+/* builds a Closure with a CASE while Initialisation         */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* Builds closures statically                                */
+/*************************************************************/
+
+int f_mkcaseclos(int args, T_PTD ufunc)
+{
+  int arg, nfv;
+  
+  DBUG_ENTER("f_mkcaseclos");
+  
+  INC_REFCNT(ufunc);
+  arg = R_CASE(*ufunc, nargs); /* number needed parameters */
+  if (withtilde)
+    nfv = R_CASE(*ufunc, args);
+  else
+    nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CASE;
+  
+  RES_HEAP;  /* Heap only for me */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Pointer to start of frame */
+
+  /* no gamma-closure => function on W */
+  *pth++ = (T_HEAPELEM)ufunc; /* pop funktion */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+  {
+    int old_nfv = nfv;
+    while (nfv > 0)
+    {
+      *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+      T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+      nfv--;
+    }
+  }  
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+  DBUG_RETURN((int)_desc);
+  
+}
+  
+/*************************************************************/
+/* builds a Closure with a userdefined Function              */
+/* with free variables                                       */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of userdefined Function      */
+/* gamma_closure: shows if statically or dynamically built   */
+/*                closure                                    */
+/*                if > 0 closure is on R else on W           */
+/* case_or_comb: 1 = TY_CASE 0 = TY_COMB                     */
+/*************************************************************/
+
+void f_mkgaclos(int args, T_PTD ufunc, int gamma_closure, int case_or_comb)
+{
+  int arg, nfv;
+  
+  DBUG_ENTER("f_mkgaclos");
+  
+/*  INC_REFCNT(ufunc);*/
+/*  repl(0, w, (int)ufunc);*/
+  if (0 == case_or_comb)
+  {
+    arg = R_COMB(*ufunc, nargs);
+    nfv = R_COMB(*ufunc, args);
+  }
+  else
+  {
+    arg = R_CASE(*ufunc, nargs);
+    nfv = R_CASE(*ufunc, args);
+  }
+
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  L_CLOS(*_desc, nfv) = nfv;
+  if (case_or_comb)
+    L_CLOS(*_desc, ftype) = TY_CASE;
+  else
+    L_CLOS(*_desc, ftype) = TY_COMB;
+  
+  RES_HEAP;
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc,pta);
+  
+  if (gamma_closure > 0) 
+  { STACKELEM   mystelem;
+    *pth++ = (T_HEAPELEM)ufunc;
+    INC_REFCNT(ufunc);
+    mystelem = pop(r);
+    DEC_REFCNT((T_PTD)mystelem);  /* Funktionszeiger liegt auf R */
+    while (args-- > 0) 
+    {
+      *pth++ = (T_HEAPELEM)pop(w); /* DeBruinvariablen */
+    }     
+
+    if (gamma_closure == 1)    /* statisch erzeugtes MKGACLOS */
+    {
+      while (nfv > 0) 
+      {
+         /* gammaclosures poppen ihre argumente von r */
+         /* da free_r direkt folgt                    */
+         *pth++ = (T_HEAPELEM)pop(r);
+         nfv--;
+      }
+    }                /* gamma_closure == 2, d.h. dynamische closure-bildung */
+    else 
+    {                            /* gamma_closure = 2 */
+      int old_nfv = nfv;
+
+      while (nfv > 0) 
+      {
+                                 /* tildevariablen werden vom freesw_t */
+                                 /* freigegeben                        */
+        *pth++ = (T_HEAPELEM)peek(r, old_nfv - nfv);
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(r, old_nfv - nfv));
+        nfv--;
+      }
+      stflip(t, r);               /* for freesw_t */
+    }   /* ELSE gamma_closure == 1 */
+
+    gamma_closure = 0;
+  }
+  else 
+  {                                  /* gamma_closure = 0 */
+    *pth++ = (T_HEAPELEM)pop(w);     /* Funktionszeiger liegt auf W */
+
+    while (args-- > 0) 
+    {
+      *pth++ = (T_HEAPELEM)pop(w); /* DeBruinvariablen */
+    }
+    {
+      int old_nfv = nfv;
+
+      while (nfv > 0) 
+      {
+                             /* tildevariablen werden in der aufrufenden */
+                             /* funktion freigegeben                     */
+        *pth++ = (T_HEAPELEM)peek(t, old_nfv - nfv);
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(t, old_nfv - nfv));
+        nfv--;
+      }
+    }
+  }     /* ELSE gamma_closure > 0 */
+  
+  REL_HEAP;
+  
+  push((int)_desc);
+  _desc = NULL;
+  
+  DBUG_VOID_RETURN;
+}
+
+/*************************************************************/
+/* builds a Closure with an unreducible conditional          */
+/* args : number of     parameters                           */
+/* ufunc: pointer to descriptor of conditional               */
+/* all COND descriptor accesses via X_COMB                   */
+/* `cause it`s saved in COMBINATOR format                    */
+/*************************************************************/
+
+void f_condfail(int args, T_PTD ufunc)
+{
+  int arity, nfv, keep_flag, help;
+
+  DBUG_ENTER("f_condfail");
+
+  INC_REFCNT(ufunc);
+  arity = R_CONDI(*ufunc, nargs);
+  if (withtilde)
+    nfv = (R_CONDI(*ufunc, args) >> 2);
+  else
+    nfv = 0;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arity + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = arity;
+  L_CLOS(*_desc, nargs) = 0;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CONDI;
+  RES_HEAP;
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta);
+  *pth++ = (T_HEAPELEM)ufunc;
+  if (withtilde)
+    keep_flag = R_CONDI(*ufunc, args) & 0x3;
+  else
+    keep_flag = R_CONDI(*ufunc, args);
+  if (keep_flag)  /* argumente duerfen nicht aufgebraucht werden */
+  {
+    register T_PTD ptd;
+    for (help = 0; --arity > 0; help++)
+    {
+      ptd = (T_PTD)peek(a, help);
+      T_INC_REFCNT(ptd);
+      *pth++ = (T_HEAPELEM)ptd;
+    }
+  }
+  else        /* argumente duerfen aufgebraucht werden */
+  {
+    while (--arity > 0)
+      *pth++ = (T_HEAPELEM)pop(a);
+  }
+  if (withtilde)
+  {
+    for (help = 0; nfv > 0; nfv--, help++)   /* Tildeframe einsammeln */
+    {
+      register T_PTD ptd;
+      ptd = (T_PTD)peek(t, help);
+      T_INC_REFCNT(ptd);
+      *pth++ = (T_HEAPELEM)ptd;
+    }
+  }
+    *pth = (T_HEAPELEM)pop(w);
+    REL_HEAP;
+    push((int)_desc);
+
+  DBUG_VOID_RETURN;
+}
+
+
+
+/*************************************************************/
+/* builds a Closure with a conditional                       */
+/* args : number actual parameters                           */
+/* ufunc: pointer to descriptor of conditional               */
+/* all COND descriptor accesses via X_COMB                   */
+/* `cause it`s saved in COMBINATOR format                    */
+/*************************************************************/
+
+void f_mkcclos(int args, T_PTD ufunc)
+{
+  int arg, nfv, keep_flag;
+  register VOLATILE int help=0;         /* hilfsvariable          */
+
+  DBUG_ENTER("f_mkccclos");
+  
+  INC_REFCNT(ufunc);
+  push((int)ufunc);
+  arg = R_CONDI(*ufunc, nargs);
+  if (withtilde)
+  {
+    nfv = (R_CONDI(*ufunc, args) >> 2);
+    if (0 == nfv)  /* are there really no free vars ? */
+      nfv = (R_CONDI(DESC(R_CLOS(*ufunc, pta)[0]), args)) >> 2;
+  }
+  else
+    nfv = 0;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CONDI;
+  
+  RES_HEAP;
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc,pta);
+  *pth++ = (T_HEAPELEM)top(w);
+  if (withtilde) 
+    keep_flag = R_CONDI(*(T_PTD)top(w), args) & 0x3;
+  else
+    keep_flag = R_CONDI(*(T_PTD)top(w), args);
+  if (keep_flag)
+  {  
+                         /* argumente duerfen nicht aufgebraucht werden */
+    register T_PTD ptd;
+    drop(w, 1);  /* pop function from W */
+     
+    for (help = 0; --args > 0 ; help++) 
+    {
+      ptd = (T_PTD)peek(w, help);
+      T_INC_REFCNT(ptd);
+      *pth++ = (T_HEAPELEM)ptd;
+    }
+  }
+  else 
+  {
+                             /* argumente duerfen aufgebraucht werden */
+    drop(w, 1);  /* pop function from W */
+    while (args-- > 0) 
+    {
+      *pth++ = (T_HEAPELEM)pop(w);
+    }
+  }     /* ELSE (R_CONDI(*(T_PTD)top(w), args) & 0x3) */
+  
+  for ( help = 0; nfv > 0; nfv--,help++) 
+  {                                       /* Tildeframe einsammeln */
+    register T_PTD ptd;
+
+    ptd = (T_PTD)peek(t, help);
+    T_INC_REFCNT(ptd);
+    *pth++ = (T_HEAPELEM)ptd;
+  }
+/*  *pth = (T_HEAPELEM)top(w);*/                     /* praedikat   */
+  REL_HEAP;
+
+  push((int)_desc);
+  _desc = NULL;
+
+  DBUG_VOID_RETURN;
+}
+
+/***********************************************************************/
+/* builds the static closures for the static descriptors               */
+/***********************************************************************/
+
+void build_static_clos(int *funcclostable,PTR_DESCRIPTOR *funcdesctable,int n)
+{
+  int i;
+  T_DESCRIPTOR *help;
+  
+  DBUG_ENTER("build_static_clos");
+
+  for (i=0; i<n; i++) 
+  { 
+    if (TY_COMB == R_DESC(*(funcdesctable[i]), type))
+    {
+      funcclostable[i] = f_mkbclos_init(0, funcdesctable[i]);
+/* Pointer to closure is now on stack W -> pop it */
+      if (withtilde)
+        L_CLOS(DESC(funcclostable[i]), nfv) = 0;
+    }
+    else if (TY_CONDI == R_DESC(*(funcdesctable[i]), type))
+    {
+      funcclostable[i] = f_mkcondclos_init(0, funcdesctable[i]);
+/* Pointer to closure is now on stack W -> pop it */
+      if (withtilde)
+        L_CLOS(DESC(funcclostable[i]), nfv) = 0;
+    }
+    else if (TY_CASE == R_DESC(*(funcdesctable[i]), type))
+    {
+      funcclostable[i] = f_mkcaseclos_init(0, funcdesctable[i]);
+/* Pointer to closure is now on stack W -> pop it */
+      if (withtilde)
+        L_CLOS(DESC(funcclostable[i]), nfv) = 0;
+    }
+  }
+  DBUG_VOID_RETURN;
+}
+
+/*************************************************************/
+/* builds a Closure with a userdefined Function              */
+/* and a CASE-construct                                      */
+/* args : number actual parameters                           */
+/* assumes a closure on top of stack w                       */
+/* Builds closures dynamically                               */
+/* Also expands existing primfunc closures                   */
+/*************************************************************/
+
+void dyn_mkbclos(int args)
+{
+  int arg, nfv, i, func, no_targs = 0;  /* no_targs = 1 if tildeargs not yet saved */
+  int ftype;
+  DBUG_ENTER("dyn_mkbclos");
+  
+  ptdesc=(T_PTD)top(w);
+
+  arg = R_CLOS(*ptdesc, nargs); /* number needed parameters */
+  ftype = R_CLOS(*ptdesc, ftype);
+  if (withtilde)
+  {
+    nfv = R_CLOS(*ptdesc, args);
+    if (0 == nfv)  /* are there really no free vars ? */
+    {
+      if (TY_COMB == ftype)
+        nfv = R_COMB(DESC(R_CLOS(*ptdesc, pta)[0]), args);
+      else
+        nfv = R_CASE(DESC(R_CLOS(*ptdesc, pta)[0]), args);
+      if (nfv) no_targs = 1;
+    }
+  }
+  else
+    nfv = 0;
+
+  if (1 == R_CLOS(*ptdesc, ref_count))
+  {
+
+    RES_HEAP;  /* Heap jetzt nur fuer mich */
+    /* erst den tilde frame in sicherheit bringen */
+    if (withtilde && !no_targs)
+    {
+      pth = (PTR_HEAPELEM)R_CLOS(*ptdesc, pta);
+      pth += R_CLOS(*ptdesc, args);
+      pth += nfv;
+      for (i = nfv; i >= 0; i--, pth--)
+      {
+        *(pth + args) = *pth;
+      }
+    }
+    pth = (PTR_HEAPELEM)R_CLOS(*ptdesc, pta);
+    pth += R_CLOS(*ptdesc, args);
+    for (i = args; --i >= 0;)
+    {
+      drop(w, 1);
+      *++pth = top(w);
+    }
+    if (withtilde && no_targs)    /* save tildeargs now */
+    {
+      int old_nfv = nfv;
+      while (nfv > 0)
+      {
+        *++pth = (T_HEAPELEM)peek(t, (old_nfv - nfv));
+        T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+        nfv--;
+      }
+    }
+    REL_HEAP;
+    
+    L_CLOS(*ptdesc, args) += args;
+    L_CLOS(*ptdesc, nargs) -= args;
+    repl(0, w, (int)ptdesc);
+  }
+  else /* neue closure bilden */
+  {
+    i = R_CLOS(*ptdesc,args);
+    func = (int)ptdesc;              /* closure */
+    MAKEDESC(ptdesc,1,C_FUNC,TY_CLOS);
+    L_CLOS(*ptdesc,args) = i + args; /* mehr args */
+    if (withtilde)
+    {
+      L_CLOS(*ptdesc,nfv) = nfv;
+    }
+    L_CLOS(*ptdesc, nargs) = arg - args;   /* weniger nargs */
+    L_CLOS(*ptdesc, ftype) = R_CLOS(*(T_PTD)func, ftype);
+
+    arg += i + 1;      /* laenge der arg.liste */
+
+    if (withtilde)
+    {
+      if (newheap(arg+nfv,(int)A_CLOS(*ptdesc,pta))) 
+      {
+        register PTR_HEAPELEM p1,p2;
+        RES_HEAP;
+        p1 = (PTR_HEAPELEM)R_CLOS(*(T_PTD)func, pta);
+        p2 = (PTR_HEAPELEM)R_CLOS(*ptdesc, pta);
+        do {                   /* altes argument frame */
+          T_INC_REFCNT((T_PTD)*p1);
+          *p2++ = *p1++;
+        } while (--i >= 0);
+        drop(w, 1);                    /* alte closure */
+        while (args-- > 0)             /* zusaetzliche argumente */
+          *p2++ = (T_HEAPELEM)pop(w);
+        if (no_targs)   /*save tilde args now */
+        {
+          int old_nfv = nfv;
+          while (nfv > 0)
+          {
+            *p2++ = (T_HEAPELEM)peek(t, (old_nfv - nfv));
+            T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+            nfv--;
+          }
+        }
+        else
+        {
+          while (nfv-- > 0)  /* tilde frame */
+          {
+            T_INC_REFCNT((T_PTD)*p1);
+            *p2++ = *p1++;
+          }
+        }
+        REL_HEAP;
+        /*  DEC_REFCNT((T_PTD)func); */    /* alte closure */
+        push((int)ptdesc);             /* neue closure */
+      }
+    }
+    else
+    {
+      if (newheap(arg,(int)A_CLOS(*ptdesc,pta))) 
+      {
+        register PTR_HEAPELEM p1,p2;
+        RES_HEAP;
+        p1 = (PTR_HEAPELEM)R_CLOS(*(T_PTD)func, pta);
+        p2 = (PTR_HEAPELEM)R_CLOS(*ptdesc, pta);
+        do {                   /* altes argument frame */
+          T_INC_REFCNT((T_PTD)*p1);
+          *p2++ = *p1++;
+        } while (--i >= 0);
+        drop(w, 1);                    /* alte closure */
+        do {                   /* zusaetzliche argumente */
+          *p2++ = (T_HEAPELEM)pop(w);
+        } while (--args > 0);
+        REL_HEAP;
+        /* DEC_REFCNT((T_PTD)func);  */   /* alte closure */
+        push((int)ptdesc);             /* neue closure */
+
+      }
+    }
+  }   
+  DBUG_VOID_RETURN;
+}
+@
+
+
+1.47
+log
+@comment
+@
+text
+@a26 2
+extern PTR_DESCRIPTOR funcdesctable[];
+extern int funcclostable[];
+d38 1
+a38 1
+void build_dyn_funcdesctable(T_DESCRIPTOR *desc_array, int n)
+d215 1
+a215 1
+int search_father_case(T_PTD ptd)
+d222 1
+a222 1
+        return(i);
+d225 1
+a225 1
+  return(-1);
+d232 1
+a232 1
+void f_guard_undecided(int addr)
+d240 1
+a240 1
+  ptd2 = (funcdesctable[search_father_case(R_CASE(*ptdesc, ptd))]);  /* CASE desc */
+d307 1
+a307 1
+void f_mkcase(int args, int ufunc)
+d319 1
+a319 1
+    ptdesc = (funcdesctable[search_father_case(R_CASE(*ptdesc, ptd))]);
+d356 1
+a356 1
+      ptdesc = (funcdesctable[search_father_case(R_CASE(*ptdesc, ptd))]);
+d454 1
+a454 1
+int f_mkbclos_init(int args, int ufunc)
+d460 3
+a462 4
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  help = (int)ptdesc;
+  arg = R_COMB(*ptdesc, nargs); /* number needed parameters */
+d496 1
+a496 1
+int f_mkbclos(int args, int ufunc)
+d502 3
+a504 4
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  help = (int)ptdesc;
+  arg = R_COMB(*ptdesc, nargs); /* number needed parameters */
+d506 1
+a506 1
+    nfv = R_COMB(*ptdesc, args);
+d549 1
+a549 1
+int f_mkcondclos_init(int args, int ufunc)
+d555 2
+a556 3
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  arg = R_CONDI(*ptdesc, nargs); /* number needed parameters */
+d572 1
+a572 1
+  *pth++ = (T_HEAPELEM)ptdesc; /* pop funktion */
+d589 1
+a589 1
+int f_mkcondclos(int args, int ufunc)
+d595 2
+a596 3
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  arg = R_CONDI(*ptdesc, nargs); /* number needed parameters */
+d598 1
+a598 1
+    nfv = R_CONDI(*ptdesc, args);
+d615 1
+a615 1
+  *pth++ = (T_HEAPELEM)ptdesc; /* pop funktion */
+d642 1
+a642 1
+int f_mkcaseclos_init(int args, int ufunc)
+d648 2
+a649 3
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  arg = R_CASE(*ptdesc, nargs); /* number needed parameters */
+d665 1
+a665 1
+  *pth++ = (T_HEAPELEM)ptdesc; /* pop funktion */
+d682 1
+a682 1
+int f_mkcaseclos(int args, int ufunc)
+d688 2
+a689 3
+  ptdesc=(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  arg = R_CASE(*ptdesc, nargs); /* number needed parameters */
+d691 1
+a691 1
+    nfv = R_CASE(*ptdesc, args);
+d708 1
+a708 1
+  *pth++ = (T_HEAPELEM)ptdesc; /* pop funktion */
+d739 1
+a739 1
+void f_mkgaclos(int args, int ufunc, int gamma_closure, int case_or_comb)
+d745 2
+a746 3
+  ptdesc = (funcdesctable[ufunc]);
+/*  INC_REFCNT(ptdesc);*/
+/*  repl(0, w, (int)ptdesc);*/
+d749 2
+a750 2
+    arg = R_COMB(*ptdesc, nargs);
+    nfv = R_COMB(*ptdesc, args);
+d754 2
+a755 2
+    arg = R_CASE(*ptdesc, nargs);
+    nfv = R_CASE(*ptdesc, args);
+d773 2
+a774 2
+    *pth++ = (T_HEAPELEM)ptdesc;
+    INC_REFCNT(ptdesc);
+d847 1
+a847 1
+void f_condfail(int args, int ufunc)
+d853 2
+a854 3
+  ptdesc = (funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  arity = R_CONDI(*ptdesc, nargs);
+d856 1
+a856 1
+    nfv = (R_CONDI(*ptdesc, args) >> 2);
+d868 1
+a868 1
+  *pth++ = (T_HEAPELEM)ptdesc;
+d870 1
+a870 1
+    keep_flag = R_CONDI(*ptdesc, args) & 0x3;
+d872 1
+a872 1
+    keep_flag = R_CONDI(*ptdesc, args);
+d915 1
+a915 1
+void f_mkcclos(int args, int ufunc)
+d922 3
+a924 5
+  ptdesc = (funcdesctable[ufunc]);
+
+  INC_REFCNT(ptdesc);
+  push((int)ptdesc);
+  arg = R_CONDI(*ptdesc, nargs);
+d927 1
+a927 1
+    nfv = (R_CONDI(*ptdesc, args) >> 2);
+d929 1
+a929 1
+      nfv = (R_CONDI(DESC(R_CLOS(*ptdesc, pta)[0]), args)) >> 2;
+d992 1
+a992 1
+void build_static_clos(int n)
+d1003 2
+a1004 1
+      funcclostable[i] = f_mkbclos_init(0, i);
+d1010 2
+a1011 1
+      funcclostable[i] = f_mkcondclos_init(0, i);
+d1017 2
+a1018 1
+      funcclostable[i] = f_mkcaseclos_init(0, i);
+@
+
+
+1.46
+log
+@comment
+@
+text
+@a1015 1
+/* Pointer to closure is now on stack W -> pop it */
+a1021 1
+/* Pointer to closure is now on stack W -> pop it */
+a1027 1
+/* Pointer to closure is now on stack W -> pop it */
+@
+
+
+1.45
+log
+@f_mkgaclos: INC_REFCNT(function), DEC_REFCNT(closure)
+@
+text
+@d743 1
+@
+
+
+1.44
+log
+@f_mkiclos() added.
+@
+text
+@d780 1
+a780 1
+  {
+d782 3
+a784 1
+    pop(r);  /* Funktionszeiger liegt auf R */
+@
+
+
+1.43
+log
+@in f_mkdclos: mkap initiated if more args for delta closure present than
+args needed for delta call
+@
+text
+@d177 36
+@
+
+
+1.42
+log
+@ifdef -> if where necessary
+@
+text
+@d113 2
+a114 1
+  int arg;
+d120 6
+a125 1
+  arg = args;
+d142 2
+a143 2
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arity - args;
+d154 3
+a156 1
+  while (args-- > 0)
+d159 1
+a159 1
+      *pth++ = (T_HEAPELEM)peek(w, arg - args); /* Arg-Frame holen */
+d165 1
+a165 2
+  
+  
+a166 1
+  
+d169 5
+@
+
+
+1.41
+log
+@f_mkcondclos_init for initialization
+@
+text
+@a0 1
+#ifndef WITHTILDE
+a1 1
+#endif
+d6 1
+a6 1
+#ifndef NO_STACK_REG
+@
+
+
+1.40
+log
+@f_mkbclos_init used instead of f_mkbclos in build_static_clos
+@
+text
+@d508 41
+d974 1
+a974 1
+      funcclostable[i] = f_mkcondclos(0, i);
+@
+
+
+1.39
+log
+@unused macros removed
+@
+text
+@d403 43
+d554 42
+d926 1
+a926 1
+      funcclostable[i] = f_mkbclos(0, i);
+d940 1
+a940 1
+      funcclostable[i] = f_mkcaseclos(0, i);
+@
+
+
+1.38
+log
+@DBUG_VOID_RETURN added in f_condfail
+@
+text
+@a5 16
+/*
+#define repl(n,s,x)    (st_##s[-n]=(x))         
+#define push(x)        (*++st_w = (x))
+#define push_p(x)      INC_REFCNT(x); push((int)x)
+#define pop(s)         (*st_##s--)
+#define drop(s, n)     st_##s-=n
+#define top(s)         (*st_##s)
+#define peek(s,n)      (st_##s[-(n)])
+#define push_r(x)      (*++st_r = (x))
+#define GRAB_DESC(p)      p = ((T_PTD *)p)[-1]
+#define TAIL_FLAG            1
+#define TEST_TAIL_FLAG()     ((top(r) & TAIL_FLAG) == TAIL_FLAG)
+#define DEL_TAIL_FLAG()      repl(0, r, top(r) & ~TAIL_FLAG)
+#define stflip(s,t)    st_h=st_##s; st_##s=st_##t; st_##t=st_h
+#define DESC(x)  (* (PTR_DESCRIPTOR) x)
+*/
+@
+
+
+1.37
+log
+@cast inserted
+@
+text
+@d753 2
+@
+
+
+1.36
+log
+@*** empty log message ***
+@
+text
+@d136 1
+a136 1
+  if (-1 != pfunc) push(pfunc);  /* Prim. Fkt. muss oben auf Stack W liegen */
+@
+
+
+1.35
+log
+@rmkclos: int -> void
+@
+text
+@d427 1
+a427 1
+void f_mkbclos(int args, int ufunc)
+d429 1
+a429 1
+  int arg, nfv;
+d435 1
+a435 1
+  push((int)ptdesc);
+d455 1
+a455 1
+  *pth++ = (T_HEAPELEM)pop(w); /* pop funktion */
+d471 1
+a471 3
+  push((int)_desc); /* result,i.e. put pointer to closure onto W */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+d481 1
+a481 1
+void f_mkcondclos(int args, int ufunc)
+a488 1
+  push((int)ptdesc);
+d508 1
+a508 1
+  *pth++ = (T_HEAPELEM)pop(w); /* pop funktion */
+d524 1
+a524 3
+  push((int)_desc); /* result,i.e. put pointer to closure onto W */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+d534 1
+a534 1
+void f_mkcaseclos(int args, int ufunc)
+d538 1
+a538 1
+  DBUG_ENTER("f_mkbclos");
+a541 1
+  push((int)ptdesc);
+d561 1
+a561 1
+  *pth++ = (T_HEAPELEM)pop(w); /* pop funktion */
+d577 1
+a577 3
+  push((int)_desc); /* result,i.e. put pointer to closure onto W */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+d855 1
+a855 1
+      f_mkbclos(0, i);
+d858 1
+a858 2
+        L_CLOS(DESC(top(w)), nfv) = 0;
+      funcclostable[i] = pop(w);
+d862 1
+a862 1
+      f_mkcondclos(0, i);
+d865 1
+a865 2
+        L_CLOS(DESC(top(w)), nfv) = 0;
+      funcclostable[i] = pop(w);
+d869 1
+a869 1
+      f_mkcaseclos(0, i);
+d872 1
+a872 2
+        L_CLOS(DESC(top(w)), nfv) = 0;
+      funcclostable[i] = pop(w);
+@
+
+
+1.34
+log
+@f_mkbclos: void -> int
+@
+text
+@d427 1
+a427 1
+int f_mkbclos(int args, int ufunc)
+d429 1
+a429 1
+  int arg, nfv, help;
+d435 1
+a435 1
+  help = (int)ptdesc;
+d455 1
+a455 1
+  *pth++ = (T_HEAPELEM)help; /* pop funktion */
+d471 3
+a473 1
+  DBUG_RETURN((int)_desc);
+@
+
+
+1.33
+log
+@cast moved to right side
+@
+text
+@d427 1
+a427 1
+void f_mkbclos(int args, int ufunc)
+d429 1
+a429 1
+  int arg, nfv;
+d435 1
+a435 1
+  push((int)ptdesc);
+d455 1
+a455 1
+  *pth++ = (T_HEAPELEM)pop(w); /* pop funktion */
+d471 1
+a471 3
+  push((int)_desc); /* result,i.e. put pointer to closure onto W */
+  _desc = NULL;
+  DBUG_VOID_RETURN;
+@
+
+
+1.32
+log
+@db_prolog.h removed
+@
+text
+@d904 1
+a904 1
+  (T_PTD)ptdesc=top(w);
+@
+
+
+1.31
+log
+@access macros corrected
+@
+text
+@a4 3
+#ifdef DEBUG 
+#include "db_prolog.h"
+#else
+a5 1
+#endif
+@
+
+
+1.30
+log
+@RES_HEAP <-> REL_HEAP corrected
+@
+text
+@d195 5
+a199 1
+  while ((T_PTD)R_COMB(*funcdesctable[i], ptd) != ptd) 
+d201 2
+a202 1
+  return(i);
+d217 2
+a218 2
+  ptd2 = (funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);  /* CASE desc */
+  nfv = R_COMB(*ptd2, args);
+d229 2
+a230 2
+  pth[0] = (T_HEAPELEM)R_COMB(*ptd2, ptd);      /* ptr to SWITCH-expression */
+  pth[1] = VAL_INT((int)R_COMB(*ptdesc, ptc));    /* # of failed when */
+d295 5
+a299 5
+    L_NOMAT(*_desc, act_nomat) = VAL_INT((int)R_COMB(*ptdesc, ptc)); 
+    ptdesc = (funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);
+    nfv = R_COMB(*ptdesc, args);
+    arity = R_COMB(*ptdesc, nargs);
+    L_NOMAT(*_desc, ptsdes) = R_COMB(*ptdesc, ptd);
+d332 3
+a334 3
+    if (T_INT((int)R_COMB(*ptdesc, ptc)))
+      ptdesc = (funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);
+    if (-1 == args) args = R_COMB(*ptdesc, nargs);
+d337 1
+a337 1
+    arg = R_COMB(*ptdesc, nargs); /* number needed parameters */
+d339 1
+a339 1
+      nfv = R_COMB(*ptdesc, args);
+d600 1
+a600 1
+/* case_or_comb: 1 = TY_CASE 0 = TYCOMB                      */
+d612 11
+a622 2
+  arg = R_COMB(*ptdesc, nargs);
+  nfv = R_COMB(*ptdesc, args);
+d718 1
+a718 1
+  arity = R_COMB(*ptdesc, nargs);
+d720 1
+a720 1
+    nfv = (R_COMB(*ptdesc, args) >> 2);
+d788 1
+a788 1
+  arg = R_COMB(*ptdesc, nargs);
+d833 1
+a833 1
+  }     /* ELSE (R_COMB(*(T_PTD)top(w), args) & 0x3) */
+@
+
+
+1.29
+log
+@access macro usage corrected
+@
+text
+@d321 1
+@
+
+
+1.28
+log
+@one more indirection in the descriptor table funcdesctable
+which is now called stat_funcdesctable
+funcdesctable is now an array of pointers to descriptors
+@
+text
+@d474 110
+d585 2
+d860 1
+a860 1
+      f_mkbclos(0, i);
+a864 1
+      L_CLOS(*(PTR_DESCRIPTOR)funcclostable[i], ftype) = TY_CONDI;
+d868 1
+a868 1
+      f_mkbclos(0, i);
+a872 1
+      L_CLOS(*(PTR_DESCRIPTOR)funcclostable[i], ftype) = TY_CASE;
+@
+
+
+1.27
+log
+@includes now (db_)prolog.h
+function which builds descriptors dynamically added
+@
+text
+@d49 1
+a49 1
+extern T_DESCRIPTOR funcdesctable[];
+d94 1
+a94 1
+    funcdesctable[i] = (T_DESCRIPTOR)*ptdesc;
+d195 1
+a195 1
+  while ((T_PTD)R_COMB(funcdesctable[i], ptd) != ptd) 
+d211 2
+a212 2
+  ptdesc = &(funcdesctable[addr]);         /* WHEN desc */
+  ptd2 = &(funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);  /* CASE desc */
+d288 1
+a288 1
+    ptdesc = &(funcdesctable[pop(t)]);
+d291 1
+a291 1
+    ptdesc = &(funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);
+d325 1
+a325 1
+    ptdesc = &(funcdesctable[ufunc]);
+d327 1
+a327 1
+      ptdesc = &(funcdesctable[search_father_case(R_COMB(*ptdesc, ptd))]);
+d431 1
+a431 1
+  ptdesc=&(funcdesctable[ufunc]);
+d491 1
+a491 1
+  ptdesc = &(funcdesctable[ufunc]);
+d589 1
+a589 1
+  ptdesc = &(funcdesctable[ufunc]);
+d657 1
+a657 1
+  ptdesc = &(funcdesctable[ufunc]);
+d738 1
+a738 1
+    if (TY_COMB == R_DESC(funcdesctable[i], type))
+d746 1
+a746 1
+    else if (TY_CONDI == R_DESC(funcdesctable[i], type))
+d755 1
+a755 1
+    else if (TY_CASE == R_DESC(funcdesctable[i], type))
+@
+
+
+1.26
+log
+@Access-macros changed in case of TY_CONDI
+@
+text
+@d4 7
+a10 9
+typedef int (* FUNPTR)(void);
+#include <stdio.h>
+#include <stdlib.h>
+#include "dbug.h"
+#include "rstdinc.h"
+#include "rstelem.h"
+#include "rheapty.h"
+#include "rstackty.h"
+
+d25 1
+a47 1
+extern void post_mortem(char *);
+d58 40
+@
+
+
+1.25
+log
+@Access-macros changed in case of TY_CASE
+@
+text
+@d569 1
+a569 1
+    keep_flag = R_COMB(*ptdesc, args) & 0x3;
+d571 1
+a571 1
+    keep_flag = R_COMB(*ptdesc, args);
+d626 1
+a626 1
+    nfv = (R_COMB(*ptdesc, args) >> 2);
+d628 1
+a628 1
+      nfv = (R_COMB(DESC(R_CLOS(*ptdesc, pta)[0]), args)) >> 2;
+d644 1
+a644 1
+    keep_flag = R_COMB(*(T_PTD)top(w), args) & 0x3;
+d646 1
+a646 1
+    keep_flag = R_COMB(*(T_PTD)top(w), args);
+@
+
+
+1.24
+log
+@*** empty log message ***
+@
+text
+@d742 1
+a742 1
+  
+d748 1
+d754 4
+a757 1
+      nfv = R_COMB(DESC(R_CLOS(*ptdesc, pta)[0]), args);
+@
+
+
+1.23
+log
+@revision in building static closures (initialization phase)
+@
+text
+@d782 1
+a782 1
+    if (no_targs)    /* save tildeargs now */
+@
+
+
+1.22
+log
+@bug fix
+@
+text
+@d26 1
+d348 2
+a349 2
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arity - args;
+d359 1
+a359 1
+  while (args-- > 0)
+d410 1
+a410 1
+  RES_HEAP;  /* Heap jetzt nur fuer mich */
+d412 1
+a412 1
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+d414 2
+a415 2
+  /* ab jetzt keine gamma-closure, also Funktion auf W */
+  *pth++ = (T_HEAPELEM)pop(w); /* Funktion gepopt */
+d431 1
+a431 1
+  push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+d625 1
+d627 3
+d704 2
+d712 2
+d721 2
+d741 1
+a741 1
+  int arg, nfv, i, func;
+d749 1
+d751 6
+d765 1
+a765 1
+    if (withtilde)
+d769 2
+a770 2
+      pth += R_CLOS(*ptdesc, nfv);
+      for (i = R_CLOS(*ptdesc, nfv); i >= 0; i--, pth--)
+d782 10
+a805 1
+      nfv = R_CLOS(*(T_PTD)func,nfv);
+d826 1
+a826 1
+        do {                   /* zusaetzliche argumente */
+d828 1
+a828 2
+        } while (--args > 0);
+        while (nfv-- > 0)  /* tilde frame */
+d830 15
+a844 2
+          T_INC_REFCNT((T_PTD)*p1);
+          *p2++ = *p1++;
+@
+
+
+1.21
+log
+@mksclos
+@
+text
+@d144 1
+a144 1
+  if (0 != refcnt_set)
+@
+
+
+1.20
+log
+@bug fix in f_mkdclos: top -> pop / top -> peek
+another meaning for refcnt_set: neg number possible
+@
+text
+@d332 47
+@
+
+
+1.19
+log
+@mkgaclos used for mkgsclos
+@
+text
+@d88 5
+a92 1
+/* refcnt_set: 1 if explicite ref.counting                            */
+d132 8
+a139 8
+  if (refcnt_set)
+  {
+    *pth++ = (T_HEAPELEM)top(w); /* Arg-Frame holen */
+  }
+  else
+  {
+    *pth++ = (T_HEAPELEM)top(w); /* Arg-Frame holen */
+  }
+@
+
+
+1.18
+log
+@additional parameter to f_mkdclos()
+@
+text
+@d392 1
+d395 1
+a395 1
+void f_mkgaclos(int args, int ufunc, int gamma_closure)
+d411 4
+a414 1
+  L_CLOS(*_desc, ftype) = TY_COMB;
+@
+
+
+1.17
+log
+@*** empty log message ***
+@
+text
+@d88 1
+d90 1
+a90 1
+void f_mkdclos(int arity, int args, int pfunc)
+d128 1
+d130 5
+a134 1
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+d140 2
+a141 2
+  push((int)_desc); /* Ergebnis,d.h. Zeiger auf Closure auf W legen */
+  _desc = NULL;
+d753 1
+a753 1
+        DEC_REFCNT((T_PTD)func);     /* alte closure */
+d774 1
+a774 1
+        DEC_REFCNT((T_PTD)func);     /* alte closure */
+@
+
+
+1.16
+log
+@bug fixed in PM
+@
+text
+@d200 2
+a201 2
+    MAKE_DESC(my_desc, 1, C_FUNC, TY_CLOS);
+    GET_HEAP(nfv+1, A_CLOS(*my_desc,pta));
+d236 1
+a236 1
+  if (T_KLAA(top(t)))
+d253 2
+a254 2
+    MAKE_DESC(my_desc, 1, C_FUNC, TY_CLOS);
+    GET_HEAP(nfv+1, A_CLOS(*my_desc,pta));
+@
+
+
+1.15
+log
+@some PM closure building
+@
+text
+@d157 1
+a157 1
+  register T_PTD ptd, ptd2;
+d160 1
+a160 1
+  DBUG_ENTER("f_undecided");
+d176 1
+a176 1
+  pth[1] = (int)R_COMB(*ptdesc, ptc);    /* # of failed when */
+d199 21
+a219 2
+  
+  push((int)ptd);
+d233 2
+a234 1
+  
+d241 1
+a241 1
+    L_NOMAT(*_desc, act_nomat) = (int)R_COMB(*ptdesc, ptc);
+d252 21
+@
+
+
+1.14
+log
+@pm implemented
+@
+text
+@d32 4
+d139 53
+d193 11
+d213 1
+a213 1
+  int arg, nfv;
+d216 7
+a222 6
+  
+  ptdesc=&(funcdesctable[ufunc]);
+  INC_REFCNT(ptdesc);
+  push((int)ptdesc);
+  arg = R_COMB(*ptdesc, nargs); /* number needed parameters */
+  if (withtilde)
+d224 9
+a233 20
+    nfv = 0;
+  _desc=NULL;
+  MAKEDESC(_desc, 1, C_FUNC, TY_CLOS);
+  GET_HEAP(nfv + arg + 1, (int)A_CLOS(*_desc, pta));
+  L_CLOS(*_desc, args) = args;
+  L_CLOS(*_desc, nargs) = arg - args;
+  if (withtilde)
+    L_CLOS(*_desc, nfv) = nfv;
+  L_CLOS(*_desc, ftype) = TY_CASE;
+  
+  RES_HEAP;  /* Heap jetzt nur fuer mich */
+
+  pth = (PTR_HEAPELEM)R_CLOS(*_desc, pta); /* Zeiger auf den Frameanfang */
+
+  /* ab jetzt keine gamma-closure, also Funktion auf W */
+  *pth++ = (T_HEAPELEM)pop(w); /* Funktion gepopt */
+  while (args-- > 0)
+  {
+    *pth++ = (T_HEAPELEM)pop(w); /* Arg-Frame holen */
+  }
+d235 27
+a261 2
+    int old_nfv = nfv;
+    while (nfv > 0)
+d263 1
+a263 3
+      *pth++ = (T_HEAPELEM)peek(t, (old_nfv - nfv)); 
+      T_INC_REFCNT((PTR_DESCRIPTOR)peek(t,(old_nfv - nfv)));
+      nfv--;
+d265 10
+a275 2
+  REL_HEAP; /* Heap nicht mehr nur fuer mich */
+  
+a278 1
+  
+@
+
+
+1.13
+log
+@minor change, warnings removed
+@
+text
+@d28 1
+d32 1
+d136 56
+d511 1
+a511 1
+    if (TY_CONDI == R_DESC(funcdesctable[i], type))
+d518 7
+d531 1
+@
+
+
+1.12
+log
+@mkap implemented
+@
+text
+@d17 1
+d398 1
+a398 1
+    pop(w);  /* pop function from W */
+d410 1
+a410 1
+    pop(w);  /* pop function from W */
+d505 1
+a505 1
+      pop(w);
+d542 1
+a542 1
+        pop(w);                    /* alte closure */
+d568 1
+a568 1
+        pop(w);                    /* alte closure */
+@
+
+
+1.11
+log
+@will always be compiled with WITHTILDE defined
+@
+text
+@d54 23
+@
+
+
+1.10
+log
+@prepared for separated modules
+@
+text
+@d1 3
+d294 1
+a294 1
+  *pth++ = (PTR_HEAPELEM)ptdesc;
+@
+
+
+1.9
+log
+@new implementation for failing conditional
+@
+text
+@a8 1
+#include "mytypes.h"
+d23 1
+a23 1
+#ifdef h__sparc__
+d36 3
+d74 1
+a74 1
+  GET_HEAP(arg + 1, A_CLOS(*_desc, pta));
+d131 1
+a131 1
+  GET_HEAP(nfv + arg + 1, A_CLOS(*_desc, pta));
+d186 1
+a186 1
+  GET_HEAP(nfv + arg + 1, A_CLOS(*_desc, pta));
+d283 1
+a283 1
+  GET_HEAP(nfv + arity + 1, A_CLOS(*_desc, pta));
+d291 1
+a291 1
+  *pth++ = ptdesc;
+d323 1
+a323 1
+    push(_desc);
+d353 1
+a353 1
+  GET_HEAP(nfv + arg + 1, A_CLOS(*_desc, pta));
+d505 1
+a505 1
+      if (newheap(arg+nfv,A_CLOS(*ptdesc,pta))) 
+d531 1
+a531 1
+      if (newheap(arg,A_CLOS(*ptdesc,pta))) 
+@
+
+
+1.8
+log
+@stack pointer in register (if sparc)
+@
+text
+@d24 1
+a24 1
+#ifdef __sparc__
+d259 64
+d325 1
+d336 1
+a336 1
+  int arg, nfv;
+d361 5
+a365 2
+  
+  if (R_COMB(*(T_PTD)top(w), args) & 0x3)
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d24 1
+a24 1
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+@
+
+
+1.6
+log
+@Stackpointer in registers
+@
+text
+@d24 10
+a33 3
+register int *st_h asm ("g5");
+register int *st_w asm ("g7");
+register int *st_a asm ("g6");
+@
+
+
+1.5
+log
+@Conditionals
+@
+text
+@d24 3
+a26 3
+extern int *st_h;
+extern int *st_w;
+extern int *st_a;
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d294 2
+a295 1
+    
+d298 1
+a298 1
+      ptd = (T_PTD)peek(a, help);
+d306 2
+a307 1
+    while (--args > 0) 
+d309 1
+a309 1
+      *pth++ = (T_HEAPELEM)pop(a);
+d321 1
+a321 2
+  pop(w);                                        /* conditional */
+  *pth = (T_HEAPELEM)top(w);                     /* praedikat   */
+d324 1
+a324 1
+  repl(0, w, (int)_desc);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d45 1
+a45 1
+/* pfunc: which primfunc in reduma style (-1 if still on top of stack */
+d54 1
+a54 1
+  if (-1 != pfunc) push(pfunc);  /* Primitive Fkt. muss oben auf dem Stack liegen */
+d258 2
+d273 1
+a273 1
+  arg = R_CONDI(*ptdesc, nargs);
+d275 1
+a275 1
+    nfv = (R_CONDI(*ptdesc, args) >> 2);
+d281 1
+a281 1
+  L_CLOS(*_desc, nargs) = 0;
+d290 1
+a290 1
+  if (R_CONDI(*(T_PTD)top(w), args) & 0x3)
+d309 1
+a309 1
+  }     /* ELSE (R_CONDI(*(T_PTD)top(w), args) & 0x3) */
+a325 15
+/********************************************************************
+L_rtf:
+*/
+  if (TEST_TAIL_FLAG()) 
+  {
+    DEL_TAIL_FLAG();
+  }
+  else 
+  {
+    stflip(a, w);
+        push(pop(a));                                  /* move result */
+  }
+/******************************************************************
+  code = POP_RET();                                   returnadresse */
+
+d343 7
+d351 4
+a354 3
+    if (TY_COND == R_DESC(funcdesctable[i], type))
+      f_mkcclos(0, i);
+    funcclostable[i] = pop(w);
+@
+
+
+1.2
+log
+@gammabetaclosure
+@
+text
+@d189 1
+a189 1
+    pop(r); /* Funktionszeiger liegt auf R */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d41 6
+a46 6
+/*************************************************************/
+/* builds a Closure with a primfunc                          */
+/* arity: arity of primfunc                                  */
+/* args : number actual parameters                           */
+/* pfunc: which primfunc in reduma style                     */
+/*************************************************************/
+d54 1
+a54 1
+  push(pfunc);  /* Primitive Fkt. muss oben auf dem Stack liegen */
+d72 1
+a72 1
+  L_CLOS(*_desc, args) = arity;
+d84 1
+a84 1
+  while (arity-- > 0)
+d172 2
+a173 2
+  INC_REFCNT(ptdesc);
+  repl(0, w, (int)ptdesc);
+d188 2
+a189 1
+    *pth++ = (T_HEAPELEM)pop(r); /* Funktionszeiger liegt auf R */
+@

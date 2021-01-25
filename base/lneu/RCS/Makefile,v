@@ -1,0 +1,238 @@
+head	1.4;
+access;
+symbols;
+locks
+	base:1.4; strict;
+comment	@# @;
+
+
+1.4
+date	2001.03.09.16.26.57;	author base;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2001.03.09.15.19.30;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2001.03.09.14.57.24;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2001.03.09.13.08.48;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@top-level Makefile
+@
+
+
+1.4
+log
+@order of targets modified
+CC is handed to sub-Makefiles now
+@
+text
+@CC = gcc
+RM = rm -rf
+
+C_FILES = redclos.c reac.c rhinout.c rstpro.c rstpre.c rea-ret.c rdesc.c \
+	rheap.c nsubfunc.c casefunc.c nea-cre.c lrecfunc.c hfunc.c pm-ptfu.c \
+	rreduct.c  rprint.c rstack.c rstate.c pmam.c pmdimli.c  rvalir.c \
+	pmred-nomat.c pmredswi.c pmredeswi.c pmredwhen.c p-fail.c\
+	casepost.c condfunc.c close-cond.c postfunc.c rreduce.c \
+	rlstruct.c rquery.c rred-eq.c rruntime.c  rtrav.c  pm-debug.c \
+	pmpatvar.c red-nomat-when.c rst-dec.c rconvir.c rbreak.c dbug.c
+S_FILES =rear.neu_sc.c rlogfunc_sc.c rvalfunc_sc.c
+L_FILES =rear.neu.c rlogfunc.c rvalfunc.c pmst-slice.c preproc.c \
+	os-send.neu.c testf.c rdig-add.c rdig-div.c rdig-mod.c \
+	rdig-sub.c rdig-v1.c rdig-v2.c rvstruct.c rret-dec.c \
+	rval-int.c rsts-dec.c rlog-mvt.c rdig-mul.c \
+	rconvert.c rbibfunc.c rmstruct.c
+
+LIBS = -ltermcap -lm
+
+# select CFLAGS for Sun or Apollo
+FLAGS = -DUNIX=1 -DLETREC=0 -DODDSEX=0 -DSTANDALONE=1 -DDREDUMA=1 -DEAGER=1
+#FLAGS = -DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DLETREC=0 -DODDSEX=0 -DSTANDALONE=1 -DDREDUMA=1 -DEAGER=1
+
+LFLAGS  = -DDEBUG=0 -DLARGE=1 -DDBUG_OFF $(FLAGS)
+SFLAGS  = -DDEBUG=0 -DLARGE=0 -DDBUG_OFF $(FLAGS)
+DLFLAGS = -DDEBUG=1 -DLARGE=1 $(FLAGS)
+DSFLAGS = -DDEBUG=1 -DLARGE=0 $(FLAGS)
+
+
+sneu:
+	@@echo "making $@@ ..."
+	( cd src; \
+	  $(MAKE) "CC = $(CC)" \
+	          "PRODUCT = $@@" \
+	          "FILES   = $(C_FILES) $(S_FILES)" \
+	          "CFLAGS  = $(SFLAGS) -g -O" )
+lneu:
+	@@echo "making $@@ ..."
+	( cd src; \
+	  $(MAKE) "CC = $(CC)" \
+	          "PRODUCT = $@@" \
+	          "FILES   = $(C_FILES) $(L_FILES)" \
+	          "CFLAGS  = $(LFLAGS) -g -O" )
+dsneu:
+	@@echo "making $@@ ..."
+	( cd src; \
+	  $(MAKE) "CC = $(CC)" \
+	          "PRODUCT = $@@" \
+	          "FILES   = $(C_FILES) $(S_FILES)" \
+	          "CFLAGS  = $(DSFLAGS) -g" )
+dlneu:
+	@@echo "making $@@ ..."
+	( cd src; \
+	  $(MAKE) "CC = $(CC)" \
+	          "PRODUCT = $@@" \
+	          "FILES   = $(C_FILES) $(L_FILES)" \
+	          "CFLAGS  = $(DLFLAGS) -g" )
+
+all: sneu lneu dsneu dlneu
+
+
+deps:
+	makedepend -- $(DLFLAGS) -- $(C_FILES) $(L_FILES) $(S_FILES)
+
+
+clean:
+	$(RM) lneu sneu dlneu dsneu
+	$(RM) *.o
+@
+
+
+1.3
+log
+@Makefile simplified
+@
+text
+@d1 1
+a1 1
+CC = cc
+d30 7
+d40 2
+a41 1
+	  $(MAKE) "PRODUCT = $@@" \
+d44 1
+a44 1
+sneu:
+d47 2
+a48 1
+	  $(MAKE) "PRODUCT = $@@" \
+d50 1
+a50 1
+	          "CFLAGS  = $(SFLAGS) -g -O" )
+d54 2
+a55 1
+	  $(MAKE) "PRODUCT = $@@" \
+a57 6
+dsneu:
+	@@echo "making $@@ ..."
+	( cd src; \
+	  $(MAKE) "PRODUCT = $@@" \
+	          "FILES   = $(C_FILES) $(S_FILES)" \
+	          "CFLAGS  = $(DSFLAGS) -g" )
+d59 1
+a59 1
+all: lneu sneu dlneu dsneu
+@
+
+
+1.2
+log
+@initial revision
+@
+text
+@d33 3
+a35 2
+	  $(MAKE) ../$@@ "PRODUCT = ../$@@" "OFILE_DIR = ../$@@.o" \
+	    "FILES = $(C_FILES) $(L_FILES)" "CFLAGS = $(LFLAGS) -g -O" )
+d39 3
+a41 2
+	  $(MAKE) ../$@@ "PRODUCT = ../$@@" "OFILE_DIR = ../$@@.o" \
+	    "FILES = $(C_FILES) $(S_FILES)" "CFLAGS = $(SFLAGS) -g -O" )
+d45 3
+a47 2
+	  $(MAKE) ../$@@ "PRODUCT = ../$@@" "OFILE_DIR = ../$@@.o" \
+	    "FILES = $(C_FILES) $(L_FILES)" "CFLAGS = $(DLFLAGS) -g" )
+d51 3
+a53 2
+	  $(MAKE) ../$@@ "PRODUCT = ../$@@" "OFILE_DIR = ../$@@.o" \
+	    "FILES = $(C_FILES) $(S_FILES)" "CFLAGS = $(DSFLAGS) -g" )
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 2
+EDO = /home/base/fed/editor.o.obj/editor.o
+
+d21 3
+a23 3
+FLAGS  = -c -DUNIX=1 -DLETREC=0 -DODDSEX=0 -DSTANDALONE=1 -DDREDUMA=1 -DEAGER=1 $(CFLAGS)
+#FLAGS  = -DUNIX=1 -DAPOLLO=1 -DSYS5=1 -DLETREC=0 -DODDSEX=0 \
+#	-DSTANDALONE=1 -DDREDUMA=1 -DEAGER=1 $(CFLAGS)
+a28 1
+VPATH = $(OFILE_DIR)
+d30 20
+a49 2
+.c.o:
+	$(CC) $(CFLAGS) -c $*.c -o $(OFILE_DIR)/$*.o
+d51 1
+a51 24
+l: ../lneu
+	@@echo "making lneu ..."
+	@@$(MAKE) depend "OFILE_DIR = ../l.o" \
+	    "FILES = $(C_FILES) $(L_FILES)" "CFLAGS = $(LFLAGS) -O"
+	@@$(MAKE) $^ "OFILE_DIR = ../l.o" "FILES = $(C_FILES) $(L_FILES)" \
+	    "PRODUCT = lneu" "LDFLAGS = $(LDFLAGS) -O"
+s: ../sneu
+	@@echo "making sneu ..."
+	@@$(MAKE) depend "OFILE_DIR = ../s.o" \
+	    "FILES = $(C_FILES) $(S_FILES)" "CFLAGS = $(SFLAGS) -O"
+	@@$(MAKE) $^ "OFILE_DIR = ../s.o" "FILES = $(C_FILES) $(S_FILES)" \
+	    "PRODUCT = sneu" "LDFLAGS = $(LDFLAGS) -O"
+dl: ../dlneu
+	@@echo "making dlneu ..."
+	@@$(MAKE) depend "OFILE_DIR = ../dl.o" \
+	    "FILES = $(C_FILES) $(L_FILES)" "CFLAGS = $(DLFLAGS) -g"
+	@@$(MAKE) $^ "OFILE_DIR = ../dl.o" "FILES = $(C_FILES) $(L_FILES)" \
+	    "PRODUCT = dlneu" "LDFLAGS = $(LDFLAGS) -g"
+ds: ../dsneu
+	@@echo "making dsneu ..."
+	@@$(MAKE) depend "OFILE_DIR = ../ds.o" \
+	    "FILES = $(C_FILES) $(S_FILES)" "CFLAGS = $(DSFLAGS) -g"
+	@@$(MAKE) $^ "OFILE_DIR = ../ds.o" "FILES = $(C_FILES) $(S_FILES)" \
+	    "PRODUCT = dsneu" "LDFLAGS = $(LDFLAGS) -g"
+a52 1
+all: l s dl ds
+d54 1
+a54 1
+dependencies:
+d57 1
+d59 2
+a60 11
+	$(RM) lneu sneu dlneu dsneu lneu.o sneu.o dlneu.o dsneu.o
+	$(RM) ../l.o ../s.o ../dl.o ../ds.o
+
+$(OFILE_DIR):
+	mkdir $@@
+
+depend: $(OFILE_DIR) $(FILES:.c=.o)
+
+../%: $(FILES:.c=.o)
+	( cd $(OFILE_DIR) ; \
+	  $(CC) $(LDFLAGS) -o $@@ $(FILES:.c=.o) $(EDO) $(LIBS) )
+@

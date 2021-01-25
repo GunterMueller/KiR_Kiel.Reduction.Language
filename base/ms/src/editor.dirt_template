@@ -1,0 +1,44 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "editor"
+%%ID  Created by tb on Thu Jul 29 09:16:04 1993
+%%%
+%T editor
+%F
+%%%
+%N editorBox
+%c ukcLayoutWidgetClass
+%p editor
+%m true
+%o false
+%s x : 0
+%s y : 0
+%s width : 0
+%s height : 0
+%s borderWidth : 1
+%r background : #888888
+%f
+%%%
+%N  editorEditWindow
+%c  asciiTextWidgetClass
+%p  editor.editorBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 4
+%s  width : 502
+%s  height : 696
+%s  borderWidth : 1
+%f
+%%%
+%N  editorClose
+%c  ukcCommandWidgetClass
+%p  editor.editorBox
+%m  true
+%o  false
+%s  x : 4
+%s  y : 705
+%s  width : 502
+%s  height : 37
+%s  borderWidth : 1
+%r  background : #bbbbbb
+%f

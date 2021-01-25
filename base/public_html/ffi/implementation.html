@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>FFI: Implementation</title>
+</head>
+
+<body>
+
+<h2>Implementation Overview</h2>
+
+As part of the <a href="index.html">FFI</a> project, the implementation
+of our reduction language 
+<a href="../languages/index.html#KiR">KiR</a>
+has been extended with facilities for input/output (interactions) and record-like 
+data structures (frames).
+
+There are currently two people working on the implementation:
+<a href="http://www.informatik.uni-kiel.de/~stt/">S. Timm</a> (MSc student) and 
+<a href="http://www.informatik.uni-kiel.de/~cr/">C. Reinke</a> (PhD student).
+The topics under implementation are:
+<p>
+
+<dl>
+<dt><a href="stt/intact.html">
+    input/output for streams and files of characters</a>
+<dd>A variant based on monadic i/o is ready to be tested by KiR programmers.
+    The set of primitive interactions is similar to the basic i/o operations
+    in C. Of course, we do not expect this to be an ideal solution for an interactive
+    reduction system implementing a purely functional language, but we would like to 
+    collect some experience with this variant since this is what most of our 
+    <em>non-users</em> wanted to have (<em>".. but you can't do this, and
+    you can't do that in KiR .. and look how simple it is in C .."</em>).
+    We are very interested to learn about your experiences (good or bad)
+    with the current system before we attempt to design a better one.  
+    <p>
+
+<dt><a href="frames.html">frames</a>
+<dd>An initial variant of  is available. The set 
+    of frame operations and the overall syntax may change as we gain experience with 
+    the existing variant. Comments and suggestions are welcome.
+    <p>
+
+<dt>Interactions for arbitrary expressions 
+<dd>An alpha-version is included in tred.
+    <br>
+    (interactions <code>get( filehandle )</code> and 
+                  <code>put( filehandle, expression )</code>.
+    <p>
+
+<dt><a href="modules.html">modules in KiR</a> / <a href="edlib/index.html">collection of libraries</a>
+    <p>
+
+</dl>
+
+
+Any proposals on useful operations or features, problem reports and other 
+questions related to these extensions should be directed to 
+C. Reinke.
+<p>
+
+
+<hr>
+
+<address>
+Mon Aug 26 16:13:13 MET-DST 1996
+</address>
+</body>
+</html>

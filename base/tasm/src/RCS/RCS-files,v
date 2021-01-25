@@ -1,0 +1,327 @@
+head	1.18;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.18
+date	96.02.13.16.42.14;	author stt;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.12.05.14.12.23;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.07.11.10.03.24;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.03.06.15.50.45;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.02.02.14.32.19;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.01.04.13.16.10;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.01.04.09.15.32;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.01.04.09.13.37;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.20.09.28.25;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.20.09.26.21;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.20.09.20.00;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.20.07.31.07;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.19.14.49.21;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.07.07.34.38;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.02.09.55.39;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.21.12.34.22;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.21.09.09.35;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.08.19.07;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.18
+log
+@support.c and support.h added.
+@
+text
+@Makefile
+README.TASM
+buildtree.c
+buildtree.h
+c_output.c
+c_output.h
+comp_support.c
+comp_support.h
+compile.c
+compile.vers
+dbug.c
+dbug.h
+error.c
+error.h
+georg.c
+georg.vers
+globals.h
+heap.c
+heap.h
+loctypes.h
+main.c
+main.h
+main.vers
+mytypes.h
+optimizer.c
+optimizer.h
+output.c
+ris.c
+ris.h
+ris.vers
+stack.h
+str_support.c
+support.c
+support.h
+tags
+tasm2c.l
+tasm2c.y
+tcorrect.c
+tcorrect.h
+tiny.c
+tiny.h
+tis.c
+tis.h
+tis.vers
+@
+
+
+1.17
+log
+@README and tagfile
+@
+text
+@d33 2
+@
+
+
+1.16
+log
+@tcorrect.c tcorrect.h addes
+@
+text
+@d2 1
+d33 1
+@
+
+
+1.15
+log
+@new directory structure
+@
+text
+@d34 2
+@
+
+
+1.14
+log
+@optimizer.c optimizer.h added
+@
+text
+@a3 1
+c_main.h
+a9 2
+db_c_main.h
+db_prolog.h
+a11 2
+dummy_compile.c
+dummy_tis.c
+a18 1
+initdata.c
+a26 3
+prolog.h
+rapply.c
+rapply.h
+a29 2
+rmkclos.c
+rmkclos.h
+@
+
+
+1.13
+log
+@initdata.c added
+@
+text
+@d30 2
+@
+
+
+1.12
+log
+@db_c_main.h added
+@
+text
+@d24 1
+@
+
+
+1.11
+log
+@db_prolog.h added
+@
+text
+@d11 1
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d11 1
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d30 1
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d34 1
+@
+
+
+1.7
+log
+@ris.h added
+@
+text
+@d29 1
+d33 1
+@
+
+
+1.6
+log
+@heap manager included
+@
+text
+@d30 1
+@
+
+
+1.5
+log
+@new stack for georg
+@
+text
+@d20 2
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d29 1
+@
+
+
+1.3
+log
+@initial incomplete version
+@
+text
+@d4 1
+@
+
+
+1.2
+log
+@initial incomplete version
+@
+text
+@d9 1
+d17 1
+d22 1
+d27 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 31
+@

@@ -1,0 +1,96 @@
+#define concat_mac(a,b,c)	a##b##c
+#define concat_mac2(a,b)	a##b
+
+/* Create a fileextender entry in fileextender property window **/
+#define MAC_FILE_EXTENDER_ENTRY(title,dir1,dir2,var)				\
+  (void)xv_create(								\
+   SetupProps.FE.ps.panel,							\
+   PANEL_MESSAGE,								\
+   PANEL_LABEL_STRING,title,							\
+   PANEL_LABEL_BOLD,TRUE,							\
+   PANEL_LABEL_WIDTH,DEF_FILEPATH_WIDTH,					\
+   NULL										\
+  );										\
+  concat_mac(SetupProps.FE.FE_,var,_m)=(Menu)xv_create(				\
+   XV_NULL, /* Actually no parent */						\
+   MENU,									\
+   MENU_ITEM,									\
+    MENU_STRING,dir1,								\
+    MENU_VALUE,concat_mac2(var,_DIR1),						\
+    NULL,									\
+   MENU_ITEM,									\
+    MENU_STRING,dir2,								\
+    MENU_VALUE,concat_mac2(var,_DIR2),						\
+    NULL,									\
+   MENU_NOTIFY_PROC,FE_menu_proc,						\
+   NULL										\
+  );										\
+  (void)xv_create(								\
+   SetupProps.FE.ps.panel,							\
+   PANEL_ABBREV_MENU_BUTTON,							\
+   PANEL_LABEL_STRING,"Path",							\
+   PANEL_ITEM_MENU,concat_mac(SetupProps.FE.FE_,var,_m),			\
+   NULL										\
+  ); 										\
+  concat_mac(SetupProps.FE.FE_,var,=)(Panel_item)xv_create(			\
+   SetupProps.FE.ps.panel,							\
+   PANEL_TEXT,									\
+   PANEL_LABEL_STRING,"",							\
+   PANEL_VALUE_DISPLAY_LENGTH,FE_PATHDISPLAY_LEN,				\
+   PANEL_VALUE_STORED_LENGTH,FE_PATHSTORE_LEN,					\
+   PANEL_VALUE,concat_mac(SetupProps.FE.,var,_p_value),				\
+   NULL										\
+  );										\
+  concat_mac(SetupProps.FE.FE_,var,_e)=(Panel_item)xv_create(			\
+   SetupProps.FE.ps.panel,							\
+   PANEL_TEXT,									\
+   PANEL_LABEL_STRING,"Extension:",						\
+   PANEL_VALUE_DISPLAY_LENGTH,FILEEXTENDER_DISPLAYLEN,				\
+   PANEL_VALUE_STORED_LENGTH,FILEEXTENDER_LEN,					\
+   PANEL_VALUE,concat_mac(SetupProps.FE.,var,_e_value),				\
+   NULL										\
+  )
+
+/* Creates the 4 standard buttons apply,defaults,reset for properties **/
+#define MAC_CREATE_AP_DEF_RES(PROP)						\
+  concat_mac(SetupProps.,PROP,.ps.apply)=(Panel_item)xv_create(			\
+   concat_mac(SetupProps.,PROP,.ps.panel), /* Parent */				\
+   PANEL_BUTTON, /* Type */							\
+   PANEL_LABEL_STRING,"Apply",							\
+   PANEL_NOTIFY_PROC,props_apply_proc,						\
+   NULL										\
+  );										\
+  window_fit_width(concat_mac(SetupProps.,PROP,.ps.panel));			\
+  xv_set(									\
+   concat_mac(SetupProps.,PROP,.ps.panel),					\
+   PANEL_LAYOUT,PANEL_HORIZONTAL,						\
+   NULL										\
+  );										\
+  concat_mac(SetupProps.,PROP,.ps.defaults)=(Panel_item)xv_create(		\
+   concat_mac(SetupProps.,PROP,.ps.panel),					\
+   PANEL_BUTTON,								\
+   PANEL_LABEL_STRING,"Defaults",						\
+   PANEL_NOTIFY_PROC,props_defaults_proc,					\
+   NULL										\
+  );										\
+  concat_mac(SetupProps.,PROP,.ps.reset)=(Panel_item)xv_create(			\
+   concat_mac(SetupProps.,PROP,.ps.panel),					\
+   PANEL_BUTTON,								\
+   PANEL_LABEL_STRING,"Reset",							\
+   PANEL_NOTIFY_PROC,props_reset_proc,						\
+   NULL										\
+  );										\
+  concat_mac(SetupProps.,PROP,.ps.close)=(Panel_item)xv_create(			\
+   concat_mac(SetupProps.,PROP,.ps.panel),					\
+   PANEL_BUTTON,								\
+   PANEL_LABEL_STRING,"Dismiss",						\
+   PANEL_NOTIFY_PROC,props_close_proc,						\
+   NULL										\
+  );										\
+  xv_set(									\
+   concat_mac(SetupProps.,PROP,.ps.panel),					\
+   PANEL_DEFAULT_ITEM,concat_mac(SetupProps.,PROP,.ps.apply),			\
+   NULL										\
+  );										\
+  window_fit_height(concat_mac(SetupProps.,PROP,.ps.panel));			\
+  CenterARDButtons(concat_mac(&SetupProps.,PROP,.ps))

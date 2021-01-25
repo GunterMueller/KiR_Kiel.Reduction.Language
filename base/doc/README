@@ -1,0 +1,19 @@
+Sven-Bodo Scholz						Kiel, den 8.11.93
+=====================================================================================
+This directory contains:
+
+creduma.hlp			the help-file of the standard pired
+README.implementation.std.files	some very rough information on the standard 
+				system-filelayout (dg)
+README.implementation.letpar    some infos on the impl. of the letpar construct
+README.implementation.mess      some infos on the impl. of construct for measuring
+README.implementation.merge     some infos on the merging strategies available
+README.implementation.autodist  some infos on compiler generated letpar constructs
+README.measure.usage            usage of the measurement system (engl.),
+README.thoughts.checkframe      some thoughts on the stackframe checks in a frame
+				based implementation of the system stack(s)
+README.dired       		how to use the dired
+README.tickets			the syntax of red.tickets
+README.tickets.tex 		(tex-source of the above)
+
+

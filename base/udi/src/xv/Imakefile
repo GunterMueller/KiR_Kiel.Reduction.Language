@@ -1,0 +1,79 @@
+#include <XView.tmpl>
+
+#
+# Imakefile for XReduma
+#
+
+CC=gcc
+CDEBUGFLAGS=-Wall -ansi
+
+DBUG	= -DDBUG_OFF=1
+
+DEFINES = -DSTANDALONE $(XVCLIENTSYSDEFINES) $(DBUG)
+SYS_LIBRARIES = -L/usr/X11R5/lib/xview -ll
+DEPLIBS = XViewClientDepLibs
+LOCAL_LIBRARIES = XViewClientLibs
+
+BASE_SRC_PATH		= /home/batman/base/red/src
+
+TOP_PATH		= /home/batman/base/udi
+LIB_PATH		= $(TOP_PATH)/lib
+SRC_PATH		= $(TOP_PATH)/src
+SFED_PATH		= /home/batman/base/fed/src
+MARC_PATH		= $(SRC_PATH)/marco
+DBUG_PATH		= $(SRC_PATH)/dbug
+MARC_INC_PATH		= $(MARC_PATH)/include
+CLIENT_MODULE_PATH	= $(SRC_PATH)/clt_srv
+
+INCLUDES		= -I$(CLIENT_MODULE_PATH) -I$(MARC_INC_PATH) \
+			  -I$(BASE_SRC_PATH) \
+			  -I$(SFED_PATH) \
+			  -I$(DBUG_PATH) \
+			  -Iinclude
+
+CLIENT_MODULE_OBJS	= $(CLIENT_MODULE_PATH)/client-modul.o
+MARC_COMP_OBJ		= $(LIB_PATH)/libmarco.o
+COMP_LANG_OBJ		= $(LIB_PATH)/libkir.o
+#DBUG_OBJ		= $(SRC_PATH)/dbug/dbug.o
+
+ADDITIONAL_OBJS		= $(CLIENT_MODULE_OBJS) $(MARC_COMP_OBJ) $(COMP_LANG_OBJ)
+
+###################################################################################
+
+SRCS = XReduma.c \
+       Reduma-cmd.c \
+       Menu-create.c Menu-fcts.c \
+       Properties-create.c Properties-fcts.c Properties-ard.c\
+       Misc-fcts.c \
+       FileIO-create.c FileIO-fcts.c \
+       Control-create.c \
+       TEditor-create.c \
+       Compiler-fcts.c \
+       Help-fct.c
+
+OBJS1 = XReduma.o \
+	Reduma-cmd.o \
+	Menu-create.o \
+	Menu-fcts.o \
+	Properties-create.o \
+	Properties-fcts.o \
+	Properties-ard.o\
+	Misc-fcts.o \
+	FileIO-create.o \
+	FileIO-fcts.o \
+	Control-create.o \
+	TEditor-create.o \
+	Compiler-fcts.o \
+        Help-fct.o
+
+###################################################################################
+
+OBJS  = $(OBJS1) $(ADDITIONAL_OBJS) $(DBUG_OBJ)
+
+.NOEXPORT:
+.NOEXPORT:
+
+ComplexProgramTarget(Xred)
+
+clean::
+	$(RM) ${OBJS1} Xred

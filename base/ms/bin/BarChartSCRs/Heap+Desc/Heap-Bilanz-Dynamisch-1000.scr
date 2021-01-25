@@ -1,0 +1,131 @@
+DEFS:
+	static double size, timeFactor, previousTime;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+		    rememberFactor[100], temp[1000];
+
+	#define MAX_ALLOCS 10000
+	#define RATE 1000		     /* Plot only each RATE-th point */
+
+	static int rateCounter;
+
+	static struct {
+		int size, reference;
+	} refs[MAX_ALLOCS];
+	static int numRefs, i, flag[MAX_PROCESSORS];
+
+
+	void addXY(x, y)
+	double x, y;
+	{
+		if(++rateCounter >= RATE) {
+			rateCounter = 0;
+			previousTime = x;
+			ADD_XY(x, y);
+			NEXT_FRAME();
+		}
+
+		return;
+	}
+
+
+	int isInRefs(ref)
+	int ref;
+	{
+		int i;
+
+		for(i=0; i<numRefs; ++i) {
+			if(refs[i].reference == ref) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	for(i=0; i<MAX_PROCESSORS; ++i) {
+		flag[i] = 0;
+	}
+	size = 0;
+
+	SET_MODE(XY_PLOT);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "Heap -- %s -- %s reduction steps",
+		rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	timeFactor = atof(rememberFactor);
+
+	SET_NAME("Heap");
+	SET_X_LABEL("Time");
+	SET_Y_LABEL("Total size of allocated HEAP-Blocks");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+	SET_STYLE(STEPS);
+	SET_MARKER(SOLID);
+
+	for(i=0; i<MAX_ALLOCS; ++i) {
+		refs[i].reference = 0;
+	}
+	numRefs = 0;
+
+	NEXT_FRAME();
+
+	rateCounter = 0;
+
+	break;
+
+PROC_RUN:
+	if(PROCESSOR == 0) {
+		flag[PROCESSOR] = 2;
+	}
+	break;
+
+RECEIVE_BEGIN:
+	if(!flag[PROCESSOR]) {
+		flag[PROCESSOR] = 1;
+	} else {
+		flag[PROCESSOR] = 2;
+	}
+	break;
+
+HEAP_ALLOC:
+	if(flag[PROCESSOR] == 2) {
+		/* Store size... */
+		if((i = isInRefs(HA_REF)) == -1) {
+			if(numRefs >= MAX_ALLOCS) {
+				printf("Array exceeded! Increase MAX_ALLOCS...\n");
+			} else {
+				refs[numRefs].reference = HA_REF;
+				refs[numRefs].size = HA_SIZE;
+				++numRefs;
+			}
+		} else {
+			refs[i].size = HA_SIZE;
+		}
+
+		/* Update plot... */
+		addXY(((double)TIME)/timeFactor, (size += HA_SIZE));
+	}
+	break;
+
+HEAP_FREE:
+	if(flag[PROCESSOR] == 2) {
+		addXY(((double)TIME)/timeFactor,
+		      (size -= refs[isInRefs(HF_REF)].size));
+	}
+	break;
+
+END:
+	/* Force last point to be drawn... */
+	rateCounter = RATE;
+	addXY(previousTime, size);
+
+	NEXT_FRAME();
+
+	break;

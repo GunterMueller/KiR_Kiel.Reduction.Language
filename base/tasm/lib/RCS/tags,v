@@ -1,0 +1,2418 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	96.02.01.11.48.49;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@tagfile for lib
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@ABS	nr_rbibfunc.c	/^#define ABS(x)      digit_abs((x))$/
+ADD	nr_rbibfunc.c	/^#define ADD(x,y)    digit_add((x),(y))$/
+ADD_INT	rstelem.h	/^#define ADD_INT(x,y)       ((x) + ((y) ^ P_INT))$/
+ANDNT_BOOL	rstelem.h	/^#define ANDNT_BOOL(x,y)    ((x) & ~(y))$/
+AND_BOOL	rstelem.h	/^#define AND_BOOL(x,y)      ((x) & (y))$/
+AND_INT	rstelem.h	/^#define AND_INT(x,y)       ((x) & (y))$/
+ARITY	rstelem.h	/^#define ARITY(x)           ((x) >> O_ARITY)$/
+ARITY_GT_1	rstelem.h	/^#define ARITY_GT_1(x)      ((x) & 0xFFFE000)$/
+A_ATOMTYPE	rheapty.h	/^#define A_ATOMTYPE(p,x) \\$/
+A_CASE	rheapty.h	/^#define A_CASE(p,x) \\$/
+A_CLAUSE	rheapty.h	/^#define A_CLAUSE(p,x) \\$/
+A_CLOS	rheapty.h	/^#define A_CLOS(p,x) \\$/
+A_COMB	rheapty.h	/^#define A_COMB(p,x) \\$/
+A_COMPTYPE	rheapty.h	/^#define A_COMPTYPE(p,x) \\$/
+A_COND	rheapty.h	/^#define A_COND(p,x) \\$/
+A_CONDI	rheapty.h	/^#define A_CONDI(p,x) \\$/
+A_CONS	rheapty.h	/^#define A_CONS(p,x) \\$/
+A_DIGIT	rheapty.h	/^#define A_DIGIT(p,x) \\$/
+A_EXPR	rheapty.h	/^#define A_EXPR(p,x) \\$/
+A_FNAME	rheapty.h	/^#define A_FNAME(p,x)       \\$/
+A_FRAME	rheapty.h	/^#define A_FRAME(p,x) \\$/
+A_FREE	rheapty.h	/^#define A_FREE(p,x) \\$/
+A_FUNC	rheapty.h	/^#define A_FUNC(p,x) \\$/
+A_INTACT	rheapty.h	/^#define A_INTACT(p,x) \\$/
+A_INTER	rheapty.h	/^#define A_INTER(p,x) \\$/
+A_LINKNODE	rheapty.h	/^#define A_LINKNODE(p,x) \\$/
+A_LIST	rheapty.h	/^#define A_LIST(p,x) \\$/
+A_LREC	rheapty.h	/^#define A_LREC(p,x) \\$/
+A_LREC_ARGS	rheapty.h	/^#define A_LREC_ARGS(p,x) \\$/
+A_LREC_IND	rheapty.h	/^#define A_LREC_IND(p,x) \\$/
+A_MATCH	rheapty.h	/^#define A_MATCH(p,x) \\$/
+A_MVT	rheapty.h	/^#define A_MVT(p,x,class1) \\$/
+A_NAME	rheapty.h	/^#define A_NAME(p,x) \\$/
+A_NOMAT	rheapty.h	/^#define A_NOMAT(p,x) \\$/
+A_PATTERN	rheapty.h	/^#define A_PATTERN(p,x) \\$/
+A_SCALAR	rheapty.h	/^#define A_SCALAR(p,x) \\$/
+A_SELECTION	rheapty.h	/^#define A_SELECTION(p,x) \\$/
+A_SLOT	rheapty.h	/^#define A_SLOT(p,x) \\$/
+A_SWAPHEAP	rheapty.h	/^#define A_SWAPHEAP(p,x) \\$/
+A_SWITCH	rheapty.h	/^#define A_SWITCH(p,x) \\$/
+A_UNIV	rheapty.h	/^#define A_UNIV(p,x) \\$/
+A_VAR	rheapty.h	/^#define A_VAR(p,x) \\$/
+A_ZF	rheapty.h	/^#define A_ZF(p,x) &(p).u.fu.x$/
+A_ZFCODE	rheapty.h	/^#define A_ZFCODE(p,x) \\$/
+AreYouIndatatable	initdata.c	/^int AreYouIndatatable(const int me)$/
+AreYouInfuncdesctable	initdata.c	/^int AreYouInfuncdesctable(const int me)$/
+BOOLEAN	dbug.c	94
+BT_DESC	rinter.h	/^#define BT_DESC(n)    ((n)*BT_ITEM_SIZE+BTDESC)$/
+BT_END	rinter.h	/^#define BT_END(n)     ((n)*BT_ITEM_SIZE+BTEND)$/
+BT_FRAME	rinter.h	/^#define BT_FRAME(n)   ((n)*BT_ITEM_SIZE+BTFRAME)$/
+BT_PTR	rinter.h	/^#define BT_PTR(n)     ((n)*BT_ITEM_SIZE+BTPTR)$/
+BT_START	rinter.h	/^#define BT_START(n)   ((n)*BT_ITEM_SIZE+BTSTART)$/
+BaseName	dbug.c	/^LOCAL char *BaseName (pathname)$/
+CFIXCONSTR	rstelem.h	/^#define CFIXCONSTR(nr,ar)  (FIX_CCONSTR | ((nr) <</
+CHECK_INSTR	rinter.h	/^#define CHECK_INSTR(in) if (in < 0 \\$/
+CHECK_MODE	rncmessage.h	27
+CLEAR_AP	rstelem.h	/^#define CLEAR_AP(x)        (x &= ~F_SYSAP )$/
+COUNT	rheapty.h	259
+CVARCON	rstelem.h	/^#define CVARCON(nr)        (VAR_CCONSTR | ((nr) <</
+Case	prolog.h	/^#define Case(func, r)  push_r(r); \\$/
+CloseFile	dbug.c	/^LOCAL VOID CloseFile (fp)$/
+DBG_MESSAGE_TYPE	DBdebug.h	23
+DBGcontext	DBdebug.h	44
+DBUG_ASSERT	dbug.h	/^#define DBUG_ASSERT(p,q)$/
+DBUG_ENTER	dbug.h	/^#define DBUG_ENTER(a1)$/
+DBUG_EXECUTE	dbug.h	/^#define DBUG_EXECUTE(keyword,a1)$/
+DBUG_LONGJMP	dbug.h	/^#define DBUG_LONGJMP(a1,a2) (_db_longjmp_ (), long/
+DBUG_LPRINT	dbug.h	/^#define DBUG_LPRINT(key1,key2,arglist) \\$/
+DBUG_POP	dbug.h	/^#define DBUG_POP() _db_pop_ ()$/
+DBUG_PRINT	dbug.h	/^#define DBUG_PRINT(keyword,arglist) \\$/
+DBUG_PRINTE	dbug.h	/^#define DBUG_PRINTE( keyword, arglist ) \\$/
+DBUG_PROCESS	dbug.h	/^#define DBUG_PROCESS(a1)$/
+DBUG_PUSH	dbug.h	/^#define DBUG_PUSH(a1)$/
+DBUG_RETURN	dbug.h	/^#define DBUG_RETURN(a1) do { int tmp = a1;DBUG_PRI/
+DBUG_SETJMP	dbug.h	/^#define DBUG_SETJMP(a1) (_db_setjmp_ (), setjmp (a/
+DEC	rstelem.h	/^#define DEC(x)             (x - (1 << O_ARITY))$/
+DEC_REFCNT	rheapty.h	/^#define DEC_REFCNT(p)          while(0)$/
+DEC_REFCNT_SCALAR	rheapty.h	/^#define DEC_REFCNT_SCALAR(p)   while(0)$/
+DESC	initdata.c	/^#define DESC(x)  (* (PTR_DESCRIPTOR) x)$/
+DESC_CLASS	rheapty.h	120
+DESC_MASK	rheapty.h	/^#define DESC_MASK(p,ref,cl,ty) \\$/
+DESC_TYPE	rheapty.h	174
+DIST_TYPE	rncsched.h	35
+DIV	nr_rbibfunc.c	/^#define DIV(x,y)    digit_div((x),(y))$/
+DIV_INT	rstelem.h	/^#define DIV_INT(x,y)       (((double) VAL_INT(x)) /
+DI_ADD	nr_rbibfunc.c	/^#define DI_ADD(x,y) (R_DIGIT(DESC(x),sign)==0  \\$/
+DI_SUB	nr_rbibfunc.c	/^#define DI_SUB(x,y)  (R_DIGIT(DESC(x),sign) == 0  /
+DStackDesc	rncstack.h	10
+D_MIDSTACK	rncstack.h	/^#define D_MIDSTACK(Onstack,Offset)    d_midstack_d/
+D_POPSTACK	rncstack.h	/^#define D_POPSTACK(Onstack)           d_popstack_d/
+D_PPOPSTACK	rncstack.h	/^#define D_PPOPSTACK(Onstack)          d_ppopstack_/
+D_PPUSHSTACK	rncstack.h	/^#define D_PPUSHSTACK(Onstack,Data)    d_pushstack_/
+D_PUSHSTACK	rncstack.h	/^#define D_PUSHSTACK(Onstack,Data)     d_pushstack_/
+D_READSTACK	rncstack.h	/^#define D_READSTACK(Onstack)          d_readstack_/
+D_SIZEOFSTACK	rncstack.h	/^#define D_SIZEOFSTACK(Onstack)        d_stacksize(/
+D_TOP_ADDRESS	rncstack.h	/^#define D_TOP_ADDRESS(Onstack)        (Onstack).To/
+D_UPDATESTACK	rncstack.h	/^#define D_UPDATESTACK(Onstack,Offset,Data)        /
+D_WRITESTACK	rncstack.h	/^#define D_WRITESTACK(Onstack,Data)    d_writestack/
+DbugExit	dbug.c	/^LOCAL VOID DbugExit (why)$/
+DbugMalloc	dbug.c	/^LOCAL char *DbugMalloc (size)$/
+Delay	dbug.c	/^Delay () $/
+DelayArg	dbug.c	/^LOCAL int DelayArg (value)$/
+DoPrefix	dbug.c	/^LOCAL void DoPrefix (_line_)$/
+DoTrace	dbug.c	/^LOCAL BOOLEAN DoTrace ()$/
+END_MODUL	rstdinc.h	/^#define   END_MODUL(modulname)    end_modul(moduln/
+EQ	nr_rbibfunc.c	/^#define EQ(x,y)     digit_eq((x),(y))$/
+EQ_BOOL	rstelem.h	/^#define EQ_BOOL(x,y)       ((x) == (y)) ? SA_TRUE /
+EQ_INT	rstelem.h	/^#define EQ_INT(x,y)        ((x) == (y)) ? SA_TRUE /
+EXISTS	dbug.c	/^#  define EXISTS(pathname) (access (pathname, A_EX/
+EXTID	rstelem.h	/^#define EXTID(x)           ((x) & ~F_VALUE)$/
+EXTR_EDIT	rstelem.h	/^#define EXTR_EDIT(x)       (((x) & F_EDIT) >> O_ED/
+FCTPTR	rstdinc.h	137
+FIXCONSTR	rstelem.h	/^#define FIXCONSTR(nr,ar)   (FIX_CONSTR | ((nr) << /
+FNAME	rstelem.h	/^#define FNAME(x)           (((x) & F_FUNC_NAME) >>/
+FREE_STDESC	nr_rbibfunc.c	/^#define FREE_STDESC(id)     DEC_REFCNT(id); \\$/
+FUNC_ARITY	rstelem.h	/^#define FUNC_ARITY(x)      (((x) & F_FUNC_ARITY) >/
+FUNC_INDEX	rstelem.h	/^#define FUNC_INDEX(x)      (((x) & F_FUNC_NAME) >>/
+FUNPTR	prolog.h	50
+FreeList	dbug.c	/^LOCAL void FreeList (linkp)$/
+GET_CHAR	prolog.h	/^#define GET_CHAR(x)   ((x & 0x00FF0000) >> 16)$/
+GET_DESC	rheapty.h	/^#define GET_DESC(p)            p  = (T_PTD)get_des/
+GET_HEAP	rheapty.h	/^#define GET_HEAP(n,p)          *((int *)(p)) = (in/
+GET_PTC	initdata.c	/^#define GET_PTC(x)    search_ptc(x)$/
+GET_THAT_CHAR	initdata.c	/^#define GET_THAT_CHAR(x)   ((x) >> 16)$/
+GE_BOOL	rstelem.h	/^#define GE_BOOL(x,y)       ((x) >= (y)) ? SA_TRUE /
+GE_INT	rstelem.h	/^#define GE_INT(x,y)        ((x) >= (y)) ? SA_TRUE /
+GROUP	rstelem.h	/^#define GROUP(x)           (((x) & F_CNST_GROUP) >/
+GT_BOOL	rstelem.h	/^#define GT_BOOL(x,y)       ((x) >  (y)) ? SA_TRUE /
+GT_INT	rstelem.h	/^#define GT_INT(x,y)        ((x) >  (y)) ? SA_TRUE /
+HEAPSIZEOF	rheapty.h	/^#define HEAPSIZEOF(x) ((sizeof(x) + sizeof(T_HEAPE/
+INC	rstelem.h	/^#define INC(x)             (x + (1 << O_ARITY))$/
+INC_REFCNT	rheapty.h	/^#define INC_REFCNT(p)          while(0)$/
+INSTR	rheapty.h	265
+INSTR_DESCR	rinter.h	390
+INTACT_TAB	rstdinc.h	142
+INTER_RESULT	rstdinc.h	147
+ISLASTCHAR	initdata.c	/^#define ISLASTCHAR(x) ((x) & ~LASTCHAR)$/
+IS_BOOLEAN	roptasm.h	/^#define IS_BOOLEAN(p)	( (R_DESC((*R_LINKNODE((*p),/
+IS_CHAR	initdata.c	/^#define IS_CHAR(x)    ((((x) & 0x0000000F) & 0x000/
+IS_DUMMY	rstelem.h	/^#define IS_DUMMY(elem)       (((elem) & 0xf) == ST/
+IS_FALSE	rstelem.h	/^#define IS_FALSE(x)        (((x) ^ SA_FALSE) == 0)/
+IS_POINTER	rstelem.h	/^#define IS_POINTER(x)      (((int)(x) & P_POINTER)/
+IS_SPACE	rncstack.h	/^#define IS_SPACE(Onstack,size)$/
+IS_TRUE	rstelem.h	/^#define IS_TRUE(x)         (((x) ^ SA_TRUE) == 0)$/
+IS_UNBOXED	roptasm.h	/^#define IS_UNBOXED(p)	( (R_DESC((*R_LINKNODE((*p),/
+IS_VAR_CHAR	initdata.c	/^#define IS_VAR_CHAR(x) ((((x) & 0x0000000F) & 0x00/
+IS_VAR_OR_CLOS_DESC	prolog.h	/^#define IS_VAR_OR_CLOS_DESC(x)  ( (x)==C_EXPRESSIO/
+InList	dbug.c	/^LOCAL BOOLEAN InList (linkp, cp)$/
+Indent	dbug.c	/^LOCAL void  Indent (indent)$/
+LE	nr_rbibfunc.c	/^#define LE(x,y)     digit_le((x),(y))$/
+LE_BOOL	rstelem.h	/^#define LE_BOOL(x,y)       ((x) <= (y)) ? SA_TRUE /
+LE_INT	rstelem.h	/^#define LE_INT(x,y)        ((x) <= (y)) ? SA_TRUE /
+LI_DESC_MASK	rheapty.h	/^#define LI_DESC_MASK(p,ref,cl,ty) \\$/
+LT	nr_rbibfunc.c	/^#define LT(x,y)     digit_lt((x),(y))$/
+LT_BOOL	rstelem.h	/^#define LT_BOOL(x,y)       ((x) <  (y)) ? SA_TRUE /
+LT_INT	rstelem.h	/^#define LT_INT(x,y)        ((x) <  (y)) ? SA_TRUE /
+L_ATOMTYPE	rheapty.h	/^#define L_ATOMTYPE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_CASE	rheapty.h	/^#define L_CASE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_CLAUSE	rheapty.h	/^#define L_CLAUSE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_CLOS	rheapty.h	/^#define L_CLOS(p,x)\/* TB, 3.11.1992 *\/ \\$/
+L_COMB	rheapty.h	/^#define L_COMB(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_COMPTYPE	rheapty.h	/^#define L_COMPTYPE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_COND	rheapty.h	/^#define L_COND(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_CONDI	rheapty.h	/^#define L_CONDI(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_CONS	rheapty.h	/^#define L_CONS(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_DESC	rheapty.h	/^#define L_DESC(p,x) MEAS_CALL(MS_DESCREF)(p).u.sc./
+L_DIGIT	rheapty.h	/^#define L_DIGIT(p,x)  \/* TB, 3.11.1992 *\/\\$/
+L_EXPR	rheapty.h	/^#define L_EXPR(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_FNAME	rheapty.h	/^#define L_FNAME(p,x)  \\$/
+L_FRAME	rheapty.h	/^#define L_FRAME(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_FREE	rheapty.h	/^#define L_FREE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_FUNC	rheapty.h	/^#define L_FUNC(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_INTACT	rheapty.h	/^#define L_INTACT(p,x) \\$/
+L_INTER	rheapty.h	/^#define L_INTER(p,x) \\$/
+L_LINKNODE	rheapty.h	/^#define L_LINKNODE(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_LIST	rheapty.h	/^#define L_LIST(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_LREC	rheapty.h	/^#define L_LREC(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_LREC_ARGS	rheapty.h	/^#define L_LREC_ARGS(p,x)\/* TB, 3.11.1992 *\/ \\$/
+L_LREC_IND	rheapty.h	/^#define L_LREC_IND(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_MATCH	rheapty.h	/^#define L_MATCH(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_MVT	rheapty.h	/^#define L_MVT(p,x,class1) \/* TB, 3.11.1992 *\/\\$/
+L_NAME	rheapty.h	/^#define L_NAME(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_NOMAT	rheapty.h	/^#define L_NOMAT(p,x)\/* TB, 3.11.1992 *\/ \\$/
+L_PATTERN	rheapty.h	/^#define L_PATTERN(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_SCALAR	rheapty.h	/^#define L_SCALAR(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_SELECTION	rheapty.h	/^#define L_SELECTION(p,x)\/* TB, 3.11.1992 *\/ \\$/
+L_SLOT	rheapty.h	/^#define L_SLOT(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_SWAPHEAP	rheapty.h	/^#define L_SWAPHEAP(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_SWITCH	rheapty.h	/^#define L_SWITCH(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_UNIV	rheapty.h	/^#define L_UNIV(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_VAR	rheapty.h	/^#define L_VAR(p,x) \/* TB, 3.11.1992 *\/\\$/
+L_ZF	rheapty.h	/^#define L_ZF(p,x) (p).u.fu.x$/
+L_ZFCODE	rheapty.h	/^#define L_ZFCODE(p,x) \/* TB, 3.11.1992 *\/\\$/
+ListParse	dbug.c	/^LOCAL struct link *ListParse (ctlp)$/
+MAKEDESC	rheapty.h	/^#define MAKEDESC(p,ref,cl,ty)  (GET_DESC(p)), DESC/
+MAKE_CHAR	prolog.h	/^#define MAKE_CHAR(x)  (((x) << 16) | 0x0000001c)$/
+MAKE_DESC	rheapty.h	/^#define MAKE_DESC(p,ref,cl,ty) (p = (int)get_desc(/
+MAKE_VAR_CHAR	initdata.c	/^#define MAKE_VAR_CHAR(x)  (((x) << 16) | 0x0000002/
+MAX_BOOL	rstelem.h	/^#define MAX_BOOL(x,y)      ((x) >  (y)) ? (x) : (y/
+MAX_INT	rstelem.h	/^#define MAX_INT(x,y)       ((x) >  (y)) ? (x) : (y/
+MEAS_CALL	rheapty.h	/^#define MEAS_CALL(x) measure(x),$/
+MESSAGE_TYPE	rncmessage.h	18
+MIDSTACK	rstackty.h	/^#define MIDSTACK(Onstack,Offset)  midstack(&(Onsta/
+MID_A	roptasm.h	/^#define MID_A(x)          MIDSTACK(*ps_a,x)$/
+MID_E	roptasm.h	/^#define MID_E(x)          MIDSTACK(S_e,(x))$/
+MID_R	roptasm.h	/^#define MID_R(x)          MIDSTACK(*ps_r,(x))$/
+MID_T	roptasm.h	/^#define MID_T(x)          MIDSTACK(*ps_t,(x))$/
+MID_W	roptasm.h	/^#define MID_W(n)          MIDSTACK(*ps_w,n)$/
+MIN_BOOL	rstelem.h	/^#define MIN_BOOL(x,y)      ((x) <  (y)) ? (x) : (y/
+MIN_INT	rstelem.h	/^#define MIN_INT(x,y)       ((x) <  (y)) ? (x) : (y/
+MOD	nr_rbibfunc.c	/^#define MOD(x,y)    digit_mod((x),(y))$/
+MODULO	tprimf.h	/^#define MODULO(a, b)            ((a) - (int)((a) \//
+MOD_INT	rstelem.h	/^#define MOD_INT(x,y)       TAG_INT(((x) >> O_INT) /
+MUL	nr_rbibfunc.c	/^#define MUL(x,y)    digit_mul((x),(y))$/
+MUL_INT	rstelem.h	/^#define MUL_INT(x,y)       ((((x) ^ INT) * ((y) >>/
+MVT_DESC_MASK	rheapty.h	/^#define MVT_DESC_MASK(p,ref,cl,ty) \\$/
+Mc_main	c_main.c	/^int main(int argc, char * argv[])$/
+MkBool	prolog.h	/^#define MkBool(x, v)   (x)$/
+MkElem	prolog.h	/^#define MkElem(x, v)   (x)$/
+MkInt	prolog.h	/^#define MkInt(x, v)    (x)$/
+MkMatrix	prolog.h	/^#define MkMatrix(x, v) (x)$/
+MkReal	prolog.h	/^#define MkReal(x,v)    (({MAKEDESC((PTR_DESCRIPTOR/
+MkTVect	prolog.h	/^#define MkTVect(x, v)  (x)$/
+MkVect	prolog.h	/^#define MkVect(x, v)   (x)$/
+NAND_INT	rstelem.h	/^#define NAND_INT(x,y)      (((x) & (y)) ^ ~INT)$/
+NEG_INT	rstelem.h	/^#define NEG_INT(x)         ((2 * INT) - (x))$/
+NEWDESC	rheapty.h	/^#define NEWDESC(p)             GET_DESC(p)$/
+NEWHEAP	inter.c	/^#define NEWHEAP(size,adr)  {if (newheap(size,adr) /
+NEWHEAPSUB	nr_rbibfunc.c	/^#define NEWHEAPSUB(size,adr)  {if (newheap(size,ad/
+NE_BOOL	rstelem.h	/^#define NE_BOOL(x,y)       ((x) != (y)) ? SA_TRUE /
+NE_INT	rstelem.h	/^#define NE_INT(x,y)        ((x) != (y)) ? SA_TRUE /
+NILSTRING_NIL	rlmvt.h	/^#define  NILSTRING_NIL(ARG)                    \\$/
+NOR_INT	rstelem.h	/^#define NOR_INT(x,y)       (((x) | (y)) ^ ~INT)$/
+NOT_BOOL	rstelem.h	/^#define NOT_BOOL(x)        ((x) ^ F_BOOL_FLAG)$/
+NOT_INT	rstelem.h	/^#define NOT_INT(x)         ((x) ^ ~INT)$/
+NUM_CLASS	nr_rvalfunc.c	/^#define NUM_CLASS(type)  ((type) == TY_DIGIT ? C_D/
+OR_BOOL	rstelem.h	/^#define OR_BOOL(x,y)       ((x) | (y))$/
+OR_INT	rstelem.h	/^#define OR_INT(x,y)        ((x) | (y))$/
+OpenFile	dbug.c	/^LOCAL VOID OpenFile (name)$/
+OutputOfTasm2KiR	initdata.c	/^void OutputOfTasm2KiR(int lw)$/
+PC_GET_A_STACK	rncsched.h	/^#define PC_GET_A_STACK(pid)      (((pid)->switched/
+PC_GET_H_STACK	rncsched.h	/^#define PC_GET_H_STACK(pid)      ((pid)->D_S_H)$/
+PC_GET_I_STACK	rncsched.h	/^#define PC_GET_I_STACK(pid)      (((pid)->switched/
+PC_GET_PC	rncsched.h	/^#define PC_GET_PC(pid)           (pid)->pc$/
+PC_GET_PPID	rncsched.h	/^#define PC_GET_PPID(pid)         (pid)->ppid$/
+PC_GET_REAL_I_STACK	rncsched.h	/^#define PC_GET_REAL_I_STACK(pid) ((pid)->D_S_I)$/
+PC_GET_REDCNT	rncsched.h	/^#define PC_GET_REDCNT(pid)       (pid)->red_count$/
+PC_GET_R_STACK	rncsched.h	/^#define PC_GET_R_STACK(pid)      ((pid)->D_S_R)$/
+PC_GET_SREDCNT	rncsched.h	/^#define PC_GET_SREDCNT(pid)      (pid)->start_red_/
+PC_SET_PC	rncsched.h	/^#define PC_SET_PC(pid,npc)        (pid)->pc = (npc/
+PC_SET_REDCNT	rncsched.h	/^#define PC_SET_REDCNT(pid,redcnt) (pid)->red_count/
+PC_SET_STACK	rncsched.h	/^#define PC_SET_STACK(pid,stack,value) ((pid)->stac/
+PC_SET_SWITCHED	rncsched.h	/^#define PC_SET_SWITCHED(pid,sw)   (pid)->switched /
+PC_STATUS	rncsched.h	/^#define PC_STATUS(pid)           (pid)->status$/
+POPSTACK	rstackty.h	/^#define POPSTACK(Onstack)         popstack(&(Onsta/
+POP_A	roptasm.h	/^#define POP_A()           POPSTACK(*ps_a)$/
+POP_E	roptasm.h	/^#define POP_E()           POPSTACK(S_e)$/
+POP_H	nr_rquery.c	/^#define POP_H()        D_POPSTACK(D_S_H)$/
+POP_I_BLOCK	rstackty.h	/^#define POP_I_BLOCK(var)  for (;;) \\$/
+POP_R	roptasm.h	/^#define POP_R()           POPSTACK(*ps_r)$/
+POP_T	roptasm.h	/^#define POP_T()           POPSTACK(*ps_t)$/
+POP_TILDE_BLOCK	rstackty.h	/^#define POP_TILDE_BLOCK(var) for (;;) \\$/
+POP_W	roptasm.h	/^#define POP_W()           POPSTACK(*ps_w)$/
+PPOPSTACK	rstackty.h	/^#define PPOPSTACK(Onstack)        ppopstack(&(Onst/
+PPOP_A	roptasm.h	/^#define PPOP_A()          PPOPSTACK(*ps_a)$/
+PPOP_E	roptasm.h	/^#define PPOP_E()          PPOPSTACK(S_e)$/
+PPOP_R	roptasm.h	/^#define PPOP_R()          PPOPSTACK(*ps_r)$/
+PPOP_T	roptasm.h	/^#define PPOP_T()          PPOPSTACK(*ps_t)$/
+PPOP_W	roptasm.h	/^#define PPOP_W()          PPOPSTACK(*ps_w)$/
+PPUSHSTACK	rstackty.h	/^#define PPUSHSTACK(Onstack,data)  pushstack(&(Onst/
+PPUSH_A	roptasm.h	/^#define PPUSH_A(x)        PPUSHSTACK(*ps_a,(x))$/
+PPUSH_E	roptasm.h	/^#define PPUSH_E(x)        PPUSHSTACK(S_e,(x))$/
+PPUSH_R	roptasm.h	/^#define PPUSH_R(x)        PPUSHSTACK(*ps_r,(x))$/
+PPUSH_T	roptasm.h	/^#define PPUSH_T(x)        PPUSHSTACK(*ps_t,(x))$/
+PPUSH_W	roptasm.h	/^#define PPUSH_W(x)        PPUSHSTACK(*ps_w,(x))$/
+PROCESS_CONTEXT	rncsched.h	33
+PROCESS_STATUS	rncsched.h	14
+PTR_DESCRIPTOR	rheapty.h	790
+PTR_HEAPELEM	rheapty.h	263
+PUSHSTACK	rstackty.h	/^#define PUSHSTACK(Onstack,data)   pushstack(&(Onst/
+PUSH_A	nr_rquery.c	/^#define PUSH_A(arg)    D_PUSHSTACK(D_S_A,arg)$/
+PUSH_E	roptasm.h	/^#define PUSH_E(x)         PUSHSTACK(S_e,(x))$/
+PUSH_I	nr_rquery.c	/^#define PUSH_I(arg)    D_PUSHSTACK(D_S_I,arg)$/
+PUSH_I_BLOCK	rstackty.h	/^#define PUSH_I_BLOCK(size)  { if (((S_i.TopofStack/
+PUSH_R	roptasm.h	/^#define PUSH_R(x)         PUSHSTACK(*ps_r,(x))$/
+PUSH_T	roptasm.h	/^#define PUSH_T(x)         PUSHSTACK(*ps_t,(x))$/
+PUSH_TILDE	rstackty.h	/^#define PUSH_TILDE(arg)      PUSHSTACK(S_tilde,arg/
+PUSH_TILDE_BLOCK	rstackty.h	/^#define PUSH_TILDE_BLOCK(size)  if (((S_tilde.Topo/
+PUSH_W	roptasm.h	/^#define PUSH_W(x)         PUSHSTACK(*ps_w,(x))$/
+PushState	dbug.c	/^LOCAL VOID PushState ()$/
+READSTACK	rstackty.h	/^#define READSTACK(Onstack)        readstack(&(Onst/
+READ_A	nr_rquery.c	/^#define READ_A()       D_READSTACK(D_S_A)$/
+READ_ARITY	rstackty.h	/^#define READ_ARITY(Onstack)       read_arity(&(Ons/
+READ_E	rstackty.h	/^#define  READ_E(pos,var)  (var = *(S_e.TopofStack /
+READ_H	nr_rlogfunc.c	/^#define READ_H()    D_READSTACK(D_S_H)$/
+READ_I	nr_rquery.c	/^#define READ_I()       D_READSTACK(D_S_I)$/
+READ_LAST_TILDE	rstackty.h	/^#define READ_LAST_TILDE(pos,var) {display_stack(&S/
+READ_M	rstackty.h	/^#define  READ_M(pos,var)  ( var = *(S_m.TopofStack/
+READ_TILDE	rstackty.h	/^#define READ_TILDE(pos,var) {display_stack(&S_tild/
+READ_V	rstackty.h	/^#define  READ_V(pos,var)  (var = *(S_v.TopofStack /
+RED_INPUT	initdata.c	47
+R_ATOMTYPE	rheapty.h	/^#define R_ATOMTYPE(p,x) \\$/
+R_CASE	rheapty.h	/^#define R_CASE(p,x) \\$/
+R_CLAUSE	rheapty.h	/^#define R_CLAUSE(p,x) \\$/
+R_CLOS	rheapty.h	/^#define R_CLOS(p,x) \\$/
+R_COMB	rheapty.h	/^#define R_COMB(p,x) \\$/
+R_COMPTYPE	rheapty.h	/^#define R_COMPTYPE(p,x) \\$/
+R_COND	rheapty.h	/^#define R_COND(p,x) \\$/
+R_CONDI	rheapty.h	/^#define R_CONDI(p,x) \\$/
+R_CONS	rheapty.h	/^#define R_CONS(p,x) \\$/
+R_DESC	rheapty.h	/^#define R_DESC(p,x) (MEAS_CALL(MS_DESCREF)(p).u.sc/
+R_DIGIT	rheapty.h	/^#define R_DIGIT(p,x) \\$/
+R_EXPR	rheapty.h	/^#define R_EXPR(p,x) \\$/
+R_FNAME	rheapty.h	/^#define R_FNAME(p,x)  \\$/
+R_FRAME	rheapty.h	/^#define R_FRAME(p,x) \\$/
+R_FREE	rheapty.h	/^#define R_FREE(p,x) \\$/
+R_FUNC	rheapty.h	/^#define R_FUNC(p,x) \\$/
+R_INTACT	rheapty.h	/^#define R_INTACT(p,x) \\$/
+R_INTER	rheapty.h	/^#define R_INTER(p,x) \\$/
+R_LINKNODE	rheapty.h	/^#define R_LINKNODE(p,x) \\$/
+R_LIST	rheapty.h	/^#define R_LIST(p,x) \\$/
+R_LREC	rheapty.h	/^#define R_LREC(p,x) \\$/
+R_LREC_ARGS	rheapty.h	/^#define R_LREC_ARGS(p,x) \\$/
+R_LREC_IND	rheapty.h	/^#define R_LREC_IND(p,x) \\$/
+R_MATCH	rheapty.h	/^#define R_MATCH(p,x) \\$/
+R_MVT	rheapty.h	/^#define R_MVT(p,x,class1) \\$/
+R_NAME	rheapty.h	/^#define R_NAME(p,x) \\$/
+R_NOMAT	rheapty.h	/^#define R_NOMAT(p,x) \\$/
+R_PATTERN	rheapty.h	/^#define R_PATTERN(p,x) \\$/
+R_SCALAR	rheapty.h	/^#define R_SCALAR(p,x) \\$/
+R_SELECTION	rheapty.h	/^#define R_SELECTION(p,x) \\$/
+R_SLOT	rheapty.h	/^#define R_SLOT(p,x) \\$/
+R_SWAPHEAP	rheapty.h	/^#define R_SWAPHEAP(p,x) \\$/
+R_SWITCH	rheapty.h	/^#define R_SWITCH(p,x) \\$/
+R_UNIV	rheapty.h	/^#define R_UNIV(p,x) \\$/
+R_VAR	rheapty.h	/^#define R_VAR(p,x) \\$/
+R_ZF	rheapty.h	/^#define R_ZF(p,x) (p).u.fu.x$/
+R_ZFCODE	rheapty.h	/^#define R_ZFCODE(p,x) \\$/
+SA_C	rstelem.h	/^#define SA_C(x)            (NORMAL_CONST | ((x) <</
+SA_F	rstelem.h	/^#define SA_F(id,ar)     (FUNC | ((ar) << O_FUNC_AR/
+SA_I	rstelem.h	/^#define SA_I(id,ar)   (IAFUNC | ((ar) << O_FUNC_AR/
+SCAV_GET	nr_rlstruct.c	/^#define SCAV_GET(x,y) (x)$/
+SCAV_SET	nr_rlstruct.c	/^#define SCAV_SET(x,y) x = (y)$/
+SET_AP	rstelem.h	/^#define SET_AP(x)          (x |= F_SYSAP )$/
+SET_ARITY	rstelem.h	/^#define SET_ARITY(x,n)     (((x) & ~F_ARITY) | ((n/
+SET_EDIT	rstelem.h	/^#define SET_EDIT(x)        (((x) << O_EDIT) & F_ED/
+SET_VALUE	rstelem.h	/^#define SET_VALUE(x,n)     (((x) & ~F_VALUE) | ((n/
+SIZEOFSTACK	rstackty.h	/^#define SIZEOFSTACK(Onstack)      sizeofstack(&(On/
+STACKELEM	rncstack.h	4
+START_MODUL	rstdinc.h	/^#define START_MODUL(modulname)  start_modul(moduln/
+STREQ	dbug.c	/^#define STREQ(a,b) (strcmp(a,b) == 0)$/
+STRUCT_ARG	rlmvt.h	/^#define STRUCT_ARG(ARG,VAR)         \\$/
+ST_ATOMTYPE	rheapty.h	679
+ST_CASE	rheapty.h	648
+ST_CLAUSE	rheapty.h	446
+ST_CLOS	rheapty.h	589
+ST_COMB	rheapty.h	569
+ST_COMPTYPE	rheapty.h	689
+ST_COND	rheapty.h	357
+ST_CONDI	rheapty.h	635
+ST_CONS	rheapty.h	669
+ST_DIGIT	rheapty.h	318
+ST_EXPR	rheapty.h	363
+ST_FNAME	rheapty.h	382
+ST_FRAME	rheapty.h	732
+ST_FREE	rheapty.h	550
+ST_FUNC	rheapty.h	408
+ST_INTACT	rheapty.h	741
+ST_INTER	rheapty.h	711
+ST_LINKNODE	rheapty.h	697
+ST_LIST	rheapty.h	331
+ST_LREC	rheapty.h	529
+ST_LREC_ARGS	rheapty.h	543
+ST_LREC_IND	rheapty.h	536
+ST_MATCH	rheapty.h	500
+ST_MVT	rheapty.h	344
+ST_NAME	rheapty.h	376
+ST_NOMAT	rheapty.h	511
+ST_PATTERN	rheapty.h	466
+ST_P_CLOS	rheapty.h	621
+ST_SCALAR	rheapty.h	305
+ST_SELECTION	rheapty.h	459
+ST_SLOT	rheapty.h	719
+ST_SNSUB	rheapty.h	395
+ST_SWAP_HEAP	rheapty.h	557
+ST_SWITCH	rheapty.h	476
+ST_UNIV	rheapty.h	661
+ST_VAR	rheapty.h	370
+ST_ZF	rheapty.h	424
+ST_ZFCODE	rheapty.h	437
+SUBB	nr_rbibfunc.c	/^#define SUBB(x,y)   digit_sub((x),(y))    \/* SUB i/
+SUB_INT	rstelem.h	/^#define SUB_INT(x,y)       ((x) - ((y) ^ P_INT))$/
+SWITCH	rstelem.h	/^#define SWITCH(x)          ((x) ^ F_MARK_FLAG)$/
+StackDesc	rstackty.h	49
+StrDup	dbug.c	/^LOCAL char *StrDup (string)$/
+TAGLASTCHAR	initdata.c	/^#define TAGLASTCHAR(x)  ((x) & LASTCHAR)$/
+TAG_INT	rstelem.h	/^#define TAG_INT(x)         (((x) * FAC_INT) + INT)/
+TAG_STR_CHAR	rstelem.h	/^#define TAG_STR_CHAR(x)    (((x) << O_VALUE) | STR/
+TEST	nr_rbibfunc.c	/^#define TEST(desc)         {if ((desc) == NULL) \\$/
+TESTDESC	rlmvt.h	/^#define TESTDESC(p)       if (p == 0)     (_interr/
+TEST_TYPE	rstelem.h	/^#define TEST_TYPE(x)	   (T_INT(x)     ? STE_INT : /
+TOGGLE	rstelem.h	/^#define TOGGLE(x)          ((x) ^ F_MARK_FLAG)$/
+TOP_A	roptasm.h	/^#define TOP_A()           READSTACK(*ps_a)$/
+TOP_E	roptasm.h	/^#define TOP_E()           READSTACK(S_e)$/
+TOP_R	roptasm.h	/^#define TOP_R()           READSTACK(*ps_r)$/
+TOP_T	roptasm.h	/^#define TOP_T()           READSTACK(*ps_t)$/
+TOP_W	roptasm.h	/^#define TOP_W()           READSTACK(*ps_w)$/
+TRACING	dbug.c	/^#  define TRACING(pathname) (access (pathname, A_E/
+TRAV	rstdinc.h	/^#define TRAV(Source,Sink)  trav(&Source,&Sink)$/
+TRUNC	nr_rbibfunc.c	/^#define TRUNC(x)    digit_trunc((x))$/
+T_2BOOLEAN	rstelem.h	/^#define T_2BOOLEAN(x,y)    (((x) & (y) & P_BOOLEAN/
+T_2INT	rstelem.h	/^#define T_2INT(x,y)        (((x) & (y) & P_INT) ==/
+T_AP	rstelem.h	/^#define T_AP(x)            (((x) & P_AP) == AP)$/
+T_AP_1	rstelem.h	/^#define T_AP_1(x)          (((x) & P_AP_1) == AP_1/
+T_AP_2	rstelem.h	/^#define T_AP_2(x)          (((x) & P_AP_2) == AP_2/
+T_AP_TIC	rstelem.h	/^#define T_AP_TIC(x)        (((x) & P_AP) == AP)$/
+T_ATOM	rstelem.h	/^#define T_ATOM(x)          (((x) & P_CON) != CON)$/
+T_BOOL	rstelem.h	/^#define T_BOOL(x)          (((x) & P_BOOL) == BOOL/
+T_BOOLEAN	rstelem.h	/^#define T_BOOLEAN(x)       (((x) & P_BOOLEAN) == S/
+T_CHAINED_CONSTR	rstelem.h	/^#define T_CHAINED_CONSTR(x)   (((x) & P_CHAINED_CO/
+T_CHAR	rstelem.h	/^#define T_CHAR(x)          (((x) & P_CHAR) == CHAR/
+T_CLASS	rstelem.h	/^#define T_CLASS(x)         (((x) & P_CLASS) == CLA/
+T_CL_CVECTOR	rstelem.h	/^#define T_CL_CVECTOR(x)    (((x) & P_CL_CVECTOR) =/
+T_CL_DVECTOR	rstelem.h	/^#define T_CL_DVECTOR(x)    (((x) & P_CL_DVECTOR) =/
+T_CL_FUNCTION	rstelem.h	/^#define T_CL_FUNCTION(x)   (((x) & P_CL_FUNCTION) /
+T_CL_MATRIX	rstelem.h	/^#define T_CL_MATRIX(x)     (((x) & P_CL_MATRIX) ==/
+T_CL_SCALAR	rstelem.h	/^#define T_CL_SCALAR(x)     (((x) & P_CL_SCALAR) ==/
+T_CL_SET	rstelem.h	/^#define T_CL_SET(x)        (((x) & P_CL_SET) == CL/
+T_CL_TREE	rstelem.h	/^#define T_CL_TREE(x)       (((x) & P_CL_TREE) == C/
+T_CL_TVECTOR	rstelem.h	/^#define T_CL_TVECTOR(x)    (((x) & P_CL_TVECTOR) =/
+T_CL_VECTOR	rstelem.h	/^#define T_CL_VECTOR(x)     (((x) & P_CL_VECTOR) ==/
+T_CODEDESCR	rinter.h	376
+T_CON	rstelem.h	/^#define T_CON(x)           (((x) & P_CON) == CON)$/
+T_COND	rstelem.h	/^#define T_COND(x)          (((x) & P_COND) == COND/
+T_CONDITIONAL	rstelem.h	/^#define T_CONDITIONAL(x)   (((x) & P_CONDITIONAL) /
+T_CONS	rstelem.h	/^#define T_CONS(x)          (((x) & P_CONS) == CONS/
+T_CONSTANT	rstelem.h	/^#define T_CONSTANT(x)     (((x) & P_CONSTANT) == C/
+T_CUT	rstelem.h	/^#define T_CUT(x)           (((x) & P_CUT) == CUT)$/
+T_C_DIV	rstelem.h	/^#define T_C_DIV(x)         (((x) & P_C_DIV) == C_D/
+T_C_MAX	rstelem.h	/^#define T_C_MAX(x)         (((x) & P_C_MAX) == C_M/
+T_C_MIN	rstelem.h	/^#define T_C_MIN(x)         (((x) & P_C_MIN) == C_M/
+T_C_MINUS	rstelem.h	/^#define T_C_MINUS(x)       (((x) & P_C_MINUS) == C/
+T_C_MULT	rstelem.h	/^#define T_C_MULT(x)        (((x) & P_C_MULT) == C_/
+T_C_PLUS	rstelem.h	/^#define T_C_PLUS(x)        (((x) & P_C_PLUS) == C_/
+T_DAP	rstelem.h	/^#define T_DAP(x)           (((x) & P_DAP) == P_DAP/
+T_DAP_1	rstelem.h	/^#define T_DAP_1(x)         ((x & 0xffff00ff) == 0x/
+T_DECIMAL	rstelem.h	/^#define T_DECIMAL(x)       (((x) & P_DECIMAL) == D/
+T_DECPT	rstelem.h	/^#define T_DECPT(x)         (((x) & P_DECPT) == DEC/
+T_DEC_REFCNT	rheapty.h	/^#define T_DEC_REFCNT(p)        while(0)$/
+T_DESCRIPTOR	rheapty.h	790
+T_DESC_INDEX	rstelem.h	/^#define T_DESC_INDEX(elem)   (((elem) & 0xf) == 0x/
+T_DIG0	rstelem.h	/^#define T_DIG0(x)          (((x) & P_DIG0) == DIG0/
+T_DIG1	rstelem.h	/^#define T_DIG1(x)          (((x) & P_DIG1) == DIG1/
+T_DIGIT	rstelem.h	/^#define T_DIGIT(x)         (((x) & P_DIGIT) == DIG/
+T_DIMENSION	rstelem.h	/^#define T_DIMENSION(x)     (((x) & P_DIMENSION) ==/
+T_DOLLAR	rstelem.h	/^#define T_DOLLAR(x)        (((x) & P_DOLLAR) == DO/
+T_DOLLAR_TILDE	rstelem.h	/^#define T_DOLLAR_TILDE(x)  (((x) & P_DOLLAR_TILDE)/
+T_DOL_CONST	rstelem.h	/^#define T_DOL_CONST(x)     (((x) & P_DOL_CONST) ==/
+T_DROP	rstelem.h	/^#define T_DROP(x)          (((x) & P_DROP) == DROP/
+T_D_AND	rstelem.h	/^#define T_D_AND(x)         (((x) & P_D_AND) == D_A/
+T_D_CONS	rstelem.h	/^#define T_D_CONS(x)        (((x) & P_D_CONS) == D_/
+T_D_DIV	rstelem.h	/^#define T_D_DIV(x)         (((x) & P_D_DIV) == D_D/
+T_D_EQ	rstelem.h	/^#define T_D_EQ(x)          (((x) & P_D_EQ) == D_EQ/
+T_D_GEQ	rstelem.h	/^#define T_D_GEQ(x)         (((x) & P_D_GEQ) == D_G/
+T_D_GREAT	rstelem.h	/^#define T_D_GREAT(x)       (((x) & P_D_GREAT) == D/
+T_D_LEQ	rstelem.h	/^#define T_D_LEQ(x)         (((x) & P_D_LEQ) == D_L/
+T_D_LESS	rstelem.h	/^#define T_D_LESS(x)        (((x) & P_D_LESS) == D_/
+T_D_MAX	rstelem.h	/^#define T_D_MAX(x)         (((x) & P_D_MAX) == D_M/
+T_D_MIN	rstelem.h	/^#define T_D_MIN(x)         (((x) & P_D_MIN) == D_M/
+T_D_MINUS	rstelem.h	/^#define T_D_MINUS(x)       (((x) & P_D_MINUS) == D/
+T_D_MOD	rstelem.h	/^#define T_D_MOD(x)         (((x) & P_D_MOD) == D_M/
+T_D_MULT	rstelem.h	/^#define T_D_MULT(x)        (((x) & P_D_MULT) == D_/
+T_D_NEQ	rstelem.h	/^#define T_D_NEQ(x)         (((x) & P_D_NEQ) == D_N/
+T_D_OR	rstelem.h	/^#define T_D_OR(x)          (((x) & P_D_OR) == D_OR/
+T_D_PLUS	rstelem.h	/^#define T_D_PLUS(x)        (((x) & P_D_PLUS) == D_/
+T_D_QUOT	rstelem.h	/^#define T_D_QUOT(x)         (((x) & P_D_QUOT) == D/
+T_D_XOR	rstelem.h	/^#define T_D_XOR(x)         (((x) & P_D_XOR) == D_X/
+T_ENTRY	rstelem.h	/^#define T_ENTRY(X)         (((X) & P_ENTRY) == ENT/
+T_ESET	rstelem.h	/^#define T_ESET(x)          (((x) & P_ESET) == ESET/
+T_EXP	rstelem.h	/^#define T_EXP(x)           (((x) & P_EXP) == EXP)$/
+T_EXPR	rstelem.h	/^#define T_EXPR(x)          (((x) & P_EXPR) == EXPR/
+T_EXT_POINTER	rstelem.h	/^#define T_EXT_POINTER(elem)  (T_POINTER(elem) || T/
+T_F	rstelem.h	/^#define T_F(x)             (((x) & P_F) == F)$/
+T_FIX_CONSTR	rstelem.h	/^#define T_FIX_CONSTR(x)    (((x) & P_FIX_CONSTR) =/
+T_FR_DELETE	rstelem.h	/^#define T_FR_DELETE(x)          (((x) & P_FR_DELET/
+T_FR_SELECT	rstelem.h	/^#define T_FR_SELECT(x)          (((x) & P_FR_SELEC/
+T_FR_SLOTS	rstelem.h	/^#define T_FR_SLOTS(x)          (((x) & P_FR_SLOTS)/
+T_FR_TEST	rstelem.h	/^#define T_FR_TEST(x)          (((x) & P_FR_TEST) =/
+T_FR_UPDATE	rstelem.h	/^#define T_FR_UPDATE(x)          (((x) & P_FR_UPDAT/
+T_FUNC	rstelem.h	/^#define T_FUNC(x)         (((x) & P_IAFUNC) == FUN/
+T_F_EQ	rstelem.h	/^#define T_F_EQ(x)          (((x) & P_F_EQ) == F_EQ/
+T_F_NE	rstelem.h	/^#define T_F_NE(x)          (((x) & P_F_NE) == F_NE/
+T_GNULL	rstelem.h	/^#define T_GNULL(x)         (((x) & P_GNULL) == GNU/
+T_HASH	rstelem.h	/^#define T_HASH(x)          (((x) & P_HASH) == HASH/
+T_HBLOCK	rheapty.h	273
+T_HEAPELEM	rheapty.h	262
+T_IAFUNC	rstelem.h	/^#define T_IAFUNC(x)       (((x) & P_IAFUNC) == IAF/
+T_IA_BIND	rstelem.h	/^#define T_IA_BIND(x)    (((x) & P_IA_BIND) == IA_B/
+T_IA_CHDIR	rstelem.h	/^#define T_IA_CHDIR(x)   (((x) & P_IA_CHDIR) == IA_/
+T_IA_COPY	rstelem.h	/^#define T_IA_COPY(x)    (((x) & P_IA_COPY) == IA_C/
+T_IA_DIR	rstelem.h	/^#define T_IA_DIR(x)     (((x) & P_IA_DIR) == IA_DI/
+T_IA_EOF	rstelem.h	/^#define T_IA_EOF(x)     (((x) & P_IA_EOF) == IA_EO/
+T_IA_EXIT	rstelem.h	/^#define T_IA_EXIT(x)    (((x) & P_IA_EXIT) == IA_E/
+T_IA_FCLOSE	rstelem.h	/^#define T_IA_FCLOSE(x)  (((x) & P_IA_FCLOSE) == IA/
+T_IA_FGETC	rstelem.h	/^#define T_IA_FGETC(x)   (((x) & P_IA_FGETC) == IA_/
+T_IA_FGETS	rstelem.h	/^#define T_IA_FGETS(x)   (((x) & P_IA_FGETS) == IA_/
+T_IA_FINFO	rstelem.h	/^#define T_IA_FINFO(x)   (((x) & P_IA_FINFO) == IA_/
+T_IA_FOPEN	rstelem.h	/^#define T_IA_FOPEN(x)   (((x) & P_IA_FOPEN) == IA_/
+T_IA_FPRINTF	rstelem.h	/^#define T_IA_FPRINTF(x) (((x) & P_IA_FPRINTF) == I/
+T_IA_FPUTC	rstelem.h	/^#define T_IA_FPUTC(x)   (((x) & P_IA_FPUTC) == IA_/
+T_IA_FPUTS	rstelem.h	/^#define T_IA_FPUTS(x)   (((x) & P_IA_FPUTS) == IA_/
+T_IA_FSCANF	rstelem.h	/^#define T_IA_FSCANF(x)  (((x) & P_IA_FSCANF) == IA/
+T_IA_FSEEK	rstelem.h	/^#define T_IA_FSEEK(x)   (((x) & P_IA_FSEEK) == IA_/
+T_IA_GETWD	rstelem.h	/^#define T_IA_GETWD(x)   (((x) & P_IA_GETWD) == IA_/
+T_IA_MKDIR	rstelem.h	/^#define T_IA_MKDIR(x)   (((x) & P_IA_MKDIR) == IA_/
+T_IA_READ	rstelem.h	/^#define T_IA_READ(x)    (((x) & P_IA_READ) == IA_R/
+T_IA_REMOVE	rstelem.h	/^#define T_IA_REMOVE(x)  (((x) & P_IA_REMOVE) == IA/
+T_IA_RENAME	rstelem.h	/^#define T_IA_RENAME(x)  (((x) & P_IA_RENAME) == IA/
+T_IA_RMDIR	rstelem.h	/^#define T_IA_RMDIR(x)   (((x) & P_IA_RMDIR) == IA_/
+T_IA_STATUS	rstelem.h	/^#define T_IA_STATUS(x)  (((x) & P_IA_STATUS) == IA/
+T_IA_UNGETC	rstelem.h	/^#define T_IA_UNGETC(x)  (((x) & P_IA_UNGETC) == IA/
+T_IA_UNIT	rstelem.h	/^#define T_IA_UNIT(x)    (((x) & P_IA_UNIT) == IA_U/
+T_INC_REFCNT	rheapty.h	/^#define T_INC_REFCNT(p)        while(0)$/
+T_INT	rstelem.h	/^#define T_INT(x)           (((x) & P_INT) == INT)$/
+T_IP_	rstelem.h	/^#define T_IP_(x)           (((x) & P_IP) == IP)$/
+T_KLAA	rstelem.h	/^#define T_KLAA(x)          (((x) & P_KLAA) == KLAA/
+T_K_COMM	rstelem.h	/^#define T_K_COMM(X)        (((X) & P_K_COMM) == K_/
+T_LAMBDA	rstelem.h	/^#define T_LAMBDA(x)        (((x) & P_LAMBDA) == LA/
+T_LCUT	rstelem.h	/^#define T_LCUT(x)          (((x) & P_LCUT) == LCUT/
+T_LDIMENSION	rstelem.h	/^#define T_LDIMENSION(x)    (((x) & P_LDIMENSION) =/
+T_LET0	rstelem.h	/^#define T_LET0(x)          (((x) & P_LET0) == LET0/
+T_LET1	rstelem.h	/^#define T_LET1(x)          (((x) & P_LET1) == LET1/
+T_LETTER	rstelem.h	/^#define T_LETTER(x)        (((x) & P_LETTER) == LE/
+T_LGEN_UH	rstelem.h	/^#define T_LGEN_UH(x)       (((x) & P_LGEN_UH) == L/
+T_LIST	rstelem.h	/^#define T_LIST(x)          (((x) & P_LIST) == LIST/
+T_LREC	rstelem.h	/^#define T_LREC(x)          (((x) & P_LREC) == LREC/
+T_LREPLACE	rstelem.h	/^#define T_LREPLACE(x)      (((x) & P_LREPLACE) == /
+T_LROTATE	rstelem.h	/^#define T_LROTATE(x)       (((x) & P_LROTATE) == L/
+T_LSELECT	rstelem.h	/^#define T_LSELECT(x)       (((x) & P_LSELECT) == L/
+T_LTRANSFORM	rstelem.h	/^#define T_LTRANSFORM(x)    (((x) & P_LTRANSFORM) =/
+T_LUNI	rstelem.h	/^#define T_LUNI(x)          (((x) & P_LUNI) == LUNI/
+T_MA	rstelem.h	/^#define T_MA(x)            (((x) & P_MA) == MA)$/
+T_MATRIX	rstelem.h	/^#define T_MATRIX(x)        (((x) & P_MATRIX) == MA/
+T_MCUT	rstelem.h	/^#define T_MCUT(x)          (((x) & P_MCUT) == MCUT/
+T_MDIMENSION	rstelem.h	/^#define T_MDIMENSION(x)    (((x) & P_MDIMENSION) =/
+T_MINUS	rstelem.h	/^#define T_MINUS(x)         (((x) & P_MINUS) == MIN/
+T_MK_STRING	rstelem.h	/^#define T_MK_STRING(x)     (((x) & P_MK_STRING) ==/
+T_MREPLACE	rstelem.h	/^#define T_MREPLACE(x)      (((x) & P_MREPLACE) == /
+T_MREPLACE_C	rstelem.h	/^#define T_MREPLACE_C(x)    (((x) & P_MREPLACE_C) =/
+T_MREPLACE_R	rstelem.h	/^#define T_MREPLACE_R(x)    (((x) & P_MREPLACE_R) =/
+T_MROTATE	rstelem.h	/^#define T_MROTATE(x)       (((x) & P_MROTATE) == M/
+T_MSELECT	rstelem.h	/^#define T_MSELECT(x)       (((x) & P_MSELECT) == M/
+T_MUNI	rstelem.h	/^#define T_MUNI(x)          (((x) & P_MUNI) == MUNI/
+T_M_ABS	rstelem.h	/^#define T_M_ABS(x)         (((x) & P_M_ABS) == M_A/
+T_M_CEIL	rstelem.h	/^#define T_M_CEIL(x)        (((x) & P_M_CEIL) == M_/
+T_M_COS	rstelem.h	/^#define T_M_COS(x)         (((x) & P_M_COS) == M_C/
+T_M_EMPTY	rstelem.h	/^#define T_M_EMPTY(x)       (((x) & P_M_EMPTY) == M/
+T_M_EXP	rstelem.h	/^#define T_M_EXP(x)         (((x) & P_M_EXP) == M_E/
+T_M_FIRST	rstelem.h	/^#define T_M_FIRST(x)       (((x) & P_M_FIRST) == M/
+T_M_FLOOR	rstelem.h	/^#define T_M_FLOOR(x)       (((x) & P_M_FLOOR) == M/
+T_M_FRAC	rstelem.h	/^#define T_M_FRAC(x)        (((x) & P_M_FRAC) == M_/
+T_M_LN	rstelem.h	/^#define T_M_LN(x)          (((x) & P_M_LN) == M_LN/
+T_M_NEG	rstelem.h	/^#define T_M_NEG(x)         (((x) & P_M_NEG) == M_N/
+T_M_NOT	rstelem.h	/^#define T_M_NOT(x)         (((x) & P_M_NOT) == M_N/
+T_M_REST	rstelem.h	/^#define T_M_REST(x)        (((x) & P_M_REST) == M_/
+T_M_SIN	rstelem.h	/^#define T_M_SIN(x)         (((x) & P_M_SIN) == M_S/
+T_M_TAN	rstelem.h	/^#define T_M_TAN(x)         (((x) & P_M_TAN) == M_T/
+T_M_TRUNCATE	rstelem.h	/^#define T_M_TRUNCATE(x)    (((x) & P_M_TRUNCATE) =/
+T_NEXT_VAR	rstelem.h	/^#define T_NEXT_VAR(x)      (((x) & P_NEXT_VAR) == /
+T_NIL	rstelem.h	/^#define T_NIL(x)           (((x) & P_NIL) == NIL)$/
+T_NILMAT	rstelem.h	/^#define T_NILMAT(x)        (((x) & P_NILMAT) == NI/
+T_NILSTRING	rstelem.h	/^#define T_NILSTRING(x)     (((x) & P_NILSTRING) ==/
+T_NILSTRUCT	rstelem.h	/^#define T_NILSTRUCT(x)     (((x) & P_NILSTRUCT) ==/
+T_NILTVECT	rstelem.h	/^#define T_NILTVECT(x)      (((x) & P_NILTVECT) == /
+T_NILVECT	rstelem.h	/^#define T_NILVECT(x)       (((x) & P_NILVECT) == N/
+T_NORMAL_CONST	rstelem.h	/^#define T_NORMAL_CONST(x)  (((x) & P_NORMAL_CONST)/
+T_NOVAL	rstelem.h	/^#define T_NOVAL(x)         (((x) & P_NOVAL) == NOV/
+T_NULL_POINTER	rstelem.h	/^#define T_NULL_POINTER(elem) (((elem) & 0xf) == 0x/
+T_NUM	rstelem.h	/^#define T_NUM(x)           (((x) & P_NUM) == NUM)$/
+T_ONE	rstelem.h	/^#define T_ONE(x)           ((x) == ONE_INT)$/
+T_PLACEH	rstelem.h	/^#define T_PLACEH(x)        (((x) & P_PLACEH) == PL/
+T_PLUS	rstelem.h	/^#define T_PLUS(x)          (((x) & P_PLUS) == PLUS/
+T_PM_AS	rstelem.h	/^#define T_PM_AS(x)         (((x) & P_PM_AS) == PM_/
+T_PM_CASE	rstelem.h	/^#define T_PM_CASE(x)       (T_PM_SWITCH(x) || T_PM/
+T_PM_DOLLAR	rstelem.h	/^#define T_PM_DOLLAR(x)     (((x) & P_PM_DOLLAR) ==/
+T_PM_ECASE	rstelem.h	/^#define T_PM_ECASE(x)      (((x) & P_PM_ECASE) == /
+T_PM_END	rstelem.h	/^#define T_PM_END(x)        (((x) & P_PM_END) == PM/
+T_PM_FAIL	rstelem.h	/^#define T_PM_FAIL(x)       (((x) & P_PM_FAIL) == P/
+T_PM_FCASE	rstelem.h	/^#define T_PM_FCASE(x)      (((x) & P_PM_FCASE) == /
+T_PM_GGG	rstelem.h	/^#define T_PM_GGG(x)        (((x) & P_PM_GGG) == PM/
+T_PM_GGG_E	rstelem.h	/^#define T_PM_GGG_E(x)      (((x) & P_PM_GGG_E) == /
+T_PM_GGG_N	rstelem.h	/^#define T_PM_GGG_N(x)      (((x) & P_PM_GGG_N) == /
+T_PM_GUARD	rstelem.h	/^#define  T_PM_GUARD(x)        ( ( (x) & P_PM_GUARD/
+T_PM_IN	rstelem.h	/^#define T_PM_IN(X)         (((X) & P_PM_IN) == PM_/
+T_PM_LIST	rstelem.h	/^#define T_PM_LIST(x)       (((x) & P_PM_LIST) == P/
+T_PM_MATCH	rstelem.h	/^#define T_PM_MATCH(x)      (((x) & P_PM_MATCH) == /
+T_PM_NCASE	rstelem.h	/^#define T_PM_NCASE(x)      (((x) & P_PM_NCASE) == /
+T_PM_NOMAT	rstelem.h	/^#define  T_PM_NOMAT(x)        ( ( (x) & P_PM_NOMAT/
+T_PM_OTHERWISE	rstelem.h	/^#define T_PM_OTHERWISE(x)  (((x) & P_PM_OTHERWISE)/
+T_PM_PT_PLUS	rstelem.h	/^#define T_PM_PT_PLUS(x)    (((x) & P_PM_PT_PLUS) =/
+T_PM_REC	rstelem.h	/^#define T_PM_REC(x)        (((x) & P_PM_REC) == PM/
+T_PM_SKIP	rstelem.h	/^#define T_PM_SKIP(x)       (((x) & P_PM_SKIP) == P/
+T_PM_SKSKIP	rstelem.h	/^#define T_PM_SKSKIP(x)     (((x) & P_PM_SKSKIP) ==/
+T_PM_SKSTAR	rstelem.h	/^#define T_PM_SKSTAR(x)     (((x) & P_PM_SKSTAR) ==/
+T_PM_SUCC	rstelem.h	/^#define T_PM_SUCC(x)       (((x) & P_PM_SUCC) == P/
+T_PM_SWITCH	rstelem.h	/^#define T_PM_SWITCH(x)     (((x) & P_PM_SWITCH) ==/
+T_PM_UDC	rstelem.h	/^#define T_PM_UDC(x)        (((x) & P_PM_UDC) == PM/
+T_PM_WHEN	rstelem.h	/^#define T_PM_WHEN(x)       (((x) & P_PM_WHEN) == P/
+T_POINTER	rstdinc.h	/^#define  T_POINTER(x)  (((int)(x) != 0) && (((int)/
+T_POST_SNAP	rstelem.h	/^#define T_POST_SNAP(x)     (((x) & P_POST_SNAP) ==/
+T_PRELIST	rstelem.h	/^#define T_PRELIST(x)       (((x) & P_PRELIST) == P/
+T_PRIMFUNC	rstelem.h	/^#define T_PRIMFUNC(x)      (((x) & P_PRIMFUNC) == /
+T_PROTECT	rstelem.h	/^#define T_PROTECT(x)       (((x) & P_PROTECT) == P/
+T_PTD	rheapty.h	264
+T_REC	rstelem.h	/^#define T_REC(x)           (((x) & P_REC) == REC)$/
+T_REPLACE	rstelem.h	/^#define T_REPLACE(x)       (((x) & P_REPLACE) == R/
+T_REPSTR	rstelem.h	/^#define T_REPSTR(x)        (((x) & P_REPSTR) == RE/
+T_REVERSE	rstelem.h	/^#define T_REVERSE(x)       (((x) & P_REVERSE) == R/
+T_ROTATE	rstelem.h	/^#define T_ROTATE(x)        (((x) & P_ROTATE) == RO/
+T_SA	rstelem.h	/^#define T_SA(x)            (T_ATOM(x) && !T_MA(x))/
+T_SA_FALSE	rstelem.h	/^#define T_SA_FALSE(x)      (((x) & P_TRUE_FALSE) =/
+T_SA_TRUE	rstelem.h	/^#define T_SA_TRUE(x)       (((x) & P_TRUE_FALSE) =/
+T_SCALAR	rstelem.h	/^#define T_SCALAR(x)        (((x) & P_SCALAR) == SC/
+T_SELECT	rstelem.h	/^#define T_SELECT(x)        (((x) & P_SELECT) == SE/
+T_SET	rstelem.h	/^#define T_SET(x)           (((x) & P_SET) == SET)$/
+T_SNAP	rstelem.h	/^#define T_SNAP(x)          (((x) & P_SNAP) == SNAP/
+T_SNAP_1	rstelem.h	/^#define T_SNAP_1(x)          (((x) & P_SNAP_1) == /
+T_SNSUB	rstelem.h	/^#define T_SNSUB(x)        (((x) & P_SNSUB) == SNSU/
+T_STAT_POINTER	rstelem.h	/^#define T_STAT_POINTER(elem) (((elem) & 0xf) == 0x/
+T_STR	rstelem.h	/^#define T_STR(x)          (((x) & P_STR) == STR)$/
+T_STR0	rstelem.h	/^#define T_STR0(x)          (((x) & P_STR0) == STR0/
+T_STR1	rstelem.h	/^#define T_STR1(x)          (((x) & P_STR1) == STR1/
+T_STRING	rstelem.h	/^#define T_STRING(X)        (((X) & P_STRING) == ST/
+T_STRUCT	rstelem.h	/^#define T_STRUCT(X)        (((X) & P_STRUCT) == ST/
+T_STR_CHAR	rstelem.h	/^#define T_STR_CHAR(x)      (((x) & P_STR_CHAR) == /
+T_SUB	rstelem.h	/^#define T_SUB(x)           (((x) & P_SUB) == SUB)$/
+T_SUBSTR	rstelem.h	/^#define T_SUBSTR(x)        (((x) & P_SUBSTR) == SU/
+T_SYSAP	rstelem.h	/^#define T_SYSAP(x)         ((x & P_SYSAP) == V_SYS/
+T_TAKE	rstelem.h	/^#define T_TAKE(x)          (((x) & P_TAKE) == TAKE/
+T_TERMINATE	rstelem.h	/^#define T_TERMINATE(x)     (((x) & P_TERMINATE) ==/
+T_TILDE	rstelem.h	/^#define T_TILDE(x)         (((x) & P_TILDE) == TIL/
+T_TMATRIX	rstelem.h	/^#define T_TMATRIX(x)       (((x) & P_TMATRIX) == T/
+T_TO_FIELD	rstelem.h	/^#define T_TO_FIELD(x)      (((x) & P_TO_FIELD) == /
+T_TO_LIST	rstelem.h	/^#define T_TO_LIST(x)       (((x) & P_TO_LIST) == T/
+T_TO_MAT	rstelem.h	/^#define T_TO_MAT(x)        (((x) & P_TO_MAT) == TO/
+T_TO_SCAL	rstelem.h	/^#define T_TO_SCAL(x)       (((x) & P_TO_SCAL) == T/
+T_TO_TVECT	rstelem.h	/^#define T_TO_TVECT(x)      (((x) & P_TO_TVECT) == /
+T_TO_VECT	rstelem.h	/^#define T_TO_VECT(x)       (((x) & P_TO_VECT) == T/
+T_TRANSFORM	rstelem.h	/^#define T_TRANSFORM(x)     (((x) & P_TRANSFORM) ==/
+T_TRANSPOSE	rstelem.h	/^#define T_TRANSPOSE(x)     (((x) & P_TRANSPOSE) ==/
+T_TVECTOR	rstelem.h	/^#define T_TVECTOR(x)       (((x) & P_TVECTOR) == T/
+T_TYPE	rstelem.h	/^#define T_TYPE(x)          (((x) & P_TYPE) == TYPE/
+T_UNCHAINED_CONSTR	rstelem.h	/^#define T_UNCHAINED_CONSTR(x) (((x) & P_UNCHAINED_/
+T_UNI	rstelem.h	/^#define T_UNI(x)           (((x) & P_UNI) == UNI)$/
+T_UNI_MATRIX	rstelem.h	/^#define T_UNI_MATRIX(x)    (((x) & P_UNI_MATRIX) =/
+T_UNI_TREE	rstelem.h	/^#define T_UNI_TREE(x)      (((x) & P_UNI_TREE) == /
+T_UNI_VECTOR	rstelem.h	/^#define T_UNI_VECTOR(x)    (((x) & P_UNI_VECTOR) =/
+T_UNPROTECT	rstelem.h	/^#define T_UNPROTECT(x)     (((x) & P_UNPROTECT) ==/
+T_USERFUNC	rstelem.h	/^#define T_USERFUNC(x)      (((x) & P_USERFUNC) == /
+T_VAR_CHAR	rstelem.h	/^#define T_VAR_CHAR(x)      (((x) & P_VAR_CHAR) == /
+T_VAR_CONSTR	rstelem.h	/^#define T_VAR_CONSTR(x)    (((x) & P_VAR_CONSTR) =/
+T_VCUT	rstelem.h	/^#define T_VCUT(x)          (((x) & P_VCUT) == VCUT/
+T_VC_DIV	rstelem.h	/^#define T_VC_DIV(x)        (((x) & P_VC_DIV) == VC/
+T_VC_MAX	rstelem.h	/^#define T_VC_MAX(x)        (((x) & P_VC_MAX) == VC/
+T_VC_MIN	rstelem.h	/^#define T_VC_MIN(x)        (((x) & P_VC_MIN) == VC/
+T_VC_MINUS	rstelem.h	/^#define T_VC_MINUS(x)  (((x) & P_VC_MINUS) == VC_M/
+T_VC_MULT	rstelem.h	/^#define T_VC_MULT(x)       (((x) & P_VC_MULT) == V/
+T_VC_PLUS	rstelem.h	/^#define T_VC_PLUS(x)       (((x) & P_VC_PLUS) == V/
+T_VDIMENSION	rstelem.h	/^#define T_VDIMENSION(x)    (((x) & P_VDIMENSION) =/
+T_VECTOR	rstelem.h	/^#define T_VECTOR(x)        (((x) & P_VECTOR) == VE/
+T_VREPLACE	rstelem.h	/^#define T_VREPLACE(x)      (((x) & P_VREPLACE) == /
+T_VROTATE	rstelem.h	/^#define T_VROTATE(x)       (((x) & P_VROTATE) == V/
+T_VSELECT	rstelem.h	/^#define T_VSELECT(x)       (((x) & P_VSELECT) == V/
+T_VUNI	rstelem.h	/^#define T_VUNI(x)          (((x) & P_VUNI) == VUNI/
+T_ZERO	rstelem.h	/^#define T_ZERO(x)          ((x) == ZERO_INT)$/
+T_ZFINT_UH	rstelem.h	/^#define T_ZFINT_UH(X)      (((X) & P_ZFINT_UH) == /
+T_ZFIN_UH	rstelem.h	/^#define T_ZFIN_UH(X)       (((X) & P_ZFIN_UH) == Z/
+T_ZF_UH	rstelem.h	/^#define T_ZF_UH(X)         (((X) & P_ZF_UH) == ZF_/
+T_asm_primf_fkt	roptasm.h	41
+UNTAGLAST	initdata.c	/^#define UNTAGLAST(x)  ((x) | ~LASTCHAR)$/
+UPDATESTACK	rstackty.h	/^#define UPDATESTACK(Onstack,Offset,Data) updatesta/
+UPDATE_A	roptasm.h	/^#define UPDATE_A(n,x)     UPDATESTACK(*ps_a,n,(x))/
+UPDATE_E	roptasm.h	/^#define UPDATE_E(n,x)     UPDATESTACK(S_e,n,(x))$/
+UPDATE_R	roptasm.h	/^#define UPDATE_R(n,x)     UPDATESTACK(*ps_r,n,(x))/
+UPDATE_T	roptasm.h	/^#define UPDATE_T(n,x)     UPDATESTACK(*ps_t,n,(x))/
+UPDATE_W	roptasm.h	/^#define UPDATE_W(n,x)     UPDATESTACK(*ps_w,n,(x))/
+VALUE	rstelem.h	/^#define VALUE(x)           ((x) >> O_VALUE)$/
+VAL_INT	rstelem.h	/^#define VAL_INT(x)         ((x) >> O_INT)$/
+VARCON	rstelem.h	/^#define VARCON(nr)         (VAR_CONSTR | ((nr) << /
+WRITABLE	dbug.c	/^#  define WRITABLE(pathname) (access (pathname, A_/
+WRITESTACK	rstackty.h	/^#define WRITESTACK(Onstack,data)  writestack(&(Ons/
+WRITE_A	roptasm.h	/^#define WRITE_A(x)        WRITESTACK(*ps_a,(x))$/
+WRITE_ARITY	rstackty.h	/^#define WRITE_ARITY(Onstack,data) write_arity(&(On/
+WRITE_E	roptasm.h	/^#define WRITE_E(x)        WRITESTACK(S_e,(x))$/
+WRITE_I	nr_rquery.c	/^#define WRITE_I(arg)   D_WRITESTACK(D_S_I,arg)$/
+WRITE_R	roptasm.h	/^#define WRITE_R(x)        WRITESTACK(*ps_r,(x))$/
+WRITE_T	roptasm.h	/^#define WRITE_T(x)        WRITESTACK(*ps_t,(x))$/
+WRITE_W	roptasm.h	/^#define WRITE_W(x)        WRITESTACK(*ps_w,(x))$/
+Writable	dbug.c	/^LOCAL BOOLEAN Writable (pathname)$/
+XOR_BOOL	rstelem.h	/^#define XOR_BOOL(x,y)      (((x) ^ (y)) | SA_FALSE/
+XOR_INT	rstelem.h	/^#define XOR_INT(x,y)       (((x) ^ (y)) | INT)$/
+_db_doprnt_	dbug.c	/^VOID _db_doprnt_ (format, ARGLIST)$/
+_db_enter_	dbug.c	/^VOID _db_enter_ (_func_, _file_, _line_, _sfunc_, /
+_db_keyword_	dbug.c	/^BOOLEAN _db_keyword_ (keyword)$/
+_db_ldoprnt_	dbug.c	/^VOID _db_ldoprnt_ (format, ARGLIST)$/
+_db_longjmp_	dbug.c	/^EXPORT void _db_longjmp_ ()$/
+_db_lpargs_	dbug.c	/^VOID _db_lpargs_ (_line_, key1, key2)$/
+_db_pargs_	dbug.c	/^VOID _db_pargs_ (_line_, keyword)$/
+_db_pop_	dbug.c	/^VOID _db_pop_ ()$/
+_db_printf_	dbug.c	/^VOID _db_printf_ (_line_, keyword, format, ARGLIST/
+_db_push_	dbug.c	/^VOID _db_push_ (control)$/
+_db_return_	dbug.c	/^VOID _db_return_ (_line_, _sfunc_, _sfile_, _sleve/
+_db_setjmp_	dbug.c	/^EXPORT void _db_setjmp_ ()$/
+advance	prolog.h	/^#define advance(n)     repl(1, w, (int)((PTR_HEAPE/
+ap	prolog.h	/^#define ap(n,l,f)      push_r(l); \\$/
+atend	prolog.h	/^#define atend(n,label) if (peek(r, n) < peek(w, 1)/
+atstart	prolog.h	/^#define atstart(n,label) if (peek(r, n) > peek(w, /
+b_TA_NOT	tprimf.h	/^#define b_TA_NOT(a)             ((SA_FALSE == (a))/
+b_TA_TO_MAT	tprimf.h	/^#define b_TA_TO_MAT(a)                       t_to_/
+beta	prolog.h	/^#define beta(func, r)  push_r(r); \\$/
+betafar	prolog.h	/^#define betafar(r,f,t) push_r(r);    \/* label to r/
+betanear	prolog.h	/^#define betanear(r,f,t) betafar(r,f,t)$/
+bind	prolog.h	/^#define bind(n)        if (T_POINTER(peek(a, (n)))/
+binds	prolog.h	/^#define binds(n)      if (T_POINTER(peek(a, n))) D/
+bindsubl	prolog.h	/^#define bindsubl(n, m, l, k)  \\$/
+bmxb_TA_AND	tprimf.h	/^#define bmxb_TA_AND(a, b)                   t_b_an/
+bmxb_TA_OR	tprimf.h	/^#define bmxb_TA_OR(a, b)                    t_b_or/
+bmxb_TA_XOR	tprimf.h	/^#define bmxb_TA_XOR(a, b)                   t_b_xo/
+btxb_TA_AND	tprimf.h	/^#define btxb_TA_AND(a, b)                   t_b_an/
+btxb_TA_OR	tprimf.h	/^#define btxb_TA_OR(a, b)                    t_b_or/
+btxb_TA_XOR	tprimf.h	/^#define btxb_TA_XOR(a, b)                   t_b_xo/
+buildString	inter.c	/^PTR_DESCRIPTOR buildString(char *string)$/
+build_dyn_funcdesctable	rmkclos.c	/^void build_dyn_funcdesctable(T_DESCRIPTOR *desc_ar/
+build_static_clos	rmkclos.c	/^void build_static_clos(int n)$/
+bvxb_TA_AND	tprimf.h	/^#define bvxb_TA_AND(a, b)                   t_b_an/
+bvxb_TA_OR	tprimf.h	/^#define bvxb_TA_OR(a, b)                    t_b_or/
+bvxb_TA_XOR	tprimf.h	/^#define bvxb_TA_XOR(a, b)                   t_b_xo/
+bxb_TA_AND	tprimf.h	/^#define bxb_TA_AND(a, b)        ((T_SA_TRUE(a) && /
+bxb_TA_EQ	tprimf.h	/^#define bxb_TA_EQ(a, b)         (((a) == (b)) ? SA/
+bxb_TA_MAX	tprimf.h	/^#define bxb_TA_MAX(a, b)        (T_SA_TRUE(a) ? SA/
+bxb_TA_MIN	tprimf.h	/^#define bxb_TA_MIN(a, b)        (T_SA_FALSE(a) ? S/
+bxb_TA_OR	tprimf.h	/^#define bxb_TA_OR(a, b)         ((T_SA_TRUE(a) || /
+bxb_TA_XOR	tprimf.h	/^#define bxb_TA_XOR(a, b)        ((T_SA_TRUE(a) != /
+bxi_TA_EQ	tprimf.h	/^#define bxi_TA_EQ(a, b)         SA_FALSE$/
+bxi_TA_NE	tprimf.h	/^#define bxi_TA_NE(a, b)         SA_TRUE$/
+bxl_TA_EQ	tprimf.h	/^#define bxl_TA_EQ(a, b)         SA_FALSE$/
+bxl_TA_NE	tprimf.h	/^#define bxl_TA_NE(a, b)         SA_TRUE$/
+bxmb_TA_AND	tprimf.h	/^#define bxmb_TA_AND(a, b)                   t_b_an/
+bxmb_TA_EQ	tprimf.h	/^#define bxmb_TA_EQ(a, b)         SA_FALSE$/
+bxmb_TA_NE	tprimf.h	/^#define bxmb_TA_NE(a, b)         SA_TRUE$/
+bxmb_TA_OR	tprimf.h	/^#define bxmb_TA_OR(a, b)                    t_b_or/
+bxmb_TA_XOR	tprimf.h	/^#define bxmb_TA_XOR(a, b)                   t_b_xo/
+bxme_TA_EQ	tprimf.h	/^#define bxme_TA_EQ(a, b)         SA_FALSE$/
+bxme_TA_NE	tprimf.h	/^#define bxme_TA_NE(a, b)         SA_TRUE$/
+bxmi_TA_EQ	tprimf.h	/^#define bxmi_TA_EQ(a, b)         SA_FALSE$/
+bxmi_TA_NE	tprimf.h	/^#define bxmi_TA_NE(a, b)         SA_TRUE$/
+bxmr_TA_EQ	tprimf.h	/^#define bxmr_TA_EQ(a, b)         SA_FALSE$/
+bxmr_TA_NE	tprimf.h	/^#define bxmr_TA_NE(a, b)         SA_TRUE$/
+bxr_TA_EQ	tprimf.h	/^#define bxr_TA_EQ(a, b)         SA_FALSE$/
+bxr_TA_NE	tprimf.h	/^#define bxr_TA_NE(a, b)         SA_TRUE$/
+bxs_TA_EQ	tprimf.h	/^#define bxs_TA_EQ(a, b)         SA_FALSE$/
+bxs_TA_NE	tprimf.h	/^#define bxs_TA_NE(a, b)         SA_TRUE$/
+bxtb_TA_AND	tprimf.h	/^#define bxtb_TA_AND(a, b)                   t_b_an/
+bxtb_TA_EQ	tprimf.h	/^#define bxtb_TA_EQ(a, b)         SA_FALSE$/
+bxtb_TA_NE	tprimf.h	/^#define bxtb_TA_NE(a, b)         SA_TRUE$/
+bxtb_TA_OR	tprimf.h	/^#define bxtb_TA_OR(a, b)                    t_b_or/
+bxtb_TA_XOR	tprimf.h	/^#define bxtb_TA_XOR(a, b)                   t_b_xo/
+bxte_TA_EQ	tprimf.h	/^#define bxte_TA_EQ(a, b)         SA_FALSE$/
+bxte_TA_NE	tprimf.h	/^#define bxte_TA_NE(a, b)         SA_TRUE$/
+bxti_TA_EQ	tprimf.h	/^#define bxti_TA_EQ(a, b)         SA_FALSE$/
+bxti_TA_NE	tprimf.h	/^#define bxti_TA_NE(a, b)         SA_TRUE$/
+bxtr_TA_EQ	tprimf.h	/^#define bxtr_TA_EQ(a, b)         SA_FALSE$/
+bxtr_TA_NE	tprimf.h	/^#define bxtr_TA_NE(a, b)         SA_TRUE$/
+bxvb_TA_AND	tprimf.h	/^#define bxvb_TA_AND(a, b)                   t_b_an/
+bxvb_TA_EQ	tprimf.h	/^#define bxvb_TA_EQ(a, b)         SA_FALSE$/
+bxvb_TA_NE	tprimf.h	/^#define bxvb_TA_NE(a, b)         SA_TRUE$/
+bxvb_TA_OR	tprimf.h	/^#define bxvb_TA_OR(a, b)                    t_b_or/
+bxvb_TA_XOR	tprimf.h	/^#define bxvb_TA_XOR(a, b)                   t_b_xo/
+bxve_TA_EQ	tprimf.h	/^#define bxve_TA_EQ(a, b)         SA_FALSE$/
+bxve_TA_NE	tprimf.h	/^#define bxve_TA_NE(a, b)         SA_TRUE$/
+bxvi_TA_EQ	tprimf.h	/^#define bxvi_TA_EQ(a, b)         SA_FALSE$/
+bxvi_TA_NE	tprimf.h	/^#define bxvi_TA_NE(a, b)         SA_TRUE$/
+bxvr_TA_EQ	tprimf.h	/^#define bxvr_TA_EQ(a, b)         SA_FALSE$/
+bxvr_TA_NE	tprimf.h	/^#define bxvr_TA_NE(a, b)         SA_TRUE$/
+casefar	prolog.h	/^#define casefar(r,f,t)    push_r(r);    \/* label t/
+casenear	prolog.h	/^#define casenear(r,f,t) casefar(r,f,t)$/
+char	rheapty.h	120
+check_instr	rinter.h	/^int check_instr(i)    \/* int eingefuegt von RS 02\//
+classname	rprimf.h	/^char *classname(p)$/
+clearscreen	debug.c	/^int clearscreen(void)$/
+cmpString	inter.c	/^BOOLEAN cmpString(PTR_DESCRIPTOR ptd,char *string)/
+co	debug.c	/^int co(void)$/
+controlled_exit	initdata.c	/^int controlled_exit(const char *s)$/
+cursorxy	debug.c	/^int cursorxy(void)$/
+deca	prolog.h	/^#define deca(n)        DEC_REFCNT((T_PTD)st_a[-(n)/
+decr	prolog.h	/^#define decr(n)        DEC_REFCNT((T_PTD)st_r[-(n)/
+dect	prolog.h	/^#define dect(n)        DEC_REFCNT((T_PTD)st_t[-(n)/
+decw	prolog.h	/^#define decw(n)        DEC_REFCNT((T_PTD)st_w[-(n)/
+delta_reduct	rapply.c	/^void delta_reduct(int n, T_PTD d_ptdesc)$/
+dereference	prolog.h	/^#define dereference()  repl(0, w, *((PTR_HEAPELEM)/
+dist	prolog.h	/^#define dist(f, l1, l2, b, r, t, tf)  lab =  unmap/
+distb	prolog.h	/^#define distb(f, l1, l2, b, r, t, tf) lab =  unmap/
+distend	prolog.h	/^#define distend()              if ((top(r)) >= 0) /
+drop	prolog.h	/^#define drop(st, n)     { int i; for(i=n; i; i--) /
+dyn_mkbclos	rmkclos.c	/^void dyn_mkbclos(int args)$/
+endlist	prolog.h	/^#define endlist()     repl(1, w, (int)(R_LIST(*(T_/
+endsubl	prolog.h	/^#define endsubl(n)    repl(n, r, peek(w, 1))$/
+ext	prolog.h	/^#define ext()          push_r(0);DBUG_RETURN(inter/
+f_apply	rapply.c	/^int f_apply(void)$/
+f_condfail	rmkclos.c	/^void f_condfail(int args, int ufunc)$/
+f_guard_undecided	rmkclos.c	/^void f_guard_undecided(int addr)$/
+f_mkap	rmkclos.c	/^void f_mkap(int args)$/
+f_mkbclos	rmkclos.c	/^int f_mkbclos(int args, int ufunc)$/
+f_mkcase	rmkclos.c	/^void f_mkcase(int args, int ufunc)$/
+f_mkcaseclos	rmkclos.c	/^int f_mkcaseclos(int args, int ufunc)$/
+f_mkcclos	rmkclos.c	/^void f_mkcclos(int args, int ufunc)$/
+f_mkcondclos	rmkclos.c	/^int f_mkcondclos(int args, int ufunc)$/
+f_mkdclos	rmkclos.c	/^void f_mkdclos(int refcnt_set, int arity, int args/
+f_mkgaclos	rmkclos.c	/^void f_mkgaclos(int args, int ufunc, int gamma_clo/
+f_mksclos	rmkclos.c	/^void f_mksclos(int arity, int args, int nfv)$/
+f_popfree_t	rapply.c	/^int f_popfree_t(void)$/
+fetch	prolog.h	/^#define fetch()        if ((T_PTD)(int)*(PTR_HEAPE/
+flip_tail	prolog.h	/^#define flip_tail()    repl(0, r, top(r) ^ TAIL_FL/
+freea	prolog.h	/^#define freea(n)       {int i;for(i=0;i<n;i++) T_D/
+freerfw	prolog.h	/^#define freerfw(n)     {int i;for(i=0;i<n;i++) T_D/
+freeswt	prolog.h	/^#define freeswt(n)     {int i;for(i=0;i<n;i++) T_D/
+freew	prolog.h	/^#define freew(n)       drop(w, n)$/
+gammabeta	prolog.h	/^#define gammabeta(func, ret)   stflip(a,w);  \\$/
+gammabetafar	prolog.h	/^#define gammabetafar(b,f,z) stflip(a,w);  \\$/
+gammabetanear	prolog.h	/^#define gammabetanear(b,f,z) gammabetafar(b,f,z)$/
+gammacase	prolog.h	/^#define gammacase(func, ret)    stflip(r, t);    \\/
+gammacasefar	prolog.h	/^#define gammacasefar(ret, f, target)    \\$/
+gammacasenear	prolog.h	/^#define gammacasenear(ret,f,target) gammacasefar(r/
+getkey	debug.c	/^int getkey(void)$/
+guard_undecided	prolog.h	/^#define guard_undecided(ad) f_guard_undecided(ad)$/
+i_TA_ABS	tprimf.h	/^#define i_TA_ABS(a)             ((0 > VAL_INT(a)) /
+i_TA_CEIL	tprimf.h	/^#define i_TA_CEIL(a)            (a)$/
+i_TA_COS	tprimf.h	/^#define i_TA_COS(a)             (cos(VAL_INT(a)))$/
+i_TA_EXP	tprimf.h	/^#define i_TA_EXP(a)             my_exp((a))$/
+i_TA_FLOOR	tprimf.h	/^#define i_TA_FLOOR(a)           (a)$/
+i_TA_FRAC	tprimf.h	/^#define i_TA_FRAC(a)            (ZERO_INT)$/
+i_TA_LN	tprimf.h	/^#define i_TA_LN(a)              my_ln((a))$/
+i_TA_NEG	tprimf.h	/^#define i_TA_NEG(a)             (NEG_INT(a))$/
+i_TA_SIN	tprimf.h	/^#define i_TA_SIN(a)             (sin(VAL_INT(a)))$/
+i_TA_TAN	tprimf.h	/^#define i_TA_TAN(a)             (tan(VAL_INT(a)))$/
+i_TA_TO_MAT	tprimf.h	/^#define i_TA_TO_MAT(a)                       t_to_/
+i_TA_TRUNCATE	tprimf.h	/^#define i_TA_TRUNCATE(a)        (a)$/
+i_rtc	prolog.h	/^#define i_rtc(x, l)    stflip(a, w);        \\$/
+i_rtf	prolog.h	/^#define i_rtf(l)       stflip(a, w);        \\$/
+i_rtm	prolog.h	/^#define i_rtm(l)       stflip(a, w);        \\$/
+i_rtp	prolog.h	/^#define i_rtp(x, l)    stflip(a, w);        \\$/
+inca	prolog.h	/^#define inca(n)     INC_REFCNT((T_PTD)st_a[-(n)])$/
+incr	prolog.h	/^#define incr(n)     INC_REFCNT((T_PTD)st_r[-(n)])$/
+inct	prolog.h	/^#define inct(n)     INC_REFCNT((T_PTD)st_t[-(n)])$/
+incw	prolog.h	/^#define incw(n)     INC_REFCNT((T_PTD)st_w[-(n)])$/
+initbt	prolog.h	/^#define initbt(n, i1, i2, i3, i4)     \\$/
+initdata_frame	initdata.c	/^int initdata_frame (int dim, int *args)$/
+initdata_free_var	initdata.c	/^int initdata_free_var(int dim, char *args)$/
+initdata_i_list	initdata.c	/^int initdata_i_list (int dim, int *args)$/
+initdata_inter	initdata.c	/^int initdata_inter (DESC_TYPE type,int dim, int *a/
+initdata_list	initdata.c	/^int initdata_list (int dim, int *args)$/
+initdata_matrix	initdata.c	/^int initdata_matrix(int c, int t, int rows, int co/
+initdata_scalar	initdata.c	/^int initdata_scalar(double value)$/
+initdata_slot	initdata.c	/^int initdata_slot (int dim, int *args)$/
+initdata_string	initdata.c	/^int initdata_string(int dim, int *args)$/
+instrindex	rinter.h	/^int instrindex(i)$/
+instrname	rinter.h	/^char *instrname(i)$/
+inter	prolog.h	/^#define inter(type)    { int n=(type==TY_PUT? 3 : /
+interactions	inter.c	/^int interactions()$/
+ixb_TA_EQ	tprimf.h	/^#define ixb_TA_EQ(a, b)         SA_FALSE$/
+ixb_TA_NE	tprimf.h	/^#define ixb_TA_NE(a, b)         SA_TRUE$/
+ixbxl_TA_LREPLACE	tprimf.h	/^#define ixbxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixbxtb_TA_VREPLACE	tprimf.h	/^#define ixbxtb_TA_VREPLACE(a, b, c) t_v_replace(VA/
+ixbxvb_TA_VREPLACE	tprimf.h	/^#define ixbxvb_TA_VREPLACE(a, b, c) t_v_replace(VA/
+ixcxl_TA_LREPLACE	tprimf.h	/^#define ixcxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixfxl_TA_LREPLACE	tprimf.h	/^#define ixfxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixi_TA_DIV	tprimf.h	/^#define ixi_TA_DIV(a, b)        ((T_ZERO((b))) ? c/
+ixi_TA_EQ	tprimf.h	/^#define ixi_TA_EQ(a, b)         EQ_INT((a), (b))$/
+ixi_TA_GEQ	tprimf.h	/^#define ixi_TA_GEQ(a, b)        GE_INT((a), (b))$/
+ixi_TA_GREAT	tprimf.h	/^#define ixi_TA_GREAT(a, b)      GT_INT((a), (b))$/
+ixi_TA_LEQ	tprimf.h	/^#define ixi_TA_LEQ(a, b)        LE_INT((a), (b))$/
+ixi_TA_LESS	tprimf.h	/^#define ixi_TA_LESS(a, b)       LT_INT((a), (b))$/
+ixi_TA_MAX	tprimf.h	/^#define ixi_TA_MAX(a, b)        MAX_INT((a), (b))$/
+ixi_TA_MIN	tprimf.h	/^#define ixi_TA_MIN(a, b)        MIN_INT((a), (b))$/
+ixi_TA_MINUS	tprimf.h	/^#define ixi_TA_MINUS(a, b)      SUB_INT((a), (b))$/
+ixi_TA_MOD	tprimf.h	/^#define ixi_TA_MOD(a, b)        ((T_ZERO((b))) ? c/
+ixi_TA_MULT	tprimf.h	/^#define ixi_TA_MULT(a, b)       MUL_INT((a), (b))$/
+ixi_TA_NE	tprimf.h	/^#define ixi_TA_NE(a, b)         NE_INT((a), (b))$/
+ixi_TA_PLUS	tprimf.h	/^#define ixi_TA_PLUS(a, b)       ADD_INT((a), (b))$/
+ixi_TA_QUOT	tprimf.h	/^#define ixi_TA_QUOT(a, b)       ((T_ZERO((b))) ? c/
+ixixbxmb_TA_MREPLACE	tprimf.h	/^#define ixixbxmb_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixixixmi_TA_MREPLACE	tprimf.h	/^#define ixixixmi_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixixl_TA_LREPLACE	tprimf.h	/^#define ixixl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixixl_TA_LTRANSFORM	tprimf.h	/^#define ixixl_TA_LTRANSFORM(a, b, c) t_ltransform(/
+ixixmb_TA_MCUT	tprimf.h	/^#define ixixmb_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixixmb_TA_MROTATE	tprimf.h	/^#define ixixmb_TA_MROTATE(a, b, c)          t_mrot/
+ixixme_TA_MCUT	tprimf.h	/^#define ixixme_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixixme_TA_MROTATE	tprimf.h	/^#define ixixme_TA_MROTATE(a, b, c)          (INC_R/
+ixixmi_TA_MCUT	tprimf.h	/^#define ixixmi_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixixmi_TA_MROTATE	tprimf.h	/^#define ixixmi_TA_MROTATE(a, b, c)          t_mrot/
+ixixmr_TA_MCUT	tprimf.h	/^#define ixixmr_TA_MCUT(a, b, c)   t_mcutr(VAL_INT(/
+ixixmr_TA_MROTATE	tprimf.h	/^#define ixixmr_TA_MROTATE(a, b, c)          t_mrot/
+ixixrxmr_TA_MREPLACE	tprimf.h	/^#define ixixrxmr_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixixti_TA_VREPLACE	tprimf.h	/^#define ixixti_TA_VREPLACE(a, b, c) \\$/
+ixixvi_TA_VREPLACE	tprimf.h	/^#define ixixvi_TA_VREPLACE(a, b, c) \\$/
+ixl_TA_EQ	tprimf.h	/^#define ixl_TA_EQ(a, b)         SA_FALSE$/
+ixl_TA_LCUT	tprimf.h	/^#define ixl_TA_LCUT(a, b)       t_lcut(VAL_INT((a)/
+ixl_TA_LROTATE	tprimf.h	/^#define ixl_TA_LROTATE(a, b)    t_lrotate(VAL_INT(/
+ixl_TA_LSELECT	tprimf.h	/^#define ixl_TA_LSELECT(a, b)    t_lselect((VAL_INT/
+ixl_TA_NE	tprimf.h	/^#define ixl_TA_NE(a, b)         SA_TRUE$/
+ixlxl_TA_LREPLACE	tprimf.h	/^#define ixlxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixmb_TA_EQ	tprimf.h	/^#define ixmb_TA_EQ(a, b)         SA_FALSE$/
+ixmb_TA_MDIMENSION	tprimf.h	/^#define ixmb_TA_MDIMENSION(a, b)        t_mdim(VAL/
+ixmb_TA_NE	tprimf.h	/^#define ixmb_TA_NE(a, b)         SA_TRUE$/
+ixmbxl_TA_LREPLACE	tprimf.h	/^#define ixmbxl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixmbxmb_TA_MUNI	tprimf.h	/^#define ixmbxmb_TA_MUNI(a, b, c)           t_munit/
+ixmbxme_TA_MUNI	tprimf.h	/^#define ixmbxme_TA_MUNI(a, b, c)          t_munite/
+ixmbxtb_TA_MUNI	tprimf.h	/^#define ixmbxtb_TA_MUNI(a, b, c)           t_munit/
+ixmbxte_TA_MUNI	tprimf.h	/^#define ixmbxte_TA_MUNI(a, b, c)          t_munite/
+ixmbxvb_TA_MUNI	tprimf.h	/^#define ixmbxvb_TA_MUNI(a, b, c)           t_munit/
+ixmbxve_TA_MUNI	tprimf.h	/^#define ixmbxve_TA_MUNI(a, b, c)          t_munite/
+ixme_TA_EQ	tprimf.h	/^#define ixme_TA_EQ(a, b)         SA_FALSE$/
+ixme_TA_MDIMENSION	tprimf.h	/^#define ixme_TA_MDIMENSION(a, b)        ZERO_INT$/
+ixme_TA_NE	tprimf.h	/^#define ixme_TA_NE(a, b)         SA_TRUE$/
+ixmexmb_TA_MUNI	tprimf.h	/^#define ixmexmb_TA_MUNI(a, b, c)          t_munite/
+ixmexme_TA_MUNI	tprimf.h	/^#define ixmexme_TA_MUNI(a, b, c)          (INC_REF/
+ixmexmi_TA_MUNI	tprimf.h	/^#define ixmexmi_TA_MUNI(a, b, c)          t_munite/
+ixmexmr_TA_MUNI	tprimf.h	/^#define ixmexmr_TA_MUNI(a, b, c)          t_munite/
+ixmextb_TA_MUNI	tprimf.h	/^#define ixmextb_TA_MUNI(a, b, c)          t_munite/
+ixmexti_TA_MUNI	tprimf.h	/^#define ixmexti_TA_MUNI(a, b, c)          t_munite/
+ixmextr_TA_MUNI	tprimf.h	/^#define ixmextr_TA_MUNI(a, b, c)          t_munite/
+ixmexvb_TA_MUNI	tprimf.h	/^#define ixmexvb_TA_MUNI(a, b, c)          t_munite/
+ixmexve_TA_MUNI	tprimf.h	/^#define ixmexve_TA_MUNI(a, b, c)          (INC_REF/
+ixmexvi_TA_MUNI	tprimf.h	/^#define ixmexvi_TA_MUNI(a, b, c)          t_munite/
+ixmexvr_TA_MUNI	tprimf.h	/^#define ixmexvr_TA_MUNI(a, b, c)          t_munite/
+ixmi_TA_EQ	tprimf.h	/^#define ixmi_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixmi_TA_MDIMENSION	tprimf.h	/^#define ixmi_TA_MDIMENSION(a, b)        t_mdim(VAL/
+ixmi_TA_NE	tprimf.h	/^#define ixmi_TA_NE(a, b)         t_scal_mvt_nequal/
+ixmixl_TA_LREPLACE	tprimf.h	/^#define ixmixl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixmixme_TA_MUNI	tprimf.h	/^#define ixmixme_TA_MUNI(a, b, c)          t_munite/
+ixmixmi_TA_MUNI	tprimf.h	/^#define ixmixmi_TA_MUNI(a, b, c)           t_munit/
+ixmixmr_TA_MUNI	tprimf.h	/^#define ixmixmr_TA_MUNI(a, b, c)           t_munit/
+ixmixte_TA_MUNI	tprimf.h	/^#define ixmixte_TA_MUNI(a, b, c)          t_munite/
+ixmixti_TA_MUNI	tprimf.h	/^#define ixmixti_TA_MUNI(a, b, c)           t_munit/
+ixmixtr_TA_MUNI	tprimf.h	/^#define ixmixtr_TA_MUNI(a, b, c)           t_munit/
+ixmixve_TA_MUNI	tprimf.h	/^#define ixmixve_TA_MUNI(a, b, c)          t_munite/
+ixmixvi_TA_MUNI	tprimf.h	/^#define ixmixvi_TA_MUNI(a, b, c)           t_munit/
+ixmixvr_TA_MUNI	tprimf.h	/^#define ixmixvr_TA_MUNI(a, b, c)           t_munit/
+ixmr_TA_EQ	tprimf.h	/^#define ixmr_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixmr_TA_MDIMENSION	tprimf.h	/^#define ixmr_TA_MDIMENSION(a, b)        t_mdim(VAL/
+ixmr_TA_NE	tprimf.h	/^#define ixmr_TA_NE(a, b)         t_scal_mvt_nequal/
+ixmrxl_TA_LREPLACE	tprimf.h	/^#define ixmrxl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixmrxme_TA_MUNI	tprimf.h	/^#define ixmrxme_TA_MUNI(a, b, c)          t_munite/
+ixmrxmi_TA_MUNI	tprimf.h	/^#define ixmrxmi_TA_MUNI(a, b, c)           t_munit/
+ixmrxmr_TA_MUNI	tprimf.h	/^#define ixmrxmr_TA_MUNI(a, b, c)           t_munit/
+ixmrxte_TA_MUNI	tprimf.h	/^#define ixmrxte_TA_MUNI(a, b, c)          t_munite/
+ixmrxti_TA_MUNI	tprimf.h	/^#define ixmrxti_TA_MUNI(a, b, c)           t_munit/
+ixmrxtr_TA_MUNI	tprimf.h	/^#define ixmrxtr_TA_MUNI(a, b, c)           t_munit/
+ixmrxve_TA_MUNI	tprimf.h	/^#define ixmrxve_TA_MUNI(a, b, c)          t_munite/
+ixmrxvi_TA_MUNI	tprimf.h	/^#define ixmrxvi_TA_MUNI(a, b, c)           t_munit/
+ixmrxvr_TA_MUNI	tprimf.h	/^#define ixmrxvr_TA_MUNI(a, b, c)           t_munit/
+ixr_TA_DIV	tprimf.h	/^#define ixr_TA_DIV(a, b)        ((0.0 == R_SCALAR(/
+ixr_TA_EQ	tprimf.h	/^#define ixr_TA_EQ(a, b)         (((double)VAL_INT(/
+ixr_TA_GEQ	tprimf.h	/^#define ixr_TA_GEQ(a, b)        (((double)VAL_INT(/
+ixr_TA_GREAT	tprimf.h	/^#define ixr_TA_GREAT(a, b)      (((double)VAL_INT(/
+ixr_TA_LEQ	tprimf.h	/^#define ixr_TA_LEQ(a, b)        (((double)VAL_INT(/
+ixr_TA_LESS	tprimf.h	/^#define ixr_TA_LESS(a, b)       (((double)VAL_INT(/
+ixr_TA_MAX	tprimf.h	/^#define ixr_TA_MAX(a, b)        (((double)VAL_INT(/
+ixr_TA_MIN	tprimf.h	/^#define ixr_TA_MIN(a, b)        (((double)VAL_INT(/
+ixr_TA_MINUS	tprimf.h	/^#define ixr_TA_MINUS(a, b)      ((double)VAL_INT((/
+ixr_TA_MOD	tprimf.h	/^#define ixr_TA_MOD(a, b)        ((0.0 == (R_SCALAR/
+ixr_TA_MULT	tprimf.h	/^#define ixr_TA_MULT(a, b)       ((double)VAL_INT((/
+ixr_TA_NE	tprimf.h	/^#define ixr_TA_NE(a, b)         (((double)VAL_INT(/
+ixr_TA_PLUS	tprimf.h	/^#define ixr_TA_PLUS(a, b)       ((double)VAL_INT((/
+ixrxbxmb_TA_MREPLACE	tprimf.h	/^#define ixrxbxmb_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixrxixmi_TA_MREPLACE	tprimf.h	/^#define ixrxixmi_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixrxl_TA_LREPLACE	tprimf.h	/^#define ixrxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixrxl_TA_LTRANSFORM	tprimf.h	/^#define ixrxl_TA_LTRANSFORM(a, b, c) t_ltransform(/
+ixrxmb_TA_MCUT	tprimf.h	/^#define ixrxmb_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixrxmb_TA_MROTATE	tprimf.h	/^#define ixrxmb_TA_MROTATE(a, b, c)          t_mrot/
+ixrxme_TA_MCUT	tprimf.h	/^#define ixrxme_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixrxme_TA_MROTATE	tprimf.h	/^#define ixrxme_TA_MROTATE(a, b, c)          (INC_R/
+ixrxmi_TA_MCUT	tprimf.h	/^#define ixrxmi_TA_MCUT(a, b, c)   t_mcut(VAL_INT(a/
+ixrxmi_TA_MROTATE	tprimf.h	/^#define ixrxmi_TA_MROTATE(a, b, c)          t_mrot/
+ixrxmr_TA_MCUT	tprimf.h	/^#define ixrxmr_TA_MCUT(a, b, c)   t_mcutr(VAL_INT(/
+ixrxmr_TA_MROTATE	tprimf.h	/^#define ixrxmr_TA_MROTATE(a, b, c)          t_mrot/
+ixrxrxmr_TA_MREPLACE	tprimf.h	/^#define ixrxrxmr_TA_MREPLACE(a, b, c, d)    t_mrep/
+ixrxtr_TA_VREPLACE	tprimf.h	/^#define ixrxtr_TA_VREPLACE(a, b, c) \\$/
+ixrxvr_TA_VREPLACE	tprimf.h	/^#define ixrxvr_TA_VREPLACE(a, b, c)  \\$/
+ixs_TA_EQ	tprimf.h	/^#define ixs_TA_EQ(a, b)         SA_FALSE$/
+ixs_TA_LCUT	tprimf.h	/^#define ixs_TA_LCUT(a, b)       t_lcut(VAL_INT((a)/
+ixs_TA_LROTATE	tprimf.h	/^#define ixs_TA_LROTATE(a, b)    t_lrotate(VAL_INT(/
+ixs_TA_LSELECT	tprimf.h	/^#define ixs_TA_LSELECT(a, b)    t_sselect((VAL_INT/
+ixs_TA_NE	tprimf.h	/^#define ixs_TA_NE(a, b)         SA_TRUE$/
+ixsxl_TA_LREPLACE	tprimf.h	/^#define ixsxl_TA_LREPLACE(a, b, c)      t_lreplace/
+ixsxs_TA_LREPLACE	tprimf.h	/^#define ixsxs_TA_LREPLACE(a, b, c)      \\$/
+ixtb_TA_EQ	tprimf.h	/^#define ixtb_TA_EQ(a, b)         SA_FALSE$/
+ixtb_TA_NE	tprimf.h	/^#define ixtb_TA_NE(a, b)         SA_TRUE$/
+ixtb_TA_VCUT	tprimf.h	/^#define ixtb_TA_VCUT(a, b)       t_vvcut(VAL_INT((/
+ixtb_TA_VROTATE	tprimf.h	/^#define ixtb_TA_VROTATE(a, b)     t_vvrotate(VAL_I/
+ixtb_TA_VSELECT	tprimf.h	/^#define ixtb_TA_VSELECT(a, b)     t_vselect(VAL_IN/
+ixtbxmb_TA_MREPLACE_C	tprimf.h	/^#define ixtbxmb_TA_MREPLACE_C(a, b, c)      t_mrep/
+ixtbxmb_TA_MUNI	tprimf.h	/^#define ixtbxmb_TA_MUNI(a, b, c)           t_munit/
+ixtbxme_TA_MUNI	tprimf.h	/^#define ixtbxme_TA_MUNI(a, b, c)          t_munite/
+ixtbxtb_TA_MUNI	tprimf.h	/^#define ixtbxtb_TA_MUNI(a, b, c)           t_munit/
+ixtbxte_TA_MUNI	tprimf.h	/^#define ixtbxte_TA_MUNI(a, b, c)          t_munite/
+ixtbxve_TA_MUNI	tprimf.h	/^#define ixtbxve_TA_MUNI(a, b, c)          t_munite/
+ixte_TA_EQ	tprimf.h	/^#define ixte_TA_EQ(a, b)         SA_FALSE$/
+ixte_TA_NE	tprimf.h	/^#define ixte_TA_NE(a, b)         SA_TRUE$/
+ixte_TA_VCUT	tprimf.h	/^#define ixte_TA_VCUT(a, b)       (INC_REFCNT(_nilt/
+ixte_TA_VROTATE	tprimf.h	/^#define ixte_TA_VROTATE(a, b)    (INC_REFCNT(_nilt/
+ixtexmb_TA_MUNI	tprimf.h	/^#define ixtexmb_TA_MUNI(a, b, c)          t_munite/
+ixtexmi_TA_MUNI	tprimf.h	/^#define ixtexmi_TA_MUNI(a, b, c)          t_munite/
+ixtexmr_TA_MUNI	tprimf.h	/^#define ixtexmr_TA_MUNI(a, b, c)          t_munite/
+ixtextb_TA_MUNI	tprimf.h	/^#define ixtextb_TA_MUNI(a, b, c)          t_munite/
+ixtexte_TA_MUNI	tprimf.h	/^#define ixtexte_TA_MUNI(a, b, c)          (INC_REF/
+ixtexti_TA_MUNI	tprimf.h	/^#define ixtexti_TA_MUNI(a, b, c)          t_munite/
+ixtextr_TA_MUNI	tprimf.h	/^#define ixtextr_TA_MUNI(a, b, c)          t_munite/
+ixtexvb_TA_MUNI	tprimf.h	/^#define ixtexvb_TA_MUNI(a, b, c)          t_munite/
+ixtexve_TA_MUNI	tprimf.h	/^#define ixtexve_TA_MUNI(a, b, c)          (INC_REF/
+ixtexvi_TA_MUNI	tprimf.h	/^#define ixtexvi_TA_MUNI(a, b, c)          t_munite/
+ixtexvr_TA_MUNI	tprimf.h	/^#define ixtexvr_TA_MUNI(a, b, c)          t_munite/
+ixti_TA_EQ	tprimf.h	/^#define ixti_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixti_TA_NE	tprimf.h	/^#define ixti_TA_NE(a, b)         t_scal_mvt_nequal/
+ixti_TA_VCUT	tprimf.h	/^#define ixti_TA_VCUT(a, b)       t_tvcut(VAL_INT((/
+ixti_TA_VROTATE	tprimf.h	/^#define ixti_TA_VROTATE(a, b)     t_tvrotate(VAL_I/
+ixti_TA_VSELECT	tprimf.h	/^#define ixti_TA_VSELECT(a, b)     t_vselect(VAL_IN/
+ixtixme_TA_MUNI	tprimf.h	/^#define ixtixme_TA_MUNI(a, b, c)          t_munite/
+ixtixmi_TA_MREPLACE_C	tprimf.h	/^#define ixtixmi_TA_MREPLACE_C(a, b, c)      t_mrep/
+ixtixmi_TA_MUNI	tprimf.h	/^#define ixtixmi_TA_MUNI(a, b, c)           t_munit/
+ixtixmr_TA_MUNI	tprimf.h	/^#define ixtixmr_TA_MUNI(a, b, c)           t_munit/
+ixtixte_TA_MUNI	tprimf.h	/^#define ixtixte_TA_MUNI(a, b, c)          t_munite/
+ixtixti_TA_MUNI	tprimf.h	/^#define ixtixti_TA_MUNI(a, b, c)           t_munit/
+ixtixtr_TA_MUNI	tprimf.h	/^#define ixtixtr_TA_MUNI(a, b, c)           t_munit/
+ixtixve_TA_MUNI	tprimf.h	/^#define ixtixve_TA_MUNI(a, b, c)          t_munite/
+ixtr_TA_EQ	tprimf.h	/^#define ixtr_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixtr_TA_NE	tprimf.h	/^#define ixtr_TA_NE(a, b)         t_scal_mvt_nequal/
+ixtr_TA_VCUT	tprimf.h	/^#define ixtr_TA_VCUT(a, b)       t_tvcut(VAL_INT((/
+ixtr_TA_VROTATE	tprimf.h	/^#define ixtr_TA_VROTATE(a, b)     t_tvrotate(VAL_I/
+ixtr_TA_VSELECT	tprimf.h	/^#define ixtr_TA_VSELECT(a, b)     t_vrselect(VAL_I/
+ixtrxme_TA_MUNI	tprimf.h	/^#define ixtrxme_TA_MUNI(a, b, c)          t_munite/
+ixtrxmi_TA_MUNI	tprimf.h	/^#define ixtrxmi_TA_MUNI(a, b, c)           t_munit/
+ixtrxmr_TA_MREPLACE_C	tprimf.h	/^#define ixtrxmr_TA_MREPLACE_C(a, b, c)      t_mrep/
+ixtrxmr_TA_MUNI	tprimf.h	/^#define ixtrxmr_TA_MUNI(a, b, c)           t_munit/
+ixtrxte_TA_MUNI	tprimf.h	/^#define ixtrxte_TA_MUNI(a, b, c)          t_munite/
+ixtrxti_TA_MUNI	tprimf.h	/^#define ixtrxti_TA_MUNI(a, b, c)           t_munit/
+ixtrxtr_TA_MUNI	tprimf.h	/^#define ixtrxtr_TA_MUNI(a, b, c)           t_munit/
+ixtrxve_TA_MUNI	tprimf.h	/^#define ixtrxve_TA_MUNI(a, b, c)          t_munite/
+ixvb_TA_EQ	tprimf.h	/^#define ixvb_TA_EQ(a, b)         SA_FALSE$/
+ixvb_TA_NE	tprimf.h	/^#define ixvb_TA_NE(a, b)         SA_TRUE$/
+ixvb_TA_VCUT	tprimf.h	/^#define ixvb_TA_VCUT(a, b)       t_vvcut(VAL_INT((/
+ixvb_TA_VROTATE	tprimf.h	/^#define ixvb_TA_VROTATE(a, b)     t_vvrotate(VAL_I/
+ixvb_TA_VSELECT	tprimf.h	/^#define ixvb_TA_VSELECT(a, b)     t_vselect(VAL_IN/
+ixvbxl_TA_LREPLACE	tprimf.h	/^#define ixvbxl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixvbxmb_TA_MREPLACE_R	tprimf.h	/^#define ixvbxmb_TA_MREPLACE_R(a, b, c)      t_mrep/
+ixvbxmb_TA_MUNI	tprimf.h	/^#define ixvbxmb_TA_MUNI(a, b, c)           t_munit/
+ixvbxme_TA_MUNI	tprimf.h	/^#define ixvbxme_TA_MUNI(a, b, c)          t_munite/
+ixvbxte_TA_MUNI	tprimf.h	/^#define ixvbxte_TA_MUNI(a, b, c)          t_munite/
+ixvbxvb_TA_MUNI	tprimf.h	/^#define ixvbxvb_TA_MUNI(a, b, c)           t_munit/
+ixvbxve_TA_MUNI	tprimf.h	/^#define ixvbxve_TA_MUNI(a, b, c)          t_munite/
+ixve_TA_EQ	tprimf.h	/^#define ixve_TA_EQ(a, b)         SA_FALSE$/
+ixve_TA_NE	tprimf.h	/^#define ixve_TA_NE(a, b)         SA_TRUE$/
+ixve_TA_VCUT	tprimf.h	/^#define ixve_TA_VCUT(a, b)       (INC_REFCNT(_nilv/
+ixve_TA_VROTATE	tprimf.h	/^#define ixve_TA_VROTATE(a, b)    (INC_REFCNT(_nilv/
+ixvexmb_TA_MUNI	tprimf.h	/^#define ixvexmb_TA_MUNI(a, b, c)          t_munite/
+ixvexme_TA_MUNI	tprimf.h	/^#define ixvexme_TA_MUNI(a, b, c)          (INC_REF/
+ixvexmi_TA_MUNI	tprimf.h	/^#define ixvexmi_TA_MUNI(a, b, c)          t_munite/
+ixvexmr_TA_MUNI	tprimf.h	/^#define ixvexmr_TA_MUNI(a, b, c)          t_munite/
+ixvextb_TA_MUNI	tprimf.h	/^#define ixvextb_TA_MUNI(a, b, c)          t_munite/
+ixvexte_TA_MUNI	tprimf.h	/^#define ixvexte_TA_MUNI(a, b, c)          (INC_REF/
+ixvexti_TA_MUNI	tprimf.h	/^#define ixvexti_TA_MUNI(a, b, c)          t_munite/
+ixvextr_TA_MUNI	tprimf.h	/^#define ixvextr_TA_MUNI(a, b, c)          t_munite/
+ixvexvb_TA_MUNI	tprimf.h	/^#define ixvexvb_TA_MUNI(a, b, c)          t_munite/
+ixvexve_TA_MUNI	tprimf.h	/^#define ixvexve_TA_MUNI(a, b, c)          (INC_REF/
+ixvexvi_TA_MUNI	tprimf.h	/^#define ixvexvi_TA_MUNI(a, b, c)          t_munite/
+ixvexvr_TA_MUNI	tprimf.h	/^#define ixvexvr_TA_MUNI(a, b, c)          t_munite/
+ixvi_TA_EQ	tprimf.h	/^#define ixvi_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixvi_TA_NE	tprimf.h	/^#define ixvi_TA_NE(a, b)         t_scal_mvt_nequal/
+ixvi_TA_VCUT	tprimf.h	/^#define ixvi_TA_VCUT(a, b)       t_vvcut(VAL_INT((/
+ixvi_TA_VROTATE	tprimf.h	/^#define ixvi_TA_VROTATE(a, b)     t_vvrotate(VAL_I/
+ixvi_TA_VSELECT	tprimf.h	/^#define ixvi_TA_VSELECT(a, b)     t_vselect(VAL_IN/
+ixvixl_TA_LREPLACE	tprimf.h	/^#define ixvixl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixvixme_TA_MUNI	tprimf.h	/^#define ixvixme_TA_MUNI(a, b, c)          t_munite/
+ixvixmi_TA_MREPLACE_R	tprimf.h	/^#define ixvixmi_TA_MREPLACE_R(a, b, c)      t_mrep/
+ixvixmi_TA_MUNI	tprimf.h	/^#define ixvixmi_TA_MUNI(a, b, c)           t_munit/
+ixvixmr_TA_MUNI	tprimf.h	/^#define ixvixmr_TA_MUNI(a, b, c)           t_munit/
+ixvixte_TA_MUNI	tprimf.h	/^#define ixvixte_TA_MUNI(a, b, c)          t_munite/
+ixvixve_TA_MUNI	tprimf.h	/^#define ixvixve_TA_MUNI(a, b, c)          t_munite/
+ixvixvi_TA_MUNI	tprimf.h	/^#define ixvixvi_TA_MUNI(a, b, c)           t_munit/
+ixvixvr_TA_MUNI	tprimf.h	/^#define ixvixvr_TA_MUNI(a, b, c)           t_munit/
+ixvr_TA_EQ	tprimf.h	/^#define ixvr_TA_EQ(a, b)         t_scal_mvt_equal(/
+ixvr_TA_NE	tprimf.h	/^#define ixvr_TA_NE(a, b)         t_scal_mvt_nequal/
+ixvr_TA_VCUT	tprimf.h	/^#define ixvr_TA_VCUT(a, b)       t_vvcut(VAL_INT((/
+ixvr_TA_VROTATE	tprimf.h	/^#define ixvr_TA_VROTATE(a, b)     t_vvrotate(VAL_I/
+ixvr_TA_VSELECT	tprimf.h	/^#define ixvr_TA_VSELECT(a, b)     t_vrselect(VAL_I/
+ixvrxl_TA_LREPLACE	tprimf.h	/^#define ixvrxl_TA_LREPLACE(a, b, c)      t_lreplac/
+ixvrxme_TA_MUNI	tprimf.h	/^#define ixvrxme_TA_MUNI(a, b, c)          t_munite/
+ixvrxmi_TA_MUNI	tprimf.h	/^#define ixvrxmi_TA_MUNI(a, b, c)           t_munit/
+ixvrxmr_TA_MREPLACE_R	tprimf.h	/^#define ixvrxmr_TA_MREPLACE_R(a, b, c)      t_mrep/
+ixvrxmr_TA_MUNI	tprimf.h	/^#define ixvrxmr_TA_MUNI(a, b, c)           t_munit/
+ixvrxte_TA_MUNI	tprimf.h	/^#define ixvrxte_TA_MUNI(a, b, c)          t_munite/
+ixvrxve_TA_MUNI	tprimf.h	/^#define ixvrxve_TA_MUNI(a, b, c)          t_munite/
+ixvrxvi_TA_MUNI	tprimf.h	/^#define ixvrxvi_TA_MUNI(a, b, c)           t_munit/
+ixvrxvr_TA_MUNI	tprimf.h	/^#define ixvrxvr_TA_MUNI(a, b, c)           t_munit/
+ixvxl_TA_LREPLACE	tprimf.h	/^#define ixvxl_TA_LREPLACE(a, b, c)      t_lreplace/
+jcond	prolog.h	/^#define jcond(l,i)     if (!(T_BOOLEAN(top(w))))  /
+jcond2	prolog.h	/^#define jcond2(l,c,i)  if (!(T_BOOLEAN(top(w))))  /
+jfalse	prolog.h	/^#define jfalse(l,i)    if (!(T_BOOLEAN(top(w))))  /
+jtrue	prolog.h	/^#define jtrue(l,i)     if (!(T_BOOLEAN(top(w))))  /
+keep_and_kill	tprimf.h	/^#define keep_and_kill(term, kw, ka) _desc = (PTR_D/
+keep_and_kill_atom	tprimf.h	/^#define keep_and_kill_atom(term, kw, ka) _desc = (/
+keep_and_no_w_kill	tprimf.h	/^#define keep_and_no_w_kill(term, kw, ka) _desc = (/
+keep_and_no_w_kill_atom	tprimf.h	/^#define keep_and_no_w_kill_atom(term, kw, ka) _des/
+kill_bits	prolog.h	/^#define kill_bits(f)   ((f) & BITSTOKILLMASK) \/* d/
+killa	prolog.h	/^#define killa(n)     (* dealloc_tab[R_DESC(((T_PTD/
+killr	prolog.h	/^#define killr(n)     (* dealloc_tab[R_DESC(((T_PTD/
+killt	prolog.h	/^#define killt(n)     (* dealloc_tab[R_DESC(((T_PTD/
+killw	prolog.h	/^#define killw(n)     (* dealloc_tab[R_DESC(((T_PTD/
+l_TA_EMPTY	tprimf.h	/^#define l_TA_EMPTY(a)           ((0 == R_LIST(DESC/
+l_TA_LDIMENSION	tprimf.h	/^#define l_TA_LDIMENSION(a)      TAG_INT((R_LIST(DE/
+l_TA_REVERSE	tprimf.h	/^#define l_TA_REVERSE(a)         t_reverse((a), TY_/
+li	debug.c	/^int li(void)$/
+lo	initdata.c	/^void lo(int lw)$/
+lxb_TA_EQ	tprimf.h	/^#define lxb_TA_EQ(a, b)         SA_FALSE$/
+lxb_TA_NE	tprimf.h	/^#define lxb_TA_NE(a, b)         SA_TRUE$/
+lxi_TA_EQ	tprimf.h	/^#define lxi_TA_EQ(a, b)         SA_FALSE$/
+lxi_TA_NE	tprimf.h	/^#define lxi_TA_NE(a, b)         SA_TRUE$/
+lxl_TA_LUNI	tprimf.h	/^#define lxl_TA_LUNI(a, b)       t_lunite((a), (b),/
+lxmb_TA_EQ	tprimf.h	/^#define lxmb_TA_EQ(a, b)         SA_FALSE$/
+lxmb_TA_NE	tprimf.h	/^#define lxmb_TA_NE(a, b)         SA_TRUE$/
+lxme_TA_EQ	tprimf.h	/^#define lxme_TA_EQ(a, b)         SA_FALSE$/
+lxme_TA_NE	tprimf.h	/^#define lxme_TA_NE(a, b)         SA_TRUE$/
+lxmi_TA_EQ	tprimf.h	/^#define lxmi_TA_EQ(a, b)         SA_FALSE$/
+lxmi_TA_NE	tprimf.h	/^#define lxmi_TA_NE(a, b)         SA_TRUE$/
+lxmr_TA_EQ	tprimf.h	/^#define lxmr_TA_EQ(a, b)         SA_FALSE$/
+lxmr_TA_NE	tprimf.h	/^#define lxmr_TA_NE(a, b)         SA_TRUE$/
+lxr_TA_EQ	tprimf.h	/^#define lxr_TA_EQ(a, b)         SA_FALSE$/
+lxr_TA_NE	tprimf.h	/^#define lxr_TA_NE(a, b)         SA_TRUE$/
+lxs_TA_EQ	tprimf.h	/^#define lxs_TA_EQ(a, b)         SA_FALSE$/
+lxs_TA_NE	tprimf.h	/^#define lxs_TA_NE(a, b)         SA_TRUE$/
+lxtb_TA_EQ	tprimf.h	/^#define lxtb_TA_EQ(a, b)         SA_FALSE$/
+lxtb_TA_NE	tprimf.h	/^#define lxtb_TA_NE(a, b)         SA_TRUE$/
+lxte_TA_EQ	tprimf.h	/^#define lxte_TA_EQ(a, b)         SA_FALSE$/
+lxte_TA_NE	tprimf.h	/^#define lxte_TA_NE(a, b)         SA_TRUE$/
+lxti_TA_EQ	tprimf.h	/^#define lxti_TA_EQ(a, b)         SA_FALSE$/
+lxti_TA_NE	tprimf.h	/^#define lxti_TA_NE(a, b)         SA_TRUE$/
+lxtr_TA_EQ	tprimf.h	/^#define lxtr_TA_EQ(a, b)         SA_FALSE$/
+lxtr_TA_NE	tprimf.h	/^#define lxtr_TA_NE(a, b)         SA_TRUE$/
+lxvb_TA_EQ	tprimf.h	/^#define lxvb_TA_EQ(a, b)         SA_FALSE$/
+lxvb_TA_NE	tprimf.h	/^#define lxvb_TA_NE(a, b)         SA_TRUE$/
+lxve_TA_EQ	tprimf.h	/^#define lxve_TA_EQ(a, b)         SA_FALSE$/
+lxve_TA_NE	tprimf.h	/^#define lxve_TA_NE(a, b)         SA_TRUE$/
+lxvi_TA_EQ	tprimf.h	/^#define lxvi_TA_EQ(a, b)         SA_FALSE$/
+lxvi_TA_NE	tprimf.h	/^#define lxvi_TA_NE(a, b)         SA_TRUE$/
+lxvr_TA_EQ	tprimf.h	/^#define lxvr_TA_EQ(a, b)         SA_FALSE$/
+lxvr_TA_NE	tprimf.h	/^#define lxvr_TA_NE(a, b)         SA_TRUE$/
+map	prolog.h	/^#define map(f, l)               ((((int)f)<<16)|(i/
+matcharb	prolog.h	/^#define matcharb(n, label1, label2, failed_when)  /
+matcharb_0	prolog.h	/^#define matcharb_0(n, label1, label2, failed_when)/
+matcharbs	prolog.h	/^#define matcharbs(n, label1, label2, failed_when) /
+matchbool	prolog.h	/^#define matchbool(n, label1, label2, failed_when) /
+matchin	prolog.h	/^#define matchin(arg, label1, label2, failed_when) /
+matchint	prolog.h	/^#define matchint(n, label1, label2, failed_when)  /
+matchlist	prolog.h	/^#define matchlist(n, label1, label2, failed_when) /
+matchprim	prolog.h	/^#define matchprim(n, label1, label2, failed_when) /
+matchstr	prolog.h	/^#define matchstr(n, label1, label2, failed_when)  /
+matherr	initdata.c	/^static int matherr(struct exception *a)$/
+mb_TA_EMPTY	tprimf.h	/^#define mb_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+mb_TA_NOT	tprimf.h	/^#define mb_TA_NOT(a)                         t_not/
+mb_TA_TO_LIST	tprimf.h	/^#define mb_TA_TO_LIST(a)        t_to_list((a), C_M/
+mb_TA_TRANSFORM	tprimf.h	/^#define mb_TA_TRANSFORM(a)        t_transform((a),/
+mb_TA_TRANSPOSE	tprimf.h	/^#define mb_TA_TRANSPOSE(a)        t_transpose_m((a/
+mbxb_TA_EQ	tprimf.h	/^#define mbxb_TA_EQ(a, b)         SA_FALSE$/
+mbxb_TA_NE	tprimf.h	/^#define mbxb_TA_NE(a, b)         SA_TRUE$/
+mbxi_TA_EQ	tprimf.h	/^#define mbxi_TA_EQ(a, b)         SA_FALSE$/
+mbxi_TA_NE	tprimf.h	/^#define mbxi_TA_NE(a, b)         SA_TRUE$/
+mbxl_TA_EQ	tprimf.h	/^#define mbxl_TA_EQ(a, b)         SA_FALSE$/
+mbxl_TA_NE	tprimf.h	/^#define mbxl_TA_NE(a, b)         SA_TRUE$/
+mbxmb_TA_AND	tprimf.h	/^#define mbxmb_TA_AND(a, b)                   t_and/
+mbxmb_TA_MAX	tprimf.h	/^#define mbxmb_TA_MAX(a, b)                   t_max/
+mbxmb_TA_MIN	tprimf.h	/^#define mbxmb_TA_MIN(a, b)                   t_min/
+mbxmb_TA_OR	tprimf.h	/^#define mbxmb_TA_OR(a, b)                    t_or_/
+mbxmb_TA_XOR	tprimf.h	/^#define mbxmb_TA_XOR(a, b)                   t_xor/
+mbxr_TA_EQ	tprimf.h	/^#define mbxr_TA_EQ(a, b)         SA_FALSE$/
+mbxr_TA_NE	tprimf.h	/^#define mbxr_TA_NE(a, b)         SA_TRUE$/
+mbxs_TA_EQ	tprimf.h	/^#define mbxs_TA_EQ(a, b)         SA_FALSE$/
+mbxs_TA_NE	tprimf.h	/^#define mbxs_TA_NE(a, b)         SA_TRUE$/
+mbxtb_TA_AND	tprimf.h	/^#define mbxtb_TA_AND(a, b)                   t_and/
+mbxtb_TA_EQ	tprimf.h	/^#define mbxtb_TA_EQ(a, b)         SA_FALSE$/
+mbxtb_TA_NE	tprimf.h	/^#define mbxtb_TA_NE(a, b)         SA_TRUE$/
+mbxtb_TA_OR	tprimf.h	/^#define mbxtb_TA_OR(a, b)                    t_or_/
+mbxtb_TA_XOR	tprimf.h	/^#define mbxtb_TA_XOR(a, b)                   t_xor/
+mbxti_TA_EQ	tprimf.h	/^#define mbxti_TA_EQ(a, b)         SA_FALSE$/
+mbxti_TA_NE	tprimf.h	/^#define mbxti_TA_NE(a, b)         SA_TRUE$/
+mbxtr_TA_EQ	tprimf.h	/^#define mbxtr_TA_EQ(a, b)         SA_FALSE$/
+mbxtr_TA_NE	tprimf.h	/^#define mbxtr_TA_NE(a, b)         SA_TRUE$/
+mbxvb_TA_AND	tprimf.h	/^#define mbxvb_TA_AND(a, b)                   t_and/
+mbxvb_TA_EQ	tprimf.h	/^#define mbxvb_TA_EQ(a, b)         SA_FALSE$/
+mbxvb_TA_NE	tprimf.h	/^#define mbxvb_TA_NE(a, b)         SA_TRUE$/
+mbxvb_TA_OR	tprimf.h	/^#define mbxvb_TA_OR(a, b)                    t_or_/
+mbxvb_TA_XOR	tprimf.h	/^#define mbxvb_TA_XOR(a, b)                   t_xor/
+mbxvi_TA_EQ	tprimf.h	/^#define mbxvi_TA_EQ(a, b)         SA_FALSE$/
+mbxvi_TA_NE	tprimf.h	/^#define mbxvi_TA_NE(a, b)         SA_TRUE$/
+mbxvr_TA_EQ	tprimf.h	/^#define mbxvr_TA_EQ(a, b)         SA_FALSE$/
+mbxvr_TA_NE	tprimf.h	/^#define mbxvr_TA_NE(a, b)         SA_TRUE$/
+me_TA_ABS	tprimf.h	/^#define me_TA_ABS(a)                     (INC_REFC/
+me_TA_CEIL	tprimf.h	/^#define me_TA_CEIL(a)           (INC_REFCNT(_niltv/
+me_TA_EMPTY	tprimf.h	/^#define me_TA_EMPTY(a)          SA_TRUE$/
+me_TA_FLOOR	tprimf.h	/^#define me_TA_FLOOR(a)          (INC_REFCNT(_nilma/
+me_TA_FRAC	tprimf.h	/^#define me_TA_FRAC(a)           (INC_REFCNT(_nilma/
+me_TA_NEG	tprimf.h	/^#define me_TA_NEG(a)            (INC_REFCNT(_nilma/
+me_TA_NOT	tprimf.h	/^#define me_TA_NOT(a)                         (INC_/
+me_TA_TO_LIST	tprimf.h	/^#define me_TA_TO_LIST(a)        (INC_REFCNT(_nil),/
+me_TA_TRANSFORM	tprimf.h	/^#define me_TA_TRANSFORM(a)        (INC_REFCNT(_nil/
+me_TA_TRANSPOSE	tprimf.h	/^#define me_TA_TRANSPOSE(a)        (INC_REFCNT(_nil/
+me_TA_TRUNCATE	tprimf.h	/^#define me_TA_TRUNCATE(a)       (INC_REFCNT(_nilma/
+mexb_TA_EQ	tprimf.h	/^#define mexb_TA_EQ(a, b)         SA_FALSE$/
+mexb_TA_NE	tprimf.h	/^#define mexb_TA_NE(a, b)         SA_TRUE$/
+mexi_TA_EQ	tprimf.h	/^#define mexi_TA_EQ(a, b)         SA_FALSE$/
+mexi_TA_NE	tprimf.h	/^#define mexi_TA_NE(a, b)         SA_TRUE$/
+mexl_TA_EQ	tprimf.h	/^#define mexl_TA_EQ(a, b)         SA_FALSE$/
+mexl_TA_NE	tprimf.h	/^#define mexl_TA_NE(a, b)         SA_TRUE$/
+mexme_TA_EQ	tprimf.h	/^#define mexme_TA_EQ(a, b)         SA_TRUE$/
+mexme_TA_NE	tprimf.h	/^#define mexme_TA_NE(a, b)         SA_FALSE$/
+mexr_TA_EQ	tprimf.h	/^#define mexr_TA_EQ(a, b)         SA_FALSE$/
+mexr_TA_NE	tprimf.h	/^#define mexr_TA_NE(a, b)         SA_TRUE$/
+mexs_TA_EQ	tprimf.h	/^#define mexs_TA_EQ(a, b)         SA_FALSE$/
+mexs_TA_NE	tprimf.h	/^#define mexs_TA_NE(a, b)         SA_TRUE$/
+mexte_TA_EQ	tprimf.h	/^#define mexte_TA_EQ(a, b)         SA_FALSE$/
+mexte_TA_NE	tprimf.h	/^#define mexte_TA_NE(a, b)         SA_TRUE$/
+mexvb_TA_EQ	tprimf.h	/^#define mexvb_TA_EQ(a, b)         SA_FALSE$/
+mexvb_TA_NE	tprimf.h	/^#define mexvb_TA_NE(a, b)         SA_TRUE$/
+mexve_TA_EQ	tprimf.h	/^#define mexve_TA_EQ(a, b)         SA_FALSE$/
+mexve_TA_NE	tprimf.h	/^#define mexve_TA_NE(a, b)         SA_TRUE$/
+mexvi_TA_EQ	tprimf.h	/^#define mexvi_TA_EQ(a, b)         SA_FALSE$/
+mexvi_TA_NE	tprimf.h	/^#define mexvi_TA_NE(a, b)         SA_TRUE$/
+mexvr_TA_EQ	tprimf.h	/^#define mexvr_TA_EQ(a, b)         SA_FALSE$/
+mexvr_TA_NE	tprimf.h	/^#define mexvr_TA_NE(a, b)         SA_TRUE$/
+mi_TA_ABS	tprimf.h	/^#define mi_TA_ABS(a)                     t_mvt_abs/
+mi_TA_CEIL	tprimf.h	/^#define mi_TA_CEIL(a)           mvt_int_ceil(a)$/
+mi_TA_EMPTY	tprimf.h	/^#define mi_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+mi_TA_FLOOR	tprimf.h	/^#define mi_TA_FLOOR(a)          mvt_int_floor(a)$/
+mi_TA_FRAC	tprimf.h	/^#define mi_TA_FRAC(a)           mvt_frac((a), C_MA/
+mi_TA_NEG	tprimf.h	/^#define mi_TA_NEG(a)            mvt_int_neg(a)$/
+mi_TA_TO_LIST	tprimf.h	/^#define mi_TA_TO_LIST(a)        t_to_list((a), C_M/
+mi_TA_TRANSFORM	tprimf.h	/^#define mi_TA_TRANSFORM(a)        t_transform((a),/
+mi_TA_TRANSPOSE	tprimf.h	/^#define mi_TA_TRANSPOSE(a)        t_transpose_m((a/
+mi_TA_TRUNCATE	tprimf.h	/^#define mi_TA_TRUNCATE(a)       mvt_trunc((a), C_M/
+mixb_TA_EQ	tprimf.h	/^#define mixb_TA_EQ(a, b)         SA_FALSE$/
+mixb_TA_NE	tprimf.h	/^#define mixb_TA_NE(a, b)         SA_TRUE$/
+mixi_TA_EQ	tprimf.h	/^#define mixi_TA_EQ(a, b)         t_scal_mvt_equal(/
+mixi_TA_GEQ	tprimf.h	/^#define mixi_TA_GEQ(a, b)           t_scal_mvt_geq/
+mixi_TA_GREAT	tprimf.h	/^#define mixi_TA_GREAT(a, b)         t_scal_mvt_gre/
+mixi_TA_LEQ	tprimf.h	/^#define mixi_TA_LEQ(a, b)           t_scal_mvt_leq/
+mixi_TA_LESS	tprimf.h	/^#define mixi_TA_LESS(a, b)          t_scal_mvt_les/
+mixi_TA_NE	tprimf.h	/^#define mixi_TA_NE(a, b)         t_scal_mvt_nequal/
+mixl_TA_EQ	tprimf.h	/^#define mixl_TA_EQ(a, b)         SA_FALSE$/
+mixl_TA_NE	tprimf.h	/^#define mixl_TA_NE(a, b)         SA_TRUE$/
+mixmi_TA_DIV	tprimf.h	/^#define mixmi_TA_DIV(a, b)               t_mvt_mvt/
+mixmi_TA_IP	tprimf.h	/^#define mixmi_TA_IP(a, b)                t_mvt_mvt/
+mixmi_TA_MAX	tprimf.h	/^#define mixmi_TA_MAX(a, b)                   t_max/
+mixmi_TA_MIN	tprimf.h	/^#define mixmi_TA_MIN(a, b)                   t_min/
+mixmi_TA_MINUS	tprimf.h	/^#define mixmi_TA_MINUS(a, b)             t_mvt_mvt/
+mixmi_TA_MOD	tprimf.h	/^#define mixmi_TA_MOD(a, b)               t_mvt_mvt/
+mixmi_TA_MULT	tprimf.h	/^#define mixmi_TA_MULT(a, b)              t_mvt_mvt/
+mixmi_TA_PLUS	tprimf.h	/^#define mixmi_TA_PLUS(a, b)              t_mvt_mvt/
+mixmr_TA_DIV	tprimf.h	/^#define mixmr_TA_DIV(a, b)               t_mvt_mvt/
+mixmr_TA_IP	tprimf.h	/^#define mixmr_TA_IP(a, b)                t_mvt_mvt/
+mixmr_TA_MAX	tprimf.h	/^#define mixmr_TA_MAX(a, b)                   t_max/
+mixmr_TA_MIN	tprimf.h	/^#define mixmr_TA_MIN(a, b)                   t_min/
+mixmr_TA_MINUS	tprimf.h	/^#define mixmr_TA_MINUS(a, b)             t_mvt_mvt/
+mixmr_TA_MOD	tprimf.h	/^#define mixmr_TA_MOD(a, b)               t_mvt_mvt/
+mixmr_TA_MULT	tprimf.h	/^#define mixmr_TA_MULT(a, b)              t_mvt_mvt/
+mixmr_TA_PLUS	tprimf.h	/^#define mixmr_TA_PLUS(a, b)              t_mvt_mvt/
+mixr_TA_EQ	tprimf.h	/^#define mixr_TA_EQ(a, b)         t_scal_mvt_equal(/
+mixr_TA_GEQ	tprimf.h	/^#define mixr_TA_GEQ(a, b)           t_scal_mvt_geq/
+mixr_TA_GREAT	tprimf.h	/^#define mixr_TA_GREAT(a, b)         t_scal_mvt_gre/
+mixr_TA_LEQ	tprimf.h	/^#define mixr_TA_LEQ(a, b)           t_scal_mvt_leq/
+mixr_TA_LESS	tprimf.h	/^#define mixr_TA_LESS(a, b)          t_scal_mvt_les/
+mixr_TA_NE	tprimf.h	/^#define mixr_TA_NE(a, b)         t_scal_mvt_nequal/
+mixs_TA_EQ	tprimf.h	/^#define mixs_TA_EQ(a, b)         SA_FALSE$/
+mixs_TA_NE	tprimf.h	/^#define mixs_TA_NE(a, b)         SA_TRUE$/
+mixtb_TA_EQ	tprimf.h	/^#define mixtb_TA_EQ(a, b)         SA_FALSE$/
+mixtb_TA_NE	tprimf.h	/^#define mixtb_TA_NE(a, b)         SA_TRUE$/
+mixti_TA_EQ	tprimf.h	/^#define mixti_TA_EQ(a, b)         SA_FALSE$/
+mixti_TA_IP	tprimf.h	/^#define mixti_TA_IP(a, b)                t_mvt_mvt/
+mixti_TA_NE	tprimf.h	/^#define mixti_TA_NE(a, b)         SA_TRUE$/
+mixtr_TA_EQ	tprimf.h	/^#define mixtr_TA_EQ(a, b)         SA_FALSE$/
+mixtr_TA_IP	tprimf.h	/^#define mixtr_TA_IP(a, b)                t_mvt_mvt/
+mixtr_TA_NE	tprimf.h	/^#define mixtr_TA_NE(a, b)         SA_TRUE$/
+mixvb_TA_EQ	tprimf.h	/^#define mixvb_TA_EQ(a, b)         SA_FALSE$/
+mixvb_TA_NE	tprimf.h	/^#define mixvb_TA_NE(a, b)         SA_TRUE$/
+mixvi_TA_EQ	tprimf.h	/^#define mixvi_TA_EQ(a, b)         SA_FALSE$/
+mixvi_TA_IP	tprimf.h	/^#define mixvi_TA_IP(a, b)                t_mvt_mvt/
+mixvi_TA_NE	tprimf.h	/^#define mixvi_TA_NE(a, b)         SA_TRUE$/
+mixvr_TA_EQ	tprimf.h	/^#define mixvr_TA_EQ(a, b)         SA_FALSE$/
+mixvr_TA_IP	tprimf.h	/^#define mixvr_TA_IP(a, b)                t_mvt_mvt/
+mixvr_TA_NE	tprimf.h	/^#define mixvr_TA_NE(a, b)         SA_TRUE$/
+mkaframe	prolog.h	/^#define mkaframe(n)    { int i; for (i = 0; i < n;/
+mkap	prolog.h	/^#define mkap(n)        f_mkap(n)$/
+mkbtframe	prolog.h	/^#define mkbtframe(n)  { int i; for (i = 0; i < n; /
+mkcase	prolog.h	/^#define mkcase(d)      f_mkcase(-1, (d))$/
+mkcclos	prolog.h	/^#define mkcclos(i,j)   pop(w);  \\$/
+mkframe	prolog.h	/^#define mkframe(n)      if (0 == initdata_frame(n,/
+mkilist	prolog.h	/^#define mkilist(n)     if (0 == initdata_i_list(n,/
+mklist	prolog.h	/^#define mklist(n)      if (0 == initdata_list(n, &/
+mksclos	prolog.h	/^#define mksclos(a,b,c) dyn_mkbclos(a);  \\$/
+mkslot	prolog.h	/^#define mkslot()        if (0 == initdata_slot(2, /
+mkwframe	prolog.h	/^#define mkwframe(n)    st_w += (n);      \\$/
+movear	prolog.h	/^#define movear()       push_r(pop(a))$/
+moveaw	prolog.h	/^#define moveaw()       push(pop(a))$/
+movetr	prolog.h	/^#define movetr()       push_r(pop(t))$/
+movetw	prolog.h	/^#define movetw()       push(pop(t))$/
+mr_TA_ABS	tprimf.h	/^#define mr_TA_ABS(a)                     t_mvt_abs/
+mr_TA_CEIL	tprimf.h	/^#define mr_TA_CEIL(a)           mvt_real_ceil(a)$/
+mr_TA_EMPTY	tprimf.h	/^#define mr_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+mr_TA_FLOOR	tprimf.h	/^#define mr_TA_FLOOR(a)          mvt_real_floor(a)$/
+mr_TA_FRAC	tprimf.h	/^#define mr_TA_FRAC(a)           mvt_frac((a), C_MA/
+mr_TA_NEG	tprimf.h	/^#define mr_TA_NEG(a)            mvt_real_neg(a)$/
+mr_TA_TO_LIST	tprimf.h	/^#define mr_TA_TO_LIST(a)        t_to_list((a), C_M/
+mr_TA_TRANSFORM	tprimf.h	/^#define mr_TA_TRANSFORM(a)        t_transformr((a)/
+mr_TA_TRANSPOSE	tprimf.h	/^#define mr_TA_TRANSPOSE(a)        t_transpose_mr((/
+mr_TA_TRUNCATE	tprimf.h	/^#define mr_TA_TRUNCATE(a)       mvt_trunc((a), C_M/
+mrxb_TA_EQ	tprimf.h	/^#define mrxb_TA_EQ(a, b)         SA_FALSE$/
+mrxb_TA_NE	tprimf.h	/^#define mrxb_TA_NE(a, b)         SA_TRUE$/
+mrxi_TA_EQ	tprimf.h	/^#define mrxi_TA_EQ(a, b)         t_scal_mvt_equal(/
+mrxi_TA_GEQ	tprimf.h	/^#define mrxi_TA_GEQ(a, b)           t_scal_mvt_geq/
+mrxi_TA_GREAT	tprimf.h	/^#define mrxi_TA_GREAT(a, b)         t_scal_mvt_gre/
+mrxi_TA_LEQ	tprimf.h	/^#define mrxi_TA_LEQ(a, b)           t_scal_mvt_leq/
+mrxi_TA_LESS	tprimf.h	/^#define mrxi_TA_LESS(a, b)          t_scal_mvt_les/
+mrxi_TA_NE	tprimf.h	/^#define mrxi_TA_NE(a, b)         t_scal_mvt_nequal/
+mrxl_TA_EQ	tprimf.h	/^#define mrxl_TA_EQ(a, b)         SA_FALSE$/
+mrxl_TA_NE	tprimf.h	/^#define mrxl_TA_NE(a, b)         SA_TRUE$/
+mrxmi_TA_DIV	tprimf.h	/^#define mrxmi_TA_DIV(a, b)               t_mvt_mvt/
+mrxmi_TA_IP	tprimf.h	/^#define mrxmi_TA_IP(a, b)                t_mvt_mvt/
+mrxmi_TA_MAX	tprimf.h	/^#define mrxmi_TA_MAX(a, b)                   t_max/
+mrxmi_TA_MIN	tprimf.h	/^#define mrxmi_TA_MIN(a, b)                   t_min/
+mrxmi_TA_MINUS	tprimf.h	/^#define mrxmi_TA_MINUS(a, b)             t_mvt_mvt/
+mrxmi_TA_MOD	tprimf.h	/^#define mrxmi_TA_MOD(a, b)               t_mvt_mvt/
+mrxmi_TA_MULT	tprimf.h	/^#define mrxmi_TA_MULT(a, b)              t_mvt_mvt/
+mrxmi_TA_PLUS	tprimf.h	/^#define mrxmi_TA_PLUS(a, b)              t_mvt_mvt/
+mrxmr_TA_DIV	tprimf.h	/^#define mrxmr_TA_DIV(a, b)               t_mvt_mvt/
+mrxmr_TA_IP	tprimf.h	/^#define mrxmr_TA_IP(a, b)                t_mvt_mvt/
+mrxmr_TA_MAX	tprimf.h	/^#define mrxmr_TA_MAX(a, b)                   t_max/
+mrxmr_TA_MIN	tprimf.h	/^#define mrxmr_TA_MIN(a, b)                   t_min/
+mrxmr_TA_MINUS	tprimf.h	/^#define mrxmr_TA_MINUS(a, b)             t_mvt_mvt/
+mrxmr_TA_MOD	tprimf.h	/^#define mrxmr_TA_MOD(a, b)               t_mvt_mvt/
+mrxmr_TA_MULT	tprimf.h	/^#define mrxmr_TA_MULT(a, b)              t_mvt_mvt/
+mrxmr_TA_PLUS	tprimf.h	/^#define mrxmr_TA_PLUS(a, b)              t_mvt_mvt/
+mrxr_TA_EQ	tprimf.h	/^#define mrxr_TA_EQ(a, b)         t_scal_mvt_equal(/
+mrxr_TA_GEQ	tprimf.h	/^#define mrxr_TA_GEQ(a, b)           t_scal_mvt_geq/
+mrxr_TA_GREAT	tprimf.h	/^#define mrxr_TA_GREAT(a, b)         t_scal_mvt_gre/
+mrxr_TA_LEQ	tprimf.h	/^#define mrxr_TA_LEQ(a, b)           t_scal_mvt_leq/
+mrxr_TA_LESS	tprimf.h	/^#define mrxr_TA_LESS(a, b)          t_scal_mvt_les/
+mrxr_TA_NE	tprimf.h	/^#define mrxr_TA_NE(a, b)         t_scal_mvt_nequal/
+mrxs_TA_EQ	tprimf.h	/^#define mrxs_TA_EQ(a, b)         SA_FALSE$/
+mrxs_TA_NE	tprimf.h	/^#define mrxs_TA_NE(a, b)         SA_TRUE$/
+mrxtb_TA_EQ	tprimf.h	/^#define mrxtb_TA_EQ(a, b)         SA_FALSE$/
+mrxtb_TA_NE	tprimf.h	/^#define mrxtb_TA_NE(a, b)         SA_TRUE$/
+mrxti_TA_EQ	tprimf.h	/^#define mrxti_TA_EQ(a, b)         SA_FALSE$/
+mrxti_TA_IP	tprimf.h	/^#define mrxti_TA_IP(a, b)                t_mvt_mvt/
+mrxti_TA_NE	tprimf.h	/^#define mrxti_TA_NE(a, b)         SA_TRUE$/
+mrxtr_TA_EQ	tprimf.h	/^#define mrxtr_TA_EQ(a, b)         SA_FALSE$/
+mrxtr_TA_IP	tprimf.h	/^#define mrxtr_TA_IP(a, b)                t_mvt_mvt/
+mrxtr_TA_NE	tprimf.h	/^#define mrxtr_TA_NE(a, b)         SA_TRUE$/
+mrxvb_TA_EQ	tprimf.h	/^#define mrxvb_TA_EQ(a, b)         SA_FALSE$/
+mrxvb_TA_NE	tprimf.h	/^#define mrxvb_TA_NE(a, b)         SA_TRUE$/
+mrxvi_TA_EQ	tprimf.h	/^#define mrxvi_TA_EQ(a, b)         SA_FALSE$/
+mrxvi_TA_IP	tprimf.h	/^#define mrxvi_TA_IP(a, b)                t_mvt_mvt/
+mrxvi_TA_NE	tprimf.h	/^#define mrxvi_TA_NE(a, b)         SA_TRUE$/
+mrxvr_TA_EQ	tprimf.h	/^#define mrxvr_TA_EQ(a, b)         SA_FALSE$/
+mrxvr_TA_IP	tprimf.h	/^#define mrxvr_TA_IP(a, b)                t_mvt_mvt/
+mrxvr_TA_NE	tprimf.h	/^#define mrxvr_TA_NE(a, b)         SA_TRUE$/
+mvt_frac	tmvt_val.c	/^T_PTD mvt_frac(T_PTD a, int class, int type)$/
+mvt_int_ceil	tmvt_val.c	/^T_PTD mvt_int_ceil(T_PTD a)$/
+mvt_int_floor	tmvt_val.c	/^T_PTD mvt_int_floor(T_PTD a)$/
+mvt_int_neg	tmvt_val.c	/^T_PTD mvt_int_neg(T_PTD a)$/
+mvt_real_ceil	tmvt_val.c	/^T_PTD mvt_real_ceil(T_PTD a)$/
+mvt_real_floor	tmvt_val.c	/^T_PTD mvt_real_floor(T_PTD a)$/
+mvt_real_neg	tmvt_val.c	/^T_PTD mvt_real_neg(T_PTD a)$/
+mvt_trunc	tmvt_val.c	/^T_PTD mvt_trunc(T_PTD a, int class, int type)$/
+my_exp	tlstruct.c	/^T_PTD my_exp(T_PTD a)$/
+my_ln	tlstruct.c	/^T_PTD my_ln(T_PTD a)$/
+my_nr_exp	tlstruct.c	/^T_PTD my_nr_exp(T_PTD a)$/
+my_nr_ln	tlstruct.c	/^T_PTD my_nr_ln(T_PTD a)$/
+nestlist	prolog.h	/^#define nestlist()     if (0 != R_LIST(*(T_PTD)top/
+nr_bind	prolog.h	/^#define nr_bind(n)     repl(n, a, top(w))$/
+nr_binds	prolog.h	/^#define nr_binds(n)   MAKEDESC(_desc, 1, C_LIST, T/
+nr_bindsubl	prolog.h	/^#define nr_bindsubl(n, m, l, k)  \\$/
+nr_fetch	prolog.h	/^#define nr_fetch()      repl(0, w, (int)*(PTR_HEAP/
+nr_freea	prolog.h	/^#define nr_freea(n)    drop(a, n)$/
+nr_freeswt	prolog.h	/^#define nr_freeswt(n)  drop(t, n); stflip(t,r)$/
+nr_push_p	prolog.h	/^#define nr_push_p(x)      push((int)x)$/
+nr_pushar	prolog.h	/^#define nr_pushar(n)      push_r(peek(a, n))$/
+nr_pushaw	prolog.h	/^#define nr_pushaw(n)      push(peek(a, n))$/
+nr_pushr_p	prolog.h	/^#define nr_pushr_p(x)     push_r((int)x)$/
+nr_pushtr	prolog.h	/^#define nr_pushtr(n)      push_r(peek(t, n))$/
+nr_pushtw	prolog.h	/^#define nr_pushtw(n)      push(peek(t, n))$/
+nr_red_abs	nr_rvalfunc.c	/^int nr_red_abs(arg1)              \/* int eingefueg/
+nr_red_and	nr_rlogfunc.c	/^int nr_red_and(arg1,arg2)                    \/* in/
+nr_red_c	nr_rvalfunc.c	/^int nr_red_c(arg1,arg2)           \/* int eingefueg/
+nr_red_c_div	nr_rvalfunc.c	/^int nr_red_c_div(arg1,arg2)               \/* int e/
+nr_red_c_max	nr_rvalfunc.c	/^int nr_red_c_max(arg1,arg2)         \/* int eingefu/
+nr_red_c_min	nr_rvalfunc.c	/^int nr_red_c_min(arg1,arg2)               \/* int e/
+nr_red_c_minus	nr_rvalfunc.c	/^int nr_red_c_minus(arg1,arg2)               \/* int/
+nr_red_c_mult	nr_rvalfunc.c	/^int nr_red_c_mult(arg1,arg2)                \/* int/
+nr_red_c_plus	nr_rvalfunc.c	/^int nr_red_c_plus(arg1,arg2)                    \/*/
+nr_red_ceil	nr_rvalfunc.c	/^int nr_red_ceil(arg1)                   \/* int ein/
+nr_red_class	nr_rquery.c	/^int nr_red_class(arg1)                      \/* ach/
+nr_red_cos	nr_rbibfunc.c	/^int nr_red_cos(arg)$/
+nr_red_cut	nr_rmstruct.c	/^int nr_red_cut(arg1,arg2,arg3)$/
+nr_red_dim	nr_rquery.c	/^int nr_red_dim(arg1,arg2)$/
+nr_red_div	nr_rvalfunc.c	/^int nr_red_div(arg1,arg2)                 \/* int e/
+nr_red_empty	nr_rquery.c	/^int nr_red_empty(arg1)                  \/* ach 30\//
+nr_red_eq	nr_rlogfunc.c	/^int nr_red_eq(arg1,arg2)                        \/*/
+nr_red_exp	nr_rbibfunc.c	/^int nr_red_exp(arg)$/
+nr_red_f_eq	nr_rlogfunc.c	/^nr_red_f_eq(arg1,arg2)$/
+nr_red_floor	nr_rvalfunc.c	/^int nr_red_floor(arg1)                 \/* int eing/
+nr_red_frac	nr_rvalfunc.c	/^int nr_red_frac(arg1)               \/* int eingefu/
+nr_red_geq	nr_rlogfunc.c	/^int nr_red_geq(arg1,arg2)                    \/* in/
+nr_red_gt	nr_rlogfunc.c	/^nr_red_gt(arg1,arg2)$/
+nr_red_ip	nr_rvalfunc.c	/^int nr_red_ip(arg1,arg2)                    \/* int/
+nr_red_lcut	nr_rlstruct.c	/^int nr_red_lcut(arg1,arg2)$/
+nr_red_ldim	nr_rquery.c	/^int nr_red_ldim(arg1)                     \/* ach 3/
+nr_red_le	nr_rlogfunc.c	/^nr_red_le(arg1,arg2)$/
+nr_red_lgen	nr_rlstruct.c	/^\/*uh*\/ int nr_red_lgen(arg1,arg2,arg3)$/
+nr_red_ln	nr_rbibfunc.c	/^int nr_red_ln(arg)$/
+nr_red_lreplace	nr_rlstruct.c	/^int nr_red_lreplace(arg1,arg2,arg3)$/
+nr_red_lrotate	nr_rlstruct.c	/^int nr_red_lrotate(arg1,arg2)$/
+nr_red_lselect	nr_rlstruct.c	/^int nr_red_lselect(arg1,arg2)$/
+nr_red_lt	nr_rlogfunc.c	/^int nr_red_lt(arg1,arg2)                        \/*/
+nr_red_ltransform	nr_rlstruct.c	/^int nr_red_ltransform(arg1,arg2,arg3)$/
+nr_red_lunite	nr_rlstruct.c	/^int nr_red_lunite(arg1,arg2)$/
+nr_red_max	nr_rlogfunc.c	/^nr_red_max(arg1,arg2)$/
+nr_red_mcut	nr_rmstruct.c	/^int nr_red_mcut(arg1,arg2,arg3)$/
+nr_red_mdim	nr_rquery.c	/^int nr_red_mdim(arg1,arg2)$/
+nr_red_min	nr_rlogfunc.c	/^nr_red_min(arg1,arg2)$/
+nr_red_minus	nr_rvalfunc.c	/^int nr_red_minus(arg1,arg2)  \/* int eingefuegt RS /
+nr_red_mk_string	nr_rconvert.c	/^int nr_red_mk_string(arg1)$/
+nr_red_mod	nr_rvalfunc.c	/^int nr_red_mod(arg1,arg2)               \/* int ein/
+nr_red_mre_c	nr_rmstruct.c	/^int nr_red_mre_c(arg1,arg2,arg3)$/
+nr_red_mre_r	nr_rmstruct.c	/^int nr_red_mre_r(arg1,arg2,arg3)$/
+nr_red_mreplace	nr_rmstruct.c	/^int nr_red_mreplace(arg1,arg2,arg3,arg4)$/
+nr_red_mrotate	nr_rmstruct.c	/^int nr_red_mrotate(arg1,arg2,arg3)$/
+nr_red_mselect	nr_rmstruct.c	/^int nr_red_mselect(arg1,arg2,arg3)$/
+nr_red_mult	nr_rvalfunc.c	/^int nr_red_mult(arg1,arg2)               \/* int ei/
+nr_red_munite	nr_rmstruct.c	/^int nr_red_munite(arg1,arg2,arg3)$/
+nr_red_neg	nr_rvalfunc.c	/^int nr_red_neg(arg1)                \/* int eingefu/
+nr_red_neq	nr_rlogfunc.c	/^nr_red_neq(arg1,arg2)$/
+nr_red_not	nr_rlogfunc.c	/^int nr_red_not(arg1)         \/* int eingefuegt von/
+nr_red_or	nr_rlogfunc.c	/^int nr_red_or(arg1,arg2)                  \/* int e/
+nr_red_plus	nr_rvalfunc.c	/^int nr_red_plus(arg1,arg2)            \/* int einge/
+nr_red_quot	nr_rvalfunc.c	/^int nr_red_quot(arg1,arg2)                 \/* int /
+nr_red_replace	nr_rmstruct.c	/^int nr_red_replace(arg1,arg2,arg3,arg4)$/
+nr_red_repstr	nr_rlstruct.c	/^int nr_red_repstr(arg1,arg2,arg3,arg4)$/
+nr_red_reverse	nr_rlstruct.c	/^int nr_red_reverse(arg1)$/
+nr_red_rotate	nr_rmstruct.c	/^int nr_red_rotate(arg1,arg2,arg3)$/
+nr_red_select	nr_rmstruct.c	/^int nr_red_select(arg1,arg2,arg3)$/
+nr_red_sin	nr_rbibfunc.c	/^int nr_red_sin(arg)$/
+nr_red_substr	nr_rlstruct.c	/^int nr_red_substr(arg1,arg2,arg3)$/
+nr_red_tan	nr_rbibfunc.c	/^int nr_red_tan(arg)$/
+nr_red_to_field	nr_rconvert.c	/^int nr_red_to_field(arg1)$/
+nr_red_to_list	nr_rconvert.c	/^int nr_red_to_list(arg1)$/
+nr_red_to_mat	nr_rconvert.c	/^int nr_red_to_mat(arg)$/
+nr_red_to_scal	nr_rconvert.c	/^int nr_red_to_scal(arg)$/
+nr_red_to_tvect	nr_rconvert.c	/^int nr_red_to_tvect(arg)$/
+nr_red_to_vect	nr_rconvert.c	/^int nr_red_to_vect(arg)$/
+nr_red_transform	nr_rmstruct.c	/^int nr_red_transform(arg1)$/
+nr_red_transpose	nr_rmstruct.c	/^int nr_red_transpose(arg1)$/
+nr_red_trunc	nr_rvalfunc.c	/^int nr_red_trunc(arg1)                 \/* int eing/
+nr_red_type	nr_rquery.c	/^int nr_red_type(arg1)                            \//
+nr_red_unite	nr_rmstruct.c	/^int nr_red_unite(arg1,arg2,arg3)$/
+nr_red_vc	nr_rvalfunc.c	/^int nr_red_vc(arg1,arg2)                       \/* /
+nr_red_vc_div	nr_rvalfunc.c	/^int nr_red_vc_div(arg)                            /
+nr_red_vc_max	nr_rvalfunc.c	/^int 	nr_red_vc_max(arg)                   \/* int e/
+nr_red_vc_min	nr_rvalfunc.c	/^int 	nr_red_vc_min(arg)                   \/* int e/
+nr_red_vc_minus	nr_rvalfunc.c	/^int nr_red_vc_minus(arg)                 \/* int ei/
+nr_red_vc_mult	nr_rvalfunc.c	/^int nr_red_vc_mult(arg)                \/* int eing/
+nr_red_vc_plus	nr_rvalfunc.c	/^int nr_red_vc_plus(arg)                 \/* int ein/
+nr_red_vcut	nr_rvstruct.c	/^int nr_red_vcut(arg1,arg2)$/
+nr_red_vdim	nr_rquery.c	/^int nr_red_vdim(arg1)$/
+nr_red_vreplace	nr_rvstruct.c	/^int nr_red_vreplace(arg1,arg2,arg3)$/
+nr_red_vrotate	nr_rvstruct.c	/^int nr_red_vrotate(arg1,arg2)$/
+nr_red_vselect	nr_rvstruct.c	/^int nr_red_vselect(arg1,arg2)$/
+nr_red_vunite	nr_rvstruct.c	/^int nr_red_vunite(arg1,arg2)$/
+nr_red_xor	nr_rlogfunc.c	/^int nr_red_xor(arg1,arg2)                    \/* in/
+peek	prolog.h	/^#define peek(st, n)     D_MIDSTACK(*ps_ ## st, n)$/
+pick	prolog.h	/^#define pick(n)       repl(0, w, peek(w, n))$/
+pop	prolog.h	/^#define pop(st)         D_POPSTACK(*ps_ ## st)$/
+pop_h	prolog.h	/^#define pop_h()                pop(h)$/
+pop_p	prolog.h	/^#define pop_p(s)       DEC_REFCNT((T_PTD)top(s)); /
+prinstr	rinter.h	/^char *prinstr(pti)$/
+push	prolog.h	/^#define push(x)         D_PUSHSTACK(*ps_w, x)$/
+push_a	prolog.h	/^#define push_a(x)       D_PUSHSTACK(*ps_a, x)$/
+push_and_kill	tprimf.h	/^#define push_and_kill(term,kw,ka)  t = ((int)(term/
+push_and_kill_atom	tprimf.h	/^#define push_and_kill_atom(term,kw,ka)  t = ((int)/
+push_and_no_w_kill	tprimf.h	/^#define push_and_no_w_kill(term, kw, ka) push((int/
+push_and_no_w_kill_atom	tprimf.h	/^#define push_and_no_w_kill_atom(term, kw, ka) push/
+push_h	prolog.h	/^#define push_h(x)       D_PUSHSTACK(*ps_h, x)$/
+push_label	prolog.h	/^#define push_label(l)  push_r((l))$/
+push_p	prolog.h	/^#define push_p(x)      INC_REFCNT(x); push((int)x)/
+push_r	prolog.h	/^#define push_r(x)       D_PUSHSTACK(*ps_r, x)$/
+push_t	prolog.h	/^#define push_t(x)       D_PUSHSTACK(*ps_t, x)$/
+push_tail	prolog.h	/^#define push_tail(t)   push_r((t))$/
+pushar	prolog.h	/^#define pushar(n)      push_r(peek(a, n)); T_INC_R/
+pushaux	prolog.h	/^#define pushaux()      push((int)_desc)$/
+pushaw	prolog.h	/^#define pushaw(n)      push(peek(a, n)); T_INC_REF/
+pushr_p	prolog.h	/^#define pushr_p(x)     INC_REFCNT(x); push_r((int)/
+pushtr	prolog.h	/^#define pushtr(n)      push_r(peek(t, n)); T_INC_R/
+pushtw	prolog.h	/^#define pushtw(n)      push(peek(t, n)); T_INC_REF/
+r_TA_ABS	tprimf.h	/^#define r_TA_ABS(a)             ((0 > R_SCALAR(DES/
+r_TA_CEIL	tprimf.h	/^#define r_TA_CEIL(a)            (TAG_INT((int)(( R/
+r_TA_COS	tprimf.h	/^#define r_TA_COS(a)             (cos(R_SCALAR(DESC/
+r_TA_EXP	tprimf.h	/^#define r_TA_EXP(a)             my_exp((a))$/
+r_TA_FLOOR	tprimf.h	/^#define r_TA_FLOOR(a)           (TAG_INT(( R_SCALA/
+r_TA_FRAC	tprimf.h	/^#define r_TA_FRAC(a)            (R_SCALAR(DESC(a),/
+r_TA_LN	tprimf.h	/^#define r_TA_LN(a)              my_ln((a))$/
+r_TA_NEG	tprimf.h	/^#define r_TA_NEG(a)             (-(R_SCALAR(DESC(a/
+r_TA_SIN	tprimf.h	/^#define r_TA_SIN(a)             (sin(R_SCALAR(DESC/
+r_TA_TAN	tprimf.h	/^#define r_TA_TAN(a)             (tan(R_SCALAR(DESC/
+r_TA_TO_MAT	tprimf.h	/^#define r_TA_TO_MAT(a)                       t_r_t/
+r_TA_TRUNCATE	tprimf.h	/^#define r_TA_TRUNCATE(a)        (TAG_INT(R_SCALAR(/
+red_dummy	rprimf.h	/^static int red_dummy()                   \/* ach 05/
+reduce_red_cnt	prolog.h	/^#define reduce_red_cnt() red_cnt--$/
+repl	prolog.h	/^#define repl(n, st, x)  D_UPDATESTACK(*ps_ ## st, /
+restorebt	prolog.h	/^#define restorebt(n)  repl(1, w, peek(r, n))$/
+restoreptr	prolog.h	/^#define restoreptr(n)  repl(1, w, peek(w, n))$/
+rmbtframe	prolog.h	/^#define rmbtframe(n)  { int i; for (i = 0; i < n; /
+rmwframe	prolog.h	/^#define rmwframe(n)   { int i; for (i = 0; i < n; /
+rtc	prolog.h	/^#define rtc(x)         switch(top(r) & TAIL_FLAG) /
+rtf	prolog.h	/^#define rtf()          switch(top(r) & TAIL_FLAG) /
+rtm	prolog.h	/^#define rtm()          switch(top(r) & TAIL_FLAG) /
+rtp	prolog.h	/^#define rtp(x)         switch(top(r) & TAIL_FLAG) /
+rts	rapply.c	/^#define rts()          DBUG_RETURN(kill_bits(pop(r/
+rxb_TA_EQ	tprimf.h	/^#define rxb_TA_EQ(a, b)         SA_FALSE$/
+rxb_TA_NE	tprimf.h	/^#define rxb_TA_NE(a, b)         SA_TRUE$/
+rxbxl_TA_LREPLACE	tprimf.h	/^#define rxbxl_TA_LREPLACE(a, b, c)      \\$/
+rxbxtb_TA_VREPLACE	tprimf.h	/^#define rxbxtb_TA_VREPLACE(a, b, c) \\$/
+rxbxvb_TA_VREPLACE	tprimf.h	/^#define rxbxvb_TA_VREPLACE(a, b, c) \\$/
+rxcxl_TA_LREPLACE	tprimf.h	/^#define rxcxl_TA_LREPLACE(a, b, c)      \\$/
+rxfxl_TA_LREPLACE	tprimf.h	/^#define rxfxl_TA_LREPLACE(a, b, c)      \\$/
+rxi_TA_DIV	tprimf.h	/^#define rxi_TA_DIV(a, b)        ((T_ZERO((b))) ? c/
+rxi_TA_EQ	tprimf.h	/^#define rxi_TA_EQ(a, b)         ((R_SCALAR(DESC(a)/
+rxi_TA_GEQ	tprimf.h	/^#define rxi_TA_GEQ(a, b)        ((R_SCALAR(DESC(a)/
+rxi_TA_GREAT	tprimf.h	/^#define rxi_TA_GREAT(a, b)      ((R_SCALAR(DESC(a)/
+rxi_TA_LEQ	tprimf.h	/^#define rxi_TA_LEQ(a, b)        ((R_SCALAR(DESC(a)/
+rxi_TA_LESS	tprimf.h	/^#define rxi_TA_LESS(a, b)       ((R_SCALAR(DESC(a)/
+rxi_TA_MAX	tprimf.h	/^#define rxi_TA_MAX(a, b)        ((R_SCALAR(DESC(a)/
+rxi_TA_MIN	tprimf.h	/^#define rxi_TA_MIN(a, b)        ((R_SCALAR(DESC(a)/
+rxi_TA_MINUS	tprimf.h	/^#define rxi_TA_MINUS(a, b)      (R_SCALAR(DESC(a),/
+rxi_TA_MOD	tprimf.h	/^#define rxi_TA_MOD(a, b)        ((T_ZERO((b))) ? c/
+rxi_TA_MULT	tprimf.h	/^#define rxi_TA_MULT(a, b)       (R_SCALAR(DESC(a),/
+rxi_TA_NE	tprimf.h	/^#define rxi_TA_NE(a, b)         ((R_SCALAR(DESC(a)/
+rxi_TA_PLUS	tprimf.h	/^#define rxi_TA_PLUS(a, b)       (R_SCALAR(DESC(a),/
+rxixbxmb_TA_MREPLACE	tprimf.h	/^#define rxixbxmb_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxixixmi_TA_MREPLACE	tprimf.h	/^#define rxixixmi_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxixl_TA_LREPLACE	tprimf.h	/^#define rxixl_TA_LREPLACE(a, b, c)      \\$/
+rxixl_TA_LTRANSFORM	tprimf.h	/^#define rxixl_TA_LTRANSFORM(a, b, c) t_ltransform(/
+rxixmb_TA_MCUT	tprimf.h	/^#define rxixmb_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxixmb_TA_MROTATE	tprimf.h	/^#define rxixmb_TA_MROTATE(a, b, c)          t_mrot/
+rxixme_TA_MCUT	tprimf.h	/^#define rxixme_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxixme_TA_MROTATE	tprimf.h	/^#define rxixme_TA_MROTATE(a, b, c)          (INC_R/
+rxixmi_TA_MCUT	tprimf.h	/^#define rxixmi_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxixmi_TA_MROTATE	tprimf.h	/^#define rxixmi_TA_MROTATE(a, b, c)          t_mrot/
+rxixmr_TA_MCUT	tprimf.h	/^#define rxixmr_TA_MCUT(a, b, c)   t_mcutr((int)R_S/
+rxixmr_TA_MROTATE	tprimf.h	/^#define rxixmr_TA_MROTATE(a, b, c)          t_mrot/
+rxixrxmr_TA_MREPLACE	tprimf.h	/^#define rxixrxmr_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxixti_TA_VREPLACE	tprimf.h	/^#define rxixti_TA_VREPLACE(a, b, c) \\$/
+rxixvi_TA_VREPLACE	tprimf.h	/^#define rxixvi_TA_VREPLACE(a, b, c) \\$/
+rxl_TA_EQ	tprimf.h	/^#define rxl_TA_EQ(a, b)         SA_FALSE$/
+rxl_TA_LSELECT	tprimf.h	/^#define rxl_TA_LSELECT(a, b)    t_lselect((int)R_S/
+rxl_TA_NE	tprimf.h	/^#define rxl_TA_NE(a, b)         SA_TRUE$/
+rxlxl_TA_LREPLACE	tprimf.h	/^#define rxlxl_TA_LREPLACE(a, b, c)      \\$/
+rxmb_TA_EQ	tprimf.h	/^#define rxmb_TA_EQ(a, b)         SA_FALSE$/
+rxmb_TA_MDIMENSION	tprimf.h	/^#define rxmb_TA_MDIMENSION(a, b)        t_mdim(R_S/
+rxmb_TA_NE	tprimf.h	/^#define rxmb_TA_NE(a, b)         SA_TRUE$/
+rxmbxl_TA_LREPLACE	tprimf.h	/^#define rxmbxl_TA_LREPLACE(a, b, c)      \\$/
+rxmbxmb_TA_MUNI	tprimf.h	/^#define rxmbxmb_TA_MUNI(a, b, c)           t_munit/
+rxmbxme_TA_MUNI	tprimf.h	/^#define rxmbxme_TA_MUNI(a, b, c)          t_munite/
+rxmbxtb_TA_MUNI	tprimf.h	/^#define rxmbxtb_TA_MUNI(a, b, c)           t_munit/
+rxmbxte_TA_MUNI	tprimf.h	/^#define rxmbxte_TA_MUNI(a, b, c)          t_munite/
+rxmbxvb_TA_MUNI	tprimf.h	/^#define rxmbxvb_TA_MUNI(a, b, c)           t_munit/
+rxmbxve_TA_MUNI	tprimf.h	/^#define rxmbxve_TA_MUNI(a, b, c)          t_munite/
+rxme_TA_EQ	tprimf.h	/^#define rxme_TA_EQ(a, b)         SA_FALSE$/
+rxme_TA_MDIMENSION	tprimf.h	/^#define rxme_TA_MDIMENSION(a, b)        ZERO_INT$/
+rxme_TA_NE	tprimf.h	/^#define rxme_TA_NE(a, b)         SA_TRUE$/
+rxmexl_TA_LREPLACE	tprimf.h	/^#define rxmexl_TA_LREPLACE(a, b, c)      \\$/
+rxmexmb_TA_MUNI	tprimf.h	/^#define rxmexmb_TA_MUNI(a, b, c)          t_munite/
+rxmexme_TA_MUNI	tprimf.h	/^#define rxmexme_TA_MUNI(a, b, c)          (INC_REF/
+rxmexmi_TA_MUNI	tprimf.h	/^#define rxmexmi_TA_MUNI(a, b, c)          t_munite/
+rxmexmr_TA_MUNI	tprimf.h	/^#define rxmexmr_TA_MUNI(a, b, c)          t_munite/
+rxmextb_TA_MUNI	tprimf.h	/^#define rxmextb_TA_MUNI(a, b, c)          t_munite/
+rxmexte_TA_MUNI	tprimf.h	/^#define rxmexte_TA_MUNI(a, b, c)          (INC_REF/
+rxmexti_TA_MUNI	tprimf.h	/^#define rxmexti_TA_MUNI(a, b, c)          t_munite/
+rxmextr_TA_MUNI	tprimf.h	/^#define rxmextr_TA_MUNI(a, b, c)          t_munite/
+rxmexvb_TA_MUNI	tprimf.h	/^#define rxmexvb_TA_MUNI(a, b, c)          t_munite/
+rxmexvi_TA_MUNI	tprimf.h	/^#define rxmexvi_TA_MUNI(a, b, c)          t_munite/
+rxmexvr_TA_MUNI	tprimf.h	/^#define rxmexvr_TA_MUNI(a, b, c)          t_munite/
+rxmi_TA_EQ	tprimf.h	/^#define rxmi_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxmi_TA_MDIMENSION	tprimf.h	/^#define rxmi_TA_MDIMENSION(a, b)        t_mdim(R_S/
+rxmi_TA_NE	tprimf.h	/^#define rxmi_TA_NE(a, b)         t_scal_mvt_nequal/
+rxmixl_TA_LREPLACE	tprimf.h	/^#define rxmixl_TA_LREPLACE(a, b, c)      \\$/
+rxmixme_TA_MUNI	tprimf.h	/^#define rxmixme_TA_MUNI(a, b, c)          t_munite/
+rxmixmi_TA_MUNI	tprimf.h	/^#define rxmixmi_TA_MUNI(a, b, c)           t_munit/
+rxmixmr_TA_MUNI	tprimf.h	/^#define rxmixmr_TA_MUNI(a, b, c)           t_munit/
+rxmixte_TA_MUNI	tprimf.h	/^#define rxmixte_TA_MUNI(a, b, c)          t_munite/
+rxmixti_TA_MUNI	tprimf.h	/^#define rxmixti_TA_MUNI(a, b, c)           t_munit/
+rxmixtr_TA_MUNI	tprimf.h	/^#define rxmixtr_TA_MUNI(a, b, c)           t_munit/
+rxmixve_TA_MUNI	tprimf.h	/^#define rxmixve_TA_MUNI(a, b, c)          t_munite/
+rxmixvi_TA_MUNI	tprimf.h	/^#define rxmixvi_TA_MUNI(a, b, c)           t_munit/
+rxmixvr_TA_MUNI	tprimf.h	/^#define rxmixvr_TA_MUNI(a, b, c)           t_munit/
+rxmr_TA_EQ	tprimf.h	/^#define rxmr_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxmr_TA_MDIMENSION	tprimf.h	/^#define rxmr_TA_MDIMENSION(a, b)        t_mdim(R_S/
+rxmr_TA_NE	tprimf.h	/^#define rxmr_TA_NE(a, b)         t_scal_mvt_nequal/
+rxmrxl_TA_LREPLACE	tprimf.h	/^#define rxmrxl_TA_LREPLACE(a, b, c)      \\$/
+rxmrxme_TA_MUNI	tprimf.h	/^#define rxmrxme_TA_MUNI(a, b, c)          t_munite/
+rxmrxmi_TA_MUNI	tprimf.h	/^#define rxmrxmi_TA_MUNI(a, b, c)           t_munit/
+rxmrxmr_TA_MUNI	tprimf.h	/^#define rxmrxmr_TA_MUNI(a, b, c)           t_munit/
+rxmrxte_TA_MUNI	tprimf.h	/^#define rxmrxte_TA_MUNI(a, b, c)          t_munite/
+rxmrxti_TA_MUNI	tprimf.h	/^#define rxmrxti_TA_MUNI(a, b, c)           t_munit/
+rxmrxtr_TA_MUNI	tprimf.h	/^#define rxmrxtr_TA_MUNI(a, b, c)           t_munit/
+rxmrxve_TA_MUNI	tprimf.h	/^#define rxmrxve_TA_MUNI(a, b, c)          t_munite/
+rxmrxvi_TA_MUNI	tprimf.h	/^#define rxmrxvi_TA_MUNI(a, b, c)           t_munit/
+rxmrxvr_TA_MUNI	tprimf.h	/^#define rxmrxvr_TA_MUNI(a, b, c)           t_munit/
+rxr_TA_DIV	tprimf.h	/^#define rxr_TA_DIV(a, b)        ((0.0 == (R_SCALAR/
+rxr_TA_EQ	tprimf.h	/^#define rxr_TA_EQ(a, b)         ((R_SCALAR(DESC(a)/
+rxr_TA_GEQ	tprimf.h	/^#define rxr_TA_GEQ(a, b)        ((R_SCALAR(DESC(a)/
+rxr_TA_GREAT	tprimf.h	/^#define rxr_TA_GREAT(a, b)      ((R_SCALAR(DESC(a)/
+rxr_TA_LEQ	tprimf.h	/^#define rxr_TA_LEQ(a, b)        ((R_SCALAR(DESC(a)/
+rxr_TA_LESS	tprimf.h	/^#define rxr_TA_LESS(a, b)       ((R_SCALAR(DESC(a)/
+rxr_TA_MAX	tprimf.h	/^#define rxr_TA_MAX(a, b)        ((R_SCALAR(DESC(a)/
+rxr_TA_MIN	tprimf.h	/^#define rxr_TA_MIN(a, b)        ((R_SCALAR(DESC(a)/
+rxr_TA_MINUS	tprimf.h	/^#define rxr_TA_MINUS(a, b)      (R_SCALAR(DESC(a),/
+rxr_TA_MOD	tprimf.h	/^#define rxr_TA_MOD(a, b)        ((0.0 == R_SCALAR(/
+rxr_TA_MULT	tprimf.h	/^#define rxr_TA_MULT(a, b)       (R_SCALAR(DESC(a),/
+rxr_TA_NE	tprimf.h	/^#define rxr_TA_NE(a, b)         ((R_SCALAR(DESC(a)/
+rxr_TA_PLUS	tprimf.h	/^#define rxr_TA_PLUS(a, b)       (R_SCALAR(DESC(a),/
+rxrxbxmb_TA_MREPLACE	tprimf.h	/^#define rxrxbxmb_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxrxixmi_TA_MREPLACE	tprimf.h	/^#define rxrxixmi_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxrxl_TA_LREPLACE	tprimf.h	/^#define rxrxl_TA_LREPLACE(a, b, c)      \\$/
+rxrxl_TA_LTRANSFORM	tprimf.h	/^#define rxrxl_TA_LTRANSFORM(a, b, c) t_ltransform(/
+rxrxmb_TA_MCUT	tprimf.h	/^#define rxrxmb_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxrxmb_TA_MROTATE	tprimf.h	/^#define rxrxmb_TA_MROTATE(a, b, c)          t_mrot/
+rxrxme_TA_MCUT	tprimf.h	/^#define rxrxme_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxrxme_TA_MROTATE	tprimf.h	/^#define rxrxme_TA_MROTATE(a, b, c)          (INC_R/
+rxrxmi_TA_MCUT	tprimf.h	/^#define rxrxmi_TA_MCUT(a, b, c)   t_mcut((int)R_SC/
+rxrxmi_TA_MROTATE	tprimf.h	/^#define rxrxmi_TA_MROTATE(a, b, c)          t_mrot/
+rxrxmr_TA_MCUT	tprimf.h	/^#define rxrxmr_TA_MCUT(a, b, c)   t_mcutr((int)R_S/
+rxrxmr_TA_MROTATE	tprimf.h	/^#define rxrxmr_TA_MROTATE(a, b, c)          t_mrot/
+rxrxrxmr_TA_MREPLACE	tprimf.h	/^#define rxrxrxmr_TA_MREPLACE(a, b, c, d)    t_mrep/
+rxrxtr_TA_VREPLACE	tprimf.h	/^#define rxrxtr_TA_VREPLACE(a, b, c) \\$/
+rxrxvr_TA_VREPLACE	tprimf.h	/^#define rxrxvr_TA_VREPLACE(a, b, c) \\$/
+rxs_TA_EQ	tprimf.h	/^#define rxs_TA_EQ(a, b)         SA_FALSE$/
+rxs_TA_NE	tprimf.h	/^#define rxs_TA_NE(a, b)         SA_TRUE$/
+rxsxl_TA_LREPLACE	tprimf.h	/^#define rxsxl_TA_LREPLACE(a, b, c)      \\$/
+rxsxs_TA_LREPLACE	tprimf.h	/^#define rxsxs_TA_LREPLACE(a, b, c)      \\$/
+rxtb_TA_EQ	tprimf.h	/^#define rxtb_TA_EQ(a, b)         SA_FALSE$/
+rxtb_TA_NE	tprimf.h	/^#define rxtb_TA_NE(a, b)         SA_TRUE$/
+rxtb_TA_VCUT	tprimf.h	/^#define rxtb_TA_VCUT(a, b)       t_vvcut((int)R_SC/
+rxtb_TA_VROTATE	tprimf.h	/^#define rxtb_TA_VROTATE(a, b)     t_vvrotate((int)/
+rxtb_TA_VSELECT	tprimf.h	/^#define rxtb_TA_VSELECT(a, b)     t_vselect((int)R/
+rxtbxl_TA_LREPLACE	tprimf.h	/^#define rxtbxl_TA_LREPLACE(a, b, c)      \\$/
+rxtbxmb_TA_MREPLACE_C	tprimf.h	/^#define rxtbxmb_TA_MREPLACE_C(a, b, c)      t_mrep/
+rxtbxmb_TA_MUNI	tprimf.h	/^#define rxtbxmb_TA_MUNI(a, b, c)           t_munit/
+rxtbxme_TA_MUNI	tprimf.h	/^#define rxtbxme_TA_MUNI(a, b, c)          t_munite/
+rxtbxtb_TA_MUNI	tprimf.h	/^#define rxtbxtb_TA_MUNI(a, b, c)           t_munit/
+rxtbxte_TA_MUNI	tprimf.h	/^#define rxtbxte_TA_MUNI(a, b, c)          t_munite/
+rxtbxve_TA_MUNI	tprimf.h	/^#define rxtbxve_TA_MUNI(a, b, c)          t_munite/
+rxte_TA_EQ	tprimf.h	/^#define rxte_TA_EQ(a, b)         SA_FALSE$/
+rxte_TA_NE	tprimf.h	/^#define rxte_TA_NE(a, b)         SA_TRUE$/
+rxte_TA_VCUT	tprimf.h	/^#define rxte_TA_VCUT(a, b)       (INC_REFCNT(_nilt/
+rxte_TA_VROTATE	tprimf.h	/^#define rxte_TA_VROTATE(a, b)    (INC_REFCNT(_nilt/
+rxtexl_TA_LREPLACE	tprimf.h	/^#define rxtexl_TA_LREPLACE(a, b, c)      \\$/
+rxtexmb_TA_MUNI	tprimf.h	/^#define rxtexmb_TA_MUNI(a, b, c)          t_munite/
+rxtexme_TA_MUNI	tprimf.h	/^#define rxtexme_TA_MUNI(a, b, c)          (INC_REF/
+rxtexmi_TA_MUNI	tprimf.h	/^#define rxtexmi_TA_MUNI(a, b, c)          t_munite/
+rxtexmr_TA_MUNI	tprimf.h	/^#define rxtexmr_TA_MUNI(a, b, c)          t_munite/
+rxtextb_TA_MUNI	tprimf.h	/^#define rxtextb_TA_MUNI(a, b, c)          t_munite/
+rxtexte_TA_MUNI	tprimf.h	/^#define rxtexte_TA_MUNI(a, b, c)          (INC_REF/
+rxtexti_TA_MUNI	tprimf.h	/^#define rxtexti_TA_MUNI(a, b, c)          t_munite/
+rxtextr_TA_MUNI	tprimf.h	/^#define rxtextr_TA_MUNI(a, b, c)          t_munite/
+rxtexvb_TA_MUNI	tprimf.h	/^#define rxtexvb_TA_MUNI(a, b, c)          t_munite/
+rxtexve_TA_MUNI	tprimf.h	/^#define rxtexve_TA_MUNI(a, b, c)          (INC_REF/
+rxtexvi_TA_MUNI	tprimf.h	/^#define rxtexvi_TA_MUNI(a, b, c)          t_munite/
+rxtexvr_TA_MUNI	tprimf.h	/^#define rxtexvr_TA_MUNI(a, b, c)          t_munite/
+rxti_TA_EQ	tprimf.h	/^#define rxti_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxti_TA_NE	tprimf.h	/^#define rxti_TA_NE(a, b)         t_scal_mvt_nequal/
+rxti_TA_VCUT	tprimf.h	/^#define rxti_TA_VCUT(a, b)       t_tvcut((int)R_SC/
+rxti_TA_VROTATE	tprimf.h	/^#define rxti_TA_VROTATE(a, b)     t_tvrotate((int)/
+rxti_TA_VSELECT	tprimf.h	/^#define rxti_TA_VSELECT(a, b)     t_vselect((int)R/
+rxtixl_TA_LREPLACE	tprimf.h	/^#define rxtixl_TA_LREPLACE(a, b, c)      \\$/
+rxtixme_TA_MUNI	tprimf.h	/^#define rxtixme_TA_MUNI(a, b, c)          t_munite/
+rxtixmi_TA_MREPLACE_C	tprimf.h	/^#define rxtixmi_TA_MREPLACE_C(a, b, c)      t_mrep/
+rxtixmi_TA_MUNI	tprimf.h	/^#define rxtixmi_TA_MUNI(a, b, c)           t_munit/
+rxtixmr_TA_MUNI	tprimf.h	/^#define rxtixmr_TA_MUNI(a, b, c)           t_munit/
+rxtixte_TA_MUNI	tprimf.h	/^#define rxtixte_TA_MUNI(a, b, c)          t_munite/
+rxtixti_TA_MUNI	tprimf.h	/^#define rxtixti_TA_MUNI(a, b, c)           t_munit/
+rxtixtr_TA_MUNI	tprimf.h	/^#define rxtixtr_TA_MUNI(a, b, c)           t_munit/
+rxtixve_TA_MUNI	tprimf.h	/^#define rxtixve_TA_MUNI(a, b, c)          t_munite/
+rxtr_TA_EQ	tprimf.h	/^#define rxtr_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxtr_TA_NE	tprimf.h	/^#define rxtr_TA_NE(a, b)         t_scal_mvt_nequal/
+rxtr_TA_VCUT	tprimf.h	/^#define rxtr_TA_VCUT(a, b)       t_tvcut((int)R_SC/
+rxtr_TA_VROTATE	tprimf.h	/^#define rxtr_TA_VROTATE(a, b)     t_tvrotate((int)/
+rxtr_TA_VSELECT	tprimf.h	/^#define rxtr_TA_VSELECT(a, b)     t_vrselect((int)/
+rxtrxl_TA_LREPLACE	tprimf.h	/^#define rxtrxl_TA_LREPLACE(a, b, c)      \\$/
+rxtrxme_TA_MUNI	tprimf.h	/^#define rxtrxme_TA_MUNI(a, b, c)          t_munite/
+rxtrxmi_TA_MUNI	tprimf.h	/^#define rxtrxmi_TA_MUNI(a, b, c)           t_munit/
+rxtrxmr_TA_MREPLACE_C	tprimf.h	/^#define rxtrxmr_TA_MREPLACE_C(a, b, c)      t_mrep/
+rxtrxmr_TA_MUNI	tprimf.h	/^#define rxtrxmr_TA_MUNI(a, b, c)           t_munit/
+rxtrxte_TA_MUNI	tprimf.h	/^#define rxtrxte_TA_MUNI(a, b, c)          t_munite/
+rxtrxti_TA_MUNI	tprimf.h	/^#define rxtrxti_TA_MUNI(a, b, c)           t_munit/
+rxtrxtr_TA_MUNI	tprimf.h	/^#define rxtrxtr_TA_MUNI(a, b, c)           t_munit/
+rxtrxve_TA_MUNI	tprimf.h	/^#define rxtrxve_TA_MUNI(a, b, c)          t_munite/
+rxvb_TA_EQ	tprimf.h	/^#define rxvb_TA_EQ(a, b)         SA_FALSE$/
+rxvb_TA_NE	tprimf.h	/^#define rxvb_TA_NE(a, b)         SA_TRUE$/
+rxvb_TA_VCUT	tprimf.h	/^#define rxvb_TA_VCUT(a, b)       t_vvcut((int)R_SC/
+rxvb_TA_VROTATE	tprimf.h	/^#define rxvb_TA_VROTATE(a, b)     t_vvrotate((int)/
+rxvb_TA_VSELECT	tprimf.h	/^#define rxvb_TA_VSELECT(a, b)     t_vselect((int)R/
+rxvbxl_TA_LREPLACE	tprimf.h	/^#define rxvbxl_TA_LREPLACE(a, b, c)      \\$/
+rxvbxmb_TA_MREPLACE_R	tprimf.h	/^#define rxvbxmb_TA_MREPLACE_R(a, b, c)      t_mrep/
+rxvbxmb_TA_MUNI	tprimf.h	/^#define rxvbxmb_TA_MUNI(a, b, c)           t_munit/
+rxvbxme_TA_MUNI	tprimf.h	/^#define rxvbxme_TA_MUNI(a, b, c)          t_munite/
+rxvbxte_TA_MUNI	tprimf.h	/^#define rxvbxte_TA_MUNI(a, b, c)          t_munite/
+rxvbxvb_TA_MUNI	tprimf.h	/^#define rxvbxvb_TA_MUNI(a, b, c)           t_munit/
+rxvbxve_TA_MUNI	tprimf.h	/^#define rxvbxve_TA_MUNI(a, b, c)          t_munite/
+rxve_TA_EQ	tprimf.h	/^#define rxve_TA_EQ(a, b)         SA_FALSE$/
+rxve_TA_NE	tprimf.h	/^#define rxve_TA_NE(a, b)         SA_TRUE$/
+rxve_TA_VCUT	tprimf.h	/^#define rxve_TA_VCUT(a, b)       (INC_REFCNT(_nilv/
+rxve_TA_VROTATE	tprimf.h	/^#define rxve_TA_VROTATE(a, b)    (INC_REFCNT(_nilv/
+rxvexl_TA_LREPLACE	tprimf.h	/^#define rxvexl_TA_LREPLACE(a, b, c)      \\$/
+rxvexmb_TA_MUNI	tprimf.h	/^#define rxvexmb_TA_MUNI(a, b, c)          t_munite/
+rxvexmi_TA_MUNI	tprimf.h	/^#define rxvexmi_TA_MUNI(a, b, c)          t_munite/
+rxvexmr_TA_MUNI	tprimf.h	/^#define rxvexmr_TA_MUNI(a, b, c)          t_munite/
+rxvextb_TA_MUNI	tprimf.h	/^#define rxvextb_TA_MUNI(a, b, c)          t_munite/
+rxvexte_TA_MUNI	tprimf.h	/^#define rxvexte_TA_MUNI(a, b, c)          (INC_REF/
+rxvexti_TA_MUNI	tprimf.h	/^#define rxvexti_TA_MUNI(a, b, c)          t_munite/
+rxvextr_TA_MUNI	tprimf.h	/^#define rxvextr_TA_MUNI(a, b, c)          t_munite/
+rxvexvb_TA_MUNI	tprimf.h	/^#define rxvexvb_TA_MUNI(a, b, c)          t_munite/
+rxvexve_TA_MUNI	tprimf.h	/^#define rxvexve_TA_MUNI(a, b, c)          (INC_REF/
+rxvexvi_TA_MUNI	tprimf.h	/^#define rxvexvi_TA_MUNI(a, b, c)          t_munite/
+rxvexvr_TA_MUNI	tprimf.h	/^#define rxvexvr_TA_MUNI(a, b, c)          t_munite/
+rxvi_TA_EQ	tprimf.h	/^#define rxvi_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxvi_TA_NE	tprimf.h	/^#define rxvi_TA_NE(a, b)         t_scal_mvt_nequal/
+rxvi_TA_VCUT	tprimf.h	/^#define rxvi_TA_VCUT(a, b)       t_vvcut((int)R_SC/
+rxvi_TA_VROTATE	tprimf.h	/^#define rxvi_TA_VROTATE(a, b)     t_vvrotate((int)/
+rxvi_TA_VSELECT	tprimf.h	/^#define rxvi_TA_VSELECT(a, b)     t_vselect((int)R/
+rxvixl_TA_LREPLACE	tprimf.h	/^#define rxvixl_TA_LREPLACE(a, b, c)      \\$/
+rxvixme_TA_MUNI	tprimf.h	/^#define rxvixme_TA_MUNI(a, b, c)          t_munite/
+rxvixmi_TA_MREPLACE_R	tprimf.h	/^#define rxvixmi_TA_MREPLACE_R(a, b, c)      t_mrep/
+rxvixmi_TA_MUNI	tprimf.h	/^#define rxvixmi_TA_MUNI(a, b, c)           t_munit/
+rxvixmr_TA_MUNI	tprimf.h	/^#define rxvixmr_TA_MUNI(a, b, c)           t_munit/
+rxvixte_TA_MUNI	tprimf.h	/^#define rxvixte_TA_MUNI(a, b, c)          t_munite/
+rxvixve_TA_MUNI	tprimf.h	/^#define rxvixve_TA_MUNI(a, b, c)          t_munite/
+rxvixvi_TA_MUNI	tprimf.h	/^#define rxvixvi_TA_MUNI(a, b, c)           t_munit/
+rxvixvr_TA_MUNI	tprimf.h	/^#define rxvixvr_TA_MUNI(a, b, c)           t_munit/
+rxvr_TA_EQ	tprimf.h	/^#define rxvr_TA_EQ(a, b)         t_scal_mvt_equal(/
+rxvr_TA_NE	tprimf.h	/^#define rxvr_TA_NE(a, b)         t_scal_mvt_nequal/
+rxvr_TA_VCUT	tprimf.h	/^#define rxvr_TA_VCUT(a, b)       t_vvcut((int)R_SC/
+rxvr_TA_VROTATE	tprimf.h	/^#define rxvr_TA_VROTATE(a, b)     t_vvrotate((int)/
+rxvr_TA_VSELECT	tprimf.h	/^#define rxvr_TA_VSELECT(a, b)     t_vrselect((int)/
+rxvrxl_TA_LREPLACE	tprimf.h	/^#define rxvrxl_TA_LREPLACE(a, b, c)      \\$/
+rxvrxme_TA_MUNI	tprimf.h	/^#define rxvrxme_TA_MUNI(a, b, c)          t_munite/
+rxvrxmi_TA_MUNI	tprimf.h	/^#define rxvrxmi_TA_MUNI(a, b, c)           t_munit/
+rxvrxmr_TA_MREPLACE_R	tprimf.h	/^#define rxvrxmr_TA_MREPLACE_R(a, b, c)      t_mrep/
+rxvrxmr_TA_MUNI	tprimf.h	/^#define rxvrxmr_TA_MUNI(a, b, c)           t_munit/
+rxvrxte_TA_MUNI	tprimf.h	/^#define rxvrxte_TA_MUNI(a, b, c)          t_munite/
+rxvrxve_TA_MUNI	tprimf.h	/^#define rxvrxve_TA_MUNI(a, b, c)          t_munite/
+rxvrxvi_TA_MUNI	tprimf.h	/^#define rxvrxvi_TA_MUNI(a, b, c)           t_munit/
+rxvrxvr_TA_MUNI	tprimf.h	/^#define rxvrxvr_TA_MUNI(a, b, c)           t_munit/
+s_TA_EMPTY	tprimf.h	/^#define s_TA_EMPTY(a)           ((0 == R_LIST(DESC/
+s_TA_LDIMENSION	tprimf.h	/^#define s_TA_LDIMENSION(a)      TAG_INT((R_LIST(DE/
+s_TA_REVERSE	tprimf.h	/^#define s_TA_REVERSE(a)         t_reverse((a), TY_/
+savebt	prolog.h	/^#define savebt(n)     repl((n), r, peek(w, 1))$/
+saveptr	prolog.h	/^#define saveptr(n)     repl((n), w, peek(w, 1))$/
+search_father_case	rmkclos.c	/^int search_father_case(T_PTD ptd)$/
+search_ptc	initdata.c	/^int search_ptc(int d)$/
+short	rheapty.h	259
+sprintr	prolog.h	/^#define sprintr(n)$/
+sprintw	prolog.h	/^#define sprintw(n)$/
+startsubl	prolog.h	/^#define startsubl(n, m) repl(n, r, top(w));       /
+stelname	rprimf.h	/^char *stelname(x)$/
+stflip	prolog.h	/^#define stflip(s, t)    { DStackDesc * x; x = ps_ /
+str_max	tlstruct.c	/^T_PTD str_max(T_PTD a, T_PTD b)$/
+str_min	tlstruct.c	/^T_PTD str_min(T_PTD a, T_PTD b)$/
+strrchr	dbug.c	/^LOCAL char *strrchr (s, c)$/
+strtok	dbug.c	/^LOCAL char *strtok (s1, s2)$/
+sxb_TA_EQ	tprimf.h	/^#define sxb_TA_EQ(a, b)         SA_FALSE$/
+sxb_TA_NE	tprimf.h	/^#define sxb_TA_NE(a, b)         SA_TRUE$/
+sxi_TA_EQ	tprimf.h	/^#define sxi_TA_EQ(a, b)         SA_FALSE$/
+sxi_TA_NE	tprimf.h	/^#define sxi_TA_NE(a, b)         SA_TRUE$/
+sxl_TA_EQ	tprimf.h	/^#define sxl_TA_EQ(a, b)         SA_FALSE$/
+sxl_TA_NE	tprimf.h	/^#define sxl_TA_NE(a, b)         SA_TRUE$/
+sxmb_TA_EQ	tprimf.h	/^#define sxmb_TA_EQ(a, b)         SA_FALSE$/
+sxmb_TA_NE	tprimf.h	/^#define sxmb_TA_NE(a, b)         SA_TRUE$/
+sxme_TA_EQ	tprimf.h	/^#define sxme_TA_EQ(a, b)         SA_FALSE$/
+sxme_TA_NE	tprimf.h	/^#define sxme_TA_NE(a, b)         SA_TRUE$/
+sxmi_TA_EQ	tprimf.h	/^#define sxmi_TA_EQ(a, b)         SA_FALSE$/
+sxmi_TA_NE	tprimf.h	/^#define sxmi_TA_NE(a, b)         SA_TRUE$/
+sxmr_TA_EQ	tprimf.h	/^#define sxmr_TA_EQ(a, b)         SA_FALSE$/
+sxmr_TA_NE	tprimf.h	/^#define sxmr_TA_NE(a, b)         SA_TRUE$/
+sxr_TA_EQ	tprimf.h	/^#define sxr_TA_EQ(a, b)         SA_FALSE$/
+sxr_TA_NE	tprimf.h	/^#define sxr_TA_NE(a, b)         SA_TRUE$/
+sxs_TA_EQ	tprimf.h	/^#define sxs_TA_EQ(a, b)         ((str_eq((a), (b))/
+sxs_TA_GEQ	tprimf.h	/^#define sxs_TA_GEQ(a, b)        ((str_lt((a), (b))/
+sxs_TA_GREAT	tprimf.h	/^#define sxs_TA_GREAT(a, b)      ((str_le((a), (b))/
+sxs_TA_LEQ	tprimf.h	/^#define sxs_TA_LEQ(a, b)        ((str_le((a), (b))/
+sxs_TA_LESS	tprimf.h	/^#define sxs_TA_LESS(a, b)       ((str_lt((a), (b))/
+sxs_TA_LUNI	tprimf.h	/^#define sxs_TA_LUNI(a, b)       t_lunite((a), (b),/
+sxs_TA_MAX	tprimf.h	/^#define sxs_TA_MAX(a, b)        str_max((a), (b))$/
+sxs_TA_MIN	tprimf.h	/^#define sxs_TA_MIN(a, b)        str_min((a), (b))$/
+sxs_TA_NE	tprimf.h	/^#define sxs_TA_NE(a, b)         ((str_eq((a), (b))/
+sxtb_TA_EQ	tprimf.h	/^#define sxtb_TA_EQ(a, b)         SA_FALSE$/
+sxtb_TA_NE	tprimf.h	/^#define sxtb_TA_NE(a, b)         SA_TRUE$/
+sxte_TA_EQ	tprimf.h	/^#define sxte_TA_EQ(a, b)         SA_FALSE$/
+sxte_TA_NE	tprimf.h	/^#define sxte_TA_NE(a, b)         SA_TRUE$/
+sxti_TA_EQ	tprimf.h	/^#define sxti_TA_EQ(a, b)         SA_FALSE$/
+sxti_TA_NE	tprimf.h	/^#define sxti_TA_NE(a, b)         SA_TRUE$/
+sxtr_TA_EQ	tprimf.h	/^#define sxtr_TA_EQ(a, b)         SA_FALSE$/
+sxtr_TA_NE	tprimf.h	/^#define sxtr_TA_NE(a, b)         SA_TRUE$/
+sxvb_TA_EQ	tprimf.h	/^#define sxvb_TA_EQ(a, b)         SA_FALSE$/
+sxvb_TA_NE	tprimf.h	/^#define sxvb_TA_NE(a, b)         SA_TRUE$/
+sxve_TA_EQ	tprimf.h	/^#define sxve_TA_EQ(a, b)         SA_FALSE$/
+sxve_TA_NE	tprimf.h	/^#define sxve_TA_NE(a, b)         SA_TRUE$/
+sxvi_TA_EQ	tprimf.h	/^#define sxvi_TA_EQ(a, b)         SA_FALSE$/
+sxvi_TA_NE	tprimf.h	/^#define sxvi_TA_NE(a, b)         SA_TRUE$/
+sxvr_TA_EQ	tprimf.h	/^#define sxvr_TA_EQ(a, b)         SA_FALSE$/
+sxvr_TA_NE	tprimf.h	/^#define sxvr_TA_NE(a, b)         SA_TRUE$/
+t_and_bmat	tmvtstruct.c	/^T_PTD t_and_bmat(T_PTD a, T_PTD b, int class)$/
+t_b_and_bmat	tmvtstruct.c	/^T_PTD t_b_and_bmat(int a, T_PTD b, int class)$/
+t_b_or_bmat	tmvtstruct.c	/^T_PTD t_b_or_bmat(int a, T_PTD b, int class)$/
+t_b_xor_bmat	tmvtstruct.c	/^T_PTD t_b_xor_bmat(int a, T_PTD b, int class)$/
+t_lcut	tlstruct.c	/^T_PTD t_lcut(int a, T_PTD b)$/
+t_lreplace	tlstruct.c	/^T_PTD t_lreplace(int a, T_PTD b, T_PTD c)$/
+t_lrotate	tlstruct.c	/^T_PTD t_lrotate(int a, T_PTD b)$/
+t_lselect	tlstruct.c	/^T_PTD t_lselect(int a, T_PTD b)$/
+t_ltransform	tlstruct.c	/^T_PTD t_ltransform(int a, int b, T_PTD c)$/
+t_lunite	tlstruct.c	/^T_PTD t_lunite(T_PTD a, T_PTD b, int type)$/
+t_max_mixmi	tmvtstruct.c	/^T_PTD t_max_mixmi(T_PTD a, T_PTD b, int class, int/
+t_max_mrxmi	tmvtstruct.c	/^T_PTD t_max_mrxmi(T_PTD a, T_PTD b, int class, int/
+t_max_mrxmr	tmvtstruct.c	/^T_PTD t_max_mrxmr(T_PTD a, T_PTD b, int class, int/
+t_mcut	tmvtstruct.c	/^T_PTD t_mcut(int r, int c, T_PTD p, int type)$/
+t_mcutr	tmvtstruct.c	/^T_PTD t_mcutr(int r, int c, T_PTD p, int type)$/
+t_mdim	tmvtstruct.c	/^int t_mdim(int r_or_c, T_PTD a)$/
+t_min_mixmi	tmvtstruct.c	/^T_PTD t_min_mixmi(T_PTD a, T_PTD b, int class, int/
+t_min_mrxmi	tmvtstruct.c	/^T_PTD t_min_mrxmi(T_PTD a, T_PTD b, int class, int/
+t_min_mrxmr	tmvtstruct.c	/^T_PTD t_min_mrxmr(T_PTD a, T_PTD b, int class, int/
+t_mreplace	tmvtstruct.c	/^T_PTD t_mreplace(int a, int b, int c, T_PTD d, int/
+t_mreplace_c	tmvtstruct.c	/^T_PTD t_mreplace_c(int a, T_PTD b, T_PTD c, int ty/
+t_mreplace_cr	tmvtstruct.c	/^T_PTD t_mreplace_cr(int a, T_PTD b, T_PTD c, int t/
+t_mreplace_r	tmvtstruct.c	/^T_PTD t_mreplace_r(int a, T_PTD b, T_PTD c, int ty/
+t_mreplace_real	tmvtstruct.c	/^T_PTD t_mreplace_real(int a, int b, double c, T_PT/
+t_mreplace_rr	tmvtstruct.c	/^T_PTD t_mreplace_rr(int a, T_PTD b, T_PTD c, int t/
+t_mrotate	tmvtstruct.c	/^T_PTD t_mrotate(int a, int b, T_PTD c, int type)$/
+t_mrotate_r	tmvtstruct.c	/^T_PTD t_mrotate_r(int a, int b, T_PTD c, int type)/
+t_munite_empty	tmvtstruct.c	/^T_PTD t_munite_empty(T_PTD a)$/
+t_munite_ii	tmvtstruct.c	/^T_PTD t_munite_ii(int a, T_PTD b, T_PTD c, int cla/
+t_munite_ir	tmvtstruct.c	/^T_PTD t_munite_ir(int a, T_PTD b, T_PTD c, int cla/
+t_munite_ri	tmvtstruct.c	/^T_PTD t_munite_ri(int a, T_PTD b, T_PTD c, int cla/
+t_munite_rr	tmvtstruct.c	/^T_PTD t_munite_rr(int a, T_PTD b, T_PTD c, int cla/
+t_mvt_abs	tmvt_val.c	/^T_PTD t_mvt_abs(T_PTD a, int class, int type)$/
+t_mvt_mvt_div	tmvt_val.c	/^T_PTD t_mvt_mvt_div(T_PTD a, T_PTD b, int typ)$/
+t_mvt_mvt_ip	tmvt_val.c	/^T_PTD t_mvt_mvt_ip(T_PTD a, T_PTD b, int typ, int /
+t_mvt_mvt_minus	tmvt_val.c	/^T_PTD t_mvt_mvt_minus(T_PTD a, T_PTD b, int typ)$/
+t_mvt_mvt_mod	tmvt_val.c	/^T_PTD t_mvt_mvt_mod(T_PTD a, T_PTD b, int typ)$/
+t_mvt_mvt_mult	tmvt_val.c	/^T_PTD t_mvt_mvt_mult(T_PTD a, T_PTD b, int typ)$/
+t_mvt_mvt_plus	tmvt_val.c	/^T_PTD t_mvt_mvt_plus(T_PTD a, T_PTD b, int typ)$/
+t_not_bmat	tmvtstruct.c	/^T_PTD t_not_bmat(T_PTD a, int class)$/
+t_or_bmat	tmvtstruct.c	/^T_PTD t_or_bmat(T_PTD a, T_PTD b, int class)$/
+t_output	initdata.c	/^void t_output(int lw)$/
+t_push	prolog.h	/^#define t_push(x)      push((int)x); T_INC_REFCNT(/
+t_r_to_mat	tmvtstruct.c	/^T_PTD t_r_to_mat(double a, int type)$/
+t_reverse	tlstruct.c	/^T_PTD t_reverse(T_PTD a, int type)$/
+t_scal_mvt_equal	tmvtstruct.c	/^T_PTD t_scal_mvt_equal(T_PTD a, T_PTD b)$/
+t_scal_mvt_gequal	tmvtstruct.c	/^T_PTD t_scal_mvt_gequal(T_PTD a, T_PTD b)$/
+t_scal_mvt_greater	tmvtstruct.c	/^T_PTD t_scal_mvt_greater(T_PTD a, T_PTD b)$/
+t_scal_mvt_lequal	tmvtstruct.c	/^T_PTD t_scal_mvt_lequal(T_PTD a, T_PTD b)$/
+t_scal_mvt_less	tmvtstruct.c	/^T_PTD t_scal_mvt_less(T_PTD a, T_PTD b)$/
+t_scal_mvt_nequal	tmvtstruct.c	/^T_PTD t_scal_mvt_nequal(T_PTD a, T_PTD b)$/
+t_sselect	tlstruct.c	/^T_PTD t_sselect(int a, T_PTD b)$/
+t_to_list	tmvtstruct.c	/^T_PTD t_to_list(T_PTD a, int class, int type)$/
+t_to_mat	tmvtstruct.c	/^T_PTD t_to_mat(int a, int type)$/
+t_transform	tmvtstruct.c	/^T_PTD t_transform(T_PTD a, int class, int type)$/
+t_transformr	tmvtstruct.c	/^T_PTD t_transformr(T_PTD a, int class, int type)$/
+t_transpose_empty	tmvtstruct.c	/^T_PTD t_transpose_empty(T_PTD a)$/
+t_transpose_m	tmvtstruct.c	/^T_PTD t_transpose_m(T_PTD a, int type)$/
+t_transpose_mr	tmvtstruct.c	/^T_PTD t_transpose_mr(T_PTD a, int type)$/
+t_transpose_vt	tmvtstruct.c	/^T_PTD t_transpose_vt(T_PTD a, int class, int type)/
+t_transpose_vtr	tmvtstruct.c	/^T_PTD t_transpose_vtr(T_PTD a, int class, int type/
+t_tv_tv_ip	tmvt_val.c	/^T_PTD t_tv_tv_ip(T_PTD a, T_PTD b, int typ)$/
+t_tv_vc_div	tmvt_val.c	/^double t_tv_vc_div(T_PTD a, int type, int class)$/
+t_tv_vc_max	tmvt_val.c	/^T_PTD t_tv_vc_max(T_PTD a, int type, int class)$/
+t_tv_vc_min	tmvt_val.c	/^T_PTD t_tv_vc_min(T_PTD a, int type, int class)$/
+t_tv_vc_minus	tmvt_val.c	/^T_PTD t_tv_vc_minus(T_PTD a, int type, int class)$/
+t_tv_vc_mult	tmvt_val.c	/^T_PTD t_tv_vc_mult(T_PTD a, int type, int class)$/
+t_tv_vc_plus	tmvt_val.c	/^T_PTD t_tv_vc_plus(T_PTD a, int type, int class)$/
+t_tvcut	tmvtstruct.c	/^T_PTD t_tvcut(int a, T_PTD b, int class, int type)/
+t_tvr_vc_div	tmvt_val.c	/^double t_tvr_vc_div(T_PTD a, int type, int class)$/
+t_tvr_vc_max	tmvt_val.c	/^double t_tvr_vc_max(T_PTD a, int type, int class)$/
+t_tvr_vc_min	tmvt_val.c	/^double t_tvr_vc_min(T_PTD a, int type, int class)$/
+t_tvr_vc_minus	tmvt_val.c	/^double t_tvr_vc_minus(T_PTD a, int type, int class/
+t_tvr_vc_mult	tmvt_val.c	/^double t_tvr_vc_mult(T_PTD a, int type, int class)/
+t_tvr_vc_plus	tmvt_val.c	/^double t_tvr_vc_plus(T_PTD a, int type, int class)/
+t_tvrotate	tmvtstruct.c	/^T_PTD t_tvrotate(int a, T_PTD b, int class, int ty/
+t_v_replace	tmvtstruct.c	/^T_PTD t_v_replace(int a, int b, T_PTD c, int class/
+t_v_t_ip_int	tmvt_val.c	/^int t_v_t_ip_int(T_PTD a, T_PTD b, int typ)$/
+t_v_t_ip_real	tmvt_val.c	/^double t_v_t_ip_real(T_PTD a, T_PTD b, int typ)$/
+t_v_to_mat	tmvtstruct.c	/^T_PTD t_v_to_mat(T_PTD a, int class, int type)$/
+t_vr_replace	tmvtstruct.c	/^T_PTD t_vr_replace(int a, double b, T_PTD c, int c/
+t_vr_to_mat	tmvtstruct.c	/^T_PTD t_vr_to_mat(T_PTD a, int class, int type)$/
+t_vrselect	tmvtstruct.c	/^T_PTD t_vrselect(int a, T_PTD b, int class, int ty/
+t_vselect	tmvtstruct.c	/^T_PTD t_vselect(int a, T_PTD b, int class, int typ/
+t_vv_unite	tmvtstruct.c	/^T_PTD t_vv_unite(T_PTD a, T_PTD b, int class, int /
+t_vv_unite_empty	tmvtstruct.c	/^T_PTD t_vv_unite_empty(T_PTD a)$/
+t_vv_unite_ir	tmvtstruct.c	/^T_PTD t_vv_unite_ir(T_PTD a, T_PTD b, int class, i/
+t_vv_unite_ri	tmvtstruct.c	/^T_PTD t_vv_unite_ri(T_PTD a, T_PTD b, int class, i/
+t_vv_unite_rr	tmvtstruct.c	/^T_PTD t_vv_unite_rr(T_PTD a, T_PTD b, int class, i/
+t_vvcut	tmvtstruct.c	/^T_PTD t_vvcut(int a, T_PTD b, int class, int type)/
+t_vvrotate	tmvtstruct.c	/^T_PTD t_vvrotate(int a, T_PTD b, int class, int ty/
+t_xor_bmat	tmvtstruct.c	/^T_PTD t_xor_bmat(T_PTD a, T_PTD b, int class)$/
+tail	prolog.h	/^#define tail(func)     flip_tail(); \\$/
+tailfar	prolog.h	/^#define tailfar(f,b)   stflip(a, w);       \\$/
+tailnear	prolog.h	/^#define tailnear()     flip_tail();       \\$/
+tb_TA_EMPTY	tprimf.h	/^#define tb_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+tb_TA_NOT	tprimf.h	/^#define tb_TA_NOT(a)                         t_not/
+tb_TA_TO_LIST	tprimf.h	/^#define tb_TA_TO_LIST(a)        t_to_list((a), C_T/
+tb_TA_TO_MAT	tprimf.h	/^#define tb_TA_TO_MAT(a)                      t_v_t/
+tb_TA_TRANSFORM	tprimf.h	/^#define tb_TA_TRANSFORM(a)        t_transform((a),/
+tb_TA_TRANSPOSE	tprimf.h	/^#define tb_TA_TRANSPOSE(a)        t_transpose_vt((/
+tb_TA_VC_DIV	tprimf.h	/^#define tb_TA_VC_DIV(a)                  t_tv_vc_d/
+tb_TA_VC_MAX	tprimf.h	/^#define tb_TA_VC_MAX(a)                  t_tv_vc_m/
+tb_TA_VC_MIN	tprimf.h	/^#define tb_TA_VC_MIN(a)                  t_tv_vc_m/
+tb_TA_VC_MINUS	tprimf.h	/^#define tb_TA_VC_MINUS(a)                  t_tv_vc/
+tb_TA_VC_MULT	tprimf.h	/^#define tb_TA_VC_MULT(a)                  t_tv_vc_/
+tb_TA_VC_PLUS	tprimf.h	/^#define tb_TA_VC_PLUS(a)                  t_tv_vc_/
+tb_TA_VDIMENSION	tprimf.h	/^#define tb_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+tbxb_TA_EQ	tprimf.h	/^#define tbxb_TA_EQ(a, b)         SA_FALSE$/
+tbxb_TA_NE	tprimf.h	/^#define tbxb_TA_NE(a, b)         SA_TRUE$/
+tbxi_TA_EQ	tprimf.h	/^#define tbxi_TA_EQ(a, b)         SA_FALSE$/
+tbxi_TA_NE	tprimf.h	/^#define tbxi_TA_NE(a, b)         SA_TRUE$/
+tbxl_TA_EQ	tprimf.h	/^#define tbxl_TA_EQ(a, b)         SA_FALSE$/
+tbxl_TA_NE	tprimf.h	/^#define tbxl_TA_NE(a, b)         SA_TRUE$/
+tbxmb_TA_EQ	tprimf.h	/^#define tbxmb_TA_EQ(a, b)         SA_FALSE$/
+tbxmb_TA_NE	tprimf.h	/^#define tbxmb_TA_NE(a, b)         SA_TRUE$/
+tbxmi_TA_EQ	tprimf.h	/^#define tbxmi_TA_EQ(a, b)         SA_FALSE$/
+tbxmi_TA_NE	tprimf.h	/^#define tbxmi_TA_NE(a, b)         SA_TRUE$/
+tbxmr_TA_EQ	tprimf.h	/^#define tbxmr_TA_EQ(a, b)         SA_FALSE$/
+tbxmr_TA_NE	tprimf.h	/^#define tbxmr_TA_NE(a, b)         SA_TRUE$/
+tbxr_TA_EQ	tprimf.h	/^#define tbxr_TA_EQ(a, b)         SA_FALSE$/
+tbxr_TA_NE	tprimf.h	/^#define tbxr_TA_NE(a, b)         SA_TRUE$/
+tbxs_TA_EQ	tprimf.h	/^#define tbxs_TA_EQ(a, b)         SA_FALSE$/
+tbxs_TA_NE	tprimf.h	/^#define tbxs_TA_NE(a, b)         SA_TRUE$/
+tbxtb_TA_MAX	tprimf.h	/^#define tbxtb_TA_MAX(a, b)                   t_max/
+tbxtb_TA_MIN	tprimf.h	/^#define tbxtb_TA_MIN(a, b)                   t_min/
+tbxtb_TA_VUNI	tprimf.h	/^#define tbxtb_TA_VUNI(a, b)        t_vv_unite((a),/
+tbxte_TA_VUNI	tprimf.h	/^#define tbxte_TA_VUNI(a, b)        t_vv_unite_empt/
+tbxvb_TA_EQ	tprimf.h	/^#define tbxvb_TA_EQ(a, b)         SA_FALSE$/
+tbxvb_TA_NE	tprimf.h	/^#define tbxvb_TA_NE(a, b)         SA_TRUE$/
+tbxvi_TA_EQ	tprimf.h	/^#define tbxvi_TA_EQ(a, b)         SA_FALSE$/
+tbxvi_TA_NE	tprimf.h	/^#define tbxvi_TA_NE(a, b)         SA_TRUE$/
+tbxvr_TA_EQ	tprimf.h	/^#define tbxvr_TA_EQ(a, b)         SA_FALSE$/
+tbxvr_TA_NE	tprimf.h	/^#define tbxvr_TA_NE(a, b)         SA_TRUE$/
+tdeca	prolog.h	/^#define tdeca(n)       T_DEC_REFCNT((T_PTD)st_a[-(/
+tdecr	prolog.h	/^#define tdecr(n)       T_DEC_REFCNT((T_PTD)st_r[-(/
+tdect	prolog.h	/^#define tdect(n)       T_DEC_REFCNT((T_PTD)st_t[-(/
+tdecw	prolog.h	/^#define tdecw(n)       T_DEC_REFCNT((T_PTD)st_w[-(/
+te_TA_ABS	tprimf.h	/^#define te_TA_ABS(a)                     (INC_REFC/
+te_TA_CEIL	tprimf.h	/^#define te_TA_CEIL(a)           (INC_REFCNT(_nilve/
+te_TA_EMPTY	tprimf.h	/^#define te_TA_EMPTY(a)          SA_TRUE$/
+te_TA_FLOOR	tprimf.h	/^#define te_TA_FLOOR(a)          (INC_REFCNT(_niltv/
+te_TA_FRAC	tprimf.h	/^#define te_TA_FRAC(a)           (INC_REFCNT(_niltv/
+te_TA_NEG	tprimf.h	/^#define te_TA_NEG(a)            (INC_REFCNT(_niltv/
+te_TA_NOT	tprimf.h	/^#define te_TA_NOT(a)                         (INC_/
+te_TA_TO_LIST	tprimf.h	/^#define te_TA_TO_LIST(a)        (INC_REFCNT(_nil),/
+te_TA_TO_MAT	tprimf.h	/^#define te_TA_TO_MAT(a)                      (INC_/
+te_TA_TRANSFORM	tprimf.h	/^#define te_TA_TRANSFORM(a)        (INC_REFCNT(_nil/
+te_TA_TRANSPOSE	tprimf.h	/^#define te_TA_TRANSPOSE(a)        (INC_REFCNT(_nil/
+te_TA_TRUNCATE	tprimf.h	/^#define te_TA_TRUNCATE(a)       (INC_REFCNT(_niltv/
+te_TA_VC_DIV	tprimf.h	/^#define te_TA_VC_DIV(a)                  ZERO_INT$/
+te_TA_VC_MAX	tprimf.h	/^#define te_TA_VC_MAX(a)                  ZERO_INT$/
+te_TA_VC_MIN	tprimf.h	/^#define te_TA_VC_MIN(a)                  ZERO_INT$/
+te_TA_VC_MINUS	tprimf.h	/^#define te_TA_VC_MINUS(a)                  ZERO_IN/
+te_TA_VC_MULT	tprimf.h	/^#define te_TA_VC_MULT(a)                  ZERO_INT/
+te_TA_VC_PLUS	tprimf.h	/^#define te_TA_VC_PLUS(a)                  ZERO_INT/
+te_TA_VDIMENSION	tprimf.h	/^#define te_TA_VDIMENSION(a)      ZERO_INT$/
+texb_TA_EQ	tprimf.h	/^#define texb_TA_EQ(a, b)         SA_FALSE$/
+texb_TA_NE	tprimf.h	/^#define texb_TA_NE(a, b)         SA_TRUE$/
+texi_TA_EQ	tprimf.h	/^#define texi_TA_EQ(a, b)         SA_FALSE$/
+texi_TA_NE	tprimf.h	/^#define texi_TA_NE(a, b)         SA_TRUE$/
+texl_TA_EQ	tprimf.h	/^#define texl_TA_EQ(a, b)         SA_FALSE$/
+texl_TA_NE	tprimf.h	/^#define texl_TA_NE(a, b)         SA_TRUE$/
+texmb_TA_EQ	tprimf.h	/^#define texmb_TA_EQ(a, b)         SA_FALSE$/
+texmb_TA_NE	tprimf.h	/^#define texmb_TA_NE(a, b)         SA_TRUE$/
+texme_TA_EQ	tprimf.h	/^#define texme_TA_EQ(a, b)         SA_FALSE$/
+texme_TA_NE	tprimf.h	/^#define texme_TA_NE(a, b)         SA_TRUE$/
+texmi_TA_EQ	tprimf.h	/^#define texmi_TA_EQ(a, b)         SA_FALSE$/
+texmi_TA_NE	tprimf.h	/^#define texmi_TA_NE(a, b)         SA_TRUE$/
+texmr_TA_EQ	tprimf.h	/^#define texmr_TA_EQ(a, b)         SA_FALSE$/
+texmr_TA_NE	tprimf.h	/^#define texmr_TA_NE(a, b)         SA_TRUE$/
+texr_TA_EQ	tprimf.h	/^#define texr_TA_EQ(a, b)         SA_FALSE$/
+texr_TA_NE	tprimf.h	/^#define texr_TA_NE(a, b)         SA_TRUE$/
+texs_TA_EQ	tprimf.h	/^#define texs_TA_EQ(a, b)         SA_FALSE$/
+texs_TA_NE	tprimf.h	/^#define texs_TA_NE(a, b)         SA_TRUE$/
+textb_TA_VUNI	tprimf.h	/^#define textb_TA_VUNI(a, b)        t_vv_unite_empt/
+texte_TA_EQ	tprimf.h	/^#define texte_TA_EQ(a, b)         SA_TRUE$/
+texte_TA_NE	tprimf.h	/^#define texte_TA_NE(a, b)         SA_FALSE$/
+texte_TA_VUNI	tprimf.h	/^#define texte_TA_VUNI(a, b)        (INC_REFCNT(_ni/
+texti_TA_VUNI	tprimf.h	/^#define texti_TA_VUNI(a, b)        t_vv_unite_empt/
+textr_TA_VUNI	tprimf.h	/^#define textr_TA_VUNI(a, b)        t_vv_unite_empt/
+texve_TA_EQ	tprimf.h	/^#define texve_TA_EQ(a, b)         SA_FALSE$/
+texve_TA_NE	tprimf.h	/^#define texve_TA_NE(a, b)         SA_TRUE$/
+tguard	prolog.h	/^#define tguard(label, address, wsize, rsize, psize/
+ti_TA_ABS	tprimf.h	/^#define ti_TA_ABS(a)                     t_mvt_abs/
+ti_TA_CEIL	tprimf.h	/^#define ti_TA_CEIL(a)           mvt_int_ceil(a)$/
+ti_TA_EMPTY	tprimf.h	/^#define ti_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+ti_TA_FLOOR	tprimf.h	/^#define ti_TA_FLOOR(a)          mvt_int_floor(a)$/
+ti_TA_FRAC	tprimf.h	/^#define ti_TA_FRAC(a)           mvt_frac((a), C_TV/
+ti_TA_NEG	tprimf.h	/^#define ti_TA_NEG(a)            mvt_int_neg(a)$/
+ti_TA_TO_LIST	tprimf.h	/^#define ti_TA_TO_LIST(a)        t_to_list((a), C_T/
+ti_TA_TO_MAT	tprimf.h	/^#define ti_TA_TO_MAT(a)                      t_v_t/
+ti_TA_TRANSFORM	tprimf.h	/^#define ti_TA_TRANSFORM(a)        t_transform((a),/
+ti_TA_TRANSPOSE	tprimf.h	/^#define ti_TA_TRANSPOSE(a)        t_transpose_vt((/
+ti_TA_TRUNCATE	tprimf.h	/^#define ti_TA_TRUNCATE(a)       mvt_trunc((a), C_T/
+ti_TA_VC_DIV	tprimf.h	/^#define ti_TA_VC_DIV(a)                  t_tv_vc_d/
+ti_TA_VC_MAX	tprimf.h	/^#define ti_TA_VC_MAX(a)                  t_tv_vc_m/
+ti_TA_VC_MIN	tprimf.h	/^#define ti_TA_VC_MIN(a)                  t_tv_vc_m/
+ti_TA_VC_MINUS	tprimf.h	/^#define ti_TA_VC_MINUS(a)                  t_tv_vc/
+ti_TA_VC_MULT	tprimf.h	/^#define ti_TA_VC_MULT(a)                  t_tv_vc_/
+ti_TA_VC_PLUS	tprimf.h	/^#define ti_TA_VC_PLUS(a)                  t_tv_vc_/
+ti_TA_VDIMENSION	tprimf.h	/^#define ti_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+tinca	prolog.h	/^#define tinca(n)    T_INC_REFCNT((T_PTD)st_a[-(n)]/
+tincr	prolog.h	/^#define tincr(n)    T_INC_REFCNT((T_PTD)st_r[-(n)]/
+tinct	prolog.h	/^#define tinct(n)    T_INC_REFCNT((T_PTD)st_t[-(n)]/
+tincw	prolog.h	/^#define tincw(n)    T_INC_REFCNT((T_PTD)st_w[-(n)]/
+tixb_TA_EQ	tprimf.h	/^#define tixb_TA_EQ(a, b)         SA_FALSE$/
+tixb_TA_NE	tprimf.h	/^#define tixb_TA_NE(a, b)         SA_TRUE$/
+tixi_TA_EQ	tprimf.h	/^#define tixi_TA_EQ(a, b)         t_scal_mvt_equal(/
+tixi_TA_GEQ	tprimf.h	/^#define tixi_TA_GEQ(a, b)           t_scal_mvt_geq/
+tixi_TA_GREAT	tprimf.h	/^#define tixi_TA_GREAT(a, b)         t_scal_mvt_gre/
+tixi_TA_LEQ	tprimf.h	/^#define tixi_TA_LEQ(a, b)           t_scal_mvt_leq/
+tixi_TA_LESS	tprimf.h	/^#define tixi_TA_LESS(a, b)          t_scal_mvt_les/
+tixi_TA_NE	tprimf.h	/^#define tixi_TA_NE(a, b)         t_scal_mvt_nequal/
+tixl_TA_EQ	tprimf.h	/^#define tixl_TA_EQ(a, b)         SA_FALSE$/
+tixl_TA_NE	tprimf.h	/^#define tixl_TA_NE(a, b)         SA_TRUE$/
+tixmb_TA_EQ	tprimf.h	/^#define tixmb_TA_EQ(a, b)         SA_FALSE$/
+tixmb_TA_NE	tprimf.h	/^#define tixmb_TA_NE(a, b)         SA_TRUE$/
+tixmi_TA_EQ	tprimf.h	/^#define tixmi_TA_EQ(a, b)         SA_FALSE$/
+tixmi_TA_IP	tprimf.h	/^#define tixmi_TA_IP(a, b)                t_mvt_mvt/
+tixmi_TA_NE	tprimf.h	/^#define tixmi_TA_NE(a, b)         SA_TRUE$/
+tixmr_TA_EQ	tprimf.h	/^#define tixmr_TA_EQ(a, b)         SA_FALSE$/
+tixmr_TA_IP	tprimf.h	/^#define tixmr_TA_IP(a, b)                t_mvt_mvt/
+tixmr_TA_NE	tprimf.h	/^#define tixmr_TA_NE(a, b)         SA_TRUE$/
+tixr_TA_EQ	tprimf.h	/^#define tixr_TA_EQ(a, b)         t_scal_mvt_equal(/
+tixr_TA_GEQ	tprimf.h	/^#define tixr_TA_GEQ(a, b)           t_scal_mvt_geq/
+tixr_TA_GREAT	tprimf.h	/^#define tixr_TA_GREAT(a, b)         t_scal_mvt_gre/
+tixr_TA_LEQ	tprimf.h	/^#define tixr_TA_LEQ(a, b)           t_scal_mvt_leq/
+tixr_TA_LESS	tprimf.h	/^#define tixr_TA_LESS(a, b)          t_scal_mvt_les/
+tixr_TA_NE	tprimf.h	/^#define tixr_TA_NE(a, b)         t_scal_mvt_nequal/
+tixs_TA_EQ	tprimf.h	/^#define tixs_TA_EQ(a, b)         SA_FALSE$/
+tixs_TA_NE	tprimf.h	/^#define tixs_TA_NE(a, b)         SA_TRUE$/
+tixte_TA_VUNI	tprimf.h	/^#define tixte_TA_VUNI(a, b)        t_vv_unite_empt/
+tixti_TA_DIV	tprimf.h	/^#define tixti_TA_DIV(a, b)               t_mvt_mvt/
+tixti_TA_IP	tprimf.h	/^#define tixti_TA_IP(a, b)                t_tv_tv_i/
+tixti_TA_MAX	tprimf.h	/^#define tixti_TA_MAX(a, b)                   t_max/
+tixti_TA_MIN	tprimf.h	/^#define tixti_TA_MIN(a, b)                   t_min/
+tixti_TA_MINUS	tprimf.h	/^#define tixti_TA_MINUS(a, b)             t_mvt_mvt/
+tixti_TA_MOD	tprimf.h	/^#define tixti_TA_MOD(a, b)               t_mvt_mvt/
+tixti_TA_MULT	tprimf.h	/^#define tixti_TA_MULT(a, b)              t_mvt_mvt/
+tixti_TA_PLUS	tprimf.h	/^#define tixti_TA_PLUS(a, b)              t_mvt_mvt/
+tixti_TA_VUNI	tprimf.h	/^#define tixti_TA_VUNI(a, b)        t_vv_unite((a),/
+tixtr_TA_DIV	tprimf.h	/^#define tixtr_TA_DIV(a, b)               t_mvt_mvt/
+tixtr_TA_IP	tprimf.h	/^#define tixtr_TA_IP(a, b)                R_SCALAR(/
+tixtr_TA_MAX	tprimf.h	/^#define tixtr_TA_MAX(a, b)                   t_max/
+tixtr_TA_MIN	tprimf.h	/^#define tixtr_TA_MIN(a, b)                   t_min/
+tixtr_TA_MINUS	tprimf.h	/^#define tixtr_TA_MINUS(a, b)             t_mvt_mvt/
+tixtr_TA_MOD	tprimf.h	/^#define tixtr_TA_MOD(a, b)               t_mvt_mvt/
+tixtr_TA_MULT	tprimf.h	/^#define tixtr_TA_MULT(a, b)              t_mvt_mvt/
+tixtr_TA_PLUS	tprimf.h	/^#define tixtr_TA_PLUS(a, b)              t_mvt_mvt/
+tixtr_TA_VUNI	tprimf.h	/^#define tixtr_TA_VUNI(a, b)        t_vv_unite_ir((/
+tixvb_TA_EQ	tprimf.h	/^#define tixvb_TA_EQ(a, b)         SA_FALSE$/
+tixvb_TA_NE	tprimf.h	/^#define tixvb_TA_NE(a, b)         SA_TRUE$/
+tixvi_TA_EQ	tprimf.h	/^#define tixvi_TA_EQ(a, b)         SA_FALSE$/
+tixvi_TA_IP	tprimf.h	/^#define tixvi_TA_IP(a, b)                t_mvt_mvt/
+tixvi_TA_NE	tprimf.h	/^#define tixvi_TA_NE(a, b)         SA_TRUE$/
+tixvr_TA_EQ	tprimf.h	/^#define tixvr_TA_EQ(a, b)         SA_FALSE$/
+tixvr_TA_IP	tprimf.h	/^#define tixvr_TA_IP(a, b)                t_mvt_mvt/
+tixvr_TA_NE	tprimf.h	/^#define tixvr_TA_NE(a, b)         SA_TRUE$/
+tkilla	prolog.h	/^#define tkilla(n)       if T_POINTER(st_a[-(n)]) \\/
+tkillr	prolog.h	/^#define tkillr(n)       if T_POINTER(st_r[-(n)]) \\/
+tkillt	prolog.h	/^#define tkillt(n)       if T_POINTER(st_t[-(n)]) \\/
+tkillw	prolog.h	/^#define tkillw(n)       if T_POINTER(st_w[-(n)]) \\/
+top	prolog.h	/^#define top(st)         D_READSTACK(*ps_ ## st)$/
+tr_TA_ABS	tprimf.h	/^#define tr_TA_ABS(a)                     t_mvt_abs/
+tr_TA_CEIL	tprimf.h	/^#define tr_TA_CEIL(a)           mvt_real_ceil(a)$/
+tr_TA_EMPTY	tprimf.h	/^#define tr_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+tr_TA_FLOOR	tprimf.h	/^#define tr_TA_FLOOR(a)          mvt_real_floor(a)$/
+tr_TA_FRAC	tprimf.h	/^#define tr_TA_FRAC(a)           mvt_frac((a), C_TV/
+tr_TA_NEG	tprimf.h	/^#define tr_TA_NEG(a)            mvt_real_neg(a)$/
+tr_TA_TO_LIST	tprimf.h	/^#define tr_TA_TO_LIST(a)        t_to_list((a), C_T/
+tr_TA_TO_MAT	tprimf.h	/^#define tr_TA_TO_MAT(a)                      t_vr_/
+tr_TA_TRANSFORM	tprimf.h	/^#define tr_TA_TRANSFORM(a)        t_transformr((a)/
+tr_TA_TRANSPOSE	tprimf.h	/^#define tr_TA_TRANSPOSE(a)        t_transpose_vtr(/
+tr_TA_TRUNCATE	tprimf.h	/^#define tr_TA_TRUNCATE(a)       mvt_trunc((a), C_T/
+tr_TA_VC_DIV	tprimf.h	/^#define tr_TA_VC_DIV(a)                  t_tvr_vc_/
+tr_TA_VC_MAX	tprimf.h	/^#define tr_TA_VC_MAX(a)                  t_tvr_vc_/
+tr_TA_VC_MIN	tprimf.h	/^#define tr_TA_VC_MIN(a)                  t_tvr_vc_/
+tr_TA_VC_MINUS	tprimf.h	/^#define tr_TA_VC_MINUS(a)                  t_tvr_v/
+tr_TA_VC_MULT	tprimf.h	/^#define tr_TA_VC_MULT(a)                  t_tvr_vc/
+tr_TA_VC_PLUS	tprimf.h	/^#define tr_TA_VC_PLUS(a)                  t_tvr_vc/
+tr_TA_VDIMENSION	tprimf.h	/^#define tr_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+trap_handler	initdata.c	/^void trap_handler(void)$/
+trxb_TA_EQ	tprimf.h	/^#define trxb_TA_EQ(a, b)         SA_FALSE$/
+trxb_TA_NE	tprimf.h	/^#define trxb_TA_NE(a, b)         SA_TRUE$/
+trxi_TA_EQ	tprimf.h	/^#define trxi_TA_EQ(a, b)         t_scal_mvt_equal(/
+trxi_TA_GEQ	tprimf.h	/^#define trxi_TA_GEQ(a, b)           t_scal_mvt_geq/
+trxi_TA_GREAT	tprimf.h	/^#define trxi_TA_GREAT(a, b)         t_scal_mvt_gre/
+trxi_TA_LEQ	tprimf.h	/^#define trxi_TA_LEQ(a, b)           t_scal_mvt_leq/
+trxi_TA_LESS	tprimf.h	/^#define trxi_TA_LESS(a, b)          t_scal_mvt_les/
+trxi_TA_NE	tprimf.h	/^#define trxi_TA_NE(a, b)         t_scal_mvt_nequal/
+trxl_TA_EQ	tprimf.h	/^#define trxl_TA_EQ(a, b)         SA_FALSE$/
+trxl_TA_NE	tprimf.h	/^#define trxl_TA_NE(a, b)         SA_TRUE$/
+trxmb_TA_EQ	tprimf.h	/^#define trxmb_TA_EQ(a, b)         SA_FALSE$/
+trxmb_TA_NE	tprimf.h	/^#define trxmb_TA_NE(a, b)         SA_TRUE$/
+trxmi_TA_EQ	tprimf.h	/^#define trxmi_TA_EQ(a, b)         SA_FALSE$/
+trxmi_TA_IP	tprimf.h	/^#define trxmi_TA_IP(a, b)                t_mvt_mvt/
+trxmi_TA_NE	tprimf.h	/^#define trxmi_TA_NE(a, b)         SA_TRUE$/
+trxmr_TA_EQ	tprimf.h	/^#define trxmr_TA_EQ(a, b)         SA_FALSE$/
+trxmr_TA_IP	tprimf.h	/^#define trxmr_TA_IP(a, b)                t_mvt_mvt/
+trxmr_TA_NE	tprimf.h	/^#define trxmr_TA_NE(a, b)         SA_TRUE$/
+trxr_TA_EQ	tprimf.h	/^#define trxr_TA_EQ(a, b)         t_scal_mvt_equal(/
+trxr_TA_GEQ	tprimf.h	/^#define trxr_TA_GEQ(a, b)           t_scal_mvt_geq/
+trxr_TA_GREAT	tprimf.h	/^#define trxr_TA_GREAT(a, b)         t_scal_mvt_gre/
+trxr_TA_LEQ	tprimf.h	/^#define trxr_TA_LEQ(a, b)           t_scal_mvt_leq/
+trxr_TA_LESS	tprimf.h	/^#define trxr_TA_LESS(a, b)          t_scal_mvt_les/
+trxr_TA_NE	tprimf.h	/^#define trxr_TA_NE(a, b)         t_scal_mvt_nequal/
+trxs_TA_EQ	tprimf.h	/^#define trxs_TA_EQ(a, b)         SA_FALSE$/
+trxs_TA_NE	tprimf.h	/^#define trxs_TA_NE(a, b)         SA_TRUE$/
+trxte_TA_VUNI	tprimf.h	/^#define trxte_TA_VUNI(a, b)        t_vv_unite_empt/
+trxti_TA_DIV	tprimf.h	/^#define trxti_TA_DIV(a, b)               t_mvt_mvt/
+trxti_TA_IP	tprimf.h	/^#define trxti_TA_IP(a, b)                R_SCALAR(/
+trxti_TA_MAX	tprimf.h	/^#define trxti_TA_MAX(a, b)                   t_max/
+trxti_TA_MIN	tprimf.h	/^#define trxti_TA_MIN(a, b)                   t_min/
+trxti_TA_MINUS	tprimf.h	/^#define trxti_TA_MINUS(a, b)             t_mvt_mvt/
+trxti_TA_MOD	tprimf.h	/^#define trxti_TA_MOD(a, b)               t_mvt_mvt/
+trxti_TA_MULT	tprimf.h	/^#define trxti_TA_MULT(a, b)              t_mvt_mvt/
+trxti_TA_PLUS	tprimf.h	/^#define trxti_TA_PLUS(a, b)              t_mvt_mvt/
+trxti_TA_VUNI	tprimf.h	/^#define trxti_TA_VUNI(a, b)        t_vv_unite_ri((/
+trxtr_TA_DIV	tprimf.h	/^#define trxtr_TA_DIV(a, b)               t_mvt_mvt/
+trxtr_TA_IP	tprimf.h	/^#define trxtr_TA_IP(a, b)                R_SCALAR(/
+trxtr_TA_MAX	tprimf.h	/^#define trxtr_TA_MAX(a, b)                   t_max/
+trxtr_TA_MIN	tprimf.h	/^#define trxtr_TA_MIN(a, b)                   t_min/
+trxtr_TA_MINUS	tprimf.h	/^#define trxtr_TA_MINUS(a, b)             t_mvt_mvt/
+trxtr_TA_MOD	tprimf.h	/^#define trxtr_TA_MOD(a, b)               t_mvt_mvt/
+trxtr_TA_MULT	tprimf.h	/^#define trxtr_TA_MULT(a, b)              t_mvt_mvt/
+trxtr_TA_PLUS	tprimf.h	/^#define trxtr_TA_PLUS(a, b)              t_mvt_mvt/
+trxtr_TA_VUNI	tprimf.h	/^#define trxtr_TA_VUNI(a, b)        t_vv_unite_rr((/
+trxvb_TA_EQ	tprimf.h	/^#define trxvb_TA_EQ(a, b)         SA_FALSE$/
+trxvb_TA_NE	tprimf.h	/^#define trxvb_TA_NE(a, b)         SA_TRUE$/
+trxvi_TA_EQ	tprimf.h	/^#define trxvi_TA_EQ(a, b)         SA_FALSE$/
+trxvi_TA_IP	tprimf.h	/^#define trxvi_TA_IP(a, b)                t_mvt_mvt/
+trxvi_TA_NE	tprimf.h	/^#define trxvi_TA_NE(a, b)         SA_TRUE$/
+trxvr_TA_EQ	tprimf.h	/^#define trxvr_TA_EQ(a, b)         SA_FALSE$/
+trxvr_TA_IP	tprimf.h	/^#define trxvr_TA_IP(a, b)                t_mvt_mvt/
+trxvr_TA_NE	tprimf.h	/^#define trxvr_TA_NE(a, b)         SA_TRUE$/
+typename	rprimf.h	/^char *typename(p)$/
+unmapf	prolog.h	/^#define unmapf(x)               ((x) >> 16)$/
+unmapl	prolog.h	/^#define unmapl(x)               ((x) & 0xffff)$/
+vb_TA_EMPTY	tprimf.h	/^#define vb_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+vb_TA_NOT	tprimf.h	/^#define vb_TA_NOT(a)                         t_not/
+vb_TA_TO_LIST	tprimf.h	/^#define vb_TA_TO_LIST(a)        t_to_list((a), C_V/
+vb_TA_TO_MAT	tprimf.h	/^#define vb_TA_TO_MAT(a)                      t_v_t/
+vb_TA_TRANSFORM	tprimf.h	/^#define vb_TA_TRANSFORM(a)        t_transform((a),/
+vb_TA_TRANSPOSE	tprimf.h	/^#define vb_TA_TRANSPOSE(a)        t_transpose_vt((/
+vb_TA_VC_DIV	tprimf.h	/^#define vb_TA_VC_DIV(a)                  t_tv_vc_d/
+vb_TA_VC_MAX	tprimf.h	/^#define vb_TA_VC_MAX(a)                  t_tv_vc_m/
+vb_TA_VC_MIN	tprimf.h	/^#define vb_TA_VC_MIN(a)                  t_tv_vc_m/
+vb_TA_VC_MINUS	tprimf.h	/^#define vb_TA_VC_MINUS(a)                  t_tv_vc/
+vb_TA_VC_MULT	tprimf.h	/^#define vb_TA_VC_MULT(a)                  t_tv_vc_/
+vb_TA_VC_PLUS	tprimf.h	/^#define vb_TA_VC_PLUS(a)                  t_tv_vc_/
+vb_TA_VDIMENSION	tprimf.h	/^#define vb_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+vbxb_TA_EQ	tprimf.h	/^#define vbxb_TA_EQ(a, b)         SA_FALSE$/
+vbxb_TA_NE	tprimf.h	/^#define vbxb_TA_NE(a, b)         SA_TRUE$/
+vbxi_TA_EQ	tprimf.h	/^#define vbxi_TA_EQ(a, b)         SA_FALSE$/
+vbxi_TA_NE	tprimf.h	/^#define vbxi_TA_NE(a, b)         SA_TRUE$/
+vbxl_TA_EQ	tprimf.h	/^#define vbxl_TA_EQ(a, b)         SA_FALSE$/
+vbxl_TA_NE	tprimf.h	/^#define vbxl_TA_NE(a, b)         SA_TRUE$/
+vbxmb_TA_EQ	tprimf.h	/^#define vbxmb_TA_EQ(a, b)         SA_FALSE$/
+vbxmb_TA_NE	tprimf.h	/^#define vbxmb_TA_NE(a, b)         SA_TRUE$/
+vbxmi_TA_EQ	tprimf.h	/^#define vbxmi_TA_EQ(a, b)         SA_FALSE$/
+vbxmi_TA_NE	tprimf.h	/^#define vbxmi_TA_NE(a, b)         SA_TRUE$/
+vbxmr_TA_EQ	tprimf.h	/^#define vbxmr_TA_EQ(a, b)         SA_FALSE$/
+vbxmr_TA_NE	tprimf.h	/^#define vbxmr_TA_NE(a, b)         SA_TRUE$/
+vbxr_TA_EQ	tprimf.h	/^#define vbxr_TA_EQ(a, b)         SA_FALSE$/
+vbxr_TA_NE	tprimf.h	/^#define vbxr_TA_NE(a, b)         SA_TRUE$/
+vbxs_TA_EQ	tprimf.h	/^#define vbxs_TA_EQ(a, b)         SA_FALSE$/
+vbxs_TA_NE	tprimf.h	/^#define vbxs_TA_NE(a, b)         SA_TRUE$/
+vbxtb_TA_EQ	tprimf.h	/^#define vbxtb_TA_EQ(a, b)         SA_FALSE$/
+vbxtb_TA_NE	tprimf.h	/^#define vbxtb_TA_NE(a, b)         SA_TRUE$/
+vbxti_TA_EQ	tprimf.h	/^#define vbxti_TA_EQ(a, b)         SA_FALSE$/
+vbxti_TA_NE	tprimf.h	/^#define vbxti_TA_NE(a, b)         SA_TRUE$/
+vbxtr_TA_EQ	tprimf.h	/^#define vbxtr_TA_EQ(a, b)         SA_FALSE$/
+vbxtr_TA_NE	tprimf.h	/^#define vbxtr_TA_NE(a, b)         SA_TRUE$/
+vbxvb_TA_MAX	tprimf.h	/^#define vbxvb_TA_MAX(a, b)                   t_max/
+vbxvb_TA_MIN	tprimf.h	/^#define vbxvb_TA_MIN(a, b)                   t_min/
+vbxvb_TA_VUNI	tprimf.h	/^#define vbxvb_TA_VUNI(a, b)        t_vv_unite((a),/
+vbxve_TA_VUNI	tprimf.h	/^#define vbxve_TA_VUNI(a, b)        t_vv_unite_empt/
+ve_TA_ABS	tprimf.h	/^#define ve_TA_ABS(a)                     (INC_REFC/
+ve_TA_CEIL	tprimf.h	/^#define ve_TA_CEIL(a)           (INC_REFCNT(_nilma/
+ve_TA_EMPTY	tprimf.h	/^#define ve_TA_EMPTY(a)          SA_TRUE$/
+ve_TA_FLOOR	tprimf.h	/^#define ve_TA_FLOOR(a)          (INC_REFCNT(_nilve/
+ve_TA_FRAC	tprimf.h	/^#define ve_TA_FRAC(a)           (INC_REFCNT(_nilve/
+ve_TA_NEG	tprimf.h	/^#define ve_TA_NEG(a)            (INC_REFCNT(_nilve/
+ve_TA_NOT	tprimf.h	/^#define ve_TA_NOT(a)                         (INC_/
+ve_TA_TO_LIST	tprimf.h	/^#define ve_TA_TO_LIST(a)        (INC_REFCNT(_nil),/
+ve_TA_TO_MAT	tprimf.h	/^#define ve_TA_TO_MAT(a)                      (INC_/
+ve_TA_TRANSFORM	tprimf.h	/^#define ve_TA_TRANSFORM(a)        (INC_REFCNT(_nil/
+ve_TA_TRANSPOSE	tprimf.h	/^#define ve_TA_TRANSPOSE(a)        (INC_REFCNT(_nil/
+ve_TA_TRUNCATE	tprimf.h	/^#define ve_TA_TRUNCATE(a)       (INC_REFCNT(_nilve/
+ve_TA_VC_DIV	tprimf.h	/^#define ve_TA_VC_DIV(a)                  ZERO_INT$/
+ve_TA_VC_MAX	tprimf.h	/^#define ve_TA_VC_MAX(a)                  ZERO_INT$/
+ve_TA_VC_MIN	tprimf.h	/^#define ve_TA_VC_MIN(a)                  ZERO_INT$/
+ve_TA_VC_MINUS	tprimf.h	/^#define ve_TA_VC_MINUS(a)                  ZERO_IN/
+ve_TA_VC_MULT	tprimf.h	/^#define ve_TA_VC_MULT(a)                  ZERO_INT/
+ve_TA_VC_PLUS	tprimf.h	/^#define ve_TA_VC_PLUS(a)                  ZERO_INT/
+ve_TA_VDIMENSION	tprimf.h	/^#define ve_TA_VDIMENSION(a)      ZERO_INT$/
+vexb_TA_EQ	tprimf.h	/^#define vexb_TA_EQ(a, b)         SA_FALSE$/
+vexb_TA_NE	tprimf.h	/^#define vexb_TA_NE(a, b)         SA_TRUE$/
+vexi_TA_EQ	tprimf.h	/^#define vexi_TA_EQ(a, b)         SA_FALSE$/
+vexi_TA_NE	tprimf.h	/^#define vexi_TA_NE(a, b)         SA_TRUE$/
+vexl_TA_EQ	tprimf.h	/^#define vexl_TA_EQ(a, b)         SA_FALSE$/
+vexl_TA_NE	tprimf.h	/^#define vexl_TA_NE(a, b)         SA_TRUE$/
+vexmb_TA_EQ	tprimf.h	/^#define vexmb_TA_EQ(a, b)         SA_FALSE$/
+vexmb_TA_NE	tprimf.h	/^#define vexmb_TA_NE(a, b)         SA_TRUE$/
+vexme_TA_EQ	tprimf.h	/^#define vexme_TA_EQ(a, b)         SA_FALSE$/
+vexme_TA_NE	tprimf.h	/^#define vexme_TA_NE(a, b)         SA_TRUE$/
+vexmi_TA_EQ	tprimf.h	/^#define vexmi_TA_EQ(a, b)         SA_FALSE$/
+vexmi_TA_NE	tprimf.h	/^#define vexmi_TA_NE(a, b)         SA_TRUE$/
+vexmr_TA_EQ	tprimf.h	/^#define vexmr_TA_EQ(a, b)         SA_FALSE$/
+vexmr_TA_NE	tprimf.h	/^#define vexmr_TA_NE(a, b)         SA_TRUE$/
+vexr_TA_EQ	tprimf.h	/^#define vexr_TA_EQ(a, b)         SA_FALSE$/
+vexr_TA_NE	tprimf.h	/^#define vexr_TA_NE(a, b)         SA_TRUE$/
+vexs_TA_EQ	tprimf.h	/^#define vexs_TA_EQ(a, b)         SA_FALSE$/
+vexs_TA_NE	tprimf.h	/^#define vexs_TA_NE(a, b)         SA_TRUE$/
+vexte_TA_EQ	tprimf.h	/^#define vexte_TA_EQ(a, b)         SA_FALSE$/
+vexte_TA_NE	tprimf.h	/^#define vexte_TA_NE(a, b)         SA_TRUE$/
+vexvb_TA_VUNI	tprimf.h	/^#define vexvb_TA_VUNI(a, b)        t_vv_unite_empt/
+vexve_TA_EQ	tprimf.h	/^#define vexve_TA_EQ(a, b)         SA_TRUE$/
+vexve_TA_NE	tprimf.h	/^#define vexve_TA_NE(a, b)         SA_FALSE$/
+vexve_TA_VUNI	tprimf.h	/^#define vexve_TA_VUNI(a, b)        (INC_REFCNT(_ni/
+vexvi_TA_VUNI	tprimf.h	/^#define vexvi_TA_VUNI(a, b)        t_vv_unite_empt/
+vexvr_TA_VUNI	tprimf.h	/^#define vexvr_TA_VUNI(a, b)        t_vv_unite_empt/
+vi_TA_ABS	tprimf.h	/^#define vi_TA_ABS(a)                     t_mvt_abs/
+vi_TA_CEIL	tprimf.h	/^#define vi_TA_CEIL(a)           mvt_int_ceil(a)$/
+vi_TA_EMPTY	tprimf.h	/^#define vi_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+vi_TA_FLOOR	tprimf.h	/^#define vi_TA_FLOOR(a)          mvt_int_floor(a)$/
+vi_TA_FRAC	tprimf.h	/^#define vi_TA_FRAC(a)           mvt_frac((a), C_VE/
+vi_TA_NEG	tprimf.h	/^#define vi_TA_NEG(a)            mvt_int_neg(a)$/
+vi_TA_TO_LIST	tprimf.h	/^#define vi_TA_TO_LIST(a)        t_to_list((a), C_V/
+vi_TA_TO_MAT	tprimf.h	/^#define vi_TA_TO_MAT(a)                      t_v_t/
+vi_TA_TRANSFORM	tprimf.h	/^#define vi_TA_TRANSFORM(a)        t_transform((a),/
+vi_TA_TRANSPOSE	tprimf.h	/^#define vi_TA_TRANSPOSE(a)        t_transpose_vt((/
+vi_TA_TRUNCATE	tprimf.h	/^#define vi_TA_TRUNCATE(a)       mvt_trunc((a), C_V/
+vi_TA_VC_DIV	tprimf.h	/^#define vi_TA_VC_DIV(a)                  t_tv_vc_d/
+vi_TA_VC_MAX	tprimf.h	/^#define vi_TA_VC_MAX(a)                  t_tv_vc_m/
+vi_TA_VC_MIN	tprimf.h	/^#define vi_TA_VC_MIN(a)                  t_tv_vc_m/
+vi_TA_VC_MINUS	tprimf.h	/^#define vi_TA_VC_MINUS(a)                  t_tv_vc/
+vi_TA_VC_MULT	tprimf.h	/^#define vi_TA_VC_MULT(a)                  t_tv_vc_/
+vi_TA_VC_PLUS	tprimf.h	/^#define vi_TA_VC_PLUS(a)                  t_tv_vc_/
+vi_TA_VDIMENSION	tprimf.h	/^#define vi_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+vixb_TA_EQ	tprimf.h	/^#define vixb_TA_EQ(a, b)         SA_FALSE$/
+vixb_TA_NE	tprimf.h	/^#define vixb_TA_NE(a, b)         SA_TRUE$/
+vixi_TA_EQ	tprimf.h	/^#define vixi_TA_EQ(a, b)         t_scal_mvt_equal(/
+vixi_TA_GEQ	tprimf.h	/^#define vixi_TA_GEQ(a, b)           t_scal_mvt_geq/
+vixi_TA_GREAT	tprimf.h	/^#define vixi_TA_GREAT(a, b)         t_scal_mvt_gre/
+vixi_TA_LEQ	tprimf.h	/^#define vixi_TA_LEQ(a, b)           t_scal_mvt_leq/
+vixi_TA_LESS	tprimf.h	/^#define vixi_TA_LESS(a, b)          t_scal_mvt_les/
+vixi_TA_NE	tprimf.h	/^#define vixi_TA_NE(a, b)         t_scal_mvt_nequal/
+vixl_TA_EQ	tprimf.h	/^#define vixl_TA_EQ(a, b)         SA_FALSE$/
+vixl_TA_NE	tprimf.h	/^#define vixl_TA_NE(a, b)         SA_TRUE$/
+vixmb_TA_EQ	tprimf.h	/^#define vixmb_TA_EQ(a, b)         SA_FALSE$/
+vixmb_TA_NE	tprimf.h	/^#define vixmb_TA_NE(a, b)         SA_TRUE$/
+vixmi_TA_EQ	tprimf.h	/^#define vixmi_TA_EQ(a, b)         SA_FALSE$/
+vixmi_TA_IP	tprimf.h	/^#define vixmi_TA_IP(a, b)                t_mvt_mvt/
+vixmi_TA_NE	tprimf.h	/^#define vixmi_TA_NE(a, b)         SA_TRUE$/
+vixmr_TA_EQ	tprimf.h	/^#define vixmr_TA_EQ(a, b)         SA_FALSE$/
+vixmr_TA_IP	tprimf.h	/^#define vixmr_TA_IP(a, b)                t_mvt_mvt/
+vixmr_TA_NE	tprimf.h	/^#define vixmr_TA_NE(a, b)         SA_TRUE$/
+vixr_TA_EQ	tprimf.h	/^#define vixr_TA_EQ(a, b)         t_scal_mvt_equal(/
+vixr_TA_GEQ	tprimf.h	/^#define vixr_TA_GEQ(a, b)           t_scal_mvt_geq/
+vixr_TA_GREAT	tprimf.h	/^#define vixr_TA_GREAT(a, b)         t_scal_mvt_gre/
+vixr_TA_LEQ	tprimf.h	/^#define vixr_TA_LEQ(a, b)           t_scal_mvt_leq/
+vixr_TA_LESS	tprimf.h	/^#define vixr_TA_LESS(a, b)          t_scal_mvt_les/
+vixr_TA_NE	tprimf.h	/^#define vixr_TA_NE(a, b)         t_scal_mvt_nequal/
+vixs_TA_EQ	tprimf.h	/^#define vixs_TA_EQ(a, b)         SA_FALSE$/
+vixs_TA_NE	tprimf.h	/^#define vixs_TA_NE(a, b)         SA_TRUE$/
+vixtb_TA_EQ	tprimf.h	/^#define vixtb_TA_EQ(a, b)         SA_FALSE$/
+vixtb_TA_NE	tprimf.h	/^#define vixtb_TA_NE(a, b)         SA_TRUE$/
+vixti_TA_EQ	tprimf.h	/^#define vixti_TA_EQ(a, b)         SA_FALSE$/
+vixti_TA_IP	tprimf.h	/^#define vixti_TA_IP(a, b)                t_v_t_ip_/
+vixti_TA_NE	tprimf.h	/^#define vixti_TA_NE(a, b)         SA_TRUE$/
+vixtr_TA_EQ	tprimf.h	/^#define vixtr_TA_EQ(a, b)         SA_FALSE$/
+vixtr_TA_IP	tprimf.h	/^#define vixtr_TA_IP(a, b)                t_v_t_ip_/
+vixtr_TA_NE	tprimf.h	/^#define vixtr_TA_NE(a, b)         SA_TRUE$/
+vixve_TA_VUNI	tprimf.h	/^#define vixve_TA_VUNI(a, b)        t_vv_unite_empt/
+vixvi_TA_DIV	tprimf.h	/^#define vixvi_TA_DIV(a, b)               t_mvt_mvt/
+vixvi_TA_IP	tprimf.h	/^#define vixvi_TA_IP(a, b)                t_tv_tv_i/
+vixvi_TA_MAX	tprimf.h	/^#define vixvi_TA_MAX(a, b)                   t_max/
+vixvi_TA_MIN	tprimf.h	/^#define vixvi_TA_MIN(a, b)                   t_min/
+vixvi_TA_MINUS	tprimf.h	/^#define vixvi_TA_MINUS(a, b)             t_mvt_mvt/
+vixvi_TA_MOD	tprimf.h	/^#define vixvi_TA_MOD(a, b)               t_mvt_mvt/
+vixvi_TA_MULT	tprimf.h	/^#define vixvi_TA_MULT(a, b)              t_mvt_mvt/
+vixvi_TA_PLUS	tprimf.h	/^#define vixvi_TA_PLUS(a, b)              t_mvt_mvt/
+vixvi_TA_VUNI	tprimf.h	/^#define vixvi_TA_VUNI(a, b)        t_vv_unite((a),/
+vixvr_TA_DIV	tprimf.h	/^#define vixvr_TA_DIV(a, b)               t_mvt_mvt/
+vixvr_TA_IP	tprimf.h	/^#define vixvr_TA_IP(a, b)                R_SCALAR(/
+vixvr_TA_MAX	tprimf.h	/^#define vixvr_TA_MAX(a, b)                   t_max/
+vixvr_TA_MIN	tprimf.h	/^#define vixvr_TA_MIN(a, b)                   t_min/
+vixvr_TA_MINUS	tprimf.h	/^#define vixvr_TA_MINUS(a, b)             t_mvt_mvt/
+vixvr_TA_MOD	tprimf.h	/^#define vixvr_TA_MOD(a, b)               t_mvt_mvt/
+vixvr_TA_MULT	tprimf.h	/^#define vixvr_TA_MULT(a, b)              t_mvt_mvt/
+vixvr_TA_PLUS	tprimf.h	/^#define vixvr_TA_PLUS(a, b)              t_mvt_mvt/
+vixvr_TA_VUNI	tprimf.h	/^#define vixvr_TA_VUNI(a, b)        t_vv_unite_ir((/
+void	prolog.h	50
+vr_TA_ABS	tprimf.h	/^#define vr_TA_ABS(a)                     t_mvt_abs/
+vr_TA_CEIL	tprimf.h	/^#define vr_TA_CEIL(a)           mvt_real_ceil(a)$/
+vr_TA_EMPTY	tprimf.h	/^#define vr_TA_EMPTY(a)          ((TY_UNDEF == R_DE/
+vr_TA_FLOOR	tprimf.h	/^#define vr_TA_FLOOR(a)          mvt_real_floor(a)$/
+vr_TA_FRAC	tprimf.h	/^#define vr_TA_FRAC(a)           mvt_frac((a), C_VE/
+vr_TA_NEG	tprimf.h	/^#define vr_TA_NEG(a)            mvt_real_neg(a)$/
+vr_TA_TO_LIST	tprimf.h	/^#define vr_TA_TO_LIST(a)        t_to_list((a), C_V/
+vr_TA_TO_MAT	tprimf.h	/^#define vr_TA_TO_MAT(a)                      t_vr_/
+vr_TA_TRANSFORM	tprimf.h	/^#define vr_TA_TRANSFORM(a)        t_transformr((a)/
+vr_TA_TRANSPOSE	tprimf.h	/^#define vr_TA_TRANSPOSE(a)        t_transpose_vtr(/
+vr_TA_TRUNCATE	tprimf.h	/^#define vr_TA_TRUNCATE(a)       mvt_trunc((a), C_V/
+vr_TA_VC_DIV	tprimf.h	/^#define vr_TA_VC_DIV(a)                  t_tvr_vc_/
+vr_TA_VC_MAX	tprimf.h	/^#define vr_TA_VC_MAX(a)                  t_tvr_vc_/
+vr_TA_VC_MIN	tprimf.h	/^#define vr_TA_VC_MIN(a)                  t_tvr_vc_/
+vr_TA_VC_MINUS	tprimf.h	/^#define vr_TA_VC_MINUS(a)                  t_tvr_v/
+vr_TA_VC_MULT	tprimf.h	/^#define vr_TA_VC_MULT(a)                  t_tvr_vc/
+vr_TA_VC_PLUS	tprimf.h	/^#define vr_TA_VC_PLUS(a)                  t_tvr_vc/
+vr_TA_VDIMENSION	tprimf.h	/^#define vr_TA_VDIMENSION(a)      TAG_INT(R_MVT(DES/
+vrxb_TA_EQ	tprimf.h	/^#define vrxb_TA_EQ(a, b)         SA_FALSE$/
+vrxb_TA_NE	tprimf.h	/^#define vrxb_TA_NE(a, b)         SA_TRUE$/
+vrxi_TA_EQ	tprimf.h	/^#define vrxi_TA_EQ(a, b)         t_scal_mvt_equal(/
+vrxi_TA_GEQ	tprimf.h	/^#define vrxi_TA_GEQ(a, b)           t_scal_mvt_geq/
+vrxi_TA_GREAT	tprimf.h	/^#define vrxi_TA_GREAT(a, b)         t_scal_mvt_gre/
+vrxi_TA_LEQ	tprimf.h	/^#define vrxi_TA_LEQ(a, b)           t_scal_mvt_leq/
+vrxi_TA_LESS	tprimf.h	/^#define vrxi_TA_LESS(a, b)          t_scal_mvt_les/
+vrxi_TA_NE	tprimf.h	/^#define vrxi_TA_NE(a, b)         t_scal_mvt_nequal/
+vrxl_TA_EQ	tprimf.h	/^#define vrxl_TA_EQ(a, b)         SA_FALSE$/
+vrxl_TA_NE	tprimf.h	/^#define vrxl_TA_NE(a, b)         SA_TRUE$/
+vrxmb_TA_EQ	tprimf.h	/^#define vrxmb_TA_EQ(a, b)         SA_FALSE$/
+vrxmb_TA_NE	tprimf.h	/^#define vrxmb_TA_NE(a, b)         SA_TRUE$/
+vrxmi_TA_EQ	tprimf.h	/^#define vrxmi_TA_EQ(a, b)         SA_FALSE$/
+vrxmi_TA_IP	tprimf.h	/^#define vrxmi_TA_IP(a, b)                t_mvt_mvt/
+vrxmi_TA_NE	tprimf.h	/^#define vrxmi_TA_NE(a, b)         SA_TRUE$/
+vrxmr_TA_EQ	tprimf.h	/^#define vrxmr_TA_EQ(a, b)         SA_FALSE$/
+vrxmr_TA_IP	tprimf.h	/^#define vrxmr_TA_IP(a, b)                t_mvt_mvt/
+vrxmr_TA_NE	tprimf.h	/^#define vrxmr_TA_NE(a, b)         SA_TRUE$/
+vrxr_TA_EQ	tprimf.h	/^#define vrxr_TA_EQ(a, b)         t_scal_mvt_equal(/
+vrxr_TA_GEQ	tprimf.h	/^#define vrxr_TA_GEQ(a, b)           t_scal_mvt_geq/
+vrxr_TA_GREAT	tprimf.h	/^#define vrxr_TA_GREAT(a, b)         t_scal_mvt_gre/
+vrxr_TA_LEQ	tprimf.h	/^#define vrxr_TA_LEQ(a, b)           t_scal_mvt_leq/
+vrxr_TA_LESS	tprimf.h	/^#define vrxr_TA_LESS(a, b)          t_scal_mvt_les/
+vrxr_TA_NE	tprimf.h	/^#define vrxr_TA_NE(a, b)         t_scal_mvt_nequal/
+vrxs_TA_EQ	tprimf.h	/^#define vrxs_TA_EQ(a, b)         SA_FALSE$/
+vrxs_TA_NE	tprimf.h	/^#define vrxs_TA_NE(a, b)         SA_TRUE$/
+vrxtb_TA_EQ	tprimf.h	/^#define vrxtb_TA_EQ(a, b)         SA_FALSE$/
+vrxtb_TA_NE	tprimf.h	/^#define vrxtb_TA_NE(a, b)         SA_TRUE$/
+vrxti_TA_EQ	tprimf.h	/^#define vrxti_TA_EQ(a, b)         SA_FALSE$/
+vrxti_TA_IP	tprimf.h	/^#define vrxti_TA_IP(a, b)                t_v_t_ip_/
+vrxti_TA_NE	tprimf.h	/^#define vrxti_TA_NE(a, b)         SA_TRUE$/
+vrxtr_TA_EQ	tprimf.h	/^#define vrxtr_TA_EQ(a, b)         SA_FALSE$/
+vrxtr_TA_IP	tprimf.h	/^#define vrxtr_TA_IP(a, b)                t_v_t_ip_/
+vrxtr_TA_NE	tprimf.h	/^#define vrxtr_TA_NE(a, b)         SA_TRUE$/
+vrxve_TA_VUNI	tprimf.h	/^#define vrxve_TA_VUNI(a, b)        t_vv_unite_empt/
+vrxvi_TA_DIV	tprimf.h	/^#define vrxvi_TA_DIV(a, b)               t_mvt_mvt/
+vrxvi_TA_IP	tprimf.h	/^#define vrxvi_TA_IP(a, b)                R_SCALAR(/
+vrxvi_TA_MAX	tprimf.h	/^#define vrxvi_TA_MAX(a, b)                   t_max/
+vrxvi_TA_MIN	tprimf.h	/^#define vrxvi_TA_MIN(a, b)                   t_min/
+vrxvi_TA_MINUS	tprimf.h	/^#define vrxvi_TA_MINUS(a, b)             t_mvt_mvt/
+vrxvi_TA_MOD	tprimf.h	/^#define vrxvi_TA_MOD(a, b)               t_mvt_mvt/
+vrxvi_TA_MULT	tprimf.h	/^#define vrxvi_TA_MULT(a, b)              t_mvt_mvt/
+vrxvi_TA_PLUS	tprimf.h	/^#define vrxvi_TA_PLUS(a, b)              t_mvt_mvt/
+vrxvi_TA_VUNI	tprimf.h	/^#define vrxvi_TA_VUNI(a, b)        t_vv_unite_ri((/
+vrxvr_TA_DIV	tprimf.h	/^#define vrxvr_TA_DIV(a, b)               t_mvt_mvt/
+vrxvr_TA_IP	tprimf.h	/^#define vrxvr_TA_IP(a, b)                R_SCALAR(/
+vrxvr_TA_MAX	tprimf.h	/^#define vrxvr_TA_MAX(a, b)                   t_max/
+vrxvr_TA_MIN	tprimf.h	/^#define vrxvr_TA_MIN(a, b)                   t_min/
+vrxvr_TA_MINUS	tprimf.h	/^#define vrxvr_TA_MINUS(a, b)             t_mvt_mvt/
+vrxvr_TA_MOD	tprimf.h	/^#define vrxvr_TA_MOD(a, b)               t_mvt_mvt/
+vrxvr_TA_MULT	tprimf.h	/^#define vrxvr_TA_MULT(a, b)              t_mvt_mvt/
+vrxvr_TA_PLUS	tprimf.h	/^#define vrxvr_TA_PLUS(a, b)              t_mvt_mvt/
+vrxvr_TA_VUNI	tprimf.h	/^#define vrxvr_TA_VUNI(a, b)        t_vv_unite_rr((/
+wait	prolog.h	/^# define wait(f, l, n)         repl(0, h, top(h)-n/
+@

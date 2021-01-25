@@ -1,0 +1,6 @@
+msHeapArray*UKCCommand.background: #bbbbbb
+msHeapArray*clip.background: #ffffff
+msHeapArray*horizontal.background: #bbbbbb
+msHeapArray*vertical.background: #bbbbbb
+
+msHeapArray.buttonColor: #00c000

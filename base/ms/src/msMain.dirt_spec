@@ -1,0 +1,921 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : UI Specification file
+%%ID  Application = "msMain"
+%%ID  Created by tb on Thu Jul 29 14:26:34 1993
+%Y msMainModuleBind
+%Z msMainStorePreferences
+%Z msMainRedumaCall
+%Z msMainFileCall
+%Z msMainFileBrowse
+%Z msMainExitHook
+%Z msFileBrowserUpdate
+%Z msFileBrowserSelectFile
+%Z msFileBrowserInitialize
+%Z msFileBrowserAccept
+%%%
+%A msMain
+%C MSMain
+%R x : 75
+%R y : 70
+%R width : 223
+%R height : 478
+%R borderWidth : 0
+%F
+%%%
+%N msMainBox
+%c ukcLayoutWidgetClass
+%p msMain
+%m true
+%o false
+%s x : 0
+%s y : 0
+%s width : 223
+%s height : 423
+%s borderWidth : 0
+%r background : #bbbbbb
+%f
+%%%
+%N  msMainModuleBox
+%c  ukcLayoutWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 5
+%s  width : 211
+%s  height : 61
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msMainModuleLabel
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainModuleBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 4
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Module
+%r   background : #bbbbbb
+%r   barColour : #000000
+%r   foreground : #ffffff
+%f
+%%%
+%N   msMainModuleMenu
+%c   ukcMed3MenuWidgetClass
+%p   msMain.msMainBox.msMainModuleBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 30
+%s   width : 203
+%s   height : 25
+%s   borderWidth : 1
+%r   menuFile : modules.med
+%r   useFile : true
+%r   popupBitmap : bitmaps/menu16
+%r   background : #bbbbbb
+%r   translations : 
+%f
+%%%
+%N  msMainFileBox
+%c  ukcLayoutWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 73
+%s  width : 211
+%s  height : 137
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msMainFileLabel
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 4
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   label : File
+%r   background : #bbbbbb
+%r   barColour : #000000
+%r   foreground : #ffffff
+%f
+%%%
+%N   msMainFileEnterPath
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : 44
+%s   y : 37
+%s   width : 162
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%r   editCallback : msMainFileCall()
+%f
+%%%
+%N   msMainFileEnterName
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : 44
+%s   y : 62
+%s   width : 162
+%s   height : 18
+%s   borderWidth : 1
+%z   vertFixed : true
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%r   translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%r   editCallback : msMainFileCall
+%f
+%%%
+%N   msMainFileLabelPath
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : -5
+%s   y : 37
+%s   width : 48
+%s   height : 17
+%s   borderWidth : 1
+%z   vertFixed : true
+%z   horizFixed : true
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Path:
+%r   justify : right
+%f
+%%%
+%N   msMainFileLabelName
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : -6
+%s   y : 62
+%s   width : 49
+%s   height : 17
+%s   borderWidth : 1
+%z   horizFixed : true
+%z   vertFixed : true
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Name:
+%r   justify : right
+%f
+%%%
+%N   msMainFileBrowse
+%c   ukcCommandWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 87
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Browse
+%r   callback : msMainFileBrowse(),WCPopupCB(*msFileBrowser)
+%f
+%%%
+%N   msMainFileFilterMenu
+%c   ukcMed3MenuWidgetClass
+%p   msMain.msMainBox.msMainFileBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 112
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   menuFile : filter.med
+%r   useFile : true
+%r   popupBitmap : bitmaps/menu16
+%r   background : #bbbbbb
+%r   translations : 
+%f
+%%%
+%N  msMainRedumaBox
+%c  ukcLayoutWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 217
+%s  width : 211
+%s  height : 81
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msMainRedumaLabel
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainRedumaBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 4
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Reduma
+%r   background : #bbbbbb
+%r   barColour : #000000
+%r   foreground : #ffffff
+%f
+%%%
+%N   msMainRedumaInitMenu
+%c   ukcMed3MenuWidgetClass
+%p   msMain.msMainBox.msMainRedumaBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 31
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   menuFile : init.med
+%r   useFile : true
+%r   popupBitmap : bitmaps/menu16
+%r   background : #bbbbbb
+%r   translations : 
+%f
+%%%
+%N   msMainRedumaCall
+%c   ukcCommandWidgetClass
+%p   msMain.msMainBox.msMainRedumaBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 56
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Write INIT
+%r   callback : msMainRedumaCall()
+%f
+%%%
+%N  msMainPreferencesBox
+%c  ukcLayoutWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 305
+%s  width : 211
+%s  height : 55
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msMainPreferencesLabel
+%c   ukcLabelWidgetClass
+%p   msMain.msMainBox.msMainPreferencesBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 4
+%s   width : 203
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Preferences
+%r   background : #bbbbbb
+%r   barColour : #000000
+%r   foreground : #ffffff
+%f
+%%%
+%N   msMainPreferencesToggle
+%c   ukcToggleWidgetClass
+%p   msMain.msMainBox.msMainPreferencesBox
+%m   true
+%o   false
+%s   x : 4
+%s   y : 29
+%s   width : 116
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Store on QUIT
+%r   onBitmap : bitmaps/checked_square
+%r   offBitmap : bitmaps/off_square
+%r   bitmap : None
+%f
+%%%
+%N   msMainPreferencesStore
+%c   ukcCommandWidgetClass
+%p   msMain.msMainBox.msMainPreferencesBox
+%m   true
+%o   false
+%s   x : 126
+%s   y : 29
+%s   width : 80
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Store now!
+%r   callback : msMainStorePreferences
+%f
+%%%
+%N  msMainQuitBox
+%c  ukcLayoutWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 367
+%s  width : 211
+%s  height : 49
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   msMainQuit
+%c   ukcCommandWidgetClass
+%p   msMain.msMainBox.msMainQuitBox
+%m   true
+%o   false
+%s   x : 3
+%s   y : 4
+%s   width : 203
+%s   height : 39
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : QUIT!
+%r   translations : ~Button1<EnterNotify>: highlight()\
+Button1<EnterNotify>: set() highlight()\
+~Button1<LeaveNotify>: unhighlight()\
+Button1<LeaveNotify>: reset()\
+<ButtonPress>: set()\
+<ButtonRelease>: notify() unset()\
+Button2<MotionNotify>: position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update() label_edit("off")\
+:<KeyPress>Linefeed: label_update() label_edit("off")\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>: insert_char()\
+
+%r   callback : msMainExitHook()
+%f
+%%%
+%N  msFileBrowser
+%c  transientShellWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 350
+%s  y : 431
+%s  width : 269
+%s  height : 395
+%s  borderWidth : 1
+%r  title : Choose a file...
+%r  background : #bbbbbb
+%f
+%%%
+%N   myRequesterBox
+%c   ukcLayoutWidgetClass
+%p   msMain.msMainBox.msFileBrowser
+%m   true
+%o   false
+%s   x : 0
+%s   y : 0
+%s   width : 269
+%s   height : 395
+%s   borderWidth : 0
+%r   background : #bbbbbb
+%f
+%%%
+%N    myRequesterSelectBox
+%c    ukcLayoutWidgetClass
+%p    msMain.msMainBox.msFileBrowser.myRequesterBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 5
+%s    width : 257
+%s    height : 345
+%s    borderWidth : 1
+%r    background : #888888
+%f
+%%%
+%N     myRequesterSelectEnterMask
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : 44
+%s     y : 37
+%s     width : 208
+%s     height : 18
+%s     borderWidth : 1
+%z     horizFixed : false
+%z     vertFixed : true
+%r     label : *
+%r     background : #ffffff
+%r     barColour : #000000
+%r     justify : left
+%r     editable : true
+%r     overflowRight : false
+%r     editing : true
+%r     editCallback : msFileBrowserUpdate()
+%r     translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N     myRequesterSelectLabel
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : 3
+%s     y : 4
+%s     width : 249
+%s     height : 18
+%s     borderWidth : 1
+%r     label : Select a file...
+%r     background : #bbbbbb
+%r     barColour : #000000
+%r     foreground : #ffffff
+%f
+%%%
+%N     myRequesterSelectLabelMask
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : -6
+%s     y : 37
+%s     width : 48
+%s     height : 17
+%s     borderWidth : 1
+%z     horizFixed : true
+%z     vertFixed : true
+%r     background : #888888
+%r     borderColor : #888888
+%r     label : Mask:
+%r     justify : right
+%f
+%%%
+%N     myRequesterSelectLabelPath
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : -6
+%s     y : 63
+%s     width : 48
+%s     height : 17
+%s     borderWidth : 1
+%z     vertFixed : true
+%z     horizFixed : true
+%r     background : #888888
+%r     borderColor : #888888
+%r     label : Path:
+%r     justify : right
+%f
+%%%
+%N     myRequesterSelectEnterPath
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : 44
+%s     y : 63
+%s     width : 208
+%s     height : 18
+%s     borderWidth : 1
+%z     horizFixed : false
+%z     vertFixed : true
+%r     label : /
+%r     background : #ffffff
+%r     barColour : #000000
+%r     justify : left
+%r     editable : true
+%r     overflowRight : false
+%r     editing : true
+%r     editCallback : msFileBrowserUpdate()
+%r     translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N     myRequesterSelectEnterFile
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : 44
+%s     y : 319
+%s     width : 208
+%s     height : 18
+%s     borderWidth : 1
+%z     horizFixed : false
+%z     vertFixed : true
+%r     label : 
+%r     background : #ffffff
+%r     barColour : #000000
+%r     justify : left
+%r     editable : true
+%r     overflowRight : false
+%r     editing : true
+%r     translations : <EnterNotify>: label_edit("on") position_bar()\
+<ButtonPress>: label_edit("on") position_bar()\
+:<KeyPress>Delete: delete_char()\
+:<KeyPress>BackSpace: delete_char()\
+:<KeyPress>Return: label_update()\
+:<KeyPress>Linefeed: label_update()\
+:<KeyPress>Escape: undo_edit()\
+:Ctrl<KeyPress>b: position_bar("-1")\
+:Ctrl<KeyPress>a: position_bar("beginning")\
+:Ctrl<KeyPress>e: position_bar("end")\
+:Ctrl<KeyPress>f: position_bar("+1")\
+:Ctrl<KeyPress>k: delete_char("all")\
+:<KeyPress>Left: position_bar("-1")\
+:<KeyPress>Right: position_bar("+1")\
+:<KeyPress>: insert_char()\
+
+%f
+%%%
+%N     myRequesterSelectLabelFile
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%s     x : -6
+%s     y : 319
+%s     width : 48
+%s     height : 18
+%s     borderWidth : 1
+%z     horizFixed : true
+%z     vertFixed : true
+%r     background : #888888
+%r     borderColor : #888888
+%r     label : File:
+%r     justify : right
+%f
+%%%
+%N     myRequesterSelectScroll
+%c     ukcScrListWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox
+%m     true
+%o     false
+%d     *myRequesterSelectScroll.clip.background: #ffffff
+%s     x : 3
+%s     y : 94
+%s     width : 249
+%s     height : 214
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     callback : msFileBrowserSelectFile()
+%f
+%%%
+%N    myRequesterCommandBox
+%c    ukcLayoutWidgetClass
+%p    msMain.msMainBox.msFileBrowser.myRequesterBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 358
+%s    width : 257
+%s    height : 29
+%s    borderWidth : 1
+%r    background : #888888
+%f
+%%%
+%N     myRequesterCommandOK
+%c     ukcCommandWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox
+%m     true
+%o     false
+%s     x : 130
+%s     y : 4
+%s     width : 122
+%s     height : 18
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     label : OK
+%r     callback : msFileBrowserAccept(),WcPopdownCB(*msFileBrowser)
+%f
+%%%
+%N     myRequesterCommandCancel
+%c     ukcCommandWidgetClass
+%p     msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox
+%m     true
+%o     false
+%s     x : 3
+%s     y : 4
+%s     width : 122
+%s     height : 18
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     label : Cancel
+%r     callback : WcPopdownCB(*msFileBrowser)
+%f
+%%%
+%N  msRequester
+%c  transientShellWidgetClass
+%p  msMain.msMainBox
+%m  true
+%o  false
+%s  x : 73
+%s  y : 238
+%s  width : 300
+%s  height : 143
+%s  borderWidth : 1
+%r  background : #bbbbbb
+%f
+%%%
+%N   msRequesterBox
+%c   ukcLayoutWidgetClass
+%p   msMain.msMainBox.msRequester
+%m   true
+%o   false
+%s   x : 0
+%s   y : 0
+%s   width : 300
+%s   height : 143
+%s   borderWidth : 0
+%r   background : #bbbbbb
+%f
+%%%
+%N    msRequesterTitle
+%c    ukcLayoutWidgetClass
+%p    msMain.msMainBox.msRequester.msRequesterBox
+%m    true
+%o    false
+%s    x : 4
+%s    y : 4
+%s    width : 290
+%s    height : 90
+%s    borderWidth : 1
+%r    background : #888888
+%f
+%%%
+%N     msRequesterTitle1
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle
+%m     true
+%o     false
+%s     x : 4
+%s     y : 10
+%s     width : 281
+%s     height : 26
+%s     borderWidth : 1
+%r     borderColor : #888888
+%r     background : #888888
+%f
+%%%
+%N     msRequesterTitle2
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle
+%m     true
+%o     false
+%s     x : 4
+%s     y : 35
+%s     width : 281
+%s     height : 26
+%s     borderWidth : 1
+%r     borderColor : #888888
+%r     background : #888888
+%f
+%%%
+%N     msRequesterTitle3
+%c     ukcLabelWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle
+%m     true
+%o     false
+%s     x : 4
+%s     y : 60
+%s     width : 281
+%s     height : 26
+%s     borderWidth : 1
+%r     borderColor : #888888
+%r     background : #888888
+%f
+%%%
+%N    msRequesterAction
+%c    ukcLayoutWidgetClass
+%p    msMain.msMainBox.msRequester.msRequesterBox
+%m    true
+%o    false
+%s    x : 5
+%s    y : 100
+%s    width : 289
+%s    height : 36
+%s    borderWidth : 1
+%r    background : #888888
+%f
+%%%
+%N     msRequesterActionOK
+%c     ukcCommandWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction
+%m     true
+%o     false
+%s     x : 194
+%s     y : 5
+%s     width : 90
+%s     height : 25
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     label : OK
+%f
+%%%
+%N     msRequesterActionCancel
+%c     ukcCommandWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction
+%m     true
+%o     false
+%s     x : 99
+%s     y : 5
+%s     width : 90
+%s     height : 25
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     label : Cancel
+%f
+%%%
+%N     msRequesterActionHelp
+%c     ukcCommandWidgetClass
+%p     msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction
+%m     true
+%o     false
+%s     x : 4
+%s     y : 5
+%s     width : 90
+%s     height : 25
+%s     borderWidth : 1
+%r     background : #bbbbbb
+%r     label : Help
+%f
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterFile ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabel ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectScroll ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterMask ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelMask ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterPath ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelPath ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectEnterFile ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox.myRequesterSelectLabelFile ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandOK ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterSelectBox ; vertical_above
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandOK ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandCancel ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox.myRequesterCommandCancel ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; horizontal_before
+%L msMain.msMainBox.msFileBrowser.myRequesterBox ; msMain.msMainBox.msFileBrowser.myRequesterBox.myRequesterCommandBox ; msMain.msMainBox.msFileBrowser.myRequesterBox ; horizontal_before
+%L msMain.msMainBox.msMainModuleBox ; msMain.msMainBox.msMainModuleBox.msMainModuleLabel ; msMain.msMainBox.msMainModuleBox ; vertical_above
+%L msMain.msMainBox.msMainModuleBox ; msMain.msMainBox.msMainModuleBox.msMainModuleMenu ; msMain.msMainBox.msMainModuleBox.msMainModuleLabel ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileEnterPath ; msMain.msMainBox.msMainFileBox.msMainFileLabel ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileEnterName ; msMain.msMainBox.msMainFileBox.msMainFileEnterPath ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileBrowse ; msMain.msMainBox.msMainFileBox.msMainFileEnterName ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabelPath ; msMain.msMainBox.msMainFileBox.msMainFileLabel ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabelName ; msMain.msMainBox.msMainFileBox.msMainFileLabelPath ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileBrowse ; msMain.msMainBox.msMainFileBox.msMainFileLabelName ; vertical_above
+%L msMain.msMainBox ; msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainModuleBox ; vertical_above
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesLabel ; msMain.msMainBox.msMainPreferencesBox ; vertical_above
+%L msMain.msMainBox.msMainQuitBox ; msMain.msMainBox.msMainQuitBox.msMainQuit ; msMain.msMainBox.msMainQuitBox ; vertical_above
+%L msMain.msMainBox.msMainModuleBox ; msMain.msMainBox.msMainModuleBox.msMainModuleLabel ; msMain.msMainBox.msMainModuleBox ; horizontal_before
+%L msMain.msMainBox.msMainModuleBox ; msMain.msMainBox.msMainModuleBox.msMainModuleMenu ; msMain.msMainBox.msMainModuleBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabel ; msMain.msMainBox.msMainFileBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabelPath ; msMain.msMainBox.msMainFileBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabelName ; msMain.msMainBox.msMainFileBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileEnterPath ; msMain.msMainBox.msMainFileBox.msMainFileLabelPath ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileEnterName ; msMain.msMainBox.msMainFileBox.msMainFileLabelName ; horizontal_before
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaLabel ; msMain.msMainBox.msMainRedumaBox ; horizontal_before
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesLabel ; msMain.msMainBox.msMainPreferencesBox ; horizontal_before
+%L msMain.msMainBox.msMainQuitBox ; msMain.msMainBox.msMainQuitBox.msMainQuit ; msMain.msMainBox.msMainQuitBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainModuleBox ; msMain.msMainBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainFileBox ; msMain.msMainBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainQuitBox ; msMain.msMainBox ; horizontal_before
+%L msMain.msMainBox ; msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainFileBox ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileFilterMenu ; msMain.msMainBox.msMainFileBox.msMainFileBrowse ; vertical_above
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileLabel ; msMain.msMainBox.msMainFileBox ; vertical_above
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesStore ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesToggle ; horizontal_before
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesStore ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesLabel ; vertical_above
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesToggle ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesLabel ; vertical_above
+%L msMain.msMainBox ; msMain.msMainBox.msMainQuitBox ; msMain.msMainBox.msMainPreferencesBox ; vertical_above
+%L msMain.msMainBox ; msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainRedumaBox ; vertical_above
+%L msMain.msMainBox.msMainPreferencesBox ; msMain.msMainBox.msMainPreferencesBox.msMainPreferencesToggle ; msMain.msMainBox.msMainPreferencesBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileBrowse ; msMain.msMainBox.msMainFileBox ; horizontal_before
+%L msMain.msMainBox.msMainFileBox ; msMain.msMainBox.msMainFileBox.msMainFileFilterMenu ; msMain.msMainBox.msMainFileBox ; horizontal_before
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaInitMenu ; msMain.msMainBox.msMainRedumaBox ; horizontal_before
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaCall ; msMain.msMainBox.msMainRedumaBox.msMainRedumaInitMenu ; vertical_above
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaInitMenu ; msMain.msMainBox.msMainRedumaBox.msMainRedumaLabel ; vertical_above
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaCall ; msMain.msMainBox.msMainRedumaBox ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionOK ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle3 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox ; vertical_above
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle3 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle2 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionOK ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionCancel ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction.msRequesterActionHelp ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle.msRequesterTitle1 ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; horizontal_before
+%L msMain.msMainBox.msRequester.msRequesterBox ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterAction ; msMain.msMainBox.msRequester.msRequesterBox.msRequesterTitle ; vertical_above
+%L msMain.msMainBox ; msMain.msMainBox.msMainModuleBox ; msMain.msMainBox ; vertical_above
+%L msMain.msMainBox.msMainRedumaBox ; msMain.msMainBox.msMainRedumaBox.msMainRedumaLabel ; msMain.msMainBox.msMainRedumaBox ; vertical_above

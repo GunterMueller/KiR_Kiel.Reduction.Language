@@ -1,0 +1,56 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	95.03.06.14.33.11;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.03.06.14.04.39;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.25.50;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@src
+lib
+@
+
+
+1.2
+log
+@directory inc added
+@
+text
+@d2 1
+a2 1
+inc
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d2 1
+@

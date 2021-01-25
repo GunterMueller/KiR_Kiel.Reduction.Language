@@ -1,0 +1,365 @@
+head	1.14;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.14
+date	95.06.28.12.17.33;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.06.13.14.15.45;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.05.11.14.31.12;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.03.29.14.54.06;	author cr;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.03.29.13.26.46;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.03.15.09.34.20;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.03.15.08.28.31;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	95.03.06.15.21.44;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	95.02.02.14.19.24;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	95.01.25.10.11.57;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	95.01.06.16.47.31;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.29.14.42.26;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.05.08.04.34;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.02.09.54.57;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@this is the main() in the resulting C-file
+@
+
+
+1.14
+log
+@one more indirection in the descriptor table funcdesctable
+which is now called stat_funcdesctable
+funcdesctable is now an array of pointers to descriptors
+@
+text
+@int main(int argc, char * argv[])
+{
+  extern void trap_handler();
+  char c;
+  int ta_heapsize = 2048*2048, ta_no_of_desc = 10000, ta_stacksize = 10240;
+  extern int red_cnt;
+  extern char * optarg;
+  extern int optind, opterr;
+  extern int getopt(int, char **, char *), controlled_exit(const char *);
+  extern char ri_tasmoutfile[120];
+
+  while((c = getopt(argc, argv, "k:h:d:R:I:s:")) != -1)
+    switch(c)
+    {
+      case 'k': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+      case 'h': ta_heapsize = atoi(optarg); break;
+      case 's': ta_stacksize = atoi(optarg); break;
+      case 'd': ta_no_of_desc = atoi(optarg); break;
+      case 'R': red_cnt = atoi(optarg); break;
+/* cr 28/03/95, kir(ff), START */
+      case 'I': inter_allowed = atoi(optarg); break;
+/* cr 28/03/95, kir(ff), END */
+    }
+  signal (SIGFPE, trap_handler);
+  _base = 10000;
+  InitHeapManagement(ta_heapsize, ta_no_of_desc);
+  if (NULL ==(_st_w = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_a = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_t = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  if (NULL ==(_st_r = malloc(sizeof(int) * ta_stacksize)))
+  {
+    if (KiROutput)
+      controlled_exit("unable to allocate stack memory");
+    else
+    {
+      fprintf(stderr, "unable to allocate stack memory\n");
+      exit(1);
+    }
+  }  
+  st_w = _st_w;
+  st_a = _st_a;
+  st_t = _st_t;
+  st_r = _st_r;
+  build_dyn_funcdesctable(stat_funcdesctable, number_of_descs);
+  build_static_clos(number_of_descs);
+  initdata();
+  push_label(0);
+  apply(goal);
+  t_output(pop(w));
+  fprintf(stdout,"\n");
+  exit(0);
+  return (1);
+}
+
+@
+
+
+1.13
+log
+@post_mortem -> controlled_exit
+@
+text
+@d71 1
+@
+
+
+1.12
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+  extern int getopt(int, char **, char *), post_mortem(const char *);
+d30 1
+a30 1
+      post_mortem("unable to allocate stack memory");
+d40 1
+a40 1
+      post_mortem("unable to allocate stack memory");
+d50 1
+a50 1
+      post_mortem("unable to allocate stack memory");
+d60 1
+a60 1
+      post_mortem("unable to allocate stack memory");
+@
+
+
+1.11
+log
+@new switch -I to enable/disable interactions
+moved call to t_output from ext() to end of main()
+@
+text
+@d5 1
+a5 1
+  int ta_heapsize = 1024*2048, ta_no_of_desc = 1000, ta_stacksize = 10240;
+d28 9
+a36 1
+    post_mortem("unable to allocate stack memory");
+d38 9
+a46 1
+    post_mortem("unable to allocate stack memory");
+d48 9
+a56 1
+    post_mortem("unable to allocate stack memory");
+d58 9
+a66 1
+    post_mortem("unable to allocate stack memory");
+@
+
+
+1.10
+log
+@trap handler for integer division by zero installed
+@
+text
+@d12 1
+a12 1
+  while((c = getopt(argc, argv, "k:h:d:R:s:")) != -1)
+d20 3
+d43 3
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d3 1
+d21 1
+@
+
+
+1.8
+log
+@options revision
+@
+text
+@d4 1
+a4 1
+  int ta_heapsize = 1024*2048, ta_no_of_desc = 1000, ta_stacksize = 1024;
+@
+
+
+1.7
+log
+@with parameters for output and heap
+@
+text
+@d4 1
+a4 1
+  int ta_heapsize = 8192*2048, ta_no_of_desc = 10000;
+d8 1
+a8 1
+  extern int getopt(int, char **, char *);
+d11 1
+a11 1
+  while((c = getopt(argc, argv, "a:A:h:d:R:")) != -1)
+d14 1
+a14 2
+      case 'a': AsciiOutput = 0; KiROutput = 1; strcpy(ri_tasmoutfile, optarg); break;
+      case 'A': AsciiOutput = 1; KiROutput = 0; strcpy(ri_tasmoutfile, optarg); break; 
+d16 1
+d22 8
+d32 2
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+int main(void)
+d3 17
+d21 1
+a21 1
+  InitHeapManagement(8192*2048,10000);
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d3 2
+a6 2
+  _base = 10000;
+  InitHeapManagement(16384*2048,40000);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+  InitHeapManagement(8192*1024,3200);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+  InitHeapManagement(256*1024,100);
+d8 1
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d3 8
+a10 8
+        st_w = _st_w;
+        st_a = _st_a;
+        _base = 10000;
+        InitHeapManagement(256*1024,100);
+        build_static_clos(number_of_descs);
+        push_label(0);
+        apply(goal);
+        return (1);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 1
+a7 1
+        build_static_clos_pta(number_of_descs);
+@

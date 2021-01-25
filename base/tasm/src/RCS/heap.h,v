@@ -1,0 +1,160 @@
+head	1.5;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.5
+date	95.06.14.15.03.57;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.20.07.06.12;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.19.15.18.26;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.19.14.48.14;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version
+@
+
+
+1.5
+log
+@prototype gcnewdesc fixed
+@
+text
+@#ifndef HEAP_H
+#define HEAP_H
+
+#include "stack.h"
+#include "mytypes.h"
+
+typedef int heapelem;
+
+extern heapelem * heapbase, * heapspare, * heap;
+extern int heapsize;
+
+typedef enum { TYreloc, TYshared, TYdetructive } headerid;
+
+typedef enum { CLunknown = '0', CLnoref, CLref, CLtest } typeclass;
+
+typedef struct desc * pdesc;
+
+typedef struct {
+  headerid   type;
+  int        refcnt;
+  ORDER    * prev;
+  typeclass  mode;
+  pdesc      newloc;
+  } ST_NODE;
+
+typedef struct {
+  headerid   type;
+  pdesc         dst;
+  char          dummy[8];
+  } ST_RELOC;
+
+
+typedef struct desc {
+  union {
+    ST_NODE	nd;
+    ST_RELOC    rel;
+    } u;
+  } desc;
+
+#define freeheap()      (free(heapbase), free(heapspare))
+#define newdesc()	((desc *)((_newdesc(), heap < heapbase ? heap = gcnewdesc(4, getstack(W), getstack(A), getstack(R), getstack(T)) : heap)))
+#define _newdesc()	((desc *)(heap = (heapelem *)((int)heap-sizeof(desc))))
+#define ndesc(t, n, m)   (newdesc(), lnode((desc *)heap, type) = (t), \
+                          lnode((desc *)heap, refcnt) = (n), \
+                          lnode((desc *)heap, prev) = 0, \
+                          lnode((desc *)heap, mode) = m, \
+                          lnode((desc *)heap, newloc) = NULL, \
+                          (desc *)heap)
+#define lnode(p,x)	((p)->u.nd.x)
+#define rnode(p,x)	lnode(p, x)
+#define lreloc(p,x)	((p)->u.rel.x)
+#define rreloc(p,x)	lreloc(p, x)
+
+#define HEAPSTAT	"%d bytes used.\n", (int)heapbase+heapsize-(int)heap
+
+extern heapelem * initheap(int);
+extern heapelem * swapheaps(int);
+extern heapelem * gcnewdesc(int, argstack(W), argstack(A), argstack(R), argstack(T));
+
+#endif /* HEAP_H */
+@
+
+
+1.4
+log
+@new headerid names
+@
+text
+@d4 1
+d9 1
+a9 1
+extern heapelem * heapbase, * heap;
+d40 1
+d58 1
+a58 1
+extern heapelem * gcnewdesc(int, ...);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d4 2
+d11 1
+a11 1
+typedef enum { TYreloc, TYnoupdate, TYupdate } headerid;
+d20 1
+a20 1
+  int        prev;
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d37 1
+a37 1
+#define newdesc()	((desc *)((_newdesc(), heap < heapbase ? heap = gcnewdesc(4, stackid(W), stackid(A), stackid(R), stackid(T)) : heap)))
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d37 1
+a37 1
+#define newdesc()	((desc *)((_newdesc(), heap < heapbase ? heap = gcnewdesc() : heap)))
+d54 1
+a54 1
+extern heapelem * gcnewdesc();
+@

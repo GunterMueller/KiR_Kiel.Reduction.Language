@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<TITLE>KiR-Homepage</TITLE>
+</head>
+
+<body lang="en" text="#000000" bgcolor="#FFFFFF">
+
+
+<h1>pi-RED / KiR</h1>
+
+<p>
+<b>pi-RED</b> is a complex software system for developing and evaluating programs in a functional language. It provides a sophisticated systax-directed editor and a
+complete run-time environment for functional languages featuring the reduction semantics of an applied lambda-calculus. Both programming and program execution
+are supported as fully interactive processes. Programs may be constructed either top-down or bottom-up by systematically inserting expressions into place-holder
+positions of other expressions or by replacing expressions with others. Program execution is realized as a sequence of meaning-preserving program transformations
+based on a fixed set of rewrite (or reduction) rules, of which the most important one is a full-fledged beta-reduction. Programs may either be run to completion `in
+one shot' or be reduced in a step-by-step mode, with intermediate programs being displayed to the user for inspection and modifications. Due to the availability of a
+full-fledged lambda-calculus, pi-RED fully supports higher-order functions: functions may be freely applied to other functions or to themselves, and new functions
+resulting from the evaluation of (partial) function applications may be made visible to the user in high-level notation.
+
+<p>
+pi-RED is available with a implementation of the functional language <b>KiR</b> (for Kiel Reduction Language) which is strict, statically scoped and
+dynamically typed.
+In addition to the features that are common to almost all functional
+languages, KiR includes APL-like structured data types for efficient
+numerical computations, and sophisticated pattern matching facilitaties
+which make it ideal tool for prototyping other languages and their run-time
+environments.
+</p>
+
+<p>
+<h2>Contents of this page:</h2>
+<ul>
+<li><a href="#distribution">Distribution</a>
+<li><a href="#docs">Theses / Papers</a>
+</ul>
+</p>
+
+
+<hr>
+
+
+<h2><a name="distribution">Distribution</a></h2>
+
+<p>
+Included in the distribution is the complete interactive programming environment (editor, preprocessor, reduction system simulator, postprocessor and online help),
+the KiR-Manual as well as installation instructions so you should be able to install it easily on Unix Workstations.
+(Tested and preconfigured for Sun, Apollo, HP, NeXT and Linux.)
+</p>
+
+<ul>
+<li> <a href="papers/reduma-guide-wk.ps.gz">User's Guide</a>
+     (documents the language KiR and the use of the reduction machines)
+<li> lneu-0.4.1
+     (interpreting version pi-RED^*)
+     <ul>
+     <li> <a href="download/lneu.tar.gz">source distribution</a>
+     <li> <a href="download/lneu-sparc-solaris.tar.gz">binary distribution (Sparc, Solaris 7)</a>
+     <li> <a href="download/lneu-x86-linux.tar.gz">binary distribution (x86, Linux)</a>
+     </ul>
+<li> red-0.7
+     (compiling version pi-RED^+)
+     <ul>
+     <li> <a href="download/red.tar.gz">source distribution</a>
+     <li> <a href="download/red-sparc-solaris.tar.gz">binary distribution (Sparc, Solaris 7)</a>
+     <li> <a href="download/red-x86-linux.tar.gz">binary distribution (x86, Linux)</a>
+     </ul>
+</ul>
+
+The archives are packed using tar and GNU gzip.
+</p>
+
+
+<hr>
+
+
+<h2><a name="docs">Theses / Papers</a></h2>
+
+<p>
+<strong>Copyright Notice:</strong>
+The documents below are provided as a means of timely dissemination of
+information and are intended for personal use only. All other uses of
+the materials, such as reposting or reprinting, require the explicit
+permission of the copyright holder.  Copyrights are maintained by the
+authors or the publishers (e.g., Springer or ACM).
+</p>
+
+
+<P>
+<ul>
+
+<LI> W. Kluge:<br>
+     <em>
+     <strong>A User's Guide for the Reduction System pi-RED</strong>
+     </em>
+     <a href="papers/reduma-guide-wk.ps.gz">[ps-file]</a><br>
+     University of Kiel, Institute for Computer Science and Applied Mathematics,
+     Internal Report 9419, 1994.
+     <p>
+
+<LI> C. Schmittgen:<br>
+     <em>
+     <strong>Spezifikation der Architektur und Realisierung eines Reduktionssystems
+             mit konsequenter Unterst&uuml;tzung strukturierter Datenobjekte und
+             n-stelliger definierter Funktionen</strong>
+     </em>
+     <br>
+     PhD thesis, TU Berlin, 1986.
+     <p>
+
+<LI> D. G&auml;rtner:<br>
+     <em>
+     <strong>pi-RED^*: Ein interaktives codeausf&uuml;hrendes Reduktionssystem
+                       zur vollst&auml;ndigen Realisierung eines angewandten
+                       Lambda-Kalk&uuml;ls</strong>
+     </em>
+     <br>
+     PhD thesis, CAU Kiel, 1991.
+     <p>
+
+<LI> H. Bl&ouml;dorn:<br>
+     <em>
+     <strong>Organisatorische Ma&szlig;nahmen zur effizienten Unterst&uuml;tzung
+             h&ouml;herer Sprachkonstrukte in einem interaktiven Reduktionssystem</strong>
+     </em>
+     <br>
+     PhD thesis, CAU Kiel, 1992.
+     <p>
+
+<LI> C. Schmittgen, H. Bl&ouml;dorn, W. Kluge:<br>
+     <em>
+     <strong>pi-RED^*: A Graph Reducer for Full-fledged Lambda-Calculus</strong>
+     </em>
+     <br>
+     In: NGC, 10 (2), 1992.
+     <p>
+
+<LI> D. G&auml;rtner, A. Kimms, W. Kluge:<br>
+     <em>
+     <strong>pi-RED^+: A Compiling Graph Reduction System for a Full Fledged
+                       Lambda-Calculus</strong>
+     </em>
+     <a href="http://www.informatik.uni-kiel.de/~wk/pired.ps">[ps-file]</a><br>
+     In: Proceedings of the 4th International Workshop on
+         Parallel Implementation of Functional Languages, RWTH Aachen, 1992.
+     <p>
+
+<LI> D. G&auml;rtner, W. Kluge:<br>
+     <em>
+     <strong>pi-RED^+: An Interactive Compiling Graph Reduction System for an
+                       Applied Lambda-Calculus</strong>
+     </em>
+     <br>
+     In: Journal of Functional Programming, 6 (5), 1996.
+     <p>
+
+<LI> W. Kluge, C. Rathsack and S.-B. Scholz:<br>
+     <em>
+     <strong>Using pi-RED as a Teaching Tool for Functional Programming
+             and Program Execution</strong>
+     </em>
+     <a href="http://www.informatik.uni-kiel.de/~sbs/mypapers/teaching-tool-fple95.ps.gz">[ps-file]</a><br>
+     In: Functional Programming Languages in Education, LNCS 1022, Springer, 1996.
+     <p>
+
+<LI> W. Kluge:<br>
+     <em>
+     <strong>A Lazy Variant of the Reduction System pi-RED</strong>
+     </em>
+     <br>
+     In: Proceedings of the 8th International Workshop on
+         Implementation of Functional Languages, CAU Kiel, 1996.
+     <p>
+
+<LI> C. Rathsack:<br>
+     <em>
+     <strong>Zur &Uuml;bersetzung von Termen eines angewandten Lambda-Kalk&uuml;uls
+             unter besonderer Ber&uuml;cksichtigung der R&uuml;ck&uuml;bersetzbarkeit
+             ausgezeichneter Zwischenzust&auml;nde der Codeausf&uuml;hrung</strong>
+     </em>
+     <br>
+     PhD thesis, CAU Kiel, 1996.
+     <p>
+
+<LI> C. Reinke:<br>
+     <em>
+     <strong>Functions, Frames, and Interactions:
+             Completing a Lambda-Calculus-Based Purely Functional Language
+             With Respect to Programming-in-the-Large and
+             Interactions With Runtime Environments</strong>
+     </em>
+     <a href="ftp://ftp.informatik.uni-kiel.de/pub/kiel/publications/TechnicalReports/Ps_Z/1998_tr04.ps.Z">[ps-file]</a><br>
+     PhD thesis, CAU Kiel, 1997.
+     <p>
+
+<LI> R. Schr&ouml;der:<br>
+     <em>
+     <strong>Experiments on Speculative Evaluation in a Functional
+             Programming Language</strong>
+     </em>
+     <br>
+     PhD thesis, CAU Kiel, 2000.
+     <p>
+
+</ul>
+</P>
+
+
+<HR>
+
+
+<ADDRESS>
+<a href=http://www.informatik.uni-kiel.de/~sbs>
+KiR group</a>, CAU, Department of Computer Science,
+Olshausenstrasse 40, 24098 Kiel, Germany;
+<a href="mailto:base@informatik.uni-kiel.de">base@informatik.uni-kiel.de</a>;
+Tel.: +49 431 880-4482;
+FAX: +49 431 880-4054;
+</ADDRESS>
+</BODY>
+</HTML>

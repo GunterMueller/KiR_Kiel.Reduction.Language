@@ -1,0 +1,93 @@
+DEFS:
+	static double size, timeFactor, previousTime;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+		    rememberFactor[100], rememberDimension[100], temp[1000];
+
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+
+	static int numProcessors;
+	static int nextBar[MAX_PROCESSORS][MAX_PROCESSES], i, j;
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	SET_MODE(BAR_CHART);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "DISTs + DISTBs -- %s -- %s reduction steps",
+		rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	timeFactor = atof(rememberFactor);
+
+	HEADER_DIMENSION(rememberDimension);
+	numProcessors = (1 << atoi(rememberDimension));
+
+	SET_NAME("DISTs+DISTBs");
+	SET_X_LABEL("DISTs                                                                                                                               DISTBs");
+	SET_Y_LABEL("# of occurencies");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+
+	CREATE_BAR("DISTs", 1, NULL);
+	CREATE_BAR("DISTBs", 2, NULL);
+
+	NEXT_FRAME();
+
+	for(i=0; i<numProcessors; ++i) {
+		for(j=0; j<numProcessors; ++j) {
+			pids[i][j] = -1;			
+		}
+		numProcesses[i] = 0;
+	}
+
+
+	break;
+
+COUNT_DIST:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PROCESS) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+	}
+
+	nextBar[PROCESSOR][pid(PROCESSOR, PROCESS)] = 1;
+
+	break;
+
+COUNT_DISTB:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PROCESS) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+	}
+
+	nextBar[PROCESSOR][pid(PROCESSOR, PROCESS)] = 2;
+
+	break;
+
+PROC_DIST:
+	INCREMENT(nextBar[PROCESSOR, pid(PROCESSOR, PROCESS)],
+	          (double)PD_SIZE);
+
+	break;
+
+END:
+	NEXT_FRAME();
+
+	break;

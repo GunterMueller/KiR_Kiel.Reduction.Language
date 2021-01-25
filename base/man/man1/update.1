@@ -1,0 +1,86 @@
+.\" Copyright (c) 1992 by the University of Kiel.
+.\" All rights reserved.
+.\"
+.\"	@(#)update.1	1.0 (University of Kiel) 1/11/92
+.\"
+.TH UPDATE 1 "November 1, 1992"
+.UC
+.SH NAME
+update \- update or create a directory(-tree)
+.SH SYNOPSIS
+.B update
+[
+.BR \- s
+.I source
+] [
+.BR \- r
+.I revision-name
+] [
+.BR \- d
+.I revision-date
+] [
+.I dir \|.\|.\|.
+]
+.SH DESCRIPTION
+.B update
+is used to actualize the named directories. All files included in
+the file
+.B RCS-files
+are checked out if the creation time of the respective RCS file
+is newer than the plain file. Upon invoking
+.B update
+in a directory which contains a file
+.BR RCS-directory,
+this operation is repeated within all directories specified in
+.BR RCS-directories .
+Not existing directories are created, and links to the expected
+respective source directories are installed.
+.LP
+A specific revision is obtained by using
+.B \-r
+.I revision-name
+or
+.B \-d
+.IR revision-date .
+The requested revision will be checked out without checking the creation times.
+All locked files will be processed and eventually checked in before
+they are overwritten.
+.LP
+The option
+.B \-s
+.I source
+is used to generate a new project. The named source directory must contain
+a file
+.BR RCS-directories .
+The included directories are
+created and softlinks to the respective RCS directories are installed.
+.LP
+If the options
+.B -r|-d|-s
+are used on an non empty directory, first all files as
+specified in
+.B RCS-files
+respectively
+.B RCS-directories
+are unlocked and removed if neccessary.
+.LP
+A (re)load of the actual version can be forced by using on eof the
+artificial revision names
+.BR "new|actual" .
+.SH FILES
+.TP 1i
+.B RCS-files
+contains the names of all files within a directory that is controlled
+by RCS
+.TP
+.B RCS-directories
+contains the names of all directories belonging to an RCS-project
+.SH ENVIRONMENT
+.TP 1i
+.B RCSROOT
+default directory if no command-line directories are given
+.SH SEE\ ALSO
+.BR co (1),
+.BR mkfl (1),
+.BR setrev (1),
+.BR rcs-project (5)

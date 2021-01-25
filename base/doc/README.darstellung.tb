@@ -1,0 +1,420 @@
+============================================================================
+Ein System zur graphischen Auswertung von Messdaten              TB 23.08.94
+============================================================================
+
+Dies ist ein Programmpaket zur Darstellung/Auswertung von Messdateien.
+
+Es besteht zur Zeit aus dem Hauptprogramm ("ms"), den Modulen ("msBarChart",
+"msProcArray", "msHeapArray" und "msProcTree") und einem kleinen Tool namens
+"bin2ascii".
+
+
+							***********************
+							*                     *
+							*  Inhalt des README  *
+							*                     *
+							***********************
+
+In diesem README befinden ich Infos zu folgenden Themen:
+
+	* Hauptprogramm (ms)
+	* Module
+	* Skripte
+	* Verfuegbare Skripte
+	* bin2ascii
+	* Neue Messpunkte
+	* Auswertung alter Messdateien
+
+
+							***********************
+							*                     *
+							*  Hauptprogramm (ms) *
+							*                     *
+							***********************
+
+Aufruf:
+-------
+
+	"ms [options]" oder "start [options]"
+
+Optionen:
+---------
+
+	"-#"	fuer das Einschalten des Debugging (es folgt der String zur
+		Initialisierung des Debuggings). Fuer's Debugging muss das
+		Paket entsprechend uebersetzt worden sein (kein "DBUG_OFF" im
+		"Makefile").
+        "-m"	Liest den Inhalt der Datei "MODULES" neu ein und erzeugt ein
+		Med-File fuer das Module-Menu. Nach Erstellung eines neuen
+		Moduls ist dieses in "MODULES" einzutragen und "ms" mit dieser
+		Option zu starten.
+	"-g"	Analog "-m" allerdings fuer "GROUPS". In "GROUPS" sind die 
+
+		Namen aller moeglichen Messpunkte und ihre Gruppierung
+		vermerkt. Neue Messpunkte sind hier einzutragen.
+	"-h"	Hilfe. Liefert eine kurze Beschreibung aller Optionen.
+
+Environment-Variablen:
+----------------------
+
+In der Variablen "MS_DISPLAY" kann das zu verwendene Display (z.B. "amun:0")
+angegeben werden.
+
+Ist die Variable "MS_BLACKWHITE" (auf irgendeinen Wert) gesetzt, wird eine
+schwarzweiss-gerechtere Farbgebung verwendet.
+
+Benoetigte Libraries:
+---------------------
+
+Athena Widget Set (Xaw), Widget Creation Library (Wc),
+Athena Plotter Tool (At), (Xukc).
+
+
+Bedienung:
+----------
+
+Im Hauptprogramm koennen globale Einstellungen fuer die Module vorgenommen und
+die Module selbst gestartet werden. Die Einstellungen sind...
+
+	* Name der Messdatei
+	* Selektion der gewuenschten Messpunkte aus dieser Datei (Filter)
+
+Ausserdem kann ein "INIT"-File fuer die Reduma erzeugt werden.
+
+Bei Aufruf eines Moduls erhaelt dieses initial den Namen der Messdatei und die
+Filter-Informationen des Hauptprogramms.
+
+
+							***********************
+							*                     *
+							*        Module       *
+							*                     *
+							***********************
+
+Die Module liefern verschiedene Darstellungen...
+
+	"msBarChart"	X-Y-Plots und Balkendiagramme
+	"msProcArray"	Prozessslots und die Ausbreitung der Programmes
+			ueber sie
+	"msHeapArray"	Speicherbelegung im Heap und im Deskriptorbereich
+	"msProcTree"	Auffaltung des Programmes als Baum (entweder Prozess-
+			oder LETPAR-bezogen; nicht jedes LETPAR muss einen
+			neuen Prozess gruenden)
+
+Allen Modulen gemein ist die Moeglichkeit erneut eine (andere) Messdatei
+auszuwaehlen und den Filter neu einzustellen. Ausserdem kann (muss) in jedem
+Modul das Skript fuer die gewuenschte Darstellungsart ausgewaehlt werden (Zu
+den Skripts folgt eine naehere Erlaeuterung). Zusaetzlich zu diesen Bedien-
+elementen finden sich am rechten Rand des Fensters noch weitere, modul-
+spezifische Elemente.
+
+Am unteren Rand des Fensters befinden sich die Bedienelemente zur Steuerung
+der Darstellung. Hier kann man die Darstellung vorwaerts und rueckwaerts, im
+Einzelschritt und "blind" (Geschwindigkeitsgewinn) ablaufen lassen. Ausserdem
+laesst sich die Verzoegerung zwischen zwei Bildern (Frames) einstellen und man
+kann Frames gezielt anspringen (ueber Frame-Nummer oder Zeitmarke).
+
+
+							***********************
+							*                     *
+							*       Skripte       *
+							*                     *
+							***********************
+
+Skripte sind C-Programmfragmente folgender Form:
+
+
+DEFS:
+	/* Variablen- und Funktions-Definitionen wie in C */
+
+BEGIN:
+	/* Initial auszufuehrender Code */
+
+ID_1:
+	/* Beim Auffinden von Messpunkt "ID_1" auszufuehrender Code */
+. 
+
+. 
+
+. 
+
+ID_n:
+	/* Beim Auffinden von Messpunkt "ID_n" auszufuehrender Code */
+
+END:
+	/* Terminal (am Ende der Messdatei) auszufuehrender Code */
+
+
+Am Anfang aller Zeilen ausser "DEFS", "BEGIN", "END" und den "ID"s muss (!!!)
+ein "TAB" stehen. Auf die Daten der Messdatei kann ueber die (globalen)
+Variablen "TIME", "PROCESSOR", "PROCESS", "ID" sowie die in der Datei "GROUPS"
+definierten Parameternamen zugegriffen werden,
+
+
+Dieses Skript wird in ein C-Programm folgender Form transformiert 
+
+(anschliessend wird es uebersetzt und dynamisch an das Modul gelinkt):
+
+
+void eval()
+{
+	...
+
+	/* Variablen- und Funktions-Definitionen wie in C */
+
+	switch(ID) {
+	case BEGIN:
+		/* Initial auszufuehrender Code */
+
+	case MINDEX_ID_1:
+		/* Beim Auffinden von Messpunkt "ID_1" auszufuehrender Code */
+	.
+	.
+	.
+	case MINDEX_ID_1:
+		/* Beim Auffinden von Messpunkt "ID_1" auszufuehrender Code */
+
+	case END:
+		/* Terminal (am Ende der Messdatei) auszufuehrender Code */
+	}
+
+	return;
+}
+
+
+							***********************
+							*                     *
+							* Verfuegbare Skripte *
+							*                     *
+							***********************
+
+Es ist bereits eine Vielzahl von Skripten fuer die einzelnen Module
+vorhanden...
+
+msBarChart:
+-----------
+
+Heap+Desc/*.scr:
+
+Skripte zur akkumulierten Darstellung des Speicherbedarfs fuer den Heap und den
+Deskriptorbereich ueber der Zeit. "Statisch" bedeutet, dass nur Speicher-
+aktionen waehrend der initialen Uebertragung von (waehrend der Berechnung
+statischen) Programmdaten an die einzelnen Prozessoren beruecksichtigt werden,
+waehrend bei "Dynamisch" nur alle anderen Aktionen dargestellt werden. "Gesamt"
+zeigt alle Aktionen. Skripte mit dem Zusatz "1000" stellen (aus Gruenden
+der Speicherkanppheit bei der Darstellung) nur jeden 1000. Frame am Bildschirm  
+dar.
+
+Load+Comm+Idle/*_Lines_*.scr:
+
+Skripte zur Darstellung der Zeitanteile, die fuer die Berechnung und die 
+
+Kommunikation erforderlich waren, in einem X-Y-Graph. Skripte mit dem Zusatz
+"Dynamisch" beruecksichtigen nur die eigentliche Berechnung, also nicht die
+Zeit, die bei der Uebertragung der initialen Daten vergeht, "Total" berueck-
+sichtigt auch diese Zeit. Skripte mit "Final" stellen nur einen - den letzten -
+Frame dar. Ein typisches Bild ist als Ueberlagerung der Graphen von
+"Load+Comm+Idle_Lines.scr", "Load+Comm_Lines_Dynamisch.scr",
+"Load_Lines_Dynamisch.scr" und "Load+Comm+Idle_Separation.scr" zu erhalten.
+
+Load+Comm+Idle/*_Bars_*.scr:
+
+Analog "*_Lines_*.scr", jedoch Darstellung als Balkendiagramm.
+
+Other/Life*.scr:
+
+"Life.scr" stellt die Laufzeiten von Prozessen dar (je Prozess ein Punkt an den
+Koordinaten (Laufzeit, 1.0). Da eine Auswertung der Dichte (Haeufung) der
+Punkte sehr schwierig ist, stehen noch zwei weitere Skripte ("Life_Fein.scr"
+und "Life_Grob.scr") zur Verfuegung. In diesen erfolgt nach einer Partionierung 
+
+der X-Achse eine Darstellung der Anzahl der in jedem dieser Intervalle
+liegenden Punkte ueber den Intervallen. In "Life_Fein.scr" existieren sehr
+viele (1800) Intervalle, in "Life_Grob.scr" weniger viele (180).
+
+Other/Maxmimale_Stackgroessen.scr:
+
+"Maxmimale_Stackgroessen.scr" dient zur Ermittelung der fuer eine Reduktion
+benoetigten Stackgroessen. Die maximal erreichte Groesse der einzelnen Stacks
+(S1(A), S2(I), R, H, hilf) wird in einem Balkendiagramm dargestellt.
+
+Other/Messages.scr:
+
+Dieses Skript stellt die Groesse der zwischen den Prozessoren ausgetauschten
+Nachrichten ueber der Zeit, die fuer ihren Transport erforderlich war, durch
+Punkte in einem X-Y-Graphen dar.
+
+Other/Processes*.scr:
+
+Mit diesen Skripten ist eine (grobe) Bewertung der Auslastung der verfuegbaren
+Prozessoren moeglich. "Processes.scr" stellt die Anzahl der rechnenden
+Prozessoren ueber der Zeit als "Treppenkurve" in einem X-Y-Graphen dar.
+"Processes_Factor" leistet eine aehnliche Darstellung. Hierbei wird die
+Kurve bei Aktivierung/Terminierung eines Prozesses allerdings nicht um den
+Wert 1 in-/dekrementiert, sondern um die Nummer des jeweiligen Prozessors.
+Dieses Skript ermoeglicht (durch Ueberlagerung der einzelnen Kurven aller
+beteiligten Prozessoren) eine genauere Untersuchung der Verteilung.
+
+
+msProcArray:
+------------
+
+Ampel.scr:
+
+Dieses Skript stellt die verfuegbaren Prozessslots als Feld dar. Die zu den
+einzelnen Prozessoren gehoerenden Slots bilden eine Zeile dieses Feldes.
+Die Slots sind entsprechend dem Zustand des jeweiligen Prozesses gefaerbt
+(rechenfaehig = gelb, aktiv = gruen, suspendiert = rot, terminiert = weiss).
+Prozessgruendungen werden durch Kanten vom gruendenden zum neuen Prozess
+dargestellt.
+
+Maxmimale_Stackgroessen.scr:
+
+Wie "Ampel.scr". Hier wird am rechten Rand des Bildes zusaetzlich die
+Auslastung der einzelnen Prozessoren (Berechnung = gruen, Kommunikation = 
+
+schwarz, Warten = weiss) angezeigt.
+
+Ampel_mit_Load-O-Meter_Dynamisch.scr:
+
+Wie "Maxmimale_Stackgroessen.scr". Allerdings geht die Kommunikation, die zur
+Uebertragung der initialen Daten an die einzelnen Prozessoren erforderlich ist,
+nicht in die Anzeige der Auslastung ein.
+
+Spinne.scr:
+
+Dieses Skript stellt lediglich die Auffaltung der Berechnung ueber die Prozess-
+slots dar. Die Kanten der Prozessgruendungen werden erst bei Terminierung des
+Prozesses wieder geloescht.
+
+
+msHeapArray:
+------------
+
+Fein.scr:
+
+Dieses Skript stellt die Belegung des Arbeitspeichers (Heap- und Deskriptor-
+bereich) aller Prozessoren als Feld uebereinander in einer Animation dar. Jedes
+Pixel der Darstellung stellt einen Bereich im Speicher dar. Die Farbe gibt den
+Zustand dieses Bereiches an (frei == gruen, belegt durch Heap == rot, belegt
+durch Desktiptor == gelb).
+
+Fein_0.scr:
+
+Analog "Fein.scr", allerdings ist hier nur der Speicher von Prozessor 0
+-- auf dem ganzen zur Verfuegung stehenden Platz -- dargestellt. Dieses Skript
+laesst sich leicht an andere Prozessoren anpassen. Auch eine Entfernung der
+Prozessor-Abfrage ist moeglich, dann kann der Benutzer die Auswahl des
+darzustellenden Prozessors ueber den Filter vornehmen.
+
+Grob.scr:
+
+Dieses Skript stellt wieder die Speicherbereiche aller Prozessoren dar. Diesmal
+allerdings nicht in Pixeln, sondern in Linien, die die volle Hoehe des jedem
+einzelnen Prozessor zugeteiltem Platzes ausnutzen. Hier erfolgt also lediglich 
+
+eine zweidimensionale Darstellung des Speichers.
+
+
+msProcTree:
+-----------
+
+LETPARs.scr:
+
+"LETPARs.scr" stellt einen Baum der Auffaltung der Berechnung dar. Die 
+
+Hierarchie der waehrend der Berechnung auftretenen letpar-Konstrukte wird in 
+
+diesem Baum deutlich. Aus den Farben der Kanten ist ersichtlich, ob der 
+
+jeweilige letpar-Unterausdruck verteilt werden konnte (blau) oder nicht
+(gelb, falls er gar nicht verteilt werden sollte, gruen, falls er nicht 
+
+verteilt werden konnte).
+
+LETPARs_PROCESSOR.scr:
+
+Analog "LETPARs.scr". Hier wird jeder Knoten des Baumes allerdings zusaetzlich
+mit der Nummer des jeweiligen Prozessors beschriftet.
+
+PROCs.scr:
+
+"PROCs.scr" leistet keine letpar-bezogene Darstellung (wie "LETPARs*.scr"),
+sondern eine Prozess-bezogene. In diesem Baum sind also nur die in den beiden
+anderen Skripten blau darstellten Kanten vertreten.
+
+
+							***********************
+							*                     *
+							*      bin2ascii      *
+							*                     *
+							***********************
+
+Zum Schluss soll noch ein kleines (aber nuetzliches) Tool zur Konvertierung
+von Messdateien erwaehnt werden. Es ist als Unix-Filter implementiert, liest
+also die Standardeingabe und schreibt auf die Standardausgabe.
+
+Aufruf:
+-------
+
+	"bin2ascii [options]"
+
+Optionen:
+---------
+
+	"-i"	"-ia" erwartet eine Messdatei im ASCII-Format als Eingabe,
+		"-ib" eine im Binaer-Format.
+	"-o"	"-oa" bzw. "-ob" schreibt die Messdatei im ASCII- bzw. im
+		Binaer-Format.
+	"-l"	Limit. Eine (im aktuellen Verzeichnis vorhandene) Datei "INIT"
+		wird gelesen. Alle Messpunkte der Messdatei, die nicht in
+		"INIT" aufgefuehrt sind, werden ignoriert. Diese Option leistet
+		also eine Selektion.
+	"-h"	Hilfe. Liefert eine kurze Beschreibung aller Optionen.
+
+	"-ib" und "-oa" sind defaults. Daher der Name "bin2ascii".
+
+Bedienung:
+----------
+
+Sicherlich klar:
+
+	"bin2ascii -ia -ob <name1 >name2"
+
+wandelt die ASCII-Datei "name1" in die Binaer-Datei "name2" um.
+
+
+							***********************
+							*                     *
+							*   Neue Messpunkte   *
+							*                     *
+							***********************
+
+Die Definition der Messpunkte erfolgt in der Datei 'GROUPS'. Anschliessend ist
+das AWK-Skript 'scanGROUPS.awk' aufzurufen, um neue C-Files fuer das System
+zu generieren. Zu guter letzt muss das System neu uebersetzt und "ms" einmal
+mit der Option '-g' gestartet werden).
+
+Nun koennen die neuen Messpunkte in einem Skript verwendet werden...
+
+
+							***********************
+							*                     *
+							*   Auswertung alter  *
+							*     Messdateien     *
+							*                     *
+							***********************
+
+Fuer die Auswertung alter Messdateien, also solcher Messdateien, die andere
+(i.A. weniger) als die aktuellen Messpunkte enthalten, so ist das System
+(oder geschickter eine Kopie des Systems) wieder an diese alten Messpunkte
+anzupassen.
+
+Hierzu ist die alte GROUPS-Datei wiederherzustellen (Kopie zusammen mit der
+Messdatei aufbewahren!!!) und das System dann analog zum vorherigen Abschnitt
+neu zu konfigurieren. Also: 'scanGROUPS.awk', 'make', 'ms -g'
+
+So, das war's.
+
+Viel Spass, Torsten.
+

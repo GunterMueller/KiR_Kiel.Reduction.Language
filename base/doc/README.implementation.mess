@@ -1,0 +1,164 @@
+README fuer die Messgeschichten am verteilten System
+----------------------------------------------------
+
+Letzte Aenderung : 14.06.1993 RS
+                   10.07.1993 RS kosmetische Aenderung, Abschalten der Messungen im
+                                 GUIDE TO MEASURE EXTENSIONS (s.u.)
+                   08.11.1993 RS kosmetische Aenderung
+
+Das Define beim Compilieren heisst D_MESS.
+
+Das Define beim Compilieren fuer verteilte Geschichten heisst D_DIST.
+
+Das Define fuer doppelte Compilierungen heisst D_MESS_ONLY. Ist es gesetzt, werden nur 
+bestimmte Messfunktionen von Standardmodulen uebersetzt.
+
+Alle diesbezueglichen Programmteile im Reduktionssystem sind entsprechend mittels 
+#if und #endif geklammert.
+
+
+Dateien:
+--------
+
+INCLUDE
++++++++
+
+d_mess_io.h       Initiale Include-Datei
+d_mess_groups.h   diverse Makros fuer Messaktionen, automatisch generiert
+d_mess_names.h    ASCII-Namen fuer Messpunkte, automatisch generiert
+
+PROGRAM
++++++++
+
+d_mess_init.c     Initialisierungen
+                  Routine zum Lesen der INIT-Datei und somit Voreinstellungen
+
+
+PREFERENCES
++++++++++++
+
+GROUPS	Definitionen von Gruppen und den Schluesselwoertern der Messpunkte
+
+INIT	Elemente aus  GROUPS 
+  	(keine Gruppennamen, wird vom Reduktionssystem gelesen)
+
+ASM-CODE-COMPILER
++++++++++++++++++
+
+Fuer das Einfuegen der COUNT-Befehle existiert fuer jeden (wichtigen) ASM-Befehl
+ein Makro D_M_C_NAME (fuer Dist_Mess_Count), welches unabhaengig von der verwendeten
+internen Repraesentation ist. Diese Makros loesen sich zu einem boolschen Wert auf, 
+nach dem entschieden wird, ob der jeweilige COUNT-Befehl eingefuegt wird.
+
+ASM-CODE-INTERPRETER
+++++++++++++++++++++
+
+Messaktionen nur in entsprechenden Mess-ASM-Befehlen.
+Keine Messungen in ASM-Mikrocode-Programmen (weil nicht gewuenscht ?!?!).
+
+HEAP-MANAGER
+++++++++++++
+
+- static-Funktion moredes : static fuer doppelte Kompilation herausgenommen
+- static-Funktion get_HBLOCK : static fuer doppelte Kompilation herausgenommen
+
+Neues Define fuer Heap-Manager-Messungen: D_MHEAP (muss im Makefile gesetzt werden)
+- Allozierung von Heapspeicher: newheap
+  Einfuehrung eines C-Funktionspointers d_m_newheap
+  Aufrufe in den auf dem nCUBE laufenden Modulen von newheap werden auf den 
+  Funktionspointer gesetzt
+- Freigabe von Heapspeicher entsprechend ueber ein Funktion und ueber hart reincodierte
+  Makros
+- analog dazu newdesc und freedesc
+- keine Typangabe bei allozierten Deskriptoren
+
+STACK-MANAGER
++++++++++++++
+
+Neues Define fuer Stack-Manager-Messungen: D_MSTACK (muss im Makefile gesetzt werden)
+
+- Push- und Popoperationen werden nach einer dynamischen Ueberpruefung gemessen, keine 
+  Bibliotheksfunktion sondern Variablen
+- Allozierung und Freigabe von Stacksegmenten werden ueber eine Umschaltung der 
+  jeweiligen Bibliotheksfunktionen gemessen.
+  
+
+SCHEDULER
++++++++++
+
+Neues Define fuer Scheduler-Messungen: D_MSCHED (muss im Makefile gesetzt werden)
+
+- Einrichung eines Prozesses: Funktion process_create
+
+- Terminierung eines Prozesses: Funktion process_terminate
+
+- Suspendierung eines Prozesses: Funktion process_sleep
+
+- Aktivierung eines Prozesses: Funktionen process_wakeup und process_run
+
+KOMMUNIKATIONS-MANAGER
+++++++++++++++++++++++
+
+Neues Define fuer Kommunikations-Messungen: D_MCOMMU (muss im Makefile gesetzt werden)
+
+- Umschalten der Bibliotheksfunktionen msg_send und msg_receive
+- zusaetzlich (unsauber aber von gewissen Assistenten gefordert) dynamische Abfrage in
+  den umgeschalteten Bibliotheksfunktionen auf BEGIN und END-Messungen
+
+MESSDATEI
++++++++++
+
+Format der Messdatei im ASCII-Format:
+-------------------------------------
+
+Ueber die Makros festgelegt. (siehe d_gen_defines)
+
+Format der Messdatei im binaeren Format:
+----------------------------------------
+(die Typen der einzelnen Eintraege muessen manuell geaendert werden)
+
+Zeitmarke        : double
+Prozessor-Nummer : char
+Prozess-Nummer   : int
+
+Mess-ID:  char
+
+Alle mit # beginnenden Eintraege in der GROUPS-Datei : int
+Alle mit $ beginnenden Eintraege in der GROUPS-Datei : normaler String (mit '\0')
+
+*** Feinere Abstufungen wuerden die Einfuehrung von mehr Typen in der GROUPS-Datei ***
+*** erfordern.                                                                     ***
+
+#########################################################################################
+
+GUIDE TO MEASURE EXTENSIONS
++++++++++++++++++++++++++++
+
+1. Neue Messpunkte
+
+1.1 Neue ASM-Befehle
+
+    - GROUPS: ggf. entsprechenden COUNT-Befehl einfuegen
+              ansonsten entsprechenden Eintrag
+    - rinter.h:  Define fuer ASM-Befehl einfuegen und
+                 (UH-Eintrag weitersetzen) 
+                 Tabelle erweitern (gegen Ende der Datei)
+    - rear.c:  (Hinein-) Compilation schreiben
+               Durchlauf durch den Code (gegen Ende der Datei) um den Befehl erweitern
+    - rinter.c: im Befehls-Switch den neuen Befehl einfuegen
+
+1.2 Neue Bibliotheksfunktionen
+
+    - GROUPS: entsprechenden Eintrag einfuegen
+    - d_mess_io.h: entsprechende (Funktions-) Variablen extern deklarieren
+    - d_mess_init.c: hier die Deklaration und Initialisierung der Variablen
+    - im Makefile neue Dummy-Compilationsregel einfuegen (ueberall: Linker usw.)
+    - ...c: in C-Bibliothek die Messfunktion einbauen
+      alles #ifdef D_MESS_ONLY klammern !
+      und die zusaetzlichen Mess-Sachen mit  #if (nCUBE && D_MESS && D_..) !!
+      (bei Makros und somit dynamischem Ueberpruefen s.u. !)
+    - ...c/h: Aufrufe der Funktion ersetzen durch den Funktionspointer
+      mit #if (nCUBE && D_MESS && D_..) klammern !
+    - rncmessage.c: beim Empfangen des Message-Typs MT_PARAM Check einbauen
+                    auch beim Abschalten einbauen !
+    - WENN AN-/AUSSCHALT-ASM-BEFEHL, 1.1 BEACHTEN !!!!   

@@ -1,0 +1,42 @@
+.\" Copyright (c) 1992 by the University of Kiel.
+.\" All rights reserved.
+.\"
+.\"	@(#)setrev.1	1.0 (University of Kiel) 1/11/92
+.\"
+.TH SETREV 1 "November 1, 1992"
+.UC
+.SH NAME
+setrev \- associate a symbolic name to all files of an RCS-project
+.SH SYNOPSIS
+.B setrev
+.I revision-name
+[
+.I dir ...
+]
+.SH DESCRIPTION
+.B setrev
+assigns a symbolic name to all files specified in the file
+.B RCS-files
+respectively to all files specified by
+.B RCS-files
+files contained in all directories included in the file
+.BR RCS-directories .
+
+.B "This may only be done by the owner of the RCS-project."
+.SH FILES
+.TP 1i
+.B RCS-files
+contains the names of all files within a directory that is controlled
+by RCS
+.TP
+.B RCS-directories
+contains the names of all directories belonging to an RCS-project
+.SH ENVIRONMENT
+.TP 1i
+.B RCSROOT
+default directory if no command-line directories are given
+.SH SEE\ ALSO
+.BR rcs (1),
+.BR mkfl (1),
+.BR update (1),
+.BR rcs-project (5)

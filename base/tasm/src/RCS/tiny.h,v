@@ -1,0 +1,810 @@
+head	1.29;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.29
+date	95.05.29.12.01.49;	author um;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.05.23.11.54.34;	author um;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.05.17.07.56.20;	author um;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.05.12.11.57.31;	author um;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.04.28.07.38.43;	author um;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.04.21.12.10.40;	author um;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.04.13.09.38.13;	author um;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.04.11.08.19.35;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.04.05.10.14.12;	author um;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.03.27.08.44.09;	author um;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.03.06.09.51.03;	author um;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.03.02.15.21.35;	author um;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.02.14.08.07.49;	author um;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.02.07.08.54.02;	author um;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.02.02.13.21.44;	author um;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.01.18.07.50.52;	author um;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.01.16.07.25.00;	author um;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.23.08.46.51;	author um;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.15.09.36.42;	author um;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.09.09.42.10;	author um;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.08.15.26.12;	author um;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.06.09.48.48;	author um;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.02.09.53.44;	author um;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.01.16.11.49;	author um;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.01.14.29.48;	author um;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.28.15.45.40;	author um;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.25.12.52.02;	author um;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.24.09.55.41;	author um;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.08.01;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.29
+log
+@infinit loop removed
+@
+text
+@#ifndef _TINY
+#define _TINY
+
+#ifndef _LOCTYPES
+#include "loctypes.h"
+#endif
+
+extern KNOWLEDGE know;
+
+#ifndef DBUG_OFF
+extern void stack_display();
+extern void stelm_display(STELM *stelm, long i);
+#endif
+
+extern const char *prim_type_names[];
+extern const char *s_prim_type_names[];
+extern const char *ext_type_names[];
+extern const char *s_ext_type_names[];
+extern const char *other_type_names[];
+extern const char *s_other_type_names[];
+
+/************************************************************************/
+/* calculates the internal value of the n given arguments on a STACK	*/
+/* returns float value representing the arguments.			*/
+/************************************************************************/
+float calc_args_val(STELM *a,int n);
+
+/************************************************************************/
+/* searches for ord on ret-STACK and sets ret(branch) to ord(branch)	*/
+/* and clears ord(branch).						*/
+/************************************************************************/
+void backupoldjcond();
+
+/************************************************************************/
+/* checks if function/closure stelm has to be dumped and builds up	*/
+/* enviroment if needed.						*/
+/************************************************************************/
+void dump_list_func(STELM *stelm);
+
+/************************************************************************/
+/* checks on ret-stack for previous match with same fail-lable		*/
+/* returns NULL if no previous match with same fail-label found else    */
+/* returns returnadress of previous match				*/
+/************************************************************************/
+extern STELM *gotofail();
+
+/************************************************************************/
+/* clears functionresultentries for all depending not cleared functions */
+/************************************************************************/
+extern void clear_cache(FUNTYPES *ft);
+
+/************************************************************************/
+/* pops entries of RETURNADR-STACK until stelm is reached - clears all	*/
+/* depending function-cache entries					*/
+/************************************************************************/
+extern void return_to_call(STELM *stelm);
+
+/************************************************************************/
+/* sets depend pointer in FUNLIST of des to function old_func		*/
+/************************************************************************/
+extern void set_depend(FUNDESC *des,STACK *w,STACK *t,STELM *old_func);
+
+/************************************************************************/
+/* displays n elements form array of TP_TYPES				*/
+/************************************************************************/
+extern void print_types(TP_TYPES * types, int n);
+
+/************************************************************************/
+/* searchs on ret STACK for ord						*/
+/* returns NULL if ord not found, ord if no legal jcond found until ord */
+/* or returns pointer to legal found jcond				*/
+/************************************************************************/
+extern ORDER *search_ret(ORDER *ord);
+
+/************************************************************************/
+/* searchs on ret STACK for functioncall with label "label"		*/
+/************************************************************************/
+extern STACK *findfcall(STELM *stelm);
+
+/************************************************************************/
+/* searchs on ret STACK for last function call				*/
+/* returns STELM of ret from last function call				*/
+/************************************************************************/
+extern STELM *getfunc_ret();
+
+/************************************************************************/
+/* restores enviroment of function ord and cleans ret			*/
+/************************************************************************/
+extern void restore_ret(ORDER *ord);
+
+/************************************************************************/
+/* returns const pointer of short-type-string of type			*/
+/************************************************************************/
+extern const char *short_type_names(TP_TYPES tp);
+
+/************************************************************************/
+/* returns const pointer of type-string	of type				*/
+/************************************************************************/
+extern const char *long_type_names(TP_TYPES type);
+
+/************************************************************************/
+/* searches for object address in FUNLIST and DATA			*/
+/* returns pointer to new build STELM					*/
+/************************************************************************/
+extern STELM *find_address(void *adr);
+
+/************************************************************************/
+/* checks for args hash                                                 */
+/* returns 0 for false and 1 for true                                   */
+/************************************************************************/
+extern long check_hash_args(ORDER *ord);
+
+/************************************************************************/
+/* inserts args as hash in orderlist					*/
+/************************************************************************/
+extern void insert_args(STACK *w,long n,STACK *t,long nf,ORDER *ord);
+
+/************************************************************************/
+/* inserts restype as hash in orderlist					*/
+/************************************************************************/
+extern void insert_restype(STELM *res,ORDER *o);
+
+/************************************************************************/
+/* searches for matching functionresult in FUNLIST			*/
+/* returns pointer to matching STELM located in FUNTYPE			*/
+/* sets global variable 'know' to stored KNOWLEDGE			*/
+/************************************************************************/
+extern STELM *get_result(char *s,STACK *a,long n,STACK *t,long nt);
+
+/************************************************************************/
+/* frees subtypes structure						*/
+/************************************************************************/
+extern void free_subtype(STELM *stelm);
+
+/************************************************************************/
+/* copies subtypes to new created subtype and				*/
+/* returns pointer to new subtype or NULL if empty			*/
+/************************************************************************/
+extern SUBTYPE *subtype_cpy(SUBTYPE *subtype);
+
+/************************************************************************/
+/* compares two subtypes of lists, removes all unmatched subtypes of 	*/ 
+/* subtype one								*/
+/************************************************************************/
+extern void subtypecmp(SUBTYPE *st1,SUBTYPE *st2);
+
+/************************************************************************/
+/* compares two arrays of STELM	type					*/
+/* returns 0 if both arrays are equal, else -1				*/
+/************************************************************************/
+extern int stelmcmp(STELM *stelm1,STELM *stelm2,int n);
+
+/************************************************************************/
+/* searches for function in functionlist with matching a&t frames	*/
+/* returns pointer to matching funtype or NULL for no match		*/
+/************************************************************************/
+extern FUNTYPES *searchftypes(FUNTYPES *ft,STELM *a,STELM *t,long n,long nt); 
+
+/************************************************************************/
+/* searches for matching name in FUNLIST				*/
+/* returns pointer to matching FUNLIST entry or NULL			*/
+/************************************************************************/
+extern FUNLIST *searchfunlist(char *name);
+
+/************************************************************************/
+/* inserts new/old functiontype in FUNLIST or modifies storage		*/
+/* return int != 0 if typeclash occures					*/
+/************************************************************************/
+extern int insert_functype(char *name,STACK *a,long n,STACK *t,long nt,
+			   STELM *res,KNOWLEDGE kn);
+
+/************************************************************************/
+/* searches FUNLIST for function named s				*/
+/* returns first ORDER of function or NULL				*/
+/************************************************************************/
+extern ORDER *find_func(FUNCTION *fun, char *s);
+
+/************************************************************************/
+/* searches for function named label in functiondescriptorlist 		*/
+/* returns pointer of FUNDESC or NULL					*/
+/************************************************************************/
+extern FUNDESC *find_desc(FUNDESC *des, char *label);
+
+/************************************************************************/
+/* searches for functionlabel s in given orderlist ord			*/
+/* returns pointer of first order after label s				*/
+/************************************************************************/
+extern ORDER *find_label(ORDER *ord, char *s);
+
+/************************************************************************/
+/* allocates and inititialises new stack element			*/
+/* returns pointer of new STELM						*/
+/************************************************************************/
+extern STELM *new_stelm(TP_TYPES tp, void *data);
+
+/************************************************************************/
+/* copies stackelements with all possible structures			*/
+/************************************************************************/
+extern void stelm_cpy(STELM *stelm1,STELM *stelm2,long n);
+
+/************************************************************************/
+/* frees stackelements with all possible substructures			*/
+/************************************************************************/
+extern void stelm_free(STELM *stelm);
+
+/************************************************************************/
+/* frees stack with all elements 					*/
+/************************************************************************/
+extern void st_free(STACK *st);
+
+/************************************************************************/
+/* builds a stack with a copy of the first n elements of st		*/
+/* returns new allocated an initialiesed STACK				*/
+/************************************************************************/
+extern STACK *st_make(STACK *st, long n);
+
+/************************************************************************/
+/* pops elemet top of stack st						*/
+/* returns pointer of STELM top of stack st				*/
+/************************************************************************/
+extern STELM *st_pop(STACK *st);
+
+/************************************************************************/
+/* reads stack element number i counted form top of stack st		*/
+/* returns pointer of STELM i counted form top of stack st		*/
+/************************************************************************/
+extern STELM *st_read(STACK *st, long i);
+
+/************************************************************************/
+/* pushes STELM vt on top of STACK st					*/
+/* returns pointer of STACK st (may be changed)				*/
+/************************************************************************/
+extern STACK *st_push(STACK *st, STELM *vt);
+
+/************************************************************************/
+/* converts hexadecimal number placed in a string into integer		*/
+/* returns converted int						*/
+/************************************************************************/
+extern int atox(const char *s);
+
+/************************************************************************/
+/* searches for '9876543210_' in given string search			*/
+/* returns pointer of first char befor '9876543210_'			*/
+/************************************************************************/
+extern char *searchforfuncname(char *search);
+
+/************************************************************************/
+/* searches for '_' in given string search				*/
+/* returns pointer of first char behind '_'				*/
+/************************************************************************/
+extern char *searchfor_(char *search);
+
+/************************************************************************/
+/* executes primitiv function primf					*/
+/************************************************************************/
+extern void exe_prim1(PRIMF primf);
+extern void exe_prim2(PRIMF primf);
+extern void exe_prim3(PRIMF primf);
+extern void exe_prim4(PRIMF primf);
+
+#endif@
+
+
+1.28
+log
+@bug with recursiv functions with changing parameters removed
+@
+text
+@d23 6
+@
+
+
+1.27
+log
+@jcond without bool bugfixed
+@
+text
+@d23 6
+@
+
+
+1.26
+log
+@tildeargs reimplemented in function cache
+@
+text
+@d23 6
+@
+
+
+1.25
+log
+@tildeargs removed from functioncache
+@
+text
+@d110 1
+a110 1
+extern STELM *get_result(char *s,STACK *a,long n);
+d139 1
+a139 1
+extern FUNTYPES *searchftypes(FUNTYPES *ft,STELM *a,long n); 
+d151 2
+a152 1
+extern int insert_functype(char *name,STACK *a,long n,STELM *res,KNOWLEDGE kn);
+@
+
+
+1.24
+log
+@duplicate function label corrected
+@
+text
+@d110 1
+a110 1
+extern STELM *get_result(char *s,STACK *a,long n,STACK *t,long nt);
+d139 1
+a139 1
+extern FUNTYPES *searchftypes(FUNTYPES *ft,STELM *a,STELM *t,long n,long nt); 
+d151 1
+a151 2
+extern int insert_functype(char *name,STACK *a,long n,STACK *t,long nt,STELM *res,
+			    KNOWLEDGE kn);
+@
+
+
+1.23
+log
+@STACKS & ORDER changed to global
+@
+text
+@d224 6
+@
+
+
+1.22
+log
+@primitive functions bugfixed
+@
+text
+@d11 1
+a11 1
+extern void stack_display(STACK *w, STACK *a, STACK *r,STACK *t);
+d27 1
+a27 1
+extern STELM *gotofail(ORDER *ord,STACK *ret);
+d38 1
+a38 1
+extern void return_to_call(STELM *stelm,STACK *ret);
+d55 1
+a55 1
+extern ORDER *search_ret(ORDER *ord,STACK *ret);
+d60 1
+a60 1
+extern STACK *findfcall(STELM *stelm, STACK *ret);
+d66 1
+a66 1
+extern STELM *getfunc_ret(STACK *ret);
+d71 1
+a71 1
+extern STELM *restore_ret(ORDER *ord,STACK *ret);
+d90 2
+a91 2
+/* checks for args hash							*/
+/* returns 0 for false and 1 for true					*/
+d232 4
+a235 4
+extern void exe_prim1(ORDER *ord,STACK *w,PRIMF primf);
+extern void exe_prim2(ORDER *ord,STACK *w,PRIMF primf);
+extern void exe_prim3(ORDER *ord,STACK *w,PRIMF primf);
+extern void exe_prim4(ORDER *ord,STACK *w,PRIMF primf);
+@
+
+
+1.21
+log
+@all primitive functions implemented
+@
+text
+@d27 1
+a27 1
+STELM *gotofail(ORDER *ord,STACK *ret);
+d32 1
+a32 1
+void clear_cache(FUNTYPES *ft);
+d111 17
+@
+
+
+1.20
+log
+@PM partly implemented
+@
+text
+@d215 4
+a218 1
+extern void exe_prim(ORDER *ord,STACK *w,PRIMF primf);
+@
+
+
+1.19
+log
+@problems with depending recursiv functions removed
+@
+text
+@d23 7
+@
+
+
+1.18
+log
+@function dependency tree build
+@
+text
+@d23 11
+d36 1
+a36 1
+void set_depend(FUNDESC *des,STACK *w,STACK *t,STELM *old_func);
+d125 1
+d127 1
+a127 1
+extern void insert_functype(char *name,STACK *a,long n,STACK *t,long nt,STELM *res,
+@
+
+
+1.17
+log
+@hashstring removed
+@
+text
+@d8 2
+d15 27
+a41 1
+extern STELM *restore_ret(ORDER *ord,STACK *ret);
+d43 5
+a47 1
+void print_types(TP_TYPES * types, int n);
+d49 9
+a57 2
+extern ORDER *search_ret(ORDER *ord,STACK *ret);
+extern STELM *find_address(void *adr);
+d59 4
+d64 11
+d76 4
+d81 4
+d86 6
+a91 1
+int stelmcmp(STELM *stelm1,STELM *stelm2,int n);
+d93 11
+d105 5
+d111 4
+d117 5
+a121 1
+extern STELM *gethash_restype(ORDER *ord);
+d123 5
+d129 5
+d135 5
+d141 4
+d146 4
+d151 4
+d156 5
+d162 5
+d168 5
+d174 5
+d180 5
+d186 5
+d192 4
+a197 6
+extern const char *prim_type_names[];
+extern const char *s_prim_type_names[];
+extern const char *ext_type_names[];
+extern const char *s_ext_type_names[];
+extern const char *other_type_names[];
+extern const char *s_other_type_names[];
+@
+
+
+1.16
+log
+@lists have changed, primitiv apply bugfixed
+@
+text
+@d15 1
+@
+
+
+1.15
+log
+@lists have been changed, hash -> hashargs ...
+@
+text
+@d27 2
+a28 1
+extern void insert_functype(char *name,STACK *a,long n,STACK *t,long nt,STELM *res);
+@
+
+
+1.14
+log
+@list and descriptor concept changed
+@
+text
+@a27 1
+extern char *check_restype(char *s);
+@
+
+
+1.13
+log
+@first try with lists
+@
+text
+@d23 1
+@
+
+
+1.12
+log
+@mkclos bug removed
+@
+text
+@d14 1
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+extern void stack_display(STACK *w, STACK *a, STACK *t,STACK *r);
+@
+
+
+1.10
+log
+@minor change
+@
+text
+@d9 1
+a9 1
+extern void stack_display(STACK *w, STACK *a, STACK *t);
+d13 3
+d17 4
+a20 2
+extern char *short_type_names(TP_TYPES tp);
+extern char *long_type_names(TP_TYPES type);
+d25 1
+a25 1
+extern void insert_functype(char *name,STACK *a,long n,STACK *t,long nt,STELM *res,char kn);
+d43 6
+a48 6
+extern char *prim_type_names[];
+char *s_prim_type_names[];
+char *ext_type_names[];
+char *s_ext_type_names[];
+char *other_type_names[];
+char *s_other_type_names[];
+@
+
+
+1.9
+log
+@first changes for type conflicts
+@
+text
+@d38 6
+@
+
+
+1.8
+log
+@types changed
+@
+text
+@d9 1
+@
+
+
+1.7
+log
+@plus_ii -> add_ii and working on real
+@
+text
+@d1 7
+d13 2
+d36 2
+@
+
+
+1.6
+log
+@minor bug removed
+@
+text
+@d1 1
+d3 2
+@
+
+
+1.5
+log
+@stack handling with closures debugged
+@
+text
+@d23 1
+@
+
+
+1.4
+log
+@st_free added
+@
+text
+@d1 1
+d14 2
+@
+
+
+1.3
+log
+@some functions moved from tis
+@
+text
+@d13 1
+@
+
+
+1.2
+log
+@minor bugs removed
+@
+text
+@d1 8
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d4 1
+a4 1
+extern STELM *new_stelm(TP_TYPES tp, FUNDESC *fun);
+@

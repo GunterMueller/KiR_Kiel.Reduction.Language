@@ -1,0 +1,2088 @@
+|   |   >ADD_NODE
+|   |   |   ADD_NODE: node=0 daddy=-1
+|   |   |   ADD_NODE: time=0.000000
+|   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=512 daddy=0
+|   |   |   |   |   ADD_NODE: time=72395.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=128 daddy=0
+|   |   |   |   |   ADD_NODE: time=78112.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=768 daddy=512
+|   |   |   |   |   ADD_NODE: time=79159.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1 daddy=512
+|   |   |   |   |   ADD_NODE: time=82950.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=640 daddy=512
+|   |   |   |   |   ADD_NODE: time=83576.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=384 daddy=128
+|   |   |   |   |   ADD_NODE: time=84482.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=641 daddy=128
+|   |   |   |   |   ADD_NODE: time=85050.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2560 daddy=512
+|   |   |   |   |   ADD_NODE: time=85288.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1536 daddy=512
+|   |   |   |   |   ADD_NODE: time=86935.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1024 daddy=0
+|   |   |   |   |   ADD_NODE: time=88915.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1792 daddy=768
+|   |   |   |   |   ADD_NODE: time=90841.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2176 daddy=128
+|   |   |   |   |   ADD_NODE: time=90933.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1793 daddy=1536
+|   |   |   |   |   ADD_NODE: time=92317.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=513 daddy=768
+|   |   |   |   |   ADD_NODE: time=92764.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2 daddy=128
+|   |   |   |   |   ADD_NODE: time=93079.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=514 daddy=2560
+|   |   |   |   |   ADD_NODE: time=94234.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1537 daddy=1024
+|   |   |   |   |   ADD_NODE: time=94335.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=129 daddy=384
+|   |   |   |   |   ADD_NODE: time=94429.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1152 daddy=128
+|   |   |   |   |   ADD_NODE: time=94503.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1025 daddy=1536
+|   |   |   |   |   ADD_NODE: time=95230.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=515 daddy=640
+|   |   |   |   |   ADD_NODE: time=95703.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=130 daddy=640
+|   |   |   |   |   ADD_NODE: time=95943.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1153 daddy=1024
+|   |   |   |   |   ADD_NODE: time=95977.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1920 daddy=1792
+|   |   |   |   |   ADD_NODE: time=96257.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=896 daddy=768
+|   |   |   |   |   ADD_NODE: time=96362.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=516 daddy=1536
+|   |   |   |   |   ADD_NODE: time=97174.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=131 daddy=2176
+|   |   |   |   |   ADD_NODE: time=97459.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3200 daddy=2176
+|   |   |   |   |   ADD_NODE: time=97589.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=897 daddy=384
+|   |   |   |   |   ADD_NODE: time=97836.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1408 daddy=384
+|   |   |   |   |   ADD_NODE: time=97978.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3584 daddy=2560
+|   |   |   |   |   ADD_NODE: time=98141.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3072 daddy=1024
+|   |   |   |   |   ADD_NODE: time=98507.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1280 daddy=1024
+|   |   |   |   |   ADD_NODE: time=98613.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1664 daddy=640
+|   |   |   |   |   ADD_NODE: time=98757.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=898 daddy=640
+|   |   |   |   |   ADD_NODE: time=99391.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=769 daddy=1792
+|   |   |   |   |   ADD_NODE: time=99432.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1409 daddy=1152
+|   |   |   |   |   ADD_NODE: time=99454.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3585 daddy=1536
+|   |   |   |   |   ADD_NODE: time=99612.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2816 daddy=768
+|   |   |   |   |   ADD_NODE: time=100013.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1281 daddy=1792
+|   |   |   |   |   ADD_NODE: time=100087.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1665 daddy=1536
+|   |   |   |   |   ADD_NODE: time=100270.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=899 daddy=1920
+|   |   |   |   |   ADD_NODE: time=100865.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2817 daddy=2560
+|   |   |   |   |   ADD_NODE: time=101488.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3456 daddy=3200
+|   |   |   |   |   ADD_NODE: time=101685.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3201 daddy=1152
+|   |   |   |   |   ADD_NODE: time=101726.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1666 daddy=1152
+|   |   |   |   |   ADD_NODE: time=101824.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2432 daddy=384
+|   |   |   |   |   ADD_NODE: time=101884.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1410 daddy=1920
+|   |   |   |   |   ADD_NODE: time=102552.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1921 daddy=1408
+|   |   |   |   |   ADD_NODE: time=102642.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3840 daddy=1792
+|   |   |   |   |   ADD_NODE: time=102792.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3202 daddy=3072
+|   |   |   |   |   ADD_NODE: time=103204.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3 daddy=1024
+|   |   |   |   |   ADD_NODE: time=103225.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1667 daddy=1920
+|   |   |   |   |   ADD_NODE: time=103299.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3712 daddy=3200
+|   |   |   |   |   ADD_NODE: time=103323.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2433 daddy=2176
+|   |   |   |   |   ADD_NODE: time=103360.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3586 daddy=3072
+|   |   |   |   |   ADD_NODE: time=103723.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2048 daddy=0
+|   |   |   |   |   ADD_NODE: time=103787.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1411 daddy=1280
+|   |   |   |   |   ADD_NODE: time=104030.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1922 daddy=896
+|   |   |   |   |   ADD_NODE: time=104159.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3841 daddy=3584
+|   |   |   |   |   ADD_NODE: time=104309.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1794 daddy=1280
+|   |   |   |   |   ADD_NODE: time=104373.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=132 daddy=1152
+|   |   |   |   |   ADD_NODE: time=104553.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3713 daddy=3584
+|   |   |   |   |   ADD_NODE: time=104798.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1026 daddy=1152
+|   |   |   |   |   ADD_NODE: time=105164.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2049 daddy=2560
+|   |   |   |   |   ADD_NODE: time=105337.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1412 daddy=3456
+|   |   |   |   |   ADD_NODE: time=105592.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=256 daddy=0
+|   |   |   |   |   ADD_NODE: time=105763.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3842 daddy=2816
+|   |   |   |   |   ADD_NODE: time=105824.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1027 daddy=3072
+|   |   |   |   |   ADD_NODE: time=106716.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2050 daddy=2176
+|   |   |   |   |   ADD_NODE: time=106806.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1923 daddy=1664
+|   |   |   |   |   ADD_NODE: time=106858.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=770 daddy=2816
+|   |   |   |   |   ADD_NODE: time=106882.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1795 daddy=1920
+|   |   |   |   |   ADD_NODE: time=107075.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=257 daddy=768
+|   |   |   |   |   ADD_NODE: time=107237.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1538 daddy=1792
+|   |   |   |   |   ADD_NODE: time=107308.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2434 daddy=3456
+|   |   |   |   |   ADD_NODE: time=107507.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2688 daddy=2560
+|   |   |   |   |   ADD_NODE: time=107559.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3714 daddy=1664
+|   |   |   |   |   ADD_NODE: time=107807.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3457 daddy=2432
+|   |   |   |   |   ADD_NODE: time=108108.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3968 daddy=1920
+|   |   |   |   |   ADD_NODE: time=108115.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3456
+|   |   |   |   |   ADD_NODE: time=108152.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1028 daddy=1280
+|   |   |   |   |   ADD_NODE: time=108186.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2051 daddy=3072
+|   |   |   |   |   ADD_NODE: time=108278.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=771 daddy=896
+|   |   |   |   |   ADD_NODE: time=108443.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=258 daddy=384
+|   |   |   |   |   ADD_NODE: time=108712.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3073 daddy=3200
+|   |   |   |   |   ADD_NODE: time=108723.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1539 daddy=3584
+|   |   |   |   |   ADD_NODE: time=108779.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2689 daddy=640
+|   |   |   |   |   ADD_NODE: time=109035.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3458 daddy=1408
+|   |   |   |   |   ADD_NODE: time=109588.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3969 daddy=3456
+|   |   |   |   |   ADD_NODE: time=109589.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=642 daddy=896
+|   |   |   |   |   ADD_NODE: time=109885.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3328 daddy=3072
+|   |   |   |   |   ADD_NODE: time=110184.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=259 daddy=1280
+|   |   |   |   |   ADD_NODE: time=110187.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3074 daddy=3584
+|   |   |   |   |   ADD_NODE: time=110194.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2690 daddy=2176
+|   |   |   |   |   ADD_NODE: time=110592.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1154 daddy=3200
+|   |   |   |   |   ADD_NODE: time=110701.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1668 daddy=3712
+|   |   |   |   |   ADD_NODE: time=110759.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3970 daddy=3712
+|   |   |   |   |   ADD_NODE: time=111063.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2177 daddy=3200
+|   |   |   |   |   ADD_NODE: time=111218.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=643 daddy=1664
+|   |   |   |   |   ADD_NODE: time=111360.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2818 daddy=3840
+|   |   |   |   |   ADD_NODE: time=111582.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2561 daddy=3584
+|   |   |   |   |   ADD_NODE: time=111712.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2944 daddy=2816
+|   |   |   |   |   ADD_NODE: time=111721.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3329 daddy=1280
+|   |   |   |   |   ADD_NODE: time=111779.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2691 daddy=3712
+|   |   |   |   |   ADD_NODE: time=112067.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1155 daddy=1664
+|   |   |   |   |   ADD_NODE: time=112176.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3971 daddy=3840
+|   |   |   |   |   ADD_NODE: time=112538.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2178 daddy=2048
+|   |   |   |   |   ADD_NODE: time=112692.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3204 daddy=3712
+|   |   |   |   |   ADD_NODE: time=112732.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2945 daddy=896
+|   |   |   |   |   ADD_NODE: time=113195.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3330 daddy=3840
+|   |   |   |   |   ADD_NODE: time=113252.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2562 daddy=2816
+|   |   |   |   |   ADD_NODE: time=113263.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1156 daddy=1408
+|   |   |   |   |   ADD_NODE: time=113650.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2179 daddy=2432
+|   |   |   |   |   ADD_NODE: time=114166.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3587 daddy=3840
+|   |   |   |   |   ADD_NODE: time=114383.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3331 daddy=3456
+|   |   |   |   |   ADD_NODE: time=114728.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2563 daddy=2048
+|   |   |   |   |   ADD_NODE: time=114734.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2946 daddy=2432
+|   |   |   |   |   ADD_NODE: time=114752.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=385 daddy=896
+|   |   |   |   |   ADD_NODE: time=115026.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3588 daddy=3712
+|   |   |   |   |   ADD_NODE: time=115858.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3075 daddy=2048
+|   |   |   |   |   ADD_NODE: time=116183.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2947 daddy=2688
+|   |   |   |   |   ADD_NODE: time=116310.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2304 daddy=2816
+|   |   |   |   |   ADD_NODE: time=116430.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=386 daddy=1408
+|   |   |   |   |   ADD_NODE: time=116499.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1924 daddy=3968
+|   |   |   |   |   ADD_NODE: time=116644.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1796 daddy=3840
+|   |   |   |   |   ADD_NODE: time=117234.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1540 daddy=1664
+|   |   |   |   |   ADD_NODE: time=117430.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2948 daddy=3968
+|   |   |   |   |   ADD_NODE: time=117785.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3073
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2305 daddy=2048
+|   |   |   |   |   ADD_NODE: time=117904.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=387 daddy=2432
+|   |   |   |   |   ADD_NODE: time=117974.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=772 daddy=256
+|   |   |   |   |   ADD_NODE: time=118036.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=769
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1282 daddy=1408
+|   |   |   |   |   ADD_NODE: time=118983.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2306 daddy=2432
+|   |   |   |   |   ADD_NODE: time=119378.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=388 daddy=256
+|   |   |   |   |   ADD_NODE: time=119449.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3715 daddy=2688
+|   |   |   |   |   ADD_NODE: time=119973.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=644 daddy=2688
+|   |   |   |   |   ADD_NODE: time=120017.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1283 daddy=256
+|   |   |   |   |   ADD_NODE: time=120457.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3972 daddy=2944
+|   |   |   |   |   ADD_NODE: time=120817.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2307 daddy=256
+|   |   |   |   |   ADD_NODE: time=120935.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2180 daddy=2688
+|   |   |   |   |   ADD_NODE: time=121375.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3716 daddy=3968
+|   |   |   |   |   ADD_NODE: time=121452.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2564 daddy=2688
+|   |   |   |   |   ADD_NODE: time=121594.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1284 daddy=3328
+|   |   |   |   |   ADD_NODE: time=121932.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3459 daddy=3328
+|   |   |   |   |   ADD_NODE: time=121983.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2308 daddy=3328
+|   |   |   |   |   ADD_NODE: time=122409.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=900 daddy=2944
+|   |   |   |   |   ADD_NODE: time=122781.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3843 daddy=3328
+|   |   |   |   |   ADD_NODE: time=123087.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3460 daddy=3968
+|   |   |   |   |   ADD_NODE: time=123461.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=4 daddy=2048
+|   |   |   |   |   ADD_NODE: time=123493.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2435 daddy=2944
+|   |   |   |   |   ADD_NODE: time=123725.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2692 daddy=2944
+|   |   |   |   |   ADD_NODE: time=123886.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3841
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3844 daddy=3968
+|   |   |   |   |   ADD_NODE: time=124561.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=5 daddy=256
+|   |   |   |   |   ADD_NODE: time=124964.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2561
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=769 daddy=1793
+|   |   |   |   |   ADD_NODE: time=125263.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2436 daddy=2304
+|   |   |   |   |   ADD_NODE: time=125281.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2562
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3074
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=770
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2177
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3713
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3076 daddy=3201
+|   |   |   |   |   ADD_NODE: time=128914.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2819 daddy=2944
+|   |   |   |   |   ADD_NODE: time=129034.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3073 daddy=3328
+|   |   |   |   |   ADD_NODE: time=130385.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3332 daddy=2304
+|   |   |   |   |   ADD_NODE: time=130464.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2304
+|   |   |   |   |   ADD_NODE: time=130512.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2177 daddy=3202
+|   |   |   |   |   ADD_NODE: time=131493.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3842
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3969
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=260 daddy=2305
+|   |   |   |   |   ADD_NODE: time=132224.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=771
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3713 daddy=3585
+|   |   |   |   |   ADD_NODE: time=133739.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3841 daddy=3585
+|   |   |   |   |   ADD_NODE: time=133802.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3970
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3842 daddy=2817
+|   |   |   |   |   ADD_NODE: time=135280.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3971
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1281
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3969 daddy=3457
+|   |   |   |   |   ADD_NODE: time=137351.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3970 daddy=3714
+|   |   |   |   |   ADD_NODE: time=138941.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3074 daddy=3585
+|   |   |   |   |   ADD_NODE: time=139062.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=770 daddy=897
+|   |   |   |   |   ADD_NODE: time=139992.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2052 daddy=2305
+|   |   |   |   |   ADD_NODE: time=140295.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3843
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3844
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=771 daddy=2818
+|   |   |   |   |   ADD_NODE: time=141471.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1281 daddy=1794
+|   |   |   |   |   ADD_NODE: time=141820.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3971 daddy=3841
+|   |   |   |   |   ADD_NODE: time=141889.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2819
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2561 daddy=3585
+|   |   |   |   |   ADD_NODE: time=142159.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3204
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2562 daddy=2818
+|   |   |   |   |   ADD_NODE: time=143630.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3843 daddy=3329
+|   |   |   |   |   ADD_NODE: time=144375.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3587
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2820
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3588
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3842
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1795
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3844 daddy=3972
+|   |   |   |   |   ADD_NODE: time=147327.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2819 daddy=2945
+|   |   |   |   |   ADD_NODE: time=148126.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3458
+|   |   |   |   |   ADD_NODE: time=148278.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3330
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1282
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3586
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1796
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3332
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3716
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2305
+|   |   |   |   |   ADD_NODE: time=149682.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3204 daddy=3715
+|   |   |   |   |   ADD_NODE: time=149757.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3459
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3331
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3330 daddy=2305
+|   |   |   |   |   ADD_NODE: time=151980.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2049
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3969
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3970
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3842 daddy=2817
+|   |   |   |   |   ADD_NODE: time=153251.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3843
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3204
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3586 daddy=3713
+|   |   |   |   |   ADD_NODE: time=154928.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3971
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3587 daddy=3075
+|   |   |   |   |   ADD_NODE: time=156403.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3330
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1795 daddy=1921
+|   |   |   |   |   ADD_NODE: time=157779.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3076
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3459 daddy=3329
+|   |   |   |   |   ADD_NODE: time=158541.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3331 daddy=3460
+|   |   |   |   |   ADD_NODE: time=158557.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3969 daddy=3714
+|   |   |   |   |   ADD_NODE: time=158723.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1796 daddy=3844
+|   |   |   |   |   ADD_NODE: time=159258.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1282 daddy=1409
+|   |   |   |   |   ADD_NODE: time=159438.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2820
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3714
+|   |   |   |   |   ADD_NODE: time=159886.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3073
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3074
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2049 daddy=2563
+|   |   |   |   |   ADD_NODE: time=160579.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2561
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3332 daddy=3844
+|   |   |   |   |   ADD_NODE: time=161535.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2819
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3586
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3588 daddy=3842
+|   |   |   |   |   ADD_NODE: time=162964.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3330 daddy=2306
+|   |   |   |   |   ADD_NODE: time=163014.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3970 daddy=3457
+|   |   |   |   |   ADD_NODE: time=163465.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3716 daddy=3969
+|   |   |   |   |   ADD_NODE: time=163978.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3841
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2564
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1796
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3204 daddy=3457
+|   |   |   |   |   ADD_NODE: time=164598.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3971 daddy=3842
+|   |   |   |   |   ADD_NODE: time=164944.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3843 daddy=3329
+|   |   |   |   |   ADD_NODE: time=166008.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2819 daddy=2306
+|   |   |   |   |   ADD_NODE: time=167017.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3715
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1795
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3841 daddy=3587
+|   |   |   |   |   ADD_NODE: time=167487.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3331
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1025
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2562
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1665
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3076 daddy=3201
+|   |   |   |   |   ADD_NODE: time=169549.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3713
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2946
+|   |   |   |   |   ADD_NODE: time=169888.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3843
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3332
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2051
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3715 daddy=2689
+|   |   |   |   |   ADD_NODE: time=171028.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2050
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3331 daddy=3458
+|   |   |   |   |   ADD_NODE: time=172047.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3970
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3588
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2564 daddy=2689
+|   |   |   |   |   ADD_NODE: time=172541.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3204
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3971
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2561 daddy=3587
+|   |   |   |   |   ADD_NODE: time=174015.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3585
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3586 daddy=3716
+|   |   |   |   |   ADD_NODE: time=175183.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3073 daddy=3330
+|   |   |   |   |   ADD_NODE: time=175284.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1025 daddy=1538
+|   |   |   |   |   ADD_NODE: time=176129.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3841
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1410
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2819
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3588 daddy=1539
+|   |   |   |   |   ADD_NODE: time=177857.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1795 daddy=1922
+|   |   |   |   |   ADD_NODE: time=177973.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2820
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3715
+|   |   |   |   |   ADD_NODE: time=178689.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3843 daddy=3331
+|   |   |   |   |   ADD_NODE: time=178741.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3970 daddy=3458
+|   |   |   |   |   ADD_NODE: time=178992.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1665 daddy=1537
+|   |   |   |   |   ADD_NODE: time=179829.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3204 daddy=3458
+|   |   |   |   |   ADD_NODE: time=180163.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3844
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=513
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3073
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2050 daddy=3076
+|   |   |   |   |   ADD_NODE: time=180844.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2561
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1026
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3459
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2051 daddy=2178
+|   |   |   |   |   ADD_NODE: time=182319.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1795
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3460
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3841 daddy=3970
+|   |   |   |   |   ADD_NODE: time=183682.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2947
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3586
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3588
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=513 daddy=772
+|   |   |   |   |   ADD_NODE: time=184964.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3330
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2308
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2564
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3204
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1026 daddy=1153
+|   |   |   |   |   ADD_NODE: time=186008.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3332 daddy=3843
+|   |   |   |   |   ADD_NODE: time=186767.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3459 daddy=3970
+|   |   |   |   |   ADD_NODE: time=186976.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2819 daddy=2307
+|   |   |   |   |   ADD_NODE: time=187287.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3841
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1796 daddy=3843
+|   |   |   |   |   ADD_NODE: time=188107.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3457
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2948
+|   |   |   |   |   ADD_NODE: time=188844.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1410 daddy=1923
+|   |   |   |   |   ADD_NODE: time=189154.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3716
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=769
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1027
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1540
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2179
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3842
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3715
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3330 daddy=2305
+|   |   |   |   |   ADD_NODE: time=190708.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3459
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1795 daddy=1924
+|   |   |   |   |   ADD_NODE: time=190974.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3587
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=771
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3972
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=514
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3460 daddy=2433
+|   |   |   |   |   ADD_NODE: time=192924.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2945
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1796
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2947 daddy=2690
+|   |   |   |   |   ADD_NODE: time=193998.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2562 daddy=2690
+|   |   |   |   |   ADD_NODE: time=194281.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2179 daddy=2433
+|   |   |   |   |   ADD_NODE: time=194497.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3713 daddy=2691
+|   |   |   |   |   ADD_NODE: time=194557.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=770
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3332
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3075
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1539
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2692
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2180
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2049
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=385
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3969
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2052
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3970
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2564 daddy=2819
+|   |   |   |   |   ADD_NODE: time=197268.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1667
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2308 daddy=3330
+|   |   |   |   |   ADD_NODE: time=197870.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2820
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3584
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1540 daddy=1666
+|   |   |   |   |   ADD_NODE: time=198450.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3843
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2434
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1154
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1668
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3971 daddy=2946
+|   |   |   |   |   ADD_NODE: time=199268.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2817
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2945 daddy=898
+|   |   |   |   |   ADD_NODE: time=199640.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3329
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3074 daddy=3330
+|   |   |   |   |   ADD_NODE: time=199883.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1025
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3457 daddy=3330
+|   |   |   |   |   ADD_NODE: time=200025.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3713
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3460
+|   |   |   |   |   ADD_NODE: time=200441.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2689
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2435
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=769 daddy=2819
+|   |   |   |   |   ADD_NODE: time=200888.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1028
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2050
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1665
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1667 daddy=1921
+|   |   |   |   |   ADD_NODE: time=201327.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2306
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1026
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2177
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=770 daddy=1793
+|   |   |   |   |   ADD_NODE: time=202366.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1155
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3716 daddy=3971
+|   |   |   |   |   ADD_NODE: time=202591.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3073 daddy=2051
+|   |   |   |   |   ADD_NODE: time=202745.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3331
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3714
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2692 daddy=641
+|   |   |   |   |   ADD_NODE: time=203751.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=771 daddy=899
+|   |   |   |   |   ADD_NODE: time=203845.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2691
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3844 daddy=3330
+|   |   |   |   |   ADD_NODE: time=204087.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2434 daddy=2946
+|   |   |   |   |   ADD_NODE: time=204433.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1540
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2689 daddy=2946
+|   |   |   |   |   ADD_NODE: time=205303.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2818
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3585 daddy=2563
+|   |   |   |   |   ADD_NODE: time=205617.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2179
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=385 daddy=898
+|   |   |   |   |   ADD_NODE: time=206139.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1027 daddy=1156
+|   |   |   |   |   ADD_NODE: time=206539.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2947
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3586 daddy=3074
+|   |   |   |   |   ADD_NODE: time=207092.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2562
+|   |   |   |   |   ADD_NODE: time=207566.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3202
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2306 daddy=2436
+|   |   |   |   |   ADD_NODE: time=207666.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1538
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3076
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1028 daddy=1283
+|   |   |   |   |   ADD_NODE: time=208094.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=900
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=769
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1668 daddy=1537
+|   |   |   |   |   ADD_NODE: time=209271.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3712
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3716
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1025 daddy=1537
+|   |   |   |   |   ADD_NODE: time=209568.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2564
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3840
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3588 daddy=1537
+|   |   |   |   |   ADD_NODE: time=210601.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2434
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2948
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1539 daddy=1795
+|   |   |   |   |   ADD_NODE: time=210855.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2306
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3075 daddy=3585
+|   |   |   |   |   ADD_NODE: time=211058.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=515
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2052 daddy=2308
+|   |   |   |   |   ADD_NODE: time=211248.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3329 daddy=1283
+|   |   |   |   |   ADD_NODE: time=211558.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1281
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2689
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3972 daddy=3458
+|   |   |   |   |   ADD_NODE: time=212318.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2435 daddy=3458
+|   |   |   |   |   ADD_NODE: time=212440.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2692
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3457
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2049 daddy=2563
+|   |   |   |   |   ADD_NODE: time=212722.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2820
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3204 daddy=3458
+|   |   |   |   |   ADD_NODE: time=213744.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1539
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3844
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3073
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3075
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3586
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=514 daddy=2563
+|   |   |   |   |   ADD_NODE: time=214438.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3715 daddy=1666
+|   |   |   |   |   ADD_NODE: time=214837.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3971
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=770
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1667
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1284
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1154 daddy=1666
+|   |   |   |   |   ADD_NODE: time=215886.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3713 daddy=3201
+|   |   |   |   |   ADD_NODE: time=216315.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3332 daddy=3458
+|   |   |   |   |   ADD_NODE: time=216971.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1155 daddy=3201
+|   |   |   |   |   ADD_NODE: time=217361.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3076 daddy=3201
+|   |   |   |   |   ADD_NODE: time=217709.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2819
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3074
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1540 daddy=1666
+|   |   |   |   |   ADD_NODE: time=218724.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3460
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1027
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2436
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1668
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1665 daddy=1921
+|   |   |   |   |   ADD_NODE: time=220362.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2947 daddy=3972
+|   |   |   |   |   ADD_NODE: time=220406.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=515 daddy=643
+|   |   |   |   |   ADD_NODE: time=220512.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2052
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=769 daddy=1794
+|   |   |   |   |   ADD_NODE: time=221084.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3969 daddy=3713
+|   |   |   |   |   ADD_NODE: time=221241.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3714 daddy=3972
+|   |   |   |   |   ADD_NODE: time=221248.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3588
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1026 daddy=3076
+|   |   |   |   |   ADD_NODE: time=221878.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2306 daddy=2435
+|   |   |   |   |   ADD_NODE: time=222055.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=516
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2180 daddy=3201
+|   |   |   |   |   ADD_NODE: time=222722.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3970 daddy=2946
+|   |   |   |   |   ADD_NODE: time=222802.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3585
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3459 daddy=3972
+|   |   |   |   |   ADD_NODE: time=223337.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1027 daddy=1153
+|   |   |   |   |   ADD_NODE: time=223387.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1922
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=769
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2177 daddy=2435
+|   |   |   |   |   ADD_NODE: time=224199.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2049
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3842 daddy=3972
+|   |   |   |   |   ADD_NODE: time=224359.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=513
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1284 daddy=3329
+|   |   |   |   |   ADD_NODE: time=224730.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=386
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3457 daddy=2435
+|   |   |   |   |   ADD_NODE: time=224816.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2945
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2562
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=514
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2051
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3841 daddy=1794
+|   |   |   |   |   ADD_NODE: time=225835.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3587 daddy=3715
+|   |   |   |   |   ADD_NODE: time=225892.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1028
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1282
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=642
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3204
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1793
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2691 daddy=643
+|   |   |   |   |   ADD_NODE: time=226732.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2944
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1281 daddy=1794
+|   |   |   |   |   ADD_NODE: time=227585.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=771
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3460 daddy=3332
+|   |   |   |   |   ADD_NODE: time=227770.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1665
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1025
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3969
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2692 daddy=3713
+|   |   |   |   |   ADD_NODE: time=228210.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3714
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1411
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3843 daddy=3332
+|   |   |   |   |   ADD_NODE: time=228844.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2817 daddy=2946
+|   |   |   |   |   ADD_NODE: time=229005.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=900 daddy=2946
+|   |   |   |   |   ADD_NODE: time=229084.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1795
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3584 daddy=3842
+|   |   |   |   |   ADD_NODE: time=229361.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3203 daddy=3713
+|   |   |   |   |   ADD_NODE: time=229378.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3587
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2434 daddy=2946
+|   |   |   |   |   ADD_NODE: time=229687.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2689 daddy=2947
+|   |   |   |   |   ADD_NODE: time=229688.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1282 daddy=1412
+|   |   |   |   |   ADD_NODE: time=230246.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3073 daddy=3329
+|   |   |   |   |   ADD_NODE: time=230296.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2818 daddy=2307
+|   |   |   |   |   ADD_NODE: time=230484.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1667 daddy=3713
+|   |   |   |   |   ADD_NODE: time=230504.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3586 daddy=2563
+|   |   |   |   |   ADD_NODE: time=230836.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3202 daddy=3459
+|   |   |   |   |   ADD_NODE: time=230937.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=644
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3716 daddy=3970
+|   |   |   |   |   ADD_NODE: time=231115.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=515
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2436 daddy=2307
+|   |   |   |   |   ADD_NODE: time=231250.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=516 daddy=772
+|   |   |   |   |   ADD_NODE: time=231444.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2050 daddy=2307
+|   |   |   |   |   ADD_NODE: time=231608.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3328
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3971 daddy=3842
+|   |   |   |   |   ADD_NODE: time=231882.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1540
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2820 daddy=2563
+|   |   |   |   |   ADD_NODE: time=231963.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2177
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=513 daddy=2563
+|   |   |   |   |   ADD_NODE: time=232998.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1922 daddy=897
+|   |   |   |   |   ADD_NODE: time=233021.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1026
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2052 daddy=2180
+|   |   |   |   |   ADD_NODE: time=233083.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2948 daddy=897
+|   |   |   |   |   ADD_NODE: time=233370.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3457
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1536
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=1410
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3712 daddy=3584
+|   |   |   |   |   ADD_NODE: time=234540.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2049 daddy=2563
+|   |   |   |   |   ADD_NODE: time=234558.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3715
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2945 daddy=2817
+|   |   |   |   |   ADD_NODE: time=234930.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=642 daddy=897
+|   |   |   |   |   ADD_NODE: time=234980.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2819 daddy=3841
+|   |   |   |   |   ADD_NODE: time=235064.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=514 daddy=1537
+|   |   |   |   |   ADD_NODE: time=235660.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1538 daddy=1667
+|   |   |   |   |   ADD_NODE: time=235801.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3203
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1668 daddy=1537
+|   |   |   |   |   ADD_NODE: time=236180.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3971
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=644 daddy=2690
+|   |   |   |   |   ADD_NODE: time=236460.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2304
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=386 daddy=1412
+|   |   |   |   |   ADD_NODE: time=236562.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1028 daddy=1537
+|   |   |   |   |   ADD_NODE: time=237032.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=515 daddy=641
+|   |   |   |   |   ADD_NODE: time=237134.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1539 daddy=3586
+|   |   |   |   |   ADD_NODE: time=237277.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3844 daddy=3586
+|   |   |   |   |   ADD_NODE: time=237659.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3072
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3075 daddy=2050
+|   |   |   |   |   ADD_NODE: time=238373.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1665 daddy=1921
+|   |   |   |   |   ADD_NODE: time=238609.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=2944 daddy=2690
+|   |   |   |   |   ADD_NODE: time=238864.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1796 daddy=3842
+|   |   |   |   |   ADD_NODE: time=238880.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2948
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3840 daddy=2817
+|   |   |   |   |   ADD_NODE: time=239219.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3202
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3714 daddy=2691
+|   |   |   |   |   ADD_NODE: time=239667.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=3716
+|   |   |   |   <REMOVE_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1411 daddy=1921
+|   |   |   |   |   ADD_NODE: time=239836.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=3074 daddy=3586
+|   |   |   |   |   ADD_NODE: time=239955.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >ADD_NODE
+|   |   |   |   |   ADD_NODE: node=1795 daddy=1921
+|   |   |   |   |   ADD_NODE: time=240357.000000
+|   |   |   |   <ADD_NODE
+|   |   |   |   >REMOVE_NODE
+|   |   |   |   |   REMOVE_NODE: node=2306
+|   |   |   |   <REMOVE_NODE
+|   |   |   >ADD_NODE
+|   |   |   |   ADD_NODE: node=3457 daddy=2433
+|   |   |   |   ADD_NODE: time=241019.000000
+|   |   |   <ADD_NODE
+|   |   |   >ADD_NODE
+|   |   |   |   ADD_NODE: node=1540 daddy=516
+|   |   |   |   ADD_NODE: time=241103.000000
+|   |   |   <ADD_NODE
+|   |   |   >REMOVE_NODE
+|   |   |   |   REMOVE_NODE: node=1282
+|   |   |   <REMOVE_NODE
+|   |   |   >ADD_NODE
+|   |   |   |   ADD_NODE: node=770 daddy=897
+|   |   |   |   ADD_NODE: time=241358.000000
+|   |   |   <ADD_NODE
+|   |   |   >ADD_NODE
+|   |   |   |   ADD_NODE: node=3073 daddy=1027
+|   |   |   |   ADD_NODE: time=241426.000000
+|   |   |   <ADD_NODE
+|   |   |   >REMOVE_NODE
+|   |   |   |   REMOVE_NODE: node=1284
+|   |   |   <REMOVE_NODE
+|   |   |   >REMOVE_NODE
+|   |   |   |   REMOVE_NODE: node=1281
+|   |   |   <REMOVE_NODE

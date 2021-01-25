@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>FFI: Modules</title>
+</head>
+
+<body>
+
+<h2>How To Model Modules in KiR</h2>
+
+Some of the several possible variants are:
+
+<dl>
+<dt>The Static Module Approach    
+<dd>The standard variant (also used for the <a href="edlib/index.html">KiR 
+    library collection</a>) where each module is simply a frame of 
+    functions/expressions and the main program does the imports statically, 
+    using either:
+    <dl>
+    <dt>$-variables 
+    <dd>modules are stored in internal editor format and are included
+        by the editor
+    <dt>!-variables
+    <dd>modules are stored in internal graph fromat (preprocessed and
+        compiled) using the interaction <code>put</code> and are loaded 
+        by the preprocessor
+    </dl>
+    <p>
+
+<dt>The Makefile Approach
+<dd>Each module is defined as a function from its imports to its export frame.
+    Additionaly, a control program (makefile) is given that knows about
+    all dependencies and about all filenames, gets all modules from the 
+    environment and applies them to their respective imports.
+    <p>
+
+<dt>The Active Module Approach
+<dd>Each module is defined as a program that dynamically gets all its 
+    imports from the environment and returns an export frame.
+    <p>
+
+<dt>The Passive Module Approach
+<dd>Each module is defined as a frame composed of all import file names
+    and a function from its imports to its export frame. The importing
+    program uses the import specification to get all imports from the 
+    environment and apply all modules to their respective imports.
+    <p>
+
+</dl>
+
+The passive module approach is a modular variant of the makefile approach.
+The active module approach looks even more modular, but may have problems
+with recursive imports (the fact that control has to be passed to imported
+modules has both advantages and disadvantages).
+
+<h2>Mutually Recursive Modules</h2>
+
+Mutual recursion for modules will usually be avoided since it introduces
+such a strong binding between the modules that none of them can be used
+independent of the others and thus contradicts (some of) the goals of 
+modularization. There are situations in procedural languages where the 
+behaviour of imported modules is modified using global variables. Since
+this isn't possible in pure functional languages, mutually recursive
+modules are sometimes used instead (the importing module depends on the
+imported module, the imported module depends on the parameters defined
+in the importing module). These situations can be treated more directly
+in KiR using parameterized modules.
+<p>
+
+If mutual recursion cannot be avoided, it is conceptually simple to achieve:
+modules are first class values in KiR and therefore the usual recursion
+operators of the language may be used to define mutually recursive module
+structures. However, there is a problem here due to our applicative order
+reduction scheme since in a naive (and natural) implementation these modules 
+structures would be recursive data structures (any attempt to evaluate or 
+print them will not terminate).
+<p>
+
+<h3>The Odd/Even Example</h3>
+
+Here is an example. Note how the code looks quite natural although
+the problems of mutually recursive data structures under 
+an applicative order regime have been avoided (note also how this
+kind of 'modularization` does not make much sense here;-).
+<p>
+
+<hr>
+<b>Even:</b>
+
+<pre>
+def 
+  EvenM [ OddM ] = def 
+                     &from OddM [ EvenM ] 
+                      import [ Odd ] ,
+                     Even [ N ] = if ( N lt 2 )
+                                  then ( N eq 0 )
+                                  else Odd [ ( N - 1 ) ]
+                   in struct 
+                      entry 'module` : 'Even` ,
+                      entry 'Even` : Even
+                      end
+in EvenM
+</pre>
+
+<hr>
+<b>Odd:</b>
+
+<pre>
+def 
+  OddM [ EvenM ] = def 
+                     &from EvenM [ OddM ] 
+                      import [ Even ] ,
+                     Odd [ N ] = if ( N lt 2 )
+                                 then ( N eq 1 )
+                                 else Even [ ( N - 1 ) ]
+                   in struct 
+                      entry 'module` : 'Odd` ,
+                      entry 'Odd` : Odd
+                      end
+in OddM
+</pre>
+
+<hr>
+<b>Main program:</b>
+
+<pre>
+def 
+  &from ap $Odd
+        to [ $Even ] 
+   import [ Odd ]
+in Odd [ 42 ]
+</pre>
+
+
+<hr>
+
+<address>
+Thu May 23 15:48:59 MET DST 1996
+</address>
+</body>
+</html>

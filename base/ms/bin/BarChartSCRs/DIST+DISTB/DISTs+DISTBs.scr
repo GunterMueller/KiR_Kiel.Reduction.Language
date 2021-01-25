@@ -1,0 +1,133 @@
+DEFS:
+	static double size, timeFactor, previousTime;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+		    rememberFactor[100], rememberDimension[100], temp[1000];
+
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+
+	static int numProcessors;
+	static int nextBar[MAX_PROCESSORS][MAX_PROCESSES],
+	           frameSize[MAX_PROCESSORS][MAX_PROCESSES],
+	           i, j;
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+	int numBits(mask)
+	int mask;
+	{
+		int i=0;
+
+		while(mask) {
+			i += (mask & 1);
+			mask >>= 1;
+		}
+
+		return(i);
+	}
+	
+	
+BEGIN:
+	SET_MODE(BAR_CHART);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	HEADER_FACTOR(rememberFactor);
+	sprintf(temp, "DISTs + DISTBs -- %s -- %s reduction steps",
+		rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	timeFactor = atof(rememberFactor);
+
+	HEADER_DIMENSION(rememberDimension);
+	numProcessors = (1 << atoi(rememberDimension));
+
+	SET_NAME("DISTs+DISTBs");
+	SET_X_LABEL("DISTs (optimized)                                                       DISTs (real)                                                        DISTBs (optimized)                                                       DISTBs (real)");
+	SET_Y_LABEL("# of transmitted elements");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+
+	CREATE_BAR("DISTs_optimized", 1, NULL);
+	CREATE_BAR("Dummy_1", 2, NULL);
+	CREATE_BAR("DISTs_real", 3, NULL);
+	CREATE_BAR("Dummy_2", 4, NULL);
+	CREATE_BAR("DISTBs_optimized", 5, NULL);
+	CREATE_BAR("Dummy_3", 6, NULL);
+	CREATE_BAR("DISTBs_real", 7, NULL);
+
+	NEXT_FRAME();
+
+	for(i=0; i<numProcessors; ++i) {
+		for(j=0; j<numProcessors; ++j) {
+			pids[i][j] = -1;			
+		}
+		numProcesses[i] = 0;
+	}
+
+
+	break;
+
+COUNT_DIST:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PROCESS) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+	}
+
+	nextBar[PROCESSOR][pid(PROCESSOR, PROCESS)] = 0;
+
+	break;
+
+COUNT_DISTB:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PROCESS) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+	}
+
+	nextBar[PROCESSOR][pid(PROCESSOR, PROCESS)] = 1;
+
+	break;
+
+PROC_DISTSTACKS:
+	/* Is this pid in the table yet? */
+	if(pid(PROCESSOR, PROCESS) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PROCESS;
+	}
+
+	frameSize[PROCESSOR][pid(PROCESSOR, PROCESS)] = PDS_SIZE;
+
+
+PROC_DIST:
+	if(nextBar[PROCESSOR, pid(PROCESSOR, PROCESS)]) {
+		/* DISTB */
+		INCREMENT(5, (double)numBits(PD_SIZE));
+		INCREMENT(7, (double)frameSize[PROCESSOR]
+		                              [pid(PROCESSOR, PROCESS)]);
+	} else {
+		/* DIST */
+		INCREMENT(1, (double)PD_SIZE);
+		INCREMENT(3, (double)PD_SIZE);
+	}
+
+	NEXT_FRAME();
+
+	break;
+
+END:
+	break;
+

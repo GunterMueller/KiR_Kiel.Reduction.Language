@@ -1,0 +1,27 @@
+# @(#)Logout 1.3 88/02/08 SMI
+############################################################
+#
+#         .logout file
+#
+#         Read in when you exit from the login shell.
+#         For performing housekeeping while your are away.
+#
+############################################################
+
+clear
+if ( -x /usr/local/bin/killsvc ) /usr/local/bin/killsvc 
+if ( -x ~/.user_logout ) ~/.user_logout
+#echo "`hostname`: `whoami` logged out at `date`"
+#echo "Goodbye\!"
+
+#if (-e /usr/games/fortune) /usr/games/fortune -a
+#if (-r /etc/motd) cat /etc/motd
+
+unalias rm
+unalias sed
+set TMP=`ls -ld /tmp | sed -e 's/^.* \(.*\)$/\1/'`
+nice find $TMP -name '*' \
+         -atime +1 -mtime +1 -user $USER -type f -exec \rm '{}' \; &
+nice find ~ '(' -name core -o -name '*.BAK' -o -name '*.CKP' \
+         -o -name '#*' -o -name junk ')' \
+         -atime +3 -mtime +3 -user $USER -type f -a \! -perm 000 -exec \rm '{}' \; &

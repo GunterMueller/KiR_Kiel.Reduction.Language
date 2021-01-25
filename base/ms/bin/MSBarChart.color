@@ -1,0 +1,6 @@
+msBarChart*UKCCommand.background: #bbbbbb
+msBarChart*clip.background: #ffffff
+msBarChart*horizontal.background: #bbbbbb
+msBarChart*vertical.background: #bbbbbb
+
+msBarChart.buttonColor: #00c000

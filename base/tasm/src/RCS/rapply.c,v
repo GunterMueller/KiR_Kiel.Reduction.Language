@@ -1,0 +1,870 @@
+head	1.11;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.11
+date	95.03.06.15.49.05;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	95.02.02.14.09.47;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	95.01.06.16.52.00;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	95.01.02.12.23.21;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.29.14.46.53;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.29.10.28.33;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.22.13.45.40;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.12.21.16.37.04;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.12.20.09.21.03;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.12.16.13.47.24;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.12.16.08.16.06;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial revision
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@#include <stdio.h>
+#include <stdlib.h>
+#include "dbug.h"
+#include "rprimf.h"
+#include "rstdinc.h"
+#include "rstelem.h"
+#include "rheapty.h"
+#include "rstackty.h"
+#include "mytypes.h"
+#include "rmkclos.h"
+
+extern int call_func;
+
+#define flip_tail()    repl(0, r,top(r) ^ 1)
+/* rts() only for popfree_t */
+#define rts()          DBUG_RETURN(kill_bits(pop(r)))
+#define rtf()          switch(top(r) & 3)       \
+                       {                        \
+                         case 0:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            stflip(a, w);       \
+                            moveaw();           \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 1:                \
+                         {                      \
+                            lab=kill_bits(pop(r));         \
+                            goto LabSwitch;     \
+                         }                      \
+                         case 2:                \
+                         {                      \
+                           stflip(a, w);        \
+                           moveaw();            \
+                           DBUG_RETURN(kill_bits(pop(r))); \
+                         }                      \
+                         case 3:                \
+                         {                      \
+                           DBUG_RETURN(kill_bits(pop(r))); \
+                         }                     \
+                       }
+#define FUNCTIONRETURN       2 
+#define BITSTOKILLMASK (0xfffffffc) /* see comment on top of prolog.h */
+#define kill_bits(f)   ((f) & BITSTOKILLMASK) /* deletes bits 0 'n' 1 */
+#define moveaw()             (*++st_w = *st_a--)
+#define repl(n,s,x)          (st_##s[-n]=(x))         
+#define push(x)              (*++st_w = (x))
+#define push_a(x)            (*++st_a = (x))
+#define push_p(x)            INC_REFCNT(x); push((int)x)
+#define push_t(x)            (*++st_t = (x))
+#define push_r(x)            (*++st_r = (x))
+#define pop(s)               (*st_##s--)
+#define top(s)               (*st_##s)
+#define drop(s,n)            (st_##s-=n)
+#define peek(s,n)            (st_##s[-(n)])
+#define stflip(s,t)          st_h=st_##s;             \
+                             st_##s=st_##t;           \
+                             st_##t=st_h
+#define GRAB_DESC(p)         p = ((T_PTD *)p)[-1]
+#define TAIL_FLAG            1
+#define TEST_TAIL_FLAG()     ((top(r) & TAIL_FLAG) == TAIL_FLAG)
+#define DEL_TAIL_FLAG()      repl(0, r, top(r) & ~TAIL_FLAG)
+#define GET_PTR(n)           (n & 0xfffffffe)
+extern int lab;
+
+#ifdef h__sparc__
+  register int *st_h asm ("g5");
+  register int *st_w asm ("g7");
+  register int *st_a asm ("g6");
+#else
+  extern int *st_h;
+  extern int *st_w;
+  extern int *st_a;
+#endif
+
+extern int *st_t;
+extern int *st_r;
+extern T_DESCRIPTOR funcdesctable[];
+extern char *functable[];
+extern FCTPTR dealloc_tab[];
+extern T_DESCRIPTOR *newdesc();
+extern int newheap(int, T_HEAPELEM);
+extern void post_mortem(char *);
+FCTPTR red_func_tab[];
+
+int rest_args;
+
+extern int withtilde;
+extern int number_of_descs;
+extern PTR_DESCRIPTOR _desc;
+
+PTR_HEAPELEM pth; /* pointer to heapelement */
+T_PTD ptdesc;     /* pointer to descriptor */
+T_PTD help_pt;     /* pointer to descriptor */
+
+
+
+/**********************************************************************/
+
+int f_popfree_t(void)
+{
+  int killvar;
+  DBUG_ENTER("f_popfree_t");
+  
+  killvar = pop(r);
+  while (killvar > 0) 
+  {
+    ptdesc = (T_PTD)pop(t);
+    T_DEC_REFCNT(ptdesc);
+    killvar--;
+  }
+  rts();
+}  
+
+/**********************************************************************/
+/* calls a primitive function from the reduma runtime library         */
+/* n        : number of actual parameters (fits the needed parameters)*/ 
+/* d_ptdesc : the primitive function to call                          */
+/**********************************************************************/
+
+void delta_reduct(int n, T_PTD d_ptdesc)
+{
+  int delta_ok = 1;
+
+  DBUG_ENTER("delta_reduct");
+  
+  pop(w);
+  switch(n)
+  {
+  case 1:
+  {
+    if (!(*(red_func_tab[FUNC_INDEX((int)d_ptdesc)]))(top(w)))
+    {
+      f_mkdclos(1, 1, (int)d_ptdesc);
+      delta_ok = 0;
+    }
+    break;
+  }
+  case 2:
+  {
+    if (!(*(red_func_tab[FUNC_INDEX((int)d_ptdesc)]))(top(w), peek(w,1)))
+    {
+      f_mkdclos(2, 2, (int)d_ptdesc);
+      delta_ok = 0;
+    }
+    break;
+  }
+  case 3:
+  {
+    if (!(*(red_func_tab[FUNC_INDEX((int)d_ptdesc)]))(top(w), peek(w,1), \
+                                                    peek(w,2)))
+    {
+      f_mkdclos(3, 3, (int)d_ptdesc);
+      delta_ok = 0;
+    }
+    break;
+  }
+  case 4:
+  {
+    if (!(*(red_func_tab[FUNC_INDEX((int)d_ptdesc)]))(top(w), peek(w,1), \
+                                                    peek(w,2), peek(w,3)))
+    {
+      f_mkdclos(4, 4, (int)d_ptdesc);
+      delta_ok = 0;
+    }
+    break;
+  }
+  default:
+  {
+    fprintf(stderr, "f_apply: pf_arity out of range (apply)");
+    exit(1);
+  }
+  } /* END switch(n) */
+  
+  if (delta_ok)
+  {
+    drop(w, n);
+    push((int)_desc);
+    _desc = NULL;
+  }
+  DBUG_VOID_RETURN;
+}
+/**********************************************************************/
+/* searches for a function by the address of the equivalent C-function*/
+/* returns the index in the static funcdesctable if TY_COMB           */
+/* returns -1 if TY_CONDI or not in list                              */
+/**********************************************************************/
+
+int search_func(int func)
+{
+  int i = 0;
+  DBUG_ENTER("search_func");  
+  while (func != GET_PTR((int)R_COMB(funcdesctable[i], ptc)) &&    \
+         (i<number_of_descs))
+    i++;
+  if ((i < number_of_descs) && (TY_COMB == R_DESC(funcdesctable[i], type)))
+    DBUG_RETURN (i);
+else
+  DBUG_RETURN (-1);
+}
+
+/**********************************************************************/
+/* n    : actual args  (on top of stack R)                            */
+/*        return label (second on Stack R)                            */
+/*        return function (third on Stack R)                          */
+/* result : NULL if no (gamma)beta call, else address of function     */
+/*          to call                                                   */
+/* if func is a userdefined function, it is always a closure, even if */
+/* there haven't been any actual arguments (closure with no args)     */
+/**********************************************************************/
+
+int f_apply(void)
+{
+  int arg, nfv, sargs;
+  int n;
+
+  DBUG_ENTER("f_apply");
+
+    n = pop(r);
+
+LabSwitch:
+L0:  
+  ptdesc = (T_PTD)top(w);
+  
+/********************************************************************/
+/* test, if PRIM FUNC                            test, if PRIM FUNC */
+/********************************************************************/
+  if(T_FUNC((int) ptdesc))
+  {
+/* ENOUGH ARGUMENTS */          
+    if (FUNC_ARITY((int)ptdesc) == n)
+    {
+      delta_reduct(n, ptdesc);
+      flip_tail();                      /* avoid stackswitch */
+      rtf();
+    } /* END if (FUNC_ARITY((int)ptdesc) == n) */
+    else 
+/* NOT ENOUGH ARGUMENTS */          
+    if (FUNC_ARITY((int)ptdesc) > n)
+    {
+      pop(w);  /* 'cause f_mkdclos() pushes the function itself */
+      f_mkdclos(FUNC_ARITY((int)ptdesc), n, (int)ptdesc);
+      flip_tail();                      /* avoid stackswitch */
+      rtf();
+    } /* END if (FUNC_ARITY((int)ptdesc) < n) */
+/* TOO MANY ARGUMENTS */          
+    else  /* FUNC_ARITY((int)ptdesc) < n */
+    {
+too_many_delta:
+      if (LSELECT == (int)ptdesc)
+      {
+        delta_reduct(2, ptdesc);
+        n -= 2; /* start a new apply with n - 2 act args */
+        goto L0;
+      }
+      else
+      {
+        rest_args = n - FUNC_ARITY((int)ptdesc);
+        
+        delta_reduct(FUNC_ARITY((int)ptdesc), ptdesc);
+
+        /* auslagern einer applikation vgl. store_e in rstpro.c */
+        MAKEDESC(ptdesc, 1, C_EXPRESSION, TY_EXPR);
+        GET_HEAP(rest_args + 3, A_EXPR(*ptdesc, pte));
+        RES_HEAP;
+        pth    = (PTR_HEAPELEM)R_EXPR(*ptdesc, pte);
+        *pth++ = (T_HEAPELEM)(rest_args + 2);             /* groesse     */
+        *pth++ = (T_HEAPELEM)SET_ARITY(AP, (rest_args + 1)); /* konstruktor */
+        pth += rest_args;
+        do {
+          *pth-- = (T_HEAPELEM)pop(w);
+        } while (--rest_args >= 0);
+        REL_HEAP;
+        push_p(ptdesc);
+      }        
+      flip_tail();                      /* avoid stackswitch */
+      rtf();
+
+    }  /* END FUNC_ARITY((int)ptdesc) > n */
+  } /* END if(T_FUNC((int) ptdesc)) */
+  else
+
+/********************************************************************/
+/* END IF PRIMFUNC                                  END IF PRIMFUNC */
+/********************************************************************/
+/********************************************************************/
+/* test, if POINTER to closure                     test, if POINTER */
+/********************************************************************/
+
+    if (C_FUNC == R_DESC(*ptdesc, class))
+    {
+
+/* test, if a closure */
+      if (TY_CLOS == R_DESC(*ptdesc, type))
+      {
+        arg = R_CLOS(*ptdesc, nargs);
+/* arg : needed arguments, nfv : free variables */
+/********************************************************************/
+/* test, if primitive function closure                              */
+/********************************************************************/
+        if (TY_PRIM == R_CLOS(*ptdesc, ftype))
+          {
+/* ENOUGH ARGUMENTS */          
+            if (n == arg)
+            {
+              nfv = 0;
+              sargs = R_CLOS(*ptdesc, args);
+              n += sargs;  /* prepare the GOTO L0; to execute the delta_red */
+              pop(w);  /* POP function */
+              pth = R_CLOS(*ptdesc, pta);
+              pth = pth + sargs + nfv;
+              while (sargs-- > 0) /* restore the argument frame */
+              {
+                help_pt = (T_PTD)*pth--;
+                T_INC_REFCNT(help_pt);
+                push((int)help_pt);
+              } 
+              
+/* NO stflip(a,w); 'cause it's now a DELTA-call */
+
+              help_pt = ptdesc;              
+              ptdesc = (T_PTD)*R_CLOS(*ptdesc, pta);
+              DEC_REFCNT(help_pt);
+              push((int)ptdesc);
+              goto L0;
+            } /* END (arg == n) in PRIM CLOS */
+            else
+/* NOT ENOUGH ARGUMENTS */          
+            if (n < arg)
+            {
+              dyn_mkbclos(n);
+              flip_tail();                      /* avoid stackswitch */
+              rtf();
+            } /* END (n < arg) */
+/* TOO MANY ARGUMENTS */          
+            else /* (n > arg) */
+            {
+              sargs = R_CLOS(*ptdesc, args);
+              n += sargs;  /* prepare the GOTO L0; to execute the delta_red */
+              pop(w);  /* POP closure */
+              pth = R_CLOS(*ptdesc, pta);
+              pth += sargs;
+              while (sargs-- > 0) /* restore the argument frame */
+              {
+                help_pt = (T_PTD)*pth--;
+                T_INC_REFCNT(help_pt);
+                push((int)help_pt);
+              } 
+/* NO stflip(a,w); 'cause it's now a DELTA-call */
+
+              help_pt = ptdesc;              
+              ptdesc = (T_PTD)*R_CLOS(*ptdesc, pta);
+              DEC_REFCNT(help_pt);
+              push((int)ptdesc);
+              goto too_many_delta;
+            } /* END n > arg */
+              
+            
+          } 
+/********************************************************************/
+/* END primitive function closure                                   */
+/********************************************************************/
+          
+/********************************************************************/
+/* test, if userdefined function closure                            */
+/********************************************************************/
+        if (TY_COMB == R_CLOS(*ptdesc, ftype))
+          {
+/* ENOUGH ARGUMENTS */          
+            if (n == arg)
+            {
+              if (withtilde)
+                nfv = R_CLOS(*ptdesc,nfv);
+              else
+                nfv = 0;
+              sargs = R_CLOS(*ptdesc, args);
+              pop(w);
+              pth = R_CLOS(*ptdesc, pta);
+              pth = pth + sargs + nfv;
+              if (withtilde)
+              {
+                int dummy = nfv;
+                
+                while (dummy-- > 0)  /* tilde frame */
+                {
+                  help_pt = (T_PTD)*pth--;
+                  T_INC_REFCNT(help_pt);
+                  push_t((int)help_pt);
+                }
+                while (sargs-- > 0)  /* argument frame */
+                {
+                  help_pt = (T_PTD)*pth--;
+                  T_INC_REFCNT(help_pt);
+                  push((int)help_pt);
+                }
+              }	    
+              else 
+              {
+                while (sargs-- > 0)
+                {
+                  help_pt = (T_PTD)*pth--;
+                  T_INC_REFCNT(help_pt);
+                  push((int)help_pt);
+                } 
+              }
+              
+              if (withtilde)
+              {  
+                if (nfv > 0) 
+                {
+                  push_r(nfv);                 /* f_for popfree_t */
+                  push_r(((int)&f_popfree_t | FUNCTIONRETURN));    
+                }
+              }
+
+              stflip(a,w);
+
+              help_pt = ptdesc; 
+              ptdesc = (T_PTD)*R_CLOS(*ptdesc, pta);
+              DEC_REFCNT(help_pt);
+              push_r(0); /* so that the called function knows
+                            where to start (L0:) */
+              DBUG_RETURN((int)(R_COMB(*ptdesc, ptc)));
+              /* the fitting rtf() will find the return to the function
+                 which called the apply (if no other call is in between 
+                 or if there are free vars to kill it first will find the
+                 address of f_popfree_t() and f_popfree_t's rtf will find
+                 the way back  */
+            } /* END (arg == n) */
+            else
+/* NOT ENOUGH ARGUMENTS */            
+            if (n < arg)
+            {
+              dyn_mkbclos(n);
+              flip_tail();                      /* avoid stackswitch */
+              rtf();
+            } /* END (arg < n) */
+            else  /* arg > n */
+/* TOO MANY ARGUMENTS */            
+            {
+        
+              rest_args = n - R_COMB(*ptdesc, nargs);
+              push_r(rest_args);
+              push_r((int)&f_apply | FUNCTIONRETURN);
+              n  = R_COMB(*ptdesc, nargs);
+
+              goto L0;
+            }  /* END FUNC_ARITY((int)ptdesc) > n */
+          } 
+/********************************************************************/
+/* END if userdefined function closure                              */
+/********************************************************************/
+/********************************************************************/
+/* test, if conditional closure                                     */
+/********************************************************************/
+        if (TY_CONDI == R_CLOS(*ptdesc, ftype))
+        {
+/* ENOUGH ARGUMENTS */   
+/* all COND descriptor accesses via X_COMB 
+   `cause it`s saved in COMBINATOR format */
+          if (n == arg)
+          {
+            if (withtilde)
+              nfv = R_CLOS(*ptdesc,nfv);
+            else
+              nfv = 0;
+            sargs = R_CLOS(*ptdesc, args);
+            pth = R_CLOS(*ptdesc, pta);
+            pth = pth + sargs + nfv;
+            if (withtilde)
+            {
+              int dummy = nfv;
+              
+              while (dummy-- > 0)  /* tilde frame */
+              {
+                help_pt = (T_PTD)*pth--;
+                T_INC_REFCNT(help_pt);
+                push_t((int)help_pt);
+              }
+              while (sargs-- > 0)  /* argument frame */
+              {
+                help_pt = (T_PTD)*pth--;
+                T_INC_REFCNT(help_pt);
+                push_a((int)help_pt);
+              }
+            }	    
+            else 
+            {
+              while (sargs-- > 0)
+              {
+                help_pt = (T_PTD)*pth--;
+                T_INC_REFCNT(help_pt);
+                push_a((int)help_pt);
+              } 
+            }
+            if (withtilde)
+            {  
+              if (nfv > 0) 
+              {
+                push_r(nfv);                 /* f_for popfree_t */
+                push_r(((int)&f_popfree_t | FUNCTIONRETURN));    
+              }
+            }
+            help_pt = ptdesc; 
+            ptdesc = (T_PTD)*R_CLOS(*ptdesc, pta);
+            DEC_REFCNT(help_pt);
+            pop(w);
+            flip_tail();       /* avoid stack_switch */
+            push_r(0); /* so that the called function knows
+                          where to start (L0:) */
+
+            DBUG_RETURN((int)(R_COMB(*ptdesc, ptc)));
+            /* the fitting rtf() will find the return to the function
+               which called the apply (if no other call is in between 
+               or if there are free vars to kill it first will find the
+               address of f_popfree_t() and f_popfree_t's rtf will find
+               the way back  */
+          } /* END (arg == n) */
+        }
+/********************************************************************/
+/* END if conditional closure                                       */
+/********************************************************************/
+      }
+    }         
+/********************************************************************/
+/* END   if POINTER                                END   if POINTER */
+/********************************************************************/
+} /* END f_apply() */
+
+
+
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d66 1
+a66 1
+#ifdef __sparc__
+@
+
+
+1.9
+log
+@minor bugfix
+@
+text
+@d66 1
+a66 1
+#ifdef BLUBBER_BLUBB  /*__sparc__*/
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d250 1
+a250 1
+      if (p_lselect == (int)ptdesc)
+@
+
+
+1.7
+log
+@bugfix in number of free vars in case of conditional closure
+@
+text
+@d65 11
+a75 3
+register int *st_h asm ("g5");
+register int *st_w asm ("g6");
+register int *st_a asm ("g7");
+@
+
+
+1.6
+log
+@cond-bug fixed in freevar handling
+@
+text
+@d16 1
+a16 1
+#define rts()          return(kill_bits(pop(r)))
+d35 1
+a35 1
+                           return(kill_bits(pop(r))); \
+d39 1
+a39 1
+                           return(kill_bits(pop(r))); \
+d65 3
+a67 3
+extern int *st_h;
+extern int *st_w;
+extern int *st_a;
+d95 2
+a96 1
+
+d184 1
+a184 1
+  
+d189 1
+a189 1
+    return (i);
+d191 1
+a191 1
+  return (-1);
+d415 1
+a415 1
+              return((int)(R_COMB(*ptdesc, ptc)));
+d456 1
+a456 1
+              nfv = R_CLOS(*ptdesc,nfv) /*>> 2*/;
+d504 1
+a504 1
+            return((int)(R_COMB(*ptdesc, ptc)));
+@
+
+
+1.5
+log
+@Conditionals
+@
+text
+@d455 1
+a455 1
+              nfv = R_CLOS(*ptdesc,nfv) >> 2;
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d455 1
+a455 1
+              nfv = R_CLOS(*ptdesc,nfv);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d48 1
+d177 1
+a177 1
+/* returns -1 if TY_COND or not in list                               */
+d444 70
+a513 1
+
+a515 1
+
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d10 1
+d15 2
+d72 3
+d87 22
+d193 3
+a195 3
+/* n    : actual args                                                 */
+/* l    : return label                                                */
+/* func : return function (NULL if self recursive call                */
+d198 2
+d204 2
+a205 2
+  int arg, nfv, sargs, i;
+  int n, l, func;
+d207 1
+a207 1
+  DBUG_ENTER("apply");
+a208 2
+/*    func = pop(r);*/
+/*    l = pop(r);*/
+a210 1
+/*	lab = kill_bits(pop(r));*/
+a211 10
+/*	switch (lab) {*/
+/*	case 0:*/
+/*		goto L0;*/
+/*	case 4:*/
+/*		goto L4;*/
+/*	default:{*/
+/*			fprintf(stderr, "Wrong Label: L%d;", lab);*/
+/*		}*/
+/*	}*/
+
+d220 1
+d228 1
+d232 1
+a232 1
+      f_mkdclos(FUNC_ARITY((int)ptdesc), n, ptdesc);
+d236 1
+d239 1
+d277 1
+a277 1
+/* test, if POINTER                                test, if POINTER */
+a281 1
+      int func_desc_index;
+d288 3
+a290 1
+/* CLOSURE with a primitive function */
+d293 1
+d318 1
+d324 24
+a347 1
+            } /* END (arg < n) */
+d349 4
+a352 1
+          } /* END CLOSURE with a primitive function */
+d354 3
+a356 1
+/* CLOSURE with a userdefined function */
+d359 1
+d397 8
+a404 7
+                
+/*              for (i = 0; i<sargs; i++, pth--)*/
+/*              {*/
+/*                push((int)*pth);*/
+/*              }*/
+                   
+/*              DEC_REFCNT(ptdesc);  */
+a405 2
+              push_r(0); /* so that the called function knows
+                            where to start (L0:) */
+d411 2
+a412 3
+/*********************************************************/
+/* hier gehoert die POPFREE_T Vorbereitung rein          */
+/*********************************************************/
+d414 5
+a418 2
+              /* the next rtf() will find the return to the function
+                 which called the apply (if no other call is in between */
+d421 1
+a427 1
+/*********************************************************************/
+d429 1
+d436 1
+a436 1
+L4:
+d439 5
+a443 4
+        
+/*********************************************************************/
+            
+          } /* END CLOSURE with a userdefined function */
+d446 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d13 1
+d45 1
+a45 1
+#define push_p(x)      INC_REFCNT(x); push((int)x)
+d206 1
+d210 1
+a210 1
+    if (FUNC_ARITY((int)ptdesc) < n)
+d214 1
+d217 1
+a217 1
+    else  /* FUNC_ARITY((int)ptdesc) > n */
+d245 1
+d275 1
+a291 2
+              delta_reduct(n, ptdesc);
+              n += sargs;
+d298 1
+d359 3
+d370 1
+a377 1
+              push_r(0);
+d379 1
+a379 2
+              push_r(l);
+              push_r(func);
+@

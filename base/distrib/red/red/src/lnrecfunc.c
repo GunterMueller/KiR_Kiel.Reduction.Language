@@ -1,0 +1,229 @@
+/* $Log: lnrecfunc.c,v $
+ * Revision 1.3  1993/09/01 12:37:17  base
+ * ANSI-version mit mess und verteilungs-Routinen
+ *
+ * Revision 1.2  1992/12/16  12:49:01  rs
+ * ANSI-Version
+ *
+ * Revision 1.1  1992/11/04  18:12:30  base
+ * Initial revision
+ * */
+
+
+/*-----------------------------------------------------------------------------
+ *  lrecfunc:c  - external:  lrecfunc;
+ *                           ret_nint;
+ *         Aufgerufen durch:  ea-create;
+ *  lrecfunc:c  - internal:  keine;
+ *-----------------------------------------------------------------------------
+ */
+#include "rstdinc.h"
+#include "rstackty.h"
+#include "rheapty.h"
+#include "rextern.h"
+#include "rstelem.h"
+#include "rmeasure.h"
+
+/*-----------------------------------------------------------------------------
+ * Spezielle externe Routinen:
+ */
+extern STACKELEM st_name();
+extern void ret_nint();                 /* lrecfunc.c */
+extern void ptrav_a_e();
+extern void lr1eapre();                 /* lr1pre.c */
+extern int  test_num();
+extern PTR_DESCRIPTOR newdesc();
+extern T_HEAPELEM * newbuff();
+extern T_HEAPELEM * lr_close();
+
+
+/* ach 29/10/92 */
+extern void stack_error();              /* rstack.c */
+extern int newheap();                   /* rheap.c */
+extern void trav_a_e();                 /* rtrav.c */
+extern void freeheap();                 /* rheap.c */
+/* end of ach */
+/* ach 03/11/92 */
+#if DEBUG
+extern void DescDump();
+extern void test_inc_refcnt();
+#endif
+/* end of ach */
+
+/*-----------------------------------------------------------------------------
+ *  lrecfunc  --
+ *
+ *  globals    --  _bindings    <w,r>
+ *                 _bound       <w,r>
+ *                 _sep_int     <r>
+ *-----------------------------------------------------------------------------
+ */
+
+void lrecfunc(fname)
+   STACKELEM fname;                /* #if DORSY : == @ */
+{
+   extern STACKELEM _sep_int;     /* state.c * internal separation symbol */
+   T_HEAPELEM *tab, *speicher;
+   PTR_DESCRIPTOR plr;            /* Funktionsdeskriptor */
+   PTR_DESCRIPTOR pfi;
+   STACKELEM *name;
+   STACKELEM x,y,z,list/*,xd*/;             /* ach 29/10/92 */
+                                            /* for function names         */
+   int nfree, i, j, funcs,test;
+   extern int _bindings;                   /* state.c */
+   extern int _bound;                      /* state.c */
+
+   if ((plr = newdesc()) == NULL) {
+      post_mortem("lrecfunc: Heap out of space");
+   }
+   START_MODUL("lrecfunc");
+
+   test = 0;    /* erhaelt Ergebnis von test_num()-Aufrufen */
+
+   PUSHSTACK(S_m,READSTACK(S_e));      /* LETREC-constructor */
+   PUSHSTACK(S_m1,POPSTACK(S_e));
+
+   x = POPSTACK(S_e);                 /* <(m) */
+   funcs = ARITY(x);                  /* number of functions definitions */
+
+   DESC_MASK(plr,1,C_EXPRESSION,TY_LREC);
+   L_LREC((*plr),nfuncs) = funcs;
+#if DORSY
+   if (newheap(funcs + 1, (int *)A_LREC((*plr),namelist)) == 0) {
+      post_mortem("lrecfunc: Heap out of space");
+   }
+#else
+   if (newheap(2 * funcs + 1, (int *)A_LREC((*plr),namelist)) == 0) {
+      post_mortem("lrecfunc: Heap out of space");
+   }
+#endif
+   name = (STACKELEM *) R_LREC((*plr),namelist);     /* Namensliste */
+#if DORSY
+   name[0] = (STACKELEM) funcs;                      /* Anzahl der Namen */
+#else
+   name[0] = (STACKELEM) (2*funcs);                  /* Anzahl der Namen */
+#endif
+
+#if DEBUG
+   L_LREC((*plr),ptdv) = (PTR_HEAPELEM)0; /* Damit DescDump() nicht abstuerzt */
+#endif  /* DEBUG */
+
+   PUSHSTACK(S_a,(STACKELEM)plr);     /* pointer to descriptor -> A */
+
+   if ((tab = newbuff(2 * funcs)) == 0)
+      post_mortem("lrecfunc: Heap out of space");
+   if (!(speicher = newbuff(_bindings + 1)))
+      post_mortem("lrecfunc: Heap out of space");
+   speicher[0] = 0;       /* fuer nfree ! */
+
+   for (i = 0; i < funcs; i++) {
+      y = POPSTACK(S_e);
+      name[i + 1] = y;            /* urspruenglicher Funktionsname           */
+      tab[2 * i] = (T_HEAPELEM)y; /* in TAB muss der "alte" Funktionsname    */
+                                  /* erhalten bleiben, da in der             */
+                                  /* pre-processing-Phase die Funktionsnamen */
+                                  /* im Funktionsrumpf nicht veraendert      */
+                                  /* werden.                                 */
+      if (!(T_KLAA(fname))) {        /* #if DORSY : fname == @ */
+         int k;
+
+         ret_nint((PTR_DESCRIPTOR)y);
+         PUSHSTACK(S_e,_sep_int);
+
+         k = R_NAME((*(PTR_DESCRIPTOR)fname),ptn)[0];
+         PUSHSTACK(S_e,TOGGLE(R_NAME((*(PTR_DESCRIPTOR)fname),ptn)[k]));
+         for (k--; k > 0; )
+             PUSHSTACK(S_e,R_NAME((*(PTR_DESCRIPTOR)fname),ptn)[k--]);
+         y = st_name();             /* new name */
+      }
+#if !SCAVENGE
+      else
+         INC_REFCNT((PTR_DESCRIPTOR)y);
+#endif      /* Klammerung von RS 18.1.1993 eingefuegt */
+
+      if ((pfi = newdesc()) == NULL)
+         post_mortem("lrecfunc: Heap out of space");
+      DESC_MASK(pfi,1,C_EXPRESSION,TY_LREC_IND); /* REFCNT = 1!!! */
+      L_LREC_IND((*pfi),index) = i;
+#if DEBUG
+      L_LREC_IND((*pfi),ptf) = (T_PTD)0;
+                                   /* Damit DescDump() nicht abstuerzt */
+#endif  /* DEBUG */
+      L_LREC_IND((*pfi),ptdd) = (T_PTD) plr;
+      INC_REFCNT(plr);
+      tab[2 * i + 1] = (T_HEAPELEM)pfi;
+
+#if DORSY
+#else
+      name[funcs + i + 1] = y;               /* interner Funktionsname */
+      PUSHSTACK(S_hilf,y);
+#endif
+   }  /* end for i : erzeuge plrec_ind's */
+
+#if DORSY
+#else
+   PUSHSTACK(S_hilf,SET_ARITY(LIST,funcs));
+                                         /* listenkonstruktor fuer func_names */
+   trav(&S_hilf,&S_i);
+   POPSTACK(S_i);                 /* LIST(funcs) */
+#endif
+
+   if (_bindings)
+      speicher = lr_close(speicher);
+   if ((nfree = speicher[0])) {        /* SNAP-applikation fuer plrec erzeugen */
+      z = POPSTACK(S_a);                  /* p_lrec */
+      for (i=1; i <= nfree; i++)
+         PUSHSTACK(S_a,speicher[i]);       /* SNAP-args */
+      PUSHSTACK(S_a,z);                    /* p_lrec */
+      PUSHSTACK(S_a,SET_ARITY(SNAP,nfree+1));
+                         /* fuer all (funcs-1) TABeintraege (funcs-1)mal: */
+                         /* ersetze j-ten TABeintrag                      */
+      for (j = 0; j < funcs; j++) {
+         lr1eapre(tab[(2*j)+1],tab[2*j],speicher,0);  /* func_def's */
+         lr1eapre(tab[(2*j)+1],tab[2*j],speicher,1);  /* goal_expr */
+         TRAV_A_E;                                    /* goal_expr */
+         TRAV_A_E;                                    /* func_def's */
+      }
+   }
+   else {       /* nfree == 0 */
+      list = READSTACK(S_e);
+      WRITESTACK(S_e,INC(list));
+                         /* fuer all (funcs-1) TABeintraege (funcs-1)mal: */
+                         /* ersetze j-ten TABeintrag                      */
+      for (j = 0; j < funcs; j++) {
+         lr1eapre(tab[(2*j)+1],tab[2*j],speicher,0);
+         TRAV_A_E;
+      }
+      WRITESTACK(S_e,list);
+   }
+   _bound = nfree;
+   PUSHSTACK(S_a,(STACKELEM)tab);
+   freeheap(speicher);
+
+   END_MODUL("lrecfunc");
+   return;
+}      /* end of lrecfunc */
+
+/*$P*/
+ /*-----------------------------------------------------------------------------
+   *
+   * ret_nint -- erhaelt einen Descriptor, der ein Namensdesriptor sein
+   *             sein sollte als Paramter. Der hinter diesem Descriptor
+   *             liegende Name wird auf den E-Stack gelegt.
+   * globals -- S_e           <w>
+   *-----------------------------------------------------------------------------
+   */
+ void ret_nint(desc)
+ PTR_DESCRIPTOR desc;
+ {
+    register int i;
+
+    START_MODUL("ret_nint");
+/* RES_HEAP;     nur im processing ! */
+    for ( i = R_NAME((*desc),ptn)[0]; i > 0; )
+       PUSHSTACK(S_e,R_NAME((*desc),ptn)[i--]);
+/* REL_HEAP;     nur im processing ! */
+
+    END_MODUL("ret_nint");
+ }
+

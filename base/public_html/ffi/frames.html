@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Frames in KiR</title>
+</head>
+
+<body>
+
+<h2>Frames in KiR</h2>
+
+<hr>
+Frames have been introduced into KiR as part of the <a href="index.html">FFI</a> 
+project. They may be used to model modules and data abstractions as first-class 
+data structures (see <a href="papers.html">project papers</a>).
+<p>
+
+NOTE: Not only is the KiR-syntax different from the one used in my papers, it
+will also take some time to implement all the proposed features. The system
+has been designed to be simple on the language level, not to be simple on
+the implementation level. 
+<p>
+
+You may construct record-like data structures and apply some primitive
+operations to them.  Frame construction is strict. This, as well as all
+other details may change without notice. As the current specification
+allows for great freedom in the use of frame operations, the current
+implementation is based on association lists, which are searched
+linearly without optimizations.  So, don't expect too good efficiency.
+<p>
+
+<hr>
+
+<ol>
+<li><strong>Syntax:</strong>
+<pre>
+<em>frame</em> = struct 
+        <em>slots</em> 
+        end
+<em>slots</em> = entry <em>slotname</em> : <em>slotvalue</em> [, <em>slots</em>]
+<em>slotname</em> = <em>string</em>
+<em>slotvalue</em> = <em>expression</em>
+</pre>
+<p>
+
+<li><strong>Operations:</strong>
+    <dl>
+    <dt><pre>ftest( <em>frame</em> , <em>slotname</em> )</pre>
+    <dd>test whether there is a slot with the given name in frame
+    <dt><pre>fselect( <em>frame</em> , <em>slotname</em> )</pre>
+    <dd>select named slot from frame
+    <dt><pre>fupdate( <em>frame</em> , <em>slotname</em> , <em>slotvalue</em> )</pre>
+    <dd>if named slot exists, return new frame with modified slotvalue.
+    <dd>if named slot does not exist, it will be added
+    <dt><pre>fdelete( <em>frame</em> , <em>slotname</em> )</pre>
+    <dd>return copy of <em>frame</em> without named slot 
+    <dt><pre>fslots( <em>frame</em> )</pre>
+    <dd>return list of slotnames for <em>frame</em>
+    </dl>
+    <p>
+
+<li><strong>Syntactic Sugar:</strong>
+    <pre>
+    def
+      &from !LIST
+       import [ Map, Fold ]
+    in Fold [ +, 0, Map [ sub [ X ] in ( X * X ), &lt; 1, 2, 3, 4, 5&gt; ] ]
+    </pre>
+    is a shorthand (you should never see the unique module identifiers which
+    are used internally) for:
+    <pre>
+    def
+      &\001\002 [ ] =  !LIST
+      Map [ ] = fselect( &\001\002, 'Map` )
+      Fold [ ] = fselect( &\001\002, 'Fold` )
+    in Fold [ +, 0, Map [ sub [ X ] in ( X * X ), &lt; 1, 2, 3, 4, 5&gt; ] ]
+    </pre>
+
+
+</ol>
+
+<hr>
+
+<address>
+Tue Mar 19 17:30:59 MET 1996
+</address>
+</body>
+</html>

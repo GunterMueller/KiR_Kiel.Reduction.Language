@@ -1,0 +1,40 @@
+=========
+Versionen
+=========
+
+Host           nCUBE              Version
+----           -----              -------
+
+dired          ncred              verteilte Version ohne Debug
+didred         dncred             verteilte Version mit Debug
+xdidred        xdncred            verteilte Version mit verteiltem Debug (DRD)
+
+
+=========
+Benutzung
+=========
+
+Hostprogramm auf Majestix starten; nCUBE-Programm wird automatisch gestartet.
+ACHTUNG: nCUBE-Programm muss im aktuellen Verzeichnis liegen.
+Bedienung wie sequentielle Version, zusaetzlich neue Eintraege in red.setup
+und neue Initialisierungsdatei red.tickets.
+
+Verteilung durch 'letpar'-Ausdruck. Beispiele in ~rs/par_edlib/
+
+
+===========================
+neue Eintraege in red.setup
+===========================
+
+CubeDim:       Dimension des Subcubes
+NoDistNr:      Zahl der nicht zu verteilenden Ausdruecke in einem
+               letpar-Ausdruck
+CubeStackSize: Groesse des Stackbereichs auf einer Node
+StackSegSize:  Groesse eines Stacksegments
+
+
+===========
+red.tickets
+===========
+
+s. README.tickets.tex

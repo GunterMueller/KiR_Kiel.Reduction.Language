@@ -1,0 +1,11 @@
+#!/bin/sh
+
+ln -s `pwd`/src/marco/library/obj/libmarco.o lib/libmarco.o
+ln -s `pwd`/src/marco/library/obj/marco-main.o lib/marco-main.o
+ln -s `pwd`/src/sfed/obj/editor.o lib/editor.o
+ln -s `pwd`/src/marco/examples/kir/libkir.o lib/libkir.o
+
+ln -s `pwd`/src/marco/compgen/marco bin/marco
+ln -s `pwd`/src/sxred/sxred bin/sxred
+ln -s `pwd`/src/marco/examples/kir/kir bin/kir
+ln -s `pwd`/src/xv/Xred bin/Xred

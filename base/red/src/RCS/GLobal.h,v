@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols
+	continuation_based_interactions:1.1
+	pre_interactions:1.1
+	nCUBE~:1.1
+	red2:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	93.09.01.12.37.17;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@ANSI-version mit mess und verteilungs-Routinen
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef _GLobal_h
+#define _GLobal_h
+
+typedef int INT4;
+typedef int BOOLEAN;
+
+#define TRUE    1
+#define FALSE   0
+
+typedef char * STRPTR;
+typedef int (* FUNPTR)();
+
+#define NULLFKT (FUNPTR)0
+#define NULLSTR (STRPTR)0
+
+#endif /* _GLobal_h */
+@

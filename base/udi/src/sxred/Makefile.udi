@@ -1,0 +1,22 @@
+CC		= gcc
+
+# Reductionunit definitions
+RED_OBJ         = %%REDLIB%%
+
+SXFED_OBJ       = %%XFEDLIB%%
+
+SERVER_OBJ      = ../clt_srv/server-modul.o
+
+LIBS            = -ltermcap
+
+PROGNAME        = sxred
+
+all: $(PROGNAME)
+
+$(PROGNAME) : $(RED_OBJ) $(SERVER_OBJ) $(SXFED_OBJ)
+	$(CC) -o $(PROGNAME) $(RED_OBJ) $(SERVER_OBJ) $(SXFED_OBJ) $(LIBS)
+
+clean::
+	rm -f $(PROGNAME)
+
+depend::

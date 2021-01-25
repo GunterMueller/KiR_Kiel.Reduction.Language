@@ -1,0 +1,87 @@
+DEFS:
+	static int pids[MAX_PROCESSORS][MAX_PROCESSES],
+	           numProcesses[MAX_PROCESSORS];
+
+	#define INTERVALS 180
+	#define MAX_INTERVALS 10000
+	static struct {
+		double x, y;
+	} points[MAX_INTERVALS];
+
+	static struct {
+		double totalTime;
+		double activeSince;
+	} array[MAX_PROCESSORS][MAX_PROCESSES];
+	static double startTime, endTime, deltaTime, timeFactor;
+
+	static int i, j;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            rememberFactor[100], temp[1000];
+
+
+	int pid(processor, realPid)
+	int processor, realPid;
+	{
+		int i;
+
+		for(i=0; i<numProcesses[processor]; ++i) {
+			if(pids[processor][i] == realPid) {
+				return(i);
+			}
+		}
+
+		return(-1);
+	}
+
+
+BEGIN:
+	SET_MODE(XY_PLOT);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "Life -- %s -- %s reduction steps",
+	        rememberFile, rememberSteps);
+	SET_TITLE(temp);
+
+	HEADER_FACTOR(rememberFactor);
+	timeFactor = atof(rememberFactor);
+
+	SET_NAME("Life");
+	SET_X_LABEL("Time");
+	SET_Y_LABEL("# of Processes");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+	SET_STYLE(BARS);
+
+	NEXT_FRAME();
+
+	GET_TIME(&startTime, &endTime);
+	deltaTime = ((endTime-startTime)/timeFactor)/INTERVALS;
+	for(i=0; i<INTERVALS; ++i) {
+		points[i].x = i*deltaTime;
+		points[i].y = 0.0;
+	}
+
+	break;
+
+PROC_CREATE:
+	if(pid(PROCESSOR, PC_PID) == -1) {
+		pids[PROCESSOR][numProcesses[PROCESSOR]++] = PC_PID;
+	}
+	array[PROCESSOR][pid(PROCESSOR, PC_PID)].totalTime = 0.0;
+	array[PROCESSOR][pid(PROCESSOR, PC_PID)].activeSince = TIME;
+	break;
+
+PROC_TERMINATE:
+	j = pid(PROCESSOR, PT_PID);
+	array[PROCESSOR][j].totalTime += (TIME - array[PROCESSOR][j].activeSince);
+	i = (int)((array[PROCESSOR][j].totalTime/timeFactor)/deltaTime);
+	UPDATE_XY(points[i].x, ++points[i].y);
+	NEXT_FRAME();
+	break;
+
+END:
+	NEXT_FRAME();
+	break;
+

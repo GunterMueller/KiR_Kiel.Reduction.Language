@@ -1,0 +1,52 @@
+#define MY_concat_2(a,b)	a##b
+#define MY_concat_3(a,b,c)	a##b##c
+#define MY_concat_4(a,b,c,d)	a##b##c##d
+#define MY_concat_5(a,b,c,d,e)	a##b##c##d##e
+
+#define UPDATE_PI(type,name,value)						\
+ xv_set(									\
+  MY_concat_4(SetupProps.,type,.,name),						\
+  PANEL_VALUE,MY_concat_4(SetupProps.,type,.,value),				\
+  NULL										\
+ )
+
+#define GET_PI(type,name,value,vartype)						\
+ MY_concat_4(SetupProps.,type,.,value)=(vartype)xv_get(				\
+  MY_concat_4(SetupProps.,type,.,name),						\
+  PANEL_VALUE,MY_concat_4(SetupProps.,type,.,value)				\
+ )
+
+#define UPDATE_PI_CP(type,name,value)						\
+ UPDATE_PI(type,name,value);							\
+ xv_set(									\
+  MY_concat_4(SetupProps.,type,.,name),						\
+  PANEL_INACTIVE,MY_concat_4(SetupProps.,type,.,value)<=0,			\
+  NULL										\
+ );										\
+ xv_set(									\
+  MY_concat_5(SetupProps.,type,.,name,_l),					\
+  PANEL_VALUE,MY_concat_4(SetupProps.,type,.,value)>0 ? 0 : 1,			\
+  NULL										\
+ )
+
+#define UPDATE_PI_FE(name)							\
+ xv_set(									\
+  MY_concat_2(SetupProps.FE.FE_,name),						\
+  PANEL_VALUE,MY_concat_3(SetupProps.FE.,name,_p_value),			\
+  NULL										\
+ );										\
+ xv_set(									\
+  MY_concat_3(SetupProps.FE.FE_,name,_e),					\
+  PANEL_VALUE,MY_concat_3(SetupProps.FE.,name,_e_value),			\
+  NULL										\
+ )
+
+#define GET_PI_FE(name)								\
+ MY_concat_3(SetupProps.FE.,name,_p_value)=(char *)xv_get(			\
+  MY_concat_2(SetupProps.FE.FE_,name),						\
+  PANEL_VALUE									\
+ );										\
+ MY_concat_3(SetupProps.FE.,name,_e_value)=(char *)xv_get(			\
+  MY_concat_3(SetupProps.FE.FE_,name,_e),					\
+  PANEL_VALUE									\
+ )

@@ -1,0 +1,7 @@
+cmdtool    -Wp    0   0 -Ws 673  71 -WP    0   0 -Wl "<< CONSOLE >>" -WL console -C 
+clock      -Wp  497  32 -Ws 210  47 -WP  704   0 -Wi 
+mailtool   -Wp  492  71 -Ws 670 770 -WP  908   0 -Wi 
+perfmeter  -Wp 1087   0 -Ws  64  48 -WP  128   0 -v cpu 
+cmdtool    -Wp  681 647 -Ws 471 253 -WP  840   0 -Wi 
+shelltool  -Wp  676  72 -Ws 474 569 -WP  976   0 -Wi 
+cmdtool    -Wp    0  72 -Ws 673 828 -WP  772   0 

@@ -1,0 +1,84 @@
+<html>
+<head>
+<TITLE>Project Functions, Frames, and Interactions</TITLE>
+</head>
+
+<body>
+
+<H1>Project Functions, Frames, and Interactions</H1>
+
+<h2><a name="description">Project Description</a></h2>
+<hr>
+
+I'm trying to integrate Frames and Interactions into our reduction language
+<a href="http://www.informatik.uni-kiel.de/inf/Kluge/KiR/"><b>KiR</b></a>.
+The notion of Frames originates from research in knowledge representation
+and allows for a structured and hierarchically organized representation 
+of knowledge.  
+The main idea of my project is to build a simple language framework with
+three major components: <b>functions</b>, <b>frames</b>, and <b>interactions</b>. 
+<p>
+
+The starting point is a <b>purely functional language</b>, which to my
+experience is well suited for the representation of algorithms. We add
+a single record-like type of data structure, called <b>frame</b> here, and
+some associated primitive operations in such a way that the resulting
+language should be equally well suited for the representation of
+algorithmic and non-algorithmic knowledge.
+<p>
+
+To complete the framework, we allow programs to access their runtime
+environment via so called <b>interactions</b>. This is basically a variant of
+some approach to input/output-operations for purely functional languages.
+In our framework, however, interactions are a means to handle not only 
+input/output, but environment interactions in general. In particular,
+they will allow to make large collections of algorithmic and non-algorithmic
+knowledge persistent and to access such collections from functional programs.
+<p>
+
+The main application we have in mind is a module system. But instead of
+adding such a system on top of our language, we intend to use the 
+programming language itself as its own module language. Frames can be
+used to organize programs into smaller, more comprehensible structures.
+These structures can then be written to/read from the file system by primitive
+input/output operations. Thus, modules are just data structures that
+can be made to persist in the programming environment and that can be 
+imported into other programs.
+<p>
+
+The programming environment resulting from this approach is not only 
+simpler, but also more powerful than conventional systems. There is no
+separate module language, large programs are treated just as any other
+large collection of data. The input/output operations that are used
+to make modules persistent can be used for other data as well. 
+Since modules are imported using input/output, they are loaded at
+runtime rather than at compile time. One can even think of providing
+different conventions for module systems as a library.
+<p>
+
+While the original project proposal 
+(<a href=public_doc/proposal.dvi.gz><em>"Funktionen & Frames"</em></a>, in german).
+was quite abstract, the main interest has drifted towards more 
+practical problems such as module systems and input/output.
+Some <a href="papers.html">workshop papers</a> are available, which
+address the concrete problems of module systems, data abstraction
+and input/output-operations for functional languages. They should give
+a good idea of how we want to solve these problems using frames and
+interactions.  <p>
+
+If you have any further question regarding this work, do not hesitate
+to ask me. Otherwise
+you may have to wait for my PhD thesis, to be expected sometime in
+summer 1997 (I know, I shouldn't have said that ;-). <p>
+
+<hr>
+
+<a href="implementation.html">Current state of the implementation</a>
+
+<hr>
+
+<address>
+Thu Dec  5 15:24:16 MET 1996
+</address>
+</body>
+</html>

@@ -1,0 +1,334 @@
+head	1.1;
+access;
+symbols
+	lneu2:1.1
+	lneu1:1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	92.10.29.15.01.49;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial version by Leick/Strack
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#include "rstdinc.h"
+#include "rstackty.h"
+#include "rheapty.h"
+#include "rstelem.h"
+#include "rextern.h"
+#include "ct-tab.h"
+
+
+/*-----------------------------------------------------------------------------
+ * Spezielle externe Routinen:
+ *-----------------------------------------------------------------------------
+ */
+extern PTR_DESCRIPTOR newdesc();   /* heap:c */
+extern int newheap();              /* heap:c */
+extern int mvheap();               /* rhinout.c */
+extern int _argsneeded;   /* state:c - Zahl der benoetigten Argumente */
+extern int red_dummy();  
+
+
+/*---------------------------------------------------------------------------
+ * failure -- kuemmert sich um den hoffentlich selten Fall, das eine Primitive
+ *            Funktion nicht anwendbar ist. Die Argumente werden wieder auf den
+ *            A-Stack gelegt, die Aplikatoren werden auf den M- und M1-Stacks
+ *            rekonstruiert, und die Primitive Funktion wird vom E-Stack auf
+ *            den A-Stack gelegt.
+ *            Diese Funktion ist deshalb noetig, weil die in dem Aplikatoren
+ *            enthaltene Editinformation nicht verloren gehen darf.
+ *            Falls alle Argumente Null sind werden nur die Applikatoren
+ *            restauriert.
+ * globals -- _argsneeded       <r>
+ *            S_e,S_a,S_m,S_m1  <w>
+ *----------------------------------------------------------------------------
+ */
+pfail(count,arg,index,anz_vorh)
+int        count;     /* Stelligkeit der primitiven Funktion */
+STACKELEM arg[4];     /* Feld,in dem die der Funktion zugefuehrten Argumente stehen */
+int        index;     /* Index der primitiven Funktion in red_func_tab */
+int     anz_vorh;     /* Anzahl der Argumente,die in der Closure eingetragen waren */
+{
+  STACKELEM           ap;
+  extern int _argsneeded;
+  int                  i;
+
+  START_MODUL("pfail");
+
+  if ( count < 1 || count > 4)
+      post_mortem("failure: count out of range");
+
+  if (arg[0] != NULL)
+     {
+      for ( i = count -1 ; i >= 0 ; i--)
+          PUSHSTACK(S_a,arg[i]);
+     }
+
+  while (_argsneeded < 0)  /* ein Teil der Argumente koennen von dem obersten */
+  {                        /* Apliktor auf dem M1-Stack abgeknapst worden sein */
+    WRITESTACK(S_m1,INC(READSTACK(S_m1)));
+    count--;
+    _argsneeded++;
+  }
+
+/*  while (count > 0)
+  {
+    ap = * (S_m1.TopofStack+1);
+    if ( !T_AP(ap) || (ARITY(ap) > (count+1)) ) 
+    if ( !T_AP(ap) )
+      post_mortem("pfail: unexpected situation.");
+    count -= ARITY(ap) - 1;
+    PUSHSTACK(S_m1,ap);
+    PUSHSTACK(S_m,AP_1);
+  } */
+
+PUSHSTACK(S_m1,SET_ARITY(AP,count+1));
+PUSHSTACK(S_m,AP_1);
+
+  PUSHSTACK(S_a,(STACKELEM)red_func_tab2[index]);
+  END_MODUL("pfail");
+}
+
+
+
+
+
+/*--------------------------------------------------------------------*/
+/* st_clos : Legt einen Closure-Descriptor fuer eine partiell         */
+/*           angewendete Funktion an                                  */
+/*                                                                    */
+/*--------------------------------------------------------------------*/
+
+                          /*           fuer eine Funktion             */
+STACKELEM st_clos(anz_args,ndargs)
+  int anz_args; /* Anzahl der benoetigten Argumente */
+  int ndargs;   /* Anzahl der fehlenden Argumente   */ 
+{
+  register PTR_DESCRIPTOR desc;
+  STACKELEM       * p_arg,hilf;
+  int                    i,anz;
+  int                   anz_fv;/* Anzahl der relativ freien Variablen */
+  PTR_DESCRIPTOR             x;
+  
+  START_MODUL("st_clos");
+
+  if ((desc = newdesc()) == NULL)
+  {
+    END_MODUL("st_clos");
+    return((STACKELEM)NULL);
+  }
+  DESC_MASK(desc,1,C_EXPRESSION,TY_CLOS);
+
+/* Anzahl der noch benoetigten Argumente eintragen */ 
+  L_CLOS((*desc),ndargs) = ndargs;
+                                                     
+/* Groesse des obersten Blockes des Tilde-Stacks in anz_fv eintragen  */
+/* dafuer werden die betreffenden Elemente auf den HILF-Stack kopiert */
+  anz_fv = 0;
+  if ( SIZEOFSTACK_TILDE > 0 )
+     while ( !(T_KLAA( READSTACK(S_tilde))))
+        {
+         ++anz_fv;
+         PUSHSTACK(S_hilf,POPSTACK(S_tilde));
+        }
+                                                                      
+/* Eintragen der Anzahl der relativ freien Variablen */
+  L_CLOS((*desc),nfv) = anz_fv;                        
+
+/* Funktionsdeskriptor eintragen */
+  L_CLOS((*desc),ptfd) = x = (PTR_DESCRIPTOR)POPSTACK(S_e);
+      
+  if (newheap(anz_args+anz_fv+1,A_CLOS((*desc),pta)) == NULL)
+  {
+    DEC_REFCNT(desc);
+    PUSHSTACK(S_e,x);
+    END_MODUL("st_clos");
+    return((STACKELEM)NULL);
+  }
+
+  RES_HEAP;
+  p_arg = (STACKELEM *)R_CLOS((*desc),pta);
+
+/* Eintragen der Argumente fuer die gebundenen Variablen: */
+/* in ndargs steht die Anzahl der fehlenden Argumente     */
+
+  for ( i = anz_args ; i > ndargs ; i--)
+   {
+      hilf=POPSTACK(S_a);
+      p_arg[i] = hilf;               
+    }
+
+  anz=anz_args + anz_fv;
+  p_arg[0] =  anz;
+
+/* Eintragen der Argumente fuer die relativ freien Variablen:   */
+/* dabei werden diese vom HILF-Stack entfernt, in die pta-Liste */
+/* des Deskriptors eingetragen und zusaetzlich zurueck auf den  */
+/* Tilde-Stack gelegt.                                          */  
+
+  for (i = anz ; i > anz_args; i-- )
+      {
+       hilf = POPSTACK(S_hilf);
+       p_arg[i] = hilf;
+       PUSHSTACK(S_tilde,hilf);
+       if (T_POINTER(hilf)) 
+          INC_REFCNT((PTR_DESCRIPTOR)hilf);
+      }
+
+  REL_HEAP;
+
+  END_MODUL("st_clos");
+  return((STACKELEM)desc);
+}  
+
+
+
+
+/**************************************************************************/
+/*                                                                        */
+/*                                                                        */
+/* st_switch_clos          aufgerufen aus: nomat_post                     */
+/*                                                                        */
+/* Modul fuer die Postprocessing-Phase: Anlegen eines Closure-Deskriptors */
+/* fuer einen case-Ausdruck, der in der Preprocessing-Phase mit einer     */
+/* oder mehreren lambda-Abstraktionen zu einem mehrstelligen case-Aus-    */
+/* druck zusammengefasst wurde. In die pta-Liste werden die Argumente     */
+/* eingetragen, die in der Processing-Phase zu einer Liste zusammenge-    */
+/* fasst wurden. Diese Liste steht in dem Nomatch-Deskriptor.             */
+/*                                                                        */
+/*                                                                        */
+/**************************************************************************/
+
+STACKELEM    st_switch_clos( nomat_desc )
+PTR_DESCRIPTOR nomat_desc;                         
+{
+  PTR_DESCRIPTOR desc, sw_desc, arg_desc; 
+  STACKELEM                       *p_arg;        
+  STACKELEM                            x;
+  int                      j,i, anz_args;
+                          
+
+  START_MODUL("st_switch_clos");
+
+  if ((desc = newdesc()) == NULL)
+  {
+    END_MODUL("st_clos");
+    return((STACKELEM)NULL);
+  }   
+
+  DESC_MASK(desc,1,C_EXPRESSION,TY_CLOS);
+
+  L_CLOS((*desc),ndargs) = 0;
+
+  L_CLOS((*desc),nfv) = 0;
+                                                                                 
+  L_CLOS((*desc),ptfd) = ( sw_desc = (PTR_DESCRIPTOR)R_NOMAT((*nomat_desc),ptsdes));
+    /* der Switch-Deskriptor */
+  INC_REFCNT(sw_desc);
+
+  /* Argument fuer die case-Funktion wird aus dem Nomatch-Deskriptor entnommen */
+                      
+     arg_desc = (PTR_DESCRIPTOR) R_NOMAT((*nomat_desc),guard_body)[3] ;
+       /* Argumentliste */
+
+     anz_args =  R_LIST((*arg_desc),dim);
+       /* Anzahl der Argumente */
+
+  if (newheap(anz_args + 1,A_CLOS((*desc),pta)) == NULL)
+  {
+    END_MODUL("st_switch_clos");
+    return((STACKELEM)NULL);
+  }     
+
+  RES_HEAP;
+  p_arg = (STACKELEM *)R_CLOS((*desc),pta);
+  
+  j = 0;                         
+
+  /* Eintragen der Argumente in die pta-Liste: */
+  for ( i = anz_args ; i > 0 ; i--  )
+  {
+    p_arg[i] = ( x = (STACKELEM) R_LIST((*arg_desc),ptdv)[j ] ) ;
+    j++;
+    if( T_POINTER(x) )
+       INC_REFCNT((PTR_DESCRIPTOR)x);
+  }
+
+  p_arg[0] = anz_args;
+
+  REL_HEAP;
+
+  END_MODUL("st_switch_clos");
+  return((STACKELEM)desc);
+
+}
+
+/*--------------------------------------------------------------------*/
+/* st_prim_clos : Legt einen Closure-Descriptor fuer eine partiell    */
+/*           angewendete primitive Funktion an                        */
+/*                                                                    */
+/*--------------------------------------------------------------------*/
+
+STACKELEM st_prim_clos(arity)
+  int arity; /* Stelligkeit der primitiven Funktion */
+{
+  register PTR_DESCRIPTOR desc;
+  STACKELEM   *p_arg,func_name;
+  int                  i,index;
+  
+  START_MODUL("st_prim_clos");
+
+  if ((desc = newdesc()) == NULL)
+  {
+    END_MODUL("st_prim_clos");
+    return((STACKELEM)NULL);
+  }
+  DESC_MASK(desc,1,C_EXPRESSION,TY_P_CLOS);
+
+  L_P_CLOS((*desc),ndargs) = _argsneeded;
+        /* Anzahl der noch benoetigten Argumente */
+
+  func_name = POPSTACK(S_e); /* Funktionsname */
+  index = (int)FUNC_INDEX(func_name); /* Funktionsaufruf */
+
+  L_P_CLOS((*desc),primfunc) = index;
+
+  if (newheap(arity+1,A_P_CLOS((*desc),pta)) == NULL)
+  {
+    PUSHSTACK(S_e,func_name);
+    END_MODUL("st_prim_clos");
+    return((STACKELEM)NULL);
+  }
+
+  RES_HEAP;
+  p_arg = (STACKELEM *)R_P_CLOS((*desc),pta);
+
+  p_arg[0] = (STACKELEM)arity;
+  p_arg[1] = (STACKELEM)func_name;
+
+/* Eintragen der vorhandenen Argumente */
+  for ( i = arity ; i > _argsneeded ; i--)
+      p_arg[i] = POPSTACK(S_a);               
+
+  REL_HEAP;
+
+  END_MODUL("st_prim_clos");
+  return((STACKELEM)desc);
+}
+
+
+
+@

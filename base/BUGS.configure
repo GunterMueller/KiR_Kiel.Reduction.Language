@@ -1,0 +1,5 @@
+1) Inheritance of special rules does not work
+
+2) make-rules for tar <name>-tar do not work
+
+3) there is no install rule in .obj/Makefiles of .o objects!!

@@ -1,0 +1,120 @@
+README fuer das Mergen der Messdateien im Verteilten System
+-----------------------------------------------------------
+
+Letzte Aenderung : 14.06.1993 RS
+                   05.07.1993 RS beim binaeren Wegschreiben Laenge der Zeile jeweils
+                                 hinten angefuegt (tb: macht bin2ascii-Aufruf unnoetig)
+
+- erste Version : provisorisches Mergen des Hosts, der von allen beteiligten Nodes deren
+                  Messdatei zugeschickt bekommt 
+
+  Nachteil : Host sehr stark belastet
+             verstaendlicherweise langsam 
+
+- zweite Version : Mergen auf den Node-Prozessoren, moeglichst verteilt
+                   Schreiben eines Node-Prozessors in die Host-Messdatei
+
+  Vorteil : deutlich schneller als die erste Version,
+            kein Rechenzeitverbrauch des Hosts am Mergen
+
+- dritte Version : Mergen auf einem remote-Rechner
+                   Kopieren der Messdateien zunaechst auf den Host, von da weiter 
+                   auf den remote-Rechner, Merging da
+
+  Vorteil : doppelt so schnell wie (binaer-Baum) verteiltes Merging,
+            (absolut schnell, schneller gehts nicht)
+  
+  Nachteil : bei schneller Datenuebertragung der Messdateien an den Host wird der
+             Host leider wieder entsprechend stark belastet
+
+eingefuehrte Defines:
+---------------------
+
+- das alte Merging ist mit #ifdef M_OLD_MERGING geklammert !
+
+- das remote-Merging ist mit #ifdef M_SUPER_MERGING geklammert !
+
+- sonst verteiltes Merging !
+
+NEUES MERGING
+-------------
+
+Ziel: - Merging auf die Nodes verlagern
+      - moeglichst verteilt vorsortieren
+
+Strategie: - beliebige Konfiguration der Nodes
+           - eine Node haengt seine Ergebnisse (als File) an die HOST-Messdatei an,
+             alle anderen Nodes schicken ihr Ergebnis (DEMAND DRIVEN) Block 
+             fuer Block an eine spezifizierte Node
+           - eine Node kann als Eingabe (neben den max. zwei Dateien) eine beliebige
+             Anzahl von Eingaben ueber Kommunikationskanaele erhalten
+
+           -konkret                Anzahl
+                     Node Eingabe: 0 - 2(4)      beliebige Messdateien
+                                   0 - maxnodes  sorted Messdateien ueber die Kommunikation
+                     Node Ausgabe: 1     Zielnode, der (nach Anfrage) jeweils der
+                                         naechste (vor) gemergte Block geschickt wird
+                                   host  oder Anhaengen der gemergten Ergebnisse an die
+                                         HOST-Messdatei
+
+
+           (Einschraenkung: eine Node kann nur aus zwei Dateien lesen, da
+            Kernel-max-offene-Files = 4 (pro Prozess), ein File fuer DBUG-Ausgaben, 
+            eins fuer Reserve)
+
+HEADER
+------
+
+- Dateiname
+- Uhrzeit der Reduktion
+- Subcube
+- Zahl der Reduktionsschritte
+- Faktor fuer Zeitmessung
+- binary ja/nein
+
+- INIT-Datei-Kopie
+
+- TICKET-Datei-Kopie
+
+@@@@@@@@@@@@@@@@@
+@Implementation:@
+@@@@@@@@@@@@@@@@@
+
+- waehrend des Schreibens der Messdatei und des Mergings wird im binary-mode fuer 
+  jeden Eintrag nach der Zeitmarke die Laenge der Rest-Zeile als char geschrieben.
+  In der finalen Messdatei taucht diese Marke nicht mehr auf (laut Beschluss mit tb
+  vom 13.5.1993). (aeh, is am 05.07.1993 hinfaellig geworden, s.o.)
+     
+- Format der MT_OPEN_MEASURE - Message:
+
+  1 int A : Prozessor, an den das Ergebnis zurueckgeschickt werden soll (-1 = Host direkt)
+                                                                        (     schreiben)
+  1 int B : Anzahl der Eingabekanaele durch Dateien
+  1 int C : Anzahl der Eingabekanaele aus dem Messagesystem
+  B ints  : stellen die Nummern der Messdatei dar, die gelesen werden sollen
+  C ints  : stellen die Nummern der Nodes dar, die ihre Ergebnisse ueber die
+            Kommunikationskanaele
+  String  : wenn A = -1, dann hier der String, der den Dateinamen der Messdatei
+            darstellt 
+  
+- neuen Datei: d_mess_merge.c, d_mess_merge.h
+
+REMOTE MERGING
+--------------
+
+- schnelles Kopieren der Messdateien an den Host, dies uebernimmt eine einzige Node
+
+- dann rcp in /tmp des remote-Rechners, inklusive des Header-Files
+
+- dann wird mittels rsh das Merge-Programm auf dem Remote-Rechner gestartet
+
+  m_remote_merge
+
+NEUE RED.SETUP EINTRAEGE
+------------------------
+
+RemoteHost       :  legt den Remote-Rechner fest
+MeasureTargetDir :  legt das Zielverzeichnis der Messdatei fest
+DelTmpFiles      :  legt fest, ob die unterwegs generierten Dateien geloescht werden sollen
+
+Weitere Eintraege siehe README.measure.usage !

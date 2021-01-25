@@ -1,0 +1,82 @@
+CC = gcc
+OPTS = -g -pipe # -DDBUG_OFF
+
+INCLUDE_PATHS = -I/opt/X11R5/include -I/home/udi/tb/include
+INCLUDES =
+INCS = $(INCLUDE_PATHS) $(INCLUDES)
+
+SPECIALS = -DINCLUDE_ALLOCA_H -DXAW -DUKC_WIDGETS -DUNALIGNED -DSYSV
+
+LIBRARY_PATHS = -L/opt/X11R5/lib -L/home/udi/tb/lib -L/usr/ucblib
+LIBRARIES = -lXukc -lWc -lAt -lXaw -lXmu -lXt -lXext\
+            -lX11 -lm -ldbm -lnsl -lsocket -lelf -lucb -ldl # -lposix 
+LIBS = $(LIBRARY_PATHS) $(LIBRARIES)
+
+
+MSMAIN_SRCS = msMain.c msMain_create.c msMain_main.c msFileBrowser.c\
+              msRequester.c msTools.c msMacros.h dbug.c
+MSMAIN_OBJS = msMain.o msMain_create.o msMain_main.o msFileBrowser.o\
+              msRequester.o msTools.o dbug.o
+
+MSBARCHART_SRCS = msBarChart.c msBarChart_create.c msBarChart_main.c\
+                  msFileBrowser.c msRequester.c msTools.c msModule.c\
+                  msMacros.h dbug.c
+MSBARCHART_OBJS = msBarChart.o msBarChart_create.o msBarChart_main.o\
+                  msFileBrowser.o msRequester.o msTools.o dbug.o
+
+MSPROCARRAY_SRCS = msProcArray.c msProcArray_create.c msProcArray_main.c\
+                   msFileBrowser.c msRequester.c msTools.c msModule.c\
+                   msMacros.h dbug.c
+MSPROCARRAY_OBJS = msProcArray.o msProcArray_create.o msProcArray_main.o\
+                   msFileBrowser.o msRequester.o msTools.o dbug.o
+
+MSHEAPARRAY_SRCS = msHeapArray.c msHeapArray_create.c msHeapArray_main.c\
+                   msFileBrowser.c msRequester.c msTools.c msModule.c\
+                   msMacros.h dbug.c
+MSHEAPARRAY_OBJS = msHeapArray.o msHeapArray_create.o msHeapArray_main.o\
+                   msFileBrowser.o msRequester.o msTools.o dbug.o
+
+MSPROCTREE_SRCS = msProcTree.c msProcTree_create.c msProcTree_main.c\
+                  msFileBrowser.c msRequester.c msTools.c msModule.c\
+                  msMacros.h dbug.c
+MSPROCTREE_OBJS = msProcTree.o msProcTree_create.o msProcTree_main.o\
+                  msFileBrowser.o msRequester.o msTools.o dbug.o
+
+all: msMain msBarChart msProcArray msHeapArray msProcTree bin2ascii
+
+bin2ascii: bin2ascii.o
+	$(CC) -o bin2ascii dbug.o bin2ascii.o
+
+bin2ascii.o: bin2ascii.c dbug.c
+	$(CC) $(OPTS) -c bin2ascii.c
+
+msMain: $(MSMAIN_OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(MSMAIN_OBJS) $(LIBS)
+
+msBarChart: $(MSBARCHART_OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(MSBARCHART_OBJS) $(LIBS) 
+
+msProcArray: $(MSPROCARRAY_OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(MSPROCARRAY_OBJS) $(LIBS) 
+
+msHeapArray: $(MSHEAPARRAY_OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(MSHEAPARRAY_OBJS) $(LIBS) 
+
+msProcTree: $(MSPROCTREE_OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(MSPROCTREE_OBJS) $(LIBS) 
+
+.c.o:
+	$(CC) $(OPTS) $(INCS) $(SPECIALS) -c $*.c
+
+clean:
+	$(RM) msMain msBarChart msProcArray msHeapArray msProcTree \
+	      bin2ascii *.o *~
+	$(RM) BarChartSCRs/*.[co] BarChartSCRs/*.so BarChartSCRs/*~
+	$(RM) ProcArraySCRs/*.[co] ProcArraySCRs/*.so ProcArraySCRs/*~
+	$(RM) HeapArraySCRs/*.[co] HeapArraySCRs/*.so HeapArraySCRs/*~
+	$(RM) ProcTreeSCRs/*.[co] ProcTreeSCRs/*.so ProcTreeSCRs/*~

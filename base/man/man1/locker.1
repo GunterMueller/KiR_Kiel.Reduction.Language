@@ -1,0 +1,37 @@
+.\" Copyright (c) 1992 by the University of Kiel.
+.\" All rights reserved.
+.\"
+.\"	@(#)locker.1	1.0 (University of Kiel) 1/11/92
+.\"
+.TH LOCKER 1 "November 1, 1992"
+.UC
+.SH NAME
+locker \- display locked files within RCS-projects
+.SH SYNOPSIS
+.B locker
+[
+.I dir ...
+]
+.SH DESCRIPTION
+.B locker
+lists all locked files within
+.I dir
+or if a file
+.B RCS-directories
+exists, lists all locked files in all
+directories belonging to the RCS-project.
+.SH FILES
+.TP 1i
+.B RCS-files
+contains the names of all files within a directory that is controlled
+by RCS
+.TP
+.B RCS-directories
+contains the names of all directories belonging to an RCS-project
+.SH ENVIRONMENT
+.TP 1i
+.B RCSROOT
+default directory if no command-line directories are given
+.SH SEE\ ALSO
+.BR rlog (1),
+.BR rcs-project (5)

@@ -1,0 +1,48 @@
+DEFS:
+	static double i;
+	static char rememberFile[100], rememberTime[100], rememberSteps[100],
+	            rememberFactor[100], temp[1000];
+	static double timeFactor;
+
+BEGIN:
+	i = 0;
+
+	SET_MODE(XY_PLOT);
+
+	HEADER_FILE(rememberFile);
+	HEADER_TIME(rememberTime);
+	HEADER_STEPS(rememberSteps);
+	sprintf(temp, "Processes -- %s -- %s reduction steps",
+	        rememberFile, rememberTime, rememberSteps);
+	SET_TITLE(temp);
+
+	HEADER_FACTOR(rememberFactor);
+	timeFactor = atof(rememberFactor);
+
+	SET_NAME("Processes");
+	SET_X_LABEL("Time");
+	SET_Y_LABEL("# of active Processes");
+	SET_X_GRID(OFF);
+	SET_Y_GRID(OFF);
+	SET_STYLE(STEPS);
+
+	NEXT_FRAME();
+
+	break;
+
+PROC_RUN:
+	i += 1;
+	ADD_XY((double)TIME/timeFactor, i);
+	NEXT_FRAME();
+	break;
+
+PROC_SLEEP:
+PROC_TERMINATE:
+	i -= 1;
+	ADD_XY((double)TIME/timeFactor, i);
+	NEXT_FRAME();
+	break;
+
+END:
+	NEXT_FRAME();
+	break;

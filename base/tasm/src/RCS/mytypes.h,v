@@ -1,0 +1,1772 @@
+head	1.78;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.78
+date	97.02.18.14.46.39;	author stt;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	96.05.08.16.51.58;	author cr;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	96.03.13.12.45.48;	author stt;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	96.03.12.17.01.22;	author stt;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	96.02.23.14.10.32;	author rs;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	96.02.15.16.42.58;	author cr;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	96.02.13.15.19.58;	author stt;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	95.08.14.12.21.08;	author sf;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	95.08.14.08.43.31;	author sf;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	95.08.10.09.43.00;	author car;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	95.07.07.08.21.20;	author car;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	95.06.07.11.35.21;	author sf;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	95.06.02.11.46.28;	author sf;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	95.05.31.13.23.47;	author sf;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	95.05.26.06.51.51;	author um;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	95.05.16.12.52.24;	author sf;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	95.05.15.13.33.46;	author sf;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	95.04.24.06.48.20;	author car;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.04.21.08.30.35;	author car;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.04.20.09.57.58;	author car;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.04.19.16.50.08;	author car;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.04.17.14.02.28;	author sf;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.04.13.15.32.51;	author car;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.04.12.13.28.17;	author sf;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.04.10.14.41.01;	author sf;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.04.10.12.51.01;	author sf;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.04.07.07.57.09;	author sf;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.04.07.06.54.59;	author sf;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.04.06.16.10.10;	author car;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.04.05.10.13.28;	author sf;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.03.31.07.11.29;	author um;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.03.27.08.44.09;	author um;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.03.22.17.48.27;	author cr;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.03.22.15.38.21;	author car;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.03.22.08.47.08;	author car;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.03.21.15.20.39;	author car;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.03.21.08.59.58;	author um;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.03.21.08.47.49;	author um;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.03.14.12.33.08;	author car;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.03.03.17.51.47;	author car;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.02.14.08.54.46;	author um;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.02.09.07.45.38;	author car;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.02.03.10.24.35;	author car;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.02.03.07.41.06;	author car;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.01.31.12.29.56;	author car;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.01.31.09.08.41;	author sf;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.01.27.13.06.37;	author car;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.01.19.11.13.26;	author um;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.01.16.07.53.27;	author um;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.01.11.10.35.42;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.01.11.10.16.02;	author um;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.01.06.11.08.08;	author sf;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.01.06.09.23.14;	author um;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.01.06.08.47.27;	author um;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.01.06.07.46.30;	author um;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	94.12.27.14.46.23;	author car;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	94.12.16.08.23.07;	author um;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	94.12.15.09.36.42;	author um;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	94.12.08.09.31.08;	author car;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	94.12.06.09.48.48;	author um;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	94.12.02.09.53.44;	author um;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.12.01.11.13.23;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.12.01.09.22.28;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.11.29.10.25.27;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.11.29.10.11.14;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.11.28.12.53.53;	author car;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.11.25.17.32.51;	author car;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.11.25.08.09.41;	author um;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.11.24.14.48.34;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.11.24.10.21.11;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.11.23.14.54.36;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.11.23.13.44.27;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.11.22.10.50.37;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.11.22.09.28.53;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.22.08.11.28;	author um;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.22.08.01.22;	author um;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.22.07.34.21;	author um;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.08.59;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.78
+log
+@item ia_fscanf replaced by item ia_fredirect
+@
+text
+@#ifndef _MYTYPES
+#define _MYTYPES
+
+#include <stdio.h>
+
+#ifndef TRUE
+#define TRUE 1
+#define FALSE 0
+#endif
+
+#define MAXDELTAARGS    4
+#define ALLTAGS         0xf
+
+#define MKINT(x)        (((x)<<1) | 1)
+#define GETINT(x)       ((x)>>1)
+#define ISINT(x)        ((x) & 1)
+
+/* Interaktion Tags, stt 13.02.96 */
+#define IATAG           0x2
+#define MKIA(x)         (((x)<<4) | IATAG)
+#define GETIA(x)        ((x)>>4)
+#define ISIA(x)         (((x) & ALLTAGS) == IATAG)
+
+#define BOOLTAG         0x4
+#define MKBOOL(x)       (((x)<<4) | BOOLTAG)
+#define GETBOOL(x)      ((x)>>4)
+#define ISBOOL(x)       (((x) & ALLTAGS) == BOOLTAG)
+
+/* War gedacht als Differenzierung zu PRFTAG, wurde aber synonym verwendet.
+   Deshalb wurden die drei Vorkommen von ISFUNC durch ISPRF ersetzt und
+   FUNCTAG auskommentiert.
+ #define FUNCTAG         PRFTAG
+ #define MKFUNC(x)       (((x)<<4) | FUNCTAG)
+ #define GETFUNC(x)      ((x)>>4)
+ #define ISFUNC(x)       (((x) & ALLTAGS) == FUNCTAG)
+*/
+
+#define PRFTAG          0x8
+#define MKPRF(x)        ((x << 4) | PRFTAG)
+#define GETPRF(x)       (x >> 4)
+#define ISPRF(x)        (((x) & ALLTAGS) == PRFTAG)
+
+#define CHARTAG         0xc
+#define MKCHAR(x)       (((x)<<16) | CHARTAG)
+#define GETCHAR(x)      ((x)>>16)
+#define ISCHAR(x)       (((x) & ALLTAGS) == CHARTAG)
+
+#define MKPTR(x)        (x)
+#define GETPTR(x)       (x)
+#define ISPTR(x)        (((x) & ALLTAGS) == 0)
+
+#define GEORG_GENJUMP 1
+#define GEORG_GENRTF  2
+
+#define ASM_SK        0x0
+#define ASM_TILDE     0x1
+#define ASM_DIST      0x2
+
+#define ISASM_SK()      (asm_mode == ASM_SK) 
+#define ISASM_TILDE()   (asm_mode & ASM_TILDE)
+#define ISASM_DIST()    (asm_mode & ASM_DIST)
+
+/************************************************************************/
+/*  ACHTUNG: alle kleingeschrieben ausser Gamma                         */
+/*  code_ok ist ein tag, das anzeigt, dass der anhaengenede Kram bereits*/
+/*  C-Code ist und nicht mehr angefasst zu werden braucht               */
+/************************************************************************/
+
+typedef enum {
+               append=15, apply, beginzf, beta,
+               body, chkframe, cons, count, delta1,
+               delta2, delta3, delta4, dimension, dist, distend, distb,
+               dropp, duparg, end, endzf, ext, extract, fcons, first,
+               freea, freer, freeswt, freet, freew,
+               Gamma, gammabeta, guard, intact,
+               jcond, jfalse, jtrue, jcond2, jfalse2, jtrue2,
+               jump, label, le, lsel, makebool, makezflist, mcomrebon, 
+               mcomreeon, mcomsebon, mcomseeon, mdescallon,
+               mdescfreon, mhfreeon, mhpallon, mhpcmpon, mkap, mkbclos,
+               mkcclos, mkdclos, mkgaclos, mkgclos, mkgsclos, mkiclos, mkilist,
+               mklist, mksclos, mod, movear, moveaw, movetr,
+               movetw, mprocreon, mprorunon, mproteron, mprowakon, mprsleeon,
+               msdistck, msdistend, msdiston, mstckppon, mstckpuon, mstksegal,
+               mstksegfr, msnodist, nomatch,
+               poph, pushar, pushaw, pushr, pushr_p, pushtr, pushtw, 
+               pushw, pushcw_pf, pushw_p, pushcw_i, pushcw_b, pushcr_i, 
+               pushcr_b, pushcw_r, pushaux,
+               pushh, pushret, rest, rtc, rtc_b, rtc_i, rtc_pf,
+               i_rtc_b, i_rtc_i , i_rtf, i_rtt, i_rtp, i_rtm, i_rtc_pf, stflip,
+               rtf, rtm, rtm_t, rtp, rtt, snap, tail,
+               testfalse, testlist, testtrue, testzero, wait, when,
+               code_ok, betanear, betafar,
+               tailnear, tailfar, gammanear, gammafar, 
+               gammabetanear, gammabetafar,
+               incw, inca, incr, inct, tincw, tinca, tincr, tinct,
+               decw, deca, decr, dect, tdecw, tdeca, tdecr, tdect,
+               killw, killa, killr, killt, tkillw, tkilla, tkillr, tkillt,
+               hashargs, hashtildeargs, hashrestype, hashsetref,
+               advance, atend, atstart, bind, binds, bindsubl, Case, 
+	       casenear, casefar, dereference,
+               drop, endlist, endsubl, fetch, gammacase, 
+	       gammacasenear, gammacasefar, initbt, matcharb,
+               matcharbs, matchbool, matchin, matchint, matchlist,
+               matchprim, matchstr, mkaframe, mkbtframe, mkcase, mkwframe,
+               nestlist, pick, restorebt, restoreptr, rmbtframe, rmwframe,
+               savebt, saveptr, startsubl, tguard, mkframe, mkslot, Inter,
+               uses_aux_var, stack_op, ris_stack_op, lastcmd
+             } COMMAND;
+
+typedef enum {
+    LABbt, LABcase, LABcond, LABcont, LABfail, LABfunc,
+    LABinloop, LABjcond, LABundecided, LABdistarg, LABdistend,
+    LABonefunc } labeltype;
+
+typedef enum
+    { SREFnone, SREFimplicit, SREFexplicit, SREFkeepimpl, SREFisexplicit } setrefmode;
+
+/************************************************************************/
+/* IMPORTANT:	D O   N O T   M I X !	T H E Y   A R E   S O R T E D !	*/
+/************************************************************************/
+typedef enum {
+/*********************/
+/* DYADIC FUNCTIONS  */
+/*********************/
+               p_plus, p_minus, p_mult, p_div, p_mod,
+               p_or, p_and, p_xor, p_eq, p_ne, 
+               p_lt, p_le, p_gt, p_ge, p_max, p_min, p_quot, 
+/*********************/
+/* MONADIC FUNCTIONS */
+/*********************/
+               p_not, p_abs, p_neg, p_trunc, p_floor, p_ceil,
+               p_frac, p_empty, p_sin, p_cos, p_tan, p_ln, p_exp, 
+/*****************/
+/* INNER PRODUCT */
+/*****************/
+               p_ip,  
+/***********/
+/* QUERIES */
+/***********/
+               p_class, p_type, p_dim, p_vdim, p_mdim, p_ldim,
+/***********/
+/* GROUP 1 */
+/***********/
+               p_transpose, p_reverse, 
+/***********/
+/* GROUP 2 */
+/***********/
+               p_cut, p_mcut, p_vcut, p_ltransform, p_rotate, p_vrotate, p_mrotate,
+               p_select, p_vselect, p_mselect, p_substr, p_lcut, p_transform, 
+               p_lrotate, p_lselect, 
+/***********/
+/* GROUP 3 */
+/***********/
+               p_lreplace, p_repstr, p_replace, p_mre_c, p_mre_r, p_vreplace, 
+               p_mreplace, 
+/***********/
+/* GROUP 7 */
+/***********/
+               p_unite, p_vunite, p_munite, p_lunite, 
+/************************/
+/* CONVERSION FUNCTIONS */
+/************************/
+               p_to_vect, p_to_tvect, p_to_mat, p_to_scal, p_to_list, p_to_field,
+/************************/
+/* ALONG A COORDINATE   */
+/************************/
+               p_c_max, p_vc_max, p_c_min, p_vc_min, p_c_plus, p_vc_plus, 
+               p_c_minus, p_vc_minus, p_c_mult, p_vc_mult, p_c_div, p_vc_div,
+/************************/
+/* FIELD (NOT) EQUAL    */
+/************************/
+               p_f_eq, p_f_ne,
+/* cr 22/03/95, kir(ff), START */
+/************************/
+/* FRAME FUNCTIONS      */
+/************************/
+               p_f_update, p_f_select, p_f_test, p_f_delete, p_f_slots,
+/* cr 22/03/95, kir(ff), END */
+               p_sprintf, p_sscanf, p_to_char, p_to_ord
+               } PRIMF;
+
+
+/* stt 13.02.96 */
+/* The elements of IACTION are used as indexes for intact_tab[] in globals.h. */
+/* Make sure that IACTION and intact_tab[] match each other.                  */
+typedef enum {
+               ia_fopen, ia_fclose, ia_fgetc, ia_fputc, ia_ungetc,
+               ia_fgets, ia_read, ia_fputs, ia_fprintf, ia_fredirect,
+               ia_fseek, ia_ftell, ia_exit, ia_eof, ia_bind, ia_unit,
+               ia_finfo, ia_status, ia_remove, ia_rename, ia_copy,
+               ia_mkdir, ia_rmdir, ia_chdir, ia_getwd, ia_dir,
+               ia_get, ia_put
+             } IACTION;
+
+
+/* type for interaction nodes
+ */
+
+typedef  enum { INdone=0, INget, INput
+              } INTERT;
+
+/************************/
+/* ALL  PURPOSE   TYPES */
+/************************/
+#define PRIM_MASK		0x0f
+#define EXT_MASK		0x70
+#define TYPE_MASK		0xff
+#define OTHER_MASK		0x80
+#define CALC_EXT(x)		((x)>>4)
+#define DO_EXT(x)		((x)<<4)
+#define TYPES2LONG(w,x,y,z)	((w)+((x) << 8)+((y) << 16)+((z) << 24))
+#define NOTYPE                  TYPES2LONG(tp_none, tp_none, tp_none, tp_none)
+#define MAKETYPE(ext, prim)     ((ext) | (prim))
+#define MERGETYPE(ty1, ty2)     ((ty1) | (ty2))
+#define DELTYPE(i, ty)          (ty & ~(TYPE_MASK<<(i*8)))
+#define GETTYPE(i, ty)          (((ty)>>(i*8)) & TYPE_MASK)
+#define SETTYPE(i, ty)          ((ty)<<(i*8))
+
+/* list of type list is typed as list of type none */
+/* DO NOT CHANGE THE ORDER OF TP_TYPES */
+/* if you must change something, look at loctypes.h, too */
+typedef enum
+             {
+             tp_nums=-100,tp_vals,tp_bools,tp_scals,tp_nscals,tp_vects,
+             tp_nvects,tp_mats,tp_nmats,
+	     tp_badrecur=-3,tp_returnadr,tp_illegal,
+	     tp_none=0x00,tp_int,tp_real,tp_digit,tp_bool,tp_char,
+             tp_empty,tp_atom,tp_var,
+	     tp_list=0x10,tp_vect=0x20,tp_tvect=0x30,tp_matrix=0x40,
+             tp_string=0x50,
+             tp_prim=OTHER_MASK,tp_clos,tp_func
+	     } TP_TYPES;
+
+
+typedef enum {
+               d_list, d_real, d_ptr, d_mat, d_vect, d_tvect, d_string, d_name,
+               d_int, d_bool, d_undef
+             } DATATAG;
+
+
+typedef enum
+             {
+               DT_PRIMITIV, DT_CONDITIONAL, DT_COMBINATOR, DT_CASE
+             } DESCTAG;
+
+
+typedef struct tagc_code
+                             {
+                               char *code;
+                               struct tagc_code *next;
+                             } C_CODE ;
+
+
+typedef struct tagprogram
+                             {
+                               struct tagfunction *function;
+                               struct tagfundesc *desc;
+                               struct tagdatanode *data;
+                             } PROGRAM;
+
+/********************************************************************/
+/* Datentypen ohne Sinn und Verstand                                */
+/********************************************************************/
+typedef struct tagdatanode {
+                               struct tagdatanode *next;
+                               DATATAG tag;
+                               int address;
+                               union 
+                               {
+                                 double x;
+                                 struct {
+                                   int   size;
+                                   int * data;
+                                   } v;
+                                 struct {
+                                   int rows;
+                                   int cols;
+                                   DATATAG tag;
+                                   union {
+                                     int *idata;
+                                     double *rdata;
+                                     } m;
+                                   } w;
+                               } u; 
+                             } DATANODE;
+
+/********************************************************************/
+/* ENDE Datentypen ohne Sinn und Verstand                           */
+/********************************************************************/
+
+typedef struct tagparameters {
+                              int n; /* returnlabel for calls */
+                              int m; 
+                              int k;
+                              int l; /* only used by bindsubl/initbt/dist */
+                              int j; /* only used by initbt/dist */
+                              double x;
+                              char * label; /* bei farcalls targetfunktion */
+                              char * ret; /* bei farcalls returnfunktion */
+                              char *hash_str;
+			      TP_TYPES *argtp;	/* argtypes for hash */
+                              void *desc;   /* pointer here */
+                              PRIMF primf;
+                            } PARAMETERS;
+
+typedef struct tagfunction  {
+                              char * name;
+                              struct tagfunction *next;
+                              struct tagorder *order;
+                              struct tagfundesc *desc;
+                              int inlined;
+                            } FUNCTION;
+
+typedef struct tagorder     { 
+                              COMMAND command;
+                              PARAMETERS args;
+                              struct tagorder *next;
+                              struct tagorder *prev;
+                              char *code;
+			      int typestouched;
+                              long types;
+                              int branch;
+                              int opti; 	/* FALSE if not optimized */
+                            } ORDER;
+
+typedef struct tagfundesc
+                            {
+                              int address;       /* first elem of desc */
+                              DESCTAG tag;
+                              int nfv;          /* # free vars */
+                              int nv;           /* arity */
+                              int graph;
+                              char * label;
+                              struct tagfundesc *next;
+                            } FUNDESC;
+
+typedef struct tagcode
+                            {
+                              char code[120];
+                              struct tagcode *next;
+                            } CODE;
+
+extern int asm_mode;
+extern int uses_apply;
+extern int dogeorg, dotis,  doris, dotasm, dogcc, dostaticlink, useacc;
+extern char * infile, * outfile, * tmpname;
+extern FILE * yyin, * yyout;
+extern PROGRAM * program_start;
+struct tagfunc_body;
+struct tagfunction;
+struct tagorder;
+struct tagfundesc;
+struct tagcode;
+
+
+#endif
+@
+
+
+1.77
+log
+@new interactions: IA_GET, IA_PUT
+@
+text
+@d188 1
+a188 1
+               ia_fgets, ia_read, ia_fputs, ia_fprintf, ia_fscanf,
+@
+
+
+1.76
+log
+@Comment added.
+@
+text
+@d191 2
+a192 1
+               ia_mkdir, ia_rmdir, ia_chdir, ia_getwd, ia_dir
+@
+
+
+1.75
+log
+@p_sprintf, p_sscanf, p_to_char, p_to_ord added.
+@
+text
+@d184 2
+@
+
+
+1.74
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@d177 1
+a177 1
+               p_f_update, p_f_select, p_f_test, p_f_delete, p_f_slots
+d179 1
+@
+
+
+1.73
+log
+@added p_f_delete, p_f_slots
+@
+text
+@d84 1
+a84 1
+               mstksegfr, nodist, nomatch,
+@
+
+
+1.72
+log
+@FUNCTAG macros removed. New type IACTION.
+New COMMANDs intact and mkiclos.
+@
+text
+@d177 1
+a177 1
+               p_f_update, p_f_select, p_f_test
+@
+
+
+1.71
+log
+@declaration of new variable
+@
+text
+@d18 6
+d29 8
+a36 4
+#define FUNCTAG         0x8
+#define MKFUNC(x)       (((x)<<4) | FUNCTAG)
+#define GETFUNC(x)      ((x)>>4)
+#define ISFUNC(x)       (((x) & ALLTAGS) == FUNCTAG)
+d38 1
+a38 1
+#define PRFTAG          FUNCTAG /* ??? */
+d41 1
+a41 1
+#define ISPRF(x)       (((x) & ALLTAGS) == PRFTAG)
+d75 1
+a75 1
+               Gamma, gammabeta, guard,
+d80 1
+a80 1
+               mkcclos, mkdclos, mkgaclos, mkgclos, mkgsclos, mkilist,
+d180 12
+a191 1
+           
+@
+
+
+1.70
+log
+@ability to generated only one function
+@
+text
+@d319 1
+@
+
+
+1.69
+log
+@variables for new options
+@
+text
+@d89 4
+a92 2
+               advance, atend, atstart, bind, binds, bindsubl, Case, dereference,
+               drop, endlist, endsubl, fetch, gammacase, initbt, matcharb,
+d102 2
+a103 1
+    LABinloop, LABjcond, LABundecided, LABdistarg, LABdistend } labeltype;
+@
+
+
+1.68
+log
+@DIST implemented
+@
+text
+@d316 1
+a316 1
+extern int dogeorg, dotis,  doris, dotasm, dogcc;
+@
+
+
+1.67
+log
+@new command: rtc_pf
+@
+text
+@d100 1
+a100 1
+    LABinloop, LABjcond, LABundecided } labeltype;
+d267 2
+a268 2
+                              int l; /* only used by bindsubl and initbt */
+                              int j; /* only used by initbt */
+@
+
+
+1.66
+log
+@d_undef added
+@
+text
+@d78 2
+a79 2
+               pushh, pushret, rest, rtc, rtc_b, rtc_i,
+               i_rtc_b, i_rtc_i , i_rtf, i_rtt, i_rtp, i_rtm, stflip,
+@
+
+
+1.65
+log
+@data array for mat, vect, tvect in DATANODE implemented
+@
+text
+@d209 1
+a209 1
+               d_int, d_bool
+@
+
+
+1.64
+log
+@/* DO NOT CHANGE THE ORDER OF TP_TYPES */ inserted
+@
+text
+@d247 9
+@
+
+
+1.63
+log
+@global variable: dogcc
+@
+text
+@d192 2
+@
+
+
+1.62
+log
+@external declaration
+@
+text
+@d305 1
+a305 1
+extern int dogeorg, dotis,  doris, dotasm;
+@
+
+
+1.61
+log
+@keepimpl integrated
+@
+text
+@d306 1
+a306 1
+extern char * infile, * outfile;
+@
+
+
+1.60
+log
+@setref identifiers
+@
+text
+@d102 2
+a103 1
+typedef enum { SREFimplicit, SREFexplicit, SREFkeepimpl } setrefmode;
+@
+
+
+1.59
+log
+@more arrays substitued by pointers
+@
+text
+@a97 2
+typedef enum { REF_IMPLICIT, REF_EXPLICIT } refmode;
+
+d101 2
+@
+
+
+1.58
+log
+@label now char *
+@
+text
+@d267 1
+a267 1
+                              char name[20];
+@
+
+
+1.57
+log
+@new command: ris_stack_op
+@
+text
+@d258 2
+a259 2
+                              char label[20]; /* bei farcalls targetfunktion */
+                              char ret[20]; /* bei farcalls returnfunktion */
+d293 1
+a293 1
+                              char label[20];
+@
+
+
+1.56
+log
+@label ID integration
+@
+text
+@d95 1
+a95 1
+               uses_aux_var, stack_op, lastcmd
+@
+
+
+1.55
+log
+@new COMMAND: stack_op
+@
+text
+@d100 4
+@
+
+
+1.54
+log
+@p_substruct -> p_substr
+@
+text
+@d95 1
+a95 1
+               uses_aux_var, lastcmd
+@
+
+
+1.53
+log
+@inlined flag
+@
+text
+@d131 1
+a131 1
+               p_select, p_vselect, p_mselect, p_substruct, p_lcut, p_transform, 
+@
+
+
+1.52
+log
+@*** empty log message ***
+@
+text
+@d267 1
+@
+
+
+1.51
+log
+@*** empty log message ***
+@
+text
+@d79 1
+a79 1
+               i_rtc_b, i_rtc_i , i_rtf, i_rtt, i_rtp, i_rtm,
+@
+
+
+1.50
+log
+@hashsetref & i_rtf*
+@
+text
+@d79 1
+a79 1
+               i_rtc, i_rtf, i_rtt, i_rtp, i_rtm,
+@
+
+
+1.49
+log
+@COMMAND added: uses_aux_var for use with ris
+@
+text
+@d79 1
+d88 1
+a88 1
+               hashargs, hashtildeargs, hashrestype,
+d97 2
+@
+
+
+1.48
+log
+@tp_atom added
+@
+text
+@d94 1
+a94 1
+               lastcmd
+@
+
+
+1.47
+log
+@tp_string moved, tp_char inserted
+@
+text
+@d190 1
+a190 1
+             tp_empty,tp_cmplx,tp_var,
+@
+
+
+1.46
+log
+@added p_f_update, p_f_select, p_f_test to PRIMF
+@
+text
+@d189 1
+a189 1
+	     tp_none=0x00,tp_int,tp_real,tp_digit,tp_bool,tp_string,
+d192 1
+@
+
+
+1.45
+log
+@strings & free variables
+@
+text
+@d151 7
+a157 1
+               p_f_eq, p_f_ne
+d163 1
+a163 1
+typedef  enum { INdone, INget, INput
+@
+
+
+1.44
+log
+@STRINGS
+@
+text
+@d191 1
+a191 1
+               d_list, d_real, d_ptr, d_mat, d_vect, d_tvect, d_string,
+@
+
+
+1.43
+log
+@command offset changed
+@
+text
+@d12 2
+d17 2
+d21 9
+a29 4
+#define ISBOOL(x)       (((x) & 0xf) == BOOLTAG)
+#define BOOLTAG         4
+#define FUNCTAG         0x00000008
+#define ISFUNC(x)       (((x) & FUNCTAG) == FUNCTAG)
+d31 7
+a37 1
+#define MKPRF(x)        ((x << 4) | FUNCTAG)
+d40 1
+a40 1
+#define ISPTR(x)        (((x) & 0xf) == 0)
+d267 1
+@
+
+
+1.42
+log
+@*** empty log message ***
+@
+text
+@d45 1
+a45 1
+               append=1, apply, beginzf, beta,
+@
+
+
+1.41
+log
+@tp_var for free variables inserted
+@
+text
+@d169 1
+a169 1
+             tp_empty,tp_cmplx,tp_var
+@
+
+
+1.40
+log
+@interactions invented
+@
+text
+@d169 1
+a169 1
+             tp_empty,tp_cmplx,
+@
+
+
+1.39
+log
+@PM added
+@
+text
+@d78 1
+a78 1
+               savebt, saveptr, startsubl, tguard,
+d139 6
+@
+
+
+1.38
+log
+@tp_cmplx added
+@
+text
+@d50 1
+a50 1
+               Gamma, gammabeta, gammacase, guard,
+d73 6
+d177 1
+a177 1
+               DT_PRIMITIV, DT_CONDITIONAL, DT_COMBINATOR
+d220 2
+@
+
+
+1.37
+log
+@*** empty log message ***
+@
+text
+@d156 2
+a157 1
+	     tp_none=0x00,tp_int,tp_real,tp_digit,tp_bool,tp_string,tp_empty,
+@
+
+
+1.36
+log
+@type macros adjusted
+@
+text
+@d73 1
+a73 1
+               last
+@
+
+
+1.35
+log
+@hash instruction extended
+@
+text
+@d144 2
+a145 2
+#define MAKETYPE(ext, prim)     (ext | prim)
+#define MERGETYPE(ty1, ty2)     (ty1 | ty2)
+@
+
+
+1.34
+log
+@kill's pushaux freew
+@
+text
+@d66 1
+a66 1
+               code_ok, hash, betanear, betafar,
+d72 1
+a75 4
+typedef enum {
+               args, tildeargs, restype
+             } HASHNAMES;
+
+d257 1
+a257 1
+extern int asm_mode, verbose;
+@
+
+
+1.33
+log
+@pushaux ???
+@
+text
+@d49 2
+a50 2
+               freea, freer, freeswt, freet,Gamma,
+               gammabeta, gammacase, guard,
+d70 3
+a72 1
+               decw, deca, decr, dect, tdecw, tdeca, tdecr, tdect
+@
+
+
+1.32
+log
+@HASHNAMES
+@
+text
+@d61 2
+a62 1
+               pushw, pushcw_pf, pushw_p, pushcw_i, pushcw_b, pushcr_i, pushcr_b, pushcw_r,
+d268 1
+@
+
+
+1.31
+log
+@some internal types added
+@
+text
+@d72 4
+@
+
+
+1.30
+log
+@comment inserted
+@
+text
+@d149 2
+@
+
+
+1.29
+log
+@minor change in macro determining and recognizing primitive functions
+@
+text
+@d146 1
+@
+
+
+1.28
+log
+@*** empty log message ***
+@
+text
+@d20 1
+@
+
+
+1.27
+log
+@macros for parsing primitive functions
+@
+text
+@d148 1
+a148 1
+	     tp_none=0x00,tp_int,tp_real,tp_digit,tp_bool,tp_string,
+@
+
+
+1.26
+log
+@*** empty log message ***
+@
+text
+@d19 3
+d38 1
+a38 1
+/*  ACHTUNG: alle kleingeschrieben ausses Gamma                         */
+@
+
+
+1.25
+log
+@tp_notset removed, typestouched inserted in ORDER
+@
+text
+@d130 1
+a130 1
+#define TYPE_MASK		0x7f
+@
+
+
+1.24
+log
+@hashtypes added
+@
+text
+@a145 1
+	     tp_notset=PRIM_MASK,
+a200 2
+                                     /* if command apply, beta ect 
+                                        then recursionlevel */
+d224 2
+a225 1
+			      long types;
+@
+
+
+1.23
+log
+@ref-counting instructions, link orders->function descriptor
+@
+text
+@d209 1
+@
+
+
+1.22
+log
+@apply_c & apply_f removed
+@
+text
+@d63 3
+a65 1
+               gammabetanear, gammabetafar
+d217 1
+@
+
+
+1.21
+log
+@*** empty log message ***
+@
+text
+@d41 1
+a41 1
+               append=1, apply, apply_f, apply_c, beginzf, beta,
+@
+
+
+1.20
+log
+@types extended
+@
+text
+@d142 1
+a142 1
+	     tp_badlocrec=-5,tp_badrecur,tp_doagain,tp_illegal,tp_data,
+@
+
+
+1.19
+log
+@types changed
+@
+text
+@d11 1
+d41 1
+a41 1
+               add = 1, and, append, apply, apply_f, apply_c, beginzf, beta,
+d43 2
+a44 2
+               delta2, delta3, delta4, dimension, dist, dist_end, distb,
+               div, dropp, duparg, end, endzf, eq, ext, extract, fcons, first,
+d46 1
+a46 1
+               gammabeta, gammacase, ge, gt, guard,
+d48 1
+a48 2
+               jcond_b, jfalse_b, jtrue_b, jcond2_b, jfalse2_b, jtrue2_b,
+               jump, label, le, lsel, lt, makebool, makezflist, mcomrebon, 
+d55 2
+a56 2
+               mstksegfr, mul, ne, neg, nodist, nomatch,
+               not, or, poph, pushar, pushaw, pushr, pushr_p, pushtr, pushtw, 
+d59 2
+a60 2
+               rtf, rtm, rtm_t, rtp, rtt, snap, sub, tail,
+               testfalse, testlist, testtrue, testzero, wait, when, xor,
+d63 1
+a63 3
+               gammabetanear, gammabetafar,
+               /* eq, ne, le, lt, ge, gt, add, */ minus, mult,
+	       eq_ii, ne_ii, le_ii, lt_ii, ge_ii, gt_ii, add_ii, minus_ii, mult_ii
+d133 6
+@
+
+
+1.18
+log
+@plus_ii -> add_ii
+@
+text
+@d63 3
+a65 3
+               gammabetanear, gammabetafar, 
+               le_ii, lt_ii, ge_ii, gt_ii, eq_ii, ne_ii,
+               minus_ii, add_ii, mult_ii
+d123 22
+a144 1
+             } PRIMF;
+d219 2
+a220 1
+                              int opti; /* FALSE if not optimized */
+@
+
+
+1.17
+log
+@revision of apply{near|far} to apply
+@
+text
+@d65 1
+a65 1
+               minus_ii, plus_ii, mult_ii
+d68 3
+@
+
+
+1.16
+log
+@applynear and applyfar implemented
+@
+text
+@d63 1
+a63 1
+               gammabetanear, gammabetafar, applynear, applyfar,
+@
+
+
+1.15
+log
+@*** empty log message ***
+@
+text
+@d62 2
+a63 1
+               tailnear, tailfar, gammanear, gammafar, gammabetanear, gammabetafar,
+d65 1
+a65 1
+	       minus_ii, plus_ii, mult_ii
+@
+
+
+1.14
+log
+@pushcw_pf for primfunc added
+@
+text
+@d57 1
+a57 1
+               pushw, pushw_pf, pushw_p, pushcw_i, pushcw_b, pushcr_i, pushcr_b, pushcw_r,
+@
+
+
+1.13
+log
+@asm_mode integrated
+@
+text
+@d57 1
+a57 1
+               pushw, pushw_p, pushcw_i, pushcw_b, pushcr_i, pushcr_b, pushcw_r,
+@
+
+
+1.12
+log
+@conditional instructions completed
+@
+text
+@d4 2
+d22 10
+a31 5
+struct tagfunc_body;
+struct tagfunction;
+struct tagorder;
+struct tagfundesc;
+struct tagcode;
+d213 12
+@
+
+
+1.11
+log
+@primfuncs added
+@
+text
+@d33 1
+a33 1
+               add, and, append, apply, apply_f, apply_c, beginzf, beta,
+d38 3
+a40 1
+               gammabeta, gammacase, ge, gt, guard, jcond, jfalse, jtrue,
+d56 1
+a56 1
+               le_ii, lt_ii, ge_ii, gt_ii, eq_ii, ne_ii, jfalse_b, 
+@
+
+
+1.10
+log
+@datanodes restructured
+@
+text
+@d54 2
+a55 1
+               le_ii, eq_ii, ne_ii, jfalse_b, minus_ii, plus_ii, mult_ii
+@
+
+
+1.9
+log
+@fixed arity orders removed
+@
+text
+@a153 24
+typedef struct tagmatnode
+                             {
+                               DATATAG data;
+                               int xdim;
+                               int ydim;
+                               void *matdata;
+                             } MATNODE;
+
+typedef struct taglistnode
+                             {
+                               int length;
+                               struct taglistdata *data;
+                             } LISTNODE;
+typedef struct taglistdata
+                             {
+                               DATATAG data;
+                               union
+                               {
+                                 int n;
+                                 double x;
+                                 void *listdata;
+                               } u;                               
+                             } LISTDATA;
+
+@
+
+
+1.8
+log
+@minor bugfix
+@
+text
+@d34 1
+a34 2
+               beta0, beta1, betaq,
+               betaq0, betaq1, body, chkframe, cons, count, delta1,
+d37 1
+a37 1
+               free1a, free1r, free1swt, freea, freer, freeswt, freet,Gamma,
+d47 1
+a47 2
+               not, or, poph, pushar, pushar0, pushaw,
+               pushaw0, pushr, pushr_p, pushtr, pushtr0, pushtw, pushtw0,
+d50 1
+a50 2
+               rtf, rtm, rtm_t, rtp, rtt, snap, sub,
+               tail, tail0, tail1, tailq, tailq0, tailq1,
+d52 3
+a54 7
+               code_ok, hash,
+               betanear, betafar, beta1near, beta1far, beta0near, beta0far,
+               betaqnear, betaqfar, betaq1near, betaq1far, betaq0near,
+               betaq0far, tailnear, tailfar,
+               gammanear, gammafar, gammabetanear, gammabetafar,
+               le_ii, eq_ii, ne_ii, 
+               jfalse_b, minus_ii, plus_ii, mult_ii
+@
+
+
+1.7
+log
+@data structure extended, tagging macros
+@
+text
+@d14 1
+a14 1
+#define ISBOOL(x)       ((x) & BOOLTAG)
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d9 11
+d150 1
+a150 1
+                               void * address;
+d154 4
+a157 1
+                                 void *data;
+@
+
+
+1.5
+log
+@spelling corrections
+@
+text
+@d40 1
+a40 1
+               pushh, pushret, rest, rtc, rtc_b, rtc_r, rtc_i,
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d138 2
+a139 2
+                               DATATAG data;
+                               void * adress;
+d206 1
+a206 1
+                              int adress;       /* first elem of desc */
+@
+
+
+1.3
+log
+@commend moved
+@
+text
+@d178 2
+a179 1
+                                     /* if command hash then recursionlevel */
+@
+
+
+1.2
+log
+@apply_f & apply_c added
+@
+text
+@d177 1
+a178 1
+                              int m; 
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d22 2
+a23 1
+               add, and, append, apply, beginzf, beta, beta0, beta1, betaq,
+@

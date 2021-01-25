@@ -1,0 +1,90 @@
+#!/bin/sh
+
+######################################################################
+#
+# Configure the next variables for your pathes
+#
+# Write a directory / as a \\/
+#
+######################################################################
+
+# Enter here path and pi-red libraryname : e.g. ~base/lib/lred.o
+REDLIB=\\/home\\/batman\\/base\\/lib\\/lred.o
+
+# Enter here path for pi-red src files : e.g. ~base/red/src
+REDSRC=\\/home\\/batman\\/base\\/red\\/src
+
+# Enter here path for syntax-directed editor src files : e.g. ~base/sfed/src
+SFEDSRC=\\/home\\/batman\\/base\\/fed\\/src
+
+XFEDLIB=\\/home\\/batman\\/base\\/lib\\/xeditor.o
+
+# This directory `pwd`
+TOPPATH=\\/home\\/batman\\/base\\/udi
+
+######################################################################
+#
+# Normal path specifications
+#
+######################################################################
+
+SFED_PATH=/home/batman/base/fed/src
+
+######################################################################
+# End of user configuration part
+######################################################################
+
+echo
+echo "Configuration script V 0.1"
+echo "-----------------------------------------"
+echo
+
+ if (test -z $REDLIB) then
+  echo "No REDLIB defined !"
+  exit
+ fi
+
+ if (test -z $REDSRC) then
+  echo "No REDSRC defined !"
+  exit
+ fi
+
+ echo
+
+ echo "Update program links ..."
+ bin/RM_links
+ bin/MK_links
+
+ echo "Updating XView Imakefile ..."
+ sed "s/%%TOPPATH%%/"$TOPPATH"/g" src/xv/Imakefile.udi >/tmp/.UdiTmp
+ sed "s/%%SFEDSRC%%/"$SFEDSRC"/g" /tmp/.UdiTmp >/tmp/.UdiTmp2
+ sed "s/%%REDSRC%%/"$REDSRC"/g" /tmp/.UdiTmp2 >src/xv/Imakefile
+ rm -f >/tmp/.UdiTmp2
+
+ echo "Updating marco example compiler ..."
+ sed "s/%%REDSRC%%/"$REDSRC"/g" src/marco/examples/kir/Makefile.udi >/tmp/.UdiTmp
+ sed "s/%%REDLIB%%/"$REDLIB"/g" /tmp/.UdiTmp >src/marco/examples/kir/Makefile
+ sed "s/%%REDSRC%%/"$REDSRC"/g" src/marco/examples/calc/Makefile.udi >/tmp/.UdiTmp
+ sed "s/%%REDLIB%%/"$REDLIB"/g" /tmp/.UdiTmp >src/marco/examples/calc/Makefile
+
+ echo "Updating marco compiler library ..."
+ sed "s/%%REDSRC%%/"$REDSRC"/g" src/marco/library/Makefile.udi >/tmp/.UdiTmp
+ sed "s/%%REDLIB%%/"$REDLIB"/g" /tmp/.UdiTmp >src/marco/library/Makefile
+
+ echo "Updating Reduma Server Editor ..."
+ sed "s/%%REDLIB%%/"$REDLIB"/g" src/sxred/Makefile.udi >/tmp/.UdiTmp
+ sed "s/%%XFEDLIB%%/"$XFEDLIB"/g" /tmp/.UdiTmp >src/sxred/Makefile
+
+ rm -f /tmp/.UdiTmp
+
+ echo
+ echo "Setup some environment variables ..."
+ echo "PATH="`pwd`/bin":"$PATH
+ echo "FHELPFILE="$SFED_PATH/creduma.h
+
+ echo 
+ echo "All done !"
+ echo
+ echo "To compile all source files enter <src> directory"
+ echo "and type <make depend;make>"
+ echo

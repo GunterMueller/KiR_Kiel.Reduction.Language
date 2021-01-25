@@ -1,0 +1,5116 @@
+head	1.110;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.110
+date	96.04.19.09.41.06;	author cr;	state Exp;
+branches;
+next	1.109;
+
+1.109
+date	96.04.11.13.23.20;	author cr;	state Exp;
+branches;
+next	1.108;
+
+1.108
+date	96.03.12.08.38.52;	author sf;	state Exp;
+branches;
+next	1.107;
+
+1.107
+date	96.03.06.17.47.37;	author sf;	state Exp;
+branches;
+next	1.106;
+
+1.106
+date	96.03.06.16.02.52;	author sf;	state Exp;
+branches;
+next	1.105;
+
+1.105
+date	96.03.06.14.52.19;	author sf;	state Exp;
+branches;
+next	1.104;
+
+1.104
+date	96.02.23.15.59.23;	author cr;	state Exp;
+branches;
+next	1.103;
+
+1.103
+date	96.02.23.15.25.48;	author stt;	state Exp;
+branches;
+next	1.102;
+
+1.102
+date	96.02.23.14.10.32;	author rs;	state Exp;
+branches;
+next	1.101;
+
+1.101
+date	96.02.20.12.54.33;	author cr;	state Exp;
+branches;
+next	1.100;
+
+1.100
+date	96.02.16.16.12.29;	author rs;	state Exp;
+branches;
+next	1.99;
+
+1.99
+date	96.02.16.13.55.23;	author stt;	state Exp;
+branches;
+next	1.98;
+
+1.98
+date	96.02.16.09.26.25;	author car;	state Exp;
+branches;
+next	1.97;
+
+1.97
+date	96.02.15.11.56.48;	author sf;	state Exp;
+branches;
+next	1.96;
+
+1.96
+date	96.02.15.09.28.30;	author sf;	state Exp;
+branches;
+next	1.95;
+
+1.95
+date	96.02.13.16.34.29;	author stt;	state Exp;
+branches;
+next	1.94;
+
+1.94
+date	96.02.13.16.25.14;	author sf;	state Exp;
+branches;
+next	1.93;
+
+1.93
+date	96.02.08.12.32.12;	author sf;	state Exp;
+branches;
+next	1.92;
+
+1.92
+date	96.02.07.11.57.15;	author sf;	state Exp;
+branches;
+next	1.91;
+
+1.91
+date	96.02.05.13.41.14;	author sf;	state Exp;
+branches;
+next	1.90;
+
+1.90
+date	96.02.05.12.25.53;	author sf;	state Exp;
+branches;
+next	1.89;
+
+1.89
+date	96.02.01.11.38.53;	author sf;	state Exp;
+branches;
+next	1.88;
+
+1.88
+date	96.01.26.15.09.52;	author sf;	state Exp;
+branches;
+next	1.87;
+
+1.87
+date	95.11.23.10.17.34;	author sf;	state Exp;
+branches;
+next	1.86;
+
+1.86
+date	95.10.25.15.27.20;	author sf;	state Exp;
+branches;
+next	1.85;
+
+1.85
+date	95.09.05.09.31.33;	author sf;	state Exp;
+branches;
+next	1.84;
+
+1.84
+date	95.08.28.12.26.00;	author sf;	state Exp;
+branches;
+next	1.83;
+
+1.83
+date	95.08.15.14.38.20;	author sf;	state Exp;
+branches;
+next	1.82;
+
+1.82
+date	95.08.14.12.18.18;	author sf;	state Exp;
+branches;
+next	1.81;
+
+1.81
+date	95.08.14.08.43.31;	author sf;	state Exp;
+branches;
+next	1.80;
+
+1.80
+date	95.08.10.09.40.59;	author car;	state Exp;
+branches;
+next	1.79;
+
+1.79
+date	95.08.02.10.00.02;	author sf;	state Exp;
+branches;
+next	1.78;
+
+1.78
+date	95.08.02.09.49.49;	author sf;	state Exp;
+branches;
+next	1.77;
+
+1.77
+date	95.07.12.11.21.05;	author sf;	state Exp;
+branches;
+next	1.76;
+
+1.76
+date	95.07.11.15.08.30;	author sf;	state Exp;
+branches;
+next	1.75;
+
+1.75
+date	95.07.11.08.02.56;	author sf;	state Exp;
+branches;
+next	1.74;
+
+1.74
+date	95.07.10.13.43.33;	author car;	state Exp;
+branches;
+next	1.73;
+
+1.73
+date	95.07.07.14.37.09;	author sf;	state Exp;
+branches;
+next	1.72;
+
+1.72
+date	95.07.07.13.26.42;	author sf;	state Exp;
+branches;
+next	1.71;
+
+1.71
+date	95.07.07.12.20.15;	author sf;	state Exp;
+branches;
+next	1.70;
+
+1.70
+date	95.07.07.12.11.14;	author sf;	state Exp;
+branches;
+next	1.69;
+
+1.69
+date	95.07.07.11.25.35;	author car;	state Exp;
+branches;
+next	1.68;
+
+1.68
+date	95.06.28.12.19.14;	author sf;	state Exp;
+branches;
+next	1.67;
+
+1.67
+date	95.06.28.10.19.25;	author sf;	state Exp;
+branches;
+next	1.66;
+
+1.66
+date	95.06.28.10.01.27;	author sf;	state Exp;
+branches;
+next	1.65;
+
+1.65
+date	95.06.27.15.45.00;	author sf;	state Exp;
+branches;
+next	1.64;
+
+1.64
+date	95.06.22.09.02.02;	author car;	state Exp;
+branches;
+next	1.63;
+
+1.63
+date	95.06.20.10.48.49;	author sf;	state Exp;
+branches;
+next	1.62;
+
+1.62
+date	95.06.15.14.54.58;	author sf;	state Exp;
+branches;
+next	1.61;
+
+1.61
+date	95.06.14.15.32.26;	author sf;	state Exp;
+branches;
+next	1.60;
+
+1.60
+date	95.06.13.14.35.05;	author sf;	state Exp;
+branches;
+next	1.59;
+
+1.59
+date	95.06.13.09.18.12;	author sf;	state Exp;
+branches;
+next	1.58;
+
+1.58
+date	95.06.08.12.04.44;	author sf;	state Exp;
+branches;
+next	1.57;
+
+1.57
+date	95.06.07.11.35.21;	author sf;	state Exp;
+branches;
+next	1.56;
+
+1.56
+date	95.06.02.16.34.36;	author sf;	state Exp;
+branches;
+next	1.55;
+
+1.55
+date	95.06.01.11.54.50;	author sf;	state Exp;
+branches;
+next	1.54;
+
+1.54
+date	95.05.31.14.56.34;	author sf;	state Exp;
+branches;
+next	1.53;
+
+1.53
+date	95.05.17.15.30.39;	author sf;	state Exp;
+branches;
+next	1.52;
+
+1.52
+date	95.05.16.16.19.18;	author sf;	state Exp;
+branches;
+next	1.51;
+
+1.51
+date	95.05.12.14.51.19;	author sf;	state Exp;
+branches;
+next	1.50;
+
+1.50
+date	95.05.12.11.54.21;	author sf;	state Exp;
+branches;
+next	1.49;
+
+1.49
+date	95.05.12.09.39.44;	author sf;	state Exp;
+branches;
+next	1.48;
+
+1.48
+date	95.05.11.12.53.21;	author sf;	state Exp;
+branches;
+next	1.47;
+
+1.47
+date	95.04.27.14.00.02;	author sf;	state Exp;
+branches;
+next	1.46;
+
+1.46
+date	95.04.26.14.09.17;	author sf;	state Exp;
+branches;
+next	1.45;
+
+1.45
+date	95.04.21.12.24.32;	author sf;	state Exp;
+branches;
+next	1.44;
+
+1.44
+date	95.04.20.15.28.36;	author sf;	state Exp;
+branches;
+next	1.43;
+
+1.43
+date	95.04.17.14.02.28;	author sf;	state Exp;
+branches;
+next	1.42;
+
+1.42
+date	95.04.12.13.28.50;	author sf;	state Exp;
+branches;
+next	1.41;
+
+1.41
+date	95.04.10.07.43.34;	author sf;	state Exp;
+branches;
+next	1.40;
+
+1.40
+date	95.04.05.16.07.28;	author sf;	state Exp;
+branches;
+next	1.39;
+
+1.39
+date	95.04.05.16.01.51;	author sf;	state Exp;
+branches;
+next	1.38;
+
+1.38
+date	95.04.05.15.22.45;	author sf;	state Exp;
+branches;
+next	1.37;
+
+1.37
+date	95.04.04.11.42.46;	author sf;	state Exp;
+branches;
+next	1.36;
+
+1.36
+date	95.03.29.16.10.02;	author cr;	state Exp;
+branches;
+next	1.35;
+
+1.35
+date	95.03.29.07.18.15;	author sf;	state Exp;
+branches;
+next	1.34;
+
+1.34
+date	95.03.27.14.50.41;	author sf;	state Exp;
+branches;
+next	1.33;
+
+1.33
+date	95.03.23.15.11.43;	author sf;	state Exp;
+branches;
+next	1.32;
+
+1.32
+date	95.03.23.13.29.18;	author sf;	state Exp;
+branches;
+next	1.31;
+
+1.31
+date	95.03.22.17.48.27;	author cr;	state Exp;
+branches;
+next	1.30;
+
+1.30
+date	95.03.22.16.24.38;	author sf;	state Exp;
+branches;
+next	1.29;
+
+1.29
+date	95.03.10.18.57.58;	author sf;	state Exp;
+branches;
+next	1.28;
+
+1.28
+date	95.03.10.16.13.06;	author sf;	state Exp;
+branches;
+next	1.27;
+
+1.27
+date	95.03.09.12.52.54;	author sf;	state Exp;
+branches;
+next	1.26;
+
+1.26
+date	95.03.08.13.16.41;	author sf;	state Exp;
+branches;
+next	1.25;
+
+1.25
+date	95.02.28.12.33.21;	author sf;	state Exp;
+branches;
+next	1.24;
+
+1.24
+date	95.02.03.10.28.24;	author sf;	state Exp;
+branches;
+next	1.23;
+
+1.23
+date	95.02.02.14.35.50;	author sf;	state Exp;
+branches;
+next	1.22;
+
+1.22
+date	95.01.25.10.10.50;	author sf;	state Exp;
+branches;
+next	1.21;
+
+1.21
+date	95.01.06.16.47.31;	author sf;	state Exp;
+branches;
+next	1.20;
+
+1.20
+date	95.01.06.10.06.37;	author sf;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	95.01.02.14.20.02;	author sf;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.01.02.12.23.21;	author sf;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	94.12.29.14.42.49;	author sf;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	94.12.22.13.47.07;	author sf;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	94.12.22.13.45.40;	author sf;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	94.12.21.16.36.07;	author sf;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.12.20.15.56.23;	author sf;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.12.15.15.46.03;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.12.14.10.20.08;	author sf;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.12.14.09.53.32;	author sf;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.12.08.13.04.23;	author sf;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.12.08.09.58.40;	author sf;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.12.02.09.56.21;	author sf;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.12.02.08.04.47;	author sf;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.12.01.15.56.38;	author sf;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	94.11.29.11.02.49;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	94.11.28.10.00.22;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	94.11.24.10.13.55;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	94.11.21.09.08.01;	author car;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial incomplete version
+@
+
+
+1.110
+log
+@prepare for separate compilation
+step II: use modulfile as prefix for program-specific global variables
+in tasm-generated code (funcdesctable,funcclostable,data_table,
+number_of_descs,ptc_table,number_of_data,stat_funcdesctable)
+@
+text
+@#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "dbug.h"
+#include "mytypes.h"
+#include "buildtree.h"
+#include "comp_support.h"
+#include "error.h"
+/*************************************/
+/* integers, tag: 1                  */
+/*************************************/
+
+#define INT                0x00000001
+#define P_INT              0x00000001
+#define T_INT(x)           (((x) & P_INT) == INT)
+#define T_2INT(x,y)        (((x) & (y) & P_INT) == INT)
+
+#define O_INT              1
+#define FAC_INT            2
+
+#define TAG_INT(x)         (((x) * FAC_INT) + INT)
+/*************************************/
+/* constants, tag: 0100              */
+/*************************************/
+
+#define CONSTANT          0x00000004
+#define P_CONSTANT        0x0000000f
+#define T_CONSTANT(x)     (((x) & P_CONSTANT) == CONSTANT)
+
+#define F_CNST_GROUP      0xff000000
+#define O_CNST_GROUP      24
+
+#define F_CNST_NAME       0x00ff0000
+#define O_CNST_NAME       16
+
+/* special constants */
+
+#define F_BOOL_FLAG        0x00000010
+
+#define SA_FALSE           CONSTANT
+#define SA_TRUE            (SA_FALSE | F_BOOL_FLAG)
+
+/*************************************************************************/
+
+extern char *modulfile;
+extern CODE *functable;
+extern char *outfile;
+extern char *outfiletmp;
+extern char *execfile;
+extern char *execfilepath;
+extern char *tasmlib;
+extern char *redumalib;
+extern char *ncubelib;
+extern char *primf_tab[];
+extern char *intact_tab[];
+extern char *funcprot;
+extern int FRED_FISH, NOSTACK2REG;
+extern int TEST_STACK;
+extern int ODDSEX;
+extern int DIST;
+extern int WATCH;
+extern int MODUL;
+extern PROGRAM *program_start;
+extern FILE *yyout;
+extern int ref_inferred;
+extern int optimize;
+extern int mess_enabled;
+extern int find_substr(char *, char *);
+extern char *strrepl(char *, char *, int);
+extern int search_funcname(char *);
+extern ORDER *search_label(char *s, ORDER *);
+
+void c_out_desc_list(FUNDESC *);
+void c_out_order_list(FUNCTION *);
+int searchdata(int);
+#define MAX_LINES     300  /* max. number of lines in a function */
+int lines;                   /* line counter */
+char makefilename[L_tmpnam];         /* temp name for the makefile */
+typedef struct tagoutname {
+                            char *name;
+                            struct tagoutname *next;
+                          } OUTNAME;
+
+OUTNAME *first_file, *act_file, *last_file;
+
+/* cr 22/03/95, kir(ff), START */
+/* returns the ascii form of interaction types
+ */
+static char * c_out_intertype(INTERT n)
+  {
+  DBUG_ENTER("out_intertype");
+  switch(n) {
+    case INdone: DBUG_RETURN("TY_DONE");
+    case INget:  DBUG_RETURN("TY_GET");
+    case INput:  DBUG_RETURN("TY_PUT");
+    default: yyfail("illegal interaction type received");
+    }
+  DBUG_RETURN((char *)0);
+  }
+/* cr 22/03/95, kir(ff), END */
+
+/*************************************************************************/
+/* Prints out the prototypes of the generated functions to include       */
+/* them into the generated C-file.                                       */
+/*************************************************************************/
+
+void c_build_func_prot(PROGRAM *p, char *modulfile)
+{
+  FUNCTION *f;
+  FILE *file_to_open;
+  char *name_to_open, *targetdir;
+
+  DBUG_ENTER("c_build_func_prot");
+  if (NULL == (name_to_open = (char *)malloc(256)))
+    yyfail("unable to allocate memory");
+  if (NULL == (targetdir = (char *)malloc(256)))
+    yyfail("unable to allocate memory");
+  if (dogcc)
+    strcpy(targetdir, P_tmpdir);
+  else
+    strcpy(targetdir, execfilepath);
+  sprintf(name_to_open, "%s%s%s", targetdir, modulfile, funcprot);
+  file_to_open=fopen(name_to_open,"w");
+  if (NULL==file_to_open)
+    yyfail("%s", "unable to open prototype file");
+  fprintf(file_to_open,"extern int f_apply();\n");
+  f=GETFIRSTFUNCTION(p);
+  while (NULL!=f)
+  {
+    if (strcmp(GETNAME(f),"apply"))
+      fprintf(file_to_open,"int %s();\n",GETNAME(f));
+    else
+      fprintf(file_to_open,"int apply();\n");
+    
+    f=GETNEXTFUNCTION(f);
+  }
+  fflush(file_to_open);
+  
+  if(EOF==fclose(file_to_open)) 
+    yyfail("%s","unable to close prototype file");
+  
+  DBUG_VOID_RETURN;
+}
+
+
+/***********************************************************************/
+/* Prints out data building function calls.                            */
+/***********************************************************************/
+
+void c_out_data(void)
+{
+  int i = 0, size, j, help, mvt, cnt;
+  DATANODE *data = GETFIRSTDATA(program_start);
+  char s[256];
+  char class[20], type[20];
+  DBUG_ENTER("c_out_data");
+  lines = 0;
+  if (outfile)
+  {
+    if (NULL == (first_file = (OUTNAME *)malloc(sizeof(OUTNAME))))
+      yyfail("unable to allocate memory");
+    first_file->next = NULL;
+    if (NULL == (first_file->name = 
+                            (char *)malloc(strlen(outfiletmp) + strlen(outfile) + 3)))
+      yyfail("unable to allocate memory");
+    sprintf(s, "%s", outfiletmp);  
+    strcpy(first_file->name, s);
+    last_file = first_file;
+  }
+  fprintf(yyout, "void initdata(void)\n{\n");
+  mvt = 0;
+  while (NULL != data)
+  {
+    switch(GETDATAENTRY(data, tag))
+    {
+      case d_mat:
+      case d_vect:
+      case d_tvect:
+        switch (GETDATAENTRY(data, u.w.tag))
+        {
+          case d_undef:
+            fprintf(yyout, "int mvt%d[] = {};\n", mvt++);
+            break;
+          case d_int:
+          case d_bool:
+            fprintf(yyout, "int mvt%d[] = { %d", mvt++, 
+                                GETDATAENTRY(data, u.w.m.idata)[0]);
+            for(j=1; j<GETDATAENTRY(data, u.w.rows) * GETDATAENTRY(data, u.w.cols); j++)
+            {
+              fprintf(yyout, ", %d", GETDATAENTRY(data, u.w.m.idata)[j]);
+              cnt++;
+              if (cnt > 40)
+              {
+                cnt = 0;
+                fprintf(yyout, "\n");
+              }
+            }
+            fprintf(yyout, "};\n");
+            break;
+          case d_real:
+            fprintf(yyout, "double mvt%d[] = { %.16e", mvt++, 
+                                GETDATAENTRY(data, u.w.m.rdata)[0]);
+            for(j=1; j < GETDATAENTRY(data, u.w.rows) * GETDATAENTRY(data, u.w.cols); j++)
+            {
+              fprintf(yyout, ", %.16e", GETDATAENTRY(data, u.w.m.rdata)[j]);
+              cnt++;
+              if (cnt > 15)
+              {
+                cnt = 0;
+                fprintf(yyout, "\n");
+              }
+            }
+            fprintf(yyout, "};\n");
+            break;
+          default:;
+        }
+        break;
+      default:;
+    }
+    data = GETNEXTDATA(data);
+  }
+  data = GETFIRSTDATA(program_start);
+  fprintf(yyout, "int *l;\n");
+  if (FRED_FISH)
+    fprintf(yyout," DBUG_ENTER(\"initdata\");\n");
+  mvt = 0;
+  while (NULL!=data)
+  {
+    lines++;
+    switch(GETDATAENTRY(data, tag))
+    {
+    case d_mat:
+    case d_vect:
+    case d_tvect:
+      if (d_mat == GETDATAENTRY(data, tag))
+        strcpy(class, "C_MATRIX");
+      else if (d_vect == GETDATAENTRY(data, tag))
+        strcpy(class, "C_VECTOR");
+      else 
+        strcpy(class, "C_TVECTOR");
+
+      if (d_int == GETDATAENTRY(data, u.w.tag))
+        strcpy(type, "TY_INTEGER");
+      else if (d_bool == GETDATAENTRY(data, u.w.tag))
+        strcpy(type, "TY_BOOL");
+      else if (d_real == GETDATAENTRY(data, u.w.tag))
+        strcpy(type, "TY_REAL");
+      else if (d_string == GETDATAENTRY(data, u.w.tag))
+        strcpy(type, "TY_STRING");
+      else
+        strcpy(type, "TY_UNDEF");
+      fprintf(yyout, "%sdata_table[%d] = initdata_matrix(%s, %s, %d, %d, "
+                     "(int *)mvt%d);\n",
+                      modulfile, i, class, type,
+                      GETDATAENTRY(data, u.w.rows), 
+                      GETDATAENTRY(data, u.w.cols), mvt++);
+      break;
+      break;
+    case d_real:
+    {
+      fprintf(yyout, "%sdata_table[%d] = initdata_scalar(%.16e);\n", modulfile, i,
+              GETDATAENTRY(data, u.x));
+      break;
+    }
+    case d_string:
+    {
+      size = GETDATAENTRY(data, u.v.size);
+      if (0 != size)
+      {
+        fprintf(yyout, "if (NULL == (l = (int *)malloc(%d*sizeof(int))))",
+                size);
+        fprintf(yyout, "{ fprintf(stderr, \"FATAL ERROR: couldn't allocate memory.\\n\");\nexit(1);\n}\n");
+      }
+      else  fprintf(yyout, "l = NULL;\n");
+      for (j = 0; j < size; j++)
+      {
+        help =  GETDATAENTRY(data, u.v.data[j]);
+        
+        if (ISCHAR(help))
+          fprintf(yyout, "l[%d] = MAKE_CHAR('\\%o');\n", j, GETCHAR(help));
+        else if(ISPTR(help))
+          fprintf(yyout, "l[%d] = %sdata_table[%d];\n", j, modulfile, searchdata(help));
+      }
+      fprintf(yyout, "%sdata_table[%d] = initdata_string(%d, l);\n", modulfile, i, size);
+      
+      if (0 != size)
+        fprintf(yyout, "free(l);\n");
+      break;
+    }
+    case d_name:
+    {
+      size = GETDATAENTRY(data, u.v.size);
+      fprintf(yyout, "if (NULL == (l = malloc(%d)))", size + 1);
+      fprintf(yyout, "{ fprintf(stderr, \"FATAL ERROR: couldn't allocate memory.\\n\");\n
+exit(1);\n}\n");
+      fprintf(yyout, "strcpy((char *)l, \"%s\");\n", (char *)GETDATAENTRY(data, u.v.data));
+      fprintf(yyout, "%sdata_table[%d] = initdata_free_var(%d, l);\n", modulfile, i, size);
+      fprintf(yyout, "free(l);\n");
+      break;
+    }
+    case d_list:
+    {
+      size = GETDATAENTRY(data, u.v.size);
+      if (0 != size)
+      {
+        fprintf(yyout, "if (NULL == (l = (int *)malloc(%d*sizeof(int))))",
+                size);
+        fprintf(yyout, "{ fprintf(stderr, \"FATAL ERROR: couldn't allocate memory.\\n\");\nexit(1);\n}\n");
+      }
+      else  fprintf(yyout, "l = NULL;\n");
+      for (j = 0; j < size; j++)
+      {
+        help =  GETDATAENTRY(data, u.v.data[j]);
+        
+        if (ISINT(help))
+          fprintf(yyout, "l[%d] = %d;\n", j, help);
+        else if (ISBOOL(help))
+          fprintf(yyout, "l[%d] = %d;\n", j, help);
+        else if (ISPRF(help))
+          fprintf(yyout, "l[%d] = %s;\n", j, primf_tab[GETPRF(help)]);
+        else if (ISIA(help))
+          fprintf(yyout, "l[%d] = %s;\n", j, intact_tab[GETIA(help)]);
+        else
+          fprintf(yyout, "l[%d] = %sdata_table[%d];\n", j, modulfile, searchdata(help));
+      }
+      fprintf(yyout, "%sdata_table[%d] = initdata_list_initial(%d, l);\n", modulfile, i, size);
+      
+      if (0 != size)
+        fprintf(yyout, "free(l);\n");
+      break;
+    }
+    default:
+      ;
+    } /* END switch(GETDATAENTRY(data, tag)) */
+    i++;
+    data=GETNEXTDATA(data);
+  } /* END while (NULL!=data) */
+  if (DIST)
+    fprintf(yyout, "SET_STATIC_BORDER(highdesc);\n");
+  if (FRED_FISH)
+    fprintf(yyout," DBUG_VOID_RETURN;\n");
+  fprintf(yyout, "}\n");
+  DBUG_VOID_RETURN;
+}
+
+
+/***********************************************************************/
+/* Prints out ready-made functionsdescriptors.                         */
+/***********************************************************************/
+
+void c_out_functable(CODE *f, int ShallICount)
+{
+  FUNDESC *d = GETFIRSTDESC(program_start);
+  
+  int i = 0;
+  int j;
+  
+  DBUG_ENTER("out_functable");
+
+  while (NULL!=f)
+  {
+    fprintf(yyout,"%s\n",GETORDERENTRY(f, code));
+    f=GETNEXTFUNCTION(f);
+  }
+  while (d != NULL)
+  {
+    d=GETNEXTDESC(d);
+    i++;
+  }
+  
+  if (ShallICount) 
+  {
+    fprintf(yyout,"int %snumber_of_descs = %d;\n",modulfile, i);
+    fprintf(yyout,"PTR_DESCRIPTOR %sfuncdesctable[%d];\n", modulfile, i);
+    fprintf(yyout,"int %sfuncclostable[%d];\n", modulfile, i);
+    fprintf(yyout,"int %sptc_table[] = {\n", modulfile);
+    d = GETFIRSTDESC(program_start);
+    for (j = 0; j < 2 * i - 2; j += 2)
+    {
+      fprintf(yyout, "0x%08x,\n", GETDESCENTRY(d, graph));
+      if (GETDESCENTRY(d, address) & 1)
+        fprintf(yyout, "0x%08x,\n", GETDESCENTRY(d, address) - 1);
+      else
+        fprintf(yyout, "0x%08x,\n", GETDESCENTRY(d, address));
+      d=GETNEXTDESC(d);
+    }
+    fprintf(yyout, "0x%08x,\n", GETDESCENTRY(d, graph));
+    if (GETDESCENTRY(d, address) & 1)
+      fprintf(yyout, "0x%08x};\n", GETDESCENTRY(d, address) - 1);
+    else
+      fprintf(yyout, "0x%08x};\n", GETDESCENTRY(d, address));
+
+  }
+
+  DBUG_VOID_RETURN;
+}
+
+
+/***********************************************************************/
+/* Prints out the syntaxtree using out_order_list()                    */
+/* (to control the parsing).                                           */
+/***********************************************************************/
+
+void c_out_tree(PROGRAM *out_me)
+{
+  void out_order_list();
+  void out_desc_list();
+  
+  FUNCTION *fhelp;
+  ORDER *ohelp; 
+
+  DBUG_ENTER("out_tree");
+
+  c_out_desc_list(GETFIRSTDESC(out_me));
+  fhelp=GETFIRSTFUNCTION(out_me);
+  while (NULL!=fhelp)
+  {
+    fprintf(yyout,"function %s()\n", GETNAME(fhelp));
+    ohelp=GETFIRSTORDER(fhelp);
+    c_out_order_list(fhelp);
+    fhelp=GETNEXTFUNCTION(fhelp);
+  }
+  DBUG_VOID_RETURN;
+}
+
+/***********************************************************************/
+/* Prints out a list of descriptors of functions                       */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+
+void c_out_desc_list(FUNDESC *desc)
+{
+  FUNDESC *help;
+  
+  DBUG_ENTER("out_desc_list");
+  help=desc;
+  while (NULL!=help)
+  {
+    fprintf(yyout, "descriptor: ");
+    switch (GETDESCENTRY(help, tag))
+    {
+    case DT_COMBINATOR:
+      fprintf(yyout, "COMB, ");
+      break;
+    case DT_CONDITIONAL:
+      fprintf(yyout, "CONDI, ");
+      break;
+    case DT_PRIMITIV:
+      fprintf(yyout, "PRIM, ");
+      break;
+    case DT_CASE:
+      yyfail("DT_CASE not handled, please call sf");
+      break;
+    }
+    fprintf(yyout, "%d, %d, ",GETDESCENTRY(help, nfv), GETDESCENTRY(help, nv));
+    fprintf(yyout, "%08x, ", GETDESCENTRY(help, graph));
+    fprintf(yyout, "%s\n", GETDESCENTRY(help,label));
+    help=GETNEXTDESC(help);
+  }
+  DBUG_VOID_RETURN;
+} 
+
+/****************************************************************/    
+/* looks for a func, desc, cond or data which fits the argument */
+/****************************************************************/    
+
+int searchdata(int adr)
+{
+  int i = 0;
+  DATANODE *data = GETFIRSTDATA(program_start);
+ 
+  while (NULL != data)
+  {
+    if (adr == GETDATAENTRY(data, address)) break;
+    data = GETNEXTDATA(data);
+    i++;
+  }
+  if (NULL == data) return(-1);
+  return(i);
+} 
+
+char *search_desc(int search_me)
+{    
+  FUNDESC *h = GETFIRSTDESC(program_start);
+  
+  while (NULL != h)
+  {
+    if (GETDESCENTRY(h, address) == search_me)
+      return(GETDESCENTRY(h, label));
+    h = GETNEXTDESC(h);
+  }
+  return (NULL);
+}  
+
+int search_funcdesc(int adr)
+{
+  int i = 0;
+  
+  FUNDESC *d = GETFIRSTDESC(program_start);
+  while (NULL != d)
+  {
+    if (adr == GETDESCENTRY(d, address)) break;
+    d = GETNEXTDESC(d);
+    i++;
+  }
+  if (NULL == d) return(-1);
+  return(i);
+}
+
+
+int search_case(ORDER *o)
+{
+  while (NULL != o)
+  {
+    if (label == GETORDERENTRY(o, command))
+    {
+      if (!strncmp(GETORDERARGS(o, label), "undecided", 9))
+      {
+        while(mkcase != GETORDERENTRY(o, command))
+        {
+          o = GETNEXTORDER(o);
+          if (NULL == o) yyfail("%s", "mkcase expected after undecide");
+        }
+        return(search_funcdesc((int)GETORDERARGS(o, desc)));
+      }
+    }
+  o = GETNEXTORDER(o);
+  }
+  yyfail("%s", "undecided expected after match");
+  return(-1);
+}
+
+
+int search_conddesc(char *label)
+{
+  char *cc;
+  int i = 0;
+  FUNDESC *d = GETFIRSTDESC(program_start);
+
+  if (NULL == (cc = (char *)malloc(strlen(label) + 2)))
+    yyfail("memory allocation failure");
+  strcpy(cc, "j");
+  strcat(cc, label);  
+  while (NULL != d)
+  {
+    if (!strcmp(cc, GETDESCENTRY(d, label))) break;
+    d = GETNEXTDESC(d);
+    i++;
+  }
+  if (NULL == d) return(-1);
+  return(i);
+}
+/****************************************************************/
+/* builds a makefile                                            */
+/****************************************************************/
+
+void build_makefile(void)
+{
+  FILE *mkfile;
+  char t[300];
+  char h_t[16];
+  DBUG_ENTER("build_makefile");
+  tmpnam(makefilename);
+  if (NULL == (mkfile = fopen(makefilename, "w")))
+    yyfail("unable to open new Makefile for writing");
+  if (DIST)
+    fprintf(mkfile, "CC\t\t= ncc\n");
+  else if (useacc)
+    fprintf(mkfile, "CC\t\t= /usr/local/lang/acc\n");
+  else
+    fprintf(mkfile, "CC\t\t= gcc\n");
+  sprintf(t, "CFLAGS\t\t= -c -D_ANSI_ -DUNIX=1 -DODDSEX=%d \\"
+               "-DPI_RED_PLUS=1 -DRED_TO_NF=1 -DUNIX=1 \\"
+               "-DSCAVENGE=0 -DSCAV_DEBUG=0 -DWITHTILDE=1 -DCLOSEGOAL=0 \\"
+               "-DUH_ZF_PM=1 -DNO_STACK_REG=%d -DD_SLAVE=%d -DNOREF=1 -DSTORE=0", 
+                ODDSEX, NOSTACK2REG, DIST);
+  if (mess_enabled)
+    strcat(t, " -DD_MESS=1 -DM_BINARY -DD_MHEAP=0 -DD_MSTACK=0 -DD_MSCHED=1 -DD_MCOMMU=1");
+  if (DIST)
+    strcat(t, " -Xc -DnCUBE=1");
+  if (!FRED_FISH)
+  {
+    strcat(t, " -DDBUG_OFF -O");
+    sprintf(h_t, "%d ", optimize);
+    strcat(t, h_t);
+  }
+  else
+    strcat(t, " -g ");
+  strcat(t, "\n");
+  fprintf(mkfile, t);
+  fprintf(mkfile, "LREDPATH\t= %s\n",redumalib);
+  fprintf(mkfile, "LIBPATH\t\t= %s\n",tasmlib);
+  fprintf(mkfile, "NCUBELIBPATH\t\t= %s\n",ncubelib);
+  fprintf(mkfile, "RTPATH\t\t= %s\n",tasmlib);
+  fprintf(mkfile, "RTINC\t\t= %s\n",tasmlib);
+  fprintf(mkfile, "LIBS\t\t= -lm\n");
+  fprintf(mkfile, "CODEDIR\t\t= .\n");
+  fprintf(mkfile, "PROTDIR\t\t= .\n");
+  if (DIST)
+  fprintf(mkfile, "FILES\t\t= $(RTPATH)/rapply.o $(RTPATH)/rmkclos.o $(RTPATH)/initdata.o "
+                "$(RTPATH)/ncdbug.o $(RTPATH)/tlstruct.o "
+                "$(RTPATH)/tmvtstruct.o $(RTPATH)/tmvt_val.o $(RTPATH)/intact.o "
+                "$(RTPATH)/nr_rbibfunc.o $(RTPATH)/nr_rconvert.o $(RTPATH)/nr_rlogfunc.o "
+                "$(RTPATH)/nr_rlstruct.o $(RTPATH)/nr_rmstruct.o $(RTPATH)/nr_rquery.o "
+                "$(RTPATH)/nr_rvalfunc.o $(RTPATH)/nr_rvstruct.o $(RTPATH)/nr_rfstruct.o ");
+  else
+  fprintf(mkfile, "FILES\t\t= $(RTPATH)/rapply.o $(RTPATH)/rmkclos.o $(RTPATH)/initdata.o "
+                "$(RTPATH)/dbug.o $(RTPATH)/tlstruct.o "
+                "$(RTPATH)/tmvtstruct.o $(RTPATH)/tmvt_val.o $(RTPATH)/intact.o "
+                "$(RTPATH)/nr_rbibfunc.o $(RTPATH)/nr_rconvert.o $(RTPATH)/nr_rlogfunc.o "
+                "$(RTPATH)/nr_rlstruct.o $(RTPATH)/nr_rmstruct.o $(RTPATH)/nr_rquery.o "
+                "$(RTPATH)/nr_rvalfunc.o $(RTPATH)/nr_rvstruct.o $(RTPATH)/nr_rfstruct.o ");
+  act_file = first_file;
+  while (NULL != act_file)
+  {
+    fprintf(mkfile, " %s.o", act_file->name);
+    act_file = act_file->next;
+  }
+  if (FRED_FISH)
+    fprintf(mkfile, " $(RTPATH)/debug.o");
+  fprintf(mkfile, "\n\n");
+  fprintf(mkfile, "%s%s:\t$(FILES)\n", execfilepath, execfile);
+  if (FRED_FISH && !DIST)
+  {
+   fprintf(mkfile,"\t\t$(CC) -g -o %s%s $(FILES) "
+                  "$(LREDPATH)/lred.o %s -L$(LIBPATH) -DNO_STACK_REG=%d -lm\n",
+          execfilepath, execfile, (dostaticlink ? (useacc ? "-Bstatic" :
+          "-static") : ""), NOSTACK2REG);
+  }
+  else if (DIST)
+  {
+   fprintf(mkfile,"\t\t$(CC) -o %s%s $(FILES) "
+                  "$(NCUBELIBPATH)/nctred.o %s -lm -L$(LIBPATH) \n",
+          execfilepath, execfile, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+  }
+  else
+  {
+   fprintf(mkfile,"\t\t$(CC) -o %s%s $(FILES) $(LREDPATH)/lred.o %s -lm "
+                  "-L$(LIBPATH) \n",
+          execfilepath, execfile, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+  }
+  fprintf(mkfile, "$(RTPATH)/tlstruct.o:\t$(RTPATH)/tlstruct.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/tlstruct.o $(CFLAGS) $(RTPATH)/tlstruct.c\n");
+  fprintf(mkfile, "$(RTPATH)/rapply.o:\t$(RTPATH)/rapply.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/rapply.o $(CFLAGS) $(RTPATH)/rapply.c\n");
+  fprintf(mkfile, "$(RTPATH)/rmkclos.o:\t$(RTPATH)/rmkclos.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/rmkclos.o $(CFLAGS) $(RTPATH)/rmkclos.c\n");
+  fprintf(mkfile, "$(RTPATH)/initdata.o:\t$(RTPATH)/initdata.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/initdata.o $(CFLAGS) $(RTPATH)/initdata.c\n");
+  fprintf(mkfile, "$(RTPATH)/intact.o:\t$(RTPATH)/intact.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/intact.o $(CFLAGS) $(RTPATH)/intact.c\n");
+  if (DIST)
+    fprintf(mkfile, "$(RTPATH)/ncdbug.o:\t$(RTPATH)/ncdbug.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/ncdbug.o $(CFLAGS) $(RTPATH)/ncdbug.c -I$(RTINC)\n");
+  else
+    fprintf(mkfile, "$(RTPATH)/dbug.o:\t$(RTPATH)/dbug.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/dbug.o $(CFLAGS) $(RTPATH)/dbug.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/tmvtstruct.o:\t$(RTPATH)/tmvtstruct.c\n\t\t$(CC) "
+               "-o $(RTPATH)/tmvtstruct.o $(CFLAGS) $(RTPATH)/tmvtstruct.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/tmvt_val.o:\t$(RTPATH)/tmvt_val.c\n\t\t$(CC) "
+               "-o $(RTPATH)/tmvt_val.o $(CFLAGS) $(RTPATH)/tmvt_val.c -I$(RTINC)\n");
+
+  fprintf(mkfile, "$(RTPATH)/nr_rbibfunc.o:\t$(RTPATH)/nr_rbibfunc.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rbibfunc.o $(CFLAGS) $(RTPATH)/nr_rbibfunc.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rconvert.o:\t$(RTPATH)/nr_rconvert.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rconvert.o $(CFLAGS) $(RTPATH)/nr_rconvert.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rlogfunc.o:\t$(RTPATH)/nr_rlogfunc.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rlogfunc.o $(CFLAGS) $(RTPATH)/nr_rlogfunc.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rlstruct.o:\t$(RTPATH)/nr_rlstruct.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rlstruct.o $(CFLAGS) $(RTPATH)/nr_rlstruct.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rmstruct.o:\t$(RTPATH)/nr_rmstruct.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rmstruct.o $(CFLAGS) $(RTPATH)/nr_rmstruct.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rquery.o:\t$(RTPATH)/nr_rquery.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rquery.o $(CFLAGS) $(RTPATH)/nr_rquery.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rvalfunc.o:\t$(RTPATH)/nr_rvalfunc.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rvalfunc.o $(CFLAGS) $(RTPATH)/nr_rvalfunc.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rvstruct.o:\t$(RTPATH)/nr_rvstruct.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rvstruct.o $(CFLAGS) $(RTPATH)/nr_rvstruct.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/nr_rfstruct.o:\t$(RTPATH)/nr_rfstruct.c\n\t\t$(CC) "
+              "-o $(RTPATH)/nr_rfstruct.o $(CFLAGS) $(RTPATH)/nr_rfstruct.c -I$(RTINC)\n");
+  fprintf(mkfile, "$(RTPATH)/debug.o:\t$(RTPATH)/debug.c\n\t\t$(CC) "
+              "-o $(RTPATH)/debug.o $(CFLAGS) $(RTPATH)/debug.c -I$(RTINC)\n");
+  
+  act_file = first_file;
+  while (NULL != act_file)
+  {
+    fprintf(mkfile, "%s.o:\t%s.c\n", act_file->name, act_file->name);
+    fprintf(mkfile, "\t\t$(CC) $(CFLAGS) -o %s.o %s.c -I$(RTINC) -I$(PROTDIR)\n", 
+                        act_file->name, act_file->name);
+    act_file = act_file->next;
+  }
+  fclose(mkfile);
+  DBUG_VOID_RETURN;
+}
+
+/****************************************************************/
+/* calls a makefile                                             */
+/****************************************************************/
+void call_makefile(void)
+{
+  char *make_call;
+  DBUG_ENTER("call_makefile");
+  if (NULL == (make_call = (char *)malloc(strlen(makefilename) + 10)))
+    yyfail("unable to allocate memory");
+  sprintf(make_call, "make -f %s", makefilename);
+  system(make_call);
+  DBUG_VOID_RETURN;
+}
+
+/****************************************************************/
+/* cleans up the temporarily built files                        */
+/****************************************************************/
+void clean_up(void)
+{
+  char s[L_tmpnam + 3], t[40];
+  DBUG_ENTER("clean_up");
+  act_file = first_file;
+  while (NULL != act_file) 
+  {
+    strcpy(s, act_file->name);
+    strcat(s, ".c");
+    remove(s);
+    strcpy(s, act_file->name);
+    strcat(s, ".o");
+    remove(s);
+    act_file = act_file->next;
+  }
+  sprintf(t, "%s%s", P_tmpdir, funcprot);
+  remove(t);
+  remove(makefilename);
+  DBUG_VOID_RETURN;
+}
+ 
+/***********************************************************************/
+/* Prints out a list of ASM~-commands (i.e. a whole function)          */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+void c_out_order_list(FUNCTION *func)
+{
+  ORDER *help, *out;
+  char text[10240], t[240], s[240], s1[4], t2[40], t1[] = "T_DEC_REFCNT((T_PTD)%s);\n";
+  char filename[L_tmpnam + 3];
+  int i;
+
+  DBUG_ENTER("out_order_list");
+  if ((MAX_LINES < lines) && (!MODUL) && (stdout != yyout) && dogcc)
+  {
+    fclose(yyout);
+    lines = 0;
+    if (NULL == (act_file = (OUTNAME *)malloc(sizeof(OUTNAME))))
+      yyfail("unable to allocate memory");
+    if (NULL == (act_file->name = (char *)malloc(L_tmpnam + 3)))
+      yyfail("unable to allocate memory");
+    tmpnam(act_file->name);
+    last_file->next = act_file;
+    act_file->next = NULL;
+    last_file = act_file;
+    strcpy(filename, act_file->name);
+    strcat(filename, ".c");
+    if (NULL == (yyout = fopen(filename, "w")))
+      yyfail("unable to open file %s", filename);
+    
+    fprintf(yyout, "#define PROLOG_EXTERN\n");
+    if (ISASM_TILDE())
+      fprintf(yyout, "#define WITHTILDE 1\n");
+    if (TEST_STACK)
+      fprintf(yyout, "#define TEST_STACK 1\n");
+    if (DIST)
+      fprintf(yyout, "#define D_SLAVE 1\n");
+    if (dogcc && !DIST && !useacc)
+      fprintf(yyout, "#define USES_GCC 1\n");
+    fprintf(yyout, "#include \"prolog.h\"\n");
+    fprintf(yyout, "#include \"%s\"\n", funcprot);
+    fprintf(yyout, "extern int %sdata_table[];\n", modulfile);
+    fprintf(yyout, "extern int ta_heapsize, ta_no_of_desc, ta_stacksize;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR %sfuncdesctable[];\n", modulfile);
+    fprintf(yyout, "extern int %sfuncclostable[];\n", modulfile);
+    
+  }  
+  out = GETFIRSTORDER(func);
+  help=out;
+  while (NULL!=help)
+  {
+    lines++;
+    switch(GETORDERENTRY(help, command))
+    {
+    case stack_op:
+/*****************************************************************/
+/* it becomes a push_and_kill macro                              */
+/* push_and_kill(term_to_be_computed, kill_w, kill_a)            */
+/* with kill_w : entries to be cleared from w                    */
+/* and  kill_a : entries to be cleared from a                    */
+/*****************************************************************/
+      if (0 != GETORDERARGS(help, k))
+        strcpy(s, "{\nint ");
+      else
+        strcpy(s, "");
+      if (0 == GETORDERENTRY(help, opti))
+        strcpy(s, "");
+      strcpy(t, "");
+      for (i = 0; i < GETORDERARGS(help, k); i++)
+      {
+        if (0 != GETORDERENTRY(help, opti))
+        {
+          sprintf(s1, "__t%02x", i);
+          strcat(s, s1);
+          strcat(s, "=1");
+          if (i < GETORDERARGS(help, k) - 1)
+          {
+            sprintf(t2, t1, s1);
+            strcat(t, t2);
+          }
+          if (i != GETORDERARGS(help, k) - 1)
+            strcat(s, ", ");
+          strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                          "#####")], s1, 5);
+        }
+        else
+         strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                           "#####")], "t    ", 5);
+          
+      }
+      if ((0 != GETORDERENTRY(help, opti)) && (0 < GETORDERARGS(help, k)))
+        {
+          strcat(s, ";\n");
+          strcat(t, "}\n");
+        }
+      if ((0 == GETORDERENTRY(help, opti)) && (0 == GETORDERARGS(help, m)))
+        sprintf(text, "%spush_and_no_w_kill_atom(%s, %d, %d);\n%s", s, 
+                                                    GETORDERENTRY(help, code),
+                                                    GETORDERARGS(help, m),
+                                                    GETORDERARGS(help, n), t);
+      else if ((0 == GETORDERENTRY(help, opti)) && (0 != GETORDERARGS(help, m)))
+        sprintf(text, "%spush_and_kill_atom(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code), 
+                                              GETORDERARGS(help, m), 
+                                              GETORDERARGS(help, n), t);
+      else if ((0 != GETORDERENTRY(help, opti)) && (0 == GETORDERARGS(help, m)))
+        sprintf(text, "%spush_and_no_w_kill(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code),
+                                              GETORDERARGS(help, m), 
+                                              GETORDERARGS(help, n), t);
+      else if ((0 != GETORDERENTRY(help, opti)) && (0 != GETORDERARGS(help, m)))
+        sprintf(text, "%spush_and_kill(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code),  
+                                              GETORDERARGS(help, m),
+                                              GETORDERARGS(help, n), t);
+        
+        
+      break;
+    case ris_stack_op:
+/*****************************************************************/
+/* it becomes a keep_and_kill macro                              */
+/* keep_and_kill(term_to_be_computed, kill_w, kill_a)            */
+/* with kill_w : entries to be cleared from w                    */
+/* and  kill_a : entries to be cleared from a                    */
+/*****************************************************************/
+      if (0 != GETORDERARGS(help, k))
+        strcpy(s, "{\nint ");
+      else
+        strcpy(s, "");
+      if (0 == GETORDERENTRY(help, opti))
+        strcpy(s, "");
+      strcpy(t, "");
+      for (i = 0; i < GETORDERARGS(help, k); i++)
+      {
+        if (0 != GETORDERENTRY(help, opti))
+        {
+          sprintf(s1, "__t%02x", i);
+          strcat(s, s1);
+          strcat(s, "=1");
+          if (i < GETORDERARGS(help, k) - 1)
+          {
+            sprintf(t2, t1, s1);
+            strcat(t, t2);
+          }
+          if (i != GETORDERARGS(help, k) - 1)
+            strcat(s, ", ");
+          strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                          "#####")], s1, 5);
+        }
+        else
+         strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                           "#####")], "t    ", 5);
+          
+      }
+      if ((0 != GETORDERENTRY(help, opti)) && (0 < GETORDERARGS(help, k)))
+        {
+          strcat(s, ";\n");
+          strcat(t, "}\n");
+        }
+      if ((0 == GETORDERENTRY(help, opti)) && (0 == GETORDERARGS(help, m)))
+        sprintf(text, "%skeep_and_no_w_kill_atom(%s, %d, %d);\n%s", s, 
+                                                    GETORDERENTRY(help, code),
+                                                    GETORDERARGS(help, m),
+                                                    GETORDERARGS(help, n), t);
+      else if ((0 == GETORDERENTRY(help, opti)) && (0 != GETORDERARGS(help, m)))
+        sprintf(text, "%skeep_and_kill_atom(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code), 
+                                              GETORDERARGS(help, m), 
+                                              GETORDERARGS(help, n), t);
+      else if ((0 != GETORDERENTRY(help, opti)) && (0 == GETORDERARGS(help, m)))
+        sprintf(text, "%skeep_and_no_w_kill(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code),
+                                              GETORDERARGS(help, m), 
+                                              GETORDERARGS(help, n), t);
+      else if ((0 != GETORDERENTRY(help, opti)) && (0 != GETORDERARGS(help, m)))
+        sprintf(text, "%skeep_and_kill(%s, %d, %d);\n%s", s, 
+                                              GETORDERENTRY(help, code),  
+                                              GETORDERARGS(help, m),
+                                              GETORDERARGS(help, n), t);
+        
+        
+      break;
+    case uses_aux_var: 
+      sprintf(text,"/* next delta uses pushaux */");
+      break;
+    case mklist: 
+    {
+      sprintf(text,"mklist(%d);",GETORDERARGS(help, n));
+      break;
+    }
+    case mkilist: 
+    {
+      sprintf(text,"mkilist(%d);",GETORDERARGS(help, n));
+      break;
+    }
+/* cr 22/03/95, kir(ff), START */
+    case mkslot: 
+    {
+      sprintf(text,"mkslot();");
+      break;
+    }
+    case mkframe: 
+    {
+      sprintf(text,"mkframe(%d);",GETORDERARGS(help, n));
+      break;
+    }
+    case Inter: 
+    {
+      sprintf(text,"inter(%s);", c_out_intertype( GETORDERARGS(help, n)));
+      break;
+    }
+/* cr 22/03/95, kir(ff), END */
+    case pushcw_pf:
+    {
+      if (ISIA(GETORDERARGS(help,n)))
+        sprintf(text,"push((int)%s);",intact_tab[GETIA(GETORDERARGS(help,n))]);
+      else
+        sprintf(text,"push((int)%s);",primf_tab[GETPRF(GETORDERARGS(help,n))]);
+      break;
+    }
+    case pushcw_i: 
+    {
+      sprintf(text,"push((int)TAG_INT(%d));",  
+              GETINT(GETORDERARGS(help, n)));
+      break;
+    }
+    case pushcr_i: 
+    {
+      sprintf(text,"pushr(TAG_INT(%d));", 
+              GETINT(GETORDERARGS(help, n)));
+      break;
+    }
+    case pushh:
+      sprintf(text,"push_h(%d);", GETORDERARGS(help, n));
+      break;
+    case count:
+      sprintf(text,"count(%d);", GETORDERARGS(help, n));
+      break;
+    case poph:
+      sprintf(text,"pop_h();");
+      break;
+    case msdistend:
+      sprintf(text,"msdistend();");
+      break;
+    case msnodist:
+      sprintf(text,"msnodist();");
+      break;
+    case pushw_p: 
+    {
+      int n;
+      
+      n = search_funcdesc((int)GETORDERARGS(help, desc));
+      if (-1 != n)
+      {
+        if (ref_inferred)
+          sprintf(text,"nr_push_p((T_PTD)%sfuncclostable[%d]);", modulfile, n);
+        else
+          sprintf(text,"push_p((T_PTD)%sfuncclostable[%d]);", modulfile, n);
+      }
+      else
+      {
+        n = searchdata((int)GETORDERARGS(help, desc));
+        if (-1 != n)
+        {
+          if (ref_inferred)
+            sprintf(text,"nr_push_p((T_PTD)%sdata_table[%d]);", modulfile, n);
+          else
+            sprintf(text,"push_p((T_PTD)%sdata_table[%d]);", modulfile, n);
+        }
+        else 
+        { 
+          if (stdout != yyout)
+          {
+            fclose(yyout);
+            remove(outfile);
+            yyfail("push(0x%08x) unrecognized pointer\n%s removed",
+                   (int)GETORDERARGS(help, desc), outfile);
+          }
+          yyfail("push(0x%08x) unrecognized pointer",
+                 (int)GETORDERARGS(help, desc));
+        }
+      }
+        
+      break;
+    }
+    case pushr_p: 
+    {
+      int n;
+      
+      n = search_funcdesc((int)GETORDERARGS(help, desc));
+      if (-1 != n)
+      {
+        if (ref_inferred)
+          sprintf(text,"nr_pushr_p((T_PTD)%sfuncclostable[%d]);", modulfile, n);
+        else
+          sprintf(text,"pushr_p((T_PTD)%sfuncclostable[%d]);", modulfile, n);
+      }
+      else
+      {
+        n = searchdata((int)GETORDERARGS(help, desc));
+        if (-1 != n)
+        {
+          if (ref_inferred)
+            sprintf(text,"nr_pushr_p((T_PTD)%sdata_table[%d]);", modulfile, n);
+          else
+            sprintf(text,"pushr_p((T_PTD)%sdata_table[%d]);", modulfile, n);
+        }
+        else 
+        { 
+          if (stdout != yyout)
+          {
+            fclose(yyout);
+            remove(outfile);
+            yyfail("pushr_p(0x%08x) unrecognized pointer\n%s removed",
+                   (int)GETORDERARGS(help, desc), outfile);
+          }
+          yyfail("pushr_p(0x%08x) unrecognized pointer",
+                 (int)GETORDERARGS(help, desc));
+        }
+      }
+      break;
+    }
+      
+    case i_rtp:
+    {
+      int n;
+      
+      n = search_funcdesc((int)GETORDERARGS(help, desc));
+      if (-1 != n)
+        sprintf(text,"i_rtp((T_PTD)%sfuncclostable[%d], %d);", modulfile, n, GETORDERARGS(help, m));
+      else
+      {
+        n = searchdata((int)GETORDERARGS(help, desc));
+        if (-1 != n)
+          sprintf(text,"i_rtp((T_PTD)%sdata_table[%d], %d);", modulfile, n, GETORDERARGS(help, m));
+        else 
+        { 
+          if (stdout != yyout)
+          {
+            fclose(yyout);
+            remove(outfile);
+            yyfail("rtp(0x%08x) unrecognized pointer\n%s removed",
+                   (int)GETORDERARGS(help, desc), outfile);
+          }
+          yyfail("rtp(0x%08x) unrecognized pointer",
+                 (int)GETORDERARGS(help, desc));
+        }
+      }
+      break;
+    }
+    
+    case rtp: 
+    {
+      int n;
+      
+      n = search_funcdesc((int)GETORDERARGS(help, desc));
+      if (-1 != n)
+        sprintf(text,"rtp((T_PTD)%sfuncclostable[%d]);", modulfile, n);
+      else
+      {
+        n = searchdata((int)GETORDERARGS(help, desc));
+        if (-1 != n)
+          sprintf(text,"rtp((T_PTD)%sdata_table[%d]);", modulfile, n);
+        else 
+        { 
+          if (stdout != yyout)
+          {
+            fclose(yyout);
+            remove(outfile);
+            yyfail("rtp(0x%08x) unrecognized pointer\n%s removed",
+                   (int)GETORDERARGS(help, desc), outfile);
+          }
+          yyfail("rtp(0x%08x) unrecognized pointer",
+                 (int)GETORDERARGS(help, desc));
+        }
+      }
+      break;
+    }
+      case pushaw:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_pushaw(%d);",GETORDERARGS(help,n));
+      else
+        sprintf(text,"pushaw(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case pushtw:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_pushtw(%d);",GETORDERARGS(help,n));
+      else
+        sprintf(text,"pushtw(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case pushar:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_pushar(%d);",GETORDERARGS(help,n));
+      else
+        sprintf(text,"pushar(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case pushtr:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_pushtr(%d);",GETORDERARGS(help,n));
+      else
+        sprintf(text,"pushtr(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case moveaw:
+    {
+      sprintf(text,"moveaw();");
+      break;
+    }
+      case movear:
+    {
+      sprintf(text,"movear();");
+      break;
+    }
+      case delta1:
+    {
+      sprintf(text,"delta1();");
+      break;
+    }
+      case delta2:
+    {
+      sprintf(text,"delta2();");
+      break;
+    }
+      case delta3:
+    {
+      sprintf(text,"delta3();");
+      break;
+    }
+      case delta4:
+    {
+      sprintf(text,"delta4();");
+      break;
+    }
+      case intact:
+    {
+      sprintf(text,"mkintact(%s);\n",
+                                intact_tab[GETIA(GETORDERARGS(help, primf))]);
+      break;
+    }
+      case freeswt:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_freeswt(%d);",GETORDERARGS(help,n));
+      else
+        sprintf(text,"freeswt(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case freea:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_freea(%d);",GETORDERARGS(help,n));
+      else
+      {
+        sprintf(text, "T_DEC_REFCNT((T_PTD)top(a)); drop(a, 1);");
+        for (i = 1; i < GETORDERARGS(help,n); i++)
+          strcat(text, "T_DEC_REFCNT((T_PTD)top(a)); drop(a, 1);");
+      }
+      break;
+    }
+      case freer:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_freer(%d);",GETORDERARGS(help,n));
+      else
+      {
+        sprintf(text, "T_DEC_REFCNT((T_PTD)top(r)); drop(r, 1);\n");
+        for (i = 1; i < GETORDERARGS(help,n); i++)
+          strcat(text, "T_DEC_REFCNT((T_PTD)top(r)); drop(r, 1);\n");
+      }
+      break;
+    }
+      case freet:
+    {
+      if (ref_inferred)
+        sprintf(text,"nr_freet(%d);",GETORDERARGS(help,n));
+      else
+      {
+        sprintf(text, "T_DEC_REFCNT((T_PTD)top(t)); drop(t, 1);\n");
+        for (i = 1; i < GETORDERARGS(help,n); i++)
+          strcat(text, "T_DEC_REFCNT((T_PTD)top(t)); drop(t, 1);\n");
+      }
+      break;
+    }
+      case freew:
+        sprintf(text, "freew(%d);", GETORDERARGS(help, n));
+        break;
+      case snap:
+    {
+      sprintf(text,"snap(%d);",GETORDERARGS(help,n));
+      break;
+    }
+      case rtt:
+    {
+      sprintf(text,"rtt();");
+      break;
+    }
+      case i_rtt:
+    {
+      sprintf(text,"i_rtt(%d);", GETORDERARGS(help,m));
+      break;
+    }
+      case i_rtf:
+    {
+      sprintf(text,"i_rtf(%d);", GETORDERARGS(help,m));
+      break;
+    }
+      case rtf:
+    {
+      sprintf(text,"rtf();");
+      break;
+    }
+      case i_rtm:
+    {
+      sprintf(text,"i_rtm(%d);", GETORDERARGS(help,m));
+      break;
+    }
+      case rtm:
+    {
+      sprintf(text,"rtm();");
+      break;
+    }
+      case i_rtc_i:
+    {
+      sprintf(text,"i_rtc(TAG_INT(%d), %d);",
+              GETINT(GETORDERARGS(help,n)), \
+              GETORDERARGS(help,m));
+      break;
+    }
+      case rtc_i:
+    {
+      sprintf(text,"rtc(TAG_INT(%d));",
+              GETINT(GETORDERARGS(help,n)));
+      break;
+    }
+      case mkdclos: 
+    {
+      sprintf(text,"f_mkdclos(-1, %d, %d, -1);",GETORDERARGS(help,m), \
+              GETORDERARGS(help,n));
+      break;
+    }
+/* Commands with only one bool argument, treated as integer */
+      case pushcw_b:
+    {
+      if (SA_FALSE == GETORDERARGS(help,n))
+        sprintf(text,"push((int)%d); /* SA_FALSE */", SA_FALSE);
+      else
+        sprintf(text,"push((int)%d); /* SA_TRUE */", SA_TRUE);
+      break;
+    }
+      case i_rtc_b:
+    {
+      if (SA_TRUE == GETORDERARGS(help, n))
+        sprintf(text,"rtc(%d, %d); /* SA_TRUE */", SA_TRUE, GETORDERARGS(help,m));
+      else
+        sprintf(text,"rtc(%d, %d); /* SA_FALSE */", SA_FALSE, GETORDERARGS(help,m));
+      break;
+    }
+      case rtc_b:
+    {
+      if (SA_TRUE == GETORDERARGS(help, n))
+        sprintf(text,"rtc(%d); /* SA_TRUE */", SA_TRUE);
+      else
+        sprintf(text,"rtc(%d); /* SA_FALSE */", SA_FALSE);
+      break;
+    }
+      case rtc_pf:
+    {
+        if (ISIA(GETORDERARGS(help,n)))
+          sprintf(text,"rtc(%s);", intact_tab[GETIA(GETORDERARGS(help,n))]);
+        else
+          sprintf(text,"rtc(%s);", primf_tab[GETPRF(GETORDERARGS(help,n))]);
+        break;
+    }
+      case pushcr_b:
+    {
+      if (SA_FALSE == GETORDERARGS(help, n))
+        sprintf(text,"pushr(%d); /* SA_FALSE */", SA_FALSE);
+      else
+        sprintf(text,"pushr(%d); /* SA_TRUE */", SA_TRUE);
+      break;
+    }
+      case mkgaclos:
+    {
+      sprintf(text,"f_mkgaclos(%d, %sfuncdesctable[%d], %d, %d);",GETORDERARGS(help, n), 
+        modulfile, search_funcdesc((int)GETORDERARGS(last_push_r_before(help), desc)), 1, 0);
+      break;
+    }
+      case mkgsclos:
+    {
+      sprintf(text,"f_mkgaclos(%d, %sfuncdesctable[%d], %d, %d);",GETORDERARGS(help, n), 
+        modulfile, search_funcdesc((int)GETORDERARGS(last_push_r_before(help), desc)), 1, 1);
+      break;
+    }
+      case mkcclos:
+    {
+      sprintf(text,"mkcclos(%d, %sfuncdesctable[%d]);",GETORDERARGS(help, n),
+        modulfile, search_funcdesc((int)GETORDERARGS(GETPREVORDER(help), desc)));
+      break;
+    }
+      case mkiclos:
+    {
+      sprintf(text,"f_mkiclos(%d);", GETORDERARGS(help, n));
+      break;
+    }
+      case mkbclos:
+    {
+      sprintf(text,"dyn_mkbclos(%d);",GETORDERARGS(help, n));
+      break;
+    }
+      case mksclos:
+    {
+      sprintf(text,"mksclos(%d, %d, %d);", GETORDERARGS(help, n),
+                                           GETORDERARGS(help, m),
+                                           GETORDERARGS(help, k));
+      break;
+    }
+    case jump:
+    {
+      sprintf(text, "goto %s;", GETORDERARGS(help, label));
+      break;
+    }
+      case jcond2:
+    {
+      sprintf(text,"jcond2(%s, %s, %sfuncdesctable[%d]);", GETORDERARGS(help, label), 
+                    GETORDERARGS(help, ret),
+                    modulfile, search_conddesc(GETORDERARGS(help, label)));
+      break;
+    }
+      case jcond:
+    {
+      sprintf(text,"jcond(%s, %sfuncdesctable[%d]);",GETORDERARGS(help, label),
+                    modulfile, search_conddesc(GETORDERARGS(help, label)));
+
+      break;
+    }
+      case jfalse:
+    {
+      sprintf(text,"jfalse(%s, %sfuncdesctable[%d]);",GETORDERARGS(help, label),
+                    modulfile, search_conddesc(GETORDERARGS(help, label)));
+
+      break;
+    }
+      case jtrue:
+    {
+      sprintf(text,"jtrue(%s, %sfuncdesctable[%d]);",GETORDERARGS(help, label),
+                    modulfile, search_conddesc(GETORDERARGS(help, label)));
+      break;
+    }
+      case beta:
+    {
+      sprintf(text,"beta(%s, %d);", GETORDERARGS(help, label), 
+                                    GETORDERARGS(help, n));
+      break;
+    }
+      case betanear:
+    {
+      sprintf(text,"betanear(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case betafar:
+    {
+      sprintf(text,"betafar(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case gammabeta:
+        sprintf(text,"gammabeta(%s, %d);", GETORDERARGS(help, label), 
+                                      GETORDERARGS(help, n));
+        break;
+      case gammabetanear:
+    {
+      sprintf(text,"gammabetanear(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case gammabetafar:
+    {
+      sprintf(text,"gammabetafar(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case mkap:
+    {
+      sprintf(text, "mkap(%d);", GETORDERARGS(help, n));
+      break;
+    }
+      case apply:
+    {
+      sprintf(text,"ap(%d,%d,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, m),
+              GETORDERARGS(help, ret));
+      break;
+    }
+      case Gamma:
+    {
+      sprintf(text,"Gamma(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case tailnear:
+    {
+      sprintf(text,"tailnear();");
+      break;
+    }
+      case tailfar:
+    {
+      sprintf(text,"tailfar(&%s, &%s);",GETORDERARGS(help, label),
+              GETORDERARGS(help, ret));
+      break;
+    }
+      case tail:
+    {
+      sprintf(text,"tail(%s);",GETORDERARGS(help, label));
+      break;
+    }
+      case label:
+    {
+      sprintf(text,"%s:",GETORDERARGS(help, label));
+      if (0 != GETORDERARGS(help, m))
+      {
+        sprintf(s1, "freew(%d);\n", GETORDERARGS(help, m));
+        strcat(text, s1);
+      }
+      if (0 != GETORDERARGS(help, l))
+      {
+        sprintf(s1, "freea(%d);\n", GETORDERARGS(help, l));
+        strcat(text, s1);
+      }
+      break;
+    }
+      case ext:
+    {
+      sprintf(text,"ext();");
+      break;
+    }
+      case end:
+    {
+      sprintf(text,"end();");
+      break;
+    }
+      case code_ok:
+    {
+      if (0 == GETORDERARGS(help, k))
+        sprintf(text,"%s", GETORDERENTRY(help, code));
+      else
+      {
+        if (0 != GETORDERENTRY(help, opti))
+        {
+          strcpy(s, "{\nint ");
+          for (i = 0; i < GETORDERARGS(help, k); i++)
+          {
+            sprintf(s1, "__t%02x", i);
+            strcat(s, s1);
+            strcat(s, "=1");
+            if (i < GETORDERARGS(help, k) - 1)
+            {
+              sprintf(t2, t1, s1);
+              strcat(text, t2);
+            }
+            if (i != GETORDERARGS(help, k) - 1)
+              strcat(s, ", ");
+           strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                                "#####")], s1, 5);
+          }
+          strcat(s, ";\n");
+        }
+        else
+        {
+          strcpy(s, "");
+          for (i = 0; i < GETORDERARGS(help, k); i++)
+            strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+                                                               "#####")], "t    ", 5);
+        }
+        sprintf(text, "%s %s\n", s, GETORDERENTRY(help,code));
+      }
+      break;
+    }
+      case hashargs:
+    {
+      sprintf(text,"/* hashargs */");
+      break;
+    }
+      case hashtildeargs:
+    {
+      sprintf(text,"/* hashtildeargs */");
+      break;
+    }
+      case hashrestype:
+    {
+      sprintf(text,"/* hashrestype */");
+      break;
+    }
+      case hashsetref:
+    {
+      if (SREFexplicit == GETORDERARGS(help, n))
+        ref_inferred = TRUE;
+      if ((SREFimplicit == GETORDERARGS(help, n)) || (SREFkeepimpl==GETORDERARGS(help, n)))
+        ref_inferred = FALSE;
+      if (0 == GETORDERARGS(help, n))
+        sprintf(text,"SET_REFCNT_IMPL();");
+      else
+        sprintf(text,"SET_REFCNT_EXPL();");
+      break;
+    }
+      case casenear:
+    {
+      sprintf(text,"casenear(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+    }
+      case casefar:
+    {
+      sprintf(text,"casefar(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+      break;
+      case Case:
+        sprintf(text,"Case(%s, %d);", GETORDERARGS(help, label), 
+                                      GETORDERARGS(help, n));
+        break;
+    }
+      case advance:
+        sprintf(text, "advance(%d);", GETORDERARGS(help, n));
+        break;
+      case atend:
+        sprintf(text, "atend(%d, %s);", GETORDERARGS(help, n), 
+                                        GETORDERARGS(help, label));
+        break;
+      case atstart:
+        sprintf(text, "atstart(%d, %s);", GETORDERARGS(help, n), 
+                                          GETORDERARGS(help, label));
+        break;
+      case bind:
+        if (ref_inferred)
+          sprintf(text, "nr_bind(%d);", GETORDERARGS(help, n));
+        else
+          sprintf(text, "bind(%d);", GETORDERARGS(help, n));
+        break;
+      case binds:
+        if (ref_inferred)
+          sprintf(text, "nr_binds(%d);", GETORDERARGS(help, n));
+        else
+          sprintf(text, "binds(%d);", GETORDERARGS(help, n));
+        break;
+      case bindsubl:
+        if (ref_inferred)
+          sprintf(text, "nr_bindsubl(%d, %d, %d, %d);", GETORDERARGS(help, n),
+                                                   GETORDERARGS(help, m),
+                                                   GETORDERARGS(help, k),
+                                                   GETORDERARGS(help, l));
+        else
+          sprintf(text, "bindsubl(%d, %d, %d, %d);", GETORDERARGS(help, n),
+                                                   GETORDERARGS(help, m),
+                                                   GETORDERARGS(help, k),
+                                                   GETORDERARGS(help, l));
+        break;
+      case dereference:
+        if (pick == GETORDERENTRY(GETNEXTORDER(help), command))
+          sprintf(text, "/* DEREFENCE REMOVED */");
+        else
+          sprintf(text, "dereference();");
+        break;
+      case drop:
+        if (ref_inferred)
+          sprintf(text, "freew(1);");
+        else
+          sprintf(text, "T_DEC_REFCNT((T_PTD)top(w));\nfreew(1);");
+        break;
+      case endlist:
+        sprintf(text, "endlist();");
+        break;
+      case endsubl:
+        sprintf(text, "endsubl(%d);", GETORDERARGS(help, n));
+        break;
+      case fetch:
+        if (ref_inferred)
+          sprintf(text, "nr_fetch();");
+        else
+          sprintf(text, "fetch();");
+        break;
+      case gammacasenear:
+        sprintf(text,"gammacasenear(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+        break;
+      case gammacasefar:
+        sprintf(text,"gammacasefar(%d,&%s,&%s);",GETORDERARGS(help, n),
+              GETORDERARGS(help, ret),
+              GETORDERARGS(help, label));
+        break;
+      case gammacase:
+        sprintf(text,"gammacase(%s, %d);", GETORDERARGS(help, label),
+                                           GETORDERARGS(help, n));
+        break;
+      case initbt:
+        sprintf(text, "initbt(%d, %d, %d, %d, %d);", GETORDERARGS(help, n),
+                                                     GETORDERARGS(help, m),
+                                                     GETORDERARGS(help, k),
+                                                     GETORDERARGS(help, l),
+                                                     GETORDERARGS(help, j));
+        break;
+      case matcharb:
+        if (0 == GETORDERARGS(help, n))
+
+          sprintf(text,"matcharb_0(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                              GETORDERARGS(help, label),
+                                              GETORDERARGS(help, ret),
+                                              search_case(help));
+        else
+          sprintf(text,"matcharb(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                              GETORDERARGS(help, label),
+                                              GETORDERARGS(help, ret),
+                                              search_case(help));
+        break;
+      case matcharbs:
+        sprintf(text,"matcharbs(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                               GETORDERARGS(help, label),
+                                               GETORDERARGS(help, ret),
+                                               search_case(help));
+        break;
+      case matchbool:
+        sprintf(text,"matchbool(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                            GETORDERARGS(help, label),
+                                            GETORDERARGS(help, ret),
+                                            search_case(help));
+        break;
+      case matchin:
+        sprintf(text,"matchin((T_PTD)%sdata_table[%d], %s, %s, %d);", 
+                                             modulfile, 
+                                             searchdata((int)GETORDERARGS(help, n)),
+                                             GETORDERARGS(help, label),
+                                             GETORDERARGS(help, ret),
+                                             search_case(help));
+        break;
+      case matchint:
+        sprintf(text,"matchint(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                              GETORDERARGS(help, label),
+                                              GETORDERARGS(help, ret),
+                                              search_case(help));
+        break;
+      case matchlist:
+        sprintf(text,"matchlist(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                               GETORDERARGS(help, label),
+                                               GETORDERARGS(help, ret),
+                                               search_case(help));
+        break;
+      case matchprim:
+        if (ISPRF(GETORDERARGS(help,n)))
+          sprintf(text,"matchprim(%s, %s, %s, %d);", 
+                                   primf_tab[GETPRF(GETORDERARGS(help,n))],
+                                   GETORDERARGS(help, label),
+                                   GETORDERARGS(help, ret),
+                                   search_case(help));
+        else if (ISIA(GETORDERARGS(help,n)))
+          sprintf(text,"matchprim(%s, %s, %s, %d);",
+                                   intact_tab[GETIA(GETORDERARGS(help,n))],
+                                   GETORDERARGS(help, label),
+                                   GETORDERARGS(help, ret),
+                                   search_case(help));
+        else if (ISCHAR(GETORDERARGS(help,n)))
+          sprintf(text,"matchprim(MAKE_CHAR('%c'), %s, %s, %d);", 
+                                                     GETCHAR(GETORDERARGS(help,n)), 
+                                                     GETORDERARGS(help, label),
+                                                     GETORDERARGS(help, ret),
+                                                     search_case(help));
+        break;
+      case matchstr:
+        sprintf(text,"matchstr(%d, %s, %s, %d);", GETORDERARGS(help, n),
+                                              GETORDERARGS(help, label),
+                                              GETORDERARGS(help, ret),
+                                              search_case(help));
+        break;
+      case mkaframe:
+        sprintf(text, "mkaframe(%d);", GETORDERARGS(help, n));
+        break;
+      case mkbtframe:
+        sprintf(text, "mkbtframe(%d);", GETORDERARGS(help, n));
+        break;
+      case mkcase:
+        sprintf(text,"mkcase(%d,%sfuncdesctable);", 
+                     search_funcdesc((int)GETORDERARGS(help, desc)), modulfile);
+        break;
+      case mkwframe:
+        sprintf(text, "mkwframe(%d);", GETORDERARGS(help, n));
+        break;
+      case nestlist:
+        sprintf(text, "nestlist();");
+        break;
+      case pick:
+        sprintf(text, "pick(%d);", GETORDERARGS(help, n));
+        break;
+      case restorebt:
+        sprintf(text, "restorebt(%d);", GETORDERARGS(help, n));
+        break;
+      case restoreptr:
+        sprintf(text, "restoreptr(%d);", GETORDERARGS(help, n));
+        break;
+      case rmbtframe:
+        sprintf(text, "rmbtframe(%d);", GETORDERARGS(help, n));
+        break;
+      case rmwframe:
+        sprintf(text, "rmwframe(%d);", GETORDERARGS(help, n));
+        break;
+      case savebt:
+        sprintf(text, "savebt(%d);", GETORDERARGS(help, n));
+        break;
+      case saveptr:
+        sprintf(text, "saveptr(%d);", GETORDERARGS(help, n));
+        break;
+      case startsubl:
+        sprintf(text, "startsubl(%d, %d);", GETORDERARGS(help, n), 
+                                            GETORDERARGS(help, m));
+        break;
+      case tguard:
+        sprintf(text, "tguard(%s, %d, %d, %d, %d, %sfuncdesctable);", GETORDERARGS(help, label), 
+                                 search_funcdesc((int)GETORDERARGS(help, desc)),
+                                                     GETORDERARGS(help, n),
+                                                     GETORDERARGS(help, m),
+                                                     GETORDERARGS(help, l),
+                                                     modulfile );
+        break;
+       case pushaux:
+         sprintf(text, "pushaux();");
+         break;
+       case decw:
+         sprintf(text, "decw(%d);", GETORDERARGS(help, n));
+         break;
+       case deca:
+         sprintf(text, "deca(%d);", GETORDERARGS(help, n));
+         break;
+       case decr:
+         sprintf(text, "decr(%d);", GETORDERARGS(help, n));
+         break;
+       case dect:
+         sprintf(text, "dect(%d);", GETORDERARGS(help, n));
+         break;
+       case tdecw:
+         sprintf(text, "tdecw(%d);", GETORDERARGS(help, n));
+         break;
+       case tdeca:
+         sprintf(text, "tdeca(%d);", GETORDERARGS(help, n));
+         break;
+       case tdecr:
+         sprintf(text, "tdecr(%d);", GETORDERARGS(help, n));
+         break;
+       case tdect:
+         sprintf(text, "tdect(%d);", GETORDERARGS(help, n));
+         break;
+
+       case tincw:
+         sprintf(text, "tincw(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case tinca:
+         sprintf(text, "tinca(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case tincr:
+         sprintf(text, "tincr(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case tinct:
+         sprintf(text, "tinct(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case incw:
+         sprintf(text, "incw(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case inca:
+         sprintf(text, "inca(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case incr:
+         sprintf(text, "incr(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+       case inct:
+         sprintf(text, "inct(%d);", GETORDERARGS(help, n));
+         strcpy(t, text);
+         for (i = 1; i < GETORDERARGS(help, m); i++)
+           strcat(text, t);
+         break;
+
+       case killw:
+         sprintf(text, "killw(%d);", GETORDERARGS(help, n));
+         break;
+       case killa:
+         sprintf(text, "killa(%d);", GETORDERARGS(help, n));
+         break;
+       case killr:
+         sprintf(text, "killr(%d);", GETORDERARGS(help, n));
+         break;
+       case killt:
+         sprintf(text, "killt(%d);", GETORDERARGS(help, n));
+         break;
+       case tkillw:
+         sprintf(text, "tkillw(%d);", GETORDERARGS(help, n));
+         break;
+       case tkilla:
+         sprintf(text, "tkilla(%d);", GETORDERARGS(help, n));
+         break;
+       case tkillr:
+         sprintf(text, "tkillr(%d);", GETORDERARGS(help, n));
+         break;
+       case tkillt:
+         sprintf(text, "tkillt(%d);", GETORDERARGS(help, n));
+         break;
+       case dist:
+         sprintf(text, "dist(%d, %d, %d, %d, %d, %d, %d);", 
+                        search_funcname(GETORDERENTRY(help, code)),    /* funktionindex */
+                        GETORDERARGS(help, j),     /* function label behind this order */
+                        GETORDERARGS(GETPREVORDER(GETPREVORDER(
+                        search_label(GETORDERARGS(help, ret), help))), j),
+                        GETORDERARGS(help, n),
+                        GETORDERARGS(help, m),
+                        GETORDERARGS(help, k),
+                        GETORDERARGS(help, l));
+
+         if (!ISASM_TILDE())
+           strcat(text, "/* last two args ignored (no tilde version) */");
+         break;
+       case distb:
+         sprintf(text, "distb(%d, %d, %d, %d, %d, %d, %d);", 
+                        search_funcname(GETORDERENTRY(help, code)),    /* funktionindex */
+                        GETORDERARGS(help, j),     /* function label behind this order */
+                        GETORDERARGS(GETPREVORDER(GETPREVORDER(
+                        search_label(GETORDERARGS(help, ret), help))), j),
+                        GETORDERARGS(help, n),
+                        GETORDERARGS(help, m),
+                        GETORDERARGS(help, k),
+                        GETORDERARGS(help, l));
+         if (!ISASM_TILDE())
+           strcat(text, "/* last two args ignored (no tilde version) */");
+         break;
+       case distend:
+         sprintf(text, "distend();");
+         break; 
+       case wait:
+         sprintf(text, "wait(%d, %d, %d);", 
+                        search_funcname(GETORDERENTRY(help, code)),    /* funktionindex */
+                        GETORDERARGS(help, j),     /* function label behind this order */
+                        GETORDERARGS(help, n));
+         break;
+       case stflip:
+         switch (GETORDERARGS(help, n))
+         {
+           case 0:
+             sprintf(text, "/* no stack switch */");
+             break;
+           case 1:
+             sprintf(text, "stflip(a, w);");
+             break;
+           case 2:
+             sprintf(text, "stflip(r, t);");
+             break;
+           case 3:
+             sprintf(text, "stflip(a, w);\nstflip(r, t);");
+             break;
+           default:
+             yyfail("unknown STFLIP parameter in c_out_order_list");
+          }
+          break;
+    default:
+    {
+      yywarn("%s" "unknown command in c_out_order_list"); 
+      sprintf(text,"ERROR_OCCURED");
+      break;
+    }
+      
+    }
+  if (WATCH && (code_ok!=GETORDERENTRY(help, command)))
+  {
+    fprintf(yyout,"DBUG_PRINT(\"WATCH\",(\"%s\"));\n",text);
+  }
+  fprintf(yyout,"%s\n",text);
+  help=GETNEXTORDER(help);
+  }
+  DBUG_VOID_RETURN;
+}
+
+
+
+
+
+
+
+@
+
+
+1.109
+log
+@prepare for separate compilation (again:-(
+step I: avoid use of program-specific global variables
+in tasm-generated code inside initdata.c and rmkclos.c
+(stat_funcdesctable,funcdesctable,number_of_descs,
+ funcclostable,ptc_table,data_table,number_of_data)
+@
+text
+@d47 1
+d124 1
+a124 4
+  if (!MODUL)
+    sprintf(name_to_open, "%s%s", targetdir, funcprot);
+  else
+    sprintf(name_to_open, "%s_%s", modulfile, funcprot);
+d254 1
+a254 1
+      fprintf(yyout, "data_table[%d] = initdata_matrix(%s, %s, %d, %d, "
+d256 1
+a256 1
+                      i, class, type,
+d263 1
+a263 1
+      fprintf(yyout, "data_table[%d] = initdata_scalar(%.16e);\n", i,
+d284 1
+a284 1
+          fprintf(yyout, "l[%d] = data_table[%d];\n", j, searchdata(help));
+d286 1
+a286 1
+      fprintf(yyout, "data_table[%d] = initdata_string(%d, l);\n", i, size);
+d299 1
+a299 1
+      fprintf(yyout, "data_table[%d] = initdata_free_var(%d, l);\n", i, size);
+d326 1
+a326 1
+          fprintf(yyout, "l[%d] = data_table[%d];\n", j, searchdata(help));
+d328 1
+a328 1
+      fprintf(yyout, "data_table[%d] = initdata_list_initial(%d, l);\n", i, size);
+a372 3
+  if (ShallICount) fprintf(yyout,"int number_of_descs = %d;\n",i);
+  if (ShallICount) fprintf(yyout,"PTR_DESCRIPTOR funcdesctable[%d];\n", i);
+  if (ShallICount) fprintf(yyout,"int funcclostable[%d];\n", i);
+d375 4
+a378 1
+    fprintf(yyout,"int ptc_table[] = {\n");
+d776 1
+a776 1
+    fprintf(yyout, "extern int data_table[];\n");
+d778 2
+a779 2
+    fprintf(yyout, "extern PTR_DESCRIPTOR funcdesctable[];\n");
+    fprintf(yyout, "extern int funcclostable[];\n");
+d990 1
+a990 1
+          sprintf(text,"nr_push_p((T_PTD)funcclostable[%d]);", n);
+d992 1
+a992 1
+          sprintf(text,"push_p((T_PTD)funcclostable[%d]);", n);
+d1000 1
+a1000 1
+            sprintf(text,"nr_push_p((T_PTD)data_table[%d]);", n);
+d1002 1
+a1002 1
+            sprintf(text,"push_p((T_PTD)data_table[%d]);", n);
+d1028 1
+a1028 1
+          sprintf(text,"nr_pushr_p((T_PTD)funcclostable[%d]);", n);
+d1030 1
+a1030 1
+          sprintf(text,"pushr_p((T_PTD)funcclostable[%d]);", n);
+d1038 1
+a1038 1
+            sprintf(text,"nr_pushr_p((T_PTD)data_table[%d]);", n);
+d1040 1
+a1040 1
+            sprintf(text,"pushr_p((T_PTD)data_table[%d]);", n);
+d1064 1
+a1064 1
+        sprintf(text,"i_rtp((T_PTD)funcclostable[%d], %d);", n, GETORDERARGS(help, m));
+d1069 1
+a1069 1
+          sprintf(text,"i_rtp((T_PTD)data_table[%d], %d);", n, GETORDERARGS(help, m));
+d1092 1
+a1092 1
+        sprintf(text,"rtp((T_PTD)funcclostable[%d]);", n);
+d1097 1
+a1097 1
+          sprintf(text,"rtp((T_PTD)data_table[%d]);", n);
+d1325 2
+a1326 2
+      sprintf(text,"f_mkgaclos(%d, funcdesctable[%d], %d, %d);",GETORDERARGS(help, n), 
+        search_funcdesc((int)GETORDERARGS(last_push_r_before(help), desc)), 1, 0);
+d1331 2
+a1332 2
+      sprintf(text,"f_mkgaclos(%d, funcdesctable[%d], %d, %d);",GETORDERARGS(help, n), 
+        search_funcdesc((int)GETORDERARGS(last_push_r_before(help), desc)), 1, 1);
+d1337 2
+a1338 2
+      sprintf(text,"mkcclos(%d, funcdesctable[%d]);",GETORDERARGS(help, n),
+        search_funcdesc((int)GETORDERARGS(GETPREVORDER(help), desc)));
+d1365 1
+a1365 1
+      sprintf(text,"jcond2(%s, %s, funcdesctable[%d]);", GETORDERARGS(help, label), 
+d1367 1
+a1367 1
+                    search_conddesc(GETORDERARGS(help, label)));
+d1372 2
+a1373 2
+      sprintf(text,"jcond(%s, funcdesctable[%d]);",GETORDERARGS(help, label),
+                    search_conddesc(GETORDERARGS(help, label)));
+d1379 2
+a1380 2
+      sprintf(text,"jfalse(%s, funcdesctable[%d]);",GETORDERARGS(help, label),
+                    search_conddesc(GETORDERARGS(help, label)));
+d1386 2
+a1387 2
+      sprintf(text,"jtrue(%s, funcdesctable[%d]);",GETORDERARGS(help, label),
+                    search_conddesc(GETORDERARGS(help, label)));
+d1676 2
+a1677 1
+        sprintf(text,"matchin((T_PTD)data_table[%d], %s, %s, %d);", 
+d1728 2
+a1729 2
+        sprintf(text,"mkcase(%d,funcdesctable);", 
+                     search_funcdesc((int)GETORDERARGS(help, desc)));
+d1763 1
+a1763 1
+        sprintf(text, "tguard(%s, %d, %d, %d, %d, funcdesctable);", GETORDERARGS(help, label), 
+d1767 2
+a1768 1
+                                                     GETORDERARGS(help, l));
+@
+
+
+1.108
+log
+@Macro defined if gcc is used
+@
+text
+@d780 1
+a780 1
+    fprintf(yyout, "extern T_DESCRIPTOR funcdesctable[];\n");
+d1327 1
+a1327 1
+      sprintf(text,"f_mkgaclos(%d, %d, %d, %d);",GETORDERARGS(help, n), 
+d1333 1
+a1333 1
+      sprintf(text,"f_mkgaclos(%d, %d, %d, %d);",GETORDERARGS(help, n), 
+d1339 1
+a1339 1
+      sprintf(text,"mkcclos(%d, %d);",GETORDERARGS(help, n),
+d1367 1
+a1367 1
+      sprintf(text,"jcond2(%s, %s, %d);", GETORDERARGS(help, label), 
+d1374 1
+a1374 1
+      sprintf(text,"jcond(%s, %d);",GETORDERARGS(help, label),
+d1381 1
+a1381 1
+      sprintf(text,"jfalse(%s, %d);",GETORDERARGS(help, label),
+d1388 1
+a1388 1
+      sprintf(text,"jtrue(%s, %d);",GETORDERARGS(help, label),
+d1729 1
+a1729 1
+        sprintf(text,"mkcase(%d);", 
+d1764 1
+a1764 1
+        sprintf(text, "tguard(%s, %d, %d, %d, %d);", GETORDERARGS(help, label), 
+@
+
+
+1.107
+log
+@bug fix in mkgaclos
+@
+text
+@d774 1
+a774 1
+    if (dogcc)
+@
+
+
+1.106
+log
+@bug fix in call to mkgaclos
+@
+text
+@d1334 1
+a1334 1
+        search_funcdesc((int)GETORDERARGS(GETPREVORDER(help), desc)), 1, 1);
+@
+
+
+1.105
+log
+@Macro defined if gcc is used
+@
+text
+@d9 1
+d1328 1
+a1328 1
+        search_funcdesc((int)GETORDERARGS(GETPREVORDER(help), desc)), 1, 0);
+@
+
+
+1.104
+log
+@-DSTORE=0 (used in red/src/rstelem.h)
+@
+text
+@d773 2
+@
+
+
+1.103
+log
+@intact and delta closures don't have tilde args.
+@
+text
+@d578 1
+a578 1
+               "-DUH_ZF_PM=1 -DNO_STACK_REG=%d -DD_SLAVE=%d -DNOREF=1", 
+@
+
+
+1.102
+log
+@new (t)ASM commands: count(x), msdistend, msnodist
+@
+text
+@d604 1
+a604 1
+                "$(RTPATH)/ncdbug.o $(RTPATH)/inter.o $(RTPATH)/tlstruct.o "
+d611 1
+a611 1
+                "$(RTPATH)/dbug.o $(RTPATH)/inter.o $(RTPATH)/tlstruct.o "
+a652 2
+  fprintf(mkfile, "$(RTPATH)/inter.o:\t$(RTPATH)/inter.c\n\t\t$(CC) "
+                  "-o $(RTPATH)/inter.o $(CFLAGS) $(RTPATH)/inter.c\n");
+d1342 1
+a1342 3
+      sprintf(text,"mkiclos(%d, %d, %d);", GETORDERARGS(help, n),
+                                           GETORDERARGS(help, m),
+                                           GETORDERARGS(help, k));
+@
+
+
+1.101
+log
+@added nr_rfstruct.c to Makefile (compile with flag NOREF=1)
+@
+text
+@d583 1
+a583 1
+    strcat(t, " -Xc");
+d971 3
+d976 6
+@
+
+
+1.100
+log
+@some changes for the distributed version + measurements
+@
+text
+@d578 1
+a578 1
+               "-DUH_ZF_PM=1 -DNO_STACK_REG=%d -DD_SLAVE=%d", 
+d608 1
+a608 1
+                "$(RTPATH)/nr_rvalfunc.o $(RTPATH)/nr_rvstruct.o ");
+d615 1
+a615 1
+                "$(RTPATH)/nr_rvalfunc.o $(RTPATH)/nr_rvstruct.o ");
+d684 2
+@
+
+
+1.99
+log
+@compilation of lib/intact.c inserted.
+@
+text
+@d67 1
+d580 2
+@
+
+
+1.98
+log
+@output format fixed, now %.16e
+@
+text
+@d602 1
+a602 1
+                "$(RTPATH)/tmvtstruct.o $(RTPATH)/tmvt_val.o "
+d609 1
+a609 1
+                "$(RTPATH)/tmvtstruct.o $(RTPATH)/tmvt_val.o "
+d652 2
+@
+
+
+1.97
+log
+@-Z implemented
+@
+text
+@d203 1
+a203 1
+            fprintf(yyout, "double mvt%d[] = { %f", mvt++, 
+d207 1
+a207 1
+              fprintf(yyout, ", %f", GETDATAENTRY(data, u.w.m.rdata)[j]);
+d263 1
+a263 1
+      fprintf(yyout, "data_table[%d] = initdata_scalar(%f);\n", i,
+@
+
+
+1.96
+log
+@constant "funcprot.h" -> temporary name
+@
+text
+@d57 1
+a57 1
+extern int FRED_FISH;
+d578 1
+a578 1
+                ODDSEX, FRED_FISH, DIST);
+d626 3
+a628 2
+                  "$(LREDPATH)/lred.o %s -L$(LIBPATH) -DNO_STACK_REG=1 -lm\n",
+          execfilepath, execfile, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+@
+
+
+1.95
+log
+@ISFUNC replaced by ISPRF.
+cases for mkiclos and intact and handling of interactions
+in other cases added.
+@
+text
+@d56 1
+d122 1
+a122 1
+    sprintf(name_to_open, "%sfuncprot.h", targetdir);
+d124 1
+a124 1
+    sprintf(name_to_open, "%s_funcprot.h", modulfile);
+d725 1
+a725 1
+  sprintf(t, "%sfuncprot.h", P_tmpdir);
+d768 1
+a768 1
+    fprintf(yyout, "#include \"funcprot.h\"\n");
+@
+
+
+1.94
+log
+@makefile changes: -D... -> -D...=X
+@
+text
+@d55 1
+d320 1
+a320 1
+        else if (ISFUNC(help))
+d322 2
+d941 4
+a944 1
+      sprintf(text,"push((int)%s);",primf_tab[GETPRF(GETORDERARGS(help,n))]);
+d1158 6
+d1291 5
+a1295 1
+        sprintf(text,"rtc(%s);", primf_tab[GETPRF(GETORDERARGS(help,n))]);
+d1297 1
+d1324 7
+d1682 10
+a1691 4
+                                               primf_tab[GETPRF(GETORDERARGS(help,n))],
+                                               GETORDERARGS(help, label),
+                                               GETORDERARGS(help, ret),
+                                               search_case(help));
+@
+
+
+1.93
+log
+@initialization of of _nil* removed
+@
+text
+@d573 2
+a574 2
+               "-DUH_ZF_PM=1 -DNO_STACK_REG=%d", 
+                ODDSEX, FRED_FISH);
+d576 1
+a576 3
+    strcat(t, " -DD_SLAVE=1 -Xc");
+  else
+    strcat(t, " -Dsparc ");
+d579 1
+a579 1
+    strcat(t, " -DDBUG_OFF=1 -O");
+@
+
+
+1.92
+log
+@call to initdata_list changed
+@
+text
+@a225 8
+  fprintf(yyout," _nil = (PTR_DESCRIPTOR)initdata_list(0);\n");
+  fprintf(yyout," _nilstring = (PTR_DESCRIPTOR)initdata_string(0, NULL);\n");
+  fprintf(yyout," _nilmat = (PTR_DESCRIPTOR)initdata_matrix"
+                        "(C_MATRIX, TY_UNDEF, 0, 0, NULL);\n");
+  fprintf(yyout," _nilvect = (PTR_DESCRIPTOR)initdata_matrix"
+                        "(C_VECTOR, TY_UNDEF, 0, 0, NULL);\n");
+  fprintf(yyout," _niltvect = (PTR_DESCRIPTOR)initdata_matrix""
+                        (C_TVECTOR, TY_UNDEF, 0, 0, NULL);\n");
+d336 2
+a770 6
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nil;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilvect;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _niltvect;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilmat;\n");
+    fprintf(yyout, "extern PTR_DESCRIPTOR _nilstring;\n");
+    
+@
+
+
+1.91
+log
+@dist and distb have the same number of arguments
+@
+text
+@d226 1
+a226 1
+  fprintf(yyout," _nil = (PTR_DESCRIPTOR)initdata_list(0, NULL);\n");
+d332 1
+a332 1
+      fprintf(yyout, "data_table[%d] = initdata_list(%d, l);\n", i, size);
+d576 1
+a576 1
+  sprintf(t, "CFLAGS\t\t= -c -D_ANSI_ -Dsparc -DUNIX=1 -DODDSEX=%d \\"
+d583 2
+d1766 1
+a1766 1
+         sprintf(text, "tincw(%d);\n", GETORDERARGS(help, n));
+d1772 1
+a1772 1
+         sprintf(text, "tinca(%d);\n", GETORDERARGS(help, n));
+d1778 1
+a1778 1
+         sprintf(text, "tincr(%d);\n", GETORDERARGS(help, n));
+d1784 1
+a1784 1
+         sprintf(text, "tinct(%d);\n", GETORDERARGS(help, n));
+d1790 1
+a1790 1
+         sprintf(text, "incw(%d);\n", GETORDERARGS(help, n));
+d1796 1
+a1796 1
+         sprintf(text, "inca(%d);\n", GETORDERARGS(help, n));
+d1802 1
+a1802 1
+         sprintf(text, "incr(%d);\n", GETORDERARGS(help, n));
+d1808 1
+a1808 1
+         sprintf(text, "inct(%d);\n", GETORDERARGS(help, n));
+@
+
+
+1.90
+log
+@makefile changes due to the new keys -lLN
+@
+text
+@d1836 14
+d1851 1
+a1851 1
+         sprintf(text, "distb(%d, %d, %d, %d, %d,0,0);", 
+d1856 1
+d1858 4
+a1861 1
+                        GETORDERARGS(help, k));
+@
+
+
+1.89
+log
+@changes on building the makefile
+@
+text
+@d51 3
+d593 5
+a597 4
+  fprintf(mkfile, "LREDPATH\t= ../lib\n");
+  fprintf(mkfile, "LIBPATH\t\t= ../lib\n");
+  fprintf(mkfile, "RTPATH\t\t= ../lib\n");
+  fprintf(mkfile, "RTINC\t\t= ../lib\n");
+d634 1
+a634 1
+                  "$(LREDPATH)/nctred.o %s -lm -L$(LIBPATH) \n",
+@
+
+
+1.88
+log
+@all near calls with three parameters
+@
+text
+@d574 1
+a574 1
+               "-DPI_RED_PLUS=1 -DRED_TO_NF=1 -DDEBUG=%d -DUNIX=1 \\"
+d577 1
+a577 1
+                ODDSEX, FRED_FISH, FRED_FISH);
+d579 1
+a579 1
+    strcat(t, " -DD_SLAVE -Xc");
+d597 8
+d621 1
+a621 1
+  if (FRED_FISH)
+d624 1
+a624 1
+                  "$(LREDPATH)/dlred.o %s -L$(LIBPATH) -DNO_STACK_REG=1 -lm\n",
+d630 1
+a630 1
+                  "$(LREDPATH)/ncred.o %s -L$(LIBPATH) \\\n",
+d649 5
+a653 1
+  fprintf(mkfile, "$(RTPATH)/dbug.o:\t$(RTPATH)/dbug.c\n\t\t$(CC) "
+d1174 1
+a1174 1
+        sprintf(text, "T_DEC_REFCNT((T_PTD)top(a)); drop(a, 1);\n");
+d1176 1
+a1176 1
+          strcat(text, "T_DEC_REFCNT((T_PTD)top(a)); drop(a, 1);\n");
+d1434 1
+a1434 1
+      sprintf(text,"%s:\n",GETORDERARGS(help, label));
+d1833 1
+a1833 1
+         sprintf(text, "distb(%d, %d, %d, %d, %d);", 
+d1879 1
+a1879 1
+    fprintf(yyout,"fprintf(stdout,\"%s\\n\");",text);
+@
+
+
+1.87
+log
+@assuming lred.o in ../lib
+@
+text
+@d1355 3
+a1357 1
+      sprintf(text,"betanear(%d);",GETORDERARGS(help, n));
+d1373 3
+a1375 1
+      sprintf(text,"gammabetanear(&%s);",GETORDERARGS(help, label));
+d1511 3
+a1513 1
+      sprintf(text,"casenear(%d);",GETORDERARGS(help, n));
+d1587 3
+a1589 1
+        sprintf(text,"gammacasenear(%d);",GETORDERARGS(help, n));
+@
+
+
+1.86
+log
+@reduce2nf preparation
+@
+text
+@d590 1
+a590 1
+  fprintf(mkfile, "LREDPATH\t= /home/base/lib\n");
+@
+
+
+1.85
+log
+@TAG_INT now explicite in C code
+@
+text
+@d357 1
+d375 20
+@
+
+
+1.84
+log
+@optimze level from main now in makefile
+@
+text
+@d918 1
+a918 2
+      sprintf(text,"push((int)%d); /* TAG_INT %d */",
+              GETORDERARGS(help, n), 
+d924 1
+a924 2
+      sprintf(text,"pushr(%d); /* TAG_INT(%d) */",
+              GETORDERARGS(help,n), \
+d1211 3
+a1213 4
+      sprintf(text,"i_rtc(%d, %d); /* TAG_INT(%d) */",
+              GETORDERARGS(help,n), \
+              GETORDERARGS(help,m), \
+              GETINT(GETORDERARGS(help,n)));
+d1218 1
+a1218 2
+      sprintf(text,"rtc(%d); /* TAG_INT(%d) */",
+              GETORDERARGS(help,n), \
+@
+
+
+1.83
+log
+@now path in targetname allowes
+@
+text
+@d53 1
+d61 1
+d541 1
+d560 5
+a564 1
+    strcat(t, " -DDBUG_OFF=1 -O6 ");
+d728 2
+d735 1
+@
+
+
+1.82
+log
+@output of label changed
+@
+text
+@d48 3
+a50 1
+extern char *targetname;
+d113 1
+a113 1
+    strcpy(targetdir, "./");
+d158 2
+a159 1
+    if (NULL == (first_file->name = (char *)malloc(strlen(outfile) + 3)))
+d161 1
+a161 1
+    sprintf(s, "%s%s", P_tmpdir, targetname);  
+d557 1
+a557 1
+    strcat(t, " -DDBUG_OFF=1 -O2 ");
+d584 1
+a584 1
+  fprintf(mkfile, "%s:\t$(FILES)\n", targetname);
+d587 1
+a587 1
+   fprintf(mkfile,"\t\t$(CC) -g -o %s $(FILES) "
+d589 1
+a589 1
+                  targetname, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+d593 1
+a593 1
+   fprintf(mkfile,"\t\t$(CC) -o %s $(FILES) "
+d595 1
+a595 1
+                  targetname, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+d599 1
+a599 1
+   fprintf(mkfile,"\t\t$(CC) -o %s $(FILES) $(LREDPATH)/lred.o %s -lm "
+d601 1
+a601 1
+                  targetname, (dostaticlink ? (useacc ? "-Bstatic" : "-static") : ""));
+d696 1
+a696 1
+  char text[1024], t[240], s[240], s1[4], t2[40], t1[] = "T_DEC_REFCNT((T_PTD)%s);\n";
+d701 1
+a701 1
+  if ((MAX_LINES < lines) && (!MODUL) && (stdout != yyout))
+@
+
+
+1.81
+log
+@ability to generated only one function
+@
+text
+@d1389 1
+a1389 1
+      if (0 != GETORDERENTRY(help, opti))
+d1391 7
+a1397 11
+        for (i = 0; i < GETORDERARGS(help, k); i++)
+        {
+          sprintf(s1, "__t%02x", i);
+          if (i < GETORDERARGS(help, k) - 1)
+          {
+            sprintf(t2, t1, s1);
+            strcat(text, t2);
+          }
+        } 
+        if (0 != GETORDERARGS(help, k))
+          strcat(text, "}");
+@
+
+
+1.80
+log
+@acc support for makefile
+@
+text
+@d900 1
+a900 1
+      sprintf(text,"push(%s);",primf_tab[GETPRF(GETORDERARGS(help,n))]);
+d905 1
+a905 1
+      sprintf(text,"push(%d); /* TAG_INT %d */",
+d1223 1
+a1223 1
+        sprintf(text,"push(%d); /* SA_FALSE */", SA_FALSE);
+d1225 1
+a1225 1
+        sprintf(text,"push(%d); /* SA_TRUE */", SA_TRUE);
+d1319 2
+a1320 1
+      sprintf(text,"beta(%s);",GETORDERARGS(help, label));
+d1335 4
+d1479 6
+a1484 1
+      case Case:
+d1486 1
+a1486 1
+      sprintf(text,"Case(%d,&%s,&%s);", GETORDERARGS(help, n),
+d1490 4
+d1554 8
+d1563 2
+a1564 3
+        sprintf(text,"gammacase(%d, &%s, &%s);", GETORDERARGS(help, n),
+                                                 GETORDERARGS(help, ret),
+                                                 GETORDERARGS(help, label));
+@
+
+
+1.79
+log
+@*** empty log message ***
+@
+text
+@d542 2
+d585 2
+a586 1
+                  "$(LREDPATH)/dlred.o -L$(LIBPATH) -DNO_STACK_REG=1 -lm\n", targetname);
+d591 2
+a592 1
+                  "$(LREDPATH)/ncred.o -L$(LIBPATH) \\\n", targetname);
+d596 3
+a598 2
+   fprintf(mkfile,"\t\t$(CC) -o %s $(FILES) $(LREDPATH)/lred.o -lm "
+                  "-L$(LIBPATH) \n", targetname);
+@
+
+
+1.78
+log
+@Gamma, freer, derefence removed if pick follows
+@
+text
+@d1124 5
+a1128 2
+        for (i = 0; i < GETORDERARGS(help,n); i++)
+          sprintf(text, "T_DEC_REFCNT((T_PTD)top(a)); drop(a, 1);");
+d1136 5
+a1140 2
+        for (i = 0; i < GETORDERARGS(help,n); i++)
+          sprintf(text, "T_DEC_REFCNT((T_PTD)top(r)); drop(r, 1);");
+d1148 5
+a1152 3
+        for (i = 0; i < GETORDERARGS(help,n); i++)
+          sprintf(text, "T_DEC_REFCNT((T_PTD)top(t)); drop(t, 1);");
+      break;
+@
+
+
+1.77
+log
+@*** empty log message ***
+@
+text
+@d1124 2
+a1125 1
+        sprintf(text,"freea(%d);",GETORDERARGS(help,n));
+d1128 9
+d1142 2
+a1143 1
+        sprintf(text,"freet(%d);",GETORDERARGS(help,n));
+d1347 3
+a1349 1
+      sprintf(text,"gamma(&%s);",GETORDERARGS(help, label));
+d1504 4
+a1507 1
+        sprintf(text, "dereference();");
+@
+
+
+1.76
+log
+@*** empty log message ***
+@
+text
+@d592 1
+a592 1
+   fprintf(mkfile,"\t\t$(CC) -o %s $(FILES) $(LREDPATH)/lred.o -lm"
+@
+
+
+1.75
+log
+@ncc included in makefile
+@
+text
+@d544 1
+a544 1
+  sprintf(t, "CFLAGS\t\t= -g -c -D_ANSI_ -Dsparc -DUNIX=1 -DODDSEX=%d \\"
+d552 3
+a554 1
+    strcat(t, " -DDBUG_OFF=1");
+@
+
+
+1.74
+log
+@nCUBE changed to D_SLAVE
+@
+text
+@d51 1
+d535 1
+d540 2
+a541 6
+  fprintf(mkfile, "CC\t\t= gcc\n");
+  if (FRED_FISH)
+    fprintf(mkfile, "CFLAGS\t\t= -g -c -D_ANSI_ -Dsparc -DUNIX=1 -DODDSEX=0 \\"
+                    "-DPI_RED_PLUS=1 -DRED_TO_NF=1 -DDEBUG=1 -DUNIX=1 \\"
+                    "-DSCAVENGE=0 -DSCAV_DEBUG=0 -DWITHTILDE=1 -DCLOSEGOAL=0 \\"
+                    "-DUH_ZF_PM=1 -DNO_STACK_REG\n");
+d543 12
+a554 4
+    fprintf(mkfile, "CFLAGS\t\t= -c -DDBUG_OFF -D_ANSI_ -Dsparc -DUNIX=1 -DODDSEX=0 \\"
+                    "-DPI_RED_PLUS=1 -DRED_TO_NF=1 -DDEBUG=0 -DDBUG_OFF \\"
+                    "-DSCAVENGE=0 -DSCAV_DEBUG=0 -DWITHTILDE=1 -DCLOSEGOAL=0 \\"
+                    "-DUH_ZF_PM=1\n");
+d581 6
+a586 2
+                  "$(LREDPATH)/dlred.o -L$(LIBPATH) \\\n", targetname);
+   fprintf(mkfile, "\t\t-DNO_STACK_REG -lm\n");
+d590 2
+a591 3
+   fprintf(mkfile,"\t\t$(CC)  -g -o %s $(FILES) $(LREDPATH)/lred.o "
+                  "-L$(LIBPATH) \\\n", targetname);
+   fprintf(mkfile, "\t\t-lm\n");
+@
+
+
+1.73
+log
+@change in output of distb
+@
+text
+@d703 1
+a703 1
+      fprintf(yyout, "#define nCUBE 1\n");
+@
+
+
+1.72
+log
+@poph, pushh, distb, distend, wait
+@
+text
+@d60 1
+d1729 2
+a1730 1
+                        GETORDERARGS(help, n),
+d1735 1
+a1735 1
+         sprintf(text, "distend()");
+@
+
+
+1.71
+log
+@last db_prolog.h removed
+@
+text
+@d51 1
+d59 1
+d701 2
+d900 6
+d1723 17
+@
+
+
+1.70
+log
+@bug removed in case of stdout as targetfile
+@
+text
+@d699 1
+a699 4
+    if (!FRED_FISH)
+      fprintf(yyout, "#include \"prolog.h\"\n");
+    else
+      fprintf(yyout, "#include \"db_prolog.h\"\n");
+@
+
+
+1.69
+log
+@apply: void -> int
+@
+text
+@d147 11
+a157 8
+  if (NULL == (first_file = (OUTNAME *)malloc(sizeof(OUTNAME))))
+    yyfail("unable to allocate memory");
+  first_file->next = NULL;
+  if (NULL == (first_file->name = (char *)malloc(strlen(outfile) + 3)))
+    yyfail("unable to allocate memory");
+  sprintf(s, "%s%s", P_tmpdir, targetname);  
+  strcpy(first_file->name, s);
+  last_file = first_file;
+@
+
+
+1.68
+log
+@one more indirection in the descriptor table funcdesctable
+which is now called stat_funcdesctable
+funcdesctable is now an array of pointers to descriptors
+@
+text
+@d122 1
+a122 1
+      fprintf(file_to_open,"void apply();\n");
+@
+
+
+1.67
+log
+@DBUG_OFF removed in case of FRED_FISH in makefile
+@
+text
+@d360 1
+a360 4
+  if (FRED_FISH)
+  {
+    fprintf(yyout,"T_DESCRIPTOR funcdesctable[%d];\n", i);
+  }
+@
+
+
+1.66
+log
+@*** empty log message ***
+@
+text
+@d537 1
+a537 1
+    fprintf(mkfile, "CFLAGS\t\t= -g -c -DDBUG_OFF -D_ANSI_ -Dsparc -DUNIX=1 -DODDSEX=0 \\"
+@
+
+
+1.65
+log
+@more flags in makefile in case of debug
+@
+text
+@d360 4
+@
+
+
+1.64
+log
+@include db_prolog if debug
+@
+text
+@d533 4
+a536 1
+    fprintf(mkfile, "CFLAGS\t\t= -g -c -DNO_STACK_REG\n");
+@
+
+
+1.63
+log
+@minor change in building Makefile
+inc[wart](n, m) -> m times inc[wart](n)
+@
+text
+@d692 4
+a695 1
+    fprintf(yyout, "#include \"prolog.h\"\n");
+@
+
+
+1.62
+log
+@*** empty log message ***
+@
+text
+@d558 2
+d565 1
+a565 1
+                  "$(LREDPATH)/lred.o -L$(LIBPATH) \\\n", targetname);
+d607 2
+d1635 4
+a1638 1
+         sprintf(text, "tincw(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1641 4
+a1644 1
+         sprintf(text, "tinca(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1647 4
+a1650 1
+         sprintf(text, "tincr(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1653 4
+a1656 1
+         sprintf(text, "tinct(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1659 4
+a1662 1
+         sprintf(text, "incw(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1665 4
+a1668 1
+         sprintf(text, "inca(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1671 4
+a1674 1
+         sprintf(text, "incr(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+d1677 4
+a1680 1
+         sprintf(text, "inct(%d, %d);", GETORDERARGS(help, n), GETORDERARGS(help, m));
+@
+
+
+1.61
+log
+@makefile increased
+@
+text
+@d96 2
+a97 2
+  FILE *o;
+  char s[80];
+d99 9
+a107 1
+  DBUG_ENTER("build_func_prot");
+d109 1
+a109 1
+    sprintf(s, "%sfuncprot.h", P_tmpdir);
+d111 3
+a113 3
+    sprintf(s, "%s_funcprot.h", modulfile);
+  o=fopen(s,"w+");
+  if (NULL==o)
+d115 1
+a115 1
+  fprintf(o,"extern int f_apply();\n");
+d120 1
+a120 1
+      fprintf(o,"int %s();\n",GETNAME(f));
+d122 1
+a122 1
+      fprintf(o,"void apply();\n");
+d126 1
+a126 1
+  fflush(o);
+d128 1
+a128 1
+  if(EOF==fclose(o)) 
+d548 1
+a548 1
+                "$(RTPATH)/tmvtstruct.o "
+d586 2
+@
+
+
+1.60
+log
+@all generated files (*.[coh]) but the executable put into P_tmpdir
+@
+text
+@d169 1
+a169 1
+              if (cnt > 25)
+d174 1
+a175 1
+            }
+d540 1
+d576 2
+@
+
+
+1.59
+log
+@everything to P_tmpdir but the executable
+@
+text
+@d527 4
+a530 1
+    fprintf(mkfile, "CFLAGS\t\t= -c -g -DNO_STACK_REG\n");
+d532 1
+a532 1
+  fprintf(mkfile, "LIBPATH\t\t= ../lib/bib\n");
+a534 1
+  fprintf(mkfile, "LIBFILES\t= $(LIBPATH)/nr_deltalib.o\n");
+d539 4
+a542 1
+                  "$(RTPATH)/dbug.o $(RTPATH)/inter.o $(RTPATH)/tlstruct.o ");
+d553 1
+a553 1
+   fprintf(mkfile,"\t\t$(CC) -g -o %s $(FILES) $(LIBFILES) "
+d559 1
+a559 1
+   fprintf(mkfile,"\t\t$(CC)  -g -o %s $(FILES) $(LIBFILES) $(LREDPATH)/lred.o "
+d575 17
+@
+
+
+1.58
+log
+@RIS - PM - Macros
+@
+text
+@d47 1
+d101 1
+a101 1
+    strcpy(s, "funcprot.h");
+d135 1
+d142 1
+a142 1
+  if (NULL == (first_file->name = (char *)malloc(strlen(targetname) + 3)))
+d144 2
+a145 1
+  strcpy(first_file->name, targetname);
+d545 1
+a545 1
+  fprintf(mkfile, "%s:\t$(FILES)\n", first_file->name);
+d549 1
+a549 1
+                  "$(LREDPATH)/lred.o -L$(LIBPATH) \\\n", first_file->name);
+d555 1
+a555 1
+                  "-L$(LIBPATH) \\\n", first_file->name);
+d602 1
+a602 2
+#if 0
+  char s[L_tmpnam + 3];
+d615 2
+a616 1
+  remove("funcprot.h");
+a618 1
+#endif
+@
+
+
+1.57
+log
+@new command: rtc_pf
+@
+text
+@d1397 4
+a1400 1
+        sprintf(text, "bind(%d);", GETORDERARGS(help, n));
+d1403 4
+a1406 1
+        sprintf(text, "binds(%d);", GETORDERARGS(help, n));
+d1409 2
+a1410 1
+        sprintf(text, "bindsubl(%d, %d, %d, %d);", GETORDERARGS(help, n),
+d1414 5
+d1424 4
+a1427 1
+        sprintf(text, "freew(1);");
+d1436 4
+a1439 1
+        sprintf(text, "fetch();");
+@
+
+
+1.56
+log
+@_nilmat _nilvect _niltvect
+@
+text
+@d1150 3
+@
+
+
+1.55
+log
+@cast
+@
+text
+@d155 3
+d162 1
+a162 1
+            for(j=1; j < GETDATAENTRY(data, u.w.rows) * GETDATAENTRY(data, u.w.cols); j++)
+d171 1
+a172 1
+            fprintf(yyout, "};\n");
+d202 6
+d228 4
+d233 7
+a239 7
+        strcpy(type, "TY_REAL");
+          fprintf(yyout, "data_table[%d] = initdata_matrix(%s, %s, %d, %d, "
+                         "(int *)mvt%d);\n",
+                          i, class, type,
+                          GETDATAENTRY(data, u.w.rows), 
+                          GETDATAENTRY(data, u.w.cols), mvt++);
+          break;
+d631 1
+a631 1
+  if (MAX_LINES < lines)
+d657 3
+@
+
+
+1.54
+log
+@mat, vect, tvect implemented
+@
+text
+@d221 2
+a222 1
+          fprintf(yyout, "data_table[%d] = initdata_matrix(%s, %s, %d, %d, mvt%d);\n",
+@
+
+
+1.53
+log
+@bug fix in matchin
+@
+text
+@d61 1
+a61 1
+#define MAX_LINES       3000 /* max. number of lines in a function */
+d132 1
+a132 1
+  int i = 0, size, j, help;
+d134 1
+a134 1
+  
+d145 49
+d199 1
+d205 22
+d510 1
+a510 1
+    fprintf(mkfile, "CFLAGS\t\t= -O2 -c\n");
+d518 1
+d537 1
+a537 1
+   fprintf(mkfile,"\t\t$(CC) -O2 -o %s $(FILES) $(LIBFILES) $(LREDPATH)/lred.o "
+d558 2
+a559 1
+    fprintf(mkfile, "\t\t$(CC) $(CFLAGS) %s.c -I$(RTINC)\n", act_file->name);
+d585 1
+d602 1
+d635 2
+d639 3
+a641 3
+    fprintf(yyout, "extern int *data_table;\n");
+    fprintf(yyout, "extern T_DESCRIPTOR *funcdesctable;\n");
+    fprintf(yyout, "extern int *funcclostable;\n");
+@
+
+
+1.52
+log
+@make file generation
+@
+text
+@d1364 1
+a1364 1
+                                             searchdata((int)GETORDERARGS(help, desc)),
+@
+
+
+1.51
+log
+@bug fix
+@
+text
+@d47 1
+d59 1
+a59 1
+void c_out_order_list(ORDER *);
+d61 7
+d69 2
+d136 8
+a143 1
+
+d149 1
+d152 1
+d290 1
+a290 1
+    c_out_order_list(ohelp);
+d423 82
+d506 23
+d533 1
+a533 1
+void c_out_order_list(ORDER *out)
+d535 1
+a535 1
+  ORDER *help;
+d537 1
+d541 29
+d573 1
+d1338 8
+a1345 1
+        sprintf(text,"matcharb(%d, %s, %s, %d);", GETORDERARGS(help, n),
+@
+
+
+1.50
+log
+@mksclos
+@
+text
+@d1201 1
+a1201 1
+        sprintf(text,"matchin((T_PTD)data_table[%d]), %s, %s, %d);", 
+@
+
+
+1.49
+log
+@mkilist
+@
+text
+@d931 7
+d1201 2
+a1202 1
+        sprintf(text,"matchin(%d, %s, %s, %d);", GETORDERARGS(help, n),
+@
+
+
+1.48
+log
+@output of ris`ed C-code
+@
+text
+@d557 5
+@
+
+
+1.47
+log
+@minor bug fix in output of code
+@
+text
+@d53 1
+d486 62
+a547 1
+      sprintf(text, "_desc = (PTR_DESCRIPTOR)(%s);", GETORDERENTRY(help, code));
+d599 6
+a604 1
+        sprintf(text,"push_p((T_PTD)funcclostable[%d]);", n);
+d609 6
+a614 1
+          sprintf(text,"push_p((T_PTD)data_table[%d]);", n);
+d637 6
+a642 1
+        sprintf(text,"pushr_p((T_PTD)funcclostable[%d]);", n);
+d647 6
+a652 1
+          sprintf(text,"pushr_p((T_PTD)data_table[%d]);", n);
+d726 4
+a729 1
+      sprintf(text,"pushaw(%d);",GETORDERARGS(help,n));
+d734 4
+a737 1
+      sprintf(text,"pushtw(%d);",GETORDERARGS(help,n));
+d742 4
+a745 1
+      sprintf(text,"pushar(%d);",GETORDERARGS(help,n));
+d750 4
+a753 1
+      sprintf(text,"pushtr(%d);",GETORDERARGS(help,n));
+d788 4
+a791 1
+      sprintf(text,"freeswt(%d);",GETORDERARGS(help,n));
+d796 4
+a799 1
+      sprintf(text,"freea(%d);",GETORDERARGS(help,n));
+d804 5
+a808 1
+      sprintf(text,"freet(%d);",GETORDERARGS(help,n));
+d866 1
+a866 1
+      sprintf(text,"f_mkdclos(%d, %d, -1);",GETORDERARGS(help,m), \
+d1103 4
+d1108 1
+a1108 1
+        sprintf(text,"SET_REFCNT_IMPL()");
+d1110 1
+a1110 1
+        sprintf(text,"SET_REFCNT_EXPL()");
+@
+
+
+1.46
+log
+@optimizer output
+@
+text
+@d830 1
+a830 1
+              GETORDERARGS(help, ret),
+d974 2
+a975 1
+          strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),
+@
+
+
+1.45
+log
+@new macro output: push_and_no_w_kill in case of no w usage
+@
+text
+@d423 1
+a423 1
+/* push_and_kill(term_to_be_computed, kiil_w, kill_a)            */
+d431 2
+d436 19
+a454 8
+        sprintf(s1, "__t%02x", i);
+        strcat(s, s1);
+        sprintf(t2, t1, s1);
+        strcat(t, t2);
+        if (i != GETORDERARGS(help, k) - 1)
+          strcat(s, ", ");
+        strrepl(&GETORDERENTRY(help,code)[find_substr(GETORDERENTRY(help, code),"#####")], 
+                s1, 5);
+d456 7
+a462 7
+      if (0 < GETORDERARGS(help, k))
+      {
+        strcat(s, ";\n");
+        strcat(t, "}\n");
+      }
+      if (0 == GETORDERARGS(help, m))
+        sprintf(text, "%spush_and_no_w_kill(%s, %d, %d);\n%s", s, 
+d466 8
+a473 2
+      else
+        sprintf(text, "%spush_and_kill(%s, %d, %d);\n%s", s, GETORDERENTRY(help, code), 
+d476 7
+d918 15
+a932 1
+      sprintf(text,"%s:",GETORDERARGS(help, label));
+d947 32
+a978 1
+      sprintf(text,"%s", GETORDERENTRY(help, code));
+@
+
+
+1.44
+log
+@new output in case of stack_op
+@
+text
+@d448 8
+a455 2
+      sprintf(text, "%spush_and_kill(%s, %d, %d);\n%s", s, GETORDERENTRY(help, code), 
+                                              GETORDERARGS(help, k), 
+@
+
+
+1.43
+log
+@new command: ris_stack_op
+@
+text
+@d53 2
+d386 1
+a386 1
+  char cc[20]="j";
+d390 3
+d411 2
+a412 2
+  char text[160];
+  
+d421 30
+a450 1
+      sprintf(text, "push(%s);", GETORDERENTRY(help, code));
+d906 1
+a906 1
+      sprintf(text,"/* %s */", GETORDERARGS(help, hash_str));
+d911 1
+a911 1
+      sprintf(text,"/* %s */", GETORDERARGS(help, hash_str));
+d916 9
+a924 1
+      sprintf(text,"/* %s */", GETORDERARGS(help, hash_str));
+@
+
+
+1.42
+log
+@new COMMAND: stack_op
+@
+text
+@d418 3
+@
+
+
+1.41
+log
+@i(nline)_rt?-instructions
+@
+text
+@d415 3
+@
+
+
+1.40
+log
+@*** empty log message ***
+@
+text
+@d515 28
+d643 15
+d663 5
+d673 8
+d703 8
+d1117 19
+a1135 1
+       
+@
+
+
+1.39
+log
+@mkgsclos implemented
+@
+text
+@d671 1
+a671 1
+      sprintf(text,"f_mkgsclos(%d, %d, %d, %d);",GETORDERARGS(help, n), 
+@
+
+
+1.38
+log
+@additional case uses_aux_var and minor bug fix
+@
+text
+@d665 8
+a672 2
+      sprintf(text,"f_mkgaclos(%d, %d, %d);",GETORDERARGS(help, n), 
+        search_funcdesc((int)GETORDERARGS(GETPREVORDER(help), desc)), 1);
+@
+
+
+1.37
+log
+@reference counting commands implemented
+@
+text
+@d415 3
+d971 1
+a971 1
+         sprintf(text, "pushaux()");
+@
+
+
+1.36
+log
+@changed character output to allow for escaped characters (\n)
+@
+text
+@d604 3
+d967 52
+d1020 25
+@
+
+
+1.35
+log
+@warning removed ((int *) -> (char *))
+@
+text
+@d154 1
+a154 1
+          fprintf(yyout, "l[%d] = MAKE_CHAR('%c');\n", j, GETCHAR(help));
+@
+
+
+1.34
+log
+@output of initializing routine for strings
+matchprim improved by handlling single letters
+@
+text
+@d164 11
+@
+
+
+1.33
+log
+@bug fixed in search_case
+@
+text
+@d139 25
+d886 3
+a888 1
+        sprintf(text,"matchprim(%s, %s, %s, %d);", primf_tab[GETPRF(GETORDERARGS(help,n))],
+d892 6
+@
+
+
+1.32
+log
+@parameter added to matchXXX
+@
+text
+@d329 1
+a329 1
+      if (!strncmp(GETORDERARGS(o, ret), "undecided", 9))
+@
+
+
+1.31
+log
+@new: c_out_intertype
+added: mkslot,mkframe,Inter to c_out_order_list
+@
+text
+@d306 1
+a306 1
+  
+d322 24
+d825 1
+a825 1
+        sprintf(text,"matcharb(%d, %s, %s);", GETORDERARGS(help, n),
+d827 2
+a828 1
+                                              GETORDERARGS(help, ret));
+d831 1
+a831 1
+        sprintf(text,"matcharbs(%d, %s, %s);", GETORDERARGS(help, n),
+d833 2
+a834 1
+                                               GETORDERARGS(help, ret));
+d837 1
+a837 1
+        sprintf(text,"matchbool(%d, %s, %s);", GETORDERARGS(help, n),
+d839 2
+a840 1
+                                            GETORDERARGS(help, ret));
+d843 1
+a843 1
+        sprintf(text,"matchin(%d, %s, %s);", GETORDERARGS(help, n),
+d845 2
+a846 1
+                                             GETORDERARGS(help, ret));
+d849 1
+a849 1
+        sprintf(text,"matchint(%d, %s, %s);", GETORDERARGS(help, n),
+d851 2
+a852 1
+                                              GETORDERARGS(help, ret));
+d855 1
+a855 1
+        sprintf(text,"matchlist(%d, %s, %s);", GETORDERARGS(help, n),
+d857 2
+a858 1
+                                               GETORDERARGS(help, ret));
+d861 1
+a861 1
+        sprintf(text,"matchprim(%s, %s, %s);", primf_tab[GETPRF(GETORDERARGS(help,n))],
+d863 2
+a864 1
+                                               GETORDERARGS(help, ret));
+d867 1
+a867 1
+        sprintf(text,"matchstr(%d, %s, %s);", GETORDERARGS(help, n),
+d869 2
+a870 1
+                                              GETORDERARGS(help, ret));
+@
+
+
+1.30
+log
+@minor changes
+@
+text
+@d58 16
+d360 17
+@
+
+
+1.29
+log
+@warning removed (cast on _nil)
+@
+text
+@d778 1
+a778 1
+        sprintf(text,"matchb(%d, %s, %s);", GETORDERARGS(help, n),
+d798 1
+a798 1
+        sprintf(text,"matchprim(%d, %s, %s);", GETORDERARGS(help, n),
+d814 1
+a814 1
+        sprintf(text,"mkcase(funcclostable[%d]);", 
+d849 2
+a850 2
+        sprintf(text, "tguard(%s, %08x, %d, %d, %d);", GETORDERARGS(help, label), 
+                                                     (int)GETORDERARGS(help, desc),
+@
+
+
+1.28
+log
+@output for pm orders implemented
+@
+text
+@d112 1
+a112 1
+  fprintf(yyout," _nil = initdata_list(0, NULL);\n");
+d757 2
+a758 2
+                GETORDERARGS(help, ret),
+                GETORDERARGS(help, label));
+d769 2
+a770 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+d774 2
+a775 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+d779 2
+a780 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+d784 2
+a785 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+d789 2
+a790 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+d794 2
+a795 2
+                                                 GETORDERARGS(help, label),
+                                                 GETORDERARGS(help, ret));
+d799 2
+a800 2
+                                                 GETORDERARGS(help, label),
+                                                 GETORDERARGS(help, ret));
+d804 2
+a805 2
+                                                GETORDERARGS(help, label),
+                                                GETORDERARGS(help, ret));
+@
+
+
+1.27
+log
+@key -M for further use
+@
+text
+@d70 4
+a73 3
+
+  strcpy(s, modulfile);
+  strcat(s, "funcprot.h");
+d112 2
+a113 1
+  if (NULL != data)
+d115 9
+a123 1
+    while (NULL!=data)
+d125 2
+a126 3
+      switch(GETDATAENTRY(data, tag))
+      {
+      case d_real:
+d128 3
+a130 3
+        fprintf(yyout, "data_table[%d] = initdata_scalar(%f);\n", i,
+                GETDATAENTRY(data, u.x));
+        break;
+d132 2
+a133 1
+      case d_list:
+d135 1
+a135 22
+        size = GETDATAENTRY(data, u.v.size);
+        if (0 != size)
+        {
+          fprintf(yyout, "if (NULL == (l = (int *)malloc(%d*sizeof(int))))",
+                  size);
+          fprintf(yyout, "{ fprintf(stderr, \"FATAL ERROR: couldn't allocate memory.\\n\");\nexit(1);\n}\n");
+        }
+        else  fprintf(yyout, "l = NULL;\n");
+        for (j = 0; j < size; j++)
+        {
+          help =  GETDATAENTRY(data, u.v.data[j]);
+          
+          if (ISINT(help))
+            fprintf(yyout, "l[%d] = %d;\n", j, help);
+          else if (ISBOOL(help))
+            fprintf(yyout, "l[%d] = %d;\n", j, help);
+          else if (ISFUNC(help))
+            fprintf(yyout, "l[%d] = %s;\n", j, primf_tab[GETPRF(help)]);
+          else
+            fprintf(yyout, "l[%d] = data_table[%d];\n", j, searchdata(help));
+        }
+        fprintf(yyout, "data_table[%d] = initdata_list(%d, l);\n", i, size);
+d137 8
+a144 3
+        if (0 != size)
+          fprintf(yyout, "free(l);\n");
+        break;
+d146 12
+a157 7
+      default:
+        ;
+      } /* END switch(GETDATAENTRY(data, tag)) */
+      i++;
+      data=GETNEXTDATA(data);
+    } /* END while (NULL!=data) */
+  } /* if (NULL != data) */
+d710 146
+d857 5
+a861 1
+    {sprintf(text,"ERROR_OCCURED");break;}
+@
+
+
+1.26
+log
+@mkap implemented
+@
+text
+@d50 1
+d63 1
+a63 1
+void c_build_func_prot(PROGRAM *p)
+d67 1
+d71 3
+a73 1
+  o=fopen("funcprot.h","w+");
+d75 1
+a75 1
+    yyfail("%s","Couldn't open 'funcprot.h' !\n");
+d90 1
+a90 1
+    yyfail("%s","funcprot.h couldn't be written !");
+@
+
+
+1.25
+log
+@bug fix in output of boolean
+@
+text
+@d244 3
+d637 5
+@
+
+
+1.24
+log
+@bugfix in hash output
+@
+text
+@d536 1
+a536 1
+      if (0==GETORDERARGS(help,n))
+d544 1
+a544 1
+      if (GETORDERARGS(help, n))
+d552 1
+a552 1
+      if (0==GETORDERARGS(help, n))
+@
+
+
+1.23
+log
+@due to tagged data and change of hashtypes
+@
+text
+@d686 1
+a686 1
+      sprintf(text,"%s", GETORDERARGS(help, hash_str));
+d691 1
+a691 1
+      sprintf(text,"%s", GETORDERARGS(help, hash_str));
+d696 1
+a696 1
+      sprintf(text,"%s", GETORDERARGS(help, hash_str));
+@
+
+
+1.22
+log
+@two parameters in conditional macros (jcond, jfalse, jtrue)
+@
+text
+@d340 1
+a340 1
+      sprintf(text,"push(%s);",primf_tab[GETORDERARGS(help,n)]);
+d345 3
+a347 3
+      sprintf(text,"push(%d); /* TAG_INT(%d) */",
+              TAG_INT(GETORDERARGS(help, n)), 
+              GETORDERARGS(help, n));
+d353 2
+a354 2
+              TAG_INT(GETORDERARGS(help,n)), \
+              GETORDERARGS(help, n));
+d523 2
+a524 2
+              TAG_INT(GETORDERARGS(help,n)), \
+              GETORDERARGS(help,n));
+d655 2
+a656 1
+      sprintf(text,"tailfar(&%s);",GETORDERARGS(help, label));
+d684 11
+a694 1
+      case hash:
+d696 1
+a696 1
+      sprintf(text,"%s", GETORDERARGS(help, label));
+@
+
+
+1.21
+log
+@pointer to data implemented
+@
+text
+@a42 3
+#define FUNC              0x00000008
+#define P_FUNC            0x0000000f
+#define T_FUNC(x)         (((x) & P_FUNC) == FUNC)
+a43 13
+#define F_FUNC_NAME        0x00FF0000     /* Bit 16-23 */
+#define O_FUNC_NAME        16             /* Offset 16 */
+
+#define F_FUNC_ARITY       0x000000F0     /* Bits 7-4  */
+#define O_FUNC_ARITY       4              /* Offset 4  */
+
+#define FUNC_ARITY(x)      (((x) & F_FUNC_ARITY) >> O_FUNC_ARITY)
+#define FUNC_INDEX(x)      (((x) & F_FUNC_NAME) >> O_FUNC_NAME)
+#define FNAME(x)           (((x) & F_FUNC_NAME) >> O_FUNC_NAME)
+
+/* SA_F generates a primitive function with name id and arity ar */
+
+#define SA_F(id,ar)     (FUNC | ((ar) << O_FUNC_ARITY) | ((id) << O_FUNC_NAME))
+d122 7
+a128 3
+        fprintf(yyout, "if (NULL == (l = (int *)malloc(%d*sizeof(int))))",
+                size);
+        fprintf(yyout, "{ fprintf(stderr, \"FATAL ERROR: couldn't allocate memory.\\n\");\nexit(1);\n}\n");
+d137 1
+a137 1
+          else if (T_FUNC(help))
+d144 2
+a145 1
+        fprintf(yyout, "free(l);\n");
+d589 3
+a591 1
+      sprintf(text,"jcond(%s);",GETORDERARGS(help, label));
+d596 3
+a598 1
+      sprintf(text,"jfalse(%s);",GETORDERARGS(help, label));
+d603 2
+a604 1
+      sprintf(text,"jtrue(%s);",GETORDERARGS(help, label));
+@
+
+
+1.20
+log
+@data output for reals and lists
+@
+text
+@d150 1
+a150 1
+            fprintf(yyout, "l[%d] = %d;\n", j, help);
+d404 17
+a420 1
+        sprintf(text,"push_r(%d);",(int)GETORDERARGS(help, desc));
+d423 1
+d426 23
+a448 1
+      sprintf(text,"rtp(%d);",(int)GETORDERARGS(help, desc));
+@
+
+
+1.19
+log
+@buildtree access macros implemented
+@
+text
+@d5 1
+d71 1
+d114 1
+a116 2
+  int i = 0;
+  
+d119 5
+a123 1
+  while (NULL!=data)
+d125 44
+a168 3
+    data=GETNEXTDATA(data);
+  }
+
+a183 4
+  if (ISASM_TILDE()) 
+    fprintf(yyout,"int withtilde = 1;\n");
+  else
+    fprintf(yyout,"int withtilde = 0;\n");
+d264 18
+a281 3
+/***************************************************************/    
+/* looks for a func desc which first element fits the argument */
+/***************************************************************/    
+d376 18
+a393 1
+        sprintf(text,"push((int)%d);",(int)GETORDERARGS(help, desc));
+@
+
+
+1.18
+log
+@*** empty log message ***
+@
+text
+@d107 21
+d145 2
+a146 2
+    fprintf(yyout,"%s\n",f->code);
+    f=f->next;
+d176 1
+a176 1
+  c_out_desc_list(out_me->desc);
+d202 1
+a202 1
+    switch (help->tag)
+d214 3
+a216 3
+    fprintf(yyout, "%d, %d, ",help->nfv, help->nv);
+    fprintf(yyout, "%08x, ", help->graph);
+    fprintf(yyout, "%s\n", help->label);
+d232 2
+a233 2
+    if (h->address == search_me)
+      return(h->label);
+d246 1
+a246 1
+    if (adr == d->address) break;
+d263 1
+a263 1
+    if (!strcmp(cc, d->label)) break;
+d285 1
+a285 1
+    switch(help->command)
+d289 1
+a289 1
+      sprintf(text,"mklist(%d);",help->args.n);
+d294 1
+a294 1
+      sprintf(text,"push(%s);",primf_tab[help->args.n]);
+d299 3
+a301 2
+      sprintf(text,"push(%d); /* TAG_INT(%d) */",TAG_INT(help->args.n), \
+                                                 help->args.n);
+d306 3
+a308 2
+      sprintf(text,"pushr(%d); /* TAG_INT(%d) */",TAG_INT(help->args.n), \
+                                                  help->args.n);
+d315 1
+a315 1
+      n = search_funcdesc((int)help->args.desc);
+d317 1
+a317 10
+      {
+/*        int i = 0;*/
+/*        FUNDESC *d = GETFIRSTDESC(program_start);*/
+/* must be, 'cause the tilde frame will be lost otherwise */
+/*        for (i = 0; i < n; i++) d = GETNEXTDESC(d);*/
+/*        if (DT_CONDITIONAL == d->tag)*/
+/*          sprintf(text,"f_mkcclos(0, %d);", n);*/
+/*        else*/
+          sprintf(text,"push_p((T_PTD)funcclostable[%d]);", n);
+      }
+d319 1
+a319 1
+        sprintf(text,"push((int)%d);",(int)help->args.desc);
+d326 1
+a326 1
+      n = search_funcdesc((int)help->args.desc);
+d330 1
+a330 1
+        sprintf(text,"push_r(%d);",(int)help->args.desc);
+d335 1
+a335 1
+      sprintf(text,"rtp(%d);",(int)help->args.desc);
+d340 1
+a340 1
+      sprintf(text,"pushaw(%d);",help->args.n);
+d345 1
+a345 1
+      sprintf(text,"pushtw(%d);",help->args.n);
+d350 1
+a350 1
+      sprintf(text,"pushar(%d);",help->args.n);
+d355 1
+a355 1
+      sprintf(text,"pushtr(%d);",help->args.n);
+d390 1
+a390 1
+      sprintf(text,"freeswt(%d);",help->args.n);
+d395 1
+a395 1
+      sprintf(text,"freea(%d);",help->args.n);
+d400 1
+a400 1
+      sprintf(text,"freet(%d);",help->args.n);
+d405 1
+a405 1
+      sprintf(text,"snap(%d);",help->args.n);
+d420 3
+a422 2
+      sprintf(text,"rtc(%d); /* TAG_INT(%d) */",TAG_INT(help->args.n), \
+                                                help->args.n);
+d427 2
+a428 2
+      sprintf(text,"f_mkdclos(%d, %d, -1);",help->args.m, \
+              help->args.n);
+d434 1
+a434 1
+      if (0==help->args.n)
+d442 1
+a442 1
+      if (help->args.n)
+d450 1
+a450 1
+      if (0==help->args.n)
+d458 2
+a459 2
+      sprintf(text,"f_mkgaclos(%d, %d, %d);",help->args.n, \
+              search_funcdesc((int)GETPREVORDER(help)->args.desc), 1);
+d464 2
+a465 2
+      sprintf(text,"mkcclos(%d, %d);",help->args.n,
+              search_funcdesc((int)GETPREVORDER(help)->args.desc));
+d470 1
+a470 1
+      sprintf(text,"dyn_mkbclos(%d);",help->args.n);
+d475 1
+a475 1
+      sprintf(text, "goto %s;", help->args.label);
+d480 3
+a482 2
+      sprintf(text,"jcond2(%s, %s, %d);",help->args.label, help->args.ret,
+                    search_conddesc(help->args.label));
+d487 1
+a487 1
+      sprintf(text,"jcond(%s);",help->args.label);
+d492 1
+a492 1
+      sprintf(text,"jfalse(%s);",help->args.label);
+d497 1
+a497 1
+      sprintf(text,"jtrue(%s);",help->args.label);
+d502 1
+a502 1
+      sprintf(text,"beta(%s);",help->args.label);
+d507 1
+a507 1
+      sprintf(text,"betanear(%d);",help->args.n);
+d512 3
+a514 2
+      sprintf(text,"betafar(%d,&%s,&%s);",help->args.n, help->args.ret, \
+                                             help->args.label);
+d519 1
+a519 1
+      sprintf(text,"gammabetanear(&%s);",help->args.label);
+d524 3
+a526 2
+      sprintf(text,"gammabetafar(%d, &%s, &%s);",help->args.n, \
+              help->args.ret, help->args.label);
+d531 3
+a533 2
+      sprintf(text,"ap(%d, %d, &%s);",help->args.n, help->args.m,  \
+                                   help->args.ret);
+d538 1
+a538 1
+      sprintf(text,"gamma(&%s);",help->args.label);
+d548 1
+a548 1
+      sprintf(text,"tailfar(&%s);",help->args.label);
+d553 1
+a553 1
+      sprintf(text,"tail(%s);",help->args.label);
+d558 1
+a558 1
+      sprintf(text,"%s:",help->args.label);
+d573 1
+a573 1
+      sprintf(text,"%s", help->code);
+d578 1
+a578 1
+      sprintf(text,"%s", help->args.label);
+d582 1
+a582 1
+    {sprintf(text,"default");break;}
+d585 1
+a585 1
+  if (WATCH && (code_ok!=help->command))
+@
+
+
+1.17
+log
+@Now FRED-FISH works fine
+@
+text
+@d295 2
+a296 2
+        int i = 0;
+        FUNDESC *d = GETFIRSTDESC(program_start);
+d298 4
+a301 4
+        for (i = 0; i < n; i++) d = GETNEXTDESC(d);
+        if (DT_CONDITIONAL == d->tag)
+          sprintf(text,"f_mkcclos(0, %d);", n);
+        else
+@
+
+
+1.16
+log
+@*** empty log message ***
+@
+text
+@a86 2
+  if (FRED_FISH)
+    fprintf(o,"#include \"dbug.h\"\n");
+@
+
+
+1.15
+log
+@Conditionals
+@
+text
+@d299 1
+@
+
+
+1.14
+log
+@*** empty log message ***
+@
+text
+@d296 9
+a304 1
+        sprintf(text,"push_p((T_PTD)funcclostable[%d]);", n);
+@
+
+
+1.13
+log
+@rtm, mkcclos, jump implemented
+@
+text
+@d89 1
+a89 1
+  f=p->function;
+d92 2
+a93 2
+    if (strcmp(f->name,"apply"))
+      fprintf(o,"int %s();\n",f->name);
+d97 1
+a97 1
+    f=f->next;
+d114 1
+a114 1
+  FUNDESC *d = program_start->desc;
+d131 1
+a131 1
+    d=d->next;
+d158 1
+a158 1
+  fhelp=out_me->function;
+d161 2
+a162 2
+    fprintf(yyout,"function %s()\n", fhelp->name);
+    ohelp=fhelp->order;
+d164 1
+a164 1
+    fhelp=fhelp->next;
+d198 1
+a198 1
+    help=help->next;
+d209 1
+a209 1
+  FUNDESC *h = program_start->desc;
+d215 1
+a215 1
+    h = h->next;
+d224 1
+a224 1
+  FUNDESC *d = program_start->desc;
+d228 1
+a228 1
+    d = d->next;
+d239 1
+a239 1
+  FUNDESC *d = program_start->desc;
+d245 1
+a245 1
+    d = d->next;
+d437 1
+a437 1
+              search_funcdesc((int)help->prev->args.desc), 1);
+d442 2
+a443 2
+      sprintf(text,"f_mkcclos(%d, %d);",help->args.n,
+              search_funcdesc((int)help->prev->args.desc));
+d564 1
+a564 1
+  help=help->next;
+@
+
+
+1.12
+log
+@bug fixed
+@
+text
+@a219 4
+/***********************************************************************/
+/* Prints out a list of ASM~-commands (i.e. a whole function)          */
+/* (used by out_tree()).                                               */
+/***********************************************************************/
+d235 21
+d392 5
+d405 2
+a406 2
+      sprintf(text,"mkdclos(%d, %d, %d);",help->args.n, \
+              help->args.m,help->args.k);
+d440 6
+d449 11
+@
+
+
+1.11
+log
+@*** empty log message ***
+@
+text
+@d86 1
+d242 1
+a242 1
+  char text[80];
+@
+
+
+1.10
+log
+@minor change
+@
+text
+@d467 1
+a467 1
+                                      help->args.ret);
+@
+
+
+1.9
+log
+@minor change
+@
+text
+@d7 1
+d411 1
+a411 1
+      case mkgclos:
+d413 2
+a414 2
+      sprintf(text,"mkgclos(%d, %d, %d);",help->args.n, \
+              help->args.m,help->args.k);
+d419 1
+a419 6
+      if (ISASM_TILDE())
+        sprintf(text,"mkbclos(%d, %d, %d);",help->args.n, \
+                help->args.m,help->args.k);
+      else
+        sprintf(text,"mkbclos(%d, %d);",help->args.n, \
+                help->args.m);
+d453 11
+a472 5
+      break;
+    }
+      case gammabeta:
+    {
+      sprintf(text,"gammabeta(&%s);",help->args.label);
+@
+
+
+1.8
+log
+@jfalse_b => jfalse
+@
+text
+@d418 6
+a423 2
+      sprintf(text,"mkbclos(%d, %d, %d);",help->args.n, \
+              help->args.m,help->args.k);
+@
+
+
+1.7
+log
+@minor change
+@
+text
+@d117 5
+d134 1
+d222 14
+d273 1
+a273 1
+      char *s;
+d275 3
+a277 3
+      s = search_desc((int)help->args.desc);
+      if (NULL != s)
+        sprintf(text,"push((int)&%s);", s);
+d284 7
+a290 1
+      sprintf(text,"pushr(%d);",(int)help->args.desc);
+d323 5
+a427 5
+    {
+      sprintf(text,"jfalse(%s);",help->args.label);
+      break;
+    }
+      case jfalse_b:
+@
+
+
+1.6
+log
+@rstelem.h removed from include list
+@
+text
+@d110 1
+a110 1
+void c_out_functable(CODE *f)
+d128 1
+a128 1
+  fprintf(yyout,"int number_of_descs = %d;\n",i);
+@
+
+
+1.5
+log
+@tags integers, bools and functions while compiling
+@
+text
+@a4 1
+#include "rstelem.h"
+d8 51
+@
+
+
+1.4
+log
+@pushcw_pf added (pushes a primfunc)
+@
+text
+@d5 1
+d62 4
+d72 8
+d144 17
+a160 2
+    
+    
+d186 1
+a186 1
+      sprintf(text,"push(SA_F(%s, %d));",primf_tab[help->args.n], help->args.m);
+d191 2
+a192 1
+      sprintf(text,"push(TAG_INT(%d));",help->args.n);
+d197 2
+a198 1
+      sprintf(text,"pushr(TAG_INT(%d));",help->args.n);
+d203 7
+a209 1
+      sprintf(text,"push(%d);",(int)help->args.desc);
+a286 5
+      case apply:
+    {
+      sprintf(text,"apply(%d);",help->args.n);
+      break;
+    }
+d294 2
+a295 1
+      sprintf(text,"rtc(TAG_INT(%d));",help->args.n);
+d308 1
+a308 1
+        sprintf(text,"push(SA_FALSE);");
+d310 1
+a310 1
+        sprintf(text,"push(SA_TRUE);");
+d316 1
+a316 1
+        sprintf(text,"rtc(SA_TRUE);");
+d318 1
+a318 1
+        sprintf(text,"rtc(SA_FALSE);");
+d324 1
+a324 1
+        sprintf(text,"pushr(SA_FALSE);");
+d326 1
+a326 1
+        sprintf(text,"pushr(SA_TRUE);");
+d377 6
+d385 1
+a385 1
+      sprintf(text,"gamma(%s);",help->args.label);
+d390 1
+a390 1
+      sprintf(text,"gammabeta(%s);",help->args.label);
+@
+
+
+1.3
+log
+@now jcond may be compiled
+@
+text
+@d10 1
+d154 5
+@
+
+
+1.2
+log
+@fixed arity orders removed
+@
+text
+@d303 5
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a184 5
+      case pushaw0:
+    {
+      sprintf(text,"pushaw0();");
+      break;
+    }
+a227 5
+      break;
+    }
+      case free1a:
+    {
+      sprintf(text,"free1a();");
+@

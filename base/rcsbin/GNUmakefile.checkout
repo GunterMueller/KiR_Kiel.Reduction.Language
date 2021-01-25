@@ -1,0 +1,11 @@
+#!/opt/gnu/bin/make -sf
+#
+# Usage: checkout file ...
+#
+# Makefile to keep track of revision changes
+
+%:: RCS/%,v
+	-time=`gmtime $@`; rlog "-d>$${time:-lt}" $@ | awk-rlog-log
+	$(CO) $(COFLAGS) -q $@
+
+	

@@ -1,0 +1,211 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "fileRequester"
+%%ID  Created by tb on Mon Mar 29 14:31:01 1993
+%%%
+%T fileRequester
+%F
+%%%
+%N myRequesterBox
+%c ukcLayoutWidgetClass
+%p fileRequester
+%m true
+%o false
+%s x : 32
+%s y : 31
+%s width : 269
+%s height : 395
+%s borderWidth : 1
+%r background : #bbbbbb
+%f
+%%%
+%N  myRequesterSelectBox
+%c  ukcLayoutWidgetClass
+%p  fileRequester.myRequesterBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 5
+%s  width : 257
+%s  height : 345
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   myRequesterSelectEnterMask
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : 44
+%s   y : 37
+%s   width : 206
+%s   height : 18
+%s   borderWidth : 1
+%r   label : *
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%f
+%%%
+%N   myRequesterSelectLabel
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : 5
+%s   y : 5
+%s   width : 245
+%s   height : 18
+%s   borderWidth : 1
+%r   label : Select a file...
+%r   background : #bbbbbb
+%r   barColour : #000000
+%r   foreground : #ffffff
+%f
+%%%
+%N   myRequesterSelectLabelMask
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 37
+%s   width : 48
+%s   height : 17
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Mask:
+%r   justify : right
+%f
+%%%
+%N   myRequesterSelectLabelPath
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 62
+%s   width : 48
+%s   height : 17
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : Path:
+%r   justify : right
+%f
+%%%
+%N   myRequesterSelectEnterPath
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : 44
+%s   y : 62
+%s   width : 206
+%s   height : 18
+%s   borderWidth : 1
+%r   label : /
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%f
+%%%
+%N   myRequesterSelectEnterFile
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : 44
+%s   y : 320
+%s   width : 206
+%s   height : 18
+%s   borderWidth : 1
+%r   label : 
+%r   background : #ffffff
+%r   barColour : #000000
+%r   justify : left
+%r   editable : true
+%r   overflowRight : false
+%r   editing : true
+%f
+%%%
+%N   myRequesterSelectLabelFile
+%c   ukcLabelWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%s   x : -4
+%s   y : 320
+%s   width : 48
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #888888
+%r   borderColor : #888888
+%r   label : File:
+%r   justify : right
+%f
+%%%
+%N   myRequesterSelectScroll
+%c   ukcScrListWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterSelectBox
+%m   true
+%o   false
+%d   *myRequesterSelectScroll.clip.background: #bbbbbb
+%d   *myRequesterSelectScroll.horizontal.background: #bbbbbb
+%d   *myRequesterSelectScroll.vertical.background: #bbbbbb
+%s   x : 5
+%s   y : 94
+%s   width : 245
+%s   height : 214
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   callback : msFileBrowserSelectFile()
+%f
+%%%
+%N  myRequesterCommandBox
+%c  ukcLayoutWidgetClass
+%p  fileRequester.myRequesterBox
+%m  true
+%o  false
+%s  x : 5
+%s  y : 358
+%s  width : 257
+%s  height : 30
+%s  borderWidth : 1
+%r  background : #888888
+%f
+%%%
+%N   myRequesterCommandCancel
+%c   ukcCommandWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterCommandBox
+%m   true
+%o   false
+%s   x : 5
+%s   y : 5
+%s   width : 120
+%s   height : 18
+%s   borderWidth : 1
+%r   background : #bbbbbb
+%r   label : Cancel
+%f
+%%%
+%N   myRequesterCommandOK
+%c   ukcCommandWidgetClass
+%p   fileRequester.myRequesterBox.myRequesterCommandBox
+%m   true
+%o   false
+%s   x : 131
+%s   y : 5
+%s   width : 120
+%s   height : 18
+%s   borderWidth : 1
+%r   label : OK
+%r   background : #bbbbbb
+%f

@@ -1,0 +1,891 @@
+head	1.14;
+access;
+symbols
+	continuation_based_interactions:1.13
+	pre_interactions:1.13
+	nCUBE~:1.13
+	red2:1.9;
+locks; strict;
+comment	@# @;
+
+
+1.14
+date	98.03.31.11.56.19;	author rs;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	94.06.15.11.18.10;	author dmk;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	94.06.15.09.51.35;	author dmk;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	94.06.15.09.43.49;	author car;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	93.12.02.12.33.05;	author car;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	93.11.24.13.56.00;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	93.11.09.13.06.35;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	93.11.01.16.02.09;	author car;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	93.11.01.07.07.55;	author car;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	93.10.27.14.55.20;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	93.10.26.11.09.44;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.10.25.14.27.12;	author car;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	93.09.24.07.38.41;	author car;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	93.09.01.13.06.25;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@1st version of configure
+@
+
+
+1.14
+log
+@minor changes for Solaris 2.x
+@
+text
+@#! /bin/sh
+
+# Configuration script for the Reduma.
+# (preliminary version)
+
+# Copyright (C) 1993 University of Kiel
+# V1.2    2.12.93 Carsten Rathsack
+# V1.1   13.09.93 Carsten Rathsack
+
+prgname="`basename $0`"
+dir=`pwd`
+dir=`basename $dir`
+machine=$1
+# if [ -f /bin/nawk ]; then
+#  awk=nawk
+# else
+  awk="gawk -v MACHINE=$machine -v MAKEDEPEND=$MAKEDPEND"
+# fi
+shift
+if [ $# -eq 0 ] ; then
+  set -- "*.cnf"
+fi
+
+$awk '
+function findindex(name,  i)
+	{ if (modul SUBSEP name in varvalue)  {
+	    for(i=0; i<varnum[modul]; i++)
+	      if (varname[modul,i]==name)
+		return(i)
+	    }
+	  else {
+	    varnum[modul]++
+	    return(varnum[modul]-1)
+	    }
+	}
+
+function lookup(name,modul,verbose)
+	{ while(1) {
+	    if (modul SUBSEP name in varvalue)
+	      return(varvalue[modul,name])
+	    else if (modul in inherits)
+	      modul=inherits[modul]
+	    else if (modul)
+	      modul=""
+	    else {
+	      if (verbose)
+	        print FILENAME":"NR": Warning: Access on non defined variable "name >"/dev/stderr"
+	      return ("")
+	      }
+	    }
+	}
+
+function strip(value,stripoff,  item,s,v1,v2)
+	{ while(stripoff) {
+	    item=stripoff; sub(" .*$","",item)
+	    if (s=index(value,item)) {
+	      v1=substr(value,1,s-1); if (v1) sub(" *$","",v1)
+	      v2=substr(value,s+length(item)); if (v2) sub("^ *","",v2)
+	      value=v1" "v2
+	      }
+	    sub("^[^ ]* *","",stripoff)
+	    }
+	  if (value) sub("^ *","",value)
+	  if (value) sub(" *$","",value)
+	  return(value)
+	}
+
+function diffdir(dir1,dir2,  dir3)
+	{ "pwd" | getline dir3; close("pwd")
+#print "pwd="dir3"---"dir1"---"dir2
+	  if (substr(dir1,1,1)=="/")
+	    return(dir1)
+	  if ((substr(dir2,1,1)=="/") || (dir2~/\.\.\//))
+	    return(dir3"/"dir1)
+	  gsub("[^/]","",dir2)
+	  gsub("/","../",dir2)
+	  return(dir2 dir1)
+	}
+
+function dirname(file,  dir)
+	{ dir=file
+	  sub("[^/]*$","",dir)
+	  return(dir)
+	}
+	  
+function lookupdestdir(modul,  root,dir)
+	{ if (modul=="")
+	    return("")
+	  root=lookup("OBJROOT",modul,0)
+	  dir=lookup("OBJDIR",modul,0)
+	  modul=modul".obj"
+	  if (dir && !(dir~/\/$/))
+	    dir=dir"/"
+	  if (root && !(root~/\/$/))
+	    root=root"/"
+	  if ((root=="") || (dir~/^\//))
+	    return((dir ? dir : modul"/"))
+	  else
+	    return(root (dir ? dir : modul"/"))
+	}
+
+function lookupdir(modul,prefix,  root,dir)
+	{ root=lookup(prefix"ROOT",modul,0)
+	  dir=lookup(prefix"DIR",modul,0)
+	  if (dir && !(dir~/\/$/))
+	    dir=dir"/"
+	  if (root && !(root~/\/$/))
+	    root=root"/"
+	  if ((root=="") || (dir~/^\//))
+	    dir=(dir ? dir : "./")
+	  else
+	    dir=root (dir ? dir : "./")
+	  return(diffdir(dir,lookupdestdir(modul)))
+	}
+
+function lookupsrcdir(modul,prefix,  root,dir)
+	{ root=lookup(prefix"ROOT",modul,0)
+	  dir=lookup(prefix"DIR",modul,0)
+	  if (dir && !(dir~/\/$/))
+	    dir=dir"/"
+	  if (root && !(root~/\/$/))
+	    root=root"/"
+	  if ((root=="") || (dir~/^\//))
+	    dir=(dir ? dir : "./")
+	  else
+	    dir=root (dir ? dir : "./")
+	  return(dir)
+	}
+
+function printmkdirhier(dir,  ldir)
+	{ sub("/$","",dir)
+	  if (dir) {
+	    ldir=dir
+	    sub("[^/]*$","",ldir)
+	    printmkdirhier(ldir)
+	    print "\tif [ -d "dir" ] ; then true ; else mkdir "dir" ; fi" > file
+	    }
+	}
+	    
+function mkdirhier(dir,  ldir)
+	{ ldir=""
+	  while(dir) {
+	    match(dir,"/")
+	    ldir=ldir substr(dir,1,RSTART); dir=substr(dir,RSTART+1)
+	    if (system("test -d "ldir)) {
+	      print "making directory "ldir
+	      system("mkdir "substr(ldir,1,length(ldir)-1))
+	      }
+	    }
+	}
+
+function header()
+	{ print "# This file is part of the reduma package. Copyright (C)" > file
+	  print "# 1988, 1989, 1992, 1993  University of Kiel. You may copy," > file
+	  print "# distribute, and modify it freely as long as you preserve this copyright" > file
+	  print "# and permission notice.\n" > file
+	  print "# This Makefile is automatically generated\n# DO NOT EDIT BELOW !\n" > file
+	}
+
+function format(str,  sstr,lskip)
+	{ lskip=outstr=""
+	  while(length(lskip str)>72) {
+	    sstr=substr(str,1,72-length(lskip))
+	    sub(" [^ ]*$","",sstr)
+	    outstr=outstr lskip sstr" \\\n"
+	    if (lskip=="") {
+	      lskip=str
+	      sub("=.*$","=",lskip)
+	      gsub("."," ",lskip)
+	      }
+	    str=substr(str,length(sstr)+1)
+	    }
+	  outstr=outstr lskip str
+	  return(outstr)
+	}
+
+function flushvars(name,modul,  i,files,ofiles,dfiles, fc)
+	{ srcdir=bindir=libdir=1
+	  if (name in inherits)
+	    flushvars(inherits[name],modul)
+	  else if (name)
+	    flushvars("",modul)
+	  for(i=0; i<varnum[name]; i++)
+	    if (varvalue[name,varname[name,i]]==lookup(varname[name,i],modul,0))
+	      if (!(varname[name,i] in specialvars) && !(varname[name,i]~/^@@/))
+	        print format(varname[name,i]" = "varvalue[name,varname[name,i]]) > file
+	      else if (((varname[name,i]=="SRCROOT") || (varname[name,i]=="SRCDIR")) && srcdir) {
+	        print "SRCDIR = "lookupdir(modul,"SRC") > file
+	        print "OBJDIR = ./" > file; srcdir=0
+	        }
+	      else if (((varname[name,i]=="LIBROOT") || (varname[name,i]=="LIBDIR")) && libdir) {
+	        print "LIBDIR = "lookupdir(modul,"LIB") > file; libdir=0
+	        }
+	      else if (((varname[name,i]=="BINROOT") || (varname[name,i]=="BINDIR")) && bindir) {
+	        print "BINDIR = "lookupdir(modul,"BIN") > file; bindir=0
+	        }
+	      else if (varname[name,i]=="SRCFILES") {
+	        files=lookup("FILES",modul,0); ofiles=""; dfiles=""
+	        while(files) {
+	          fc=files; sub(" .*$","",fc); sub("[^ ]* *","",files)
+		  # build SRCFILES
+	          if ((fc~/\.c$/) && !(fc~/\//))
+		    ofiles=ofiles" "lookupsrcdir(modul,"SRC")fc
+		  else if (fc~/^[$]/)
+		    ofiles=ofiles" "lookup(substr(fc,2),modul)
+		  else if (fc~/^[[].*[]]$/) {
+		    }
+	          else
+		    ofiles=ofiles" "fc
+		  # build DEPENDFILES
+	          if (fc~/\/.*\.c/)
+		    dfiles=dfiles" "fc
+	          else if (fc~/\.c$/)
+		    dfiles=dfiles" $(SRCDIR)"fc
+		  else if (fc~/^[$]/)
+		    dfiles=dfiles" "lookup(substr(fc,2),modul)
+		  }
+		print format("SRCFILES ="ofiles) > file
+		print format("DEPENDFILES ="dfiles) > file
+		}
+	      else if (varname[name,i]=="HEADERFILES") {
+	        files=lookup("HEADERFILES",modul,0); ofiles=""
+	        while(files) {
+	          fc=files; sub(" .*$","",fc); sub("[^ ]* *","",files)
+	          if ((fc~/\.h$/) && !(fc~/\//))
+		    ofiles=ofiles" "lookupsrcdir(modul,"SRC")fc
+	          else
+		    ofiles=ofiles" "fc
+		  }
+		print format("HEADERFILES ="ofiles) > file
+		}
+	      else if ((varname[name,i]=="OTHERFILES") && (name==modul)) {
+		print format("OTHERFILES = "lookup("OTHERFILES",modul,0)) > file
+		}
+	      else if (varname[name,i]=="FILES") {
+	        # compute linkable file list
+	        files=lookup("FILES",name,0); ofiles=""
+	        while(files) {
+	          fc=files; sub(" .*$","",fc); sub("[^ ]* *","",files)
+		  # insert linkable files from special rules
+	          if (lookup("@@"fc,name)) {
+		    fc=lookup("@@"fc, name)
+		    ofiles=ofiles" "fc
+		    }
+		  # convert source files into object files
+	          else if (fc~/\/.*\.c$/) {
+		    sub("^.*/","",fc)
+		    ofiles=ofiles" "substr(fc,1,length(fc)-1)"o"
+		    }
+		  # simply add object files
+	          else if (fc~/\/.*\.o$/) {
+		    ofiles=ofiles" "diffdir(dirname(fc),lookupdestdir(modul))
+		    }
+		  # convert source files into object files
+	          else if (fc~/\.c$/)
+		    ofiles=ofiles" "substr(fc,1,length(fc)-1)"o"
+		  # treat variables, simply add
+		  else if (fc~/^[$]/)
+		    ofiles=ofiles" $("substr(fc,2)")"
+		  # compute path to configure controlled modules
+		  else if (fc~/^[[].*[]]$/) {
+		    fc=substr(fc,2,length(fc)-2)
+		    if (!(fc in inherits))
+		      print FILENAME":"NR": Warning: Reference to undefined modul "fc >"/dev/stderr"
+		    use[name]=use[name]" "fc
+		    ofiles=ofiles" "diffdir(lookupdestdir(fc),lookupdestdir(modul))fc
+		    }
+		  }
+	        print format("FILES ="ofiles) > file
+	        }
+	}
+
+
+BEGIN		{ modul=""
+		  specialvars["MACHINE"]=""
+		  specialvars["OBJROOT"]=""
+		  specialvars["OBJDIR"]=""
+		  specialvars["SRCROOT"]=""
+		  specialvars["SRCDIR"]=""
+		  specialvars["LIBROOT"]=""
+		  specialvars["LIBDIR"]=""
+		  specialvars["BINROOT"]=""
+		  specialvars["BINDIR"]=""
+		  specialvars["FILES"]=""
+		  specialvars["SRCFILES"]=""
+		  specialvars["HEADERFILES"]=""
+		  specialvars["OTHERFILES"]=""
+		  varname["",0]="LD"; varvalue["","LD"]="ld -r"
+		  varname["",1]="RM"; varvalue["","RM"]="rm -rf"
+		  varname["",2]="CD"; varvalue["","CD"]="cd"
+		  varname["",3]="CC"; varvalue["","CC"]="cc"
+		  varname["",4]="LN"; varvalue["","LN"]="ln"
+		  varname["",5]="MAKE"; varvalue["","MAKE"]="make"
+		  varname["",6]="STRIP"; varvalue["","STRIP"]="strip"
+		  varname["",7]="INSTALL"; varvalue["","INSTALL"]="install -m 755"
+		  varname["",8]="MAKEDEPEND"; varvalue["","MAKEDEPEND"]="makedepend"
+		  varname["",9]="MACHINE"; varvalue["","MACHINE"]=MACHINE
+		  varname["",10]="TAR"; varvalue["","TAR"]="tar cvf"
+		  varname["",11]="COMPRESS"; varvalue["","COMPRESS"]="gzip"
+		  varname["",12]="BINDIR"; varvalue["","BINDIR"]="/usr/local/bin"
+		  varname["",13]="LIBDIR"; varvalue["","LIBDIR"]="/usr/local/lib"
+		  varnum[modul]=14
+		  "pwd" | getline pwd; close("pwd")
+		}
+# concat continuation lines
+(FNR==1)	{ modul=""
+		}
+/^$/		{ next }
+		{ while($0~/[\\\\][ \t]*$/) {
+		    sub("[ \t]*[\\\\][ \t]*$","")
+		    getline line; sub("^[ \t]*","",line); $0=$0" "line }
+		  gsub("\t"," "); sub("^ *","");
+		}
+# tabs are converted to spaces within all lines
+# leading spaces are stripped off
+
+# ignore comments
+/^#/		{ next }
+# parse case contruct
+/^case/		{ sub("^case *","");
+		  if (sub(" *in	*$","")==0)
+		    print FILENAME":"NR": missing in inserted" > "/dev/stderr"
+		  caseon=$0; caseok=0
+		  if (substr($0,1,1)=="$")
+		    caseon=lookup(substr($0,2),modul)
+		  else if (substr($0,1,1)=="?") {
+		    sub("^.","");
+		    if (substr($0,1,1)=="$")
+		      caseon=(lookup(substr($0,2),modul)!="")
+		    if ($0~/^[[].*[]]$/)
+		      caseon=(substr($0,2,length($0)-2) in inherits)
+		    }
+		}
+caseon!="" && (substr($0,1,length(caseon)+1)==caseon")") { caseok++
+		}
+caseon!="" && (substr($0,1,2)=="*)") { caseok++
+		}
+/^esac/		{ caseon=""
+		}
+caseon!="" && (caseok<=0) {
+		  next
+		}
+/^;;/		{ caseok=-1
+		  next
+		}
+# execute shell command
+/^!/		{ system(substr($0,2))
+		}
+# enter special compilation rule for target
+/^@@[^ ]* *:/	{ name=$0; value=$0
+		  sub(" *:.*$","",name); sub("^[^:]* *: *","",value)
+		  if (value~/{ *$/) {
+		    sub(" *{ *$","",value)
+		    getline
+		    }
+		  else {
+		    getline
+		    if ($0~/^ *{ */) {
+		      sub("^ *{ *","")
+		      if ($0=="")
+		        getline
+		      }
+		    else
+		      print FILENAME":"NR": missing { inserted" > "/dev/stderr"
+		    }
+		  i=0
+		  do {
+		    if ($0~/} *$/) {
+		      sub(" *} *$","")
+		      varvalue[modul,name,i++]=$0
+		      $0="}"
+		      }
+		    else {
+		      varvalue[modul,name,i++]=$0
+		      getline
+		      }
+		  } while(!($0~/} *$/))
+		  varname[modul,findindex(name)]=name; varvalue[modul,name]=value
+		  next
+		}
+
+# begin new Module specification
+/^ *[^ ]* *:/	{ modul=$0; inherit=$0
+		  sub(" *:.*$","",modul); sub("^[^:]* *: *","",inherit)
+		  if (inherit~/ /) {
+		    print FILENAME":"NR": inheritance must be unique" > "/dev/stderr"
+		    sub(" .*$","",inherit);
+		    }
+		  inherits[modul]=inherit; 
+		  if (!(inherit in inherits) && inherit)
+		    print FILENAME":"NR": undefined inheritance" > "/dev/stderr"
+		  if (!(modul in varnum)) {
+		    varname[modul,0]="SRCDIR"; varvalue[modul,"SRCDIR"]="src"
+		    varname[modul,1]="SRCFILES"; varvalue[modul,"SRCFILES"]=modul
+		    varname[modul,2]="OTHERFILES"; varvalue[modul,"OTHERFILES"]="configure "FILENAME" README INSTALL"
+		    varnum[modul]=3
+		    }
+		  next
+		}
+# enter new variable definition
+/^[^ ]* *=/	{ name=$0; value=$0
+		  sub(" *=.*$","",name); sub("^[^=]* *= *","",value)
+		  varname[modul,i=findindex(name)]=name; varvalue[modul,name]=value
+		}
+# entend variable defintion
+/^[^ ]* *[+]=/	{ name=$0; value=$0
+		  sub(" *[+]=.*$","",name); sub("^[^=]* *[+]= *","",value)
+		  value=lookup(name,modul,1)" "value
+		  varname[modul,i=findindex(name)]=name; varvalue[modul,name]=value
+		}
+# shrink variable defintion
+/^[^ ]* *-=/	{ name=$0; value=$0
+		  sub(" *-=.*$","",name); sub("^[^=]* *-= *","",value)
+		  value=strip(lookup(name,modul,1), value)
+		  varname[modul,i=findindex(name)]=name; varvalue[modul,name]=value
+		}
+# after reading all create makefiles
+END	{ print "configuring for "MACHINE
+	  for(name in inherits) {
+# create modul makefile
+	    dir=lookupdestdir(name)
+	    file=dir"Makefile"
+	    print "creating Makefile in "dir
+	    mkdirhier(dir)
+	    header()
+	    flushvars(name,name)
+	    if (name~/\.o$/) {
+	      print "\n"name": $(FILES)\n\t$(LD) $(LDFLAGS) -o "name" $(FILES) $(LIBS)\n" > file
+	      print "install: "name > file
+	      printmkdirhier(lookupdir(name,"LIB"))
+	      print "\t$(INSTALL) "name" $(LIBDIR)\n" > file
+	      }
+	    else {
+	      print "\n"name": $(FILES)\n\t$(CC) $(LDFLAGS) -o "name" $(FILES) $(LIBS)\n" > file
+	      print "install: "name > file
+	      printmkdirhier(lookupdir(name,"BIN"))
+	      print "\t$(INSTALL) "name" $(BINDIR)" > file
+	      print "\t$(STRIP) $(BINDIR)"name"\n" > file
+	      }
+	    print "depend:\n\t$(MAKEDEPEND) $(CFLAGS) $(DEPENDFILES)\n" >file
+	    print "clean:\n\t$(RM) $(FILES)" > file
+	    print "\t$(RM) "name"\n" > file
+	    print "tar:" > file
+	    print "\t($(CD) "pwd"; $(TAR) "name".tar $(OTHERFILES) $(SRCFILES) $(HEADERFILES))" > file
+	    print "\t($(CD) "pwd"; $(COMPRESS) "name".tar)\n" > file
+	    files=lookup("FILES",name,0)
+	    while(files) {
+	      fc=files; sub(" .*$","",fc); sub("[^ ]* *","",files)
+	      # insert special rules
+	      if (lookup("@@"fc,name)) {
+	        i=0
+		while(lookup("@@"fc SUBSEP i,name)) {
+		  print lookup("@@"fc SUBSEP i,name) > file
+		  i++
+		  }
+	        }
+	      # files with absolut paths
+	      else if (fc~/\/.*\.c$/) {
+		fo=fc
+		sub("^.*/","",fc)
+		srcfile=diffdir(dirname(fo),lookupdestdir(name))fc
+		print substr(fc,1,length(fc)-1)"o: "srcfile > file
+		print "\t$(CC) $(CFLAGS) $(INCLUDES) -c -o "substr(fc,1,length(fc)-1)"o " srcfile > file
+		}
+	      # standart files
+	      else if (fc~/\.c$/) {
+	        fo=fc; sub("\.c$",".o",fo)
+	        print fo": $(SRCDIR)"fc"\n\t$(CC) $(CFLAGS) $(INCLUDES) -c -o "fo" $(SRCDIR)"fc > file
+		}
+	      }
+	      close(file)
+	    }
+# create main makefile
+	  file="Makefile"
+	  print "creating Makefile in ./"
+	  header()
+	  flushvars("","")
+#   create 'all'-rule contains all moduls
+	  printf "\nall:" > file
+	  for(name in inherits)
+	    printf " "name > file
+#   create 'install'-rule makes all moduls and after compiling install them
+	  printf "\n\ninstall:" > file
+	  for(name in inherits)
+	    printf " "name > file
+	  print "" > file
+	  for(name in inherits) {
+	    dir=lookupdestdir(name)
+	    print "\t($(CD) "substr(dir,1,length(dir)-1)"; $(MAKE) install)" > file
+	    }
+	  print "" > file
+#   create modul specific compilation-rules 
+	  for(name in inherits) {
+	    print ""name":"use[name] > file
+	    dir=lookupdestdir(name)
+	    print "\t($(CD) "substr(dir,1,length(dir)-1)"; $(MAKE) "name")" > file
+	    }
+	  print "" > file
+#   create modul specific installation-rules 
+	  for(name in inherits) {
+	    print "install-"name": "name > file
+	    dir=lookupdestdir(name)
+	    print "\t($(CD) "substr(dir,1,length(dir)-1)"; $(MAKE) install)" > file
+	    }
+#   create all dependencies
+	  print "\ndepend:" > file
+	  for(name in inherits) {
+	    dir=lookupdestdir(name)
+	    print "\t($(CD) "substr(dir,1,length(dir)-1)"; $(MAKE) depend)" > file
+	    }
+#   create clean rule for all moduls
+	  print "\nclean:" > file
+	  for(name in inherits) {
+	    dir=lookupdestdir(name)
+	    print "\t($(CD) "substr(dir,1,length(dir)-1)"; $(MAKE) clean)"  > file
+	    }
+#   create distclean (delete everything configure creates)
+	  print "\ndistclean:" > file
+	  for(name in inherits) {
+	    dir=lookupdestdir(name)
+	    print "\t$(RM) "substr(dir,1,length(dir)-1) > file
+	    }
+	  print "\t$(RM) Makefile" > file
+#   create tar rule (tar includes all files contained within distribution directory)
+	  lpwd=pwd; sub("^.*/","",lpwd)
+	  project=FILENAME; sub(".cnf","",project)
+	  print "\ntar:" > file
+	  print "\t($(CD) ..; $(TAR) "project".tar "lpwd")" > file
+	  print "\t$(COMPRESS) "project".tar\n" > file
+#   create tar rule for every module
+	  for(name in inherits) {
+	    dir=lookupdestdir(name)
+	    print "tar-"name":" >file
+	    print "\t($(CD) "dir"; $(MAKE) tar)" > file
+	    }
+	}' MACHINE=$machine MAKEDEPEND=$MAKEDEPEND $@@
+@
+
+
+1.13
+log
+@TAR bug ....
+@
+text
+@d14 3
+a16 3
+if [ -f /bin/nawk ]; then
+  awk=nawk
+else
+d18 1
+a18 1
+fi
+@
+
+
+1.12
+log
+@TAR bug fixed ...
+@
+text
+@d444 1
+a444 1
+	    print "\t($(CD) "pwd"/..; $(TAR) "name".tar $(OTHERFILES) $(SRCFILES) $(HEADERFILES))" > file
+@
+
+
+1.11
+log
+@bug in tar rule fixed
+@
+text
+@d444 1
+a444 1
+	    print "\t($(CD) "pwd"/..; $(TAR) "name".tar $(OTHERFILES) $(SRCFILES) $(HEADERFILES)" > file
+@
+
+
+1.10
+log
+@*** empty log message ***
+@
+text
+@d444 1
+a444 1
+	    print "\t($(CD) "pwd"/..; $(TAR) cvf "name".tar $(OTHERFILES) $(SRCFILES) $(HEADERFILES)" > file
+@
+
+
+1.9
+log
+@multiple config files
+test for other moduls implemented
+@
+text
+@d7 1
+d14 1
+a14 1
+if [ -f /bin/dnawk ]; then
+d17 1
+a17 1
+  awk="/usr/local/bin/gawk -v MACHINE=$machine -v MAKEDEPEND=$MAKEDPEND"
+@
+
+
+1.8
+log
+@object moduls not stripped
+@
+text
+@d13 1
+a13 1
+if [ -f /bin/nawk ]; then
+d305 2
+d320 1
+a320 1
+		  if (sub(" *in$","")==0)
+d325 7
+d333 1
+a333 1
+caseon && (substr($0,1,length(caseon)+1)==caseon")") { caseok++
+d335 1
+a335 1
+caseon && (substr($0,1,2)=="*)") { caseok++
+d339 1
+a339 1
+caseon && (caseok<=0) {
+@
+
+
+1.7
+log
+@changed linkable objects treatment
+@
+text
+@d293 9
+a301 8
+		  varname["",6]="INSTALL"; varvalue["","INSTALL"]="install -s -m 755"
+		  varname["",7]="MAKEDEPEND"; varvalue["","MAKEDEPEND"]="makedepend"
+		  varname["",8]="MACHINE"; varvalue["","MACHINE"]=MACHINE
+		  varname["",9]="TAR"; varvalue["","TAR"]="tar cvf"
+		  varname["",10]="COMPRESS"; varvalue["","COMPRESS"]="gzip"
+		  varname["",11]="BINDIR"; varvalue["","BINDIR"]="/usr/local/bin"
+		  varname["",12]="LIBDIR"; varvalue["","LIBDIR"]="/usr/local/lib"
+		  varnum[modul]=13
+d427 2
+a428 1
+	      print "\t$(INSTALL) "name" $(BINDIR)\n" > file
+@
+
+
+1.6
+log
+@added LIBDIR capability
+@
+text
+@d90 1
+a90 4
+	  if (!(modul~/\.o$/))
+	    modul=modul".obj"
+	  else
+	    modul=modul"bj"
+@
+
+
+1.5
+log
+@inheritance fixed
+@
+text
+@d180 1
+a180 1
+	{ srcdir=bindir=1
+d193 3
+d282 2
+d302 2
+a303 1
+		  varnum[modul]=12
+d419 1
+a419 1
+	    if (name~/\.o$/)
+d421 4
+@
+
+
+1.4
+log
+@zero argument fix for print
+@
+text
+@d235 1
+d239 3
+a241 2
+	          if (name SUBSEP "@@"fc in varvalue) {
+		    fc=varvalue[name,"@@"fc]
+d244 1
+d249 1
+d253 1
+d256 1
+d259 1
+d430 1
+d438 1
+d446 1
+@
+
+
+1.3
+log
+@prefer nawk
+close Makefile's during awk run
+@
+text
+@d457 1
+a457 1
+	  print > file
+d462 1
+a462 1
+	  print > file
+a464 3
+#	    files="] "lookup("FILES",name,0)" ["
+#	    gsub("[]][^[]*[[]"," ",files)
+#	    print ""name":"use[name]" "files > file
+d469 1
+a469 1
+	  print > file
+@
+
+
+1.2
+log
+@inheritance of special rules implemented
+@
+text
+@d13 3
+a15 1
+if [ -f /usr/local/bin/gawk ]; then
+a16 2
+else
+  awk=nawk
+d442 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 1
+d12 1
+d14 1
+a14 1
+  awk="/usr/local/bin/gawk -v MACHINE=$1 -v MAKEDEPEND=$MAKEDPEND"
+d16 1
+a16 1
+  awk="nawk -v MACHINE=$1 -v MAKEDEPEND=$MAKEDPEND"
+d18 4
+d162 17
+d188 1
+a188 1
+	        print varname[name,i]" = "varvalue[name,varname[name,i]] > file
+d217 2
+a218 2
+		print "SRCFILES = "ofiles > file
+		print "DEPENDFILES = "dfiles > file
+d229 1
+a229 1
+		print "HEADERFILES = "ofiles > file
+d232 1
+a232 1
+		print "OTHERFILES = "lookup("OTHERFILES",modul,0) > file
+d261 1
+a261 1
+	        print "FILES ="ofiles > file
+d362 1
+a362 1
+/^[^ ]* *:/	{ modul=$0; inherit=$0
+d423 1
+a423 1
+	      if (name SUBSEP "@@"fc in varvalue) {
+d425 4
+a428 2
+		while(name SUBSEP "@@"fc SUBSEP i in varvalue)
+		  print varvalue[name,"@@"fc,i++] > file
+d448 1
+d452 1
+d462 1
+d464 3
+d471 8
+d484 1
+d490 1
+d497 1
+d503 1
+d506 1
+a506 1
+	    print name"-tar:" >file
+d509 1
+a509 1
+	}' MACHINE=$1 MAKEDEPEND=$MAKEDEPEND red.cnf
+@

@@ -1,0 +1,78 @@
+head	1.4;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.4
+date	95.04.17.14.52.20;	author sf;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	95.04.10.08.47.35;	author sf;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	95.04.10.07.47.32;	author sf;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	95.02.02.14.42.58;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@initial revision
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@#ifndef __OPTIMIZER_H__
+#define __OPTIMIZER_H__
+
+extern void optimize_delta(FUNCTION *);
+extern int am_i_insertable(FUNCTION *);
+extern ORDER *inline_function(FUNCTION *, ORDER *, int);
+extern void insert_functions(FUNCTION *);
+extern void reset_inlined_flags(void);
+extern void overwrite_func(char *, ORDER *);
+#endif
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d9 1
+@
+
+
+1.2
+log
+@rudimentary function inlining
+@
+text
+@d8 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 3
+a7 1
+
+@

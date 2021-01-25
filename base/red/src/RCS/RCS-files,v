@@ -1,0 +1,488 @@
+head	1.20;
+access;
+symbols
+	continuation_based_interactions:1.17
+	pre_interactions:1.14
+	nCUBE~:1.13
+	red2:1.4
+	red1:1.2;
+locks; strict;
+comment	@# @;
+
+
+1.20
+date	2001.03.13.15.11.30;	author base;	state Exp;
+branches;
+next	1.19;
+
+1.19
+date	96.03.13.13.52.03;	author stt;	state Exp;
+branches;
+next	1.18;
+
+1.18
+date	95.12.14.17.20.12;	author rs;	state Exp;
+branches;
+next	1.17;
+
+1.17
+date	95.11.09.15.51.46;	author stt;	state Exp;
+branches;
+next	1.16;
+
+1.16
+date	95.11.08.16.42.46;	author stt;	state Exp;
+branches;
+next	1.15;
+
+1.15
+date	95.09.08.10.19.16;	author stt;	state Exp;
+branches;
+next	1.14;
+
+1.14
+date	95.07.10.09.19.59;	author car;	state Exp;
+branches;
+next	1.13;
+
+1.13
+date	95.03.22.14.58.15;	author cr;	state Exp;
+branches;
+next	1.12;
+
+1.12
+date	95.03.07.14.57.26;	author sf;	state Exp;
+branches;
+next	1.11;
+
+1.11
+date	95.02.13.10.37.22;	author rs;	state Exp;
+branches;
+next	1.10;
+
+1.10
+date	94.11.14.10.54.32;	author mah;	state Exp;
+branches;
+next	1.9;
+
+1.9
+date	94.08.26.15.10.58;	author car;	state Exp;
+branches;
+next	1.8;
+
+1.8
+date	94.06.20.06.00.45;	author car;	state Exp;
+branches;
+next	1.7;
+
+1.7
+date	94.03.09.08.57.20;	author mah;	state Exp;
+branches;
+next	1.6;
+
+1.6
+date	94.03.08.15.21.35;	author mah;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	94.01.20.08.05.38;	author car;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	93.11.02.13.46.21;	author car;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	93.09.01.13.08.29;	author base;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	92.11.04.18.21.55;	author base;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	92.11.04.18.12.30;	author base;	state Exp;
+branches;
+next	;
+
+
+desc
+@original
+@
+
+
+1.20
+log
+@Makefile removed .
+@
+text
+@DBHexport.h
+DBMdebug.c
+DBMexport.h
+DBNCdebug.c
+DBdebug.h
+GLobal.h
+GROUPS
+README.intact
+case.h
+configure
+cparm.h
+d_autodist.c
+d_gen_defines
+d_gen_mess_inc
+d_gen_names
+d_mess_groups.h
+d_mess_init.c
+d_mess_io.h
+d_mess_merge.c
+d_mess_merge.h
+d_mess_names.h
+dbug.c
+dbug.h
+dumpheap.c
+dumpheap.h
+groups_to_c
+ldel-expr.c
+ldepth.c
+lfun-def.c
+list.h
+lnr1pre.c
+lnrecfunc.c
+lpa-sub.c
+lr-args.c
+lr-close.c
+lr-num.c
+lr-prot.c
+lr-ret.c
+lr-stor.c
+lte-frev.c
+m_remote_merge.c
+nc_nn_sched.c
+nc_nn_sched.h
+ncdbug.c
+nn_nc_msg.c
+patvar.c
+pmam.c
+pmanalyze.c
+pmanalyze.h
+pmdimli.c
+pminstr.h
+pmsupport.c
+pos-casepost.c
+pos-p-fail.c
+pos-postfunc.c
+pos-rea-ret.c
+pre-casefunc.c
+pre-hfunc.c
+pre-lrecfunc.c
+pre-nea-cre.c
+pre-nsubfunc.c
+pre-pm-ptfu.c
+pre-pmpatvar.c
+preproc.c
+r-debug.c
+ram.c
+rbibfunc.c
+rbibfunc.small.c
+rbreak.c
+rclose.c
+rcomp.c
+rconvert.c
+rconvir.c
+rdesc.c
+rdig-add.c
+rdig-div.c
+rdig-mod.c
+rdig-mul.c
+rdig-sub.c
+rdig-v1.c
+rdig-v2.c
+rdigit.h
+rdummies.c
+rea-cre.c
+rea-ret.c
+reac.c
+rear.c
+red.cnf
+rextcode.c
+rextern.h
+rfstruct.c
+rheap.c
+rheapty.h
+rhinout.c
+riafunc.c
+rinstr.h
+rintact.c
+rintact.h
+rinter.c
+rinter.h
+rlmvt.h
+rlog-mvt.c
+rlogfunc.c
+rlstruct.c
+rmeasure.h
+rmessage.c
+rmodulnr.h
+rmstruct.c
+rmstruct.small.c
+rnc_misc.c
+rncheap.h
+rncmain.c
+rncmessage.c
+rncmessage.h
+rncsched.c
+rncsched.h
+rncstack.c
+rncstack.h
+rncsupport.c
+rnf.c
+rnf.h
+rops.h
+roptasm.c
+roptasm.h
+rpartrec.c
+rpartsub.c
+rpatvar.c
+rpos.c
+rprimf.c
+rprimf.h
+rprint.c
+rquery.c
+rr1eapos.c
+rr1pr.c
+rrecfunc.c
+rred-eq.c
+rreduce.c
+rreduct.c
+rret-dec.c
+rretrieve.c
+rruntime.c
+rruntime.h
+rscavenge.c
+rscavenge.h
+rst-dec.c
+rst-match.c
+rstack.c
+rstack.h
+rstackty.h
+rstate.c
+rstdinc.h
+rstelem.h
+rstpre.c
+rstpro.c
+rsts-dec.c
+rstswi.c
+rsubfunc.c
+rtasm.c
+rtrav.c
+runify.c
+ruserf.c
+rval-int.c
+rvalfunc.c
+rvalir.c
+rvstruct.c
+rvstruct.small.c
+rwhen-pre.c
+setup.c
+spec_sched.c
+spec_sched.h
+tags.h
+traps.h
+@
+
+
+1.19
+log
+@README.intact added.
+@
+text
+@a7 1
+Makefile
+@
+
+
+1.18
+log
+@NEW: rstack.h (stack-access-macros)
+@
+text
+@d9 1
+@
+
+
+1.17
+log
+@new revision with rintact.h
+@
+text
+@d148 1
+@
+
+
+1.16
+log
+@new revision including riafunc.c
+@
+text
+@d98 1
+@
+
+
+1.15
+log
+@checked in rintact.c
+@
+text
+@d95 1
+@
+
+
+1.14
+log
+@nCUBE linkable modules
+@
+text
+@d96 1
+@
+
+
+1.13
+log
+@file rfstruct.c added
+@
+text
+@d42 2
+d45 1
+d116 1
+@
+
+
+1.12
+log
+@rtasm.c added
+@
+text
+@d88 1
+@
+
+
+1.11
+log
+@initial revision
+@
+text
+@d8 1
+d149 1
+@
+
+
+1.10
+log
+@pmam.c pmdimli.c added
+@
+text
+@d27 1
+d42 1
+d44 2
+d48 1
+d60 1
+d158 2
+@
+
+
+1.9
+log
+@support ASm-code optimizer
+@
+text
+@d41 2
+@
+
+
+1.8
+log
+@first extension for optimizer
+@
+text
+@d112 1
+d141 2
+@
+
+
+1.7
+log
+@tilde version
+@
+text
+@d106 2
+@
+
+
+1.6
+log
+@tilde version
+@
+text
+@d41 1
+@
+
+
+1.5
+log
+@extended codefile generation
+@
+text
+@d8 1
+d28 1
+d41 11
+@
+
+
+1.4
+log
+@user-scripts added
+@
+text
+@d63 1
+@
+
+
+1.3
+log
+@1st version with configure instead of Makefile
+@
+text
+@d7 1
+d11 3
+d24 1
+@
+
+
+1.2
+log
+@original
+@
+text
+@d1 7
+a7 1
+Makefile
+d9 9
+d32 2
+d57 1
+d70 1
+d74 9
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 98
+@

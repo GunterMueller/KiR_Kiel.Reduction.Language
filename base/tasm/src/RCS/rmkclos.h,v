@@ -1,0 +1,28 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	94.12.20.09.21.46;	author sf;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@extern void f_mkdclos(int, int, int);
+extern void f_mkbclos(int, int);
+extern void f_mkgaclos(int, int, int);
+extern void f_mkcclos(int, int);
+extern void dyn_mkbclos(int);
+@

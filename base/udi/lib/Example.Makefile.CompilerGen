@@ -1,0 +1,160 @@
+###################################################################################
+##
+## Example Makefile for Marco (Make a reduktion compiler)
+## Adjust it for you purposes
+##
+###################################################################################
+## Author : Ulrich Diedrichsen
+## Copy   : University of Kiel (germany) 1993
+###################################################################################
+
+###################################################################################
+#
+# Some pathes needed for makefile (Please adjust them)
+#
+###################################################################################
+
+# Root dir for directory Base (IMPORTANT)
+BASE_PATH	= /home/batman/base
+
+# Root dir for directory red compiler utils (IMPORTANT)
+REDCOMP_PATH	= /home/gutemine/udi/dipl
+
+###################################################################################
+#
+# Some definition needed for makefile (Please adjust them)
+#
+###################################################################################
+
+# Destination directory for generated compiler
+BINPATH		= $(REDCOMP_PATH)/bin
+
+# Root dir for directory marco source
+MARCSRC_PATH	= $(REDCOMP_PATH)/src/marco
+
+# Local or system lib directory for marco libraries
+MARCLIB_PATH	= $(REDCOMP_PATH)/lib
+
+# Name of this languages
+LANGUAGENAME	= kir
+LANGUAGESRC	= kir.lang
+
+# Compiler generator options
+COGEN		= marco
+COGEN-FILENAME	= -f
+COGEN-INC	= -I$(MARCSRC_PATH)/include
+
+# Compiler generator libraries
+COGEN-LIB	= $(MARCLIB_PATH)/libmarco.o
+COGEN-MAIN	= $(MARCLIB_PATH)/marco-main.o
+
+# Fred Fish Debug path for includes
+FFDBUG_PATH	= $(REDCOMP_PATH)/src/dbug
+# Uncomment next line for debug features
+#FFDBUGLIB	= $(REDCOMP_PATH)/src/dbug/dbug.o
+
+# Reductionunit definitions
+#RED_OBJ		= $(BASE_PATH)/reduma/lred.o
+RED_OBJ		= /home/gutemine/udi/dipl/lib/lred.o
+RED_INC		= $(BASE_PATH)/red/src
+
+# Additional libraries need (actually mathlib)
+ADD_LIBS	= -lm
+
+###################################################################################
+#
+# Some definition needed for generated sub makefile (Please adjust them)
+#
+###################################################################################
+
+LIBMKFILE	= $(LANGUAGENAME).mk
+
+# Name of language depend library
+LANGLIBNAME	= lib$(LANGUAGENAME).o
+
+# Programm to delete files with options
+RM		= rm
+RMOPTS		= -f
+
+# Move (rename) programm with options
+MV		= mv
+MVOPTS		=
+
+# LD linker programm and options
+LD		= ld
+LDOPTS		= -r -o
+
+# Debug Options
+FFDBUGOPTS	= -DDBUG_OFF=1
+
+# C Compiler with options (Last option must be to specify the output file)
+CC		= gcc
+CFLAGS		= -O2 $(FFDBUGOPTS) $(COGEN-INC) -I$(FFDBUG_PATH)
+
+# Bison (yacc) compiler compiler with options (to generate a header file)
+BISON		= bison
+BISONOPTS	= -d
+
+# Scannergenerator with options (lex or flex)
+FLEX		= flex
+FLEXOPTS	=
+
+###################################################################################
+#
+# End of definitions for submakefile and user (system) depend part
+#
+###################################################################################
+
+SUBMAKEFILEMAC	= "LANGLIBNAME=$(LANGLIBNAME)" \
+		  "RM=$(RM)" "RMOPTS=$(RMOPTS)" \
+		  "MV=$(MV)" "MVOPTS=$(MVOPTS)" \
+		  "LD=$(LD)" "LDOPTS=$(LDOPTS)" \
+		  "FFDBUGOPTS=$(FFDBUGOPTS)" \
+		  "CC=$(CC)" "CFLAGS=$(CFLAGS)" \
+		  "BISON=$(BISON)" "BISONOPTS=$(BISONOPTS)" \
+		  "FLEX=$(FLEX)" "FLEXOPTS=$(FLEXOPTS)"
+
+###################################################################################
+# Goals
+###################################################################################
+
+all : $(LANGUAGENAME) $(COGEN-LIB) $(COGEN-MAIN) $(RED_OBJ) $(FFDBUGLIB)
+
+$(LANGUAGENAME) : $(LANGLIBNAME) $(COGEN-LIB) $(COGEN-MAIN)
+	@($(CC) -o $(LANGUAGENAME) $(LANGLIBNAME) $(COGEN-LIB) $(COGEN-MAIN) $(RED_OBJ) $(ADD_LIBS) $(FFDBUGLIB))
+
+clean ::
+	@(make clean_langlib;$(RM) $(RMOPTS) $(LANGUAGENAME))
+
+clobber: clean
+	@(rm -f $(BINPATH)/$(LANGUAGENAME) $(MARCLIB_PATH)/$(LANGLIBNAME))
+
+install:: all
+	cp $(LANGUAGENAME) $(BINPATH);
+	cp $(LANGLIBNAME) $(MARCLIB_PATH)
+
+###################################################################################
+# Subgoals
+###################################################################################
+
+$(LANGLIBNAME) : $(LIBMKFILE) $(LANGUAGESRC)
+	@(make all_langlib)
+
+###################################################################################
+# Subgoals for language depend parts (DO NOT EDIT)
+###################################################################################
+
+$(LIBMKFILE) : $(LANGUAGESRC)
+	$(COGEN) $(COGEN-FILENAME) $(LANGUAGESRC)
+
+all_langlib : $(LIBMKFILE) $(LIBNAME)
+	@(make all -f $(LIBMKFILE) $(SUBMAKEFILEMAC))
+
+clean_langlib : $(LIBMKFILE) $(LIBNAME)
+	@(make clean -f $(LIBMKFILE) $(SUBMAKEFILEMAC))
+
+clobber_langlib : $(LIBMKFILE) $(LIBNAME)
+	@(make clobber -f $(LIBMKFILE) $(SUBMAKEFILEMAC))
+
+install_langlib : $(LIBMKFILE) $(LIBNAME)
+	@(make install -f $(LIBMKFILE) $(SUBMAKEFILEMAC))

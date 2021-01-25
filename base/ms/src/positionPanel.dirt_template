@@ -1,0 +1,120 @@
+%%ID  DIRT! 1.4 (c)1990 rlh2@ukc.ac.uk : Template Specification file
+%%ID  Template = "positionPanel"
+%%ID  Created by tb on Thu Jul 29 09:17:05 1993
+%%%
+%T positionPanel
+%F
+%%%
+%N msPositionPanelBox
+%c ukcLayoutWidgetClass
+%p positionPanel
+%m true
+%o false
+%s x : 48
+%s y : 30
+%s width : 160
+%s height : 68
+%s borderWidth : 1
+%r background : #888888
+%f
+%%%
+%N  msPositionPanelLabelLine
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 2
+%s  width : 48
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Line:
+%r  justify : right
+%r  borderColor : #888888
+%f
+%%%
+%N  msPositionPanelLabelFrame
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 24
+%s  width : 48
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Frame:
+%r  justify : right
+%r  barColour : #000000
+%r  borderColor : #888888
+%f
+%%%
+%N  msPositionPanelLabelTime
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 3
+%s  y : 46
+%s  width : 48
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : Time:
+%r  justify : right
+%r  borderColor : #888888
+%f
+%%%
+%N  msPositionPanelShowLine
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 53
+%s  y : 2
+%s  width : 100
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #888888
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%f
+%%%
+%N  msPositionPanelEnterFrame
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 53
+%s  y : 24
+%s  width : 100
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #ffffff
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%r  editable : true
+%r  editing : true
+%f
+%%%
+%N  msPositionPanelEnterTime
+%c  ukcLabelWidgetClass
+%p  positionPanel.msPositionPanelBox
+%m  true
+%o  false
+%s  x : 53
+%s  y : 46
+%s  width : 100
+%s  height : 18
+%s  borderWidth : 1
+%r  background : #ffffff
+%r  label : 0
+%r  justify : left
+%r  borderColor : #000000
+%r  editable : true
+%r  editing : true
+%f

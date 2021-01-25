@@ -1,0 +1,23 @@
+msHeapArray*background: #ffffff
+msHeapArray*foreground: #000000
+
+msHeapArray*msFilePanelLabelPath.borderWidth: 0
+msHeapArray*msFilePanelLabelName.borderWidth: 0
+msHeapArray*msScriptPanelLabelPath.borderWidth: 0
+msHeapArray*msScriptPanelLabelName.borderWidth: 0
+msHeapArray*msDisplayPanelLabelTitle.borderWidth: 0
+msHeapArray*msProgressLabel.borderWidth: 0
+msHeapArray*msCursorPanelLabelX.borderWidth: 0
+msHeapArray*msCursorPanelLabelY.borderWidth: 0
+msHeapArray*msPositionPanelLabelLine.borderWidth: 0
+msHeapArray*msPositionPanelLabelFrame.borderWidth: 0
+msHeapArray*msPositionPanelLabelTime.borderWidth: 0
+msHeapArray*msSpeedPanelLabelDelay.borderWidth: 0
+msHeapArray*msSpeedPanelLabelRate.borderWidth: 0
+msHeapArray*myRequesterSelectLabelMask.borderWidth: 0
+msHeapArray*myRequesterSelectLabelPath.borderWidth: 0
+msHeapArray*myRequesterSelectLabelFile.borderWidth: 0
+msHeapArray*msRequesterTitle1.borderWidth: 0
+msHeapArray*msRequesterTitle2.borderWidth: 0
+msHeapArray*msRequesterTitle3.borderWidth: 0
+
